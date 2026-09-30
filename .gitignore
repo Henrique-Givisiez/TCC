@@ -30,3 +30,6 @@ venv/
 /results/graficos/
 /results/graficos_apresentacao/
 /results/logs/
+/attack_events.csv
+/request_log.csv
+/run_status.json

@@ -1,6 +1,7 @@
 import subprocess
 import os
 import shutil
+from experiments.result_archive import move_result
 
 # Verificação pontual (não faz parte da varredura permanente): roda o
 # candidato a novo valor de S4 (250 req/s agregado, WU=10 — mesmo custo
@@ -34,7 +35,7 @@ for rep in range(1, REPS + 1):
     subprocess.run(cmd)
 
     metrics_filename = f"metrics_normal_rps62.5_WU10_rep{rep}.csv"
-    shutil.move("simulation_metrics.csv", os.path.join(RESULTS_DIR, metrics_filename))
+    move_result("simulation_metrics.csv", os.path.join(RESULTS_DIR, metrics_filename))
 
     traffic_capture_src = "traffic_capture.csv"
     traffic_capture_filename = f"traffic_capture_normal_rps62.5_WU10_rep{rep}.csv"

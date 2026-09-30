@@ -2,6 +2,7 @@ import subprocess
 import itertools
 import os
 import shutil
+from experiments.result_archive import move_result
 
 # Ataque ISOLADO de verdade -- sem tráfego normal nenhum (--normal-rps 0,
 # que agora desliga de vez em vez de cair no fallback de 1req/s, ver
@@ -36,7 +37,7 @@ for rps, wu in itertools.product(RPS_VALUES, WU_VALUES):
 
     suffix = f"rps{rps}_att{ATTACKERS}_WU{wu}"
 
-    shutil.move("simulation_metrics.csv", os.path.join(RESULTS_DIR, f"metrics_{suffix}.csv"))
+    move_result("simulation_metrics.csv", os.path.join(RESULTS_DIR, f"metrics_{suffix}.csv"))
 
     attack_summary_src = "attack_summary_log.csv"
     if os.path.exists(attack_summary_src):

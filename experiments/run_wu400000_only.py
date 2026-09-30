@@ -2,6 +2,7 @@ import subprocess
 import itertools
 import os
 import shutil
+from experiments.result_archive import move_result
 
 # Complemento pontual a run_experiments.py: só WU=400000 (potência de 2 a
 # partir de 100000/200000, no lugar de 500000 -- pedido do usuário, ver
@@ -33,7 +34,7 @@ for rps, attackers, work_units in itertools.product(RPS_VALUES, ATTACKERS_VALUES
 
     subprocess.run(cmd)
 
-    shutil.move(
+    move_result(
         "simulation_metrics.csv",
         os.path.join(RESULTS_DIR, f"metrics_rps{rps}_att{attackers}_WU{work_units}.csv")
     )

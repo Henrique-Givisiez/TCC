@@ -2,6 +2,7 @@ import subprocess
 import itertools
 import os
 import shutil
+from experiments.result_archive import move_result
 
 # Varredura combinada (Tabela 5, Sotelo Monge et al.): para cada cenário de
 # tráfego normal, sobrepõe tráfego de ataque como uma porcentagem do volume
@@ -78,7 +79,7 @@ for scenario_name, normal_aggregate_rps in NORMAL_SCENARIOS.items():
             # Metrics log
             # =========================
             metrics_filename = f"metrics_{scenario_name}_atk{pct}pct_wu{work_units}.csv"
-            shutil.move(
+            move_result(
                 "simulation_metrics.csv",
                 os.path.join(RESULTS_DIR, metrics_filename)
             )

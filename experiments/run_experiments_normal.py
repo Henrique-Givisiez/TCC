@@ -2,6 +2,7 @@ import subprocess
 import itertools
 import os
 import shutil
+from experiments.result_archive import move_result
 
 # Varredura irmã de run_experiments.py, mas SEM ataque: caracteriza o
 # comportamento de CPU/RTT do servidor sob tráfego normal em várias
@@ -38,7 +39,7 @@ for rps, work_units in itertools.product(NORMAL_RPS_VALUES, NORMAL_WORK_UNITS_VA
     # =========================
     metrics_filename = f"metrics_normal_rps{rps}_WU{work_units}.csv"
 
-    shutil.move(
+    move_result(
         "simulation_metrics.csv",
         os.path.join(RESULTS_DIR, metrics_filename)
     )

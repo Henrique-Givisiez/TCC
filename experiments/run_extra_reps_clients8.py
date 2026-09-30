@@ -2,6 +2,7 @@ import subprocess
 import itertools
 import os
 import shutil
+from experiments.result_archive import move_result
 
 # Repetições extras para os 2 pontos do grid clientes×RPS que deram runs
 # catastróficos isolados (agg=256/clientes=8 rep2 e agg=512/clientes=8
@@ -46,7 +47,7 @@ for i, ((aggregate, clients), rep) in enumerate(combos, start=1):
 
     suffix = f"agg{aggregate}_clients{clients}_WU{WORK_UNITS}_rep{rep}"
 
-    shutil.move("simulation_metrics.csv", os.path.join(RESULTS_DIR, f"metrics_{suffix}.csv"))
+    move_result("simulation_metrics.csv", os.path.join(RESULTS_DIR, f"metrics_{suffix}.csv"))
 
     if os.path.exists("attack_summary_log.csv"):
         os.remove("attack_summary_log.csv")

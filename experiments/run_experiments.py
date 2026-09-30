@@ -2,6 +2,7 @@ import subprocess
 import itertools
 import os
 import shutil
+from experiments.result_archive import move_result
 from datetime import datetime
 
 RPS_VALUES = [1,5,10]
@@ -38,7 +39,7 @@ for rps, attackers, work_units in itertools.product(RPS_VALUES, ATTACKERS_VALUES
         f"metrics_rps{rps}_att{attackers}_WU{work_units}.csv"
     )
 
-    shutil.move(
+    move_result(
         "simulation_metrics.csv",
         os.path.join(RESULTS_DIR, metrics_filename)
     )

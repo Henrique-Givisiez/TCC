@@ -180,7 +180,8 @@ class ConfigurationTests(unittest.TestCase):
         ticks = iter([n / 10 for n in range(100)])
         with tempfile.TemporaryDirectory() as directory, \
              patch.multiple(main.config, **{key: str(Path(directory) / key) for key in
-                ['METRICS_LOG_FILE', 'RTT_LOG_FILE', 'TCPDUMP_OUTPUT_CSV', 'ATTACK_SUMMARY_LOG_FILE', 'NORMAL_TRAFFIC_SUMMARY_LOG_FILE']}), \
+                ['METRICS_LOG_FILE', 'RTT_LOG_FILE', 'TCPDUMP_OUTPUT_CSV', 'ATTACK_SUMMARY_LOG_FILE', 'NORMAL_TRAFFIC_SUMMARY_LOG_FILE',
+                 'ATTACK_EVENTS_LOG_FILE', 'REQUEST_LOG_FILE', 'RUN_STATUS_FILE']}), \
              patch.object(main, 'TcpdumpSniffer'), \
              patch('simulator.stats_collector.StatsCollector', return_value=collector), \
              patch.multiple(docker_manager, build_docker_image=MagicMock(return_value=True),
@@ -193,10 +194,12 @@ class ConfigurationTests(unittest.TestCase):
              patch.object(main.time, 'monotonic', side_effect=lambda: next(ticks)), \
              patch.object(main.time, 'sleep'), patch('builtins.print'):
             main.main(c)
-            normal_traffic.configure.assert_called_once_with(c.normal_traffic, 42)
-            traffic_injectorV0.configure.assert_called_once_with(c.attack, 42)
+            normal_traffic.configure.assert_called_once_with(c.normal_traffic, 42,
+                ground_truth=main.ground_truth, request_logger=main.request_logger)
+            traffic_injectorV0.configure.assert_called_once_with(c.attack, 42,
+                ground_truth=main.ground_truth, request_logger=main.request_logger)
             normal_traffic.start_http_traffic.assert_called_once_with(['http://localhost:8080'], 3, 1)
-            traffic_injectorV0.start_http_flood.assert_called_once_with(['http://localhost:8080'], 7, 2)
+            traffic_injectorV0.start_http_flood.assert_called_once_with(['http://localhost:8080'], 7, 2, event_id='event_001')
             docker_manager.start_instance.assert_called_once_with(1, c.server)
             collector.get_averages.assert_called_with(window_seconds=.1)
 

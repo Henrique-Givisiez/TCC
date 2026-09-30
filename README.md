@@ -21,7 +21,7 @@ python3 -m pip install -r requirements.txt
 python3 -m simulator.main_orchestrator --config experiments/configs/default.json
 ```
 
-O entrypoint é `simulator/main_orchestrator.py`. Os parâmetros experimentais usam JSON e dataclasses em `simulator/experiment_config.py`; configuração técnica e caminhos permanecem em `simulator/config.py`. Veja [a configuração da Etapa 1](docs/experiment_configuration.md). O injetor ativo é **`traffic_injectorV0.py`**, apesar do nome; `legacy/traffic_injector.py` pertence ao fluxo anterior.
+O entrypoint é `simulator/main_orchestrator.py`. Os parâmetros experimentais usam JSON e dataclasses em `simulator/experiment_config.py`; configuração técnica e caminhos permanecem em `simulator/config.py`. Veja [a configuração da Etapa 1](docs/experiment_configuration.md) e [o contrato de ground truth da Etapa 2](docs/ground_truth.md). O injetor ativo é **`traffic_injectorV0.py`**, apesar do nome; `legacy/traffic_injector.py` pertence ao fluxo anterior.
 
 A simulação exige Docker acessível e permissão de captura para `tcpdump`. `--help` e `--print-config` funcionam sem acessar Docker; a configuração é validada antes de inicializar os componentes. Ele cria/limpa contêineres da simulação. O build usa o `Dockerfile` da raiz, que copia `simulator/app/` para `/app` na imagem.
 
@@ -38,7 +38,7 @@ Os subprocessos dos runners usam `python3`; ative o mesmo ambiente virtual no te
 
 ## Resultados e preservação
 
-Nesta etapa, `experiment_results/` permanece no lugar para evitar mover milhares de arquivos históricos. Os CSVs transitórios (`simulation_metrics.csv`, `rtt_log.csv`, `traffic_capture.csv` e os dois logs de resumo) continuam na raiz até os runners os arquivarem. Não execute cenários concorrentes: eles compartilham esses nomes, como antes.
+Nesta etapa, `experiment_results/` permanece no lugar para evitar mover milhares de arquivos históricos. Os CSVs transitórios (`simulation_metrics.csv`, `rtt_log.csv`, `traffic_capture.csv`, `attack_events.csv`, `request_log.csv`, `run_status.json` e os dois logs de resumo) continuam na raiz até os runners os arquivarem. Não execute cenários concorrentes: eles compartilham esses nomes, como antes.
 
 Gráficos são gravados em `results/graficos/` ou `results/graficos_apresentacao/`; a extração de features usa `results/ml_dataset/features_raw.csv`. Análises de bursts preservam saídas ao lado dos arquivos de entrada. A análise manual de RTT pode produzir arquivos transitórios na raiz.
 

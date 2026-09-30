@@ -14,6 +14,7 @@ Não roda com sudo (setcap do tcpdump já aplicado, ver RESUMO_MADRUGADA_12_08.t
 import argparse
 import os
 import shutil
+from experiments.result_archive import move_result
 import subprocess
 
 REPS = 3
@@ -27,7 +28,7 @@ os.makedirs(WC_DIR, exist_ok=True)
 
 def move_if_exists(src, dst):
     if os.path.exists(src):
-        shutil.move(src, dst)
+        move_result(src, dst)
     else:
         print(f"[WARNING] {src} não encontrado.")
 

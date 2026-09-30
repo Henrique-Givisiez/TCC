@@ -2,6 +2,7 @@ import subprocess
 import itertools
 import os
 import shutil
+from experiments.result_archive import move_result
 
 # Reexecuta os pontos do eixo X do gráfico 04 (curva de capacidade do
 # baseline normal, WU=10) com repetições reais e com o código atual, que já
@@ -48,7 +49,7 @@ for aggregate, rep in itertools.product(AGGREGATE_TARGETS, range(1, NUM_REPS + 1
     # =========================
     # Metrics log (agora com host_cpu_percent embutido)
     # =========================
-    shutil.move(
+    move_result(
         "simulation_metrics.csv",
         os.path.join(RESULTS_DIR, f"metrics_normal_{suffix}.csv")
     )

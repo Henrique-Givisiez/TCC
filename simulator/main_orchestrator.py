@@ -1,5 +1,8 @@
 import time
 import csv
+import json
+from simulator.ground_truth import GroundTruth, encode_event_ids
+from simulator.request_logger import RequestLogger
 from dataclasses import replace
 from simulator.experiment_config import ExperimentConfig
 
@@ -69,52 +72,136 @@ def parse_args():
         parser.error(str(error))
     return args
 
-def log_metrics_to_csv(elapsed_time, num_instances, avg_cpu, mem_usage,avg_rtt, decision, active_names, label, host_cpu_percent):
+METRICS_FIELDS = ['run_id', 'timestamp', 'elapsed_seconds', 'elapsed_time_s',
+                  'num_instances', 'average_cpu_percent', 'mem_usage', 'avg_rtt_ms',
+                  'decision', 'active_containers_names', 'attack_active',
+                  'active_event_ids', 'host_cpu_percent']
+
+
+def log_metrics_to_csv(ground_truth, num_instances, avg_cpu, mem_usage, avg_rtt,
+                       decision, active_names, host_cpu_percent):
+    # Observation instant is sampled immediately before writing, after tick actions.
+    timestamp, elapsed = ground_truth.clock.sample()
+    active, ids = ground_truth.context(elapsed)
+    with open(config.METRICS_LOG_FILE, 'a', newline='') as csvfile:
+        csv.DictWriter(csvfile, fieldnames=METRICS_FIELDS).writerow({
+            'run_id': ground_truth.run_id, 'timestamp': timestamp,
+            'elapsed_seconds': elapsed, 'elapsed_time_s': round(elapsed, 2),
+            'num_instances': num_instances, 'average_cpu_percent': round(avg_cpu, 2),
+            'mem_usage': round(mem_usage, 2), 'avg_rtt_ms': round(avg_rtt, 2),
+            'decision': decision, 'active_containers_names': ','.join(active_names),
+            'attack_active': active, 'active_event_ids': encode_event_ids(ids),
+            'host_cpu_percent': round(host_cpu_percent, 2),
+        })
+
+
+def _shutdown(reason):
+    """Stop admission, drain producers, persist logs, then stop capture and infrastructure."""
+    complete = True
+    errors = []
+    for module, stopper in [(globals().get('traffic_injectorV0'), 'stop_http_flood'),
+                            (globals().get('normal_traffic'), 'stop_http_traffic')]:
+        if module is not None:
+            try:
+                if stopper == 'stop_http_flood':
+                    module.stop_http_flood(reason)
+                else:
+                    module.stop_http_traffic()
+            except Exception as exc:
+                errors.append(str(exc))
+                complete = False
+    for module in [globals().get('traffic_injectorV0'), globals().get('normal_traffic')]:
+        if module is not None:
+            try:
+                drained = module.drain()
+                if not drained:
+                    errors.append(f"{module.__name__}: producer drain incomplete")
+                complete = drained and complete
+            except Exception as exc:
+                errors.append(str(exc))
+                complete = False
+    if request_logger is not None:
+        try:
+            complete = request_logger.finalize() and complete
+        except Exception as exc:
+            errors.append(f'request log: {exc}')
+            complete = False
+    producers_drained = complete
+    if request_logger is not None:
+        try:
+            request_logger.save_rtt(config.RTT_LOG_FILE)
+        except Exception as exc:
+            errors.append(f'RTT export: {exc}')
+            complete = False
+    if ground_truth is not None:
+        try:
+            ground_truth.finalize(reason, complete=producers_drained)
+        except Exception as exc:
+            errors.append(f'event export: {exc}')
+            complete = False
+    if sniffer is not None:
+        try:
+            sniffer.stop()
+        except Exception as exc:
+            errors.append(str(exc))
+            complete = False
+    if stats_collector is not None:
+        try:
+            stats_collector.stop()
+        except Exception as exc:
+            errors.append(f'stats collector: {exc}')
+            complete = False
+    # Avoid stopping backends while an incomplete drain still has HTTP calls.
+    if globals().get('docker_manager') is not None and producers_drained:
+        try:
+            docker_manager.cleanup_all_simulation_instances()
+        except Exception as exc:
+            errors.append(f'backend cleanup: {exc}')
+            complete = False
+    if ground_truth is not None:
+        with open(config.RUN_STATUS_FILE, 'w') as f:
+            json.dump(dict(schema_version=1, experiment_id=ground_truth.experiment_id,
+                           run_id=ground_truth.run_id,
+                           experiment_start_timestamp=ground_truth.clock.epoch_initial,
+                           experiment_start_monotonic=ground_truth.clock.monotonic_initial,
+                           status='completed' if complete and reason == 'simulation_end' else 'incomplete',
+                           end_reason=reason, producers_drained=producers_drained, errors=errors), f, indent=2)
+            f.write('\n')
+    if not complete:
+        print('[Orchestrator] Incomplete run: drain/capture failures recorded in run_status.json.')
+
+
+def main(experiment=None):
+    global stats_collector, sniffer, ground_truth, request_logger
+    stats_collector = sniffer = ground_truth = request_logger = None
+    reason = 'simulation_end'
     try:
-        with open(config.METRICS_LOG_FILE, 'a', newline='') as csvfile:
-            writer = csv.DictWriter(csvfile, fieldnames=['elapsed_time_s', 'num_instances', 'average_cpu_percent', 'mem_usage', 'avg_rtt_ms', 'decision', 'active_containers_names', 'label', 'host_cpu_percent'])
-            writer.writerow({
-                'elapsed_time_s': round(elapsed_time, 2),
-                'num_instances': num_instances,
-                'average_cpu_percent': round(avg_cpu, 2),
-                'mem_usage': round(mem_usage,2),
-                'avg_rtt_ms': round(avg_rtt,2),
-                'decision': decision,
-                'active_containers_names': ','.join(active_names) if active_names else '',
-                'label': label,
-                'host_cpu_percent': round(host_cpu_percent, 2),
-            })
-    except Exception as e:
-        print(f"[Orchestrator] Error logging metrics to CSV: {e}")
+        _run(experiment)
+    except KeyboardInterrupt:
+        reason = 'interrupted'
+        raise
+    except BaseException:
+        reason = 'error'
+        raise
+    finally:
+        _shutdown(reason)
 
 
 # --- Função Principal da Simulação ---
-def main(experiment=None):
+def _run(experiment=None):
 
-    global stats_collector, sniffer, docker_manager, normal_traffic, traffic_injectorV0, save_rtt_log
+    global stats_collector, sniffer, docker_manager, normal_traffic, traffic_injectorV0, ground_truth, request_logger
     experiment = (experiment or ExperimentConfig()).resolve_seed()
     print("[Orchestrator] Effective experiment configuration:\n" + experiment.to_json())
     from simulator import docker_manager
     from simulator import traffic_injectorV0
     from simulator import normal_traffic
     from simulator.stats_collector import StatsCollector
-    from simulator.normal_traffic import get_average_rtt_ms, save_rtt_log
+    from simulator.normal_traffic import get_average_rtt_ms
     from simulator.traffic_injectorV0 import get_average_rtt_attack_ms
-    normal_traffic.configure(experiment.normal_traffic, experiment.seed)
-    traffic_injectorV0.configure(experiment.attack, experiment.seed)
 
     print("[Orchestrator] Initializing simulation environment...")
 
-    ##Packet Sniffer
-    simulation_start_time = time.time()
-    sniffer_port_range = (config.STARTING_HOST_PORT, config.STARTING_HOST_PORT + experiment.infrastructure.max_instances - 1)
-    sniffer = TcpdumpSniffer(interface="any", output_csv=config.TCPDUMP_OUTPUT_CSV,
-                              simulation_start_time=simulation_start_time,
-                              port_range=sniffer_port_range)
-    sniffer.start()
-    sniffer.set_label("benign")
-
-    
     # --- CORREÇÃO AQUI: Instanciar a classe Autoscaler ---
     autoscaler = autoscaler_logic.Autoscaler(experiment.autoscaler, experiment.infrastructure) # Cria uma instância da classe Autoscaler
 
@@ -159,7 +246,21 @@ def main(experiment=None):
     print(f"[Orchestrator] {len(active_containers)} initial instance(s) running.")
 
     #Fazendo alterações no tempo para evitar drift
-    start_time = time.monotonic()
+    ground_truth = GroundTruth(experiment.id, config.ATTACK_EVENTS_LOG_FILE)
+    request_logger = RequestLogger(ground_truth, config.REQUEST_LOG_FILE)
+    if experiment.attack.enabled:
+        ground_truth.plan_event('attack_001', 'event_001', experiment.attack.profile,
+                                experiment.attack.start_seconds, experiment.attack.end_seconds)
+    normal_traffic.configure(experiment.normal_traffic, experiment.seed,
+                             ground_truth=ground_truth, request_logger=request_logger)
+    traffic_injectorV0.configure(experiment.attack, experiment.seed,
+                                ground_truth=ground_truth, request_logger=request_logger)
+    sniffer_port_range = (config.STARTING_HOST_PORT,
+                         config.STARTING_HOST_PORT + experiment.infrastructure.max_instances - 1)
+    sniffer = TcpdumpSniffer(interface='any', output_csv=config.TCPDUMP_OUTPUT_CSV,
+                             ground_truth=ground_truth, port_range=sniffer_port_range)
+    sniffer.start()
+    start_time = ground_truth.clock.monotonic_initial
     next_tick = start_time
 
     simulation_duration = experiment.duration_seconds
@@ -177,14 +278,14 @@ def main(experiment=None):
     # de instâncias?" pra decidir se reinicia o injetor -- update_targets() é
     # chamado toda iteração, incondicionalmente, sem custo de parar/recriar
     # worker nenhum. Ver changes.txt.
-    attack_has_started = False  # Se o injetor foi iniciado pelo menos uma vez
+    attack_has_started = False  # operational scheduling, never ground truth
+    attack_activation_requested = False
     normal_traffic_has_started = False
 
     # Configurar arquivo de log CSV no início
     try:
         with open(config.METRICS_LOG_FILE, 'w', newline='') as csvfile:
-            fieldnames = ['elapsed_time_s', 'num_instances', 'average_cpu_percent', 'mem_usage','avg_rtt_ms',
-                  'decision', 'active_containers_names', 'label', 'host_cpu_percent']
+            fieldnames = METRICS_FIELDS
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
             writer.writeheader()
         print(f"[Orchestrator] Metrics will be logged to: {config.METRICS_LOG_FILE}")
@@ -229,7 +330,6 @@ def main(experiment=None):
             break
 
         main_loop_iteration += 1
-        sniffer.set_label("benign")
         print(f"\n--- Iteration {main_loop_iteration} | Time: {elapsed_time_seconds:.1f}s / {simulation_duration}s ---")
 
         # 1. Validar e Coletar Métricas das Instâncias Ativas
@@ -240,13 +340,6 @@ def main(experiment=None):
         avg_cpu, avg_mem_app_mb, current_active_container_names = stats_collector.get_averages(
             window_seconds=experiment.monitoring.interval_seconds
         )
-
-        # O rótulo do CSV de métricas reflete se o ataque estava ativo durante a
-        # janela que avg_cpu ACABOU de medir (estado herdado da decisão da
-        # iteração ANTERIOR), não a decisão de start/stop tomada mais abaixo
-        # nesta mesma iteração — assim label e average_cpu_percent sempre
-        # descrevem a mesma janela de tempo.
-        label = 'attack' if attack_has_started else 'normal'
 
         #Pegando os RTTs
         # get_average_rtt_ms() é chamado TODA iteração, mesmo durante o
@@ -358,7 +451,6 @@ def main(experiment=None):
                 normal_traffic.update_targets(target_urls_for_injector)
 
         elif experiment.attack.enabled:
-            sniffer.set_label("benign")
 
             # Janela única e fixa: attack_start_time/attack_end nunca mudam
             # depois de calculados antes do loop (ver acima) — sem reagendamento.
@@ -400,20 +492,20 @@ def main(experiment=None):
                           "conhecidos do tráfego normal em vez de zerar.")
 
             if should_attack_be_active_now:
-                if not attack_has_started: # Se o ataque deve começar e ainda não começou
+                if not attack_has_started and not attack_activation_requested:
                     if target_urls_for_injector: # Somente inicie se houver alvos
                         print(f"[Orchestrator] Starting HTTP flood. Target URLs for this call: {target_urls_for_injector}")
-                        traffic_injectorV0.start_http_flood(
+                        attack_activation_requested = True
+                        started = traffic_injectorV0.start_http_flood(
                             target_urls_for_injector,
                             experiment.attack.rate,
-                            experiment.attack.attackers
+                            experiment.attack.attackers, event_id="event_001"
                         )
-                        sniffer.set_label("attack")
-                        attack_has_started = True
-                        print(f"[DEBUG Orchestrator] attack_has_started flag set to TRUE.")
+                        attack_has_started = bool(started)
+                        print(f"[DEBUG Orchestrator] attack_has_started={attack_has_started}.")
                     else:
                         print("[Orchestrator] Attack should start, but no valid target URLs yet. Deferring to next iteration.")
-                else:
+                elif attack_has_started:
                     # Ataque já rodando: só atualiza o load balancer com a lista
                     # de instâncias atual -- substitui o antigo padrão
                     # stop_http_flood() -> sleep(1) -> start_http_flood(), que
@@ -423,12 +515,9 @@ def main(experiment=None):
                     # lista vier não-vazia. Um hiccup transitório do Docker não
                     # pode zerar os alvos do ataque -- isso pararia os workers
                     # silenciosamente (sem stop_http_flood(), sem log, sem
-                    # attack_has_started=False) e o rótulo 'attack' continuaria
-                    # sendo gravado numa janela sem nenhum pacote de ataque de
-                    # verdade saindo. Mantém os últimos alvos conhecidos em vez
+                    # attack_has_started=False). Mantém os últimos alvos conhecidos em vez
                     # de zerar -- se as instâncias realmente caíram, os erros de
                     # conexão aparecem no log, em vez de ficarem escondidos.
-                    sniffer.set_label("attack")
                     if target_urls_for_injector:
                         traffic_injectorV0.update_targets(target_urls_for_injector)
                     else:
@@ -443,7 +532,8 @@ def main(experiment=None):
 
         # 5. Registrar métricas no CSV
         host_cpu_percent = host_stats.get_host_cpu_percent()
-        log_metrics_to_csv(elapsed_time_seconds, num_instances_after_scaling, avg_cpu, avg_mem_app_mb,avg_rtt, scaling_decision, current_active_container_names,label, host_cpu_percent)
+        log_metrics_to_csv(ground_truth, num_instances_after_scaling, avg_cpu, avg_mem_app_mb,
+                           avg_rtt, scaling_decision, current_active_container_names, host_cpu_percent)
         
         # 6. Acumular dados para cálculo de custo
         instance_intervals_for_cost.append((num_instances_after_scaling, experiment.monitoring.interval_seconds))
@@ -463,34 +553,6 @@ def main(experiment=None):
 
     # --- Fim do loop de simulação ---
     print("\n[Orchestrator] Simulation duration reached.")
-    print("[Orchestrator] Saving RTT log...")
-    save_rtt_log()
-
-    try:
-        sniffer.stop()
-    except Exception as e:
-        print(f"[Sniffer] Error stopping tcpdump: {e}")
-
-    if traffic_injectorV0.attack_active: # Verifica o estado real no módulo traffic_injector
-        print("[Orchestrator] Stopping any active traffic injection at end of simulation...")
-        traffic_injectorV0.stop_http_flood()
-
-    # O tráfego normal roda a simulação inteira por design e nunca é parado
-    # dentro do loop — precisa ser parado explicitamente aqui, senão os
-    # workers (daemon threads) continuam vivos até o interpretador encerrar,
-    # o que corre risco de tentar agendar em _send_pool já finalizada.
-    print("[Orchestrator] Stopping normal traffic...")
-    normal_traffic.stop_http_traffic()
-
-    print("[Orchestrator] Cleaning up all simulation instances...")
-    docker_manager.cleanup_all_simulation_instances()
-
-    try:
-        print("[Stats_Collector] Stopping stats collector thread...")
-        stats_collector.stop()
-    except Exception:
-        pass
-
     if hasattr(cost_calculator, 'calculate_total_cost_from_intervals'):
         total_simulation_cost = cost_calculator.calculate_total_cost_from_intervals(instance_intervals_for_cost, experiment.infrastructure.cost_per_instance_per_hour)
         print(f"[Orchestrator] Simulation Complete. Total Fictional Cost: ${total_simulation_cost:.4f}")
@@ -511,59 +573,8 @@ if __name__ == "__main__":
         else:
             main(args.experiment)
     except KeyboardInterrupt:
-        print("\n[Orchestrator] Simulation interrupted by user (Ctrl+C). Attempting cleanup...")
-        print("[Orchestrator] Saving RTT log...")
-        if "save_rtt_log" in globals():
-            save_rtt_log()
-        if 'traffic_injectorV0' in globals() and hasattr(traffic_injectorV0, 'attack_active') and traffic_injectorV0.attack_active:
-            print("[Orchestrator] Stopping traffic injector due to interruption...")
-            traffic_injectorV0.stop_http_flood()
-            normal_traffic.stop_http_traffic()
-
-        try:
-            if 'sniffer' in globals():
-                sniffer.stop()
-        except Exception:
-            pass
-
-        # pare a thread de stats se existir
-        try:
-            if stats_collector is not None:
-                print("[Stats_Collector] Stopping stats collector thread...")
-                stats_collector.stop()
-        except Exception:
-            pass
-
-        if 'docker_manager' in globals() and hasattr(docker_manager, 'cleanup_all_simulation_instances'):
-            print("[Orchestrator] Cleaning up Docker instances due to interruption...")
-            docker_manager.cleanup_all_simulation_instances()
-
-        print("[Orchestrator] Cleanup attempt complete due to interruption.")
-    except Exception as e_global:
-        print(f"[Orchestrator] An UNEXPECTED GLOBAL ERROR occurred: {e_global}")
+        print("[Orchestrator] Interrupted; finalization attempted.")
+    except Exception:
         import traceback
         traceback.print_exc()
-        print("[Orchestrator] Attempting cleanup after unexpected global error...")
-        if 'traffic_injectorV0' in globals() and hasattr(traffic_injectorV0, 'attack_active') and traffic_injectorV0.attack_active:
-            print("[Orchestrator] Stopping traffic injector due to error...")
-            traffic_injectorV0.stop_http_flood()
-            normal_traffic.stop_http_traffic()
-
-        try:
-            if 'sniffer' in globals():
-                sniffer.stop()
-        except Exception:
-            pass
-        
-        # pare a thread de stats se existir
-        try:
-            if stats_collector is not None:
-                print("[Stats_Collector] Stopping stats collector thread...")
-                stats_collector.stop()
-        except Exception:
-            pass
-
-        if 'docker_manager' in globals() and hasattr(docker_manager, 'cleanup_all_simulation_instances'):
-            print("[Orchestrator] Cleaning up Docker instances due to error...")
-            docker_manager.cleanup_all_simulation_instances()
-        print("[Orchestrator] Cleanup attempt complete after error.")
+        raise

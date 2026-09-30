@@ -1,5 +1,7 @@
 # CLAUDE.md
 
+Current ground truth: see [docs/ground_truth.md](docs/ground_truth.md). New runs have no global sniffer label; packet origin is unknown, request origin comes from the generator, and temporal context comes from per-run attack events. Historical label descriptions below do not apply to new outputs.
+
 Current layout and commands: see [README.md](README.md). Run Python modules with `python3 -m` from the repository root. Historical notes below may describe earlier behavior.
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.

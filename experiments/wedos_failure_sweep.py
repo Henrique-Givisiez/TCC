@@ -23,6 +23,7 @@ requests" já é só sucesso, não inclui erro).
 import argparse
 import os
 import shutil
+from experiments.result_archive import move_result
 import subprocess
 
 REPS = 2
@@ -56,7 +57,7 @@ def run_point(axis, rps_per_attacker, attackers, wu, rep):
 
     def move_if_exists(src, name_prefix):
         if os.path.exists(src):
-            shutil.move(src, os.path.join(RESULTS_DIR, f"{name_prefix}_{tag}.csv"))
+            move_result(src, os.path.join(RESULTS_DIR, f"{name_prefix}_{tag}.csv"))
         else:
             print(f"[WARNING] {src} não encontrado.")
 

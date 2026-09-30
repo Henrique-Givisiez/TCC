@@ -55,3 +55,7 @@ def __getattr__(name):
             value = getattr(value, part)
         return value
     raise AttributeError(name)
+
+ATTACK_EVENTS_LOG_FILE = "attack_events.csv"
+REQUEST_LOG_FILE = "request_log.csv"
+RUN_STATUS_FILE = "run_status.json"

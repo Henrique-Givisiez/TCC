@@ -11,6 +11,7 @@ instância que morreu).
 """
 import os
 import shutil
+from experiments.result_archive import move_result
 import subprocess
 
 REPS = 3
@@ -48,7 +49,7 @@ for rep in range(1, REPS + 1):
 
     def move_if_exists(src, name_prefix):
         if os.path.exists(src):
-            shutil.move(src, os.path.join(RESULTS_DIR, f"{name_prefix}_{suffix}.csv"))
+            move_result(src, os.path.join(RESULTS_DIR, f"{name_prefix}_{suffix}.csv"))
         else:
             print(f"[WARNING] {src} não encontrado.")
 

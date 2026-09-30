@@ -1,6 +1,7 @@
 import subprocess
 import os
 import shutil
+from experiments.result_archive import move_result
 
 # Tarefa 6a: completa a série do gráfico 04/16/18/20 pra 10 repetições em
 # cada ponto -- +5 repetições nos 6 pontos já existentes (40/100/200/300/400
@@ -55,7 +56,7 @@ for aggregate, reps in PLANO:
 
         suffix = f"agg{aggregate}_WU{WORK_UNITS}_refined_rep{rep}"
 
-        shutil.move("simulation_metrics.csv", os.path.join(RESULTS_DIR, f"metrics_normal_{suffix}.csv"))
+        move_result("simulation_metrics.csv", os.path.join(RESULTS_DIR, f"metrics_normal_{suffix}.csv"))
 
         if os.path.exists("attack_summary_log.csv"):
             os.remove("attack_summary_log.csv")

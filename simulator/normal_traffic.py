@@ -12,6 +12,13 @@ from concurrent.futures import ThreadPoolExecutor
 from simulator.experiment_config import NormalTrafficConfig, worker_seed
 import secrets
 
+_ground_truth = None
+_request_logger = None
+_stop_event = threading.Event()
+_futures = set()
+_futures_lock = threading.Lock()
+_send_failures = []
+
 
 # Variável global para controlar a execução dos threads de ataque
 traffic_active = False
@@ -33,38 +40,86 @@ _settings = NormalTrafficConfig()
 _seed = None
 
 
-def configure(settings, seed):
-    global _send_pool, _settings, _seed
+def configure(settings, seed, ground_truth=None, request_logger=None):
+    global _send_pool, _settings, _seed, _ground_truth, _request_logger
     if traffic_active:
         raise RuntimeError("Cannot reconfigure active traffic")
     if _send_pool is not None:
         _send_pool.shutdown(wait=True)
+    _ground_truth, _request_logger = ground_truth, request_logger
+    _stop_event.clear()
+    _send_failures.clear()
+    with _futures_lock:
+        _futures.clear()
+    with rtt_lock:
+        rtt_measurements.clear()
+    rtt_measurements_total.clear()
     _settings, _seed = settings, seed
     _send_pool = ThreadPoolExecutor(max_workers=settings.max_concurrent_sends)
 
 
 
-def _send_one_normal(session, target_url, counters, counters_lock):
-    """
-    Executa a requisição bloqueante de fato. Roda numa thread da _send_pool,
-    desacoplada do laço de ritmo em normal_http_request_worker.
-    """
+def _send_one_normal(session, target_url, counters, counters_lock, worker_id=0, event_id=None):
+    """HTTP call begins here, never at executor submission."""
+    attempt = (_request_logger.begin('normal', worker_id, target_url, event_id)
+               if _request_logger else None)
     start_time = time.monotonic()
+    response, error = None, None
     try:
-        session.get(target_url, timeout=_settings.request_timeout_seconds)  # Timeout de 2 segundos
+        response = session.get(target_url, timeout=_settings.request_timeout_seconds)
+    except requests.exceptions.RequestException as exc:
+        error = exc
+    except Exception as exc:
+        error = exc
+        raise
+    finally:
+        # Capture completion before counters, locks and disk persistence.
+        end_sample = _ground_truth.clock.sample() if attempt else None
+        duration_ms = (time.monotonic() - start_time) * 1000
+        if attempt:
+            _request_logger.finish(attempt, response, error, end_sample=end_sample)
+        with counters_lock:
+            if error is None:
+                counters['ok'] += 1  # preserve HTTP response counters, including error statuses
+            elif isinstance(error, requests.exceptions.RequestException):
+                counters['err'] += 1
+        if error is None:
+            with rtt_lock:
+                rtt_measurements.append(duration_ms)
+                rtt_measurements_total.append({"timestamp": time.time(), "rtt": duration_ms})
 
-        rtt = (time.monotonic() - start_time) * 1000  # em milissegundos
-        with rtt_lock:
-            rtt_measurements.append(rtt)
-            rtt_measurements_total.append({
-                "timestamp": time.time(),
-                "rtt": rtt
-            })
-        with counters_lock:
-            counters["ok"] += 1
-    except requests.exceptions.RequestException:
-        with counters_lock:
-            counters["err"] += 1
+
+def _track_future(future):
+    if _ground_truth is None:
+        return
+    with _futures_lock:
+        _futures.add(future)
+    def finished(done):
+        with _futures_lock:
+            _futures.discard(done)
+            if done.cancelled() or done.exception() is not None:
+                _send_failures.append('send_failed')
+    future.add_done_callback(finished)
+
+
+def drain(timeout=30.0):
+    """Bounded final drain; returns False rather than claiming complete data."""
+    deadline = time.monotonic() + timeout
+    for thread in list(client_threads):
+        thread.join(timeout=max(0.0, deadline - time.monotonic()))
+    producers_done = all(not thread.is_alive() for thread in client_threads)
+    if _send_pool is not None:
+        _send_pool.shutdown(wait=False)  # already submitted calls remain admitted
+    while time.monotonic() < deadline:
+        with _futures_lock:
+            if not _futures:
+                break
+        time.sleep(0.01)
+    with _futures_lock:
+        complete = producers_done and not _futures and not _send_failures
+    if complete:
+        client_threads.clear()
+    return complete
 
 
 def normal_http_request_worker(rps_per_worker, worker_index=0):
@@ -107,10 +162,11 @@ def normal_http_request_worker(rps_per_worker, worker_index=0):
         target_url = f"{base_url}{_settings.endpoint}?work={_settings.work_units}&sleep={_settings.sleep_seconds}"
 
         try:
-            future = _send_pool.submit(_send_one_normal, session, target_url, counters, counters_lock)
+            future = _send_pool.submit(_send_one_normal, session, target_url, counters, counters_lock, worker_index)
         except RuntimeError:
             # _send_pool já foi finalizada (ex.: encerramento do interpretador) — encerra o worker.
             break
+        _track_future(future)
         pending_futures.append(future)
         # Descartar futures já concluídas para não acumular memória em execuções longas.
         pending_futures = [f for f in pending_futures if not f.done()]
@@ -119,7 +175,10 @@ def normal_http_request_worker(rps_per_worker, worker_index=0):
         # tempo de despacho — o despacho na _send_pool é rápido o bastante para não
         # distorcer a taxa alvo.
         sleep_duration = rng.expovariate(rps_per_worker)
-        time.sleep(sleep_duration)
+        if _ground_truth is None:
+            time.sleep(sleep_duration)
+        else:
+            _stop_event.wait(sleep_duration)
 
     # Esperar as requisições ainda em voo terminarem antes de contabilizar o resumo final.
     for f in pending_futures:
@@ -143,6 +202,9 @@ def normal_http_request_worker(rps_per_worker, worker_index=0):
 def save_rtt_log(filename=None):
     if filename is None:
         filename = config.RTT_LOG_FILE
+    if _request_logger is not None:
+        _request_logger.save_rtt(filename)
+        return
     with open(filename, "w", newline="") as f:
         writer = csv.writer(f)
         writer.writerow(["timestamp", "rtt"])
@@ -208,6 +270,7 @@ def start_http_traffic(target_urls, rps_per_worker_override, num_clients_overrid
         print("[Normal_Injector] Normal traffic already in progress. Call stop_http_traffic() first.")
         return
 
+    _stop_event.clear()
     traffic_active = True
     # Limpar threads antigas é importante se o orchestrator não garante que stop_http_flood completou totalmente
     if client_threads:
@@ -266,9 +329,9 @@ def stop_http_traffic():
 
     print("[Normal_Injector] Signaling workers to stop...")
     traffic_active = False
+    _stop_event.set()
 
     threads_to_join = list(client_threads)
-    client_threads.clear()
 
     # JOIN CURTO E NÃO BLOQUEANTE
     for thread_obj in threads_to_join:

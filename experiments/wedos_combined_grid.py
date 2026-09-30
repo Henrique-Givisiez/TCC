@@ -17,6 +17,7 @@ import argparse
 import itertools
 import os
 import shutil
+from experiments.result_archive import move_result
 import subprocess
 
 NORMAL_SCENARIOS = {
@@ -60,7 +61,7 @@ def run_point(scenario_name, normal_aggregate_rps, pct, work_units, rep, tag):
 
     def move_if_exists(src, name_prefix):
         if os.path.exists(src):
-            shutil.move(src, os.path.join(RESULTS_DIR, f"{name_prefix}_{suffix}.csv"))
+            move_result(src, os.path.join(RESULTS_DIR, f"{name_prefix}_{suffix}.csv"))
         else:
             print(f"[WARNING] {src} não encontrado.")
 

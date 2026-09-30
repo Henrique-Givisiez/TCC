@@ -1,6 +1,7 @@
 import subprocess
 import os
 import shutil
+from experiments.result_archive import move_result
 
 # Completa o experimento de desempate (seção 62) com o rps=1 que tinha
 # ficado de fora por decisão de escopo -- 5 repetições x 2 condições x 3
@@ -47,7 +48,7 @@ for rps in RPS_VALUES:
 
                 suffix = f"{condicao}_rps{rps}_att{ATTACKERS}_WU{wu}_rep{rep}"
 
-                shutil.move("simulation_metrics.csv", os.path.join(RESULTS_DIR, f"metrics_{suffix}.csv"))
+                move_result("simulation_metrics.csv", os.path.join(RESULTS_DIR, f"metrics_{suffix}.csv"))
 
                 if os.path.exists("attack_summary_log.csv"):
                     shutil.move("attack_summary_log.csv", os.path.join(RESULTS_DIR, f"attack_summary_log_{suffix}.csv"))

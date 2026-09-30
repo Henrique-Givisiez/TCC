@@ -7,10 +7,17 @@ from simulator import config # Para obter HTTP_ATTACK_REQUESTS_PER_SECOND_PER_AT
 import statistics
 from simulator import attack_summary_logger
 from simulator import load_balancer
-from simulator.normal_traffic import rtt_measurements_total
 from concurrent.futures import ThreadPoolExecutor
 from simulator.experiment_config import AttackConfig, worker_seed
 import secrets
+
+_ground_truth = None
+_request_logger = None
+_event_id = None
+_stop_event = threading.Event()
+_futures = set()
+_futures_lock = threading.Lock()
+_send_failures = []
 
 # Variável global para controlar a execução dos threads de ataque
 attack_active = False
@@ -29,38 +36,85 @@ _settings = AttackConfig()
 _seed = None
 
 
-def configure(settings, seed):
-    global _send_pool, _settings, _seed
+def configure(settings, seed, ground_truth=None, request_logger=None):
+    global _send_pool, _settings, _seed, _ground_truth, _request_logger
     if attack_active:
         raise RuntimeError("Cannot reconfigure active traffic")
     if _send_pool is not None:
         _send_pool.shutdown(wait=True)
+    _ground_truth, _request_logger = ground_truth, request_logger
+    _stop_event.clear()
+    _send_failures.clear()
+    with _futures_lock:
+        _futures.clear()
+    with rtt_lock:
+        rtt_measurements.clear()
     _settings, _seed = settings, seed
     _send_pool = ThreadPoolExecutor(max_workers=settings.max_concurrent_sends)
 
 
 
-def _send_one(session, target_url, counters, counters_lock):
-    """
-    Executa a requisição bloqueante de fato. Roda numa thread da _send_pool,
-    desacoplada do laço de ritmo em http_request_worker.
-    """
+def _send_one(session, target_url, counters, counters_lock, worker_id=0, event_id=None):
+    """HTTP call begins here, never at executor submission."""
+    attempt = (_request_logger.begin('attack', worker_id, target_url, event_id)
+               if _request_logger else None)
     start_time = time.monotonic()
+    response, error = None, None
     try:
-        session.get(target_url, timeout=_settings.request_timeout_seconds)  # Timeout de 2 segundos
+        response = session.get(target_url, timeout=_settings.request_timeout_seconds)
+    except requests.exceptions.RequestException as exc:
+        error = exc
+    except Exception as exc:
+        error = exc
+        raise
+    finally:
+        # Capture completion before counters, locks and disk persistence.
+        end_sample = _ground_truth.clock.sample() if attempt else None
+        duration_ms = (time.monotonic() - start_time) * 1000
+        if attempt:
+            _request_logger.finish(attempt, response, error, end_sample=end_sample)
+        with counters_lock:
+            if error is None:
+                counters['ok'] += 1  # preserve HTTP response counters, including error statuses
+            elif isinstance(error, requests.exceptions.RequestException):
+                counters['err'] += 1
+        if error is None:
+            with rtt_lock:
+                rtt_measurements.append(duration_ms)
 
-        rtt = (time.monotonic() - start_time) * 1000  # em milissegundos
-        with rtt_lock:
-            rtt_measurements.append(rtt)
-            rtt_measurements_total.append({
-                "timestamp": time.time(),
-                "rtt": rtt
-            })
-        with counters_lock:
-            counters["ok"] += 1
-    except requests.exceptions.RequestException:
-        with counters_lock:
-            counters["err"] += 1
+
+
+def _track_future(future):
+    if _ground_truth is None:
+        return
+    with _futures_lock:
+        _futures.add(future)
+    def finished(done):
+        with _futures_lock:
+            _futures.discard(done)
+            if done.cancelled() or done.exception() is not None:
+                _send_failures.append('send_failed')
+    future.add_done_callback(finished)
+
+
+def drain(timeout=30.0):
+    """Bounded final drain; returns False rather than claiming complete data."""
+    deadline = time.monotonic() + timeout
+    for thread in list(attacker_threads):
+        thread.join(timeout=max(0.0, deadline - time.monotonic()))
+    producers_done = all(not thread.is_alive() for thread in attacker_threads)
+    if _send_pool is not None:
+        _send_pool.shutdown(wait=False)  # already submitted calls remain admitted
+    while time.monotonic() < deadline:
+        with _futures_lock:
+            if not _futures:
+                break
+        time.sleep(0.01)
+    with _futures_lock:
+        complete = producers_done and not _futures and not _send_failures
+    if complete:
+        attacker_threads.clear()
+    return complete
 
 
 def http_request_worker(rps_per_worker, worker_index=0):
@@ -100,11 +154,16 @@ def http_request_worker(rps_per_worker, worker_index=0):
             continue
         target_url = f"{base_url}{_settings.endpoint}?work={_settings.work_units}&sleep={_settings.sleep_seconds}"
 
+        if _ground_truth is not None and not _ground_truth.admit(_event_id):
+            break
         try:
-            future = _send_pool.submit(_send_one, session, target_url, counters, counters_lock)
+            future = _send_pool.submit(_send_one, session, target_url, counters, counters_lock, worker_index, _event_id)
         except RuntimeError:
+            if _ground_truth is not None:
+                _ground_truth.abandon_admission(_event_id)
             # _send_pool já foi finalizada (ex.: encerramento do interpretador) — encerra o worker.
             break
+        _track_future(future)
         pending_futures.append(future)
         # Descartar futures já concluídas para não acumular memória em ataques longos.
         pending_futures = [f for f in pending_futures if not f.done()]
@@ -113,7 +172,10 @@ def http_request_worker(rps_per_worker, worker_index=0):
         # tempo de despacho — o despacho na _send_pool é rápido o bastante para não
         # distorcer a taxa alvo.
         sleep_duration = rng.expovariate(rps_per_worker)
-        time.sleep(sleep_duration)
+        if _ground_truth is None:
+            time.sleep(sleep_duration)
+        else:
+            _stop_event.wait(sleep_duration)
 
     # Esperar as requisições ainda em voo terminarem antes de contabilizar o resumo final,
     # para não subestimar total_requests/errors no CSV.
@@ -158,7 +220,7 @@ def get_average_rtt_attack_ms():
 
 
 
-def start_http_flood(target_urls, rps_per_worker_override, num_attackers_override):
+def start_http_flood(target_urls, rps_per_worker_override, num_attackers_override, event_id=None):
     """
     Starts an HTTP flood attack against specified target URLs.
     This function starts worker threads and returns immediately (non-blocking).
@@ -169,10 +231,15 @@ def start_http_flood(target_urls, rps_per_worker_override, num_attackers_overrid
         rps_per_worker_override (float): The Requests Per Second (RPS) each worker thread should aim for.
         num_attackers_override (int): The total number of attacker threads to launch.
     """
-    global attack_active, attacker_threads
+    global attack_active, attacker_threads, _event_id
     if rps_per_worker_override < 0:
         raise ValueError("rate must be >= 0")
-    if rps_per_worker_override == 0:
+    _event_id = event_id
+    if _ground_truth is not None:
+        if event_id is None:
+            raise ValueError("ground truth requires an event_id")
+        _ground_truth.activate(event_id)
+    if rps_per_worker_override == 0 or num_attackers_override <= 0:
         return
     if _send_pool is None:
         configure(_settings, secrets.randbits(64))
@@ -185,6 +252,7 @@ def start_http_flood(target_urls, rps_per_worker_override, num_attackers_overrid
         print("[Injector] Attack already in progress. Call stop_http_flood() first.")
         return
 
+    _stop_event.clear()
     attack_active = True
     # Limpar threads antigas é importante se o orchestrator não garante que stop_http_flood completou totalmente
     if attacker_threads:
@@ -214,6 +282,7 @@ def start_http_flood(target_urls, rps_per_worker_override, num_attackers_overrid
         thread.start()
 
     print(f"[Injector] All {len(attacker_threads)} attacker threads launched.")
+    return True
 
 
 def update_targets(target_urls):
@@ -226,7 +295,7 @@ def update_targets(target_urls):
     _load_balancer.update_targets(target_urls)
 
 # Esta é a versão revisada e mais robusta do stop_http_flood
-def stop_http_flood():
+def stop_http_flood(reason="scheduled_end"):
     """
     Non-blocking stop of attack threads.
     """
@@ -237,10 +306,12 @@ def stop_http_flood():
         return
 
     print("[Injector] Signaling HTTP flood workers to stop...")
+    if _ground_truth is not None and _event_id is not None:
+        _ground_truth.stop(_event_id, reason)
     attack_active = False
+    _stop_event.set()
 
     threads_to_join = list(attacker_threads)
-    attacker_threads.clear()
 
     # JOIN CURTO para evitar travar o loop
     for thread_obj in threads_to_join:

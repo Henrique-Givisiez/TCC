@@ -1,6 +1,7 @@
 import subprocess
 import os
 import shutil
+from experiments.result_archive import move_result
 
 # Tarefa 6b: série nova em potência de 2 (base 20): 20, 40, 80, 160, 320,
 # 640 -- 10 repetições cada. O "40" é REAPROVEITADO da tarefa 6a (mesma
@@ -43,7 +44,7 @@ for aggregate in AGGREGATE_TARGETS:
 
         suffix = f"agg{aggregate}_WU{WORK_UNITS}_refined_rep{rep}"
 
-        shutil.move("simulation_metrics.csv", os.path.join(RESULTS_DIR, f"metrics_normal_{suffix}.csv"))
+        move_result("simulation_metrics.csv", os.path.join(RESULTS_DIR, f"metrics_normal_{suffix}.csv"))
 
         if os.path.exists("attack_summary_log.csv"):
             os.remove("attack_summary_log.csv")

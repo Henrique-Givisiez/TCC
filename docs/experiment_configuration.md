@@ -1,5 +1,10 @@
 # Etapa 1 — configuração de experimento
 
+A Etapa 2 atualiza ground truth, timestamps e finalização. Veja
+[o contrato atual](ground_truth.md); as preservações de labels/captura descritas
+abaixo se referem ao estado ao final da Etapa 1. Parâmetros, workloads e Poisson
+continuam preservados.
+
 Execute da raiz:
 
 ```bash

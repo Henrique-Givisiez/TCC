@@ -2,6 +2,7 @@ import subprocess
 import itertools
 import os
 import shutil
+from experiments.result_archive import move_result
 
 # Grid clientes x RPS/cliente: testa se o que importa é o RPS AGREGADO
 # (clientes x rps_por_cliente), independente de como ele é decomposto --
@@ -46,7 +47,7 @@ for i, (aggregate, clients, rep) in enumerate(combos, start=1):
 
     suffix = f"agg{aggregate}_clients{clients}_WU{WORK_UNITS}_rep{rep}"
 
-    shutil.move("simulation_metrics.csv", os.path.join(RESULTS_DIR, f"metrics_{suffix}.csv"))
+    move_result("simulation_metrics.csv", os.path.join(RESULTS_DIR, f"metrics_{suffix}.csv"))
 
     if os.path.exists("attack_summary_log.csv"):
         os.remove("attack_summary_log.csv")

@@ -1,6 +1,7 @@
 import subprocess
 import os
 import shutil
+from experiments.result_archive import move_result
 
 # Repetições extras pro ponto de 250 agregado do gráfico 04 refinado, que
 # teve 1 repetição (rep1) suspeita: só 3/4 threads de tráfego normal
@@ -44,7 +45,7 @@ for rep in EXTRA_REPS:
 
     suffix = f"agg{AGGREGATE}_WU{WORK_UNITS}_refined_rep{rep}"
 
-    shutil.move("simulation_metrics.csv", os.path.join(RESULTS_DIR, f"metrics_normal_{suffix}.csv"))
+    move_result("simulation_metrics.csv", os.path.join(RESULTS_DIR, f"metrics_normal_{suffix}.csv"))
 
     if os.path.exists("attack_summary_log.csv"):
         os.remove("attack_summary_log.csv")
