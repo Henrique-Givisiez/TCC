@@ -24,6 +24,7 @@ for rps, work_units in itertools.product(NORMAL_RPS_VALUES, NORMAL_WORK_UNITS_VA
         # interativa (bug real, não só redundância).
         "python3", "-m",
         "simulator.main_orchestrator",
+        "--normal-clients", "4",
         "--normal-rps", str(rps),
         "--normal-work-units", str(work_units),
         "--attack-duration", "0",

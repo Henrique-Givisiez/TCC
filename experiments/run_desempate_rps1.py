@@ -38,6 +38,7 @@ for rps in RPS_VALUES:
                     "--rps", str(rps),
                     "--attackers", str(ATTACKERS),
                     "--work-units", str(wu),
+                    "--normal-clients", "4",
                     "--normal-rps", normal_rps,
                     "--duration", str(DURATION),
                 ]

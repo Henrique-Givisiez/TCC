@@ -1,9 +1,11 @@
 # edos_docker_simulation/autoscaler_logic.py
 import time
-from simulator import config
+from simulator.experiment_config import AutoscalerConfig, InfrastructureConfig
 
 class Autoscaler:
-    def __init__(self):
+    def __init__(self, settings=None, infrastructure=None):
+        self.settings = settings or AutoscalerConfig()
+        self.infrastructure = infrastructure or InfrastructureConfig()
         self.current_instances = 0 # O orquestrador irá definir o valor inicial
         self.cooldown_until = 0.0
         print("[Autoscaler] Initialized.")
@@ -30,6 +32,9 @@ class Autoscaler:
         """
         self.current_instances = current_num_instances # Sincronizar com a realidade
 
+        if not self.settings.enabled:
+            return "NO_ACTION"
+
         # Verificar o cooldown
         current_time = time.monotonic()
 
@@ -46,28 +51,28 @@ class Autoscaler:
         action = "NO_ACTION"
 
         # Lógica de Scale Up
-        if average_cpu_percent > config.CPU_THRESHOLD_SCALE_UP:
-            if self.current_instances < config.MAX_INSTANCES:
+        if average_cpu_percent > self.settings.scale_up_threshold:
+            if self.current_instances < self.infrastructure.max_instances:
                 action = "SCALE_UP"
-                print(f"[Autoscaler] Decision: SCALE_UP. Avg CPU: {average_cpu_percent:.2f}% > {config.CPU_THRESHOLD_SCALE_UP}%. Current instances: {self.current_instances}, Max: {config.MAX_INSTANCES}")
+                print(f"[Autoscaler] Decision: SCALE_UP. Avg CPU: {average_cpu_percent:.2f}% > {self.settings.scale_up_threshold}%. Current instances: {self.current_instances}, Max: {self.infrastructure.max_instances}")
             else:
-                print(f"[Autoscaler] Condition for SCALE_UP met (Avg CPU: {average_cpu_percent:.2f}%), but already at MAX_INSTANCES ({config.MAX_INSTANCES}). No action.")
+                print(f"[Autoscaler] Condition for SCALE_UP met (Avg CPU: {average_cpu_percent:.2f}%), but already at MAX_INSTANCES ({self.infrastructure.max_instances}). No action.")
         
         # Lógica de Scale Down (só considera se não for escalar para cima)
-        elif average_cpu_percent < config.CPU_THRESHOLD_SCALE_DOWN:
-            if self.current_instances > config.MIN_INSTANCES:
+        elif average_cpu_percent < self.settings.scale_down_threshold:
+            if self.current_instances > self.infrastructure.min_instances:
                 action = "SCALE_DOWN"
-                print(f"[Autoscaler] Decision: SCALE_DOWN. Avg CPU: {average_cpu_percent:.2f}% < {config.CPU_THRESHOLD_SCALE_DOWN}%. Current instances: {self.current_instances}, Min: {config.MIN_INSTANCES}")
+                print(f"[Autoscaler] Decision: SCALE_DOWN. Avg CPU: {average_cpu_percent:.2f}% < {self.settings.scale_down_threshold}%. Current instances: {self.current_instances}, Min: {self.infrastructure.min_instances}")
             else:
-                print(f"[Autoscaler] Condition for SCALE_DOWN met (Avg CPU: {average_cpu_percent:.2f}%), but already at MIN_INSTANCES ({config.MIN_INSTANCES}). No action.")
+                print(f"[Autoscaler] Condition for SCALE_DOWN met (Avg CPU: {average_cpu_percent:.2f}%), but already at MIN_INSTANCES ({self.infrastructure.min_instances}). No action.")
         
         # Nenhuma ação se estiver entre os limiares
         else:
-            print(f"[Autoscaler] Decision: NO_ACTION. Avg CPU: {average_cpu_percent:.2f}% is within thresholds ({config.CPU_THRESHOLD_SCALE_DOWN}% - {config.CPU_THRESHOLD_SCALE_UP}%).")
+            print(f"[Autoscaler] Decision: NO_ACTION. Avg CPU: {average_cpu_percent:.2f}% is within thresholds ({self.settings.scale_down_threshold}% - {self.settings.scale_up_threshold}%).")
             action = "NO_ACTION"
 
         if action != "NO_ACTION":
-            self.cooldown_until = current_time + config.SCALE_COOLDOWN_SECONDS
+            self.cooldown_until = current_time + self.settings.cooldown_seconds
             # O orquestrador atualizará self.current_instances após a ação ser realmente executada
             
         return action
@@ -102,18 +107,12 @@ class Autoscaler:
 if __name__ == "__main__":
     print("--- Running autoscaler_logic.py self-test ---")
 
-    # Sobrescrever algumas configurações para o teste
-    config.MIN_INSTANCES = 1
-    config.MAX_INSTANCES = 3
-    config.CPU_THRESHOLD_SCALE_UP = 60.0
-    config.CPU_THRESHOLD_SCALE_DOWN = 20.0
-    config.SCALE_COOLDOWN_SECONDS = 5 # Cooldown curto para teste
-
-    autoscaler = Autoscaler()
+    autoscaler = Autoscaler(AutoscalerConfig(scale_down_threshold=20.0, cooldown_seconds=5),
+                           InfrastructureConfig(max_instances=3))
     autoscaler.set_initial_instances(1) # Começa com 1 instância
 
-    print(f"\nInitial state: {autoscaler.current_instances} instances. Min: {config.MIN_INSTANCES}, Max: {config.MAX_INSTANCES}, Cooldown: {config.SCALE_COOLDOWN_SECONDS}s")
-    print(f"Thresholds: Scale Up > {config.CPU_THRESHOLD_SCALE_UP}%, Scale Down < {config.CPU_THRESHOLD_SCALE_DOWN}%")
+    print(f"\nInitial state: {autoscaler.current_instances} instances. Min: {autoscaler.infrastructure.min_instances}, Max: {autoscaler.infrastructure.max_instances}, Cooldown: {autoscaler.settings.cooldown_seconds}s")
+    print(f"Thresholds: Scale Up > {autoscaler.settings.scale_up_threshold}%, Scale Down < {autoscaler.settings.scale_down_threshold}%")
 
     # Teste 1: CPU alto, deve escalar para cima
     print("\nTest 1: High CPU (70%), 1 instance")
@@ -134,8 +133,8 @@ if __name__ == "__main__":
     print(f"Instances after action: {autoscaler.current_instances}")
 
     # Teste 3: CPU baixo, esperar sair do cooldown, deve escalar para baixo
-    print(f"\nTest 3: Low CPU (10%), 2 instances, waiting for cooldown ({config.SCALE_COOLDOWN_SECONDS + 1}s total from last action)")
-    time.sleep(config.SCALE_COOLDOWN_SECONDS - 2 + 1) # Esperar o restante do cooldown + 1s
+    print(f"\nTest 3: Low CPU (10%), 2 instances, waiting for cooldown ({autoscaler.settings.cooldown_seconds + 1}s total from last action)")
+    time.sleep(autoscaler.settings.cooldown_seconds - 2 + 1) # Esperar o restante do cooldown + 1s
     decision = autoscaler.decide_scaling(average_cpu_percent=10.0, current_num_instances=2)
     print(f"Decision: {decision}")
     assert decision == "SCALE_DOWN"
@@ -144,8 +143,8 @@ if __name__ == "__main__":
 
 
     # Teste 4: CPU baixo, já no mínimo, não deve fazer nada (após cooldown)
-    print(f"\nTest 4: Low CPU (5%), 1 instance (already min), waiting for cooldown ({config.SCALE_COOLDOWN_SECONDS + 1}s total from last action)")
-    time.sleep(config.SCALE_COOLDOWN_SECONDS + 1) 
+    print(f"\nTest 4: Low CPU (5%), 1 instance (already min), waiting for cooldown ({autoscaler.settings.cooldown_seconds + 1}s total from last action)")
+    time.sleep(autoscaler.settings.cooldown_seconds + 1)
     decision = autoscaler.decide_scaling(average_cpu_percent=5.0, current_num_instances=1)
     print(f"Decision: {decision}")
     assert decision == "NO_ACTION" # Porque já está no mínimo
@@ -153,8 +152,8 @@ if __name__ == "__main__":
 
 
     # Teste 5: CPU alto, tentar escalar para cima (de 1 para 2) (após cooldown)
-    print(f"\nTest 5: High CPU (80%), 1 instance, waiting for cooldown ({config.SCALE_COOLDOWN_SECONDS + 1}s total from last action)")
-    time.sleep(config.SCALE_COOLDOWN_SECONDS + 1) 
+    print(f"\nTest 5: High CPU (80%), 1 instance, waiting for cooldown ({autoscaler.settings.cooldown_seconds + 1}s total from last action)")
+    time.sleep(autoscaler.settings.cooldown_seconds + 1)
     decision = autoscaler.decide_scaling(average_cpu_percent=80.0, current_num_instances=1)
     print(f"Decision: {decision}")
     assert decision == "SCALE_UP"
@@ -163,8 +162,8 @@ if __name__ == "__main__":
 
 
     # Teste 6: CPU alto, tentar escalar para cima (de 2 para 3 - max) (após cooldown)
-    print(f"\nTest 6: High CPU (85%), 2 instances, waiting for cooldown ({config.SCALE_COOLDOWN_SECONDS + 1}s total from last action)")
-    time.sleep(config.SCALE_COOLDOWN_SECONDS + 1)
+    print(f"\nTest 6: High CPU (85%), 2 instances, waiting for cooldown ({autoscaler.settings.cooldown_seconds + 1}s total from last action)")
+    time.sleep(autoscaler.settings.cooldown_seconds + 1)
     decision = autoscaler.decide_scaling(average_cpu_percent=85.0, current_num_instances=2)
     print(f"Decision: {decision}")
     assert decision == "SCALE_UP"
@@ -173,8 +172,8 @@ if __name__ == "__main__":
 
 
     # Teste 7: CPU alto, já no máximo, não deve fazer nada (após cooldown)
-    print(f"\nTest 7: High CPU (90%), 3 instances (already max), waiting for cooldown ({config.SCALE_COOLDOWN_SECONDS + 1}s total from last action)")
-    time.sleep(config.SCALE_COOLDOWN_SECONDS + 1)
+    print(f"\nTest 7: High CPU (90%), 3 instances (already max), waiting for cooldown ({autoscaler.settings.cooldown_seconds + 1}s total from last action)")
+    time.sleep(autoscaler.settings.cooldown_seconds + 1)
     decision = autoscaler.decide_scaling(average_cpu_percent=90.0, current_num_instances=3)
     print(f"Decision: {decision}")
     assert decision == "NO_ACTION" # Porque já está no máximo

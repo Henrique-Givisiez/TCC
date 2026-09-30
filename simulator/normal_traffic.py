@@ -9,6 +9,8 @@ import csv
 from simulator import normal_traffic_summary_logger
 from simulator import load_balancer
 from concurrent.futures import ThreadPoolExecutor
+from simulator.experiment_config import NormalTrafficConfig, worker_seed
+import secrets
 
 
 # Variável global para controlar a execução dos threads de ataque
@@ -26,7 +28,20 @@ _load_balancer = load_balancer.LoadBalancer("Normal")
 # padrão do injetor de ataque (traffic_injectorV0.py): o ritmo de disparo não
 # espera essa pool terminar, e os intervalos entre disparos são independentes
 # uns dos outros (necessário para que os sorteios de Poisson façam sentido).
-_send_pool = ThreadPoolExecutor(max_workers=config.HTTP_NORMAL_MAX_CONCURRENT_SENDS)
+_send_pool = None
+_settings = NormalTrafficConfig()
+_seed = None
+
+
+def configure(settings, seed):
+    global _send_pool, _settings, _seed
+    if traffic_active:
+        raise RuntimeError("Cannot reconfigure active traffic")
+    if _send_pool is not None:
+        _send_pool.shutdown(wait=True)
+    _settings, _seed = settings, seed
+    _send_pool = ThreadPoolExecutor(max_workers=settings.max_concurrent_sends)
+
 
 
 def _send_one_normal(session, target_url, counters, counters_lock):
@@ -36,7 +51,7 @@ def _send_one_normal(session, target_url, counters, counters_lock):
     """
     start_time = time.monotonic()
     try:
-        session.get(target_url, timeout=2)  # Timeout de 2 segundos
+        session.get(target_url, timeout=_settings.request_timeout_seconds)  # Timeout de 2 segundos
 
         rtt = (time.monotonic() - start_time) * 1000  # em milissegundos
         with rtt_lock:
@@ -52,7 +67,7 @@ def _send_one_normal(session, target_url, counters, counters_lock):
             counters["err"] += 1
 
 
-def normal_http_request_worker(rps_per_worker):
+def normal_http_request_worker(rps_per_worker, worker_index=0):
     """
     Worker thread function. Dispara requisições no ritmo de rps_per_worker, sem esperar a
     resposta de uma requisição antes de agendar a próxima (open-loop), com intervalos entre
@@ -66,8 +81,14 @@ def normal_http_request_worker(rps_per_worker):
     precisar parar/recriar este worker.
     """
     global traffic_active
+    if rps_per_worker < 0:
+        raise ValueError("rate must be >= 0")
+    if rps_per_worker == 0:
+        return
+
+    rng = random.Random(worker_seed(_seed, "normal", worker_index))
     session = requests.Session() # Use session for potential connection pooling
-    mean_interval = 1.0 / rps_per_worker if rps_per_worker > 0 else 1.0
+    mean_interval = 1.0 / rps_per_worker
     worker_start_time = time.monotonic()
 
     print(f"  [Normal_Injector Worker {threading.get_ident()}] Started. RPS: {rps_per_worker:.2f}, Mean interval: {mean_interval:.4f}s (Poisson)")
@@ -83,7 +104,7 @@ def normal_http_request_worker(rps_per_worker):
             # update_targets()) -- espera um pouco e tenta de novo, sem contar como erro.
             time.sleep(0.1)
             continue
-        target_url = f"{base_url}?work={config.NORMAL_WORK_UNITS}&sleep={config.NORMAL_SLEEP}"
+        target_url = f"{base_url}{_settings.endpoint}?work={_settings.work_units}&sleep={_settings.sleep_seconds}"
 
         try:
             future = _send_pool.submit(_send_one_normal, session, target_url, counters, counters_lock)
@@ -97,13 +118,13 @@ def normal_http_request_worker(rps_per_worker):
         # Próximo intervalo sorteado independentemente (memoryless), não corrigido pelo
         # tempo de despacho — o despacho na _send_pool é rápido o bastante para não
         # distorcer a taxa alvo.
-        sleep_duration = random.expovariate(rps_per_worker) if rps_per_worker > 0 else 1.0
+        sleep_duration = rng.expovariate(rps_per_worker)
         time.sleep(sleep_duration)
 
     # Esperar as requisições ainda em voo terminarem antes de contabilizar o resumo final.
     for f in pending_futures:
         try:
-            f.result(timeout=3)  # timeout da requisição (2s) + margem de segurança
+            f.result(timeout=_settings.request_timeout_seconds + 1.0)  # timeout da requisição (2s) + margem de segurança
         except Exception:
             pass
 
@@ -139,7 +160,7 @@ def save_rtt_log(filename=None):
 traffic_active = False
 # renomeando para 'attacker_threads' para clareza e consistência
 # Comente ou remova a linha 'threads = []' se ela existir e você não a estiver usando
-client_threads = [] 
+client_threads = []
 
 
 def get_average_rtt_ms():
@@ -165,6 +186,9 @@ def start_http_traffic(target_urls, rps_per_worker_override, num_clients_overrid
         num_attackers_override (int): The total number of attacker threads to launch.
     """
     global traffic_active, client_threads
+    if rps_per_worker_override < 0:
+        raise ValueError("rate must be >= 0")
+
 
     if rps_per_worker_override <= 0 or num_clients_override <= 0:
         # Antes, rps=0 caía no fallback de normal_http_request_worker
@@ -174,6 +198,9 @@ def start_http_traffic(target_urls, rps_per_worker_override, num_clients_overrid
         print(f"[Normal_Injector] rps_per_worker={rps_per_worker_override} ou "
               f"num_clients={num_clients_override} <= 0 -- tráfego normal desligado de propósito, não iniciado.")
         return
+    if _send_pool is None:
+        configure(_settings, secrets.randbits(64))
+
     if not target_urls:
         print("[Normal_Injector] No target URLs provided. Attack not started.")
         return
@@ -202,7 +229,7 @@ def start_http_traffic(target_urls, rps_per_worker_override, num_clients_overrid
         # (get_next_target()) a cada envio, não fica preso a uma URL fixa.
         thread = threading.Thread(
             target=normal_http_request_worker,
-            args=(rps_per_worker_override,),
+            args=(rps_per_worker_override, i),
             daemon=True,
             name=f"InjectorWorker-{i+1}"
         )
@@ -268,13 +295,13 @@ if __name__ == "__main__":
         exit(1)
 
     docker_manager.cleanup_all_simulation_instances() # Limpar antes do teste
-    
+
     test_instance_id = 99 # Usar um ID alto para não colidir com simulações normais
     test_container = docker_manager.start_instance(test_instance_id)
     if not test_container:
         print("[Self-Test] Failed to start test container. Aborting self-test.")
         exit(1)
-    
+
     test_container.reload() # Carregar atributos
     test_host_port = None
     try:
@@ -291,10 +318,9 @@ if __name__ == "__main__":
 
         # 2. Configurar o tráfego de teste (valores menores para não sobrecarregar)
         print("\n[Self-Test] Starting test HTTP flood...")
-        config.HTTP_NORMAL_NUM_CLIENTS = 2 # Sobrescrever para o teste
-        config.HTTP_NORMAL_RPS_PER_CLIENT = 5 # Sobrescrever para o teste
+        configure(NormalTrafficConfig(rate=5, clients=2), 0) # Sobrescrever para o teste
 
-        start_http_traffic([test_target_url], config.HTTP_NORMAL_RPS_PER_CLIENT, config.HTTP_NORMAL_NUM_CLIENTS)
+        start_http_traffic([test_target_url], _settings.rate, _settings.clients)
         print("[Self-Test] Flood started. Waiting 5 seconds before testing update_targets()...")
         time.sleep(5)
 

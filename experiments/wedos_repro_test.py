@@ -36,6 +36,7 @@ def run_normal_300(lote, rep):
     print(f"\n===== [lote {lote}] Normal agg=300/WU=10 — rep {rep}/{REPS} =====", flush=True)
     cmd = [
         "python3", "-m", "simulator.main_orchestrator",
+        "--normal-clients", "4",
         "--normal-rps", "75",
         "--normal-work-units", "10",
         "--attack-duration", "0",

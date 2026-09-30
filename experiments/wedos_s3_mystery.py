@@ -34,6 +34,7 @@ for rep in range(1, REPS + 1):
     print(f"\n===== [S3 mystery] rep {rep}/{REPS} =====", flush=True)
     cmd = [
         "python3", "-m", "simulator.main_orchestrator",
+        "--normal-clients", "4",
         "--normal-rps", str(normal_rps_per_client),
         "--rps", str(attack_rps_per_attacker),
         "--attackers", str(ATTACK_NUM_ATTACKERS),

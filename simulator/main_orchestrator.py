@@ -1,6 +1,7 @@
 import time
 import csv
-import docker # Certifique-se de que 'docker' SDK está instalado (pip install docker)
+from dataclasses import replace
+from simulator.experiment_config import ExperimentConfig
 
 from simulator import attack_summary_logger
 from simulator import normal_traffic_summary_logger
@@ -8,18 +9,40 @@ from simulator import host_stats
 # Importar seus outros módulos (assumindo que estão no mesmo diretório ou no PYTHONPATH)
 from simulator.tcpdump_sniffer import TcpdumpSniffer
 from simulator import config
-from simulator import docker_manager
+
 from simulator import autoscaler_logic
-from simulator import traffic_injectorV0
-from simulator import normal_traffic
 from simulator import cost_calculator # Se você tem um módulo separado para isso
 import argparse
-from simulator.stats_collector import StatsCollector
-from simulator.normal_traffic import get_average_rtt_ms, save_rtt_log
-from simulator.traffic_injectorV0 import get_average_rtt_attack_ms
 
 
 # --- Função de Logging para CSV (pode estar aqui ou em um módulo utilitário) ---
+
+CLI_FIELDS = {
+    "rps": ("attack", "rate"), "attackers": ("attack", "attackers"),
+    "duration": (None, "duration_seconds"), "work_units": ("attack", "work_units"),
+    "normal_rps": ("normal_traffic", "rate"), "normal_clients": ("normal_traffic", "clients"),
+    "normal_work_units": ("normal_traffic", "work_units"),
+    "attack_start": ("attack", "start_seconds"), "pulse_duration": ("attack", "duration_seconds"),
+    "attack_duration": ("attack", "enabled"),
+}
+
+
+def configuration_from_args(args):
+    experiment = ExperimentConfig.load(args.config) if args.config else ExperimentConfig()
+    for flag, (group, key) in CLI_FIELDS.items():
+        value = getattr(args, flag)
+        if value is None:
+            continue
+        if flag == "attack_duration":
+            if value < 0:
+                raise ValueError("--attack-duration must be >= 0 (0 disables; positive enables)")
+            value = value > 0
+        if group is None:
+            experiment = replace(experiment, **{key: value})
+        else:
+            experiment = replace(experiment, **{group: replace(getattr(experiment, group), **{key: value})})
+    return experiment.resolve_seed()
+
 
 def parse_args():
     parser = argparse.ArgumentParser()
@@ -35,7 +58,16 @@ def parse_args():
     parser.add_argument("--attack-start", type=int, default=None)
     parser.add_argument("--pulse-duration", type=int, default=None)
 
-    return parser.parse_args()
+    parser.add_argument("--config", help="JSON experiment configuration")
+    parser.add_argument("--print-config", action="store_true", help="Validate and print effective configuration without Docker")
+    args = parser.parse_args()
+    if args.config and any(getattr(args, name) is not None for name in CLI_FIELDS):
+        parser.error("--config cannot be combined with experimental CLI flags")
+    try:
+        args.experiment = configuration_from_args(args)
+    except (ValueError, OSError) as error:
+        parser.error(str(error))
+    return args
 
 def log_metrics_to_csv(elapsed_time, num_instances, avg_cpu, mem_usage,avg_rtt, decision, active_names, label, host_cpu_percent):
     try:
@@ -57,15 +89,25 @@ def log_metrics_to_csv(elapsed_time, num_instances, avg_cpu, mem_usage,avg_rtt, 
 
 
 # --- Função Principal da Simulação ---
-def main():
+def main(experiment=None):
 
-    global stats_collector,sniffer
+    global stats_collector, sniffer, docker_manager, normal_traffic, traffic_injectorV0, save_rtt_log
+    experiment = (experiment or ExperimentConfig()).resolve_seed()
+    print("[Orchestrator] Effective experiment configuration:\n" + experiment.to_json())
+    from simulator import docker_manager
+    from simulator import traffic_injectorV0
+    from simulator import normal_traffic
+    from simulator.stats_collector import StatsCollector
+    from simulator.normal_traffic import get_average_rtt_ms, save_rtt_log
+    from simulator.traffic_injectorV0 import get_average_rtt_attack_ms
+    normal_traffic.configure(experiment.normal_traffic, experiment.seed)
+    traffic_injectorV0.configure(experiment.attack, experiment.seed)
 
     print("[Orchestrator] Initializing simulation environment...")
 
     ##Packet Sniffer
     simulation_start_time = time.time()
-    sniffer_port_range = (config.STARTING_HOST_PORT, config.STARTING_HOST_PORT + config.MAX_INSTANCES - 1)
+    sniffer_port_range = (config.STARTING_HOST_PORT, config.STARTING_HOST_PORT + experiment.infrastructure.max_instances - 1)
     sniffer = TcpdumpSniffer(interface="any", output_csv=config.TCPDUMP_OUTPUT_CSV,
                               simulation_start_time=simulation_start_time,
                               port_range=sniffer_port_range)
@@ -74,7 +116,7 @@ def main():
 
     
     # --- CORREÇÃO AQUI: Instanciar a classe Autoscaler ---
-    autoscaler = autoscaler_logic.Autoscaler() # Cria uma instância da classe Autoscaler
+    autoscaler = autoscaler_logic.Autoscaler(experiment.autoscaler, experiment.infrastructure) # Cria uma instância da classe Autoscaler
 
     if not docker_manager.build_docker_image(): # Usando diretamente se são funções
         print("[Orchestrator] CRITICAL: Failed to build Docker image. Aborting.")
@@ -88,10 +130,10 @@ def main():
 
     active_containers = [] # Lista de objetos container do Docker SDK
     next_instance_numeric_id = 1
-    print(f"[Orchestrator] Starting initial {config.MIN_INSTANCES} instance(s)...")
-    for _ in range(config.MIN_INSTANCES):
+    print(f"[Orchestrator] Starting initial {experiment.infrastructure.initial_instances} instance(s)...")
+    for _ in range(experiment.infrastructure.initial_instances):
         # Assumindo que start_instance retorna o objeto container ou None
-        container = docker_manager.start_instance(next_instance_numeric_id)
+        container = docker_manager.start_instance(next_instance_numeric_id, experiment.server)
         if container:
             active_containers.append(container)
             next_instance_numeric_id += 1
@@ -102,12 +144,13 @@ def main():
     
     # ... após preencher active_containers ...
     stats_collector = StatsCollector(client=docker_manager.client,
-                        poll_interval=getattr(config, "DOCKER_STATS_POLL_INTERVAL_SECONDS", 1.0))
+                        poll_interval=experiment.monitoring.stats_poll_interval_seconds,
+                        history_seconds=experiment.monitoring.history_seconds)
     stats_collector.start()
     stats_collector.update_containers(active_containers)
 
             
-    if not active_containers and config.MIN_INSTANCES > 0:
+    if not active_containers and experiment.infrastructure.min_instances > 0:
         print("[Orchestrator] CRITICAL: No initial instances were started. Aborting.")
         return
 
@@ -119,7 +162,7 @@ def main():
     start_time = time.monotonic()
     next_tick = start_time
 
-    simulation_duration = config.SIMULATION_DURATION_SECONDS
+    simulation_duration = experiment.duration_seconds
     
     instance_intervals_for_cost = [] # Para cálculo de custo
 
@@ -163,17 +206,17 @@ def main():
 
     #Inicializando simulação
     print(f"[Orchestrator] Starting simulation main loop for {simulation_duration} seconds.")
-    print(f"[Orchestrator] Monitoring interval: {config.MONITOR_INTERVAL_SECONDS}s. Cooldown: {config.SCALE_COOLDOWN_SECONDS}s.")
-    print(f"[Orchestrator] CPU Thresholds: Scale Up > {config.CPU_THRESHOLD_SCALE_UP}%, Scale Down < {config.CPU_THRESHOLD_SCALE_DOWN}%")
-    if config.ATTACK_DURATION_SECONDS > 0:
-        print(f"[Orchestrator] Traffic injection scheduled: Start at {config.ATTACK_START_TIME_SECONDS}s, Duration {config.PULSE_DURATION}s.")
+    print(f"[Orchestrator] Monitoring interval: {experiment.monitoring.interval_seconds}s. Cooldown: {experiment.autoscaler.cooldown_seconds}s.")
+    print(f"[Orchestrator] CPU Thresholds: Scale Up > {experiment.autoscaler.scale_up_threshold}%, Scale Down < {experiment.autoscaler.scale_down_threshold}%")
+    if experiment.attack.enabled:
+        print(f"[Orchestrator] Traffic injection scheduled: Start at {experiment.attack.start_seconds}s, Duration {experiment.attack.duration_seconds}s.")
     else:
-        print("[Orchestrator] No traffic injection scheduled (ATTACK_DURATION_SECONDS is 0 or less).")
+        print("[Orchestrator] No traffic injection scheduled (attack.enabled=false).")
 
     # Janela única de ataque: começa em ATTACK_START_TIME_SECONDS, dura
     # PULSE_DURATION segundos, e não se repete (sem pulsos/cooldown).
-    attack_start_time = config.ATTACK_START_TIME_SECONDS
-    attack_end = attack_start_time + config.PULSE_DURATION
+    attack_start_time = experiment.attack.start_seconds
+    attack_end = attack_start_time + experiment.attack.duration_seconds
 
 
     #Começo da iteração
@@ -195,7 +238,7 @@ def main():
 
         current_num_instances_actual = len(active_containers)
         avg_cpu, avg_mem_app_mb, current_active_container_names = stats_collector.get_averages(
-            window_seconds=config.MONITOR_INTERVAL_SECONDS
+            window_seconds=experiment.monitoring.interval_seconds
         )
 
         # O rótulo do CSV de métricas reflete se o ataque estava ativo durante a
@@ -224,7 +267,7 @@ def main():
 
 
 
-        if current_num_instances_actual == 0 and config.MIN_INSTANCES > 0 and elapsed_time_seconds > config.MONITOR_INTERVAL_SECONDS:
+        if current_num_instances_actual == 0 and experiment.infrastructure.min_instances > 0 and elapsed_time_seconds > experiment.monitoring.interval_seconds:
                 print("[Orchestrator] CRITICAL WARNING: No active instances running, but MIN_INSTANCES > 0.")
         print(f"[Orchestrator] Metrics: {current_num_instances_actual} active instance(s), "
             f"Avg CPU: {avg_cpu:.2f}%, Avg App MEM: {avg_mem_app_mb:.2f} MB")
@@ -238,9 +281,9 @@ def main():
         scaling_triggered = False
         # 3. Executar ações de escalonamento (atualiza 'active_containers' e 'next_instance_numeric_id')
         if scaling_decision == "SCALE_UP":
-            if current_num_instances_actual < config.MAX_INSTANCES:
+            if current_num_instances_actual < experiment.infrastructure.max_instances:
                 print(f"[Orchestrator] Action: Scaling UP from {current_num_instances_actual} instance(s). Attempting to start instance {next_instance_numeric_id}.")
-                new_container = docker_manager.start_instance(next_instance_numeric_id)
+                new_container = docker_manager.start_instance(next_instance_numeric_id, experiment.server)
                 if new_container:
                     active_containers.append(new_container)
                     stats_collector.update_containers(active_containers)
@@ -251,12 +294,12 @@ def main():
                 else:
                     print(f"[Orchestrator] Failed to start new instance for SCALE_UP.")
             else:
-                print(f"[Orchestrator] SCALE_UP requested, but already at MAX_INSTANCES ({config.MAX_INSTANCES}). No action.")
+                print(f"[Orchestrator] SCALE_UP requested, but already at MAX_INSTANCES ({experiment.infrastructure.max_instances}). No action.")
                 scaling_triggered = True
 
 
         elif scaling_decision == "SCALE_DOWN":
-            if current_num_instances_actual > config.MIN_INSTANCES:
+            if current_num_instances_actual > experiment.infrastructure.min_instances:
                 # Simples: para o último da lista. Poderia ser mais sofisticado.
                 container_to_stop = active_containers.pop()
                 stats_collector.update_containers(active_containers)
@@ -269,7 +312,7 @@ def main():
                     print(f"[Orchestrator] Failed to stop {container_to_stop.name}. Adding back to active list (caution).")
                     active_containers.append(container_to_stop) # Adicionar de volta se a parada falhou
             else:
-                print(f"[Orchestrator] SCALE_DOWN requested, but already at MIN_INSTANCES ({config.MIN_INSTANCES}). No action.")
+                print(f"[Orchestrator] SCALE_DOWN requested, but already at MIN_INSTANCES ({experiment.infrastructure.min_instances}). No action.")
                 scaling_triggered = True
 
         if scaling_triggered:
@@ -299,12 +342,12 @@ def main():
         print(f"[DEBUG Orchestrator] Iteration Start. Instances Before Injector Logic: {num_instances_after_scaling}, Attack Started Flag: {attack_has_started}, Normal Traffic Started Flag: {normal_traffic_has_started}")
         print(f"[DEBUG Orchestrator] URLs derived for injector (if active): {target_urls_for_injector}")
 
-        if config.ATTACK_DURATION_SECONDS == 0:
+        if not experiment.attack.enabled:
                 print(f"[Orchestrator] Starting Normal Traffic (if not already active). Target URLs for this call: {target_urls_for_injector}")
                 normal_traffic.start_http_traffic(
                         target_urls_for_injector,
-                        config.HTTP_NORMAL_RPS_PER_CLIENT,
-                        config.HTTP_NORMAL_NUM_CLIENTS
+                        experiment.normal_traffic.rate,
+                        experiment.normal_traffic.clients
                     )
                 normal_traffic_has_started = True
                 # Chamado toda iteração, incondicionalmente -- barato (só
@@ -314,7 +357,7 @@ def main():
                 # de ficar ociosa o run inteiro (ver changes.txt).
                 normal_traffic.update_targets(target_urls_for_injector)
 
-        elif config.ATTACK_DURATION_SECONDS > 0:
+        elif experiment.attack.enabled:
             sniffer.set_label("benign")
 
             # Janela única e fixa: attack_start_time/attack_end nunca mudam
@@ -329,8 +372,8 @@ def main():
                 print(f"[Orchestrator] Starting Normal Traffic. Target URLs for this call: {target_urls_for_injector}")
                 normal_traffic.start_http_traffic(
                         target_urls_for_injector,
-                        config.HTTP_NORMAL_RPS_PER_CLIENT,
-                        config.HTTP_NORMAL_NUM_CLIENTS
+                        experiment.normal_traffic.rate,
+                        experiment.normal_traffic.clients
                     )
                 normal_traffic_has_started = True
 
@@ -362,8 +405,8 @@ def main():
                         print(f"[Orchestrator] Starting HTTP flood. Target URLs for this call: {target_urls_for_injector}")
                         traffic_injectorV0.start_http_flood(
                             target_urls_for_injector,
-                            config.HTTP_ATTACK_REQUESTS_PER_SECOND_PER_ATTACKER,
-                            config.HTTP_ATTACK_NUM_ATTACKERS
+                            experiment.attack.rate,
+                            experiment.attack.attackers
                         )
                         sniffer.set_label("attack")
                         attack_has_started = True
@@ -403,11 +446,11 @@ def main():
         log_metrics_to_csv(elapsed_time_seconds, num_instances_after_scaling, avg_cpu, avg_mem_app_mb,avg_rtt, scaling_decision, current_active_container_names,label, host_cpu_percent)
         
         # 6. Acumular dados para cálculo de custo
-        instance_intervals_for_cost.append((num_instances_after_scaling, config.MONITOR_INTERVAL_SECONDS))
+        instance_intervals_for_cost.append((num_instances_after_scaling, experiment.monitoring.interval_seconds))
         
         # 7. Aguardar próximo ciclo
         # Calcular tempo real da iteração e dormir apenas o necessário
-        next_tick += config.MONITOR_INTERVAL_SECONDS
+        next_tick += experiment.monitoring.interval_seconds
         sleep_time = next_tick - time.monotonic()
         print(f"[DEGUG Orchestrator Loop Duration] Loop Duration = {next_tick}")
         
@@ -416,7 +459,7 @@ def main():
             time.sleep(sleep_time)
         else:
             
-            print(f"[Orchestrator] Warning: Loop iteration took longer than MONITOR_INTERVAL_SECONDS ({config.MONITOR_INTERVAL_SECONDS}s). Not sleeping.")
+            print(f"[Orchestrator] Warning: Loop iteration took longer than MONITOR_INTERVAL_SECONDS ({experiment.monitoring.interval_seconds}s). Not sleeping.")
 
     # --- Fim do loop de simulação ---
     print("\n[Orchestrator] Simulation duration reached.")
@@ -449,7 +492,7 @@ def main():
         pass
 
     if hasattr(cost_calculator, 'calculate_total_cost_from_intervals'):
-        total_simulation_cost = cost_calculator.calculate_total_cost_from_intervals(instance_intervals_for_cost)
+        total_simulation_cost = cost_calculator.calculate_total_cost_from_intervals(instance_intervals_for_cost, experiment.infrastructure.cost_per_instance_per_hour)
         print(f"[Orchestrator] Simulation Complete. Total Fictional Cost: ${total_simulation_cost:.4f}")
     else:
         print("[Orchestrator] Simulation Complete. Cost calculation module/function not found.")
@@ -463,54 +506,16 @@ if __name__ == "__main__":
 
         args = parse_args()
 
-        if args.rps is not None:
-            config.HTTP_ATTACK_REQUESTS_PER_SECOND_PER_ATTACKER = args.rps
-            print(f"Attacker RPS set to: {config.HTTP_ATTACK_REQUESTS_PER_SECOND_PER_ATTACKER}")
-
-
-        if args.attackers is not None:
-            config.HTTP_ATTACK_NUM_ATTACKERS = args.attackers
-            print(f"Number of attackers set to: {config.HTTP_ATTACK_NUM_ATTACKERS}")
-
-
-        if args.duration is not None:
-            config.SIMULATION_DURATION_SECONDS = args.duration
-            print(f"Simulation duration set to: {config.SIMULATION_DURATION_SECONDS}")
-
-        if args.work_units is not None:
-            config.ATTACK_WORK_UNITS = args.work_units
-            print(f"Attack work units set to: {config.ATTACK_WORK_UNITS}")
-
-        if args.attack_duration is not None:
-            config.ATTACK_DURATION_SECONDS = args.attack_duration
-            print(f"Attack duration set to: {config.ATTACK_DURATION_SECONDS}")
-
-        if args.normal_rps is not None:
-            config.HTTP_NORMAL_RPS_PER_CLIENT = args.normal_rps
-            print(f"Normal traffic RPS per client set to: {config.HTTP_NORMAL_RPS_PER_CLIENT}")
-
-        if args.normal_clients is not None:
-            config.HTTP_NORMAL_NUM_CLIENTS = args.normal_clients
-            print(f"Normal traffic number of clients set to: {config.HTTP_NORMAL_NUM_CLIENTS}")
-
-        if args.normal_work_units is not None:
-            config.NORMAL_WORK_UNITS = args.normal_work_units
-            print(f"Normal traffic work units set to: {config.NORMAL_WORK_UNITS}")
-
-        if args.attack_start is not None:
-            config.ATTACK_START_TIME_SECONDS = args.attack_start
-            print(f"Attack start time set to: {config.ATTACK_START_TIME_SECONDS}")
-
-        if args.pulse_duration is not None:
-            config.PULSE_DURATION = args.pulse_duration
-            print(f"Attack window duration set to: {config.PULSE_DURATION}")
-
-        main()
+        if args.print_config:
+            print(args.experiment.to_json(), end="")
+        else:
+            main(args.experiment)
     except KeyboardInterrupt:
         print("\n[Orchestrator] Simulation interrupted by user (Ctrl+C). Attempting cleanup...")
         print("[Orchestrator] Saving RTT log...")
-        save_rtt_log()
-        if hasattr(traffic_injectorV0, 'attack_active') and traffic_injectorV0.attack_active:
+        if "save_rtt_log" in globals():
+            save_rtt_log()
+        if 'traffic_injectorV0' in globals() and hasattr(traffic_injectorV0, 'attack_active') and traffic_injectorV0.attack_active:
             print("[Orchestrator] Stopping traffic injector due to interruption...")
             traffic_injectorV0.stop_http_flood()
             normal_traffic.stop_http_traffic()
@@ -529,7 +534,7 @@ if __name__ == "__main__":
         except Exception:
             pass
 
-        if hasattr(docker_manager, 'cleanup_all_simulation_instances'):
+        if 'docker_manager' in globals() and hasattr(docker_manager, 'cleanup_all_simulation_instances'):
             print("[Orchestrator] Cleaning up Docker instances due to interruption...")
             docker_manager.cleanup_all_simulation_instances()
 
@@ -539,7 +544,7 @@ if __name__ == "__main__":
         import traceback
         traceback.print_exc()
         print("[Orchestrator] Attempting cleanup after unexpected global error...")
-        if hasattr(traffic_injectorV0, 'attack_active') and traffic_injectorV0.attack_active:
+        if 'traffic_injectorV0' in globals() and hasattr(traffic_injectorV0, 'attack_active') and traffic_injectorV0.attack_active:
             print("[Orchestrator] Stopping traffic injector due to error...")
             traffic_injectorV0.stop_http_flood()
             normal_traffic.stop_http_traffic()
@@ -558,7 +563,7 @@ if __name__ == "__main__":
         except Exception:
             pass
 
-        if hasattr(docker_manager, 'cleanup_all_simulation_instances'):
+        if 'docker_manager' in globals() and hasattr(docker_manager, 'cleanup_all_simulation_instances'):
             print("[Orchestrator] Cleaning up Docker instances due to error...")
             docker_manager.cleanup_all_simulation_instances()
         print("[Orchestrator] Cleanup attempt complete after error.")

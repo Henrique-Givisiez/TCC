@@ -25,6 +25,7 @@ for rep in range(1, REPS + 1):
         "sudo",
         "python3", "-m",
         "simulator.main_orchestrator",
+        "--normal-clients", "4",
         "--normal-rps", str(NORMAL_RPS_PER_CLIENT),
         "--normal-work-units", str(NORMAL_WORK_UNITS),
         "--attack-duration", "0",

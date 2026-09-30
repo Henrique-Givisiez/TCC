@@ -9,6 +9,8 @@ from simulator import attack_summary_logger
 from simulator import load_balancer
 from simulator.normal_traffic import rtt_measurements_total
 from concurrent.futures import ThreadPoolExecutor
+from simulator.experiment_config import AttackConfig, worker_seed
+import secrets
 
 # Variável global para controlar a execução dos threads de ataque
 attack_active = False
@@ -22,7 +24,20 @@ _load_balancer = load_balancer.LoadBalancer("Attack")
 
 # Pool compartilhado que efetivamente envia as requisições (open-loop):
 # o ritmo de disparo das threads de ataque não espera essa pool terminar.
-_send_pool = ThreadPoolExecutor(max_workers=config.HTTP_ATTACK_MAX_CONCURRENT_SENDS)
+_send_pool = None
+_settings = AttackConfig()
+_seed = None
+
+
+def configure(settings, seed):
+    global _send_pool, _settings, _seed
+    if attack_active:
+        raise RuntimeError("Cannot reconfigure active traffic")
+    if _send_pool is not None:
+        _send_pool.shutdown(wait=True)
+    _settings, _seed = settings, seed
+    _send_pool = ThreadPoolExecutor(max_workers=settings.max_concurrent_sends)
+
 
 
 def _send_one(session, target_url, counters, counters_lock):
@@ -32,7 +47,7 @@ def _send_one(session, target_url, counters, counters_lock):
     """
     start_time = time.monotonic()
     try:
-        session.get(target_url, timeout=2)  # Timeout de 2 segundos
+        session.get(target_url, timeout=_settings.request_timeout_seconds)  # Timeout de 2 segundos
 
         rtt = (time.monotonic() - start_time) * 1000  # em milissegundos
         with rtt_lock:
@@ -48,7 +63,7 @@ def _send_one(session, target_url, counters, counters_lock):
             counters["err"] += 1
 
 
-def http_request_worker(rps_per_worker):
+def http_request_worker(rps_per_worker, worker_index=0):
     """
     Worker thread function. Dispara requisições no ritmo de rps_per_worker, sem esperar a
     resposta de uma requisição antes de agendar a próxima (open-loop), com intervalos entre
@@ -62,8 +77,14 @@ def http_request_worker(rps_per_worker):
     worker nunca para, só passa a mandar pra URL nova no próximo envio.
     """
     global attack_active
+    if rps_per_worker < 0:
+        raise ValueError("rate must be >= 0")
+    if rps_per_worker == 0:
+        return
+
+    rng = random.Random(worker_seed(_seed, "attack", worker_index))
     session = requests.Session() # Use session for potential connection pooling
-    mean_interval = 1.0 / rps_per_worker if rps_per_worker > 0 else 1.0
+    mean_interval = 1.0 / rps_per_worker
     worker_start_time = time.monotonic()
 
     print(f"  [Injector Worker {threading.get_ident()}] Started. RPS: {rps_per_worker:.2f}, Mean interval: {mean_interval:.4f}s (Poisson)")
@@ -77,7 +98,7 @@ def http_request_worker(rps_per_worker):
         if base_url is None:
             time.sleep(0.1)
             continue
-        target_url = f"{base_url}?work={config.ATTACK_WORK_UNITS}&sleep={config.ATTACK_SLEEP}"
+        target_url = f"{base_url}{_settings.endpoint}?work={_settings.work_units}&sleep={_settings.sleep_seconds}"
 
         try:
             future = _send_pool.submit(_send_one, session, target_url, counters, counters_lock)
@@ -91,14 +112,14 @@ def http_request_worker(rps_per_worker):
         # Próximo intervalo sorteado independentemente (memoryless), não corrigido pelo
         # tempo de despacho — o despacho na _send_pool é rápido o bastante para não
         # distorcer a taxa alvo.
-        sleep_duration = random.expovariate(rps_per_worker) if rps_per_worker > 0 else 1.0
+        sleep_duration = rng.expovariate(rps_per_worker)
         time.sleep(sleep_duration)
 
     # Esperar as requisições ainda em voo terminarem antes de contabilizar o resumo final,
     # para não subestimar total_requests/errors no CSV.
     for f in pending_futures:
         try:
-            f.result(timeout=3)  # timeout da requisição (2s) + margem de segurança
+            f.result(timeout=_settings.request_timeout_seconds + 1.0)  # timeout da requisição (2s) + margem de segurança
         except Exception:
             pass
 
@@ -149,7 +170,14 @@ def start_http_flood(target_urls, rps_per_worker_override, num_attackers_overrid
         num_attackers_override (int): The total number of attacker threads to launch.
     """
     global attack_active, attacker_threads
-    
+    if rps_per_worker_override < 0:
+        raise ValueError("rate must be >= 0")
+    if rps_per_worker_override == 0:
+        return
+    if _send_pool is None:
+        configure(_settings, secrets.randbits(64))
+
+
     if not target_urls:
         print("[Injector] No target URLs provided. Attack not started.")
         return
@@ -178,7 +206,7 @@ def start_http_flood(target_urls, rps_per_worker_override, num_attackers_overrid
         # (get_next_target()) a cada envio, não fica preso a uma URL fixa.
         thread = threading.Thread(
             target=http_request_worker,
-            args=(rps_per_worker_override,),
+            args=(rps_per_worker_override, i),
             daemon=True,
             name=f"InjectorWorker-{i+1}"
         )
@@ -202,7 +230,7 @@ def stop_http_flood():
     """
     Non-blocking stop of attack threads.
     """
-    global attack_active, attacker_threads 
+    global attack_active, attacker_threads
 
     if not attack_active and not attacker_threads:
         print("[Injector] HTTP flood already stopped.")
@@ -239,13 +267,13 @@ if __name__ == "__main__":
         exit(1)
 
     docker_manager.cleanup_all_simulation_instances() # Limpar antes do teste
-    
+
     test_instance_id = 99 # Usar um ID alto para não colidir com simulações normais
     test_container = docker_manager.start_instance(test_instance_id)
     if not test_container:
         print("[Self-Test] Failed to start test container. Aborting self-test.")
         exit(1)
-    
+
     test_container.reload() # Carregar atributos
     test_host_port = None
     try:
@@ -262,10 +290,9 @@ if __name__ == "__main__":
 
         # 2. Configurar o tráfego de teste (valores menores para não sobrecarregar)
         print("\n[Self-Test] Starting test HTTP flood...")
-        config.HTTP_ATTACK_NUM_ATTACKERS = 2 # Sobrescrever para o teste
-        config.HTTP_ATTACK_REQUESTS_PER_SECOND_PER_ATTACKER = 5 # Sobrescrever para o teste
+        configure(AttackConfig(rate=5, attackers=2), 0) # Sobrescrever para o teste
 
-        start_http_flood([test_target_url], config.HTTP_ATTACK_REQUESTS_PER_SECOND_PER_ATTACKER, config.HTTP_ATTACK_NUM_ATTACKERS)
+        start_http_flood([test_target_url], _settings.rate, _settings.attackers)
         print("[Self-Test] Flood started. Waiting 5 seconds before testing update_targets()...")
         time.sleep(5)
 

@@ -18,12 +18,12 @@ Execute os comandos **a partir da raiz do repositório**, usando Python 3 e as d
 
 ```bash
 python3 -m pip install -r requirements.txt
-python3 -m simulator.main_orchestrator --duration 180
+python3 -m simulator.main_orchestrator --config experiments/configs/default.json
 ```
 
-O entrypoint é `simulator/main_orchestrator.py`. A configuração permanece em `simulator/config.py`. O injetor ativo é **`traffic_injectorV0.py`**, apesar do nome; `legacy/traffic_injector.py` pertence ao fluxo anterior.
+O entrypoint é `simulator/main_orchestrator.py`. Os parâmetros experimentais usam JSON e dataclasses em `simulator/experiment_config.py`; configuração técnica e caminhos permanecem em `simulator/config.py`. Veja [a configuração da Etapa 1](docs/experiment_configuration.md). O injetor ativo é **`traffic_injectorV0.py`**, apesar do nome; `legacy/traffic_injector.py` pertence ao fluxo anterior.
 
-A simulação exige Docker acessível e permissão de captura para `tcpdump`. O orquestrador importa o cliente Docker antes de processar argumentos, inclusive `--help`. Ele cria/limpa contêineres da simulação. O build usa o `Dockerfile` da raiz, que copia `simulator/app/` para `/app` na imagem.
+A simulação exige Docker acessível e permissão de captura para `tcpdump`. `--help` e `--print-config` funcionam sem acessar Docker; a configuração é validada antes de inicializar os componentes. Ele cria/limpa contêineres da simulação. O build usa o `Dockerfile` da raiz, que copia `simulator/app/` para `/app` na imagem.
 
 Exemplos de experimentos e análises (podem executar baterias ou sobrescrever saídas):
 

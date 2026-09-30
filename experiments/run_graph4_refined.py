@@ -17,7 +17,7 @@ import shutil
 # RPS agregado alvo (HTTP_NORMAL_NUM_CLIENTS=4, fixo -- não exposto por CLI
 # ainda): --normal-rps é por cliente, então RPS agregado = normal_rps * 4.
 AGGREGATE_TARGETS = [40, 100, 200, 250, 300, 400]
-NUM_CLIENTS = 4  # tem que bater com config.HTTP_NORMAL_NUM_CLIENTS
+NUM_CLIENTS = 4  # explicitado também na CLI
 NUM_REPS = 5
 WORK_UNITS = 10
 
@@ -34,6 +34,7 @@ for aggregate, rep in itertools.product(AGGREGATE_TARGETS, range(1, NUM_REPS + 1
         # (setcap no tcpdump + Docker sem root).
         "python3", "-m",
         "simulator.main_orchestrator",
+        "--normal-clients", "4",
         "--normal-rps", str(rps_per_client),
         "--normal-work-units", str(WORK_UNITS),
         "--attack-duration", "0",

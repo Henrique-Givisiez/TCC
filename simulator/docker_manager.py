@@ -1,6 +1,7 @@
 # edos_docker_simulation/docker_manager.py
 import docker
 from pathlib import Path
+from simulator.experiment_config import ServerConfig
 import time
 import subprocess # For the 'docker stats' CPU workaround
 from simulator import config # Import your configuration
@@ -59,12 +60,13 @@ def ensure_docker_network():
     return True
 
 
-def start_instance(instance_numeric_id):
+def start_instance(instance_numeric_id, server=None):
     """
     Starts a new container instance.
     instance_numeric_id: An integer (e.g., 1, 2, 3) to make container name and port unique.
     Returns the container object if successful, None otherwise.
     """
+    server = server or ServerConfig()
     container_name = f"{config.BASE_CONTAINER_NAME}_{instance_numeric_id}"
     # Calculate host port based on base port + (id - 1) to ensure uniqueness
     # e.g., if id is 1, port is STARTING_HOST_PORT. if id is 2, port is STARTING_HOST_PORT + 1
@@ -88,11 +90,14 @@ def start_instance(instance_numeric_id):
             config.DOCKER_IMAGE_NAME,
             detach=True,
             name=container_name,
-            ports={'80/tcp': host_port}, # Internal container port is 80
+            ports={f'{config.APP_CONTAINER_PORT}/tcp': host_port}, # Internal container port is 80
             network=config.DOCKER_NETWORK_NAME,
             restart_policy={"Name": "no"}, # Do not auto-restart for this simulation
             environment={
-                "INSTANCE_MAX_CONCURRENT_REQUESTS": str(config.INSTANCE_MAX_CONCURRENT_REQUESTS)
+                "INSTANCE_MAX_CONCURRENT_REQUESTS": str(server.process_pool_workers),
+                "WORK_UNITS": str(server.default_work_units),
+                "PROCESSING_TIME": str(server.default_sleep_seconds),
+                "APP_PORT": str(config.APP_CONTAINER_PORT)
             },
         )
         print(f"Container {container.short_id} ({container_name}) started. Accessible on host port {host_port}.")

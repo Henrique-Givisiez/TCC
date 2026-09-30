@@ -46,6 +46,7 @@ def run_point(scenario_name, normal_aggregate_rps, pct, work_units, rep, tag):
 
     cmd = [
         "python3", "-m", "simulator.main_orchestrator",
+        "--normal-clients", "4",
         "--normal-rps", str(normal_rps_per_client),
         "--rps", str(attack_rps_per_attacker),
         "--attackers", str(ATTACK_NUM_ATTACKERS),

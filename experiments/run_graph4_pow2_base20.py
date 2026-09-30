@@ -32,6 +32,7 @@ for aggregate in AGGREGATE_TARGETS:
         cmd = [
             "python3", "-m",
             "simulator.main_orchestrator",
+            "--normal-clients", "4",
             "--normal-rps", str(rps_per_client),
             "--normal-work-units", str(WORK_UNITS),
             "--attack-duration", "0",

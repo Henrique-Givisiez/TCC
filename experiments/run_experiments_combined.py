@@ -63,6 +63,7 @@ for scenario_name, normal_aggregate_rps in NORMAL_SCENARIOS.items():
                 # aqui travaria subprocess.run esperando senha interativa).
                 "python3", "-m",
                 "simulator.main_orchestrator",
+                "--normal-clients", "4",
                 "--normal-rps", str(normal_rps_per_client),
                 "--rps", str(attack_rps_per_attacker),
                 "--attackers", str(ATTACK_NUM_ATTACKERS),

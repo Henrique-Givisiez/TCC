@@ -14,10 +14,10 @@ config.py).
 import subprocess
 
 from experiments import wedos_combined_grid as grid
-from simulator import config
+from simulator.experiment_config import ExperimentConfig
 
-assert config.INSTANCE_MAX_CONCURRENT_REQUESTS == 2, (
-    f"esperava pool=2, achou {config.INSTANCE_MAX_CONCURRENT_REQUESTS} -- "
+assert ExperimentConfig().server.process_pool_workers == 2, (
+    f"esperava pool=2, achou {ExperimentConfig().server.process_pool_workers} -- "
     "confirme config.py antes de rerodar"
 )
 

@@ -27,6 +27,7 @@ for rps, wu in itertools.product(RPS_VALUES, WU_VALUES):
         "--rps", str(rps),
         "--attackers", str(ATTACKERS),
         "--work-units", str(wu),
+        "--normal-clients", "4",
         "--normal-rps", "0",
         "--duration", str(DURATION),
     ]

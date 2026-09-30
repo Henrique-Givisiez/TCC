@@ -1,7 +1,7 @@
 # edos_docker_simulation/cost_calculator.py
-from simulator import config
+from simulator.experiment_config import InfrastructureConfig
 
-def calculate_instance_cost(num_instances, active_duration_seconds):
+def calculate_instance_cost(num_instances, active_duration_seconds, cost_per_instance_per_hour=InfrastructureConfig().cost_per_instance_per_hour):
     """
     Calculates the fictional cost based on the number of instances and their active duration.
 
@@ -18,7 +18,7 @@ def calculate_instance_cost(num_instances, active_duration_seconds):
     # Converter a duração para horas, pois o custo é por hora
     active_duration_hours = active_duration_seconds / 3600.0
     
-    cost = num_instances * config.COST_PER_INSTANCE_PER_HOUR * active_duration_hours
+    cost = num_instances * cost_per_instance_per_hour * active_duration_hours
     return cost
 
 # No futuro, poderíamos adicionar mais granularidade, por exemplo,
@@ -34,7 +34,7 @@ def calculate_instance_cost(num_instances, active_duration_seconds):
 # N instâncias ativas por T1 segundos: total_cost += calculate_instance_cost(N, T1)
 # M instâncias ativas por T2 segundos: total_cost += calculate_instance_cost(M, T2)
 
-def calculate_total_cost_from_intervals(instance_intervals):
+def calculate_total_cost_from_intervals(instance_intervals, cost_per_instance_per_hour=InfrastructureConfig().cost_per_instance_per_hour):
     """
     Calculates the total fictional cost from a list of intervals where
     a certain number of instances were active.
@@ -50,7 +50,7 @@ def calculate_total_cost_from_intervals(instance_intervals):
     """
     total_cost = 0.0
     for num_instances, duration_seconds in instance_intervals:
-        total_cost += calculate_instance_cost(num_instances, duration_seconds)
+        total_cost += calculate_instance_cost(num_instances, duration_seconds, cost_per_instance_per_hour)
     return total_cost
 
 
@@ -60,16 +60,16 @@ if __name__ == "__main__":
 
     # Cenário 1: 2 instâncias ativas por 1 hora (3600 segundos)
     cost1 = calculate_instance_cost(num_instances=2, active_duration_seconds=3600)
-    expected_cost1 = 2 * config.COST_PER_INSTANCE_PER_HOUR * 1
+    expected_cost1 = 2 * InfrastructureConfig().cost_per_instance_per_hour * 1
     print(f"\nTest 1: 2 instances for 1 hour")
-    print(f"Configured cost per instance per hour: ${config.COST_PER_INSTANCE_PER_HOUR:.2f}")
+    print(f"Configured cost per instance per hour: ${InfrastructureConfig().cost_per_instance_per_hour:.2f}")
     print(f"Calculated cost: ${cost1:.4f}")
     print(f"Expected cost: ${expected_cost1:.4f}")
     assert abs(cost1 - expected_cost1) < 0.0001 # Comparação de floats
 
     # Cenário 2: 3 instâncias ativas por 30 minutos (1800 segundos)
     cost2 = calculate_instance_cost(num_instances=3, active_duration_seconds=1800)
-    expected_cost2 = 3 * config.COST_PER_INSTANCE_PER_HOUR * 0.5
+    expected_cost2 = 3 * InfrastructureConfig().cost_per_instance_per_hour * 0.5
     print(f"\nTest 2: 3 instances for 30 minutes")
     print(f"Calculated cost: ${cost2:.4f}")
     print(f"Expected cost: ${expected_cost2:.4f}")
@@ -92,9 +92,9 @@ if __name__ == "__main__":
     ]
     total_cost_intervals = calculate_total_cost_from_intervals(intervals)
     
-    expected_cost_interval1 = 1 * config.COST_PER_INSTANCE_PER_HOUR * 1.0
-    expected_cost_interval2 = 3 * config.COST_PER_INSTANCE_PER_HOUR * 0.5
-    expected_cost_interval3 = 2 * config.COST_PER_INSTANCE_PER_HOUR * 2.0
+    expected_cost_interval1 = 1 * InfrastructureConfig().cost_per_instance_per_hour * 1.0
+    expected_cost_interval2 = 3 * InfrastructureConfig().cost_per_instance_per_hour * 0.5
+    expected_cost_interval3 = 2 * InfrastructureConfig().cost_per_instance_per_hour * 2.0
     expected_total_cost_intervals = expected_cost_interval1 + expected_cost_interval2 + expected_cost_interval3
 
     print(f"\nTest 4: Using calculate_total_cost_from_intervals")

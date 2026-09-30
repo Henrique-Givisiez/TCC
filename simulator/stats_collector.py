@@ -4,19 +4,15 @@ from collections import deque
 from typing import Dict, List, Optional, Tuple
 import docker
 
-try:
-    from simulator import config  # usa o mesmo config do projeto, se existir
-    POLL_INTERVAL = getattr(config, "DOCKER_STATS_POLL_INTERVAL_SECONDS", 1.0)
-except Exception:
-    POLL_INTERVAL = 1.0  # fallback
+from simulator.experiment_config import MonitoringConfig
 
 class StatsCollector:
     """
     Thread que coleta docker stats periodicamente e guarda num cache thread-safe.
     O loop principal lê somente desse cache (sem fazer chamadas ao Docker).
     """
-    def __init__(self, client: Optional[docker.DockerClient] = None, poll_interval: float = POLL_INTERVAL,
-                 history_seconds: float = 30.0):
+    def __init__(self, client: Optional[docker.DockerClient] = None, poll_interval: float = MonitoringConfig().stats_poll_interval_seconds,
+                 history_seconds: float = MonitoringConfig().history_seconds):
         self.client = client or docker.from_env()
         self.poll_interval = poll_interval
         self.history_seconds = history_seconds  # quanto histórico de amostras manter por container
