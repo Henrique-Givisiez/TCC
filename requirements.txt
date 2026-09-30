@@ -1,2 +1,10 @@
+# Núcleo do simulador
 docker
 requests
+
+# Análises, gráficos e leitura/escrita de XLSX
+numpy
+pandas
+scipy
+matplotlib
+openpyxl

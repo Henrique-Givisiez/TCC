@@ -1,2 +1,32 @@
 __pycache__/
 *.pyc
+
+# Ambientes e caches locais
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Logs e arquivos temporários
+*.log
+*.tmp
+*.swp
+*~
+
+# CSVs transitórios usados pelos runners na raiz
+/simulation_metrics.csv
+/rtt_log.csv
+/traffic_capture.csv
+/attack_summary_log.csv
+/normal_traffic_summary_log.csv
+/rtt_entropy.csv
+/rtt_bursts_tunaveis.xlsx
+/rtt_todos_bursts.png
+
+# Saídas automáticas; arquivos históricos rastreados permanecem versionados.
+# Para incluir deliberadamente um novo resultado de pesquisa: git add -f <arquivo>
+/experiment_results/
+/results/graficos/
+/results/graficos_apresentacao/
+/results/logs/
