@@ -1,0 +1,25 @@
+{
+  "id": "proxy_single_victim",
+  "duration_seconds": 30,
+  "seed": 42,
+  "infrastructure": {
+    "initial_instances": 1,
+    "min_instances": 1,
+    "max_instances": 1
+  },
+  "autoscaler": {
+    "enabled": false
+  },
+  "load_balancer": {
+    "enabled": true
+  },
+  "attack": {
+    "enabled": true,
+    "profile": "continuous",
+    "start_seconds": 10,
+    "duration_seconds": 10
+  },
+  "monitoring": {
+    "interval_seconds": 1
+  }
+}

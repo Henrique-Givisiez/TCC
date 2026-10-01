@@ -46,5 +46,8 @@
     "interval_seconds": 5,
     "stats_poll_interval_seconds": 1.0,
     "history_seconds": 30.0
+  },
+  "load_balancer": {
+    "enabled": false
   }
 }

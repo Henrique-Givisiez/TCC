@@ -33,3 +33,5 @@ venv/
 /attack_events.csv
 /request_log.csv
 /run_status.json
+/effective_config.json
+/proxy_artifacts/

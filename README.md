@@ -49,3 +49,8 @@ A referência histórica é `develop_loadbalancer`. A organização estrutural n
 A topologia fixa com uma vítima, autoscaler desligado e validação sequencial
 A/B/C está descrita em [docs/single_victim.md](docs/single_victim.md).
 A configuração dedicada é [single_victim.json](experiments/configs/single_victim.json).
+
+A Etapa 4 oferece [proxy HTTP NGINX real](docs/http_proxy.md), endpoint único e
+vítimas sem portas publicadas, em [proxy_single_victim.json](experiments/configs/proxy_single_victim.json).
+Os perfis anteriores mantêm `load_balancer.enabled=false`. Veja a
+[validação da Etapa 4](docs/http_proxy_validation.md).

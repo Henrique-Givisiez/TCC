@@ -3,10 +3,9 @@ import requests
 import time
 import threading
 import random
-from simulator import config # Para obter HTTP_ATTACK_REQUESTS_PER_SECOND_PER_ATTACKER, HTTP_ATTACK_NUM_ATTACKERS
 import statistics
 from simulator import attack_summary_logger
-from simulator import load_balancer
+from simulator.service_destination import validate_endpoint, validate_request_url
 from concurrent.futures import ThreadPoolExecutor
 from simulator.experiment_config import AttackConfig, worker_seed
 import secrets
@@ -25,9 +24,10 @@ threads = []
 rtt_measurements = []
 rtt_lock = threading.Lock()
 
-# Balanceamento client-side (ver load_balancer.py), instância própria (não
+# Somente no modo histórico: balanceamento client-side (ver load_balancer.py), instância própria (não
 # compartilha índice de rotação com normal_traffic.py).
-_load_balancer = load_balancer.LoadBalancer("Attack")
+_load_balancer = None
+_service_endpoint = None
 
 # Pool compartilhado que efetivamente envia as requisições (open-loop):
 # o ritmo de disparo das threads de ataque não espera essa pool terminar.
@@ -36,12 +36,18 @@ _settings = AttackConfig()
 _seed = None
 
 
-def configure(settings, seed, ground_truth=None, request_logger=None):
-    global _send_pool, _settings, _seed, _ground_truth, _request_logger
+def configure(settings, seed, ground_truth=None, request_logger=None, service_endpoint=None):
+    global _send_pool, _settings, _seed, _ground_truth, _request_logger, _service_endpoint, _load_balancer
     if attack_active:
         raise RuntimeError("Cannot reconfigure active traffic")
     if _send_pool is not None:
         _send_pool.shutdown(wait=True)
+    _service_endpoint = validate_endpoint(service_endpoint) if service_endpoint is not None else None
+    if _service_endpoint is not None:
+        _load_balancer = None
+    else:
+        from simulator.load_balancer import LoadBalancer
+        _load_balancer = LoadBalancer("Attack")
     _ground_truth, _request_logger = ground_truth, request_logger
     _stop_event.clear()
     _send_failures.clear()
@@ -61,7 +67,13 @@ def _send_one(session, target_url, counters, counters_lock, worker_id=0, event_i
     start_time = time.monotonic()
     response, error = None, None
     try:
-        response = session.get(target_url, timeout=_settings.request_timeout_seconds)
+        if _service_endpoint is not None:
+            validate_request_url(target_url, _service_endpoint)
+            response = session.get(target_url, timeout=_settings.request_timeout_seconds,
+                                   allow_redirects=False,
+                                   headers={'X-Edos-Request-Id': attempt['request_id'] if attempt else ''})
+        else:
+            response = session.get(target_url, timeout=_settings.request_timeout_seconds)
     except requests.exceptions.RequestException as exc:
         error = exc
     except Exception as exc:
@@ -137,7 +149,9 @@ def http_request_worker(rps_per_worker, worker_index=0):
         return
 
     rng = random.Random(worker_seed(_seed, "attack", worker_index))
-    session = requests.Session() # Use session for potential connection pooling
+    session = requests.Session() # Preserve the existing shared worker session/pool.
+    if _service_endpoint is not None:
+        session.trust_env = False
     mean_interval = 1.0 / rps_per_worker
     worker_start_time = time.monotonic()
 
@@ -148,7 +162,7 @@ def http_request_worker(rps_per_worker, worker_index=0):
     pending_futures = []
 
     while attack_active:
-        base_url = _load_balancer.get_next_target()
+        base_url = _service_endpoint if _service_endpoint is not None else _load_balancer.get_next_target()
         if base_url is None:
             time.sleep(0.1)
             continue
@@ -220,6 +234,13 @@ def get_average_rtt_attack_ms():
 
 
 
+def start_service_flood(service_endpoint, rate, attackers, event_id=None):
+    """Proxy API: a single immutable service endpoint, never a backend list."""
+    if _service_endpoint != validate_endpoint(service_endpoint):
+        raise RuntimeError('configure proxy service endpoint before starting attack')
+    return start_http_flood(service_endpoint, rate, attackers, event_id)
+
+
 def start_http_flood(target_urls, rps_per_worker_override, num_attackers_override, event_id=None):
     """
     Starts an HTTP flood attack against specified target URLs.
@@ -232,6 +253,8 @@ def start_http_flood(target_urls, rps_per_worker_override, num_attackers_overrid
         num_attackers_override (int): The total number of attacker threads to launch.
     """
     global attack_active, attacker_threads, _event_id
+    if _service_endpoint is not None and target_urls != _service_endpoint:
+        raise ValueError('proxy mode requires the configured service_endpoint')
     if rps_per_worker_override < 0:
         raise ValueError("rate must be >= 0")
     _event_id = event_id
@@ -259,12 +282,13 @@ def start_http_flood(target_urls, rps_per_worker_override, num_attackers_overrid
         print(f"[Injector] Clearing {len(attacker_threads)} existing attacker threads before starting new ones.")
     attacker_threads.clear()
 
-    _load_balancer.update_targets(target_urls)
+    if _service_endpoint is None:
+        update_targets(target_urls)
 
-    print(f"[Injector] Starting HTTP flood with {num_attackers_override} attackers, ~{rps_per_worker_override * num_attackers_override} RPS total, across {len(target_urls)} targets: {', '.join(target_urls)}")
+    print(f"[Injector] Starting HTTP flood with {num_attackers_override} attackers, ~{rps_per_worker_override * num_attackers_override} RPS total, destination: {target_urls}")
 
     attack_summary_logger.log_attack_start(
-        target_urls=target_urls,
+        target_urls=[_service_endpoint] if _service_endpoint is not None else target_urls,
         rps_per_worker=rps_per_worker_override,
         num_attackers=num_attackers_override
     )
@@ -292,6 +316,12 @@ def update_targets(target_urls):
     stop_http_flood() -> sleep(1) -> start_http_flood() (ver changes.txt).
     Seguro de chamar sempre, mesmo com o ataque inativo.
     """
+    global _load_balancer
+    if _service_endpoint is not None:
+        raise RuntimeError("cannot update backend targets in proxy mode")
+    if _load_balancer is None:
+        from simulator.load_balancer import LoadBalancer
+        _load_balancer = LoadBalancer("Attack")
     _load_balancer.update_targets(target_urls)
 
 # Esta é a versão revisada e mais robusta do stop_http_flood

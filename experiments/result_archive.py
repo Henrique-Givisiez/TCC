@@ -37,4 +37,13 @@ def move_result(source, destination):
                         raise ValueError(f'run_id mismatch: {artifact}')
         target = destination.parent / f'{artifact.stem}_{suffix}{artifact.suffix}'
         shutil.move(artifact, target)
+    proxy = Path(source).parent / 'proxy_artifacts'
+    if proxy.exists():
+        identity = json.loads((proxy / 'proxy_identity.json').read_text())
+        if identity.get('run_id') != run_id:
+            raise ValueError('proxy artifact run_id mismatch')
+        shutil.move(proxy, destination.parent / f'proxy_artifacts_{suffix}')
+        effective = Path(source).parent / 'effective_config.json'
+        if effective.exists():
+            shutil.move(effective, destination.parent / f'effective_config_{suffix}.json')
     return result

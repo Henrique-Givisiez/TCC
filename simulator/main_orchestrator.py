@@ -1,6 +1,8 @@
 import time
 import csv
 import json
+from pathlib import Path
+import uuid
 from simulator.ground_truth import GroundTruth, encode_event_ids
 from simulator.request_logger import RequestLogger
 from dataclasses import replace
@@ -166,6 +168,13 @@ def _shutdown(reason):
         except Exception as exc:
             errors.append(f'event export: {exc}')
             complete = False
+    proxy = globals().get('http_proxy')
+    if proxy is not None:
+        try:
+            proxy.verify()
+        except Exception as exc:
+            errors.append(str(exc))
+            complete = False
     if sniffer is not None:
         try:
             sniffer.stop()
@@ -177,6 +186,12 @@ def _shutdown(reason):
             stats_collector.stop()
         except Exception as exc:
             errors.append(f'stats collector: {exc}')
+            complete = False
+    if proxy is not None:
+        try:
+            proxy.close(producers_drained)
+        except Exception as exc:
+            errors.append(f'proxy finalization: {exc}')
             complete = False
     # Avoid stopping backends while an incomplete drain still has HTTP calls.
     if globals().get('docker_manager') is not None and producers_drained:
@@ -193,14 +208,20 @@ def _shutdown(reason):
                            experiment_start_monotonic=ground_truth.clock.monotonic_initial,
                            status='completed' if complete and reason == 'simulation_end' else 'incomplete',
                            end_reason=reason, producers_drained=producers_drained, errors=errors,
-                           topology_integrity=globals().get('topology_integrity')), f, indent=2)
+                           topology_integrity=globals().get('topology_integrity'),
+                           proxy_integrity=proxy.identity if proxy else None), f, indent=2)
             f.write('\n')
+    elif globals().get('setup_status') is not None:
+        status = dict(setup_status, errors=errors, producers_drained=producers_drained)
+        Path(config.RUN_STATUS_FILE).write_text(json.dumps(status, indent=2) + '\n')
     if not complete:
         print('[Orchestrator] Incomplete run: drain/capture failures recorded in run_status.json.')
 
 
 def main(experiment=None):
-    global stats_collector, sniffer, ground_truth, request_logger, run_errors, topology_integrity
+    global stats_collector, sniffer, ground_truth, request_logger, run_errors, topology_integrity, http_proxy, setup_status
+    http_proxy = None
+    setup_status = None
     run_errors = []
     topology_integrity = None
     stats_collector = sniffer = ground_truth = request_logger = None
@@ -223,7 +244,13 @@ def _run(experiment=None):
 
     global stats_collector, sniffer, docker_manager, normal_traffic, traffic_injectorV0, ground_truth, request_logger, topology_integrity
     experiment = (experiment or ExperimentConfig()).resolve_seed()
+    global http_proxy, setup_status
+    setup_status = dict(schema_version=1, experiment_id=experiment.id, run_id=uuid.uuid4().hex,
+                        status='incomplete', end_reason='setup_error')
     print("[Orchestrator] Effective experiment configuration:\n" + experiment.to_json())
+    if experiment.load_balancer.enabled:
+        Path(config.PROXY_ARTIFACT_DIR).parent.mkdir(parents=True, exist_ok=True)
+        (Path(config.PROXY_ARTIFACT_DIR).parent / 'effective_config.json').write_text(experiment.to_json())
     from simulator import docker_manager
     from simulator import traffic_injectorV0
     from simulator import normal_traffic
@@ -238,10 +265,10 @@ def _run(experiment=None):
 
     if not docker_manager.build_docker_image(): # Usando diretamente se são funções
         print("[Orchestrator] CRITICAL: Failed to build Docker image. Aborting.")
-        return
+        raise RuntimeError("victim image build failed")
     if not docker_manager.ensure_docker_network():
         print("[Orchestrator] CRITICAL: Failed to ensure Docker network. Aborting.")
-        return
+        raise RuntimeError("Docker network setup failed")
 
     print("[Orchestrator] Cleaning up any pre-existing simulation instances...")
     docker_manager.cleanup_all_simulation_instances()
@@ -251,14 +278,17 @@ def _run(experiment=None):
     print(f"[Orchestrator] Starting initial {experiment.infrastructure.initial_instances} instance(s)...")
     for _ in range(experiment.infrastructure.initial_instances):
         # Assumindo que start_instance retorna o objeto container ou None
-        container = docker_manager.start_instance(next_instance_numeric_id, experiment.server)
+        if experiment.load_balancer.enabled:
+            container = docker_manager.start_instance(next_instance_numeric_id, experiment.server, publish_ports=False)
+        else:
+            container = docker_manager.start_instance(next_instance_numeric_id, experiment.server)
         if container:
             active_containers.append(container)
             next_instance_numeric_id += 1
         else:
             print(f"[Orchestrator] CRITICAL: Failed to start initial instance {next_instance_numeric_id}. Aborting.")
             docker_manager.cleanup_all_simulation_instances() # Limpar o que foi iniciado
-            return
+            raise RuntimeError("initial victim start failed")
     
     # ... após preencher active_containers ...
     stats_collector = StatsCollector(client=docker_manager.client,
@@ -276,15 +306,36 @@ def _run(experiment=None):
     autoscaler.set_initial_instances(len(active_containers)) # Agora chama na instância
     print(f"[Orchestrator] {len(active_containers)} initial instance(s) running.")
 
+    if experiment.load_balancer.enabled:
+        from simulator.http_proxy import HttpProxy
+        http_proxy = HttpProxy(docker_manager.client, config.PROXY_ARTIFACT_DIR)
+        http_proxy.start(active_containers)
+
     #Fazendo alterações no tempo para evitar drift
     ground_truth = GroundTruth(experiment.id, config.ATTACK_EVENTS_LOG_FILE)
-    request_logger = RequestLogger(ground_truth, config.REQUEST_LOG_FILE)
+    request_logger = RequestLogger(ground_truth, config.REQUEST_LOG_FILE,
+                                   routing_log=Path(config.PROXY_ARTIFACT_DIR) / 'routing_evidence.jsonl') if http_proxy else RequestLogger(ground_truth, config.REQUEST_LOG_FILE)
+    if http_proxy:
+        http_proxy.bind_run(ground_truth.run_id)
+        from simulator.http_proxy import write_json
+        write_json(Path(config.PROXY_ARTIFACT_DIR) / 'capture_metadata.json',
+                   dict(run_id=ground_truth.run_id, segment='client_proxy', interface=config.PROXY_CAPTURE_INTERFACE,
+                        bpf=config.PROXY_CAPTURE_FILTER, daemon_id=http_proxy.identity['daemon_id']))
     fixed_victim_id = active_containers[0].id if is_fixed_single_victim(experiment) else None
     if fixed_victim_id:
         topology_integrity = dict(expected_victim_id=fixed_victim_id,
                                               verified_victim_ids=[], checks=0)
 
+    expected_victim_ids = [c.id for c in active_containers]
     def check_fixed_topology():
+        if http_proxy:
+            http_proxy.verify()
+            if [c.id for c in active_containers] != expected_victim_ids:
+                raise VictimIntegrityError('fixed proxy victim inventory changed')
+            for container in active_containers:
+                verify_fixed_victim([container], container.id, docker_manager.client)
+            if sniffer is not None:
+                sniffer.check_running()
         if fixed_victim_id:
             verify_fixed_victim(active_containers, fixed_victim_id, docker_manager.client)
             integrity = topology_integrity
@@ -296,15 +347,24 @@ def _run(experiment=None):
     if experiment.attack.enabled:
         ground_truth.plan_event('attack_001', 'event_001', experiment.attack.profile,
                                 experiment.attack.start_seconds, experiment.attack.end_seconds)
+    normal_starter = normal_traffic.start_service_traffic if http_proxy else normal_traffic.start_http_traffic
+    attack_starter = traffic_injectorV0.start_service_flood if http_proxy else traffic_injectorV0.start_http_flood
+    endpoint_options = {'service_endpoint': config.SERVICE_ENDPOINT} if http_proxy else {}
     normal_traffic.configure(experiment.normal_traffic, experiment.seed,
-                             ground_truth=ground_truth, request_logger=request_logger)
+                             ground_truth=ground_truth, request_logger=request_logger, **endpoint_options)
     traffic_injectorV0.configure(experiment.attack, experiment.seed,
-                                ground_truth=ground_truth, request_logger=request_logger)
+                                ground_truth=ground_truth, request_logger=request_logger, **endpoint_options)
     sniffer_port_range = (config.STARTING_HOST_PORT,
                          config.STARTING_HOST_PORT + experiment.infrastructure.max_instances - 1)
-    sniffer = TcpdumpSniffer(interface='any', output_csv=config.TCPDUMP_OUTPUT_CSV,
-                             ground_truth=ground_truth, port_range=sniffer_port_range)
+    if http_proxy:
+        sniffer = TcpdumpSniffer(interface=config.PROXY_CAPTURE_INTERFACE, output_csv=config.TCPDUMP_OUTPUT_CSV,
+                                 ground_truth=ground_truth, bpf_filter=config.PROXY_CAPTURE_FILTER)
+    else:
+        sniffer = TcpdumpSniffer(interface='any', output_csv=config.TCPDUMP_OUTPUT_CSV,
+                                 ground_truth=ground_truth, port_range=sniffer_port_range)
     sniffer.start()
+    if http_proxy:
+        sniffer.wait_ready()
     start_time = ground_truth.clock.monotonic_initial
     next_tick = start_time
 
@@ -347,8 +407,7 @@ def _run(experiment=None):
 
     except Exception as e_csv_init:
         print(f"[Orchestrator] CRITICAL: Failed to initialize metrics log file {config.METRICS_LOG_FILE}. Error: {e_csv_init}. Aborting.")
-        docker_manager.cleanup_all_simulation_instances()
-        return
+        raise RuntimeError("metrics initialization failed")
 
     #Inicializando simulação
     print(f"[Orchestrator] Starting simulation main loop for {simulation_duration} seconds.")
@@ -460,8 +519,8 @@ def _run(experiment=None):
         num_instances_after_scaling = len(active_containers)
 
         # 4. Gerenciar o injetor de tráfego (COM LÓGICA DE REINÍCIO E LOGS)
-        target_urls_for_injector = []
-        if active_containers: # Somente tente obter URLs se houver contêineres ativos
+        target_urls_for_injector = config.SERVICE_ENDPOINT if http_proxy else []
+        if active_containers and not http_proxy: # Somente tente obter URLs se houver contêineres ativos
             for c_obj in active_containers:
                 try:
                     c_obj.reload() # Essencial para obter os atributos mais recentes, incluindo portas
@@ -483,7 +542,7 @@ def _run(experiment=None):
 
         if not experiment.attack.enabled:
                 print(f"[Orchestrator] Starting Normal Traffic (if not already active). Target URLs for this call: {target_urls_for_injector}")
-                normal_traffic.start_http_traffic(
+                normal_starter(
                         target_urls_for_injector,
                         experiment.normal_traffic.rate,
                         experiment.normal_traffic.clients
@@ -494,7 +553,8 @@ def _run(experiment=None):
                 # load_balancer.py). É isso que faz uma instância nova do
                 # autoscaler passar a receber tráfego normal de verdade em vez
                 # de ficar ociosa o run inteiro (ver changes.txt).
-                normal_traffic.update_targets(target_urls_for_injector)
+                if not http_proxy:
+                    normal_traffic.update_targets(target_urls_for_injector)
 
         elif experiment.attack.enabled:
 
@@ -508,7 +568,7 @@ def _run(experiment=None):
 
             if not should_attack_be_active_now and not normal_traffic_has_started:
                 print(f"[Orchestrator] Starting Normal Traffic. Target URLs for this call: {target_urls_for_injector}")
-                normal_traffic.start_http_traffic(
+                normal_starter(
                         target_urls_for_injector,
                         experiment.normal_traffic.rate,
                         experiment.normal_traffic.clients
@@ -529,7 +589,7 @@ def _run(experiment=None):
             # leitura), os workers continuam tentando os últimos alvos
             # conhecidos e os erros de conexão aparecem no log -- visível,
             # em vez de silenciosamente escondido.
-            if normal_traffic_has_started:
+            if normal_traffic_has_started and not http_proxy:
                 if target_urls_for_injector:
                     normal_traffic.update_targets(target_urls_for_injector)
                 else:
@@ -542,7 +602,7 @@ def _run(experiment=None):
                     if target_urls_for_injector: # Somente inicie se houver alvos
                         print(f"[Orchestrator] Starting HTTP flood. Target URLs for this call: {target_urls_for_injector}")
                         attack_activation_requested = True
-                        started = traffic_injectorV0.start_http_flood(
+                        started = attack_starter(
                             target_urls_for_injector,
                             experiment.attack.rate,
                             experiment.attack.attackers, event_id="event_001"
@@ -551,7 +611,7 @@ def _run(experiment=None):
                         print(f"[DEBUG Orchestrator] attack_has_started={attack_has_started}.")
                     else:
                         print("[Orchestrator] Attack should start, but no valid target URLs yet. Deferring to next iteration.")
-                elif attack_has_started:
+                elif attack_has_started and not http_proxy:
                     # Ataque já rodando: só atualiza o load balancer com a lista
                     # de instâncias atual -- substitui o antigo padrão
                     # stop_http_flood() -> sleep(1) -> start_http_flood(), que

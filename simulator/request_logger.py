@@ -1,6 +1,7 @@
 """One row per HTTP attempt; generator identity is the class source of truth."""
 import csv
 import threading
+import json
 
 from simulator.ground_truth import encode_event_ids
 
@@ -14,7 +15,7 @@ RTT_FIELDS = ['timestamp', 'rtt', 'run_id', 'request_id', 'traffic_class', 'elap
 
 
 class RequestLogger:
-    def __init__(self, ground_truth, output_csv):
+    def __init__(self, ground_truth, output_csv, routing_log=None):
         self.ground_truth = ground_truth
         self.output_csv = output_csv
         self._lock = threading.Lock()
@@ -22,6 +23,9 @@ class RequestLogger:
         self._pending = {}
         self._rtts = []
         self._closed = False
+        self.routing_log = routing_log
+        if routing_log is not None:
+            open(routing_log, 'w').close()
         with open(output_csv, 'w', newline='') as f:
             csv.DictWriter(f, fieldnames=REQUEST_FIELDS).writeheader()
 
@@ -64,6 +68,11 @@ class RequestLogger:
                                        traffic_class=row['traffic_class'], elapsed_seconds=end_elapsed))
             if row['event_id'] is not None:
                 self.ground_truth.finish_request(row['event_id'], end_elapsed)
+            # Operational response evidence is separate from scientific schemas/classes.
+            if self.routing_log is not None and response is not None:
+                with open(self.routing_log, 'a') as stream:
+                    stream.write(json.dumps(dict(run_id=row['run_id'], request_id=row['request_id'],
+                                                 response_body=response.text, http_status=response.status_code)) + '\n')
             return row.copy()
 
     def finalize(self):

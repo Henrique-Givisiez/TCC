@@ -5,6 +5,7 @@ import csv
 import os
 import tempfile
 import re
+import time
 from typing import Optional
 from simulator.ground_truth import encode_event_ids
 
@@ -35,7 +36,7 @@ TCPDUMP_REGEX = re.compile(
 
 class TcpdumpSniffer:
     def __init__(self, interface: str, output_csv: str, ground_truth,
-                 port_range: Optional[tuple] = None):
+                 port_range: Optional[tuple] = None, bpf_filter=None):
         self.interface = interface
         self.output_csv = output_csv
         self.process: Optional[subprocess.Popen] = None
@@ -48,6 +49,7 @@ class TcpdumpSniffer:
         # essas portas via filtro BPF, em vez de depender de qual interface
         # de rede é escolhida (ver start()).
         self.port_range = port_range
+        self.bpf_filter = bpf_filter
         self._init_csv()
 
     def _init_csv(self):
@@ -72,6 +74,8 @@ class TcpdumpSniffer:
         if self.port_range:
             lo, hi = self.port_range
             bpf_filter = f"tcp and portrange {lo}-{hi}"
+        if self.bpf_filter is not None:
+            bpf_filter = self.bpf_filter
 
         cmd = [
             "tcpdump",
@@ -100,6 +104,23 @@ class TcpdumpSniffer:
         self.thread.start()
 
         print(f"[Sniffer] Realtime tcpdump started on {self.interface}")
+
+    def wait_ready(self, timeout=3):
+        """Wait for tcpdump's listening message, without sending probe traffic."""
+        deadline = time.monotonic() + timeout
+        while time.monotonic() < deadline:
+            self.check_running()
+            # pread does not change the descriptor position used by tcpdump.
+            if b'listening on' in os.pread(self.stderr_file.fileno(), 8192, 0):
+                return
+            time.sleep(.02)
+        raise RuntimeError('tcpdump readiness timeout')
+
+    def check_running(self):
+        if self.reader_error:
+            raise RuntimeError('tcpdump CSV writer failed') from self.reader_error
+        if self.process is None or self.process.poll() is not None:
+            raise RuntimeError('tcpdump stopped during experiment')
 
     def _reader_loop(self):
         while self.process and self.process.stdout:

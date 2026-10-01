@@ -59,3 +59,13 @@ def __getattr__(name):
 ATTACK_EVENTS_LOG_FILE = "attack_events.csv"
 REQUEST_LOG_FILE = "request_log.csv"
 RUN_STATUS_FILE = "run_status.json"
+
+# Native Ubuntu Engine only; no context-dependent Desktop selection.
+DOCKER_ENGINE_SOCKET = "unix:///var/run/docker.sock"
+PROXY_IMAGE = "nginx:1.28.0-alpine"
+PROXY_IMAGE_DIGEST = "sha256:30f1c0d78e0ad60901648be663a710bdadf19e4c10ac6782c235200619158284"
+PROXY_HOST_PORT = 8080
+PROXY_ARTIFACT_DIR = "proxy_artifacts"
+SERVICE_ENDPOINT = "http://127.0.0.1:8080"
+PROXY_CAPTURE_INTERFACE = "lo"
+PROXY_CAPTURE_FILTER = "tcp and host 127.0.0.1 and port 8080"

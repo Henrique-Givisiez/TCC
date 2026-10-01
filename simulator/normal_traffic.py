@@ -3,11 +3,10 @@ import requests
 import time
 import threading
 import random
-from simulator import config # Para obter HTTP_ATTACK_REQUESTS_PER_SECOND_PER_ATTACKER, HTTP_ATTACK_NUM_ATTACKERS
 import statistics
 import csv
 from simulator import normal_traffic_summary_logger
-from simulator import load_balancer
+from simulator.service_destination import validate_endpoint, validate_request_url
 from concurrent.futures import ThreadPoolExecutor
 from simulator.experiment_config import NormalTrafficConfig, worker_seed
 import secrets
@@ -27,9 +26,10 @@ rtt_measurements = []
 rtt_measurements_total = []
 rtt_lock = threading.Lock()
 
-# Balanceamento client-side (ver load_balancer.py) -- plano de controle só,
+# Somente no modo histórico: balanceamento client-side (ver load_balancer.py) -- plano de controle só,
 # nunca fica no caminho da requisição HTTP em si (não afeta o RTT medido).
-_load_balancer = load_balancer.LoadBalancer("Normal")
+_load_balancer = None
+_service_endpoint = None
 
 # Pool compartilhado que efetivamente envia as requisições (open-loop), no mesmo
 # padrão do injetor de ataque (traffic_injectorV0.py): o ritmo de disparo não
@@ -40,12 +40,18 @@ _settings = NormalTrafficConfig()
 _seed = None
 
 
-def configure(settings, seed, ground_truth=None, request_logger=None):
-    global _send_pool, _settings, _seed, _ground_truth, _request_logger
+def configure(settings, seed, ground_truth=None, request_logger=None, service_endpoint=None):
+    global _send_pool, _settings, _seed, _ground_truth, _request_logger, _service_endpoint, _load_balancer
     if traffic_active:
         raise RuntimeError("Cannot reconfigure active traffic")
     if _send_pool is not None:
         _send_pool.shutdown(wait=True)
+    _service_endpoint = validate_endpoint(service_endpoint) if service_endpoint is not None else None
+    if _service_endpoint is not None:
+        _load_balancer = None
+    else:
+        from simulator.load_balancer import LoadBalancer
+        _load_balancer = LoadBalancer("Normal")
     _ground_truth, _request_logger = ground_truth, request_logger
     _stop_event.clear()
     _send_failures.clear()
@@ -66,7 +72,13 @@ def _send_one_normal(session, target_url, counters, counters_lock, worker_id=0, 
     start_time = time.monotonic()
     response, error = None, None
     try:
-        response = session.get(target_url, timeout=_settings.request_timeout_seconds)
+        if _service_endpoint is not None:
+            validate_request_url(target_url, _service_endpoint)
+            response = session.get(target_url, timeout=_settings.request_timeout_seconds,
+                                   allow_redirects=False,
+                                   headers={'X-Edos-Request-Id': attempt['request_id'] if attempt else ''})
+        else:
+            response = session.get(target_url, timeout=_settings.request_timeout_seconds)
     except requests.exceptions.RequestException as exc:
         error = exc
     except Exception as exc:
@@ -142,7 +154,9 @@ def normal_http_request_worker(rps_per_worker, worker_index=0):
         return
 
     rng = random.Random(worker_seed(_seed, "normal", worker_index))
-    session = requests.Session() # Use session for potential connection pooling
+    session = requests.Session() # Preserve the existing shared worker session/pool.
+    if _service_endpoint is not None:
+        session.trust_env = False
     mean_interval = 1.0 / rps_per_worker
     worker_start_time = time.monotonic()
 
@@ -153,7 +167,7 @@ def normal_http_request_worker(rps_per_worker, worker_index=0):
     pending_futures = []
 
     while traffic_active:
-        base_url = _load_balancer.get_next_target()
+        base_url = _service_endpoint if _service_endpoint is not None else _load_balancer.get_next_target()
         if base_url is None:
             # Ainda sem nenhuma instância registrada (ex.: chamado antes do primeiro
             # update_targets()) -- espera um pouco e tenta de novo, sem contar como erro.
@@ -201,7 +215,8 @@ def normal_http_request_worker(rps_per_worker, worker_index=0):
 
 def save_rtt_log(filename=None):
     if filename is None:
-        filename = config.RTT_LOG_FILE
+        from simulator.config import RTT_LOG_FILE
+        filename = RTT_LOG_FILE
     if _request_logger is not None:
         _request_logger.save_rtt(filename)
         return
@@ -236,6 +251,13 @@ def get_average_rtt_ms():
 
 
 
+def start_service_traffic(service_endpoint, rate, clients):
+    """Proxy API: a single immutable service endpoint, never a backend list."""
+    if _service_endpoint != validate_endpoint(service_endpoint):
+        raise RuntimeError('configure proxy service endpoint before starting traffic')
+    return start_http_traffic(service_endpoint, rate, clients)
+
+
 def start_http_traffic(target_urls, rps_per_worker_override, num_clients_override):
     """
     Starts an HTTP flood attack against specified target URLs.
@@ -248,6 +270,8 @@ def start_http_traffic(target_urls, rps_per_worker_override, num_clients_overrid
         num_attackers_override (int): The total number of attacker threads to launch.
     """
     global traffic_active, client_threads
+    if _service_endpoint is not None and target_urls != _service_endpoint:
+        raise ValueError('proxy mode requires the configured service_endpoint')
     if rps_per_worker_override < 0:
         raise ValueError("rate must be >= 0")
 
@@ -277,12 +301,13 @@ def start_http_traffic(target_urls, rps_per_worker_override, num_clients_overrid
         print(f"[Normal_Injector] Clearing {len(client_threads)} existing attacker threads before starting new ones.")
     client_threads.clear()
 
-    _load_balancer.update_targets(target_urls)
+    if _service_endpoint is None:
+        update_targets(target_urls)
 
-    print(f"[Normal_Injector] Starting HTTP flood with {num_clients_override} attackers, ~{rps_per_worker_override * num_clients_override} RPS total, across {len(target_urls)} targets: {', '.join(target_urls)}")
+    print(f"[Normal_Injector] Starting HTTP flood with {num_clients_override} attackers, ~{rps_per_worker_override * num_clients_override} RPS total, destination: {target_urls}")
 
     normal_traffic_summary_logger.log_traffic_start(
-        target_urls=target_urls,
+        target_urls=[_service_endpoint] if _service_endpoint is not None else target_urls,
         rps_per_worker=rps_per_worker_override,
         num_clients=num_clients_override,
     )
@@ -313,6 +338,12 @@ def update_targets(target_urls):
     nova, criada pelo autoscaler no meio do run, passar a receber tráfego
     normal de verdade.
     """
+    global _load_balancer
+    if _service_endpoint is not None:
+        raise RuntimeError("cannot update backend targets in proxy mode")
+    if _load_balancer is None:
+        from simulator.load_balancer import LoadBalancer
+        _load_balancer = LoadBalancer("Normal")
     _load_balancer.update_targets(target_urls)
 
 

@@ -76,6 +76,11 @@ class MonitoringConfig:
 
 
 @dataclass(frozen=True)
+class LoadBalancerConfig:
+    enabled: bool = False
+
+
+@dataclass(frozen=True)
 class ExperimentConfig:
     id: str = "default"
     duration_seconds: float = 180
@@ -86,6 +91,7 @@ class ExperimentConfig:
     autoscaler: AutoscalerConfig = field(default_factory=AutoscalerConfig)
     server: ServerConfig = field(default_factory=ServerConfig)
     monitoring: MonitoringConfig = field(default_factory=MonitoringConfig)
+    load_balancer: LoadBalancerConfig = field(default_factory=LoadBalancerConfig)
 
     def validate(self):
         _validate_types(self, "experiment")
@@ -122,6 +128,11 @@ class ExperimentConfig:
         if not i.min_instances <= i.initial_instances <= i.max_instances or i.max_instances == 0:
             raise ValueError("require 0 <= min_instances <= initial_instances <= max_instances, max_instances > 0")
         ac = self.autoscaler
+        if self.load_balancer.enabled:
+            if ac.enabled:
+                raise ValueError("load_balancer enabled requires autoscaler.enabled=false: dynamic upstream updates are not implemented")
+            if i.initial_instances < 1:
+                raise ValueError("load_balancer requires at least one victim")
         for key in ("scale_down_threshold", "scale_up_threshold", "cooldown_seconds"):
             _number("autoscaler." + key, getattr(ac, key))
         if ac.scale_down_threshold >= ac.scale_up_threshold:

@@ -7,7 +7,7 @@ import subprocess # For the 'docker stats' CPU workaround
 from simulator import config # Import your configuration
 
 try:
-    client = docker.from_env()
+    client = docker.from_env(environment={"DOCKER_HOST": config.DOCKER_ENGINE_SOCKET})
 except docker.errors.DockerException as e:
     print(f"FATAL: Could not connect to Docker daemon. Is Docker running? Error: {e}")
     print("Ensure Docker is installed, running, and your user has permissions.")
@@ -60,7 +60,7 @@ def ensure_docker_network():
     return True
 
 
-def start_instance(instance_numeric_id, server=None):
+def start_instance(instance_numeric_id, server=None, *, publish_ports=True):
     """
     Starts a new container instance.
     instance_numeric_id: An integer (e.g., 1, 2, 3) to make container name and port unique.
@@ -72,7 +72,8 @@ def start_instance(instance_numeric_id, server=None):
     # e.g., if id is 1, port is STARTING_HOST_PORT. if id is 2, port is STARTING_HOST_PORT + 1
     host_port = config.STARTING_HOST_PORT + (instance_numeric_id - 1)
 
-    print(f"Attempting to start container {container_name} mapping container:80 to host:{host_port}...")
+    print(f"Attempting to start container {container_name}: " +
+          (f"container:80 to host:{host_port}" if publish_ports else "network only, no host publication"))
     try:
         # Check if a container with the same name already exists (maybe from a failed previous run)
         try:
@@ -90,7 +91,7 @@ def start_instance(instance_numeric_id, server=None):
             config.DOCKER_IMAGE_NAME,
             detach=True,
             name=container_name,
-            ports={f'{config.APP_CONTAINER_PORT}/tcp': host_port}, # Internal container port is 80
+            ports={f'{config.APP_CONTAINER_PORT}/tcp': host_port} if publish_ports else {},
             network=config.DOCKER_NETWORK_NAME,
             restart_policy={"Name": "no"}, # Do not auto-restart for this simulation
             environment={
@@ -100,7 +101,8 @@ def start_instance(instance_numeric_id, server=None):
                 "APP_PORT": str(config.APP_CONTAINER_PORT)
             },
         )
-        print(f"Container {container.short_id} ({container_name}) started. Accessible on host port {host_port}.")
+        print(f"Container {container.short_id} ({container_name}) started. " +
+              (f"Accessible on host port {host_port}." if publish_ports else "Docker network only; no published port."))
         # Optional: wait a tiny bit for the app inside the container to start
         time.sleep(0.5)
         return container
@@ -150,7 +152,7 @@ def get_container_cpu_percent(container_name_or_id):
     This is a workaround as the Docker API for stats is complex for CPU %.
     """
     try:
-        cmd = ["docker", "stats", str(container_name_or_id), "--no-stream", "--format", "{{.CPUPerc}}"]
+        cmd = ["docker", "--host", config.DOCKER_ENGINE_SOCKET, "stats", str(container_name_or_id), "--no-stream", "--format", "{{.CPUPerc}}"]
         result = subprocess.run(cmd, capture_output=True, text=True, check=False, timeout=3)
 
         if result.returncode != 0:
@@ -386,5 +388,3 @@ if __name__ == "__main__":
         print(f"Self-test failed: Cleanup left active instances: {[c.name for c in active_after_cleanup]}")
 
     print("\n--- docker_manager.py self-test complete ---")   
-
-

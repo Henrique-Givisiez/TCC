@@ -3,6 +3,7 @@ import threading
 from collections import deque
 from typing import Dict, List, Optional, Tuple
 import docker
+from simulator import config
 
 from simulator.experiment_config import MonitoringConfig
 
@@ -13,7 +14,7 @@ class StatsCollector:
     """
     def __init__(self, client: Optional[docker.DockerClient] = None, poll_interval: float = MonitoringConfig().stats_poll_interval_seconds,
                  history_seconds: float = MonitoringConfig().history_seconds):
-        self.client = client or docker.from_env()
+        self.client = client or docker.from_env(environment={'DOCKER_HOST': config.DOCKER_ENGINE_SOCKET})
         self.poll_interval = poll_interval
         self.history_seconds = history_seconds  # quanto histórico de amostras manter por container
 
