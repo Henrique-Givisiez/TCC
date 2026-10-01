@@ -45,3 +45,7 @@ Gráficos são gravados em `results/graficos/` ou `results/graficos_apresentacao
 O `.gitignore` evita novos logs, temporários e saídas automáticas conhecidas. Resultados já rastreados continuam versionados; para incluir intencionalmente uma nova saída ignorada, use `git add -f <arquivo>`. Não há regra global ignorando CSVs, XLSX ou PCAPs; o dataset continua rastreado.
 
 A referência histórica é `develop_loadbalancer`. A organização estrutural não modifica algoritmos, parâmetros experimentais ou formatos de dados. Veja [as notas da organização](docs/project_organization.md) e [os limites do código legado](legacy/README.md).
+
+A topologia fixa com uma vítima, autoscaler desligado e validação sequencial
+A/B/C está descrita em [docs/single_victim.md](docs/single_victim.md).
+A configuração dedicada é [single_victim.json](experiments/configs/single_victim.json).

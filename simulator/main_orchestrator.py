@@ -95,10 +95,37 @@ def log_metrics_to_csv(ground_truth, num_instances, avg_cpu, mem_usage, avg_rtt,
         })
 
 
+class VictimIntegrityError(RuntimeError):
+    """The fixed topology cannot be verified; never repair it implicitly."""
+
+
+def is_fixed_single_victim(experiment):
+    i = experiment.infrastructure
+    return not experiment.autoscaler.enabled and i.initial_instances == i.min_instances == i.max_instances == 1
+
+
+def verify_fixed_victim(containers, expected_id, client):
+    if len(containers) != 1 or containers[0].id != expected_id:
+        raise VictimIntegrityError('victim identity/count changed')
+    try:
+        victim = client.containers.get(expected_id)
+        if victim.id != expected_id:
+            raise VictimIntegrityError('victim identity changed')
+        if victim.status != 'running':
+            raise VictimIntegrityError('victim container stopped: ' + str(victim.status))
+    except VictimIntegrityError:
+        raise
+    except Exception as exc:
+        # Avoid importing the Docker SDK in configuration/unit-test paths.
+        cause = 'victim container missing' if getattr(exc, 'status_code', None) == 404 else 'unable to verify victim state'
+        raise VictimIntegrityError(cause + ': ' + str(exc)) from exc
+    return victim
+
+
 def _shutdown(reason):
     """Stop admission, drain producers, persist logs, then stop capture and infrastructure."""
     complete = True
-    errors = []
+    errors = list(globals().get("run_errors", []))
     for module, stopper in [(globals().get('traffic_injectorV0'), 'stop_http_flood'),
                             (globals().get('normal_traffic'), 'stop_http_traffic')]:
         if module is not None:
@@ -165,14 +192,17 @@ def _shutdown(reason):
                            experiment_start_timestamp=ground_truth.clock.epoch_initial,
                            experiment_start_monotonic=ground_truth.clock.monotonic_initial,
                            status='completed' if complete and reason == 'simulation_end' else 'incomplete',
-                           end_reason=reason, producers_drained=producers_drained, errors=errors), f, indent=2)
+                           end_reason=reason, producers_drained=producers_drained, errors=errors,
+                           topology_integrity=globals().get('topology_integrity')), f, indent=2)
             f.write('\n')
     if not complete:
         print('[Orchestrator] Incomplete run: drain/capture failures recorded in run_status.json.')
 
 
 def main(experiment=None):
-    global stats_collector, sniffer, ground_truth, request_logger
+    global stats_collector, sniffer, ground_truth, request_logger, run_errors, topology_integrity
+    run_errors = []
+    topology_integrity = None
     stats_collector = sniffer = ground_truth = request_logger = None
     reason = 'simulation_end'
     try:
@@ -180,7 +210,8 @@ def main(experiment=None):
     except KeyboardInterrupt:
         reason = 'interrupted'
         raise
-    except BaseException:
+    except BaseException as exc:
+        run_errors.append(str(exc))
         reason = 'error'
         raise
     finally:
@@ -190,7 +221,7 @@ def main(experiment=None):
 # --- Função Principal da Simulação ---
 def _run(experiment=None):
 
-    global stats_collector, sniffer, docker_manager, normal_traffic, traffic_injectorV0, ground_truth, request_logger
+    global stats_collector, sniffer, docker_manager, normal_traffic, traffic_injectorV0, ground_truth, request_logger, topology_integrity
     experiment = (experiment or ExperimentConfig()).resolve_seed()
     print("[Orchestrator] Effective experiment configuration:\n" + experiment.to_json())
     from simulator import docker_manager
@@ -248,6 +279,20 @@ def _run(experiment=None):
     #Fazendo alterações no tempo para evitar drift
     ground_truth = GroundTruth(experiment.id, config.ATTACK_EVENTS_LOG_FILE)
     request_logger = RequestLogger(ground_truth, config.REQUEST_LOG_FILE)
+    fixed_victim_id = active_containers[0].id if is_fixed_single_victim(experiment) else None
+    if fixed_victim_id:
+        topology_integrity = dict(expected_victim_id=fixed_victim_id,
+                                              verified_victim_ids=[], checks=0)
+
+    def check_fixed_topology():
+        if fixed_victim_id:
+            verify_fixed_victim(active_containers, fixed_victim_id, docker_manager.client)
+            integrity = topology_integrity
+            integrity['checks'] += 1
+            if fixed_victim_id not in integrity['verified_victim_ids']:
+                integrity['verified_victim_ids'].append(fixed_victim_id)
+            integrity['last_verified_elapsed_seconds'] = ground_truth.clock.elapsed()
+
     if experiment.attack.enabled:
         ground_truth.plan_event('attack_001', 'event_001', experiment.attack.profile,
                                 experiment.attack.start_seconds, experiment.attack.end_seconds)
@@ -334,6 +379,7 @@ def _run(experiment=None):
 
         # 1. Validar e Coletar Métricas das Instâncias Ativas
 
+        check_fixed_topology()
         stats_collector.update_containers(active_containers)
 
         current_num_instances_actual = len(active_containers)
@@ -532,6 +578,7 @@ def _run(experiment=None):
 
         # 5. Registrar métricas no CSV
         host_cpu_percent = host_stats.get_host_cpu_percent()
+        check_fixed_topology()
         log_metrics_to_csv(ground_truth, num_instances_after_scaling, avg_cpu, avg_mem_app_mb,
                            avg_rtt, scaling_decision, current_active_container_names, host_cpu_percent)
         
@@ -551,6 +598,7 @@ def _run(experiment=None):
             
             print(f"[Orchestrator] Warning: Loop iteration took longer than MONITOR_INTERVAL_SECONDS ({experiment.monitoring.interval_seconds}s). Not sleeping.")
 
+    check_fixed_topology()
     # --- Fim do loop de simulação ---
     print("\n[Orchestrator] Simulation duration reached.")
     if hasattr(cost_calculator, 'calculate_total_cost_from_intervals'):
