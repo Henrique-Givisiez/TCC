@@ -33,7 +33,7 @@ http {
       '"upstream":"$upstream_addr","upstream_status":"$upstream_status",'
       '"request_time":"$request_time","upstream_time":"$upstream_response_time",'
       '"connect_time":"$upstream_connect_time","phase":"$http_x_edos_phase",'
-      '"request_id":"$http_x_edos_request_id","connection":"$connection",'
+      '"request_id":"$http_x_edos_request_id","remote_addr":"$remote_addr","connection":"$connection",'
       '"connection_requests":"$connection_requests"}';
     access_log /artifacts/proxy_access.log operational;
     upstream victims {
@@ -75,7 +75,7 @@ class HttpProxy:
         self.checks = 0
         self.run_id = None
 
-    def start(self, victims):
+    def start(self, victims, source_network=None):
         info = self.client.info()
         if info['OperatingSystem'].startswith('Docker Desktop') or info['KernelVersion'] != platform.release():
             raise ProxyIntegrityError('proxy requires native local Linux Engine matching host kernel')
@@ -106,6 +106,12 @@ class HttpProxy:
             restart_policy={'Name': 'no'},
             volumes={str(self.directory): {'bind': '/artifacts', 'mode': 'rw'}},
             command=['sh', '-c', 'nginx -t -c /artifacts/proxy_config.conf && exec nginx -c /artifacts/proxy_config.conf -g "daemon off;"'])
+        if source_network is not None:
+            source_network.connect(self.container, aliases=['edos_service'])
+            self.container.reload()
+            self.identity['source_network'] = source_network.name
+            self.identity['internal_service_endpoint'] = config.SOURCE_SERVICE_ENDPOINT
+            self.identity['source_ip'] = self.container.attrs['NetworkSettings']['Networks'][source_network.name]['IPAddress']
         self.expected_id = self.container.id
         self.identity.update(id=self.expected_id, name=self.container.name)
         write_json(self.directory / 'proxy_identity.json', self.identity)

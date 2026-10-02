@@ -81,6 +81,11 @@ class LoadBalancerConfig:
 
 
 @dataclass(frozen=True)
+class TrafficSourcesConfig:
+    execution: str = "host"
+
+
+@dataclass(frozen=True)
 class ExperimentConfig:
     id: str = "default"
     duration_seconds: float = 180
@@ -92,6 +97,8 @@ class ExperimentConfig:
     server: ServerConfig = field(default_factory=ServerConfig)
     monitoring: MonitoringConfig = field(default_factory=MonitoringConfig)
     load_balancer: LoadBalancerConfig = field(default_factory=LoadBalancerConfig)
+
+    traffic_sources: TrafficSourcesConfig = field(default_factory=TrafficSourcesConfig)
 
     def validate(self):
         _validate_types(self, "experiment")
@@ -108,6 +115,14 @@ class ExperimentConfig:
                 _number(name + "." + key, getattr(group, key), positive=True)
             if not group.endpoint.startswith("/") or "?" in group.endpoint or "#" in group.endpoint:
                 raise ValueError(name + ".endpoint must be a path starting with / without query or fragment")
+        if self.traffic_sources.execution not in ("host", "containers"):
+            raise ValueError("traffic_sources.execution must be host or containers")
+        if self.traffic_sources.execution == "containers":
+            if not self.load_balancer.enabled or self.autoscaler.enabled:
+                raise ValueError("container sources require proxy enabled and autoscaler disabled")
+            for name, count in (("normal_traffic", self.normal_traffic.clients), ("attack", self.attack.attackers)):
+                if count > getattr(self, name).max_concurrent_sends:
+                    raise ValueError(name + ": sources exceed aggregate send worker budget")
         a = self.attack
         if a.profile != "continuous":
             raise ValueError("attack.profile: only continuous is implemented")

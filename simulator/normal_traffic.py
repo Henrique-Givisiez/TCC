@@ -38,10 +38,11 @@ _service_endpoint = None
 _send_pool = None
 _settings = NormalTrafficConfig()
 _seed = None
+_duration_observer = None
 
 
-def configure(settings, seed, ground_truth=None, request_logger=None, service_endpoint=None):
-    global _send_pool, _settings, _seed, _ground_truth, _request_logger, _service_endpoint, _load_balancer
+def configure(settings, seed, ground_truth=None, request_logger=None, service_endpoint=None, duration_observer=None):
+    global _send_pool, _settings, _seed, _ground_truth, _request_logger, _service_endpoint, _load_balancer, _duration_observer
     if traffic_active:
         raise RuntimeError("Cannot reconfigure active traffic")
     if _send_pool is not None:
@@ -52,6 +53,7 @@ def configure(settings, seed, ground_truth=None, request_logger=None, service_en
     else:
         from simulator.load_balancer import LoadBalancer
         _load_balancer = LoadBalancer("Normal")
+    _duration_observer = duration_observer
     _ground_truth, _request_logger = ground_truth, request_logger
     _stop_event.clear()
     _send_failures.clear()
@@ -96,6 +98,8 @@ def _send_one_normal(session, target_url, counters, counters_lock, worker_id=0, 
             elif isinstance(error, requests.exceptions.RequestException):
                 counters['err'] += 1
         if error is None:
+            if _duration_observer is not None:
+                _duration_observer(duration_ms, end_sample[1])
             with rtt_lock:
                 rtt_measurements.append(duration_ms)
                 rtt_measurements_total.append({"timestamp": time.time(), "rtt": duration_ms})

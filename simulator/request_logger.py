@@ -15,7 +15,9 @@ RTT_FIELDS = ['timestamp', 'rtt', 'run_id', 'request_id', 'traffic_class', 'elap
 
 
 class RequestLogger:
-    def __init__(self, ground_truth, output_csv, routing_log=None):
+    def __init__(self, ground_truth, output_csv, routing_log=None, source_id=None, journal=None):
+        self.source_id = source_id
+        self.journal = journal
         self.ground_truth = ground_truth
         self.output_csv = output_csv
         self._lock = threading.Lock()
@@ -39,13 +41,15 @@ class RequestLogger:
             timestamp, elapsed, active, ids = self.ground_truth.begin_request(event_id)
             self._next_id += 1
             row = dict.fromkeys(REQUEST_FIELDS, None)
-            row.update(run_id=self.ground_truth.run_id, request_id=f'request_{self._next_id:09d}',
+            row.update(run_id=self.ground_truth.run_id, request_id=(f'request_{self.source_id}_{self._next_id:09d}' if self.source_id else f'request_{self._next_id:09d}'),
                        generator=generator, worker_id=worker_id, target_url=target_url,
                        timestamp=timestamp, elapsed_seconds=elapsed, traffic_class=traffic_class,
                        attack_active=active, event_id=event_id, active_event_ids=encode_event_ids(ids))
             if event_id is not None:
                 row['attack_id'] = self.ground_truth.event(event_id)['attack_id']
             self._pending[row['request_id']] = row
+            if self.journal:
+                self.journal("request_begin", row)
             return row.copy()
 
     def finish(self, attempt, response=None, error=None, end_sample=None):
@@ -61,6 +65,8 @@ class RequestLogger:
                        outcome=('transport_error' if isinstance(error, RequestException) else 'client_error') if error else
                                'http_error' if getattr(response, 'status_code', 0) >= 400 else 'response',
                        error_type=type(error).__name__ if error else None)
+            if self.journal:
+                self.journal("request_finish", row)
             self._append(row)
             if error is None and row['outcome'] == 'response':
                 self._rtts.append(dict(timestamp=end_timestamp, rtt=row['duration_ms'],

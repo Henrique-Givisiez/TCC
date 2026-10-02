@@ -219,6 +219,9 @@ def _shutdown(reason):
 
 
 def main(experiment=None):
+    if experiment is not None and experiment.traffic_sources.execution == "containers":
+        from simulator.source_experiment import run
+        return run(experiment.resolve_seed())
     global stats_collector, sniffer, ground_truth, request_logger, run_errors, topology_integrity, http_proxy, setup_status
     http_proxy = None
     setup_status = None

@@ -37,6 +37,14 @@ def move_result(source, destination):
                         raise ValueError(f'run_id mismatch: {artifact}')
         target = destination.parent / f'{artifact.stem}_{suffix}{artifact.suffix}'
         shutil.move(artifact, target)
+    sources = Path(source).parent / 'source_artifacts'
+    if sources.exists():
+        inventory = Path(source).parent / 'source_inventory.json'
+        entries = json.loads(inventory.read_text())
+        if any(e['run_id'] != run_id for e in entries):
+            raise ValueError('source inventory run_id mismatch')
+        shutil.move(sources, destination.parent / f'source_artifacts_{suffix}')
+        shutil.move(inventory, destination.parent / f'source_inventory_{suffix}.json')
     proxy = Path(source).parent / 'proxy_artifacts'
     if proxy.exists():
         identity = json.loads((proxy / 'proxy_identity.json').read_text())

@@ -3,7 +3,17 @@ import time
 import threading
 import os
 
-from simulator import config
+_output_file = None
+
+def configure_output(path):
+    global _output_file
+    _output_file = str(path)
+
+def output_file():
+    if _output_file is not None:
+        return _output_file
+    from simulator import config
+    return config.NORMAL_TRAFFIC_SUMMARY_LOG_FILE
 
 # Espelha attack_summary_logger.py, mas para os workers de tráfego NORMAL
 # (normal_traffic.py) -- arquivo separado de config.ATTACK_SUMMARY_LOG_FILE
@@ -29,7 +39,7 @@ def init_normal_traffic_summary_log():
     Cria/reinicia o CSV no começo da simulação.
     """
     with _lock:
-        with open(config.NORMAL_TRAFFIC_SUMMARY_LOG_FILE, "w", newline="") as csvfile:
+        with open(output_file(), "w", newline="") as csvfile:
             writer = csv.DictWriter(csvfile, fieldnames=FIELDNAMES)
             writer.writeheader()
 
@@ -86,9 +96,9 @@ def _append_row(row):
     Escrita protegida por lock para evitar conflito entre várias threads.
     """
     with _lock:
-        file_exists = os.path.exists(config.NORMAL_TRAFFIC_SUMMARY_LOG_FILE)
+        file_exists = os.path.exists(output_file())
 
-        with open(config.NORMAL_TRAFFIC_SUMMARY_LOG_FILE, "a", newline="") as csvfile:
+        with open(output_file(), "a", newline="") as csvfile:
             writer = csv.DictWriter(csvfile, fieldnames=FIELDNAMES)
 
             if not file_exists:

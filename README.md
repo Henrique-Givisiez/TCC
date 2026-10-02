@@ -54,3 +54,9 @@ A Etapa 4 oferece [proxy HTTP NGINX real](docs/http_proxy.md), endpoint único e
 vítimas sem portas publicadas, em [proxy_single_victim.json](experiments/configs/proxy_single_victim.json).
 Os perfis anteriores mantêm `load_balancer.enabled=false`. Veja a
 [validação da Etapa 4](docs/http_proxy_validation.md).
+
+A Etapa 5 oferece [origens de rede em containers](docs/container_sources.md),
+com redes de entrada/backend separadas, inventário de sources e agregação de logs.
+Use `experiments/configs/container_sources.json`; o modo histórico no host continua
+explícito para regressões. O [registro de validação](docs/container_sources_validation.md)
+reúne resultados e artefatos da implementação.

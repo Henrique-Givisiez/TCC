@@ -1,0 +1,11 @@
+{
+  "id": "container_sources",
+  "duration_seconds": 30,
+  "seed": 42,
+  "traffic_sources": {"execution": "containers"},
+  "load_balancer": {"enabled": true},
+  "infrastructure": {"initial_instances": 1, "min_instances": 1, "max_instances": 1},
+  "autoscaler": {"enabled": false},
+  "attack": {"enabled": true, "start_seconds": 10, "duration_seconds": 10},
+  "monitoring": {"interval_seconds": 1}
+}

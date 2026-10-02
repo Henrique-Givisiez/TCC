@@ -45,6 +45,7 @@ class TcpdumpSniffer:
         self.ground_truth = ground_truth
         self.reader_error = None
         self.stderr_file = None
+        self.capture_diagnostic = None
         # (min_port, max_port) dos containers alvo: restringe a captura a
         # essas portas via filtro BPF, em vez de depender de qual interface
         # de rede é escolhida (ver start()).
@@ -79,6 +80,7 @@ class TcpdumpSniffer:
 
         cmd = [
             "tcpdump",
+            "--immediate-mode",
             "-i", self.interface,
             "-l",
             "-n",
@@ -183,7 +185,8 @@ class TcpdumpSniffer:
             diagnostic = self.stderr_file.read().strip()
             self.stderr_file.close()
             self.stderr_file = None
+        self.capture_diagnostic = diagnostic
+        self.finalize_context()  # partial captures retain the authoritative final timeline too
         if self.process and self.process.returncode not in (0, -15):
             raise RuntimeError(f'tcpdump exited with status {self.process.returncode}: {diagnostic}')
-        self.finalize_context()
         print("[Sniffer] Realtime tcpdump stopped.")

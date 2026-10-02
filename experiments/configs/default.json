@@ -15,7 +15,7 @@
     "enabled": true,
     "profile": "continuous",
     "attackers": 4,
-    "rate": 10,
+    "rate": 30,
     "start_seconds": 20,
     "duration_seconds": 140,
     "endpoint": "/",

@@ -35,3 +35,6 @@ venv/
 /run_status.json
 /effective_config.json
 /proxy_artifacts/
+
+/source_artifacts/
+/source_inventory.json
