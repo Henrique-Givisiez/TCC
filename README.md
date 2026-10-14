@@ -84,3 +84,9 @@ com `dataset_valid` separado de `analysis_eligible` e checks estruturais, semân
 e de qualidade. Use `python3 -m experiments.validate_dataset DATASET_DIRECTORY
 --output REPORT_OUTSIDE_DATASET.json`. O relatório preserva warnings e evidências;
 o dataset permanece somente leitura.
+
+A Etapa 10 oferece [features e séries regulares](docs/feature_timeseries.md),
+com grade decimal `[start,end)`, famílias network/service/infrastructure e labels
+separados. Use `python3 -m experiments.extract_features DATASET --validation-report
+REPORT --output FEATURE_DATASET --window-size-seconds 1`. Exige elegibilidade
+Stage 9 e verifica hashes dos inputs. Não aplica detectores ou tratamento estatístico.
