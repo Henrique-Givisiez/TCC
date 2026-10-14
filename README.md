@@ -65,3 +65,9 @@ A Etapa 6 oferece [operações com custo definido na vítima](docs/application_o
 `/light`, `/medium` e `/expensive`. Use
 `experiments/configs/application_operations.json` para o novo fluxo via sources e NGINX.
 Os demais paths preservam o mecanismo legado `work`/`sleep` para compatibilidade.
+
+A Etapa 7 oferece [padrões temporais de ataque](docs/attack_patterns.md):
+`ContinuousFlood` preserva o comportamento histórico e `PeriodicBurst` alterna
+bursts e silêncio, sem transportar backlog. Veja
+`experiments/configs/periodic_burst.json`. `attack.rate` é RPS por atacante/source;
+somente o orçamento de send workers é dividido entre sources.

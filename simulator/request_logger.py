@@ -31,14 +31,20 @@ class RequestLogger:
         with open(output_csv, 'w', newline='') as f:
             csv.DictWriter(f, fieldnames=REQUEST_FIELDS).writeheader()
 
-    def begin(self, generator, worker_id, target_url, event_id=None):
+    def begin(self, generator, worker_id, target_url, event_id=None, admit_if=None):
         traffic_class = {'normal': 'benign', 'attack': 'attack'}[generator]
         if (generator == 'attack') != (event_id is not None):
             raise ValueError('only attack attempts must identify their originating event')
         with self._lock:
             if self._closed:
                 raise RuntimeError('request log finalized')
-            timestamp, elapsed, active, ids = self.ground_truth.begin_request(event_id)
+            if admit_if is None:
+                beginning = self.ground_truth.begin_request(event_id)
+            else:
+                beginning = self.ground_truth.begin_request(event_id, admit_if=admit_if)
+            if beginning is None:
+                return None
+            timestamp, elapsed, active, ids = beginning
             self._next_id += 1
             row = dict.fromkeys(REQUEST_FIELDS, None)
             row.update(run_id=self.ground_truth.run_id, request_id=(f'request_{self.source_id}_{self._next_id:09d}' if self.source_id else f'request_{self._next_id:09d}'),

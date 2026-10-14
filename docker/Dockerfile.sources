@@ -4,4 +4,5 @@ COPY docker/requirements.sources.txt /app/requirements.txt
 RUN pip install --no-cache-dir -r /app/requirements.txt
 COPY simulator/__init__.py simulator/experiment_config.py simulator/service_destination.py simulator/ground_truth.py simulator/request_logger.py simulator/normal_traffic.py simulator/traffic_injectorV0.py simulator/normal_traffic_summary_logger.py simulator/attack_summary_logger.py simulator/source_journal.py simulator/source_runner.py /app/simulator/
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
+COPY simulator/attack_patterns.py /app/simulator/
 ENTRYPOINT ["python", "-B", "-m", "simulator.source_runner"]

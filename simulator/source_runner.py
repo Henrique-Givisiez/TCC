@@ -6,7 +6,7 @@ from pathlib import Path
 import signal
 import threading
 import time
-from simulator.experiment_config import NormalTrafficConfig, AttackConfig
+from simulator.experiment_config import NormalTrafficConfig, AttackConfig, BurstConfig
 from simulator.ground_truth import ExperimentClock
 from simulator.request_logger import RequestLogger
 from simulator.source_journal import Journal, JournalGroundTruth, SharedClock
@@ -44,7 +44,10 @@ def main():
     is_attack = manifest['source_type'] == 'attack'
     if is_attack:
         from simulator import traffic_injectorV0 as module, attack_summary_logger as summary
-        settings = AttackConfig(**manifest['settings'])
+        values = dict(manifest['settings'])
+        if values.get('burst') is not None:
+            values['burst'] = BurstConfig(**values['burst'])
+        settings = AttackConfig(**values)
         gt.plan_event('attack_001', 'event_001', settings.profile, settings.start_seconds, settings.end_seconds)
         worker = module.http_request_worker
     else:

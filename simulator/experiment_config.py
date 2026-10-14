@@ -31,7 +31,7 @@ class AttackConfig:
     enabled: bool = True
     profile: str = "continuous"
     attackers: int = 4
-    rate: float = 10
+    rate: float = 10  # RPS per attacking entity, never an aggregate budget.
     start_seconds: float = 20
     duration_seconds: float = 140
     endpoint: str = "/"
@@ -45,6 +45,28 @@ class AttackConfig:
     @property
     def end_seconds(self):
         return self.start_seconds + self.duration_seconds
+
+    def validate_pattern(self):
+        if self.profile not in ('continuous', 'periodic_burst'):
+            raise ValueError('attack.profile must be continuous or periodic_burst')
+        if self.burst is not None:
+            for f in fields(self.burst):
+                value = getattr(self.burst, f.name)
+                if value is not None:
+                    _number('attack.burst.' + f.name, value)
+            if self.burst.jitter_seconds is not None:
+                raise ValueError('attack.burst.jitter_seconds is not implemented')
+        if self.profile == 'continuous':
+            if self.burst is not None and any(getattr(self.burst, f.name) is not None for f in fields(self.burst)):
+                raise ValueError('attack.burst requires profile=periodic_burst')
+        else:
+            for key in ('period_seconds', 'duration_seconds'):
+                if self.burst is None or getattr(self.burst, key) is None:
+                    raise ValueError('attack.burst.' + key + ' is required for periodic_burst')
+                _number('attack.burst.' + key, getattr(self.burst, key), positive=True)
+            if self.burst.duration_seconds > self.burst.period_seconds:
+                raise ValueError('attack.burst.duration_seconds must be <= period_seconds')
+        return self
 
 
 @dataclass(frozen=True)
@@ -126,19 +148,11 @@ class ExperimentConfig:
                 if count > getattr(self, name).max_concurrent_sends:
                     raise ValueError(name + ": sources exceed aggregate send worker budget")
         a = self.attack
-        if a.profile != "continuous":
-            raise ValueError("attack.profile: only continuous is implemented")
+        a.validate_pattern()
         _number("attack.start_seconds", a.start_seconds)
         _number("attack.duration_seconds", a.duration_seconds)
         if a.enabled and (a.start_seconds >= self.duration_seconds or a.end_seconds > self.duration_seconds):
             raise ValueError("attack window must fit within experiment duration")
-        if a.burst is not None:
-            for f in fields(a.burst):
-                value = getattr(a.burst, f.name)
-                if value is not None:
-                    _number("attack.burst." + f.name, value)
-            if any(getattr(a.burst, f.name) is not None for f in fields(a.burst)):
-                raise ValueError("attack.burst is inactive: burst behavior is not implemented")
         i = self.infrastructure
         for key in ("min_instances", "initial_instances", "max_instances", "cost_per_instance_per_hour"):
             _number("infrastructure." + key, getattr(i, key))

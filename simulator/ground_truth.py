@@ -90,11 +90,21 @@ class GroundTruth:
             self._close_emission(event)
             self._persist()
 
-    def begin_request(self, event_id=None):
+    def _record_admission(self, event_id, elapsed):
+        """Optional source journal hook; no change to scientific schemas."""
+
+    def begin_request(self, event_id=None, admit_if=None):
         with self._lock:
             timestamp, elapsed = self.clock.sample()
             if event_id is not None:
                 event = self._events[event_id]
+                if admit_if is not None:
+                    # Admission and observed beginning use the SAME clock sample
+                    # and event lock. Expired opportunities never become attempts.
+                    if not event.accepting or not admit_if(elapsed):
+                        return None
+                    event.pending += 1
+                    self._record_admission(event_id, elapsed)
                 if event.pending <= 0:
                     raise RuntimeError('attack attempt must be admitted before it starts')
                 event.pending -= 1

@@ -8,6 +8,8 @@ from simulator import attack_summary_logger
 from simulator.service_destination import validate_endpoint, validate_request_url, request_url
 from concurrent.futures import ThreadPoolExecutor
 from simulator.experiment_config import AttackConfig, worker_seed
+from simulator.attack_patterns import attack_pattern, PeriodicBurst
+from simulator.ground_truth import ExperimentClock
 import secrets
 
 _ground_truth = None
@@ -35,10 +37,14 @@ _send_pool = None
 _settings = AttackConfig()
 _seed = None
 _duration_observer = None
+_pattern = attack_pattern(_settings)
+_pattern_clock = None
+_send_slots = None
 
 
 def configure(settings, seed, ground_truth=None, request_logger=None, service_endpoint=None, duration_observer=None):
     global _send_pool, _settings, _seed, _ground_truth, _request_logger, _service_endpoint, _load_balancer, _duration_observer
+    global _pattern, _pattern_clock, _send_slots
     if attack_active:
         raise RuntimeError("Cannot reconfigure active traffic")
     if _send_pool is not None:
@@ -58,14 +64,19 @@ def configure(settings, seed, ground_truth=None, request_logger=None, service_en
     with rtt_lock:
         rtt_measurements.clear()
     _settings, _seed = settings, seed
+    _pattern = attack_pattern(settings)
+    _pattern_clock = ground_truth.clock if ground_truth is not None else (
+        ExperimentClock() if isinstance(_pattern, PeriodicBurst) else None)
+    _send_slots = threading.BoundedSemaphore(settings.max_concurrent_sends)
     _send_pool = ThreadPoolExecutor(max_workers=settings.max_concurrent_sends)
 
 
 
-def _send_one(session, target_url, counters, counters_lock, worker_id=0, event_id=None):
+def _send_one(session, target_url, counters, counters_lock, worker_id=0, event_id=None, attempt=None):
     """HTTP call begins here, never at executor submission."""
-    attempt = (_request_logger.begin('attack', worker_id, target_url, event_id)
-               if _request_logger else None)
+    if attempt is None:
+        attempt = (_request_logger.begin('attack', worker_id, target_url, event_id)
+                   if _request_logger else None)
     start_time = time.monotonic()
     response, error = None, None
     try:
@@ -152,6 +163,9 @@ def http_request_worker(rps_per_worker, worker_index=0):
     if rps_per_worker == 0:
         return
 
+    if isinstance(_pattern, PeriodicBurst):
+        return _periodic_request_worker(rps_per_worker, worker_index)
+
     rng = random.Random(worker_seed(_seed, "attack", worker_index))
     session = requests.Session() # Preserve the existing shared worker session/pool.
     if _service_endpoint is not None:
@@ -195,6 +209,10 @@ def http_request_worker(rps_per_worker, worker_index=0):
         else:
             _stop_event.wait(sleep_duration)
 
+    _finish_worker(pending_futures, counters, counters_lock, worker_start_time, rps_per_worker)
+
+
+def _finish_worker(pending_futures, counters, counters_lock, worker_start_time, rps_per_worker):
     # Esperar as requisições ainda em voo terminarem antes de contabilizar o resumo final,
     # para não subestimar total_requests/errors no CSV.
     for f in pending_futures:
@@ -214,6 +232,77 @@ def http_request_worker(rps_per_worker, worker_index=0):
         worker_start_time=worker_start_time,
         rps_per_worker=rps_per_worker
 )
+
+
+def _send_periodic(session, target_url, counters, counters_lock, worker_index, deadline):
+    """Revalidate an opportunity at its observed beginning, before admission."""
+    def eligible(elapsed):
+        return not _stop_event.is_set() and elapsed < deadline and _pattern.allows(elapsed)
+
+    if _request_logger is not None:
+        attempt = _request_logger.begin('attack', worker_index, target_url, _event_id, admit_if=eligible)
+        if attempt is None:
+            return
+    else:
+        if not eligible(_pattern_clock.elapsed()):
+            return
+        attempt = None
+    return _send_one(session, target_url, counters, counters_lock, worker_index, _event_id, attempt)
+
+
+def _submit_periodic(session, target_url, counters, counters_lock, worker_index, deadline):
+    # Reserve a send worker BEFORE submission. No admitted executor backlog;
+    # each opportunity expires at the end of its original burst, never rolls over.
+    if not _send_slots.acquire(blocking=False):
+        return None
+    try:
+        future = _send_pool.submit(_send_periodic, session, target_url, counters, counters_lock,
+                                   worker_index, deadline)
+    except BaseException:
+        _send_slots.release()
+        raise
+    future.add_done_callback(lambda done: _send_slots.release())
+    _track_future(future)
+    return future
+
+
+def _periodic_request_worker(rps_per_worker, worker_index):
+    rng = random.Random(worker_seed(_seed, 'attack', worker_index))
+    session = requests.Session()
+    if _service_endpoint is not None:
+        session.trust_env = False
+    counters, counters_lock = {'ok': 0, 'err': 0}, threading.Lock()
+    worker_start_time = time.monotonic()
+    pending_futures = []
+    while attack_active and not _stop_event.is_set():
+        elapsed = _pattern_clock.elapsed()
+        window = _pattern.next_window(elapsed)
+        if window is None:
+            break
+        start, deadline = window
+        if elapsed < start:
+            _stop_event.wait(start - elapsed)
+            continue
+        # Poisson opportunities only during active windows, including a random
+        # first interval. No forced extra request at each burst boundary and no
+        # catch-up for missed intervals. RNG streams retain the global worker ID.
+        due = elapsed + rng.expovariate(rps_per_worker)
+        _stop_event.wait(min(due, deadline) - elapsed)
+        now = _pattern_clock.elapsed()
+        if now < due or now >= deadline or _stop_event.is_set():
+            continue
+        base_url = _service_endpoint if _service_endpoint is not None else _load_balancer.get_next_target()
+        if base_url is None:
+            continue
+        try:
+            future = _submit_periodic(session, request_url(base_url, _settings), counters,
+                                      counters_lock, worker_index, deadline)
+        except RuntimeError:
+            break  # pool shutdown: no admission has happened
+        if future is not None:
+            pending_futures.append(future)
+        pending_futures = [f for f in pending_futures if not f.done()]
+    _finish_worker(pending_futures, counters, counters_lock, worker_start_time, rps_per_worker)
 
 # edos_docker_simulation/traffic_injector.py
 
