@@ -78,3 +78,9 @@ de metadata, tráfego, serviço, infraestrutura, ground truth e evidências.
 Use `python3 -m experiments.export_dataset RUN_DIRECTORY DATASET_DIRECTORY`.
 O entrypoint opcional `experiments.dataset_run` registra proveniência antes de
 invocar a simulação existente. Runs incompletos são preservados explicitamente.
+
+A Etapa 9 oferece [validação científica offline](docs/dataset_scientific_validation.md),
+com `dataset_valid` separado de `analysis_eligible` e checks estruturais, semânticos
+e de qualidade. Use `python3 -m experiments.validate_dataset DATASET_DIRECTORY
+--output REPORT_OUTSIDE_DATASET.json`. O relatório preserva warnings e evidências;
+o dataset permanece somente leitura.
