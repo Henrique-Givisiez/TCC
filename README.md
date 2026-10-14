@@ -60,3 +60,8 @@ com redes de entrada/backend separadas, inventário de sources e agregação de 
 Use `experiments/configs/container_sources.json`; o modo histórico no host continua
 explícito para regressões. O [registro de validação](docs/container_sources_validation.md)
 reúne resultados e artefatos da implementação.
+
+A Etapa 6 oferece [operações com custo definido na vítima](docs/application_operations.md):
+`/light`, `/medium` e `/expensive`. Use
+`experiments/configs/application_operations.json` para o novo fluxo via sources e NGINX.
+Os demais paths preservam o mecanismo legado `work`/`sleep` para compatibilidade.

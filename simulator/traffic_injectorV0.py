@@ -5,7 +5,7 @@ import threading
 import random
 import statistics
 from simulator import attack_summary_logger
-from simulator.service_destination import validate_endpoint, validate_request_url
+from simulator.service_destination import validate_endpoint, validate_request_url, request_url
 from concurrent.futures import ThreadPoolExecutor
 from simulator.experiment_config import AttackConfig, worker_seed
 import secrets
@@ -170,7 +170,7 @@ def http_request_worker(rps_per_worker, worker_index=0):
         if base_url is None:
             time.sleep(0.1)
             continue
-        target_url = f"{base_url}{_settings.endpoint}?work={_settings.work_units}&sleep={_settings.sleep_seconds}"
+        target_url = request_url(base_url, _settings)
 
         if _ground_truth is not None and not _ground_truth.admit(_event_id):
             break

@@ -12,6 +12,7 @@ class NormalTrafficConfig:
     clients: int = 4
     rate: float = 10
     endpoint: str = "/"
+    # Compatibility only: reserved /light, /medium, /expensive ignore both.
     work_units: int = 10
     sleep_seconds: float = 0.0
     max_concurrent_sends: int = 64
@@ -34,6 +35,7 @@ class AttackConfig:
     start_seconds: float = 20
     duration_seconds: float = 140
     endpoint: str = "/"
+    # Compatibility only: reserved /light, /medium, /expensive ignore both.
     work_units: int = 5000
     sleep_seconds: float = 0.0
     max_concurrent_sends: int = 64

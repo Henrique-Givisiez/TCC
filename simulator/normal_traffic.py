@@ -6,7 +6,7 @@ import random
 import statistics
 import csv
 from simulator import normal_traffic_summary_logger
-from simulator.service_destination import validate_endpoint, validate_request_url
+from simulator.service_destination import validate_endpoint, validate_request_url, request_url
 from concurrent.futures import ThreadPoolExecutor
 from simulator.experiment_config import NormalTrafficConfig, worker_seed
 import secrets
@@ -177,7 +177,7 @@ def normal_http_request_worker(rps_per_worker, worker_index=0):
             # update_targets()) -- espera um pouco e tenta de novo, sem contar como erro.
             time.sleep(0.1)
             continue
-        target_url = f"{base_url}{_settings.endpoint}?work={_settings.work_units}&sleep={_settings.sleep_seconds}"
+        target_url = request_url(base_url, _settings)
 
         try:
             future = _send_pool.submit(_send_one_normal, session, target_url, counters, counters_lock, worker_index)

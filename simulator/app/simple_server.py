@@ -8,6 +8,28 @@ import math
 from urllib.parse import urlparse, parse_qs
 
 
+# Server-owned CPU budgets. Neither query parameters nor legacy env defaults
+# change these operations. Keep the same deterministic CPU kernel and pool.
+OPERATION_WORK_UNITS = {
+    "/light": 10000,
+    "/medium": 100000,
+    "/expensive": 1000000,
+}
+
+
+def request_workload(path):
+    parsed = urlparse(path)
+    if parsed.path in OPERATION_WORK_UNITS:
+        return OPERATION_WORK_UNITS[parsed.path], 0.0
+    # Historical catch-all paths retain query/env behavior for old experiments,
+    # proxy readiness and protocol/network regression checks.
+    default_work = int(os.getenv("WORK_UNITS", "1000000"))
+    default_sleep = float(os.getenv("PROCESSING_TIME", "0"))
+    qs = parse_qs(parsed.query)
+    return (int(qs.get("work", [default_work])[0]),
+            float(qs.get("sleep", [default_sleep])[0]))
+
+
 def _burn_cpu(work_units):
     """
     Função de trabalho executada nos processos persistentes do pool (_pool).
@@ -32,15 +54,7 @@ class SimpleAppHandler(BaseHTTPRequestHandler):
     protocol_version = "HTTP/1.1"
 
     def do_GET(self):
-        # Parametrização por env: WORK_UNITS (CPU) e PROCESSING_TIME (latência)
-        #Valores defaults
-        default_work = int(os.getenv("WORK_UNITS", "1000000"))      # 1e6 = pesado; use 0 para "sem loop"
-        default_sleep = float(os.getenv("PROCESSING_TIME", "0"))  # em segundos; ex.: 0.05
-
-        parsed = urlparse(self.path)
-        qs = parse_qs(parsed.query)
-        work_units = int(qs.get("work",[default_work])[0])
-        processing_time = float(qs.get("sleep",[default_sleep])[0])
+        work_units, processing_time = request_workload(self.path)
 
         t0 = time.perf_counter()
 

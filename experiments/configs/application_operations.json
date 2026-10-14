@@ -1,0 +1,12 @@
+{
+  "id": "application_operations",
+  "duration_seconds": 8,
+  "seed": 42,
+  "traffic_sources": {"execution": "containers"},
+  "load_balancer": {"enabled": true},
+  "infrastructure": {"initial_instances": 1, "min_instances": 1, "max_instances": 1},
+  "autoscaler": {"enabled": false},
+  "normal_traffic": {"endpoint": "/light", "rate": 2},
+  "attack": {"enabled": true, "endpoint": "/expensive", "rate": 2, "start_seconds": 2, "duration_seconds": 4},
+  "monitoring": {"interval_seconds": 1}
+}
