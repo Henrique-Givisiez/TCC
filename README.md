@@ -71,3 +71,10 @@ A Etapa 7 oferece [padrões temporais de ataque](docs/attack_patterns.md):
 bursts e silêncio, sem transportar backlog. Veja
 `experiments/configs/periodic_burst.json`. `attack.rate` é RPS por atacante/source;
 somente o orçamento de send workers é dividido entre sources.
+
+A Etapa 8 acrescenta [exportação padronizada do dataset](docs/dataset.md), com
+manifest/schema version 1, arquivos observados preservados byte a byte e separação
+de metadata, tráfego, serviço, infraestrutura, ground truth e evidências.
+Use `python3 -m experiments.export_dataset RUN_DIRECTORY DATASET_DIRECTORY`.
+O entrypoint opcional `experiments.dataset_run` registra proveniência antes de
+invocar a simulação existente. Runs incompletos são preservados explicitamente.
