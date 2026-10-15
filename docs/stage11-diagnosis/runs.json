@@ -1,0 +1,4955 @@
+[
+  {
+    "run_id": "010fa174a95b47aba8a88dec59a954ff",
+    "origins": [
+      "experiment_results/stage5-final/regression-stage4/C/run_status.json"
+    ],
+    "status": "completed",
+    "duration_seconds": 30,
+    "seed": 42,
+    "normal": {
+      "clients": 4,
+      "rate": 10,
+      "endpoint": "/",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": true,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 10,
+      "start_seconds": 10,
+      "duration_seconds": 10,
+      "endpoint": "/",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": true,
+    "attack_enabled": true,
+    "mode": {
+      "execution": "host"
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [
+      {
+        "schema_version": "1",
+        "experiment_id": "proxy_single_victim_C",
+        "run_id": "010fa174a95b47aba8a88dec59a954ff",
+        "experiment_start_timestamp": "1790901930.9747112",
+        "experiment_start_monotonic": "8808.117957241",
+        "attack_id": "attack_001",
+        "event_id": "event_001",
+        "profile": "continuous",
+        "scheduled_start_seconds": "10",
+        "scheduled_end_seconds": "20",
+        "activation_requested_seconds": "10.008362725999177",
+        "actual_start_seconds": "10.010398546999568",
+        "stop_requested_seconds": "20.008986029999505",
+        "actual_end_seconds": "20.008990664999146",
+        "last_request_start_seconds": "19.964355415000682",
+        "drained_end_seconds": "20.012002516999928",
+        "status": "completed",
+        "end_reason": "scheduled_end"
+      }
+    ],
+    "datasets": [],
+    "features": [],
+    "validation": [],
+    "configuration_sha256": "a9a5f61c46396306b2799b361f66dacd2a07051f40f2d213f9a02be69236902c",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "0440b798496f4fb3abf25cffd0ca7f07",
+    "origins": [
+      "experiment_results/stage8-final/stage7-validation/capacity/metadata/run_status.json",
+      "experiment_results/stage7-validation/capacity/run_status.json",
+      "experiment_results/stage8-validation/stage7-validation/capacity/metadata/run_status.json"
+    ],
+    "status": "completed",
+    "duration_seconds": 15,
+    "seed": 42,
+    "normal": {
+      "clients": 4,
+      "rate": 2,
+      "endpoint": "/light",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": true,
+      "profile": "periodic_burst",
+      "attackers": 1,
+      "rate": 10,
+      "start_seconds": 2,
+      "duration_seconds": 11.5,
+      "endpoint": "/expensive",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 1,
+      "request_timeout_seconds": 2.0,
+      "burst": {
+        "period_seconds": 3,
+        "duration_seconds": 1,
+        "jitter_seconds": null
+      }
+    },
+    "normal_present": true,
+    "attack_enabled": true,
+    "mode": {
+      "execution": "containers"
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [
+      {
+        "schema_version": "1",
+        "experiment_id": "periodic_burst_validation_capacity",
+        "run_id": "0440b798496f4fb3abf25cffd0ca7f07",
+        "experiment_start_timestamp": "1792004934.9060588",
+        "experiment_start_monotonic": "6280.589956353",
+        "attack_id": "attack_001",
+        "event_id": "event_001",
+        "profile": "periodic_burst",
+        "scheduled_start_seconds": "2",
+        "scheduled_end_seconds": "13.5",
+        "activation_requested_seconds": "2.009481721999691",
+        "actual_start_seconds": "2.092091179999443",
+        "stop_requested_seconds": "13.507077458999447",
+        "actual_end_seconds": "13.507090091999999",
+        "last_request_start_seconds": "11.859988397999587",
+        "drained_end_seconds": "11.989005048999388",
+        "status": "completed",
+        "end_reason": "scheduled_end"
+      }
+    ],
+    "datasets": [
+      "experiment_results/stage8-final/stage7-validation/capacity",
+      "experiment_results/stage8-validation/stage7-validation/capacity"
+    ],
+    "features": [
+      "experiment_results/stage10-final/stage7-validation/capacity"
+    ],
+    "validation": [
+      {
+        "path": "experiment_results/stage9-final/stage7-validation/capacity/validation_report.json",
+        "analysis_eligible": true,
+        "dataset_valid": true
+      }
+    ],
+    "configuration_sha256": "be436f5437e630f50b06a068bff0e54ad564ce23920f1aded65704d7dd815752",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "0552fece56364278aa24fefbccbbc1df",
+    "origins": [
+      "experiment_results/stage4-final/A/run_status.json"
+    ],
+    "status": "completed",
+    "duration_seconds": 30,
+    "seed": 42,
+    "normal": {
+      "clients": 4,
+      "rate": 10,
+      "endpoint": "/",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": false,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 10,
+      "start_seconds": 10,
+      "duration_seconds": 10,
+      "endpoint": "/",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": true,
+    "attack_enabled": false,
+    "mode": null,
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [],
+    "datasets": [],
+    "features": [],
+    "validation": [],
+    "configuration_sha256": "63f274d61ca64994ab57543b4474f9f6bd3a091183cf57dd90a6fd4cd75eee95",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "0753ec271c414dc79fed784be2d86d20",
+    "origins": [
+      "experiment_results/stage8-final/stage7-regressions/stage5/C/metadata/run_status.json",
+      "experiment_results/stage7-regressions/stage5/C/run_status.json",
+      "experiment_results/stage8-validation/stage7-regressions/stage5/C/metadata/run_status.json"
+    ],
+    "status": "completed",
+    "duration_seconds": 30,
+    "seed": 42,
+    "normal": {
+      "clients": 4,
+      "rate": 10,
+      "endpoint": "/",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": true,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 10,
+      "start_seconds": 10,
+      "duration_seconds": 10,
+      "endpoint": "/",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": true,
+    "attack_enabled": true,
+    "mode": {
+      "execution": "containers"
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [
+      {
+        "schema_version": "1",
+        "experiment_id": "container_sources_C",
+        "run_id": "0753ec271c414dc79fed784be2d86d20",
+        "experiment_start_timestamp": "1792005395.519587",
+        "experiment_start_monotonic": "6741.203484344",
+        "attack_id": "attack_001",
+        "event_id": "event_001",
+        "profile": "continuous",
+        "scheduled_start_seconds": "10",
+        "scheduled_end_seconds": "20",
+        "activation_requested_seconds": "10.009856650000074",
+        "actual_start_seconds": "10.010943373000373",
+        "stop_requested_seconds": "20.00235585200062",
+        "actual_end_seconds": "20.007825500000763",
+        "last_request_start_seconds": "19.97435037500054",
+        "drained_end_seconds": "20.001927916000568",
+        "status": "completed",
+        "end_reason": "scheduled_end"
+      }
+    ],
+    "datasets": [
+      "experiment_results/stage8-final/stage7-regressions/stage5/C",
+      "experiment_results/stage8-validation/stage7-regressions/stage5/C"
+    ],
+    "features": [
+      "experiment_results/stage10-final/stage7-regressions/stage5/C"
+    ],
+    "validation": [
+      {
+        "path": "experiment_results/stage9-final/stage7-regressions/stage5/C/validation_report.json",
+        "analysis_eligible": true,
+        "dataset_valid": true
+      }
+    ],
+    "configuration_sha256": "a9bdc16001e2c8a30ae8b634558fbcb0c71060c02be5955e8f9dbef947e831ab",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "0a9e7ffd4984415ebb43d1828a029440",
+    "origins": [
+      "experiment_results/stage8-final/stage7-regressions/stage3/C/metadata/run_status.json",
+      "experiment_results/stage8-validation/stage7-regressions/stage3/C/metadata/run_status.json"
+    ],
+    "status": "completed",
+    "duration_seconds": 30,
+    "seed": 42,
+    "normal": {
+      "clients": 4,
+      "rate": 10,
+      "endpoint": "/",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": true,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 10,
+      "start_seconds": 10,
+      "duration_seconds": 10,
+      "endpoint": "/",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": true,
+    "attack_enabled": true,
+    "mode": {
+      "execution": "host"
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": false
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [
+      {
+        "schema_version": "1",
+        "experiment_id": "single_victim_C",
+        "run_id": "0a9e7ffd4984415ebb43d1828a029440",
+        "experiment_start_timestamp": "1792005122.2399237",
+        "experiment_start_monotonic": "6467.923821009",
+        "attack_id": "attack_001",
+        "event_id": "event_001",
+        "profile": "continuous",
+        "scheduled_start_seconds": "10",
+        "scheduled_end_seconds": "20",
+        "activation_requested_seconds": "10.00516109399996",
+        "actual_start_seconds": "10.006661236000582",
+        "stop_requested_seconds": "20.00733273900005",
+        "actual_end_seconds": "20.007872636000684",
+        "last_request_start_seconds": "20.00786073100062",
+        "drained_end_seconds": "20.01413347900052",
+        "status": "completed",
+        "end_reason": "scheduled_end"
+      }
+    ],
+    "datasets": [
+      "experiment_results/stage8-final/stage7-regressions/stage3/C",
+      "experiment_results/stage8-validation/stage7-regressions/stage3/C"
+    ],
+    "features": [
+      "experiment_results/stage10-final/stage7-regressions/stage3/C"
+    ],
+    "validation": [
+      {
+        "path": "experiment_results/stage9-final/stage7-regressions/stage3/C/validation_report.json",
+        "analysis_eligible": true,
+        "dataset_valid": true
+      }
+    ],
+    "configuration_sha256": "cda0687d3af0c0d4deec39ab09ef51d324fc23655a89e88858e95638b822deef",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "0ceb90c0f9834f68a757868f9c13133f",
+    "origins": [
+      "experiment_results/stage6-regressions/stage4/failure/run_status.json"
+    ],
+    "status": "incomplete",
+    "duration_seconds": 10,
+    "seed": 42,
+    "normal": {
+      "clients": 4,
+      "rate": 10,
+      "endpoint": "/",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": false,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 10,
+      "start_seconds": 10,
+      "duration_seconds": 10,
+      "endpoint": "/",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": true,
+    "attack_enabled": false,
+    "mode": {
+      "execution": "host"
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [],
+    "datasets": [],
+    "features": [],
+    "validation": [],
+    "configuration_sha256": "4c6d054a70d7c1c3db3b094998236c27ca2281b02452ccb9a71eeca3f0844ebe",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "0df848ce18874796ba1b88838436cea2",
+    "origins": [
+      "experiment_results/stage4-native/failure_real/run_status.json"
+    ],
+    "status": "incomplete",
+    "duration_seconds": 10,
+    "seed": 42,
+    "normal": {
+      "clients": 4,
+      "rate": 10,
+      "endpoint": "/",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": false,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 10,
+      "start_seconds": 10,
+      "duration_seconds": 10,
+      "endpoint": "/",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": true,
+    "attack_enabled": false,
+    "mode": null,
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [],
+    "datasets": [],
+    "features": [],
+    "validation": [],
+    "configuration_sha256": "156a8724fbbf4813f988f86ecc50226019dea806e1054d1a8b189cda008630df",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "101a04aeedc147b79baca310524972cc",
+    "origins": [
+      "experiment_results/stage8-final/stage7-regressions/stage4/technical/metadata/run_status.json",
+      "experiment_results/stage7-regressions/stage4/technical/run_status.json",
+      "experiment_results/stage8-validation/stage7-regressions/stage4/technical/metadata/run_status.json"
+    ],
+    "status": "completed",
+    "duration_seconds": 10,
+    "seed": 42,
+    "normal": {
+      "clients": 4,
+      "rate": 10,
+      "endpoint": "/",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": false,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 10,
+      "start_seconds": 10,
+      "duration_seconds": 10,
+      "endpoint": "/",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": true,
+    "attack_enabled": false,
+    "mode": {
+      "execution": "host"
+    },
+    "infrastructure": {
+      "initial_instances": 2,
+      "min_instances": 2,
+      "max_instances": 2,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [],
+    "datasets": [
+      "experiment_results/stage8-final/stage7-regressions/stage4/technical",
+      "experiment_results/stage8-validation/stage7-regressions/stage4/technical"
+    ],
+    "features": [
+      "experiment_results/stage10-final/stage7-regressions/stage4/technical"
+    ],
+    "validation": [
+      {
+        "path": "experiment_results/stage9-final/stage7-regressions/stage4/technical/validation_report.json",
+        "analysis_eligible": true,
+        "dataset_valid": true
+      }
+    ],
+    "configuration_sha256": "d2fd5e511df1b5c78e2d090bacca7eb2aed52d390b84be3c6c34781dc5c0243c",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "108cbd3908cd4af0b43cdc2665cbd96f",
+    "origins": [
+      "experiment_results/stage6-regressions/stage5/B/run_status.json"
+    ],
+    "status": "completed",
+    "duration_seconds": 30,
+    "seed": 42,
+    "normal": {
+      "clients": 0,
+      "rate": 10,
+      "endpoint": "/",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": true,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 10,
+      "start_seconds": 10,
+      "duration_seconds": 10,
+      "endpoint": "/",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": false,
+    "attack_enabled": true,
+    "mode": {
+      "execution": "containers"
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [
+      {
+        "schema_version": "1",
+        "experiment_id": "container_sources_B",
+        "run_id": "108cbd3908cd4af0b43cdc2665cbd96f",
+        "experiment_start_timestamp": "1792001418.5732424",
+        "experiment_start_monotonic": "2764.257140356",
+        "attack_id": "attack_001",
+        "event_id": "event_001",
+        "profile": "continuous",
+        "scheduled_start_seconds": "10",
+        "scheduled_end_seconds": "20",
+        "activation_requested_seconds": "10.005943175000084",
+        "actual_start_seconds": "10.00767716900009",
+        "stop_requested_seconds": "20.00462431699998",
+        "actual_end_seconds": "20.009952625000096",
+        "last_request_start_seconds": "19.978577394999775",
+        "drained_end_seconds": "20.02660759399987",
+        "status": "completed",
+        "end_reason": "scheduled_end"
+      }
+    ],
+    "datasets": [],
+    "features": [],
+    "validation": [],
+    "configuration_sha256": "778fb03fdd5ba9619866e6f26a22526ea61edf289e500464f46f091db0e28539",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "1f40809ba7f247ad9a26d20f4253a809",
+    "origins": [
+      "experiment_results/stage8-final/stage7-regressions/stage5/B/metadata/run_status.json",
+      "experiment_results/stage7-regressions/stage5/B/run_status.json",
+      "experiment_results/stage8-validation/stage7-regressions/stage5/B/metadata/run_status.json"
+    ],
+    "status": "completed",
+    "duration_seconds": 30,
+    "seed": 42,
+    "normal": {
+      "clients": 0,
+      "rate": 10,
+      "endpoint": "/",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": true,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 10,
+      "start_seconds": 10,
+      "duration_seconds": 10,
+      "endpoint": "/",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": false,
+    "attack_enabled": true,
+    "mode": {
+      "execution": "containers"
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [
+      {
+        "schema_version": "1",
+        "experiment_id": "container_sources_B",
+        "run_id": "1f40809ba7f247ad9a26d20f4253a809",
+        "experiment_start_timestamp": "1792005347.7294068",
+        "experiment_start_monotonic": "6693.413303716",
+        "attack_id": "attack_001",
+        "event_id": "event_001",
+        "profile": "continuous",
+        "scheduled_start_seconds": "10",
+        "scheduled_end_seconds": "20",
+        "activation_requested_seconds": "10.00614306100033",
+        "actual_start_seconds": "10.009075406000193",
+        "stop_requested_seconds": "20.00305059600032",
+        "actual_end_seconds": "20.006556710999575",
+        "last_request_start_seconds": "19.97656440300034",
+        "drained_end_seconds": "20.023060984999574",
+        "status": "completed",
+        "end_reason": "scheduled_end"
+      }
+    ],
+    "datasets": [
+      "experiment_results/stage8-final/stage7-regressions/stage5/B",
+      "experiment_results/stage8-validation/stage7-regressions/stage5/B"
+    ],
+    "features": [
+      "experiment_results/stage10-final/stage7-regressions/stage5/B"
+    ],
+    "validation": [
+      {
+        "path": "experiment_results/stage9-final/stage7-regressions/stage5/B/validation_report.json",
+        "analysis_eligible": true,
+        "dataset_valid": true
+      }
+    ],
+    "configuration_sha256": "778fb03fdd5ba9619866e6f26a22526ea61edf289e500464f46f091db0e28539",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "269fb62699144d7cada6289620e8458d",
+    "origins": [
+      "experiment_results/stage8-final/stage7-regressions/stage4/failure/metadata/run_status.json",
+      "experiment_results/stage7-regressions/stage4/failure/run_status.json",
+      "experiment_results/stage8-validation/stage7-regressions/stage4/failure/metadata/run_status.json"
+    ],
+    "status": "incomplete",
+    "duration_seconds": 10,
+    "seed": 42,
+    "normal": {
+      "clients": 4,
+      "rate": 10,
+      "endpoint": "/",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": false,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 10,
+      "start_seconds": 10,
+      "duration_seconds": 10,
+      "endpoint": "/",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": true,
+    "attack_enabled": false,
+    "mode": {
+      "execution": "host"
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [],
+    "datasets": [
+      "experiment_results/stage8-final/stage7-regressions/stage4/failure",
+      "experiment_results/stage8-validation/stage7-regressions/stage4/failure"
+    ],
+    "features": [],
+    "validation": [
+      {
+        "path": "experiment_results/stage9-final/stage7-regressions/stage4/failure/validation_report.json",
+        "analysis_eligible": false,
+        "dataset_valid": true
+      }
+    ],
+    "configuration_sha256": "4c6d054a70d7c1c3db3b094998236c27ca2281b02452ccb9a71eeca3f0844ebe",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "273b7b4d36954f938222507aed02984b",
+    "origins": [
+      "experiment_results/stage5-final/regression-stage4/failure/run_status.json"
+    ],
+    "status": "incomplete",
+    "duration_seconds": 10,
+    "seed": 42,
+    "normal": {
+      "clients": 4,
+      "rate": 10,
+      "endpoint": "/",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": false,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 10,
+      "start_seconds": 10,
+      "duration_seconds": 10,
+      "endpoint": "/",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": true,
+    "attack_enabled": false,
+    "mode": {
+      "execution": "host"
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [],
+    "datasets": [],
+    "features": [],
+    "validation": [],
+    "configuration_sha256": "4c6d054a70d7c1c3db3b094998236c27ca2281b02452ccb9a71eeca3f0844ebe",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "2aa7303d2d234dc5a3662435add66599",
+    "origins": [
+      "experiment_results/stage5-final/failure/run_status.json"
+    ],
+    "status": "incomplete",
+    "duration_seconds": 10,
+    "seed": 42,
+    "normal": {
+      "clients": 4,
+      "rate": 10,
+      "endpoint": "/",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": true,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 10,
+      "start_seconds": 1,
+      "duration_seconds": 8,
+      "endpoint": "/",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": true,
+    "attack_enabled": true,
+    "mode": {
+      "execution": "containers"
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [
+      {
+        "schema_version": "1",
+        "experiment_id": "container_sources",
+        "run_id": "2aa7303d2d234dc5a3662435add66599",
+        "experiment_start_timestamp": "1790901712.0422413",
+        "experiment_start_monotonic": "8589.185486498",
+        "attack_id": "attack_001",
+        "event_id": "event_001",
+        "profile": "continuous",
+        "scheduled_start_seconds": "1",
+        "scheduled_end_seconds": "9",
+        "activation_requested_seconds": "1.0022573269998247",
+        "actual_start_seconds": "1.0065944870002568",
+        "stop_requested_seconds": "4.0092051299998275",
+        "actual_end_seconds": "4.019285571001092",
+        "last_request_start_seconds": "4.007917058001112",
+        "drained_end_seconds": "4.013888585999666",
+        "status": "completed",
+        "end_reason": "error"
+      }
+    ],
+    "datasets": [],
+    "features": [],
+    "validation": [],
+    "configuration_sha256": "a7216feb7ddb1268d37927245baf729e51d66e7c30647fc4e046c4d464c8cfe0",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "30d5fb1070054da4a681d117168fd08b",
+    "origins": [
+      "experiment_results/stage4-native/technical/run_status.json"
+    ],
+    "status": "completed",
+    "duration_seconds": 10,
+    "seed": 42,
+    "normal": {
+      "clients": 4,
+      "rate": 10,
+      "endpoint": "/",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": false,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 10,
+      "start_seconds": 10,
+      "duration_seconds": 10,
+      "endpoint": "/",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": true,
+    "attack_enabled": false,
+    "mode": null,
+    "infrastructure": {
+      "initial_instances": 2,
+      "min_instances": 2,
+      "max_instances": 2,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [],
+    "datasets": [],
+    "features": [],
+    "validation": [],
+    "configuration_sha256": "23cd1f0ba2823ca01a7beac50d9919f338340565bd11ddfbf547f4c7cec73290",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "33623c248c6049eda4f3f27981550de0",
+    "origins": [
+      "experiment_results/stage8-final/stage7-regressions/stage6/medium/metadata/run_status.json",
+      "experiment_results/stage7-regressions/stage6/medium/run_status.json",
+      "experiment_results/stage8-validation/stage7-regressions/stage6/medium/metadata/run_status.json"
+    ],
+    "status": "completed",
+    "duration_seconds": 8,
+    "seed": 42,
+    "normal": {
+      "clients": 4,
+      "rate": 2,
+      "endpoint": "/medium",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": true,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 2,
+      "start_seconds": 2,
+      "duration_seconds": 4,
+      "endpoint": "/medium",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": true,
+    "attack_enabled": true,
+    "mode": {
+      "execution": "containers"
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [
+      {
+        "schema_version": "1",
+        "experiment_id": "application_operations_medium",
+        "run_id": "33623c248c6049eda4f3f27981550de0",
+        "experiment_start_timestamp": "1792005495.1386843",
+        "experiment_start_monotonic": "6840.822582414",
+        "attack_id": "attack_001",
+        "event_id": "event_001",
+        "profile": "continuous",
+        "scheduled_start_seconds": "2",
+        "scheduled_end_seconds": "6",
+        "activation_requested_seconds": "2.003453936999904",
+        "actual_start_seconds": "2.0052926609996575",
+        "stop_requested_seconds": "6.001258373999917",
+        "actual_end_seconds": "6.007263726000019",
+        "last_request_start_seconds": "5.992047405000449",
+        "drained_end_seconds": "6.023947593999765",
+        "status": "completed",
+        "end_reason": "scheduled_end"
+      }
+    ],
+    "datasets": [
+      "experiment_results/stage8-final/stage7-regressions/stage6/medium",
+      "experiment_results/stage8-validation/stage7-regressions/stage6/medium"
+    ],
+    "features": [
+      "experiment_results/stage10-final/stage7-regressions/stage6/medium"
+    ],
+    "validation": [
+      {
+        "path": "experiment_results/stage9-final/stage7-regressions/stage6/medium/validation_report.json",
+        "analysis_eligible": true,
+        "dataset_valid": true
+      }
+    ],
+    "configuration_sha256": "7a608c5db9847168f7acdabac2ffb676082c48fc49d80404228a1c5275abf305",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "34a49acce14145799f7f30e35a50c10b",
+    "origins": [
+      "experiment_results/stage6-regressions/stage4/A/run_status.json"
+    ],
+    "status": "completed",
+    "duration_seconds": 30,
+    "seed": 42,
+    "normal": {
+      "clients": 4,
+      "rate": 10,
+      "endpoint": "/",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": false,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 10,
+      "start_seconds": 10,
+      "duration_seconds": 10,
+      "endpoint": "/",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": true,
+    "attack_enabled": false,
+    "mode": {
+      "execution": "host"
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [],
+    "datasets": [],
+    "features": [],
+    "validation": [],
+    "configuration_sha256": "475c705343c77c6d2f88f8329959d65febf79e91d3dfef40b6f5188e3f50c952",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "378eea926d794e12bfc01e9520b5b6ea",
+    "origins": [
+      "experiment_results/stage6-regressions/stage4/C/run_status.json"
+    ],
+    "status": "completed",
+    "duration_seconds": 30,
+    "seed": 42,
+    "normal": {
+      "clients": 4,
+      "rate": 10,
+      "endpoint": "/",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": true,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 10,
+      "start_seconds": 10,
+      "duration_seconds": 10,
+      "endpoint": "/",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": true,
+    "attack_enabled": true,
+    "mode": {
+      "execution": "host"
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [
+      {
+        "schema_version": "1",
+        "experiment_id": "proxy_single_victim_C",
+        "run_id": "378eea926d794e12bfc01e9520b5b6ea",
+        "experiment_start_timestamp": "1792001237.282343",
+        "experiment_start_monotonic": "2582.966239587",
+        "attack_id": "attack_001",
+        "event_id": "event_001",
+        "profile": "continuous",
+        "scheduled_start_seconds": "10",
+        "scheduled_end_seconds": "20",
+        "activation_requested_seconds": "10.007134765000046",
+        "actual_start_seconds": "10.008913115999803",
+        "stop_requested_seconds": "20.009114010999838",
+        "actual_end_seconds": "20.009120422999786",
+        "last_request_start_seconds": "19.968958984999972",
+        "drained_end_seconds": "20.015226871999857",
+        "status": "completed",
+        "end_reason": "scheduled_end"
+      }
+    ],
+    "datasets": [],
+    "features": [],
+    "validation": [],
+    "configuration_sha256": "a9a5f61c46396306b2799b361f66dacd2a07051f40f2d213f9a02be69236902c",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "393c9ecad8c6407abd1c3b8c2bae9f73",
+    "origins": [
+      "experiment_results/stage8-final/stage7-regressions/stage5/failure/metadata/run_status.json",
+      "experiment_results/stage7-regressions/stage5/failure/run_status.json",
+      "experiment_results/stage8-validation/stage7-regressions/stage5/failure/metadata/run_status.json"
+    ],
+    "status": "incomplete",
+    "duration_seconds": 10,
+    "seed": 42,
+    "normal": {
+      "clients": 4,
+      "rate": 10,
+      "endpoint": "/",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": true,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 10,
+      "start_seconds": 1,
+      "duration_seconds": 8,
+      "endpoint": "/",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": true,
+    "attack_enabled": true,
+    "mode": {
+      "execution": "containers"
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [
+      {
+        "schema_version": "1",
+        "experiment_id": "container_sources",
+        "run_id": "393c9ecad8c6407abd1c3b8c2bae9f73",
+        "experiment_start_timestamp": "1792005444.7374444",
+        "experiment_start_monotonic": "6790.421341005",
+        "attack_id": "attack_001",
+        "event_id": "event_001",
+        "profile": "continuous",
+        "scheduled_start_seconds": "1",
+        "scheduled_end_seconds": "9",
+        "activation_requested_seconds": "1.0018396260002191",
+        "actual_start_seconds": "1.0037144730004002",
+        "stop_requested_seconds": "4.004100490000383",
+        "actual_end_seconds": "4.013052921000053",
+        "last_request_start_seconds": "4.0044486830001915",
+        "drained_end_seconds": "5.5179345840006135",
+        "status": "completed",
+        "end_reason": "error"
+      }
+    ],
+    "datasets": [
+      "experiment_results/stage8-final/stage7-regressions/stage5/failure",
+      "experiment_results/stage8-validation/stage7-regressions/stage5/failure"
+    ],
+    "features": [],
+    "validation": [
+      {
+        "path": "experiment_results/stage9-final/stage7-regressions/stage5/failure/validation_report.json",
+        "analysis_eligible": false,
+        "dataset_valid": true
+      }
+    ],
+    "configuration_sha256": "a7216feb7ddb1268d37927245baf729e51d66e7c30647fc4e046c4d464c8cfe0",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "3bb3047840d0477d983446d9a0806d08",
+    "origins": [
+      "experiment_results/stage8-final/stage7-regressions/stage6/expensive/metadata/run_status.json",
+      "experiment_results/stage7-regressions/stage6/expensive/run_status.json",
+      "experiment_results/stage8-validation/stage7-regressions/stage6/expensive/metadata/run_status.json"
+    ],
+    "status": "completed",
+    "duration_seconds": 8,
+    "seed": 42,
+    "normal": {
+      "clients": 4,
+      "rate": 2,
+      "endpoint": "/expensive",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": true,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 2,
+      "start_seconds": 2,
+      "duration_seconds": 4,
+      "endpoint": "/expensive",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": true,
+    "attack_enabled": true,
+    "mode": {
+      "execution": "containers"
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [
+      {
+        "schema_version": "1",
+        "experiment_id": "application_operations_expensive",
+        "run_id": "3bb3047840d0477d983446d9a0806d08",
+        "experiment_start_timestamp": "1792005522.0511656",
+        "experiment_start_monotonic": "6867.735063432",
+        "attack_id": "attack_001",
+        "event_id": "event_001",
+        "profile": "continuous",
+        "scheduled_start_seconds": "2",
+        "scheduled_end_seconds": "6",
+        "activation_requested_seconds": "2.0027456679999887",
+        "actual_start_seconds": "2.005403330000263",
+        "stop_requested_seconds": "6.000166124999851",
+        "actual_end_seconds": "6.0103014260002965",
+        "last_request_start_seconds": "5.9881894959999045",
+        "drained_end_seconds": "6.234195574999831",
+        "status": "completed",
+        "end_reason": "scheduled_end"
+      }
+    ],
+    "datasets": [
+      "experiment_results/stage8-final/stage7-regressions/stage6/expensive",
+      "experiment_results/stage8-validation/stage7-regressions/stage6/expensive"
+    ],
+    "features": [
+      "experiment_results/stage10-final/stage7-regressions/stage6/expensive"
+    ],
+    "validation": [
+      {
+        "path": "experiment_results/stage9-final/stage7-regressions/stage6/expensive/validation_report.json",
+        "analysis_eligible": true,
+        "dataset_valid": true
+      }
+    ],
+    "configuration_sha256": "3d8518a05cfb0a775f3db029f4f71797c29b35a9a3e3cadca10afb682bc0482a",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "3d6c2d0f403e4e2ea787367e223a9cf2",
+    "origins": [
+      "experiment_results/stage4-native/B/run_status.json"
+    ],
+    "status": "completed",
+    "duration_seconds": 30,
+    "seed": 42,
+    "normal": {
+      "clients": 0,
+      "rate": 10,
+      "endpoint": "/",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": true,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 10,
+      "start_seconds": 10,
+      "duration_seconds": 10,
+      "endpoint": "/",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": false,
+    "attack_enabled": true,
+    "mode": null,
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [
+      {
+        "schema_version": "1",
+        "experiment_id": "proxy_single_victim_B",
+        "run_id": "3d6c2d0f403e4e2ea787367e223a9cf2",
+        "experiment_start_timestamp": "1790896414.3401105",
+        "experiment_start_monotonic": "3291.483356301",
+        "attack_id": "attack_001",
+        "event_id": "event_001",
+        "profile": "continuous",
+        "scheduled_start_seconds": "10",
+        "scheduled_end_seconds": "20",
+        "activation_requested_seconds": "10.00983145500004",
+        "actual_start_seconds": "10.011267163999946",
+        "stop_requested_seconds": "20.008209380999688",
+        "actual_end_seconds": "20.008214114999646",
+        "last_request_start_seconds": "19.967510564999884",
+        "drained_end_seconds": "20.016434364999895",
+        "status": "completed",
+        "end_reason": "scheduled_end"
+      }
+    ],
+    "datasets": [],
+    "features": [],
+    "validation": [],
+    "configuration_sha256": "11a7bbd67a2714e8dc04bb55f5820c06824a54e2efd9b72786f5098a1bad57d6",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "43cae37a3e1948b6994cbbb714dfb42e",
+    "origins": [
+      "experiment_results/stage6-regressions/stage5/A/run_status.json"
+    ],
+    "status": "completed",
+    "duration_seconds": 30,
+    "seed": 42,
+    "normal": {
+      "clients": 4,
+      "rate": 10,
+      "endpoint": "/",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": false,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 10,
+      "start_seconds": 10,
+      "duration_seconds": 10,
+      "endpoint": "/",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": true,
+    "attack_enabled": false,
+    "mode": {
+      "execution": "containers"
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [],
+    "datasets": [],
+    "features": [],
+    "validation": [],
+    "configuration_sha256": "a7e927f16359e9c5aaddf20e41aa032140f7df8138fa606197ea2e230c6c3eed",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "445a139fdb144ffa9fd0aceec6a9c441",
+    "origins": [
+      "experiment_results/stage6-regressions/stage4/technical/run_status.json"
+    ],
+    "status": "completed",
+    "duration_seconds": 10,
+    "seed": 42,
+    "normal": {
+      "clients": 4,
+      "rate": 10,
+      "endpoint": "/",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": false,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 10,
+      "start_seconds": 10,
+      "duration_seconds": 10,
+      "endpoint": "/",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": true,
+    "attack_enabled": false,
+    "mode": {
+      "execution": "host"
+    },
+    "infrastructure": {
+      "initial_instances": 2,
+      "min_instances": 2,
+      "max_instances": 2,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [],
+    "datasets": [],
+    "features": [],
+    "validation": [],
+    "configuration_sha256": "d2fd5e511df1b5c78e2d090bacca7eb2aed52d390b84be3c6c34781dc5c0243c",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "47bd101c9f8f4226b6e6eb9594899190",
+    "origins": [
+      "experiment_results/stage6-validation/light/run_status.json"
+    ],
+    "status": "completed",
+    "duration_seconds": 8,
+    "seed": 42,
+    "normal": {
+      "clients": 4,
+      "rate": 2,
+      "endpoint": "/light",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": true,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 2,
+      "start_seconds": 2,
+      "duration_seconds": 4,
+      "endpoint": "/light",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": true,
+    "attack_enabled": true,
+    "mode": {
+      "execution": "containers"
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [
+      {
+        "schema_version": "1",
+        "experiment_id": "application_operations_light",
+        "run_id": "47bd101c9f8f4226b6e6eb9594899190",
+        "experiment_start_timestamp": "1792000959.2248569",
+        "experiment_start_monotonic": "2304.908752795",
+        "attack_id": "attack_001",
+        "event_id": "event_001",
+        "profile": "continuous",
+        "scheduled_start_seconds": "2",
+        "scheduled_end_seconds": "6",
+        "activation_requested_seconds": "2.0089210209998782",
+        "actual_start_seconds": "2.0099301330001254",
+        "stop_requested_seconds": "6.007099910999841",
+        "actual_end_seconds": "6.008162728000116",
+        "last_request_start_seconds": "5.992521767999733",
+        "drained_end_seconds": "6.037620519000029",
+        "status": "completed",
+        "end_reason": "scheduled_end"
+      }
+    ],
+    "datasets": [],
+    "features": [],
+    "validation": [],
+    "configuration_sha256": "fa9b2c8c7ca5cbc58e68a28a5236c01acdf39c957b1b3d0eccec6b70c8c0b103",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "5dc389a82b9f4639a0cd62c627bf87a4",
+    "origins": [
+      "experiment_results/stage8-final/stage7-regressions/stage3/A/metadata/run_status.json",
+      "experiment_results/stage8-validation/stage7-regressions/stage3/A/metadata/run_status.json"
+    ],
+    "status": "completed",
+    "duration_seconds": 30,
+    "seed": 42,
+    "normal": {
+      "clients": 4,
+      "rate": 10,
+      "endpoint": "/",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": false,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 10,
+      "start_seconds": 10,
+      "duration_seconds": 10,
+      "endpoint": "/",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": true,
+    "attack_enabled": false,
+    "mode": {
+      "execution": "host"
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": false
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [],
+    "datasets": [
+      "experiment_results/stage8-final/stage7-regressions/stage3/A",
+      "experiment_results/stage8-validation/stage7-regressions/stage3/A"
+    ],
+    "features": [
+      "experiment_results/stage10-final/stage7-regressions/stage3/A"
+    ],
+    "validation": [
+      {
+        "path": "experiment_results/stage9-final/stage7-regressions/stage3/A/validation_report.json",
+        "analysis_eligible": true,
+        "dataset_valid": true
+      }
+    ],
+    "configuration_sha256": "f8e5fa6beca644714678edf340d88269b8032c3a33c4ae1bf3acda180c0cd252",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "67273219aab144799f7474719b411662",
+    "origins": [
+      "experiment_results/manual-test/periodic/run_status.json",
+      "experiment_results/manual-test/periodic-dataset/metadata/run_status.json"
+    ],
+    "status": "completed",
+    "duration_seconds": 15,
+    "seed": 42,
+    "normal": {
+      "clients": 4,
+      "rate": 2,
+      "endpoint": "/light",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": true,
+      "profile": "periodic_burst",
+      "attackers": 1,
+      "rate": 10,
+      "start_seconds": 2,
+      "duration_seconds": 11.5,
+      "endpoint": "/expensive",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": {
+        "period_seconds": 3,
+        "duration_seconds": 1,
+        "jitter_seconds": null
+      }
+    },
+    "normal_present": true,
+    "attack_enabled": true,
+    "mode": {
+      "execution": "containers"
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [
+      {
+        "schema_version": "1",
+        "experiment_id": "periodic_burst_validation",
+        "run_id": "67273219aab144799f7474719b411662",
+        "experiment_start_timestamp": "1792010390.9439266",
+        "experiment_start_monotonic": "11736.627824123",
+        "attack_id": "attack_001",
+        "event_id": "event_001",
+        "profile": "periodic_burst",
+        "scheduled_start_seconds": "2",
+        "scheduled_end_seconds": "13.5",
+        "activation_requested_seconds": "2.003085860000283",
+        "actual_start_seconds": "2.0867357080005604",
+        "stop_requested_seconds": "13.502609572000438",
+        "actual_end_seconds": "13.502621079000164",
+        "last_request_start_seconds": "11.861082539000563",
+        "drained_end_seconds": "12.030532501999915",
+        "status": "completed",
+        "end_reason": "scheduled_end"
+      }
+    ],
+    "datasets": [
+      "experiment_results/manual-test/periodic-dataset"
+    ],
+    "features": [],
+    "validation": [],
+    "configuration_sha256": "643c202afe6b3d95a026d80263be1baec0c8623ebb0dec688a7b13bcac5f3c9f",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "69b86316f3e248988bd690fee16c4789",
+    "origins": [
+      "experiment_results/stage5-final/regression-stage4/B/run_status.json"
+    ],
+    "status": "completed",
+    "duration_seconds": 30,
+    "seed": 42,
+    "normal": {
+      "clients": 0,
+      "rate": 10,
+      "endpoint": "/",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": true,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 10,
+      "start_seconds": 10,
+      "duration_seconds": 10,
+      "endpoint": "/",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": false,
+    "attack_enabled": true,
+    "mode": {
+      "execution": "host"
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [
+      {
+        "schema_version": "1",
+        "experiment_id": "proxy_single_victim_B",
+        "run_id": "69b86316f3e248988bd690fee16c4789",
+        "experiment_start_timestamp": "1790901897.087465",
+        "experiment_start_monotonic": "8774.230710691",
+        "attack_id": "attack_001",
+        "event_id": "event_001",
+        "profile": "continuous",
+        "scheduled_start_seconds": "10",
+        "scheduled_end_seconds": "20",
+        "activation_requested_seconds": "10.009312199001215",
+        "actual_start_seconds": "10.010871848000534",
+        "stop_requested_seconds": "20.006693757000903",
+        "actual_end_seconds": "20.006697974000417",
+        "last_request_start_seconds": "19.96778925200124",
+        "drained_end_seconds": "20.016884095000933",
+        "status": "completed",
+        "end_reason": "scheduled_end"
+      }
+    ],
+    "datasets": [],
+    "features": [],
+    "validation": [],
+    "configuration_sha256": "b0ebbd301695aa5f1e53d088089f0c0972d7c4f713d0fd5236e71cf05396caa9",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "732e383c2fae4440bad01598907d51cd",
+    "origins": [
+      "experiment_results/stage4-native/A/run_status.json"
+    ],
+    "status": "completed",
+    "duration_seconds": 30,
+    "seed": 42,
+    "normal": {
+      "clients": 4,
+      "rate": 10,
+      "endpoint": "/",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": false,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 10,
+      "start_seconds": 10,
+      "duration_seconds": 10,
+      "endpoint": "/",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": true,
+    "attack_enabled": false,
+    "mode": null,
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [],
+    "datasets": [],
+    "features": [],
+    "validation": [],
+    "configuration_sha256": "63f274d61ca64994ab57543b4474f9f6bd3a091183cf57dd90a6fd4cd75eee95",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "763570269483495fbe0b3d2468bcd219",
+    "origins": [
+      "experiment_results/stage8-final/stage7-regressions/stage6/light/metadata/run_status.json",
+      "experiment_results/stage7-regressions/stage6/light/run_status.json",
+      "experiment_results/stage8-validation/stage7-regressions/stage6/light/metadata/run_status.json"
+    ],
+    "status": "completed",
+    "duration_seconds": 8,
+    "seed": 42,
+    "normal": {
+      "clients": 4,
+      "rate": 2,
+      "endpoint": "/light",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": true,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 2,
+      "start_seconds": 2,
+      "duration_seconds": 4,
+      "endpoint": "/light",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": true,
+    "attack_enabled": true,
+    "mode": {
+      "execution": "containers"
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [
+      {
+        "schema_version": "1",
+        "experiment_id": "application_operations_light",
+        "run_id": "763570269483495fbe0b3d2468bcd219",
+        "experiment_start_timestamp": "1792005468.2303677",
+        "experiment_start_monotonic": "6813.914265287",
+        "attack_id": "attack_001",
+        "event_id": "event_001",
+        "profile": "continuous",
+        "scheduled_start_seconds": "2",
+        "scheduled_end_seconds": "6",
+        "activation_requested_seconds": "2.0000962850008364",
+        "actual_start_seconds": "2.001379445000566",
+        "stop_requested_seconds": "6.00498303600034",
+        "actual_end_seconds": "6.006042148000233",
+        "last_request_start_seconds": "5.994100639000862",
+        "drained_end_seconds": "6.039327585000137",
+        "status": "completed",
+        "end_reason": "scheduled_end"
+      }
+    ],
+    "datasets": [
+      "experiment_results/stage8-final/stage7-regressions/stage6/light",
+      "experiment_results/stage8-validation/stage7-regressions/stage6/light"
+    ],
+    "features": [
+      "experiment_results/stage10-final/stage7-regressions/stage6/light"
+    ],
+    "validation": [
+      {
+        "path": "experiment_results/stage9-final/stage7-regressions/stage6/light/validation_report.json",
+        "analysis_eligible": true,
+        "dataset_valid": true
+      }
+    ],
+    "configuration_sha256": "fa9b2c8c7ca5cbc58e68a28a5236c01acdf39c957b1b3d0eccec6b70c8c0b103",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "77415133fc494c609612368f73991df7",
+    "origins": [
+      "experiment_results/stage5-development/failure/run_status.json"
+    ],
+    "status": "incomplete",
+    "duration_seconds": 10,
+    "seed": 42,
+    "normal": {
+      "clients": 4,
+      "rate": 10,
+      "endpoint": "/",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": true,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 10,
+      "start_seconds": 1,
+      "duration_seconds": 8,
+      "endpoint": "/",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": true,
+    "attack_enabled": true,
+    "mode": {
+      "execution": "containers"
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [
+      {
+        "schema_version": "1",
+        "experiment_id": "container_sources",
+        "run_id": "77415133fc494c609612368f73991df7",
+        "experiment_start_timestamp": "1790901439.2076404",
+        "experiment_start_monotonic": "8316.350885897",
+        "attack_id": "attack_001",
+        "event_id": "event_001",
+        "profile": "continuous",
+        "scheduled_start_seconds": "1",
+        "scheduled_end_seconds": "9",
+        "activation_requested_seconds": "1.0018546030005382",
+        "actual_start_seconds": "1.0037088270000822",
+        "stop_requested_seconds": "4.007821274000889",
+        "actual_end_seconds": "4.014793936999922",
+        "last_request_start_seconds": "4.002237925000372",
+        "drained_end_seconds": "5.579354653000337",
+        "status": "completed",
+        "end_reason": "error"
+      }
+    ],
+    "datasets": [],
+    "features": [],
+    "validation": [],
+    "configuration_sha256": "a7216feb7ddb1268d37927245baf729e51d66e7c30647fc4e046c4d464c8cfe0",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "84859740b32e435f97a53af1c81fc55a",
+    "origins": [
+      "experiment_results/stage5-final/B/run_status.json"
+    ],
+    "status": "completed",
+    "duration_seconds": 30,
+    "seed": 42,
+    "normal": {
+      "clients": 0,
+      "rate": 10,
+      "endpoint": "/",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": true,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 10,
+      "start_seconds": 10,
+      "duration_seconds": 10,
+      "endpoint": "/",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": false,
+    "attack_enabled": true,
+    "mode": {
+      "execution": "containers"
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [
+      {
+        "schema_version": "1",
+        "experiment_id": "container_sources_B",
+        "run_id": "84859740b32e435f97a53af1c81fc55a",
+        "experiment_start_timestamp": "1790901613.9669323",
+        "experiment_start_monotonic": "8491.110176002",
+        "attack_id": "attack_001",
+        "event_id": "event_001",
+        "profile": "continuous",
+        "scheduled_start_seconds": "10",
+        "scheduled_end_seconds": "20",
+        "activation_requested_seconds": "10.006510746001368",
+        "actual_start_seconds": "10.008971362000011",
+        "stop_requested_seconds": "20.002646636999998",
+        "actual_end_seconds": "20.005101503000333",
+        "last_request_start_seconds": "19.982927843000653",
+        "drained_end_seconds": "20.030536275000486",
+        "status": "completed",
+        "end_reason": "scheduled_end"
+      }
+    ],
+    "datasets": [],
+    "features": [],
+    "validation": [],
+    "configuration_sha256": "778fb03fdd5ba9619866e6f26a22526ea61edf289e500464f46f091db0e28539",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "880ce269d0d04be0a403d10fbe2aa40c",
+    "origins": [
+      "experiment_results/stage4-final/failure/run_status.json"
+    ],
+    "status": "incomplete",
+    "duration_seconds": 10,
+    "seed": 42,
+    "normal": {
+      "clients": 4,
+      "rate": 10,
+      "endpoint": "/",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": false,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 10,
+      "start_seconds": 10,
+      "duration_seconds": 10,
+      "endpoint": "/",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": true,
+    "attack_enabled": false,
+    "mode": null,
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [],
+    "datasets": [],
+    "features": [],
+    "validation": [],
+    "configuration_sha256": "156a8724fbbf4813f988f86ecc50226019dea806e1054d1a8b189cda008630df",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "8a62bf6c5e5d4829add04244d3950d4d",
+    "origins": [
+      "experiment_results/stage4-native/failure/run_status.json"
+    ],
+    "status": "completed",
+    "duration_seconds": 10,
+    "seed": 42,
+    "normal": {
+      "clients": 4,
+      "rate": 10,
+      "endpoint": "/",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": false,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 10,
+      "start_seconds": 10,
+      "duration_seconds": 10,
+      "endpoint": "/",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": true,
+    "attack_enabled": false,
+    "mode": null,
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [],
+    "datasets": [],
+    "features": [],
+    "validation": [],
+    "configuration_sha256": "156a8724fbbf4813f988f86ecc50226019dea806e1054d1a8b189cda008630df",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "92480564dabc4986af878ade5467242a",
+    "origins": [
+      "experiment_results/stage6-regressions/stage4/B/run_status.json"
+    ],
+    "status": "completed",
+    "duration_seconds": 30,
+    "seed": 42,
+    "normal": {
+      "clients": 0,
+      "rate": 10,
+      "endpoint": "/",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": true,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 10,
+      "start_seconds": 10,
+      "duration_seconds": 10,
+      "endpoint": "/",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": false,
+    "attack_enabled": true,
+    "mode": {
+      "execution": "host"
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [
+      {
+        "schema_version": "1",
+        "experiment_id": "proxy_single_victim_B",
+        "run_id": "92480564dabc4986af878ade5467242a",
+        "experiment_start_timestamp": "1792001203.490252",
+        "experiment_start_monotonic": "2549.17414923",
+        "attack_id": "attack_001",
+        "event_id": "event_001",
+        "profile": "continuous",
+        "scheduled_start_seconds": "10",
+        "scheduled_end_seconds": "20",
+        "activation_requested_seconds": "10.009459550000429",
+        "actual_start_seconds": "10.01167950900026",
+        "stop_requested_seconds": "20.00384805900012",
+        "actual_end_seconds": "20.00387858000022",
+        "last_request_start_seconds": "19.96413364900036",
+        "drained_end_seconds": "20.0089958020003",
+        "status": "completed",
+        "end_reason": "scheduled_end"
+      }
+    ],
+    "datasets": [],
+    "features": [],
+    "validation": [],
+    "configuration_sha256": "b0ebbd301695aa5f1e53d088089f0c0972d7c4f713d0fd5236e71cf05396caa9",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "927e03c2d49843c8b74427070067527e",
+    "origins": [
+      "experiment_results/stage8-validation/fresh-periodic-run/run_status.json",
+      "experiment_results/stage8-validation/fresh-periodic-dataset/metadata/run_status.json"
+    ],
+    "status": "completed",
+    "duration_seconds": 15,
+    "seed": 42,
+    "normal": {
+      "clients": 4,
+      "rate": 2,
+      "endpoint": "/light",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": true,
+      "profile": "periodic_burst",
+      "attackers": 1,
+      "rate": 10,
+      "start_seconds": 2,
+      "duration_seconds": 11.5,
+      "endpoint": "/expensive",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": {
+        "period_seconds": 3,
+        "duration_seconds": 1,
+        "jitter_seconds": null
+      }
+    },
+    "normal_present": true,
+    "attack_enabled": true,
+    "mode": {
+      "execution": "containers"
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [
+      {
+        "schema_version": "1",
+        "experiment_id": "periodic_burst_validation",
+        "run_id": "927e03c2d49843c8b74427070067527e",
+        "experiment_start_timestamp": "1792008988.180529",
+        "experiment_start_monotonic": "10333.864426313",
+        "attack_id": "attack_001",
+        "event_id": "event_001",
+        "profile": "periodic_burst",
+        "scheduled_start_seconds": "2",
+        "scheduled_end_seconds": "13.5",
+        "activation_requested_seconds": "2.0094677089982724",
+        "actual_start_seconds": "2.0914300329986872",
+        "stop_requested_seconds": "13.507804951999788",
+        "actual_end_seconds": "13.50781934799852",
+        "last_request_start_seconds": "11.860125120998418",
+        "drained_end_seconds": "12.053012157999547",
+        "status": "completed",
+        "end_reason": "scheduled_end"
+      }
+    ],
+    "datasets": [
+      "experiment_results/stage8-validation/fresh-periodic-dataset"
+    ],
+    "features": [
+      "experiment_results/stage10-final/fresh-periodic"
+    ],
+    "validation": [
+      {
+        "path": "experiment_results/stage9-final/fresh-periodic/validation_report.json",
+        "analysis_eligible": true,
+        "dataset_valid": true
+      }
+    ],
+    "configuration_sha256": "643c202afe6b3d95a026d80263be1baec0c8623ebb0dec688a7b13bcac5f3c9f",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "99619e207ea2462b9b2eea7cba67940a",
+    "origins": [
+      "experiment_results/stage8-final/stage7-validation/periodic/metadata/run_status.json",
+      "experiment_results/stage7-validation/periodic/run_status.json",
+      "experiment_results/stage8-validation/stage7-validation/periodic/metadata/run_status.json"
+    ],
+    "status": "completed",
+    "duration_seconds": 15,
+    "seed": 42,
+    "normal": {
+      "clients": 4,
+      "rate": 2,
+      "endpoint": "/light",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": true,
+      "profile": "periodic_burst",
+      "attackers": 1,
+      "rate": 10,
+      "start_seconds": 2,
+      "duration_seconds": 11.5,
+      "endpoint": "/expensive",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": {
+        "period_seconds": 3,
+        "duration_seconds": 1,
+        "jitter_seconds": null
+      }
+    },
+    "normal_present": true,
+    "attack_enabled": true,
+    "mode": {
+      "execution": "containers"
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [
+      {
+        "schema_version": "1",
+        "experiment_id": "periodic_burst_validation_periodic",
+        "run_id": "99619e207ea2462b9b2eea7cba67940a",
+        "experiment_start_timestamp": "1792004872.1832216",
+        "experiment_start_monotonic": "6217.867119318",
+        "attack_id": "attack_001",
+        "event_id": "event_001",
+        "profile": "periodic_burst",
+        "scheduled_start_seconds": "2",
+        "scheduled_end_seconds": "13.5",
+        "activation_requested_seconds": "2.0094498240005123",
+        "actual_start_seconds": "2.0916756630003874",
+        "stop_requested_seconds": "13.50744338000004",
+        "actual_end_seconds": "13.507451790999767",
+        "last_request_start_seconds": "11.860058596000272",
+        "drained_end_seconds": "12.016331814000296",
+        "status": "completed",
+        "end_reason": "scheduled_end"
+      }
+    ],
+    "datasets": [
+      "experiment_results/stage8-final/stage7-validation/periodic",
+      "experiment_results/stage8-validation/stage7-validation/periodic"
+    ],
+    "features": [
+      "experiment_results/stage10-final/cli-periodic-half-second",
+      "experiment_results/stage10-final/stage7-validation/periodic"
+    ],
+    "validation": [
+      {
+        "path": "experiment_results/stage9-final/stage7-validation/periodic/validation_report.json",
+        "analysis_eligible": true,
+        "dataset_valid": true
+      }
+    ],
+    "configuration_sha256": "c24e6b5155eac5843bfcddbf85bb881c9a06e5f14aff4399a5a2782811370da6",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "9e91c57a00ce4c1cb434b65d975b24d0",
+    "origins": [
+      "experiment_results/stage8-final/stage7-regressions/stage3/B/metadata/run_status.json",
+      "experiment_results/stage8-validation/stage7-regressions/stage3/B/metadata/run_status.json"
+    ],
+    "status": "completed",
+    "duration_seconds": 30,
+    "seed": 42,
+    "normal": {
+      "clients": 0,
+      "rate": 10,
+      "endpoint": "/",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": true,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 10,
+      "start_seconds": 10,
+      "duration_seconds": 10,
+      "endpoint": "/",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": false,
+    "attack_enabled": true,
+    "mode": {
+      "execution": "host"
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": false
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [
+      {
+        "schema_version": "1",
+        "experiment_id": "single_victim_B",
+        "run_id": "9e91c57a00ce4c1cb434b65d975b24d0",
+        "experiment_start_timestamp": "1792005089.0849786",
+        "experiment_start_monotonic": "6434.76887621",
+        "attack_id": "attack_001",
+        "event_id": "event_001",
+        "profile": "continuous",
+        "scheduled_start_seconds": "10",
+        "scheduled_end_seconds": "20",
+        "activation_requested_seconds": "10.004446808000466",
+        "actual_start_seconds": "10.00611373800075",
+        "stop_requested_seconds": "20.00525823800035",
+        "actual_end_seconds": "20.00526396100031",
+        "last_request_start_seconds": "19.95248288499988",
+        "drained_end_seconds": "19.999817156000063",
+        "status": "completed",
+        "end_reason": "scheduled_end"
+      }
+    ],
+    "datasets": [
+      "experiment_results/stage8-final/stage7-regressions/stage3/B",
+      "experiment_results/stage8-validation/stage7-regressions/stage3/B"
+    ],
+    "features": [
+      "experiment_results/stage10-final/stage7-regressions/stage3/B"
+    ],
+    "validation": [
+      {
+        "path": "experiment_results/stage9-final/stage7-regressions/stage3/B/validation_report.json",
+        "analysis_eligible": true,
+        "dataset_valid": true
+      }
+    ],
+    "configuration_sha256": "7fc6e1b84820f7560e0c3baaae01dd17addb1f344f0e44bdd4f57ee140b781d3",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "a1e0d4e48c1846e9ba7804c5aafd3e4e",
+    "origins": [
+      "experiment_results/stage5-final/regression-stage4/technical/run_status.json"
+    ],
+    "status": "completed",
+    "duration_seconds": 10,
+    "seed": 42,
+    "normal": {
+      "clients": 4,
+      "rate": 10,
+      "endpoint": "/",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": false,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 10,
+      "start_seconds": 10,
+      "duration_seconds": 10,
+      "endpoint": "/",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": true,
+    "attack_enabled": false,
+    "mode": {
+      "execution": "host"
+    },
+    "infrastructure": {
+      "initial_instances": 2,
+      "min_instances": 2,
+      "max_instances": 2,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [],
+    "datasets": [],
+    "features": [],
+    "validation": [],
+    "configuration_sha256": "d2fd5e511df1b5c78e2d090bacca7eb2aed52d390b84be3c6c34781dc5c0243c",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "aa90b5d0e30742dfb8ef3734b7e51c9c",
+    "origins": [
+      "experiment_results/stage5-final/regression-stage4/A/run_status.json"
+    ],
+    "status": "completed",
+    "duration_seconds": 30,
+    "seed": 42,
+    "normal": {
+      "clients": 4,
+      "rate": 10,
+      "endpoint": "/",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": false,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 10,
+      "start_seconds": 10,
+      "duration_seconds": 10,
+      "endpoint": "/",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": true,
+    "attack_enabled": false,
+    "mode": {
+      "execution": "host"
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [],
+    "datasets": [],
+    "features": [],
+    "validation": [],
+    "configuration_sha256": "475c705343c77c6d2f88f8329959d65febf79e91d3dfef40b6f5188e3f50c952",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "aac4906df9ae494ab1d87ca99adcc8b6",
+    "origins": [
+      "experiment_results/stage8-final/stage7-validation/continuous/metadata/run_status.json",
+      "experiment_results/stage7-validation/continuous/run_status.json",
+      "experiment_results/stage8-validation/stage7-validation/continuous/metadata/run_status.json"
+    ],
+    "status": "completed",
+    "duration_seconds": 15,
+    "seed": 42,
+    "normal": {
+      "clients": 4,
+      "rate": 2,
+      "endpoint": "/light",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": true,
+      "profile": "continuous",
+      "attackers": 1,
+      "rate": 10,
+      "start_seconds": 2,
+      "duration_seconds": 11.5,
+      "endpoint": "/light",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": true,
+    "attack_enabled": true,
+    "mode": {
+      "execution": "containers"
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [
+      {
+        "schema_version": "1",
+        "experiment_id": "periodic_burst_validation_continuous",
+        "run_id": "aac4906df9ae494ab1d87ca99adcc8b6",
+        "experiment_start_timestamp": "1792004842.7605643",
+        "experiment_start_monotonic": "6188.44446202",
+        "attack_id": "attack_001",
+        "event_id": "event_001",
+        "profile": "continuous",
+        "scheduled_start_seconds": "2",
+        "scheduled_end_seconds": "13.5",
+        "activation_requested_seconds": "2.004080132999661",
+        "actual_start_seconds": "2.0061478839998017",
+        "stop_requested_seconds": "13.507312992000152",
+        "actual_end_seconds": "13.507326258999456",
+        "last_request_start_seconds": "13.329640668999673",
+        "drained_end_seconds": "13.335780747000172",
+        "status": "completed",
+        "end_reason": "scheduled_end"
+      }
+    ],
+    "datasets": [
+      "experiment_results/stage8-final/stage7-validation/continuous",
+      "experiment_results/stage8-validation/stage7-validation/continuous"
+    ],
+    "features": [
+      "experiment_results/stage10-final/stage7-validation/continuous"
+    ],
+    "validation": [
+      {
+        "path": "experiment_results/stage9-final/stage7-validation/continuous/validation_report.json",
+        "analysis_eligible": true,
+        "dataset_valid": true
+      }
+    ],
+    "configuration_sha256": "6ac6a14abc834290bea10a434fa88c3637eb80c838c17195b3332e124b4397dd",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "abdf51c57c5b42d993db59f6e5351dfe",
+    "origins": [
+      "experiment_results/stage5-development/A/run_status.json"
+    ],
+    "status": "incomplete",
+    "duration_seconds": 30,
+    "seed": 42,
+    "normal": {
+      "clients": 4,
+      "rate": 10,
+      "endpoint": "/",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": false,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 10,
+      "start_seconds": 10,
+      "duration_seconds": 10,
+      "endpoint": "/",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": true,
+    "attack_enabled": false,
+    "mode": {
+      "execution": "containers"
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [],
+    "datasets": [],
+    "features": [],
+    "validation": [],
+    "configuration_sha256": "a7e927f16359e9c5aaddf20e41aa032140f7df8138fa606197ea2e230c6c3eed",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "adeeb14748a340b39cdd3142093e03ba",
+    "origins": [
+      "experiment_results/stage4-final/B/run_status.json"
+    ],
+    "status": "completed",
+    "duration_seconds": 30,
+    "seed": 42,
+    "normal": {
+      "clients": 0,
+      "rate": 10,
+      "endpoint": "/",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": true,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 10,
+      "start_seconds": 10,
+      "duration_seconds": 10,
+      "endpoint": "/",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": false,
+    "attack_enabled": true,
+    "mode": null,
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [
+      {
+        "schema_version": "1",
+        "experiment_id": "proxy_single_victim_B",
+        "run_id": "adeeb14748a340b39cdd3142093e03ba",
+        "experiment_start_timestamp": "1790896974.3015213",
+        "experiment_start_monotonic": "3851.444766129",
+        "attack_id": "attack_001",
+        "event_id": "event_001",
+        "profile": "continuous",
+        "scheduled_start_seconds": "10",
+        "scheduled_end_seconds": "20",
+        "activation_requested_seconds": "10.010949868999887",
+        "actual_start_seconds": "10.01278331399999",
+        "stop_requested_seconds": "20.006099910000103",
+        "actual_end_seconds": "20.006103835999966",
+        "last_request_start_seconds": "19.96829255800003",
+        "drained_end_seconds": "20.015909610000108",
+        "status": "completed",
+        "end_reason": "scheduled_end"
+      }
+    ],
+    "datasets": [],
+    "features": [],
+    "validation": [],
+    "configuration_sha256": "11a7bbd67a2714e8dc04bb55f5820c06824a54e2efd9b72786f5098a1bad57d6",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "bca50db8c6ab4ab480b28b1e5274b1ce",
+    "origins": [
+      "experiment_results/stage4-native/C/run_status.json"
+    ],
+    "status": "completed",
+    "duration_seconds": 30,
+    "seed": 42,
+    "normal": {
+      "clients": 4,
+      "rate": 10,
+      "endpoint": "/",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": true,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 10,
+      "start_seconds": 10,
+      "duration_seconds": 10,
+      "endpoint": "/",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": true,
+    "attack_enabled": true,
+    "mode": null,
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [
+      {
+        "schema_version": "1",
+        "experiment_id": "proxy_single_victim_C",
+        "run_id": "bca50db8c6ab4ab480b28b1e5274b1ce",
+        "experiment_start_timestamp": "1790896448.22131",
+        "experiment_start_monotonic": "3325.364555472",
+        "attack_id": "attack_001",
+        "event_id": "event_001",
+        "profile": "continuous",
+        "scheduled_start_seconds": "10",
+        "scheduled_end_seconds": "20",
+        "activation_requested_seconds": "10.008088973999747",
+        "actual_start_seconds": "10.009620840000025",
+        "stop_requested_seconds": "20.007432119999976",
+        "actual_end_seconds": "20.00743779000004",
+        "last_request_start_seconds": "19.96860320499991",
+        "drained_end_seconds": "20.016102368999782",
+        "status": "completed",
+        "end_reason": "scheduled_end"
+      }
+    ],
+    "datasets": [],
+    "features": [],
+    "validation": [],
+    "configuration_sha256": "50afd0e57dbc6a0f38c30e8ab14f321c0089f62f228544d5564844de94f3fdd2",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "bd1303b0312e4b3bbf9436d92ae02b77",
+    "origins": [
+      "experiment_results/stage8-final/stage7-regressions/stage5/A/metadata/run_status.json",
+      "experiment_results/stage7-regressions/stage5/A/run_status.json",
+      "experiment_results/stage8-validation/stage7-regressions/stage5/A/metadata/run_status.json"
+    ],
+    "status": "completed",
+    "duration_seconds": 30,
+    "seed": 42,
+    "normal": {
+      "clients": 4,
+      "rate": 10,
+      "endpoint": "/",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": false,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 10,
+      "start_seconds": 10,
+      "duration_seconds": 10,
+      "endpoint": "/",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": true,
+    "attack_enabled": false,
+    "mode": {
+      "execution": "containers"
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [],
+    "datasets": [
+      "experiment_results/stage8-final/stage7-regressions/stage5/A",
+      "experiment_results/stage8-validation/stage7-regressions/stage5/A"
+    ],
+    "features": [
+      "experiment_results/stage10-final/stage7-regressions/stage5/A"
+    ],
+    "validation": [
+      {
+        "path": "experiment_results/stage9-final/stage7-regressions/stage5/A/validation_report.json",
+        "analysis_eligible": true,
+        "dataset_valid": true
+      }
+    ],
+    "configuration_sha256": "a7e927f16359e9c5aaddf20e41aa032140f7df8138fa606197ea2e230c6c3eed",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "c48d973ce7a840cc8fbfc543f16224ec",
+    "origins": [
+      "experiment_results/stage8-final/stage7-regressions/stage4/C/metadata/run_status.json",
+      "experiment_results/stage7-regressions/stage4/C/run_status.json",
+      "experiment_results/stage8-validation/stage7-regressions/stage4/C/metadata/run_status.json"
+    ],
+    "status": "completed",
+    "duration_seconds": 30,
+    "seed": 42,
+    "normal": {
+      "clients": 4,
+      "rate": 10,
+      "endpoint": "/",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": true,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 10,
+      "start_seconds": 10,
+      "duration_seconds": 10,
+      "endpoint": "/",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": true,
+    "attack_enabled": true,
+    "mode": {
+      "execution": "host"
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [
+      {
+        "schema_version": "1",
+        "experiment_id": "proxy_single_victim_C",
+        "run_id": "c48d973ce7a840cc8fbfc543f16224ec",
+        "experiment_start_timestamp": "1792005223.6338685",
+        "experiment_start_monotonic": "6569.317766609",
+        "attack_id": "attack_001",
+        "event_id": "event_001",
+        "profile": "continuous",
+        "scheduled_start_seconds": "10",
+        "scheduled_end_seconds": "20",
+        "activation_requested_seconds": "10.006679116000669",
+        "actual_start_seconds": "10.007654331000595",
+        "stop_requested_seconds": "20.010032766000222",
+        "actual_end_seconds": "20.010946528000204",
+        "last_request_start_seconds": "20.010932026000773",
+        "drained_end_seconds": "20.056843375000426",
+        "status": "completed",
+        "end_reason": "scheduled_end"
+      }
+    ],
+    "datasets": [
+      "experiment_results/stage8-final/stage7-regressions/stage4/C",
+      "experiment_results/stage8-validation/stage7-regressions/stage4/C"
+    ],
+    "features": [
+      "experiment_results/stage10-final/stage7-regressions/stage4/C"
+    ],
+    "validation": [
+      {
+        "path": "experiment_results/stage9-final/stage7-regressions/stage4/C/validation_report.json",
+        "analysis_eligible": true,
+        "dataset_valid": true
+      }
+    ],
+    "configuration_sha256": "a9a5f61c46396306b2799b361f66dacd2a07051f40f2d213f9a02be69236902c",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "c74997f045dc4798925b3dd956788e44",
+    "origins": [
+      "experiment_results/stage6-validation/medium/run_status.json"
+    ],
+    "status": "completed",
+    "duration_seconds": 8,
+    "seed": 42,
+    "normal": {
+      "clients": 4,
+      "rate": 2,
+      "endpoint": "/medium",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": true,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 2,
+      "start_seconds": 2,
+      "duration_seconds": 4,
+      "endpoint": "/medium",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": true,
+    "attack_enabled": true,
+    "mode": {
+      "execution": "containers"
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [
+      {
+        "schema_version": "1",
+        "experiment_id": "application_operations_medium",
+        "run_id": "c74997f045dc4798925b3dd956788e44",
+        "experiment_start_timestamp": "1792000989.1213508",
+        "experiment_start_monotonic": "2334.80524741",
+        "attack_id": "attack_001",
+        "event_id": "event_001",
+        "profile": "continuous",
+        "scheduled_start_seconds": "2",
+        "scheduled_end_seconds": "6",
+        "activation_requested_seconds": "2.0059670679997907",
+        "actual_start_seconds": "2.0081602939999357",
+        "stop_requested_seconds": "6.003674826999941",
+        "actual_end_seconds": "6.0038331910000124",
+        "last_request_start_seconds": "5.991476802999841",
+        "drained_end_seconds": "6.051962817999993",
+        "status": "completed",
+        "end_reason": "scheduled_end"
+      }
+    ],
+    "datasets": [],
+    "features": [],
+    "validation": [],
+    "configuration_sha256": "7a608c5db9847168f7acdabac2ffb676082c48fc49d80404228a1c5275abf305",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "c82a383756db4bc087d2e00bf9c9abd3",
+    "origins": [
+      "experiment_results/stage5-development/B/run_status.json"
+    ],
+    "status": "completed",
+    "duration_seconds": 30,
+    "seed": 42,
+    "normal": {
+      "clients": 0,
+      "rate": 10,
+      "endpoint": "/",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": true,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 10,
+      "start_seconds": 10,
+      "duration_seconds": 10,
+      "endpoint": "/",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": false,
+    "attack_enabled": true,
+    "mode": {
+      "execution": "containers"
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [
+      {
+        "schema_version": "1",
+        "experiment_id": "container_sources_B",
+        "run_id": "c82a383756db4bc087d2e00bf9c9abd3",
+        "experiment_start_timestamp": "1790901213.161116",
+        "experiment_start_monotonic": "8090.30436214",
+        "attack_id": "attack_001",
+        "event_id": "event_001",
+        "profile": "continuous",
+        "scheduled_start_seconds": "10",
+        "scheduled_end_seconds": "20",
+        "activation_requested_seconds": "10.00820897199992",
+        "actual_start_seconds": "10.010596293999697",
+        "stop_requested_seconds": "20.001605084999937",
+        "actual_end_seconds": "20.01042106099976",
+        "last_request_start_seconds": "19.980076386999826",
+        "drained_end_seconds": "20.027272352000182",
+        "status": "completed",
+        "end_reason": "scheduled_end"
+      }
+    ],
+    "datasets": [],
+    "features": [],
+    "validation": [],
+    "configuration_sha256": "778fb03fdd5ba9619866e6f26a22526ea61edf289e500464f46f091db0e28539",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "cae84b78088449889bfb2f2e7600c673",
+    "origins": [
+      "experiment_results/stage8-final/stage7-regressions/stage4/B/metadata/run_status.json",
+      "experiment_results/stage7-regressions/stage4/B/run_status.json",
+      "experiment_results/stage8-validation/stage7-regressions/stage4/B/metadata/run_status.json"
+    ],
+    "status": "completed",
+    "duration_seconds": 30,
+    "seed": 42,
+    "normal": {
+      "clients": 0,
+      "rate": 10,
+      "endpoint": "/",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": true,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 10,
+      "start_seconds": 10,
+      "duration_seconds": 10,
+      "endpoint": "/",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": false,
+    "attack_enabled": true,
+    "mode": {
+      "execution": "host"
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [
+      {
+        "schema_version": "1",
+        "experiment_id": "proxy_single_victim_B",
+        "run_id": "cae84b78088449889bfb2f2e7600c673",
+        "experiment_start_timestamp": "1792005189.8855004",
+        "experiment_start_monotonic": "6535.569396552",
+        "attack_id": "attack_001",
+        "event_id": "event_001",
+        "profile": "continuous",
+        "scheduled_start_seconds": "10",
+        "scheduled_end_seconds": "20",
+        "activation_requested_seconds": "10.005335823999303",
+        "actual_start_seconds": "10.007110671999726",
+        "stop_requested_seconds": "20.006512493999253",
+        "actual_end_seconds": "20.00651856099921",
+        "last_request_start_seconds": "19.953589142000055",
+        "drained_end_seconds": "20.00131914299982",
+        "status": "completed",
+        "end_reason": "scheduled_end"
+      }
+    ],
+    "datasets": [
+      "experiment_results/stage8-final/stage7-regressions/stage4/B",
+      "experiment_results/stage8-validation/stage7-regressions/stage4/B"
+    ],
+    "features": [
+      "experiment_results/stage10-final/stage7-regressions/stage4/B"
+    ],
+    "validation": [
+      {
+        "path": "experiment_results/stage9-final/stage7-regressions/stage4/B/validation_report.json",
+        "analysis_eligible": true,
+        "dataset_valid": true
+      }
+    ],
+    "configuration_sha256": "b0ebbd301695aa5f1e53d088089f0c0972d7c4f713d0fd5236e71cf05396caa9",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "d3129e92bc46443ea94df3a043c6795b",
+    "origins": [
+      "experiment_results/stage6-validation/expensive/run_status.json"
+    ],
+    "status": "completed",
+    "duration_seconds": 8,
+    "seed": 42,
+    "normal": {
+      "clients": 4,
+      "rate": 2,
+      "endpoint": "/expensive",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": true,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 2,
+      "start_seconds": 2,
+      "duration_seconds": 4,
+      "endpoint": "/expensive",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": true,
+    "attack_enabled": true,
+    "mode": {
+      "execution": "containers"
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [
+      {
+        "schema_version": "1",
+        "experiment_id": "application_operations_expensive",
+        "run_id": "d3129e92bc46443ea94df3a043c6795b",
+        "experiment_start_timestamp": "1792001016.5262713",
+        "experiment_start_monotonic": "2362.21016802",
+        "attack_id": "attack_001",
+        "event_id": "event_001",
+        "profile": "continuous",
+        "scheduled_start_seconds": "2",
+        "scheduled_end_seconds": "6",
+        "activation_requested_seconds": "2.0021069990002616",
+        "actual_start_seconds": "2.004820887000278",
+        "stop_requested_seconds": "6.002561263000189",
+        "actual_end_seconds": "6.009511616000054",
+        "last_request_start_seconds": "5.991610677000153",
+        "drained_end_seconds": "6.149952722000307",
+        "status": "completed",
+        "end_reason": "scheduled_end"
+      }
+    ],
+    "datasets": [],
+    "features": [],
+    "validation": [],
+    "configuration_sha256": "3d8518a05cfb0a775f3db029f4f71797c29b35a9a3e3cadca10afb682bc0482a",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "d5a88ccf41484d62847338780a481a15",
+    "origins": [
+      "experiment_results/stage5-final/A/run_status.json"
+    ],
+    "status": "completed",
+    "duration_seconds": 30,
+    "seed": 42,
+    "normal": {
+      "clients": 4,
+      "rate": 10,
+      "endpoint": "/",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": false,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 10,
+      "start_seconds": 10,
+      "duration_seconds": 10,
+      "endpoint": "/",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": true,
+    "attack_enabled": false,
+    "mode": {
+      "execution": "containers"
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [],
+    "datasets": [],
+    "features": [],
+    "validation": [],
+    "configuration_sha256": "a7e927f16359e9c5aaddf20e41aa032140f7df8138fa606197ea2e230c6c3eed",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "df9fa04918c2408382ac897d66bbdec8",
+    "origins": [
+      "experiment_results/stage5-development/A2/run_status.json"
+    ],
+    "status": "completed",
+    "duration_seconds": 30,
+    "seed": 42,
+    "normal": {
+      "clients": 4,
+      "rate": 10,
+      "endpoint": "/",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": false,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 10,
+      "start_seconds": 10,
+      "duration_seconds": 10,
+      "endpoint": "/",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": true,
+    "attack_enabled": false,
+    "mode": {
+      "execution": "containers"
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [],
+    "datasets": [],
+    "features": [],
+    "validation": [],
+    "configuration_sha256": "a7e927f16359e9c5aaddf20e41aa032140f7df8138fa606197ea2e230c6c3eed",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "e0a14b5c95984fedb957c33a57089134",
+    "origins": [
+      "experiment_results/stage5-final/C/run_status.json"
+    ],
+    "status": "completed",
+    "duration_seconds": 30,
+    "seed": 42,
+    "normal": {
+      "clients": 4,
+      "rate": 10,
+      "endpoint": "/",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": true,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 10,
+      "start_seconds": 10,
+      "duration_seconds": 10,
+      "endpoint": "/",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": true,
+    "attack_enabled": true,
+    "mode": {
+      "execution": "containers"
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [
+      {
+        "schema_version": "1",
+        "experiment_id": "container_sources_C",
+        "run_id": "e0a14b5c95984fedb957c33a57089134",
+        "experiment_start_timestamp": "1790901662.5026104",
+        "experiment_start_monotonic": "8539.645856557",
+        "attack_id": "attack_001",
+        "event_id": "event_001",
+        "profile": "continuous",
+        "scheduled_start_seconds": "10",
+        "scheduled_end_seconds": "20",
+        "activation_requested_seconds": "10.008976495000752",
+        "actual_start_seconds": "10.012609308001629",
+        "stop_requested_seconds": "20.000392785001168",
+        "actual_end_seconds": "20.005479465000462",
+        "last_request_start_seconds": "19.979527040000903",
+        "drained_end_seconds": "20.02652945800037",
+        "status": "completed",
+        "end_reason": "scheduled_end"
+      }
+    ],
+    "datasets": [],
+    "features": [],
+    "validation": [],
+    "configuration_sha256": "a9bdc16001e2c8a30ae8b634558fbcb0c71060c02be5955e8f9dbef947e831ab",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "eec833adeaa843829e9902dff5041c55",
+    "origins": [
+      "experiment_results/stage8-final/stage7-regressions/stage4/A/metadata/run_status.json",
+      "experiment_results/stage7-regressions/stage4/A/run_status.json",
+      "experiment_results/stage8-validation/stage7-regressions/stage4/A/metadata/run_status.json"
+    ],
+    "status": "completed",
+    "duration_seconds": 30,
+    "seed": 42,
+    "normal": {
+      "clients": 4,
+      "rate": 10,
+      "endpoint": "/",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": false,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 10,
+      "start_seconds": 10,
+      "duration_seconds": 10,
+      "endpoint": "/",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": true,
+    "attack_enabled": false,
+    "mode": {
+      "execution": "host"
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [],
+    "datasets": [
+      "experiment_results/stage8-final/stage7-regressions/stage4/A",
+      "experiment_results/stage8-validation/stage7-regressions/stage4/A"
+    ],
+    "features": [
+      "experiment_results/stage10-final/stage7-regressions/stage4/A"
+    ],
+    "validation": [
+      {
+        "path": "experiment_results/stage9-final/stage7-regressions/stage4/A/validation_report.json",
+        "analysis_eligible": true,
+        "dataset_valid": true
+      }
+    ],
+    "configuration_sha256": "475c705343c77c6d2f88f8329959d65febf79e91d3dfef40b6f5188e3f50c952",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "ef75bc3dd603488e84c02cee8ebac67c",
+    "origins": [
+      "experiment_results/stage6-regressions/stage5/failure/run_status.json"
+    ],
+    "status": "incomplete",
+    "duration_seconds": 10,
+    "seed": 42,
+    "normal": {
+      "clients": 4,
+      "rate": 10,
+      "endpoint": "/",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": true,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 10,
+      "start_seconds": 1,
+      "duration_seconds": 8,
+      "endpoint": "/",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": true,
+    "attack_enabled": true,
+    "mode": {
+      "execution": "containers"
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [
+      {
+        "schema_version": "1",
+        "experiment_id": "container_sources",
+        "run_id": "ef75bc3dd603488e84c02cee8ebac67c",
+        "experiment_start_timestamp": "1792001516.0390315",
+        "experiment_start_monotonic": "2861.722929314",
+        "attack_id": "attack_001",
+        "event_id": "event_001",
+        "profile": "continuous",
+        "scheduled_start_seconds": "1",
+        "scheduled_end_seconds": "9",
+        "activation_requested_seconds": "1.001324453000052",
+        "actual_start_seconds": "1.0037165210001149",
+        "stop_requested_seconds": "4.014725248000104",
+        "actual_end_seconds": "4.0179539850000765",
+        "last_request_start_seconds": "4.005980236000141",
+        "drained_end_seconds": "5.579940129000079",
+        "status": "completed",
+        "end_reason": "error"
+      }
+    ],
+    "datasets": [],
+    "features": [],
+    "validation": [],
+    "configuration_sha256": "a7216feb7ddb1268d37927245baf729e51d66e7c30647fc4e046c4d464c8cfe0",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "f059147f9be94d499f509535a55acf85",
+    "origins": [
+      "experiment_results/stage8-final/stage7-validation/multiple/metadata/run_status.json",
+      "experiment_results/stage7-validation/multiple/run_status.json",
+      "experiment_results/stage8-validation/stage7-validation/multiple/metadata/run_status.json"
+    ],
+    "status": "completed",
+    "duration_seconds": 15,
+    "seed": 42,
+    "normal": {
+      "clients": 4,
+      "rate": 2,
+      "endpoint": "/light",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": true,
+      "profile": "periodic_burst",
+      "attackers": 4,
+      "rate": 10,
+      "start_seconds": 2,
+      "duration_seconds": 11.5,
+      "endpoint": "/light",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": {
+        "period_seconds": 3,
+        "duration_seconds": 1,
+        "jitter_seconds": null
+      }
+    },
+    "normal_present": true,
+    "attack_enabled": true,
+    "mode": {
+      "execution": "containers"
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [
+      {
+        "schema_version": "1",
+        "experiment_id": "periodic_burst_validation_multiple",
+        "run_id": "f059147f9be94d499f509535a55acf85",
+        "experiment_start_timestamp": "1792004905.3866541",
+        "experiment_start_monotonic": "6251.07055123",
+        "attack_id": "attack_001",
+        "event_id": "event_001",
+        "profile": "periodic_burst",
+        "scheduled_start_seconds": "2",
+        "scheduled_end_seconds": "13.5",
+        "activation_requested_seconds": "2.0031424050002897",
+        "actual_start_seconds": "2.027116293999825",
+        "stop_requested_seconds": "13.506712131000313",
+        "actual_end_seconds": "13.509028804999616",
+        "last_request_start_seconds": "11.965738064000107",
+        "drained_end_seconds": "11.976033318999725",
+        "status": "completed",
+        "end_reason": "scheduled_end"
+      }
+    ],
+    "datasets": [
+      "experiment_results/stage8-final/stage7-validation/multiple",
+      "experiment_results/stage8-validation/stage7-validation/multiple"
+    ],
+    "features": [
+      "experiment_results/stage10-final/stage7-validation/multiple"
+    ],
+    "validation": [
+      {
+        "path": "experiment_results/stage9-final/stage7-validation/multiple/validation_report.json",
+        "analysis_eligible": true,
+        "dataset_valid": true
+      }
+    ],
+    "configuration_sha256": "93d8aa5a8967307969ca9af7bc149203cc9b48fbb51bfa7e6570b7fcfa69455f",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "f060075d028d4b6cbd0021d0bbc60fba",
+    "origins": [
+      "experiment_results/stage4-final/C/run_status.json"
+    ],
+    "status": "completed",
+    "duration_seconds": 30,
+    "seed": 42,
+    "normal": {
+      "clients": 4,
+      "rate": 10,
+      "endpoint": "/",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": true,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 10,
+      "start_seconds": 10,
+      "duration_seconds": 10,
+      "endpoint": "/",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": true,
+    "attack_enabled": true,
+    "mode": null,
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [
+      {
+        "schema_version": "1",
+        "experiment_id": "proxy_single_victim_C",
+        "run_id": "f060075d028d4b6cbd0021d0bbc60fba",
+        "experiment_start_timestamp": "1790897008.1456337",
+        "experiment_start_monotonic": "3885.288879795",
+        "attack_id": "attack_001",
+        "event_id": "event_001",
+        "profile": "continuous",
+        "scheduled_start_seconds": "10",
+        "scheduled_end_seconds": "20",
+        "activation_requested_seconds": "10.009360162000121",
+        "actual_start_seconds": "10.011786978000146",
+        "stop_requested_seconds": "20.008181667999906",
+        "actual_end_seconds": "20.00818581800013",
+        "last_request_start_seconds": "19.975809691999984",
+        "drained_end_seconds": "20.023003636999874",
+        "status": "completed",
+        "end_reason": "scheduled_end"
+      }
+    ],
+    "datasets": [],
+    "features": [],
+    "validation": [],
+    "configuration_sha256": "50afd0e57dbc6a0f38c30e8ab14f321c0089f62f228544d5564844de94f3fdd2",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "f5d2f18261094190806d9e50abb5a0e7",
+    "origins": [
+      "experiment_results/stage4-final/technical/run_status.json"
+    ],
+    "status": "completed",
+    "duration_seconds": 10,
+    "seed": 42,
+    "normal": {
+      "clients": 4,
+      "rate": 10,
+      "endpoint": "/",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": false,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 10,
+      "start_seconds": 10,
+      "duration_seconds": 10,
+      "endpoint": "/",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": true,
+    "attack_enabled": false,
+    "mode": null,
+    "infrastructure": {
+      "initial_instances": 2,
+      "min_instances": 2,
+      "max_instances": 2,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [],
+    "datasets": [],
+    "features": [],
+    "validation": [],
+    "configuration_sha256": "23cd1f0ba2823ca01a7beac50d9919f338340565bd11ddfbf547f4c7cec73290",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "faf6112c94504b48b94e2503c6f67e8b",
+    "origins": [
+      "experiment_results/stage6-regressions/stage5/C/run_status.json"
+    ],
+    "status": "completed",
+    "duration_seconds": 30,
+    "seed": 42,
+    "normal": {
+      "clients": 4,
+      "rate": 10,
+      "endpoint": "/",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": true,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 10,
+      "start_seconds": 10,
+      "duration_seconds": 10,
+      "endpoint": "/",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": true,
+    "attack_enabled": true,
+    "mode": {
+      "execution": "containers"
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [
+      {
+        "schema_version": "1",
+        "experiment_id": "container_sources_C",
+        "run_id": "faf6112c94504b48b94e2503c6f67e8b",
+        "experiment_start_timestamp": "1792001466.9217625",
+        "experiment_start_monotonic": "2812.605659931",
+        "attack_id": "attack_001",
+        "event_id": "event_001",
+        "profile": "continuous",
+        "scheduled_start_seconds": "10",
+        "scheduled_end_seconds": "20",
+        "activation_requested_seconds": "10.004792304000148",
+        "actual_start_seconds": "10.006151407999823",
+        "stop_requested_seconds": "20.003832777999833",
+        "actual_end_seconds": "20.006401259000086",
+        "last_request_start_seconds": "19.977709102000063",
+        "drained_end_seconds": "20.026456293000138",
+        "status": "completed",
+        "end_reason": "scheduled_end"
+      }
+    ],
+    "datasets": [],
+    "features": [],
+    "validation": [],
+    "configuration_sha256": "a9bdc16001e2c8a30ae8b634558fbcb0c71060c02be5955e8f9dbef947e831ab",
+    "classification": "development/regression; no final-test reservation"
+  },
+  {
+    "run_id": "fb2d3805f4724bfeb2ac2ee83618c0f6",
+    "origins": [
+      "experiment_results/stage5-development/C/run_status.json"
+    ],
+    "status": "completed",
+    "duration_seconds": 30,
+    "seed": 42,
+    "normal": {
+      "clients": 4,
+      "rate": 10,
+      "endpoint": "/",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": true,
+      "profile": "continuous",
+      "attackers": 4,
+      "rate": 10,
+      "start_seconds": 10,
+      "duration_seconds": 10,
+      "endpoint": "/",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "normal_present": true,
+    "attack_enabled": true,
+    "mode": {
+      "execution": "containers"
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "proxy": {
+      "enabled": true
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "events": [
+      {
+        "schema_version": "1",
+        "experiment_id": "container_sources_C",
+        "run_id": "fb2d3805f4724bfeb2ac2ee83618c0f6",
+        "experiment_start_timestamp": "1790901337.8647425",
+        "experiment_start_monotonic": "8215.007986462",
+        "attack_id": "attack_001",
+        "event_id": "event_001",
+        "profile": "continuous",
+        "scheduled_start_seconds": "10",
+        "scheduled_end_seconds": "20",
+        "activation_requested_seconds": "10.003098687999227",
+        "actual_start_seconds": "10.005539636998947",
+        "stop_requested_seconds": "20.00365546499961",
+        "actual_end_seconds": "20.00933496200014",
+        "last_request_start_seconds": "19.978772165999544",
+        "drained_end_seconds": "20.025116130000242",
+        "status": "completed",
+        "end_reason": "scheduled_end"
+      }
+    ],
+    "datasets": [],
+    "features": [],
+    "validation": [],
+    "configuration_sha256": "a9bdc16001e2c8a30ae8b634558fbcb0c71060c02be5955e8f9dbef947e831ab",
+    "classification": "development/regression; no final-test reservation"
+  }
+]

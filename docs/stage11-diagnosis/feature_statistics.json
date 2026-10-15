@@ -1,0 +1,7982 @@
+[
+  {
+    "feature_dataset": "experiment_results/stage10-final/cli-periodic-half-second",
+    "run_id": "99619e207ea2462b9b2eea7cba67940a",
+    "delta_s": "0.5",
+    "family": "network",
+    "feature": "ingress_packet_count",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 11.806451612903226,
+      "sd": 7.240715226360398,
+      "min": 0.0,
+      "max": 28.0
+    },
+    "normal_full_inside_plan": {
+      "n": 6,
+      "mean": 11.166666666666666,
+      "sd": 9.495613022162743,
+      "min": 4.0,
+      "max": 28.0
+    },
+    "attack_full": {
+      "n": 22,
+      "mean": 11.5,
+      "sd": 6.580997174404788,
+      "min": 0.0,
+      "max": 27.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/cli-periodic-half-second",
+    "run_id": "99619e207ea2462b9b2eea7cba67940a",
+    "delta_s": "0.5",
+    "family": "network",
+    "feature": "egress_packet_count",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 8.161290322580646,
+      "sd": 6.393208762395445,
+      "min": 0.0,
+      "max": 26.0
+    },
+    "normal_full_inside_plan": {
+      "n": 6,
+      "mean": 7.166666666666667,
+      "sd": 7.082843120291926,
+      "min": 2.0,
+      "max": 20.0
+    },
+    "attack_full": {
+      "n": 22,
+      "mean": 8.181818181818182,
+      "sd": 6.207801264280014,
+      "min": 0.0,
+      "max": 26.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/cli-periodic-half-second",
+    "run_id": "99619e207ea2462b9b2eea7cba67940a",
+    "delta_s": "0.5",
+    "family": "network",
+    "feature": "ingress_tcp_payload_length_sum_bytes",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 846.1290322580645,
+      "sd": 461.97443954801105,
+      "min": 0.0,
+      "max": 1978.0
+    },
+    "normal_full_inside_plan": {
+      "n": 6,
+      "mean": 780.0,
+      "sd": 477.65049984271974,
+      "min": 390.0,
+      "max": 1560.0
+    },
+    "attack_full": {
+      "n": 22,
+      "mean": 845.3181818181819,
+      "sd": 391.69562847696596,
+      "min": 0.0,
+      "max": 1779.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/cli-periodic-half-second",
+    "run_id": "99619e207ea2462b9b2eea7cba67940a",
+    "delta_s": "0.5",
+    "family": "network",
+    "feature": "egress_tcp_payload_length_sum_bytes",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 896.3870967741935,
+      "sd": 549.6699420209279,
+      "min": 0.0,
+      "max": 2437.0
+    },
+    "normal_full_inside_plan": {
+      "n": 6,
+      "mean": 828.0,
+      "sd": 507.04437675611786,
+      "min": 414.0,
+      "max": 1656.0
+    },
+    "attack_full": {
+      "n": 22,
+      "mean": 923.9090909090909,
+      "sd": 560.3850639635392,
+      "min": 0.0,
+      "max": 2437.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/cli-periodic-half-second",
+    "run_id": "99619e207ea2462b9b2eea7cba67940a",
+    "delta_s": "0.5",
+    "family": "network",
+    "feature": "unique_client_src_ips",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 2.870967741935484,
+      "sd": 1.1177935254739124,
+      "min": 0.0,
+      "max": 5.0
+    },
+    "normal_full_inside_plan": {
+      "n": 6,
+      "mean": 2.8333333333333335,
+      "sd": 0.983192080250175,
+      "min": 2.0,
+      "max": 4.0
+    },
+    "attack_full": {
+      "n": 22,
+      "mean": 2.8181818181818183,
+      "sd": 1.1806521053804944,
+      "min": 0.0,
+      "max": 5.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/cli-periodic-half-second",
+    "run_id": "99619e207ea2462b9b2eea7cba67940a",
+    "delta_s": "0.5",
+    "family": "service",
+    "feature": "request_starts",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 4.32258064516129,
+      "sd": 2.343602593930884,
+      "min": 0.0,
+      "max": 10.0
+    },
+    "normal_full_inside_plan": {
+      "n": 6,
+      "mean": 4.0,
+      "sd": 2.449489742783178,
+      "min": 2.0,
+      "max": 8.0
+    },
+    "attack_full": {
+      "n": 22,
+      "mean": 4.318181818181818,
+      "sd": 1.985335851073677,
+      "min": 0.0,
+      "max": 9.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/cli-periodic-half-second",
+    "run_id": "99619e207ea2462b9b2eea7cba67940a",
+    "delta_s": "0.5",
+    "family": "service",
+    "feature": "request_completions",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 4.32258064516129,
+      "sd": 2.586981468483988,
+      "min": 0.0,
+      "max": 11.0
+    },
+    "normal_full_inside_plan": {
+      "n": 6,
+      "mean": 4.0,
+      "sd": 2.449489742783178,
+      "min": 2.0,
+      "max": 8.0
+    },
+    "attack_full": {
+      "n": 22,
+      "mean": 4.454545454545454,
+      "sd": 2.6136504799167066,
+      "min": 0.0,
+      "max": 11.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/cli-periodic-half-second",
+    "run_id": "99619e207ea2462b9b2eea7cba67940a",
+    "delta_s": "0.5",
+    "family": "service",
+    "feature": "request_failures",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 6,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 22,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/cli-periodic-half-second",
+    "run_id": "99619e207ea2462b9b2eea7cba67940a",
+    "delta_s": "0.5",
+    "family": "service",
+    "feature": "http_failures",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 6,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 22,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/cli-periodic-half-second",
+    "run_id": "99619e207ea2462b9b2eea7cba67940a",
+    "delta_s": "0.5",
+    "family": "service",
+    "feature": "transport_failures",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 6,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 22,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/cli-periodic-half-second",
+    "run_id": "99619e207ea2462b9b2eea7cba67940a",
+    "delta_s": "0.5",
+    "family": "service",
+    "feature": "client_failures",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 6,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 22,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/cli-periodic-half-second",
+    "run_id": "99619e207ea2462b9b2eea7cba67940a",
+    "delta_s": "0.5",
+    "family": "service",
+    "feature": "mean_duration_ms",
+    "windows": 31,
+    "nulls": 2,
+    "all": {
+      "n": 29,
+      "mean": 33.454692218902316,
+      "sd": 36.005311658812026,
+      "min": 5.141780333360657,
+      "max": 144.3790096363955
+    },
+    "normal_full_inside_plan": {
+      "n": 6,
+      "mean": 14.201165909734451,
+      "sd": 10.380659547640892,
+      "min": 5.770064999978786,
+      "max": 28.015587166616267
+    },
+    "attack_full": {
+      "n": 21,
+      "mean": 36.50236099339382,
+      "sd": 36.31573538744102,
+      "min": 5.141780333360657,
+      "max": 144.3790096363955
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/cli-periodic-half-second",
+    "run_id": "99619e207ea2462b9b2eea7cba67940a",
+    "delta_s": "0.5",
+    "family": "infrastructure",
+    "feature": "mean_cpu_percent",
+    "windows": 31,
+    "nulls": 18,
+    "all": {
+      "n": 13,
+      "mean": 27.302307692307693,
+      "sd": 38.40118664699616,
+      "min": 2.21,
+      "max": 107.98
+    },
+    "normal_full_inside_plan": {
+      "n": 1,
+      "mean": 4.45,
+      "sd": null,
+      "min": 4.45,
+      "max": 4.45
+    },
+    "attack_full": {
+      "n": 11,
+      "mean": 31.364545454545457,
+      "sd": 40.63916395883074,
+      "min": 2.21,
+      "max": 107.98
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/cli-periodic-half-second",
+    "run_id": "99619e207ea2462b9b2eea7cba67940a",
+    "delta_s": "0.5",
+    "family": "infrastructure",
+    "feature": "mean_memory_mib",
+    "windows": 31,
+    "nulls": 18,
+    "all": {
+      "n": 13,
+      "mean": 21.972307692307695,
+      "sd": 0.14012814647991856,
+      "min": 21.68,
+      "max": 22.2
+    },
+    "normal_full_inside_plan": {
+      "n": 1,
+      "mean": 22.2,
+      "sd": null,
+      "min": 22.2,
+      "max": 22.2
+    },
+    "attack_full": {
+      "n": 11,
+      "mean": 21.97818181818182,
+      "sd": 0.09897658125215142,
+      "min": 21.68,
+      "max": 22.01
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/fresh-periodic",
+    "run_id": "927e03c2d49843c8b74427070067527e",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "ingress_packet_count",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 22.6875,
+      "sd": 12.434997654469688,
+      "min": 9.0,
+      "max": 55.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 22.666666666666668,
+      "sd": 17.21433511156714,
+      "min": 9.0,
+      "max": 42.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 20.9,
+      "sd": 7.622335600063802,
+      "min": 10.0,
+      "max": 36.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/fresh-periodic",
+    "run_id": "927e03c2d49843c8b74427070067527e",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "egress_packet_count",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 15.5625,
+      "sd": 11.105366570566982,
+      "min": 5.0,
+      "max": 46.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 15.0,
+      "sd": 13.228756555322953,
+      "min": 5.0,
+      "max": 30.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 14.1,
+      "sd": 6.983313444681304,
+      "min": 7.0,
+      "max": 30.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/fresh-periodic",
+    "run_id": "927e03c2d49843c8b74427070067527e",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "ingress_tcp_payload_length_sum_bytes",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 1639.375,
+      "sd": 839.4024759712511,
+      "min": 0.0,
+      "max": 3546.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 1495.0,
+      "sd": 788.0831174438391,
+      "min": 780.0,
+      "max": 2340.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 1663.9,
+      "sd": 570.4949994911826,
+      "min": 780.0,
+      "max": 2957.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/fresh-periodic",
+    "run_id": "927e03c2d49843c8b74427070067527e",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "egress_tcp_payload_length_sum_bytes",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 1736.75,
+      "sd": 848.8299005101081,
+      "min": 0.0,
+      "max": 3744.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 1587.0,
+      "sd": 836.5805400557678,
+      "min": 828.0,
+      "max": 2484.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 1762.7,
+      "sd": 503.5502954025546,
+      "min": 1037.0,
+      "max": 2912.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/fresh-periodic",
+    "run_id": "927e03c2d49843c8b74427070067527e",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "unique_client_src_ips",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 3.875,
+      "sd": 0.8850612031567836,
+      "min": 2.0,
+      "max": 5.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 4.0,
+      "sd": 0.0,
+      "min": 4.0,
+      "max": 4.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 3.8,
+      "sd": 1.0327955589886446,
+      "min": 2.0,
+      "max": 5.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/fresh-periodic",
+    "run_id": "927e03c2d49843c8b74427070067527e",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_starts",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 8.375,
+      "sd": 4.256367778595579,
+      "min": 0.0,
+      "max": 18.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 7.666666666666667,
+      "sd": 4.041451884327381,
+      "min": 4.0,
+      "max": 12.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 8.5,
+      "sd": 2.8771127502720115,
+      "min": 4.0,
+      "max": 15.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/fresh-periodic",
+    "run_id": "927e03c2d49843c8b74427070067527e",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_completions",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 8.375,
+      "sd": 4.080441152620633,
+      "min": 0.0,
+      "max": 18.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 7.666666666666667,
+      "sd": 4.041451884327381,
+      "min": 4.0,
+      "max": 12.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 8.5,
+      "sd": 2.41522945769824,
+      "min": 5.0,
+      "max": 14.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/fresh-periodic",
+    "run_id": "927e03c2d49843c8b74427070067527e",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_failures",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/fresh-periodic",
+    "run_id": "927e03c2d49843c8b74427070067527e",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "http_failures",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/fresh-periodic",
+    "run_id": "927e03c2d49843c8b74427070067527e",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "transport_failures",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/fresh-periodic",
+    "run_id": "927e03c2d49843c8b74427070067527e",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "client_failures",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/fresh-periodic",
+    "run_id": "927e03c2d49843c8b74427070067527e",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "mean_duration_ms",
+    "windows": 16,
+    "nulls": 1,
+    "all": {
+      "n": 15,
+      "mean": 40.02345341512925,
+      "sd": 34.895250493297375,
+      "min": 8.62105775058808,
+      "max": 134.82038528595047
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 19.047769559648938,
+      "sd": 9.700327125077989,
+      "min": 8.62105775058808,
+      "max": 27.805008500005595
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 42.90490584648683,
+      "sd": 37.378656187678345,
+      "min": 13.488858250411795,
+      "max": 134.82038528595047
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/fresh-periodic",
+    "run_id": "927e03c2d49843c8b74427070067527e",
+    "delta_s": "1",
+    "family": "infrastructure",
+    "feature": "mean_cpu_percent",
+    "windows": 16,
+    "nulls": 3,
+    "all": {
+      "n": 13,
+      "mean": 26.936923076923076,
+      "sd": 38.1356290941982,
+      "min": 2.48,
+      "max": 107.75
+    },
+    "normal_full_inside_plan": {
+      "n": 1,
+      "mean": 4.88,
+      "sd": null,
+      "min": 4.88,
+      "max": 4.88
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 32.701,
+      "sd": 42.136697769152356,
+      "min": 2.48,
+      "max": 107.75
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/fresh-periodic",
+    "run_id": "927e03c2d49843c8b74427070067527e",
+    "delta_s": "1",
+    "family": "infrastructure",
+    "feature": "mean_memory_mib",
+    "windows": 16,
+    "nulls": 3,
+    "all": {
+      "n": 13,
+      "mean": 24.338461538461537,
+      "sd": 0.21625009263374356,
+      "min": 23.95,
+      "max": 24.84
+    },
+    "normal_full_inside_plan": {
+      "n": 1,
+      "mean": 24.84,
+      "sd": null,
+      "min": 24.84,
+      "max": 24.84
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 24.324,
+      "sd": 0.1315041190736375,
+      "min": 23.95,
+      "max": 24.37
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage3/A",
+    "run_id": "5dc389a82b9f4639a0cd62c627bf87a4",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "ingress_packet_count",
+    "windows": 31,
+    "nulls": 31,
+    "all": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "normal_full_inside_plan": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage3/A",
+    "run_id": "5dc389a82b9f4639a0cd62c627bf87a4",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "egress_packet_count",
+    "windows": 31,
+    "nulls": 31,
+    "all": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "normal_full_inside_plan": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage3/A",
+    "run_id": "5dc389a82b9f4639a0cd62c627bf87a4",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "ingress_tcp_payload_length_sum_bytes",
+    "windows": 31,
+    "nulls": 31,
+    "all": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "normal_full_inside_plan": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage3/A",
+    "run_id": "5dc389a82b9f4639a0cd62c627bf87a4",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "egress_tcp_payload_length_sum_bytes",
+    "windows": 31,
+    "nulls": 31,
+    "all": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "normal_full_inside_plan": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage3/A",
+    "run_id": "5dc389a82b9f4639a0cd62c627bf87a4",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "unique_client_src_ips",
+    "windows": 31,
+    "nulls": 31,
+    "all": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "normal_full_inside_plan": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage3/A",
+    "run_id": "5dc389a82b9f4639a0cd62c627bf87a4",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_starts",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 36.806451612903224,
+      "sd": 8.723223237766758,
+      "min": 0.0,
+      "max": 50.0
+    },
+    "normal_full_inside_plan": {
+      "n": 30,
+      "mean": 38.03333333333333,
+      "sd": 5.517891484687028,
+      "min": 29.0,
+      "max": 50.0
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage3/A",
+    "run_id": "5dc389a82b9f4639a0cd62c627bf87a4",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_completions",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 36.806451612903224,
+      "sd": 8.863480711468867,
+      "min": 0.0,
+      "max": 50.0
+    },
+    "normal_full_inside_plan": {
+      "n": 30,
+      "mean": 38.03333333333333,
+      "sd": 5.744462601036989,
+      "min": 29.0,
+      "max": 50.0
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage3/A",
+    "run_id": "5dc389a82b9f4639a0cd62c627bf87a4",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_failures",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 30,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage3/A",
+    "run_id": "5dc389a82b9f4639a0cd62c627bf87a4",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "http_failures",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 30,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage3/A",
+    "run_id": "5dc389a82b9f4639a0cd62c627bf87a4",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "transport_failures",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 30,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage3/A",
+    "run_id": "5dc389a82b9f4639a0cd62c627bf87a4",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "client_failures",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 30,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage3/A",
+    "run_id": "5dc389a82b9f4639a0cd62c627bf87a4",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "mean_duration_ms",
+    "windows": 31,
+    "nulls": 1,
+    "all": {
+      "n": 30,
+      "mean": 16.088721780599442,
+      "sd": 3.040381027185057,
+      "min": 6.931108366764723,
+      "max": 22.625354395775805
+    },
+    "normal_full_inside_plan": {
+      "n": 30,
+      "mean": 16.088721780599442,
+      "sd": 3.040381027185057,
+      "min": 6.931108366764723,
+      "max": 22.625354395775805
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage3/A",
+    "run_id": "5dc389a82b9f4639a0cd62c627bf87a4",
+    "delta_s": "1",
+    "family": "infrastructure",
+    "feature": "mean_cpu_percent",
+    "windows": 31,
+    "nulls": 4,
+    "all": {
+      "n": 27,
+      "mean": 7.2592592592592595,
+      "sd": 1.4424443088194372,
+      "min": 5.64,
+      "max": 10.29
+    },
+    "normal_full_inside_plan": {
+      "n": 27,
+      "mean": 7.2592592592592595,
+      "sd": 1.4424443088194372,
+      "min": 5.64,
+      "max": 10.29
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage3/A",
+    "run_id": "5dc389a82b9f4639a0cd62c627bf87a4",
+    "delta_s": "1",
+    "family": "infrastructure",
+    "feature": "mean_memory_mib",
+    "windows": 31,
+    "nulls": 4,
+    "all": {
+      "n": 27,
+      "mean": 23.089259259259258,
+      "sd": 0.16849848038406118,
+      "min": 22.97,
+      "max": 23.61
+    },
+    "normal_full_inside_plan": {
+      "n": 27,
+      "mean": 23.089259259259258,
+      "sd": 0.16849848038406118,
+      "min": 22.97,
+      "max": 23.61
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage3/B",
+    "run_id": "9e91c57a00ce4c1cb434b65d975b24d0",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "ingress_packet_count",
+    "windows": 30,
+    "nulls": 30,
+    "all": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "normal_full_inside_plan": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage3/B",
+    "run_id": "9e91c57a00ce4c1cb434b65d975b24d0",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "egress_packet_count",
+    "windows": 30,
+    "nulls": 30,
+    "all": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "normal_full_inside_plan": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage3/B",
+    "run_id": "9e91c57a00ce4c1cb434b65d975b24d0",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "ingress_tcp_payload_length_sum_bytes",
+    "windows": 30,
+    "nulls": 30,
+    "all": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "normal_full_inside_plan": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage3/B",
+    "run_id": "9e91c57a00ce4c1cb434b65d975b24d0",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "egress_tcp_payload_length_sum_bytes",
+    "windows": 30,
+    "nulls": 30,
+    "all": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "normal_full_inside_plan": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage3/B",
+    "run_id": "9e91c57a00ce4c1cb434b65d975b24d0",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "unique_client_src_ips",
+    "windows": 30,
+    "nulls": 30,
+    "all": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "normal_full_inside_plan": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage3/B",
+    "run_id": "9e91c57a00ce4c1cb434b65d975b24d0",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_starts",
+    "windows": 30,
+    "nulls": 0,
+    "all": {
+      "n": 30,
+      "mean": 13.166666666666666,
+      "sd": 19.29817453102456,
+      "min": 0.0,
+      "max": 48.0
+    },
+    "normal_full_inside_plan": {
+      "n": 19,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 39.22222222222222,
+      "sd": 6.996030620605119,
+      "min": 24.0,
+      "max": 48.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage3/B",
+    "run_id": "9e91c57a00ce4c1cb434b65d975b24d0",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_completions",
+    "windows": 30,
+    "nulls": 0,
+    "all": {
+      "n": 30,
+      "mean": 13.166666666666666,
+      "sd": 19.31781977655709,
+      "min": 0.0,
+      "max": 48.0
+    },
+    "normal_full_inside_plan": {
+      "n": 19,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 39.44444444444444,
+      "sd": 7.2476049683863,
+      "min": 24.0,
+      "max": 48.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage3/B",
+    "run_id": "9e91c57a00ce4c1cb434b65d975b24d0",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_failures",
+    "windows": 30,
+    "nulls": 0,
+    "all": {
+      "n": 30,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 19,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage3/B",
+    "run_id": "9e91c57a00ce4c1cb434b65d975b24d0",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "http_failures",
+    "windows": 30,
+    "nulls": 0,
+    "all": {
+      "n": 30,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 19,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage3/B",
+    "run_id": "9e91c57a00ce4c1cb434b65d975b24d0",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "transport_failures",
+    "windows": 30,
+    "nulls": 0,
+    "all": {
+      "n": 30,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 19,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage3/B",
+    "run_id": "9e91c57a00ce4c1cb434b65d975b24d0",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "client_failures",
+    "windows": 30,
+    "nulls": 0,
+    "all": {
+      "n": 30,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 19,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage3/B",
+    "run_id": "9e91c57a00ce4c1cb434b65d975b24d0",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "mean_duration_ms",
+    "windows": 30,
+    "nulls": 20,
+    "all": {
+      "n": 10,
+      "mean": 18.36583194291974,
+      "sd": 3.429027060276558,
+      "min": 11.066420848526997,
+      "max": 22.380997928545792
+    },
+    "normal_full_inside_plan": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 18.270328983797242,
+      "sd": 3.622898802286578,
+      "min": 11.066420848526997,
+      "max": 22.380997928545792
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage3/B",
+    "run_id": "9e91c57a00ce4c1cb434b65d975b24d0",
+    "delta_s": "1",
+    "family": "infrastructure",
+    "feature": "mean_cpu_percent",
+    "windows": 30,
+    "nulls": 3,
+    "all": {
+      "n": 27,
+      "mean": 6.155555555555556,
+      "sd": 7.681441337772555,
+      "min": 0.01,
+      "max": 18.96
+    },
+    "normal_full_inside_plan": {
+      "n": 16,
+      "mean": 1.996875,
+      "sd": 5.411611859387798,
+      "min": 0.01,
+      "max": 15.86
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 12.80888888888889,
+      "sd": 5.220125583844809,
+      "min": 4.06,
+      "max": 18.96
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage3/B",
+    "run_id": "9e91c57a00ce4c1cb434b65d975b24d0",
+    "delta_s": "1",
+    "family": "infrastructure",
+    "feature": "mean_memory_mib",
+    "windows": 30,
+    "nulls": 3,
+    "all": {
+      "n": 27,
+      "mean": 21.02111111111111,
+      "sd": 3.662193891994811,
+      "min": 15.49,
+      "max": 23.77
+    },
+    "normal_full_inside_plan": {
+      "n": 16,
+      "mean": 19.855,
+      "sd": 3.975816897192324,
+      "min": 15.49,
+      "max": 23.25
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 23.42888888888889,
+      "sd": 0.30101679539705295,
+      "min": 22.95,
+      "max": 23.77
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage3/C",
+    "run_id": "0a9e7ffd4984415ebb43d1828a029440",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "ingress_packet_count",
+    "windows": 31,
+    "nulls": 31,
+    "all": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "normal_full_inside_plan": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage3/C",
+    "run_id": "0a9e7ffd4984415ebb43d1828a029440",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "egress_packet_count",
+    "windows": 31,
+    "nulls": 31,
+    "all": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "normal_full_inside_plan": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage3/C",
+    "run_id": "0a9e7ffd4984415ebb43d1828a029440",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "ingress_tcp_payload_length_sum_bytes",
+    "windows": 31,
+    "nulls": 31,
+    "all": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "normal_full_inside_plan": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage3/C",
+    "run_id": "0a9e7ffd4984415ebb43d1828a029440",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "egress_tcp_payload_length_sum_bytes",
+    "windows": 31,
+    "nulls": 31,
+    "all": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "normal_full_inside_plan": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage3/C",
+    "run_id": "0a9e7ffd4984415ebb43d1828a029440",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "unique_client_src_ips",
+    "windows": 31,
+    "nulls": 31,
+    "all": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "normal_full_inside_plan": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage3/C",
+    "run_id": "0a9e7ffd4984415ebb43d1828a029440",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_starts",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 49.58064516129032,
+      "sd": 22.46296833093434,
+      "min": 0.0,
+      "max": 90.0
+    },
+    "normal_full_inside_plan": {
+      "n": 19,
+      "mean": 37.31578947368421,
+      "sd": 6.1738933473398685,
+      "min": 29.0,
+      "max": 51.0
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 78.11111111111111,
+      "sd": 7.606649138162685,
+      "min": 65.0,
+      "max": 90.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage3/C",
+    "run_id": "0a9e7ffd4984415ebb43d1828a029440",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_completions",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 49.58064516129032,
+      "sd": 22.413945351868758,
+      "min": 0.0,
+      "max": 90.0
+    },
+    "normal_full_inside_plan": {
+      "n": 19,
+      "mean": 37.36842105263158,
+      "sd": 6.300004641231002,
+      "min": 29.0,
+      "max": 51.0
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 78.33333333333333,
+      "sd": 7.762087348130012,
+      "min": 65.0,
+      "max": 90.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage3/C",
+    "run_id": "0a9e7ffd4984415ebb43d1828a029440",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_failures",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 19,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage3/C",
+    "run_id": "0a9e7ffd4984415ebb43d1828a029440",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "http_failures",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 19,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage3/C",
+    "run_id": "0a9e7ffd4984415ebb43d1828a029440",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "transport_failures",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 19,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage3/C",
+    "run_id": "0a9e7ffd4984415ebb43d1828a029440",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "client_failures",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 19,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage3/C",
+    "run_id": "0a9e7ffd4984415ebb43d1828a029440",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "mean_duration_ms",
+    "windows": 31,
+    "nulls": 1,
+    "all": {
+      "n": 30,
+      "mean": 16.612721556053994,
+      "sd": 2.9959022898062386,
+      "min": 7.019813833297425,
+      "max": 23.673657166739304
+    },
+    "normal_full_inside_plan": {
+      "n": 19,
+      "mean": 16.483758384051143,
+      "sd": 3.6219976404100676,
+      "min": 7.019813833297425,
+      "max": 23.673657166739304
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 17.077531649639287,
+      "sd": 1.4343800080614104,
+      "min": 15.005041261527087,
+      "max": 19.400176788915108
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage3/C",
+    "run_id": "0a9e7ffd4984415ebb43d1828a029440",
+    "delta_s": "1",
+    "family": "infrastructure",
+    "feature": "mean_cpu_percent",
+    "windows": 31,
+    "nulls": 4,
+    "all": {
+      "n": 27,
+      "mean": 13.047777777777778,
+      "sd": 7.697770073376062,
+      "min": 6.2,
+      "max": 27.34
+    },
+    "normal_full_inside_plan": {
+      "n": 16,
+      "mean": 9.258125,
+      "sd": 5.407148624737442,
+      "min": 6.2,
+      "max": 22.67
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 18.93111111111111,
+      "sd": 6.2535198977144955,
+      "min": 8.66,
+      "max": 27.34
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage3/C",
+    "run_id": "0a9e7ffd4984415ebb43d1828a029440",
+    "delta_s": "1",
+    "family": "infrastructure",
+    "feature": "mean_memory_mib",
+    "windows": 31,
+    "nulls": 4,
+    "all": {
+      "n": 27,
+      "mean": 23.78037037037037,
+      "sd": 0.3216242609663723,
+      "min": 23.25,
+      "max": 24.16
+    },
+    "normal_full_inside_plan": {
+      "n": 16,
+      "mean": 23.624375,
+      "sd": 0.2690469289919512,
+      "min": 23.25,
+      "max": 23.89
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 24.06888888888889,
+      "sd": 0.10623611020322238,
+      "min": 23.9,
+      "max": 24.16
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/A",
+    "run_id": "eec833adeaa843829e9902dff5041c55",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "ingress_packet_count",
+    "windows": 31,
+    "nulls": 31,
+    "all": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "normal_full_inside_plan": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/A",
+    "run_id": "eec833adeaa843829e9902dff5041c55",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "egress_packet_count",
+    "windows": 31,
+    "nulls": 31,
+    "all": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "normal_full_inside_plan": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/A",
+    "run_id": "eec833adeaa843829e9902dff5041c55",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "ingress_tcp_payload_length_sum_bytes",
+    "windows": 31,
+    "nulls": 31,
+    "all": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "normal_full_inside_plan": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/A",
+    "run_id": "eec833adeaa843829e9902dff5041c55",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "egress_tcp_payload_length_sum_bytes",
+    "windows": 31,
+    "nulls": 31,
+    "all": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "normal_full_inside_plan": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/A",
+    "run_id": "eec833adeaa843829e9902dff5041c55",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "unique_client_src_ips",
+    "windows": 31,
+    "nulls": 31,
+    "all": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "normal_full_inside_plan": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/A",
+    "run_id": "eec833adeaa843829e9902dff5041c55",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_starts",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 36.806451612903224,
+      "sd": 8.803103069708657,
+      "min": 0.0,
+      "max": 51.0
+    },
+    "normal_full_inside_plan": {
+      "n": 30,
+      "mean": 38.03333333333333,
+      "sd": 5.647601464236882,
+      "min": 29.0,
+      "max": 51.0
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/A",
+    "run_id": "eec833adeaa843829e9902dff5041c55",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_completions",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 36.806451612903224,
+      "sd": 8.810672902182178,
+      "min": 1.0,
+      "max": 51.0
+    },
+    "normal_full_inside_plan": {
+      "n": 30,
+      "mean": 38.0,
+      "sd": 5.883934878563189,
+      "min": 29.0,
+      "max": 51.0
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/A",
+    "run_id": "eec833adeaa843829e9902dff5041c55",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_failures",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 30,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/A",
+    "run_id": "eec833adeaa843829e9902dff5041c55",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "http_failures",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 30,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/A",
+    "run_id": "eec833adeaa843829e9902dff5041c55",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "transport_failures",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 30,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/A",
+    "run_id": "eec833adeaa843829e9902dff5041c55",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "client_failures",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 30,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/A",
+    "run_id": "eec833adeaa843829e9902dff5041c55",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "mean_duration_ms",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 29.353803315707058,
+      "sd": 4.034869084854339,
+      "min": 22.674171633358736,
+      "max": 44.957727000110026
+    },
+    "normal_full_inside_plan": {
+      "n": 30,
+      "mean": 28.83367252622696,
+      "sd": 2.857576381238618,
+      "min": 22.674171633358736,
+      "max": 33.950792902032845
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/A",
+    "run_id": "eec833adeaa843829e9902dff5041c55",
+    "delta_s": "1",
+    "family": "infrastructure",
+    "feature": "mean_cpu_percent",
+    "windows": 31,
+    "nulls": 3,
+    "all": {
+      "n": 28,
+      "mean": 6.878571428571428,
+      "sd": 1.5847694406108985,
+      "min": 3.64,
+      "max": 10.15
+    },
+    "normal_full_inside_plan": {
+      "n": 28,
+      "mean": 6.878571428571428,
+      "sd": 1.5847694406108985,
+      "min": 3.64,
+      "max": 10.15
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/A",
+    "run_id": "eec833adeaa843829e9902dff5041c55",
+    "delta_s": "1",
+    "family": "infrastructure",
+    "feature": "mean_memory_mib",
+    "windows": 31,
+    "nulls": 3,
+    "all": {
+      "n": 28,
+      "mean": 22.155714285714286,
+      "sd": 0.16205688464990917,
+      "min": 21.99,
+      "max": 22.6
+    },
+    "normal_full_inside_plan": {
+      "n": 28,
+      "mean": 22.155714285714286,
+      "sd": 0.16205688464990917,
+      "min": 21.99,
+      "max": 22.6
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/B",
+    "run_id": "cae84b78088449889bfb2f2e7600c673",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "ingress_packet_count",
+    "windows": 30,
+    "nulls": 30,
+    "all": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "normal_full_inside_plan": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/B",
+    "run_id": "cae84b78088449889bfb2f2e7600c673",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "egress_packet_count",
+    "windows": 30,
+    "nulls": 30,
+    "all": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "normal_full_inside_plan": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/B",
+    "run_id": "cae84b78088449889bfb2f2e7600c673",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "ingress_tcp_payload_length_sum_bytes",
+    "windows": 30,
+    "nulls": 30,
+    "all": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "normal_full_inside_plan": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/B",
+    "run_id": "cae84b78088449889bfb2f2e7600c673",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "egress_tcp_payload_length_sum_bytes",
+    "windows": 30,
+    "nulls": 30,
+    "all": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "normal_full_inside_plan": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/B",
+    "run_id": "cae84b78088449889bfb2f2e7600c673",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "unique_client_src_ips",
+    "windows": 30,
+    "nulls": 30,
+    "all": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "normal_full_inside_plan": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/B",
+    "run_id": "cae84b78088449889bfb2f2e7600c673",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_starts",
+    "windows": 30,
+    "nulls": 0,
+    "all": {
+      "n": 30,
+      "mean": 13.166666666666666,
+      "sd": 19.29817453102456,
+      "min": 0.0,
+      "max": 48.0
+    },
+    "normal_full_inside_plan": {
+      "n": 19,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 39.22222222222222,
+      "sd": 6.996030620605119,
+      "min": 24.0,
+      "max": 48.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/B",
+    "run_id": "cae84b78088449889bfb2f2e7600c673",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_completions",
+    "windows": 30,
+    "nulls": 0,
+    "all": {
+      "n": 30,
+      "mean": 13.166666666666666,
+      "sd": 19.172687709942718,
+      "min": 0.0,
+      "max": 47.0
+    },
+    "normal_full_inside_plan": {
+      "n": 19,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 39.333333333333336,
+      "sd": 6.48074069840786,
+      "min": 26.0,
+      "max": 47.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/B",
+    "run_id": "cae84b78088449889bfb2f2e7600c673",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_failures",
+    "windows": 30,
+    "nulls": 0,
+    "all": {
+      "n": 30,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 19,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/B",
+    "run_id": "cae84b78088449889bfb2f2e7600c673",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "http_failures",
+    "windows": 30,
+    "nulls": 0,
+    "all": {
+      "n": 30,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 19,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/B",
+    "run_id": "cae84b78088449889bfb2f2e7600c673",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "transport_failures",
+    "windows": 30,
+    "nulls": 0,
+    "all": {
+      "n": 30,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 19,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/B",
+    "run_id": "cae84b78088449889bfb2f2e7600c673",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "client_failures",
+    "windows": 30,
+    "nulls": 0,
+    "all": {
+      "n": 30,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 19,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/B",
+    "run_id": "cae84b78088449889bfb2f2e7600c673",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "mean_duration_ms",
+    "windows": 30,
+    "nulls": 19,
+    "all": {
+      "n": 11,
+      "mean": 33.5452591285954,
+      "sd": 6.032550540529225,
+      "min": 24.206709272689434,
+      "max": 47.73000099976343
+    },
+    "normal_full_inside_plan": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 32.445208357201324,
+      "sd": 4.08447756209886,
+      "min": 24.206709272689434,
+      "max": 37.77944045647097
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/B",
+    "run_id": "cae84b78088449889bfb2f2e7600c673",
+    "delta_s": "1",
+    "family": "infrastructure",
+    "feature": "mean_cpu_percent",
+    "windows": 30,
+    "nulls": 2,
+    "all": {
+      "n": 28,
+      "mean": 4.821428571428571,
+      "sd": 6.801455026403577,
+      "min": 0.01,
+      "max": 17.87
+    },
+    "normal_full_inside_plan": {
+      "n": 17,
+      "mean": 0.9317647058823529,
+      "sd": 3.779921023140096,
+      "min": 0.01,
+      "max": 15.6
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 11.505555555555556,
+      "sd": 5.265249545631981,
+      "min": 0.01,
+      "max": 17.87
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/B",
+    "run_id": "cae84b78088449889bfb2f2e7600c673",
+    "delta_s": "1",
+    "family": "infrastructure",
+    "feature": "mean_memory_mib",
+    "windows": 30,
+    "nulls": 2,
+    "all": {
+      "n": 28,
+      "mean": 21.696428571428573,
+      "sd": 0.5854862764353922,
+      "min": 20.93,
+      "max": 22.19
+    },
+    "normal_full_inside_plan": {
+      "n": 17,
+      "mean": 21.597058823529412,
+      "sd": 0.6482646518386842,
+      "min": 20.93,
+      "max": 22.19
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 21.914444444444445,
+      "sd": 0.37162182091176743,
+      "min": 20.93,
+      "max": 22.11
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/C",
+    "run_id": "c48d973ce7a840cc8fbfc543f16224ec",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "ingress_packet_count",
+    "windows": 31,
+    "nulls": 31,
+    "all": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "normal_full_inside_plan": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/C",
+    "run_id": "c48d973ce7a840cc8fbfc543f16224ec",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "egress_packet_count",
+    "windows": 31,
+    "nulls": 31,
+    "all": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "normal_full_inside_plan": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/C",
+    "run_id": "c48d973ce7a840cc8fbfc543f16224ec",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "ingress_tcp_payload_length_sum_bytes",
+    "windows": 31,
+    "nulls": 31,
+    "all": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "normal_full_inside_plan": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/C",
+    "run_id": "c48d973ce7a840cc8fbfc543f16224ec",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "egress_tcp_payload_length_sum_bytes",
+    "windows": 31,
+    "nulls": 31,
+    "all": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "normal_full_inside_plan": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/C",
+    "run_id": "c48d973ce7a840cc8fbfc543f16224ec",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "unique_client_src_ips",
+    "windows": 31,
+    "nulls": 31,
+    "all": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "normal_full_inside_plan": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/C",
+    "run_id": "c48d973ce7a840cc8fbfc543f16224ec",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_starts",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 49.58064516129032,
+      "sd": 22.399068721040447,
+      "min": 0.0,
+      "max": 89.0
+    },
+    "normal_full_inside_plan": {
+      "n": 19,
+      "mean": 37.36842105263158,
+      "sd": 6.387579321671338,
+      "min": 29.0,
+      "max": 50.0
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 78.33333333333333,
+      "sd": 7.433034373659253,
+      "min": 66.0,
+      "max": 89.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/C",
+    "run_id": "c48d973ce7a840cc8fbfc543f16224ec",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_completions",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 49.58064516129032,
+      "sd": 22.403532747535433,
+      "min": 1.0,
+      "max": 92.0
+    },
+    "normal_full_inside_plan": {
+      "n": 19,
+      "mean": 37.21052631578947,
+      "sd": 6.250146197120522,
+      "min": 27.0,
+      "max": 50.0
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 78.44444444444444,
+      "sd": 7.617596588017626,
+      "min": 71.0,
+      "max": 92.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/C",
+    "run_id": "c48d973ce7a840cc8fbfc543f16224ec",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_failures",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 19,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/C",
+    "run_id": "c48d973ce7a840cc8fbfc543f16224ec",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "http_failures",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 19,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/C",
+    "run_id": "c48d973ce7a840cc8fbfc543f16224ec",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "transport_failures",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 19,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/C",
+    "run_id": "c48d973ce7a840cc8fbfc543f16224ec",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "client_failures",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 19,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/C",
+    "run_id": "c48d973ce7a840cc8fbfc543f16224ec",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "mean_duration_ms",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 31.285034066935463,
+      "sd": 4.093749386513827,
+      "min": 25.566978527851663,
+      "max": 43.78210900085833
+    },
+    "normal_full_inside_plan": {
+      "n": 19,
+      "mean": 29.008358649372145,
+      "sd": 2.3054392435610493,
+      "min": 25.566978527851663,
+      "max": 34.048551236824814
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 34.87510123219636,
+      "sd": 0.9453395599431099,
+      "min": 33.76363266219463,
+      "max": 36.33087341888706
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/C",
+    "run_id": "c48d973ce7a840cc8fbfc543f16224ec",
+    "delta_s": "1",
+    "family": "infrastructure",
+    "feature": "mean_cpu_percent",
+    "windows": 31,
+    "nulls": 3,
+    "all": {
+      "n": 28,
+      "mean": 11.461428571428572,
+      "sd": 6.729003951543956,
+      "min": 5.18,
+      "max": 22.54
+    },
+    "normal_full_inside_plan": {
+      "n": 17,
+      "mean": 7.865882352941177,
+      "sd": 4.200309599933571,
+      "min": 5.46,
+      "max": 22.54
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 17.72,
+      "sd": 5.071624493197421,
+      "min": 5.18,
+      "max": 21.65
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/C",
+    "run_id": "c48d973ce7a840cc8fbfc543f16224ec",
+    "delta_s": "1",
+    "family": "infrastructure",
+    "feature": "mean_memory_mib",
+    "windows": 31,
+    "nulls": 3,
+    "all": {
+      "n": 28,
+      "mean": 22.306428571428572,
+      "sd": 0.2820718884691456,
+      "min": 21.98,
+      "max": 22.95
+    },
+    "normal_full_inside_plan": {
+      "n": 17,
+      "mean": 22.332941176470587,
+      "sd": 0.3300712935466051,
+      "min": 21.98,
+      "max": 22.95
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 22.247777777777777,
+      "sd": 0.11573437019504819,
+      "min": 21.99,
+      "max": 22.32
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/technical",
+    "run_id": "101a04aeedc147b79baca310524972cc",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "ingress_packet_count",
+    "windows": 11,
+    "nulls": 11,
+    "all": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "normal_full_inside_plan": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/technical",
+    "run_id": "101a04aeedc147b79baca310524972cc",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "egress_packet_count",
+    "windows": 11,
+    "nulls": 11,
+    "all": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "normal_full_inside_plan": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/technical",
+    "run_id": "101a04aeedc147b79baca310524972cc",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "ingress_tcp_payload_length_sum_bytes",
+    "windows": 11,
+    "nulls": 11,
+    "all": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "normal_full_inside_plan": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/technical",
+    "run_id": "101a04aeedc147b79baca310524972cc",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "egress_tcp_payload_length_sum_bytes",
+    "windows": 11,
+    "nulls": 11,
+    "all": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "normal_full_inside_plan": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/technical",
+    "run_id": "101a04aeedc147b79baca310524972cc",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "unique_client_src_ips",
+    "windows": 11,
+    "nulls": 11,
+    "all": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "normal_full_inside_plan": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/technical",
+    "run_id": "101a04aeedc147b79baca310524972cc",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_starts",
+    "windows": 11,
+    "nulls": 0,
+    "all": {
+      "n": 11,
+      "mean": 31.90909090909091,
+      "sd": 11.519154009340664,
+      "min": 0.0,
+      "max": 41.0
+    },
+    "normal_full_inside_plan": {
+      "n": 10,
+      "mean": 35.1,
+      "sd": 4.794672969962487,
+      "min": 29.0,
+      "max": 41.0
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/technical",
+    "run_id": "101a04aeedc147b79baca310524972cc",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_completions",
+    "windows": 11,
+    "nulls": 0,
+    "all": {
+      "n": 11,
+      "mean": 31.90909090909091,
+      "sd": 10.568391982270013,
+      "min": 2.0,
+      "max": 40.0
+    },
+    "normal_full_inside_plan": {
+      "n": 10,
+      "mean": 34.9,
+      "sd": 3.8427420765212266,
+      "min": 30.0,
+      "max": 40.0
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/technical",
+    "run_id": "101a04aeedc147b79baca310524972cc",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_failures",
+    "windows": 11,
+    "nulls": 0,
+    "all": {
+      "n": 11,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 10,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/technical",
+    "run_id": "101a04aeedc147b79baca310524972cc",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "http_failures",
+    "windows": 11,
+    "nulls": 0,
+    "all": {
+      "n": 11,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 10,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/technical",
+    "run_id": "101a04aeedc147b79baca310524972cc",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "transport_failures",
+    "windows": 11,
+    "nulls": 0,
+    "all": {
+      "n": 11,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 10,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/technical",
+    "run_id": "101a04aeedc147b79baca310524972cc",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "client_failures",
+    "windows": 11,
+    "nulls": 0,
+    "all": {
+      "n": 11,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 10,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/technical",
+    "run_id": "101a04aeedc147b79baca310524972cc",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "mean_duration_ms",
+    "windows": 11,
+    "nulls": 0,
+    "all": {
+      "n": 11,
+      "mean": 24.83233946692495,
+      "sd": 7.697257221892497,
+      "min": 18.004195750052077,
+      "max": 44.15241300011985
+    },
+    "normal_full_inside_plan": {
+      "n": 10,
+      "mean": 22.90033211360546,
+      "sd": 4.495502962083308,
+      "min": 18.004195750052077,
+      "max": 31.518693810785653
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/technical",
+    "run_id": "101a04aeedc147b79baca310524972cc",
+    "delta_s": "1",
+    "family": "infrastructure",
+    "feature": "mean_cpu_percent",
+    "windows": 11,
+    "nulls": 3,
+    "all": {
+      "n": 8,
+      "mean": 2.84,
+      "sd": 0.04956957592256433,
+      "min": 2.76,
+      "max": 2.87
+    },
+    "normal_full_inside_plan": {
+      "n": 8,
+      "mean": 2.84,
+      "sd": 0.04956957592256433,
+      "min": 2.76,
+      "max": 2.87
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage4/technical",
+    "run_id": "101a04aeedc147b79baca310524972cc",
+    "delta_s": "1",
+    "family": "infrastructure",
+    "feature": "mean_memory_mib",
+    "windows": 11,
+    "nulls": 3,
+    "all": {
+      "n": 8,
+      "mean": 21.5825,
+      "sd": 0.013887301496588797,
+      "min": 21.56,
+      "max": 21.59
+    },
+    "normal_full_inside_plan": {
+      "n": 8,
+      "mean": 21.5825,
+      "sd": 0.013887301496588797,
+      "min": 21.56,
+      "max": 21.59
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage5/A",
+    "run_id": "bd1303b0312e4b3bbf9436d92ae02b77",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "ingress_packet_count",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 102.12903225806451,
+      "sd": 22.343890940603686,
+      "min": 25.0,
+      "max": 138.0
+    },
+    "normal_full_inside_plan": {
+      "n": 30,
+      "mean": 104.7,
+      "sd": 17.449730755753105,
+      "min": 76.0,
+      "max": 138.0
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage5/A",
+    "run_id": "bd1303b0312e4b3bbf9436d92ae02b77",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "egress_packet_count",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 70.25806451612904,
+      "sd": 15.581971937542615,
+      "min": 13.0,
+      "max": 97.0
+    },
+    "normal_full_inside_plan": {
+      "n": 30,
+      "mean": 72.16666666666667,
+      "sd": 11.590969532901193,
+      "min": 55.0,
+      "max": 97.0
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage5/A",
+    "run_id": "bd1303b0312e4b3bbf9436d92ae02b77",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "ingress_tcp_payload_length_sum_bytes",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 7622.193548387097,
+      "sd": 1921.0827054789502,
+      "min": 0.0,
+      "max": 10400.0
+    },
+    "normal_full_inside_plan": {
+      "n": 30,
+      "mean": 7876.266666666666,
+      "sd": 1321.9934512158036,
+      "min": 6032.0,
+      "max": 10400.0
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage5/A",
+    "run_id": "bd1303b0312e4b3bbf9436d92ae02b77",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "egress_tcp_payload_length_sum_bytes",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 7475.612903225807,
+      "sd": 1866.652577519794,
+      "min": 56.0,
+      "max": 10312.0
+    },
+    "normal_full_inside_plan": {
+      "n": 30,
+      "mean": 7722.933333333333,
+      "sd": 1281.7832118961655,
+      "min": 6028.0,
+      "max": 10312.0
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage5/A",
+    "run_id": "bd1303b0312e4b3bbf9436d92ae02b77",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "unique_client_src_ips",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 4.0,
+      "sd": 0.0,
+      "min": 4.0,
+      "max": 4.0
+    },
+    "normal_full_inside_plan": {
+      "n": 30,
+      "mean": 4.0,
+      "sd": 0.0,
+      "min": 4.0,
+      "max": 4.0
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage5/A",
+    "run_id": "bd1303b0312e4b3bbf9436d92ae02b77",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_starts",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 36.645161290322584,
+      "sd": 9.207056667204688,
+      "min": 0.0,
+      "max": 50.0
+    },
+    "normal_full_inside_plan": {
+      "n": 30,
+      "mean": 37.86666666666667,
+      "sd": 6.3121848959706135,
+      "min": 29.0,
+      "max": 50.0
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage5/A",
+    "run_id": "bd1303b0312e4b3bbf9436d92ae02b77",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_completions",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 36.645161290322584,
+      "sd": 9.016830141820995,
+      "min": 1.0,
+      "max": 52.0
+    },
+    "normal_full_inside_plan": {
+      "n": 30,
+      "mean": 37.833333333333336,
+      "sd": 6.231639698613306,
+      "min": 29.0,
+      "max": 52.0
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage5/A",
+    "run_id": "bd1303b0312e4b3bbf9436d92ae02b77",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_failures",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 30,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage5/A",
+    "run_id": "bd1303b0312e4b3bbf9436d92ae02b77",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "http_failures",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 30,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage5/A",
+    "run_id": "bd1303b0312e4b3bbf9436d92ae02b77",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "transport_failures",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 30,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage5/A",
+    "run_id": "bd1303b0312e4b3bbf9436d92ae02b77",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "client_failures",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 30,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage5/A",
+    "run_id": "bd1303b0312e4b3bbf9436d92ae02b77",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "mean_duration_ms",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 29.8025962648705,
+      "sd": 3.8164048507257124,
+      "min": 22.976354749971506,
+      "max": 44.255096000597405
+    },
+    "normal_full_inside_plan": {
+      "n": 30,
+      "mean": 29.3208462736796,
+      "sd": 2.7612537089325753,
+      "min": 22.976354749971506,
+      "max": 34.371535884649624
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage5/A",
+    "run_id": "bd1303b0312e4b3bbf9436d92ae02b77",
+    "delta_s": "1",
+    "family": "infrastructure",
+    "feature": "mean_cpu_percent",
+    "windows": 31,
+    "nulls": 3,
+    "all": {
+      "n": 28,
+      "mean": 7.062857142857143,
+      "sd": 0.7348915623856411,
+      "min": 5.89,
+      "max": 8.55
+    },
+    "normal_full_inside_plan": {
+      "n": 28,
+      "mean": 7.062857142857143,
+      "sd": 0.7348915623856411,
+      "min": 5.89,
+      "max": 8.55
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage5/A",
+    "run_id": "bd1303b0312e4b3bbf9436d92ae02b77",
+    "delta_s": "1",
+    "family": "infrastructure",
+    "feature": "mean_memory_mib",
+    "windows": 31,
+    "nulls": 3,
+    "all": {
+      "n": 28,
+      "mean": 22.134285714285713,
+      "sd": 0.08430230309355911,
+      "min": 22.01,
+      "max": 22.39
+    },
+    "normal_full_inside_plan": {
+      "n": 28,
+      "mean": 22.134285714285713,
+      "sd": 0.08430230309355911,
+      "min": 22.01,
+      "max": 22.39
+    },
+    "attack_full": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage5/B",
+    "run_id": "1f40809ba7f247ad9a26d20f4253a809",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "ingress_packet_count",
+    "windows": 30,
+    "nulls": 0,
+    "all": {
+      "n": 30,
+      "mean": 37.266666666666666,
+      "sd": 52.799512362777804,
+      "min": 0.0,
+      "max": 128.0
+    },
+    "normal_full_inside_plan": {
+      "n": 19,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 107.22222222222223,
+      "sd": 18.78681570794914,
+      "min": 70.0,
+      "max": 128.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage5/B",
+    "run_id": "1f40809ba7f247ad9a26d20f4253a809",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "egress_packet_count",
+    "windows": 30,
+    "nulls": 0,
+    "all": {
+      "n": 30,
+      "mean": 25.666666666666668,
+      "sd": 36.76986522283903,
+      "min": 0.0,
+      "max": 93.0
+    },
+    "normal_full_inside_plan": {
+      "n": 19,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 73.55555555555556,
+      "sd": 13.248689662671467,
+      "min": 47.0,
+      "max": 87.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage5/B",
+    "run_id": "1f40809ba7f247ad9a26d20f4253a809",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "ingress_tcp_payload_length_sum_bytes",
+    "windows": 30,
+    "nulls": 0,
+    "all": {
+      "n": 30,
+      "mean": 2765.0,
+      "sd": 4050.364606831817,
+      "min": 0.0,
+      "max": 10080.0
+    },
+    "normal_full_inside_plan": {
+      "n": 19,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 8236.666666666666,
+      "sd": 1446.4784823840278,
+      "min": 5040.0,
+      "max": 10080.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage5/B",
+    "run_id": "1f40809ba7f247ad9a26d20f4253a809",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "egress_tcp_payload_length_sum_bytes",
+    "windows": 30,
+    "nulls": 0,
+    "all": {
+      "n": 30,
+      "mean": 2712.3333333333335,
+      "sd": 3967.3982122686707,
+      "min": 0.0,
+      "max": 9772.0
+    },
+    "normal_full_inside_plan": {
+      "n": 19,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 8086.222222222223,
+      "sd": 1449.0049842717742,
+      "min": 5002.0,
+      "max": 9772.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage5/B",
+    "run_id": "1f40809ba7f247ad9a26d20f4253a809",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "unique_client_src_ips",
+    "windows": 30,
+    "nulls": 0,
+    "all": {
+      "n": 30,
+      "mean": 1.4666666666666666,
+      "sd": 1.960530071414244,
+      "min": 0.0,
+      "max": 4.0
+    },
+    "normal_full_inside_plan": {
+      "n": 19,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 4.0,
+      "sd": 0.0,
+      "min": 4.0,
+      "max": 4.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage5/B",
+    "run_id": "1f40809ba7f247ad9a26d20f4253a809",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_starts",
+    "windows": 30,
+    "nulls": 0,
+    "all": {
+      "n": 30,
+      "mean": 13.166666666666666,
+      "sd": 19.28745050872294,
+      "min": 0.0,
+      "max": 48.0
+    },
+    "normal_full_inside_plan": {
+      "n": 19,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 39.22222222222222,
+      "sd": 6.887992773257275,
+      "min": 24.0,
+      "max": 48.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage5/B",
+    "run_id": "1f40809ba7f247ad9a26d20f4253a809",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_completions",
+    "windows": 30,
+    "nulls": 0,
+    "all": {
+      "n": 30,
+      "mean": 13.166666666666666,
+      "sd": 19.142088188854554,
+      "min": 0.0,
+      "max": 46.0
+    },
+    "normal_full_inside_plan": {
+      "n": 19,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 39.333333333333336,
+      "sd": 6.87386354243376,
+      "min": 25.0,
+      "max": 46.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage5/B",
+    "run_id": "1f40809ba7f247ad9a26d20f4253a809",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_failures",
+    "windows": 30,
+    "nulls": 0,
+    "all": {
+      "n": 30,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 19,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage5/B",
+    "run_id": "1f40809ba7f247ad9a26d20f4253a809",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "http_failures",
+    "windows": 30,
+    "nulls": 0,
+    "all": {
+      "n": 30,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 19,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage5/B",
+    "run_id": "1f40809ba7f247ad9a26d20f4253a809",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "transport_failures",
+    "windows": 30,
+    "nulls": 0,
+    "all": {
+      "n": 30,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 19,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage5/B",
+    "run_id": "1f40809ba7f247ad9a26d20f4253a809",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "client_failures",
+    "windows": 30,
+    "nulls": 0,
+    "all": {
+      "n": 30,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 19,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage5/B",
+    "run_id": "1f40809ba7f247ad9a26d20f4253a809",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "mean_duration_ms",
+    "windows": 30,
+    "nulls": 19,
+    "all": {
+      "n": 11,
+      "mean": 33.143964335692914,
+      "sd": 5.253439416997637,
+      "min": 27.69478353837211,
+      "max": 47.33830399982253
+    },
+    "normal_full_inside_plan": {
+      "n": 0,
+      "mean": null,
+      "sd": null,
+      "min": null,
+      "max": null
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 32.1722800171586,
+      "sd": 2.130606529961076,
+      "min": 27.95139056254925,
+      "max": 34.425527565200234
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage5/B",
+    "run_id": "1f40809ba7f247ad9a26d20f4253a809",
+    "delta_s": "1",
+    "family": "infrastructure",
+    "feature": "mean_cpu_percent",
+    "windows": 30,
+    "nulls": 2,
+    "all": {
+      "n": 28,
+      "mean": 4.942857142857143,
+      "sd": 6.927052099822174,
+      "min": 0.01,
+      "max": 16.69
+    },
+    "normal_full_inside_plan": {
+      "n": 17,
+      "mean": 0.993529411764706,
+      "sd": 4.0448902042831625,
+      "min": 0.01,
+      "max": 16.69
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 11.645555555555555,
+      "sd": 5.024627128233276,
+      "min": 0.01,
+      "max": 16.1
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage5/B",
+    "run_id": "1f40809ba7f247ad9a26d20f4253a809",
+    "delta_s": "1",
+    "family": "infrastructure",
+    "feature": "mean_memory_mib",
+    "windows": 30,
+    "nulls": 2,
+    "all": {
+      "n": 28,
+      "mean": 21.874285714285715,
+      "sd": 0.3810067421531251,
+      "min": 21.38,
+      "max": 22.22
+    },
+    "normal_full_inside_plan": {
+      "n": 17,
+      "mean": 21.82,
+      "sd": 0.42760963506450683,
+      "min": 21.38,
+      "max": 22.22
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 21.993333333333332,
+      "sd": 0.23780243901188233,
+      "min": 21.38,
+      "max": 22.13
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage5/C",
+    "run_id": "0753ec271c414dc79fed784be2d86d20",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "ingress_packet_count",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 140.93548387096774,
+      "sd": 64.52231421964082,
+      "min": 26.0,
+      "max": 252.0
+    },
+    "normal_full_inside_plan": {
+      "n": 19,
+      "mean": 102.47368421052632,
+      "sd": 18.68561068800337,
+      "min": 81.0,
+      "max": 153.0
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 224.11111111111111,
+      "sd": 17.673740722074406,
+      "min": 206.0,
+      "max": 248.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage5/C",
+    "run_id": "0753ec271c414dc79fed784be2d86d20",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "egress_packet_count",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 96.41935483870968,
+      "sd": 44.96203894661094,
+      "min": 13.0,
+      "max": 177.0
+    },
+    "normal_full_inside_plan": {
+      "n": 19,
+      "mean": 69.94736842105263,
+      "sd": 12.21780887889353,
+      "min": 54.0,
+      "max": 102.0
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 154.0,
+      "sd": 12.24744871391589,
+      "min": 142.0,
+      "max": 172.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage5/C",
+    "run_id": "0753ec271c414dc79fed784be2d86d20",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "ingress_tcp_payload_length_sum_bytes",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 10277.870967741936,
+      "sd": 4796.4683100654765,
+      "min": 0.0,
+      "max": 18400.0
+    },
+    "normal_full_inside_plan": {
+      "n": 19,
+      "mean": 7685.0526315789475,
+      "sd": 1474.819065124194,
+      "min": 5616.0,
+      "max": 11440.0
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 16441.11111111111,
+      "sd": 1450.0786568704166,
+      "min": 15024.0,
+      "max": 18400.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage5/C",
+    "run_id": "0753ec271c414dc79fed784be2d86d20",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "egress_tcp_payload_length_sum_bytes",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 10080.709677419354,
+      "sd": 4688.195119613719,
+      "min": 0.0,
+      "max": 17990.0
+    },
+    "normal_full_inside_plan": {
+      "n": 19,
+      "mean": 7537.263157894737,
+      "sd": 1415.9598567012674,
+      "min": 5676.0,
+      "max": 11164.0
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 16132.888888888889,
+      "sd": 1385.6410469927307,
+      "min": 14794.0,
+      "max": 17990.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage5/C",
+    "run_id": "0753ec271c414dc79fed784be2d86d20",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "unique_client_src_ips",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 5.387096774193548,
+      "sd": 1.9778341581106458,
+      "min": 3.0,
+      "max": 8.0
+    },
+    "normal_full_inside_plan": {
+      "n": 19,
+      "mean": 3.9473684210526314,
+      "sd": 0.22941573387056177,
+      "min": 3.0,
+      "max": 4.0
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 8.0,
+      "sd": 0.0,
+      "min": 8.0,
+      "max": 8.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage5/C",
+    "run_id": "0753ec271c414dc79fed784be2d86d20",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_starts",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 49.29032258064516,
+      "sd": 22.869475359653674,
+      "min": 0.0,
+      "max": 88.0
+    },
+    "normal_full_inside_plan": {
+      "n": 19,
+      "mean": 36.94736842105263,
+      "sd": 7.090476274635547,
+      "min": 27.0,
+      "max": 55.0
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 78.66666666666667,
+      "sd": 6.652067347825035,
+      "min": 72.0,
+      "max": 88.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage5/C",
+    "run_id": "0753ec271c414dc79fed784be2d86d20",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_completions",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 49.29032258064516,
+      "sd": 22.64684459019563,
+      "min": 0.0,
+      "max": 88.0
+    },
+    "normal_full_inside_plan": {
+      "n": 19,
+      "mean": 36.94736842105263,
+      "sd": 6.595231309316741,
+      "min": 30.0,
+      "max": 54.0
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 78.77777777777777,
+      "sd": 6.704061787039588,
+      "min": 71.0,
+      "max": 88.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage5/C",
+    "run_id": "0753ec271c414dc79fed784be2d86d20",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_failures",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 19,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage5/C",
+    "run_id": "0753ec271c414dc79fed784be2d86d20",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "http_failures",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 19,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage5/C",
+    "run_id": "0753ec271c414dc79fed784be2d86d20",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "transport_failures",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 19,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage5/C",
+    "run_id": "0753ec271c414dc79fed784be2d86d20",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "client_failures",
+    "windows": 31,
+    "nulls": 0,
+    "all": {
+      "n": 31,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 19,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage5/C",
+    "run_id": "0753ec271c414dc79fed784be2d86d20",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "mean_duration_ms",
+    "windows": 31,
+    "nulls": 1,
+    "all": {
+      "n": 30,
+      "mean": 31.33312195549797,
+      "sd": 3.433980544675683,
+      "min": 23.622987394060836,
+      "max": 36.10526439720846
+    },
+    "normal_full_inside_plan": {
+      "n": 19,
+      "mean": 29.45395920117091,
+      "sd": 2.8628333323579236,
+      "min": 23.622987394060836,
+      "max": 33.91471923335606
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 34.80896049254376,
+      "sd": 0.9704168903464614,
+      "min": 33.521499241388305,
+      "max": 36.10526439720846
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage5/C",
+    "run_id": "0753ec271c414dc79fed784be2d86d20",
+    "delta_s": "1",
+    "family": "infrastructure",
+    "feature": "mean_cpu_percent",
+    "windows": 31,
+    "nulls": 3,
+    "all": {
+      "n": 28,
+      "mean": 11.470714285714285,
+      "sd": 6.450779412323369,
+      "min": 5.18,
+      "max": 25.62
+    },
+    "normal_full_inside_plan": {
+      "n": 17,
+      "mean": 8.442352941176472,
+      "sd": 4.60310293363586,
+      "min": 5.18,
+      "max": 25.62
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 16.074444444444445,
+      "sd": 5.254146246325637,
+      "min": 7.37,
+      "max": 21.91
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage5/C",
+    "run_id": "0753ec271c414dc79fed784be2d86d20",
+    "delta_s": "1",
+    "family": "infrastructure",
+    "feature": "mean_memory_mib",
+    "windows": 31,
+    "nulls": 3,
+    "all": {
+      "n": 28,
+      "mean": 22.291428571428572,
+      "sd": 0.21581395083650437,
+      "min": 22.0,
+      "max": 22.5
+    },
+    "normal_full_inside_plan": {
+      "n": 17,
+      "mean": 22.26705882352941,
+      "sd": 0.2474814312701644,
+      "min": 22.0,
+      "max": 22.5
+    },
+    "attack_full": {
+      "n": 9,
+      "mean": 22.343333333333334,
+      "sd": 0.1281600561797623,
+      "min": 22.03,
+      "max": 22.47
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage6/expensive",
+    "run_id": "3bb3047840d0477d983446d9a0806d08",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "ingress_packet_count",
+    "windows": 9,
+    "nulls": 0,
+    "all": {
+      "n": 9,
+      "mean": 35.333333333333336,
+      "sd": 18.214005600086985,
+      "min": 11.0,
+      "max": 64.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 23.666666666666668,
+      "sd": 20.231987873991358,
+      "min": 11.0,
+      "max": 47.0
+    },
+    "attack_full": {
+      "n": 3,
+      "mean": 41.666666666666664,
+      "sd": 13.650396819628847,
+      "min": 27.0,
+      "max": 54.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage6/expensive",
+    "run_id": "3bb3047840d0477d983446d9a0806d08",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "egress_packet_count",
+    "windows": 9,
+    "nulls": 0,
+    "all": {
+      "n": 9,
+      "mean": 30.88888888888889,
+      "sd": 17.41008647626746,
+      "min": 11.0,
+      "max": 55.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 21.0,
+      "sd": 15.620499351813308,
+      "min": 11.0,
+      "max": 39.0
+    },
+    "attack_full": {
+      "n": 3,
+      "mean": 41.333333333333336,
+      "sd": 13.613718571108091,
+      "min": 26.0,
+      "max": 52.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage6/expensive",
+    "run_id": "3bb3047840d0477d983446d9a0806d08",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "ingress_tcp_payload_length_sum_bytes",
+    "windows": 9,
+    "nulls": 0,
+    "all": {
+      "n": 9,
+      "mean": 1967.888888888889,
+      "sd": 1405.1867708995524,
+      "min": 199.0,
+      "max": 4378.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 1393.0,
+      "sd": 867.420889764594,
+      "min": 796.0,
+      "max": 2388.0
+    },
+    "attack_full": {
+      "n": 3,
+      "mean": 2719.6666666666665,
+      "sd": 804.2489249811487,
+      "min": 1990.0,
+      "max": 3582.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage6/expensive",
+    "run_id": "3bb3047840d0477d983446d9a0806d08",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "egress_tcp_payload_length_sum_bytes",
+    "windows": 9,
+    "nulls": 0,
+    "all": {
+      "n": 9,
+      "mean": 2066.777777777778,
+      "sd": 1235.4818673070215,
+      "min": 209.0,
+      "max": 3553.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 1532.6666666666667,
+      "sd": 671.8410030158425,
+      "min": 1045.0,
+      "max": 2299.0
+    },
+    "attack_full": {
+      "n": 3,
+      "mean": 3135.0,
+      "sd": 671.8623370899726,
+      "min": 2360.0,
+      "max": 3553.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage6/expensive",
+    "run_id": "3bb3047840d0477d983446d9a0806d08",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "unique_client_src_ips",
+    "windows": 9,
+    "nulls": 0,
+    "all": {
+      "n": 9,
+      "mean": 5.777777777777778,
+      "sd": 2.1666666666666665,
+      "min": 3.0,
+      "max": 8.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 3.6666666666666665,
+      "sd": 0.5773502691896257,
+      "min": 3.0,
+      "max": 4.0
+    },
+    "attack_full": {
+      "n": 3,
+      "mean": 8.0,
+      "sd": 0.0,
+      "min": 8.0,
+      "max": 8.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage6/expensive",
+    "run_id": "3bb3047840d0477d983446d9a0806d08",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_starts",
+    "windows": 9,
+    "nulls": 0,
+    "all": {
+      "n": 9,
+      "mean": 9.88888888888889,
+      "sd": 7.06124005477162,
+      "min": 1.0,
+      "max": 22.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 7.0,
+      "sd": 4.358898943540674,
+      "min": 4.0,
+      "max": 12.0
+    },
+    "attack_full": {
+      "n": 3,
+      "mean": 13.666666666666666,
+      "sd": 4.041451884327381,
+      "min": 10.0,
+      "max": 18.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage6/expensive",
+    "run_id": "3bb3047840d0477d983446d9a0806d08",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_completions",
+    "windows": 9,
+    "nulls": 0,
+    "all": {
+      "n": 9,
+      "mean": 9.88888888888889,
+      "sd": 5.840471822645077,
+      "min": 1.0,
+      "max": 17.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 7.333333333333333,
+      "sd": 3.2145502536643185,
+      "min": 5.0,
+      "max": 11.0
+    },
+    "attack_full": {
+      "n": 3,
+      "mean": 15.0,
+      "sd": 2.6457513110645907,
+      "min": 12.0,
+      "max": 17.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage6/expensive",
+    "run_id": "3bb3047840d0477d983446d9a0806d08",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_failures",
+    "windows": 9,
+    "nulls": 0,
+    "all": {
+      "n": 9,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 3,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage6/expensive",
+    "run_id": "3bb3047840d0477d983446d9a0806d08",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "http_failures",
+    "windows": 9,
+    "nulls": 0,
+    "all": {
+      "n": 9,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 3,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage6/expensive",
+    "run_id": "3bb3047840d0477d983446d9a0806d08",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "transport_failures",
+    "windows": 9,
+    "nulls": 0,
+    "all": {
+      "n": 9,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 3,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage6/expensive",
+    "run_id": "3bb3047840d0477d983446d9a0806d08",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "client_failures",
+    "windows": 9,
+    "nulls": 0,
+    "all": {
+      "n": 9,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 3,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage6/expensive",
+    "run_id": "3bb3047840d0477d983446d9a0806d08",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "mean_duration_ms",
+    "windows": 9,
+    "nulls": 0,
+    "all": {
+      "n": 9,
+      "mean": 234.2440108565502,
+      "sd": 86.89328869459077,
+      "min": 139.96606259988766,
+      "max": 374.08652829403496
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 187.47467822020994,
+      "sd": 72.05289601904872,
+      "min": 139.96606259988766,
+      "max": 270.37979672737
+    },
+    "attack_full": {
+      "n": 3,
+      "mean": 302.68774029944285,
+      "sd": 101.74656543807964,
+      "min": 186.18597391665995,
+      "max": 374.08652829403496
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage6/expensive",
+    "run_id": "3bb3047840d0477d983446d9a0806d08",
+    "delta_s": "1",
+    "family": "infrastructure",
+    "feature": "mean_cpu_percent",
+    "windows": 9,
+    "nulls": 3,
+    "all": {
+      "n": 6,
+      "mean": 188.41333333333333,
+      "sd": 23.457679908010224,
+      "min": 158.13,
+      "max": 203.69
+    },
+    "normal_full_inside_plan": {
+      "n": 1,
+      "mean": 203.42,
+      "sd": null,
+      "min": 203.42,
+      "max": 203.42
+    },
+    "attack_full": {
+      "n": 3,
+      "mean": 188.50333333333333,
+      "sd": 26.30407826427935,
+      "min": 158.13,
+      "max": 203.69
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage6/expensive",
+    "run_id": "3bb3047840d0477d983446d9a0806d08",
+    "delta_s": "1",
+    "family": "infrastructure",
+    "feature": "mean_memory_mib",
+    "windows": 9,
+    "nulls": 3,
+    "all": {
+      "n": 6,
+      "mean": 22.376666666666665,
+      "sd": 0.17489044189625264,
+      "min": 22.16,
+      "max": 22.54
+    },
+    "normal_full_inside_plan": {
+      "n": 1,
+      "mean": 22.54,
+      "sd": null,
+      "min": 22.54,
+      "max": 22.54
+    },
+    "attack_full": {
+      "n": 3,
+      "mean": 22.34,
+      "sd": 0.1558845726811987,
+      "min": 22.16,
+      "max": 22.43
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage6/light",
+    "run_id": "763570269483495fbe0b3d2468bcd219",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "ingress_packet_count",
+    "windows": 9,
+    "nulls": 0,
+    "all": {
+      "n": 9,
+      "mean": 34.77777777777778,
+      "sd": 20.680774754453576,
+      "min": 11.0,
+      "max": 78.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 30.666666666666668,
+      "sd": 17.039170558842745,
+      "min": 11.0,
+      "max": 41.0
+    },
+    "attack_full": {
+      "n": 3,
+      "mean": 37.0,
+      "sd": 9.848857801796104,
+      "min": 26.0,
+      "max": 45.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage6/light",
+    "run_id": "763570269483495fbe0b3d2468bcd219",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "egress_packet_count",
+    "windows": 9,
+    "nulls": 0,
+    "all": {
+      "n": 9,
+      "mean": 23.0,
+      "sd": 15.483862567202022,
+      "min": 5.0,
+      "max": 55.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 21.0,
+      "sd": 13.892443989449804,
+      "min": 5.0,
+      "max": 30.0
+    },
+    "attack_full": {
+      "n": 3,
+      "mean": 23.666666666666668,
+      "sd": 7.094598884597588,
+      "min": 16.0,
+      "max": 30.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage6/light",
+    "run_id": "763570269483495fbe0b3d2468bcd219",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "ingress_tcp_payload_length_sum_bytes",
+    "windows": 9,
+    "nulls": 0,
+    "all": {
+      "n": 9,
+      "mean": 2192.222222222222,
+      "sd": 1386.2825088864263,
+      "min": 0.0,
+      "max": 4502.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 2151.0,
+      "sd": 901.4837768922966,
+      "min": 1170.0,
+      "max": 2943.0
+    },
+    "attack_full": {
+      "n": 3,
+      "mean": 2665.0,
+      "sd": 684.817493935428,
+      "min": 1950.0,
+      "max": 3315.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage6/light",
+    "run_id": "763570269483495fbe0b3d2468bcd219",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "egress_tcp_payload_length_sum_bytes",
+    "windows": 9,
+    "nulls": 0,
+    "all": {
+      "n": 9,
+      "mean": 2324.3333333333335,
+      "sd": 1476.4770570516835,
+      "min": 207.0,
+      "max": 4972.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 2141.6666666666665,
+      "sd": 981.3533172784067,
+      "min": 1035.0,
+      "max": 2906.0
+    },
+    "attack_full": {
+      "n": 3,
+      "mean": 2809.3333333333335,
+      "sd": 757.8999494216458,
+      "min": 2011.0,
+      "max": 3519.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage6/light",
+    "run_id": "763570269483495fbe0b3d2468bcd219",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "unique_client_src_ips",
+    "windows": 9,
+    "nulls": 0,
+    "all": {
+      "n": 9,
+      "mean": 5.555555555555555,
+      "sd": 1.9436506316151,
+      "min": 3.0,
+      "max": 8.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 3.6666666666666665,
+      "sd": 0.5773502691896257,
+      "min": 3.0,
+      "max": 4.0
+    },
+    "attack_full": {
+      "n": 3,
+      "mean": 7.333333333333333,
+      "sd": 0.5773502691896257,
+      "min": 7.0,
+      "max": 8.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage6/light",
+    "run_id": "763570269483495fbe0b3d2468bcd219",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_starts",
+    "windows": 9,
+    "nulls": 0,
+    "all": {
+      "n": 9,
+      "mean": 9.88888888888889,
+      "sd": 7.0789201938651,
+      "min": 0.0,
+      "max": 22.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 7.333333333333333,
+      "sd": 4.163331998932265,
+      "min": 4.0,
+      "max": 12.0
+    },
+    "attack_full": {
+      "n": 3,
+      "mean": 13.666666666666666,
+      "sd": 3.511884584284246,
+      "min": 10.0,
+      "max": 17.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage6/light",
+    "run_id": "763570269483495fbe0b3d2468bcd219",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_completions",
+    "windows": 9,
+    "nulls": 0,
+    "all": {
+      "n": 9,
+      "mean": 9.88888888888889,
+      "sd": 6.90008051482815,
+      "min": 1.0,
+      "max": 22.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 7.0,
+      "sd": 4.358898943540674,
+      "min": 4.0,
+      "max": 12.0
+    },
+    "attack_full": {
+      "n": 3,
+      "mean": 13.333333333333334,
+      "sd": 4.041451884327381,
+      "min": 9.0,
+      "max": 17.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage6/light",
+    "run_id": "763570269483495fbe0b3d2468bcd219",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_failures",
+    "windows": 9,
+    "nulls": 0,
+    "all": {
+      "n": 9,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 3,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage6/light",
+    "run_id": "763570269483495fbe0b3d2468bcd219",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "http_failures",
+    "windows": 9,
+    "nulls": 0,
+    "all": {
+      "n": 9,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 3,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage6/light",
+    "run_id": "763570269483495fbe0b3d2468bcd219",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "transport_failures",
+    "windows": 9,
+    "nulls": 0,
+    "all": {
+      "n": 9,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 3,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage6/light",
+    "run_id": "763570269483495fbe0b3d2468bcd219",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "client_failures",
+    "windows": 9,
+    "nulls": 0,
+    "all": {
+      "n": 9,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 3,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage6/light",
+    "run_id": "763570269483495fbe0b3d2468bcd219",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "mean_duration_ms",
+    "windows": 9,
+    "nulls": 0,
+    "all": {
+      "n": 9,
+      "mean": 16.967145391104914,
+      "sd": 8.716351458087082,
+      "min": 4.561139749966969,
+      "max": 27.58989492843154
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 8.207475022274796,
+      "sd": 4.166233066981562,
+      "min": 4.561139749966969,
+      "max": 12.748302916785784
+    },
+    "attack_full": {
+      "n": 3,
+      "mean": 24.332932202775517,
+      "sd": 3.2138654942503977,
+      "min": 21.16397144446738,
+      "max": 27.58989492843154
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage6/light",
+    "run_id": "763570269483495fbe0b3d2468bcd219",
+    "delta_s": "1",
+    "family": "infrastructure",
+    "feature": "mean_cpu_percent",
+    "windows": 9,
+    "nulls": 3,
+    "all": {
+      "n": 6,
+      "mean": 10.306666666666667,
+      "sd": 7.358816933900901,
+      "min": 4.49,
+      "max": 19.72
+    },
+    "normal_full_inside_plan": {
+      "n": 1,
+      "mean": 6.71,
+      "sd": null,
+      "min": 6.71,
+      "max": 6.71
+    },
+    "attack_full": {
+      "n": 3,
+      "mean": 14.643333333333333,
+      "sd": 8.793044599758,
+      "min": 4.49,
+      "max": 19.72
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage6/light",
+    "run_id": "763570269483495fbe0b3d2468bcd219",
+    "delta_s": "1",
+    "family": "infrastructure",
+    "feature": "mean_memory_mib",
+    "windows": 9,
+    "nulls": 3,
+    "all": {
+      "n": 6,
+      "mean": 21.936666666666667,
+      "sd": 0.12909944487358058,
+      "min": 21.77,
+      "max": 22.02
+    },
+    "normal_full_inside_plan": {
+      "n": 1,
+      "mean": 22.02,
+      "sd": null,
+      "min": 22.02,
+      "max": 22.02
+    },
+    "attack_full": {
+      "n": 3,
+      "mean": 21.936666666666667,
+      "sd": 0.14433756729740643,
+      "min": 21.77,
+      "max": 22.02
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage6/medium",
+    "run_id": "33623c248c6049eda4f3f27981550de0",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "ingress_packet_count",
+    "windows": 9,
+    "nulls": 0,
+    "all": {
+      "n": 9,
+      "mean": 28.88888888888889,
+      "sd": 17.84968098065372,
+      "min": 9.0,
+      "max": 60.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 19.666666666666668,
+      "sd": 15.14375558880073,
+      "min": 9.0,
+      "max": 37.0
+    },
+    "attack_full": {
+      "n": 3,
+      "mean": 37.0,
+      "sd": 11.532562594670797,
+      "min": 25.0,
+      "max": 48.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage6/medium",
+    "run_id": "33623c248c6049eda4f3f27981550de0",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "egress_packet_count",
+    "windows": 9,
+    "nulls": 0,
+    "all": {
+      "n": 9,
+      "mean": 18.22222222222222,
+      "sd": 12.214517773716834,
+      "min": 5.0,
+      "max": 39.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 12.666666666666666,
+      "sd": 10.785793124908958,
+      "min": 5.0,
+      "max": 25.0
+    },
+    "attack_full": {
+      "n": 3,
+      "mean": 23.666666666666668,
+      "sd": 8.082903768654761,
+      "min": 15.0,
+      "max": 31.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage6/medium",
+    "run_id": "33623c248c6049eda4f3f27981550de0",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "ingress_tcp_payload_length_sum_bytes",
+    "windows": 9,
+    "nulls": 0,
+    "all": {
+      "n": 9,
+      "mean": 1916.4444444444443,
+      "sd": 1416.016164377292,
+      "min": 0.0,
+      "max": 4312.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 1372.0,
+      "sd": 854.3441929339721,
+      "min": 784.0,
+      "max": 2352.0
+    },
+    "attack_full": {
+      "n": 3,
+      "mean": 2678.6666666666665,
+      "sd": 792.1245693281666,
+      "min": 1960.0,
+      "max": 3528.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage6/medium",
+    "run_id": "33623c248c6049eda4f3f27981550de0",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "egress_tcp_payload_length_sum_bytes",
+    "windows": 9,
+    "nulls": 0,
+    "all": {
+      "n": 9,
+      "mean": 2033.7777777777778,
+      "sd": 1421.308004777446,
+      "min": 0.0,
+      "max": 4516.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 1525.3333333333333,
+      "sd": 668.6264527621782,
+      "min": 1040.0,
+      "max": 2288.0
+    },
+    "attack_full": {
+      "n": 3,
+      "mean": 2724.0,
+      "sd": 942.541245781849,
+      "min": 1724.0,
+      "max": 3596.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage6/medium",
+    "run_id": "33623c248c6049eda4f3f27981550de0",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "unique_client_src_ips",
+    "windows": 9,
+    "nulls": 0,
+    "all": {
+      "n": 9,
+      "mean": 5.555555555555555,
+      "sd": 1.9436506316151,
+      "min": 3.0,
+      "max": 8.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 3.6666666666666665,
+      "sd": 0.5773502691896257,
+      "min": 3.0,
+      "max": 4.0
+    },
+    "attack_full": {
+      "n": 3,
+      "mean": 7.333333333333333,
+      "sd": 0.5773502691896257,
+      "min": 7.0,
+      "max": 8.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage6/medium",
+    "run_id": "33623c248c6049eda4f3f27981550de0",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_starts",
+    "windows": 9,
+    "nulls": 0,
+    "all": {
+      "n": 9,
+      "mean": 9.777777777777779,
+      "sd": 7.224572267231081,
+      "min": 0.0,
+      "max": 22.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 7.0,
+      "sd": 4.358898943540674,
+      "min": 4.0,
+      "max": 12.0
+    },
+    "attack_full": {
+      "n": 3,
+      "mean": 13.666666666666666,
+      "sd": 4.041451884327381,
+      "min": 10.0,
+      "max": 18.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage6/medium",
+    "run_id": "33623c248c6049eda4f3f27981550de0",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_completions",
+    "windows": 9,
+    "nulls": 0,
+    "all": {
+      "n": 9,
+      "mean": 9.777777777777779,
+      "sd": 6.722681343366235,
+      "min": 0.0,
+      "max": 21.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 7.333333333333333,
+      "sd": 3.2145502536643185,
+      "min": 5.0,
+      "max": 11.0
+    },
+    "attack_full": {
+      "n": 3,
+      "mean": 13.333333333333334,
+      "sd": 4.509249752822894,
+      "min": 9.0,
+      "max": 18.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage6/medium",
+    "run_id": "33623c248c6049eda4f3f27981550de0",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_failures",
+    "windows": 9,
+    "nulls": 0,
+    "all": {
+      "n": 9,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 3,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage6/medium",
+    "run_id": "33623c248c6049eda4f3f27981550de0",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "http_failures",
+    "windows": 9,
+    "nulls": 0,
+    "all": {
+      "n": 9,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 3,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage6/medium",
+    "run_id": "33623c248c6049eda4f3f27981550de0",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "transport_failures",
+    "windows": 9,
+    "nulls": 0,
+    "all": {
+      "n": 9,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 3,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage6/medium",
+    "run_id": "33623c248c6049eda4f3f27981550de0",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "client_failures",
+    "windows": 9,
+    "nulls": 0,
+    "all": {
+      "n": 9,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 3,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage6/medium",
+    "run_id": "33623c248c6049eda4f3f27981550de0",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "mean_duration_ms",
+    "windows": 9,
+    "nulls": 1,
+    "all": {
+      "n": 8,
+      "mean": 34.21975548968823,
+      "sd": 6.371754746730462,
+      "min": 23.028307999993558,
+      "max": 39.151185888941754
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 32.04807208584673,
+      "sd": 7.981345276491979,
+      "min": 23.028307999993558,
+      "max": 38.19647916649652
+    },
+    "attack_full": {
+      "n": 3,
+      "mean": 38.86435210253507,
+      "sd": 0.38748842037252,
+      "min": 38.423543110992696,
+      "max": 39.151185888941754
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage6/medium",
+    "run_id": "33623c248c6049eda4f3f27981550de0",
+    "delta_s": "1",
+    "family": "infrastructure",
+    "feature": "mean_cpu_percent",
+    "windows": 9,
+    "nulls": 3,
+    "all": {
+      "n": 6,
+      "mean": 30.536666666666665,
+      "sd": 10.123186586577699,
+      "min": 21.35,
+      "max": 43.18
+    },
+    "normal_full_inside_plan": {
+      "n": 1,
+      "mean": 27.08,
+      "sd": null,
+      "min": 27.08,
+      "max": 27.08
+    },
+    "attack_full": {
+      "n": 3,
+      "mean": 35.903333333333336,
+      "sd": 12.603556376409529,
+      "min": 21.35,
+      "max": 43.18
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-regressions/stage6/medium",
+    "run_id": "33623c248c6049eda4f3f27981550de0",
+    "delta_s": "1",
+    "family": "infrastructure",
+    "feature": "mean_memory_mib",
+    "windows": 9,
+    "nulls": 3,
+    "all": {
+      "n": 6,
+      "mean": 21.89666666666667,
+      "sd": 0.12909944487358058,
+      "min": 21.73,
+      "max": 21.98
+    },
+    "normal_full_inside_plan": {
+      "n": 1,
+      "mean": 21.98,
+      "sd": null,
+      "min": 21.98,
+      "max": 21.98
+    },
+    "attack_full": {
+      "n": 3,
+      "mean": 21.89666666666667,
+      "sd": 0.14433756729740643,
+      "min": 21.73,
+      "max": 21.98
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/capacity",
+    "run_id": "0440b798496f4fb3abf25cffd0ca7f07",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "ingress_packet_count",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 18.9375,
+      "sd": 7.663495721057504,
+      "min": 7.0,
+      "max": 36.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 21.666666666666668,
+      "sd": 13.203534880225574,
+      "min": 10.0,
+      "max": 36.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 18.2,
+      "sd": 5.116422361159971,
+      "min": 7.0,
+      "max": 26.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/capacity",
+    "run_id": "0440b798496f4fb3abf25cffd0ca7f07",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "egress_packet_count",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 11.875,
+      "sd": 5.998610950322861,
+      "min": 4.0,
+      "max": 25.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 13.666666666666666,
+      "sd": 10.263202878893768,
+      "min": 5.0,
+      "max": 25.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 11.3,
+      "sd": 3.683295625749672,
+      "min": 5.0,
+      "max": 18.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/capacity",
+    "run_id": "0440b798496f4fb3abf25cffd0ca7f07",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "ingress_tcp_payload_length_sum_bytes",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 1490.125,
+      "sd": 607.0304632663284,
+      "min": 0.0,
+      "max": 2356.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 1560.0,
+      "sd": 585.0,
+      "min": 975.0,
+      "max": 2145.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 1524.6,
+      "sd": 452.304273200636,
+      "min": 585.0,
+      "max": 2356.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/capacity",
+    "run_id": "0440b798496f4fb3abf25cffd0ca7f07",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "egress_tcp_payload_length_sum_bytes",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 1580.0,
+      "sd": 642.4883915942244,
+      "min": 0.0,
+      "max": 2492.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 1656.0,
+      "sd": 621.0,
+      "min": 1035.0,
+      "max": 2277.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 1616.4,
+      "sd": 477.969129640073,
+      "min": 621.0,
+      "max": 2492.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/capacity",
+    "run_id": "0440b798496f4fb3abf25cffd0ca7f07",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "unique_client_src_ips",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 3.8125,
+      "sd": 1.0468205831628137,
+      "min": 1.0,
+      "max": 5.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 4.0,
+      "sd": 0.0,
+      "min": 4.0,
+      "max": 4.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 3.7,
+      "sd": 1.2516655570345725,
+      "min": 1.0,
+      "max": 5.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/capacity",
+    "run_id": "0440b798496f4fb3abf25cffd0ca7f07",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_starts",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 7.625,
+      "sd": 3.095695936834452,
+      "min": 0.0,
+      "max": 12.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 8.0,
+      "sd": 3.0,
+      "min": 5.0,
+      "max": 11.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 7.8,
+      "sd": 2.2997584414213788,
+      "min": 3.0,
+      "max": 12.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/capacity",
+    "run_id": "0440b798496f4fb3abf25cffd0ca7f07",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_completions",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 7.625,
+      "sd": 3.095695936834452,
+      "min": 0.0,
+      "max": 12.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 8.0,
+      "sd": 3.0,
+      "min": 5.0,
+      "max": 11.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 7.8,
+      "sd": 2.2997584414213788,
+      "min": 3.0,
+      "max": 12.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/capacity",
+    "run_id": "0440b798496f4fb3abf25cffd0ca7f07",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_failures",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/capacity",
+    "run_id": "0440b798496f4fb3abf25cffd0ca7f07",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "http_failures",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/capacity",
+    "run_id": "0440b798496f4fb3abf25cffd0ca7f07",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "transport_failures",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/capacity",
+    "run_id": "0440b798496f4fb3abf25cffd0ca7f07",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "client_failures",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/capacity",
+    "run_id": "0440b798496f4fb3abf25cffd0ca7f07",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "mean_duration_ms",
+    "windows": 16,
+    "nulls": 1,
+    "all": {
+      "n": 15,
+      "mean": 27.772334740090244,
+      "sd": 18.236024577524415,
+      "min": 6.84882799978368,
+      "max": 62.888647833384915
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 18.66375446962028,
+      "sd": 10.29302478520475,
+      "min": 6.84882799978368,
+      "max": 25.690142908966994
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 28.546723285891915,
+      "sd": 17.366869073237655,
+      "min": 8.103091750058411,
+      "max": 56.92428525003379
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/capacity",
+    "run_id": "0440b798496f4fb3abf25cffd0ca7f07",
+    "delta_s": "1",
+    "family": "infrastructure",
+    "feature": "mean_cpu_percent",
+    "windows": 16,
+    "nulls": 3,
+    "all": {
+      "n": 13,
+      "mean": 16.983076923076922,
+      "sd": 18.150128275311346,
+      "min": 1.95,
+      "max": 52.79
+    },
+    "normal_full_inside_plan": {
+      "n": 1,
+      "mean": 5.26,
+      "sd": null,
+      "min": 5.26,
+      "max": 5.26
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 19.344,
+      "sd": 20.095329031615503,
+      "min": 1.95,
+      "max": 52.79
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/capacity",
+    "run_id": "0440b798496f4fb3abf25cffd0ca7f07",
+    "delta_s": "1",
+    "family": "infrastructure",
+    "feature": "mean_memory_mib",
+    "windows": 16,
+    "nulls": 3,
+    "all": {
+      "n": 13,
+      "mean": 24.073846153846155,
+      "sd": 0.05220767209559374,
+      "min": 24.01,
+      "max": 24.12
+    },
+    "normal_full_inside_plan": {
+      "n": 1,
+      "mean": 24.12,
+      "sd": null,
+      "min": 24.12,
+      "max": 24.12
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 24.071,
+      "sd": 0.05195083145522226,
+      "min": 24.01,
+      "max": 24.12
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/continuous",
+    "run_id": "aac4906df9ae494ab1d87ca99adcc8b6",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "ingress_packet_count",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 35.8125,
+      "sd": 15.157918722568741,
+      "min": 8.0,
+      "max": 63.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 21.333333333333332,
+      "sd": 14.047538337136984,
+      "min": 8.0,
+      "max": 36.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 41.1,
+      "sd": 11.454741861391339,
+      "min": 26.0,
+      "max": 63.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/continuous",
+    "run_id": "aac4906df9ae494ab1d87ca99adcc8b6",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "egress_packet_count",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 23.375,
+      "sd": 10.953690397913086,
+      "min": 4.0,
+      "max": 44.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 14.0,
+      "sd": 10.535653752852738,
+      "min": 4.0,
+      "max": 25.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 27.1,
+      "sd": 8.962266578395345,
+      "min": 15.0,
+      "max": 44.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/continuous",
+    "run_id": "aac4906df9ae494ab1d87ca99adcc8b6",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "ingress_tcp_payload_length_sum_bytes",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 2608.125,
+      "sd": 1230.973699962757,
+      "min": 0.0,
+      "max": 4875.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 1495.0,
+      "sd": 788.0831174438391,
+      "min": 780.0,
+      "max": 2340.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 3159.0,
+      "sd": 836.4568129915615,
+      "min": 2145.0,
+      "max": 4875.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/continuous",
+    "run_id": "aac4906df9ae494ab1d87ca99adcc8b6",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "egress_tcp_payload_length_sum_bytes",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 2768.625,
+      "sd": 1280.142902179284,
+      "min": 0.0,
+      "max": 5116.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 1606.6666666666667,
+      "sd": 832.3973410176977,
+      "min": 828.0,
+      "max": 2484.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 3353.4,
+      "sd": 871.8191963424017,
+      "min": 2277.0,
+      "max": 5116.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/continuous",
+    "run_id": "aac4906df9ae494ab1d87ca99adcc8b6",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "unique_client_src_ips",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 4.25,
+      "sd": 0.7745966692414834,
+      "min": 2.0,
+      "max": 5.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 4.0,
+      "sd": 0.0,
+      "min": 4.0,
+      "max": 4.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 4.3,
+      "sd": 0.9486832980505138,
+      "min": 2.0,
+      "max": 5.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/continuous",
+    "run_id": "aac4906df9ae494ab1d87ca99adcc8b6",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_starts",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 13.375,
+      "sd": 6.312685640834652,
+      "min": 0.0,
+      "max": 25.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 7.666666666666667,
+      "sd": 4.041451884327381,
+      "min": 4.0,
+      "max": 12.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 16.2,
+      "sd": 4.2895221179054435,
+      "min": 11.0,
+      "max": 25.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/continuous",
+    "run_id": "aac4906df9ae494ab1d87ca99adcc8b6",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_completions",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 13.375,
+      "sd": 6.15223536610881,
+      "min": 0.0,
+      "max": 24.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 8.0,
+      "sd": 4.0,
+      "min": 4.0,
+      "max": 12.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 16.2,
+      "sd": 4.184627953726724,
+      "min": 11.0,
+      "max": 24.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/continuous",
+    "run_id": "aac4906df9ae494ab1d87ca99adcc8b6",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_failures",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/continuous",
+    "run_id": "aac4906df9ae494ab1d87ca99adcc8b6",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "http_failures",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/continuous",
+    "run_id": "aac4906df9ae494ab1d87ca99adcc8b6",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "transport_failures",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/continuous",
+    "run_id": "aac4906df9ae494ab1d87ca99adcc8b6",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "client_failures",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/continuous",
+    "run_id": "aac4906df9ae494ab1d87ca99adcc8b6",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "mean_duration_ms",
+    "windows": 16,
+    "nulls": 1,
+    "all": {
+      "n": 15,
+      "mean": 21.54759798407114,
+      "sd": 6.313028511429981,
+      "min": 7.738522749832555,
+      "max": 29.926840166505524
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 15.55011577770276,
+      "sd": 7.405505980113082,
+      "min": 7.738522749832555,
+      "max": 22.468515749892504
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 22.52961473720995,
+      "sd": 5.643243762128069,
+      "min": 13.82849841661482,
+      "max": 29.926840166505524
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/continuous",
+    "run_id": "aac4906df9ae494ab1d87ca99adcc8b6",
+    "delta_s": "1",
+    "family": "infrastructure",
+    "feature": "mean_cpu_percent",
+    "windows": 16,
+    "nulls": 3,
+    "all": {
+      "n": 13,
+      "mean": 8.03076923076923,
+      "sd": 2.7353593960649896,
+      "min": 5.03,
+      "max": 12.7
+    },
+    "normal_full_inside_plan": {
+      "n": 1,
+      "mean": 9.22,
+      "sd": null,
+      "min": 9.22,
+      "max": 9.22
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 7.745,
+      "sd": 2.511065510893732,
+      "min": 5.03,
+      "max": 12.7
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/continuous",
+    "run_id": "aac4906df9ae494ab1d87ca99adcc8b6",
+    "delta_s": "1",
+    "family": "infrastructure",
+    "feature": "mean_memory_mib",
+    "windows": 16,
+    "nulls": 3,
+    "all": {
+      "n": 13,
+      "mean": 25.674615384615386,
+      "sd": 0.09666224569908234,
+      "min": 25.61,
+      "max": 25.85
+    },
+    "normal_full_inside_plan": {
+      "n": 1,
+      "mean": 25.85,
+      "sd": null,
+      "min": 25.85,
+      "max": 25.85
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 25.647,
+      "sd": 0.06848357467305559,
+      "min": 25.61,
+      "max": 25.84
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/multiple",
+    "run_id": "f059147f9be94d499f509535a55acf85",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "ingress_packet_count",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 44.625,
+      "sd": 47.70447218727681,
+      "min": 9.0,
+      "max": 146.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 21.0,
+      "sd": 13.74772708486752,
+      "min": 9.0,
+      "max": 36.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 47.6,
+      "sd": 46.97800903969147,
+      "min": 9.0,
+      "max": 136.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/multiple",
+    "run_id": "f059147f9be94d499f509535a55acf85",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "egress_packet_count",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 28.6875,
+      "sd": 32.710281258344445,
+      "min": 5.0,
+      "max": 103.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 13.0,
+      "sd": 9.848857801796104,
+      "min": 5.0,
+      "max": 24.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 30.1,
+      "sd": 31.092871637509884,
+      "min": 6.0,
+      "max": 89.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/multiple",
+    "run_id": "f059147f9be94d499f509535a55acf85",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "ingress_tcp_payload_length_sum_bytes",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 3034.6875,
+      "sd": 3224.656813135314,
+      "min": 0.0,
+      "max": 9165.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 1560.0,
+      "sd": 780.0,
+      "min": 780.0,
+      "max": 2340.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 3334.5,
+      "sd": 3345.38525434665,
+      "min": 780.0,
+      "max": 9165.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/multiple",
+    "run_id": "f059147f9be94d499f509535a55acf85",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "egress_tcp_payload_length_sum_bytes",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 3221.4375,
+      "sd": 3389.6676527107097,
+      "min": 0.0,
+      "max": 9670.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 1656.0,
+      "sd": 828.0,
+      "min": 828.0,
+      "max": 2484.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 3545.6,
+      "sd": 3508.5384801462087,
+      "min": 887.0,
+      "max": 9670.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/multiple",
+    "run_id": "f059147f9be94d499f509535a55acf85",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "unique_client_src_ips",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 4.9375,
+      "sd": 2.112463017427761,
+      "min": 2.0,
+      "max": 8.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 4.0,
+      "sd": 0.0,
+      "min": 4.0,
+      "max": 4.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 5.2,
+      "sd": 2.3475755815545347,
+      "min": 2.0,
+      "max": 8.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/multiple",
+    "run_id": "f059147f9be94d499f509535a55acf85",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_starts",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 15.5625,
+      "sd": 16.38279076755036,
+      "min": 0.0,
+      "max": 47.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 8.0,
+      "sd": 4.0,
+      "min": 4.0,
+      "max": 12.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 17.1,
+      "sd": 16.907920563386195,
+      "min": 4.0,
+      "max": 47.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/multiple",
+    "run_id": "f059147f9be94d499f509535a55acf85",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_completions",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 15.5625,
+      "sd": 15.974850025378434,
+      "min": 0.0,
+      "max": 46.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 8.0,
+      "sd": 4.0,
+      "min": 4.0,
+      "max": 12.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 17.2,
+      "sd": 16.437085440484204,
+      "min": 5.0,
+      "max": 46.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/multiple",
+    "run_id": "f059147f9be94d499f509535a55acf85",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_failures",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/multiple",
+    "run_id": "f059147f9be94d499f509535a55acf85",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "http_failures",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/multiple",
+    "run_id": "f059147f9be94d499f509535a55acf85",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "transport_failures",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/multiple",
+    "run_id": "f059147f9be94d499f509535a55acf85",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "client_failures",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/multiple",
+    "run_id": "f059147f9be94d499f509535a55acf85",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "mean_duration_ms",
+    "windows": 16,
+    "nulls": 1,
+    "all": {
+      "n": 15,
+      "mean": 20.085364057780897,
+      "sd": 8.088106784826987,
+      "min": 8.147182856971215,
+      "max": 35.249655826093026
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 15.735341527842037,
+      "sd": 2.2563909445218715,
+      "min": 13.159766250055327,
+      "max": 17.363876999979766
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 20.384420820538832,
+      "sd": 8.705787831826854,
+      "min": 8.147182856971215,
+      "max": 35.249655826093026
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/multiple",
+    "run_id": "f059147f9be94d499f509535a55acf85",
+    "delta_s": "1",
+    "family": "infrastructure",
+    "feature": "mean_cpu_percent",
+    "windows": 16,
+    "nulls": 3,
+    "all": {
+      "n": 13,
+      "mean": 7.977692307692307,
+      "sd": 7.114569738508616,
+      "min": 1.32,
+      "max": 23.09
+    },
+    "normal_full_inside_plan": {
+      "n": 1,
+      "mean": 3.47,
+      "sd": null,
+      "min": 3.47,
+      "max": 3.47
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 8.735,
+      "sd": 7.981576355026061,
+      "min": 1.32,
+      "max": 23.09
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/multiple",
+    "run_id": "f059147f9be94d499f509535a55acf85",
+    "delta_s": "1",
+    "family": "infrastructure",
+    "feature": "mean_memory_mib",
+    "windows": 16,
+    "nulls": 3,
+    "all": {
+      "n": 13,
+      "mean": 22.09076923076923,
+      "sd": 0.16992456848366258,
+      "min": 21.75,
+      "max": 22.24
+    },
+    "normal_full_inside_plan": {
+      "n": 1,
+      "mean": 22.18,
+      "sd": null,
+      "min": 22.18,
+      "max": 22.18
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 22.107,
+      "sd": 0.15340940142130932,
+      "min": 21.75,
+      "max": 22.24
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/periodic",
+    "run_id": "99619e207ea2462b9b2eea7cba67940a",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "ingress_packet_count",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 22.875,
+      "sd": 11.661189190358474,
+      "min": 10.0,
+      "max": 49.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 22.333333333333332,
+      "sd": 12.503332889007368,
+      "min": 10.0,
+      "max": 35.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 22.2,
+      "sd": 9.715966241192895,
+      "min": 10.0,
+      "max": 44.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/periodic",
+    "run_id": "99619e207ea2462b9b2eea7cba67940a",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "egress_packet_count",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 15.8125,
+      "sd": 10.784054586904377,
+      "min": 5.0,
+      "max": 40.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 14.333333333333334,
+      "sd": 9.504384952922168,
+      "min": 5.0,
+      "max": 24.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 15.5,
+      "sd": 9.548123724935003,
+      "min": 7.0,
+      "max": 39.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/periodic",
+    "run_id": "99619e207ea2462b9b2eea7cba67940a",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "ingress_tcp_payload_length_sum_bytes",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 1639.375,
+      "sd": 827.3599680107001,
+      "min": 0.0,
+      "max": 3351.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 1560.0,
+      "sd": 585.0,
+      "min": 975.0,
+      "max": 2145.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 1663.9,
+      "sd": 661.2270495912211,
+      "min": 585.0,
+      "max": 3152.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/periodic",
+    "run_id": "99619e207ea2462b9b2eea7cba67940a",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "egress_tcp_payload_length_sum_bytes",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 1736.75,
+      "sd": 851.6765035309279,
+      "min": 0.0,
+      "max": 3537.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 1656.0,
+      "sd": 621.0,
+      "min": 1035.0,
+      "max": 2277.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 1762.7,
+      "sd": 651.4082266733955,
+      "min": 830.0,
+      "max": 3326.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/periodic",
+    "run_id": "99619e207ea2462b9b2eea7cba67940a",
+    "delta_s": "1",
+    "family": "network",
+    "feature": "unique_client_src_ips",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 3.875,
+      "sd": 0.8850612031567836,
+      "min": 2.0,
+      "max": 5.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 4.0,
+      "sd": 0.0,
+      "min": 4.0,
+      "max": 4.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 3.8,
+      "sd": 1.0327955589886446,
+      "min": 2.0,
+      "max": 5.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/periodic",
+    "run_id": "99619e207ea2462b9b2eea7cba67940a",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_starts",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 8.375,
+      "sd": 4.193248541803041,
+      "min": 0.0,
+      "max": 17.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 8.0,
+      "sd": 3.0,
+      "min": 5.0,
+      "max": 11.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 8.5,
+      "sd": 3.3416562759605704,
+      "min": 3.0,
+      "max": 16.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/periodic",
+    "run_id": "99619e207ea2462b9b2eea7cba67940a",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_completions",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 8.375,
+      "sd": 4.096746676734276,
+      "min": 0.0,
+      "max": 17.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 8.0,
+      "sd": 3.0,
+      "min": 5.0,
+      "max": 11.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 8.5,
+      "sd": 3.13581462037113,
+      "min": 4.0,
+      "max": 16.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/periodic",
+    "run_id": "99619e207ea2462b9b2eea7cba67940a",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "request_failures",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/periodic",
+    "run_id": "99619e207ea2462b9b2eea7cba67940a",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "http_failures",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/periodic",
+    "run_id": "99619e207ea2462b9b2eea7cba67940a",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "transport_failures",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/periodic",
+    "run_id": "99619e207ea2462b9b2eea7cba67940a",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "client_failures",
+    "windows": 16,
+    "nulls": 0,
+    "all": {
+      "n": 16,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 0.0,
+      "sd": 0.0,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/periodic",
+    "run_id": "99619e207ea2462b9b2eea7cba67940a",
+    "delta_s": "1",
+    "family": "service",
+    "feature": "mean_duration_ms",
+    "windows": 16,
+    "nulls": 1,
+    "all": {
+      "n": 15,
+      "mean": 38.8180243566809,
+      "sd": 34.174095661713665,
+      "min": 7.087333200070134,
+      "max": 114.28744043752204
+    },
+    "normal_full_inside_plan": {
+      "n": 3,
+      "mean": 17.345115036382044,
+      "sd": 8.919196899740657,
+      "min": 7.087333200070134,
+      "max": 23.271192999914092
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 42.47860879615399,
+      "sd": 33.615377909511544,
+      "min": 11.829356124962942,
+      "max": 114.28744043752204
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/periodic",
+    "run_id": "99619e207ea2462b9b2eea7cba67940a",
+    "delta_s": "1",
+    "family": "infrastructure",
+    "feature": "mean_cpu_percent",
+    "windows": 16,
+    "nulls": 3,
+    "all": {
+      "n": 13,
+      "mean": 27.302307692307693,
+      "sd": 38.40118664699616,
+      "min": 2.21,
+      "max": 107.98
+    },
+    "normal_full_inside_plan": {
+      "n": 1,
+      "mean": 4.45,
+      "sd": null,
+      "min": 4.45,
+      "max": 4.45
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 33.088,
+      "sd": 42.411586414825635,
+      "min": 2.21,
+      "max": 107.98
+    }
+  },
+  {
+    "feature_dataset": "experiment_results/stage10-final/stage7-validation/periodic",
+    "run_id": "99619e207ea2462b9b2eea7cba67940a",
+    "delta_s": "1",
+    "family": "infrastructure",
+    "feature": "mean_memory_mib",
+    "windows": 16,
+    "nulls": 3,
+    "all": {
+      "n": 13,
+      "mean": 21.972307692307695,
+      "sd": 0.14012814647991856,
+      "min": 21.68,
+      "max": 22.2
+    },
+    "normal_full_inside_plan": {
+      "n": 1,
+      "mean": 22.2,
+      "sd": null,
+      "min": 22.2,
+      "max": 22.2
+    },
+    "attack_full": {
+      "n": 10,
+      "mean": 21.975,
+      "sd": 0.10373577546397007,
+      "min": 21.68,
+      "max": 22.01
+    }
+  }
+]

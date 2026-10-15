@@ -1,0 +1,8 @@
+{
+  "protected_files_checked_unchanged": 3710,
+  "changed_protected_files": [],
+  "manifest_file_hashes_checked": 1835,
+  "hash_errors": [],
+  "scope": "Read-only descriptive inventory; no experiment, detector or evaluator executed; no commit",
+  "limitations": "Hashes checked for listed datasets and final feature outputs; not a new Stage 9 validation; does not certify source authenticity."
+}
