@@ -1,0 +1,4657 @@
+{
+  "nominal_seconds": 12672,
+  "run_count": 66,
+  "runs": [
+    {
+      "attack_ground_truth_expected": false,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": null,
+          "duration_seconds": 36,
+          "enabled": false,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "continuous",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 240,
+        "id": "stage14_baseline_386892579_B",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 386892579,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "27894cc6c0a3c7d52d4d67385d090a906c18e0f7191abc342a4eb7a4dff19299",
+      "duration_seconds": 240,
+      "executed": false,
+      "fit_interval": [
+        48,
+        240
+      ],
+      "order": 1,
+      "paired_positions": null,
+      "partition": "baseline",
+      "role": "baseline",
+      "scenario": "B",
+      "scientific": true,
+      "seed": 386892579
+    },
+    {
+      "attack_ground_truth_expected": false,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": null,
+          "duration_seconds": 36,
+          "enabled": false,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "continuous",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 240,
+        "id": "stage14_baseline_15825709_B",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 15825709,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "e01ffa250bcb3caedf47ddd26946071077794511f57e50e37b589a6a6fc7ccf3",
+      "duration_seconds": 240,
+      "executed": false,
+      "fit_interval": [
+        48,
+        240
+      ],
+      "order": 2,
+      "paired_positions": null,
+      "partition": "baseline",
+      "role": "baseline",
+      "scenario": "B",
+      "scientific": true,
+      "seed": 15825709
+    },
+    {
+      "attack_ground_truth_expected": false,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": null,
+          "duration_seconds": 36,
+          "enabled": false,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "continuous",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 240,
+        "id": "stage14_baseline_556499976_B",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 556499976,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "603960be964fa545ad35a56d69e8eed64cd6f543313d6f492f51c21832a9bdfd",
+      "duration_seconds": 240,
+      "executed": false,
+      "fit_interval": [
+        48,
+        240
+      ],
+      "order": 3,
+      "paired_positions": null,
+      "partition": "baseline",
+      "role": "baseline",
+      "scenario": "B",
+      "scientific": true,
+      "seed": 556499976
+    },
+    {
+      "attack_ground_truth_expected": false,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": null,
+          "duration_seconds": 36,
+          "enabled": false,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "continuous",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 240,
+        "id": "stage14_baseline_678133177_B",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 678133177,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "0e57a08e290b402c0b2c9fd7f98b402ab6cebac10cb3aa09e13f4df8606c4185",
+      "duration_seconds": 240,
+      "executed": false,
+      "fit_interval": [
+        48,
+        240
+      ],
+      "order": 4,
+      "paired_positions": null,
+      "partition": "baseline",
+      "role": "baseline",
+      "scenario": "B",
+      "scientific": true,
+      "seed": 678133177
+    },
+    {
+      "attack_ground_truth_expected": false,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": null,
+          "duration_seconds": 36,
+          "enabled": false,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "continuous",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 240,
+        "id": "stage14_baseline_1027200967_B",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 1027200967,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "98febf0f977291a10fe2eb4f83a3d96d9e1e7859d1acf353d5f4ab8b95efae9a",
+      "duration_seconds": 240,
+      "executed": false,
+      "fit_interval": [
+        48,
+        240
+      ],
+      "order": 5,
+      "paired_positions": null,
+      "partition": "baseline",
+      "role": "baseline",
+      "scenario": "B",
+      "scientific": true,
+      "seed": 1027200967
+    },
+    {
+      "attack_ground_truth_expected": false,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": null,
+          "duration_seconds": 36,
+          "enabled": false,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "continuous",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 240,
+        "id": "stage14_baseline_774915721_B",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 774915721,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "fdc4b01024c43b024528f3f8de0a6fe6ca68b5c9e261a3606519faa2780981eb",
+      "duration_seconds": 240,
+      "executed": false,
+      "fit_interval": [
+        48,
+        240
+      ],
+      "order": 6,
+      "paired_positions": null,
+      "partition": "baseline",
+      "role": "baseline",
+      "scenario": "B",
+      "scientific": true,
+      "seed": 774915721
+    },
+    {
+      "attack_ground_truth_expected": false,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": null,
+          "duration_seconds": 36,
+          "enabled": false,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "continuous",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 360,
+        "id": "stage14_calibration_250861660_B",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 250861660,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "743fca1e721b6106a047c2aac0f19b069c7f970548b5017896b07ae54ac7df3d",
+      "duration_seconds": 360,
+      "executed": false,
+      "fit_interval": null,
+      "order": 7,
+      "paired_positions": null,
+      "partition": "calibration",
+      "role": "calibration",
+      "scenario": "B",
+      "scientific": true,
+      "seed": 250861660
+    },
+    {
+      "attack_ground_truth_expected": false,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": null,
+          "duration_seconds": 36,
+          "enabled": false,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "continuous",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 360,
+        "id": "stage14_calibration_1935927024_B",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 1935927024,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "6e66843b28094f470bcc7997cc63ac71b7db8629be766f090ff702caa511e80b",
+      "duration_seconds": 360,
+      "executed": false,
+      "fit_interval": null,
+      "order": 8,
+      "paired_positions": null,
+      "partition": "calibration",
+      "role": "calibration",
+      "scenario": "B",
+      "scientific": true,
+      "seed": 1935927024
+    },
+    {
+      "attack_ground_truth_expected": false,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": null,
+          "duration_seconds": 36,
+          "enabled": false,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "continuous",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 360,
+        "id": "stage14_calibration_688216134_B",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 688216134,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "3a445c99d80787c1dcbfabe2189e5c61b5f6f982cce83fb2f68aa7c518900f16",
+      "duration_seconds": 360,
+      "executed": false,
+      "fit_interval": null,
+      "order": 9,
+      "paired_positions": null,
+      "partition": "calibration",
+      "role": "calibration",
+      "scenario": "B",
+      "scientific": true,
+      "seed": 688216134
+    },
+    {
+      "attack_ground_truth_expected": false,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": null,
+          "duration_seconds": 36,
+          "enabled": false,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "continuous",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 360,
+        "id": "stage14_calibration_3772247283_B",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 3772247283,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "151fa7d0bf4d06e38d941aac4d8f556c756651ae14d3c8a9b3b22ba700cb5e0b",
+      "duration_seconds": 360,
+      "executed": false,
+      "fit_interval": null,
+      "order": 10,
+      "paired_positions": null,
+      "partition": "calibration",
+      "role": "calibration",
+      "scenario": "B",
+      "scientific": true,
+      "seed": 3772247283
+    },
+    {
+      "attack_ground_truth_expected": false,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": null,
+          "duration_seconds": 36,
+          "enabled": false,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "continuous",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 360,
+        "id": "stage14_calibration_2534925364_B",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 2534925364,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "225ae2688366464f5a773490e655222fab070fb28756ea7b360fcef2e543cec1",
+      "duration_seconds": 360,
+      "executed": false,
+      "fit_interval": null,
+      "order": 11,
+      "paired_positions": null,
+      "partition": "calibration",
+      "role": "calibration",
+      "scenario": "B",
+      "scientific": true,
+      "seed": 2534925364
+    },
+    {
+      "attack_ground_truth_expected": false,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": null,
+          "duration_seconds": 36,
+          "enabled": false,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "continuous",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 360,
+        "id": "stage14_calibration_2465454157_B",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 2465454157,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "8f52753a9994b952641ddb70b96fd88498b4fab2446c7505816bf575e5f76dec",
+      "duration_seconds": 360,
+      "executed": false,
+      "fit_interval": null,
+      "order": 12,
+      "paired_positions": null,
+      "partition": "calibration",
+      "role": "calibration",
+      "scenario": "B",
+      "scientific": true,
+      "seed": 2465454157
+    },
+    {
+      "attack_ground_truth_expected": false,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": null,
+          "duration_seconds": 36,
+          "enabled": false,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "continuous",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 360,
+        "id": "stage14_calibration_1258649561_B",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 1258649561,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "78fa79627756044bb3ba1da1fbcaca05d21171664c595469653031b515f78d21",
+      "duration_seconds": 360,
+      "executed": false,
+      "fit_interval": null,
+      "order": 13,
+      "paired_positions": null,
+      "partition": "calibration",
+      "role": "calibration",
+      "scenario": "B",
+      "scientific": true,
+      "seed": 1258649561
+    },
+    {
+      "attack_ground_truth_expected": false,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": null,
+          "duration_seconds": 36,
+          "enabled": false,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "continuous",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 360,
+        "id": "stage14_calibration_1476838592_B",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 1476838592,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "6d9af4d0c16d19491b4068136875120749ba0574eae83de9543d52ac4144eab6",
+      "duration_seconds": 360,
+      "executed": false,
+      "fit_interval": null,
+      "order": 14,
+      "paired_positions": null,
+      "partition": "calibration",
+      "role": "calibration",
+      "scenario": "B",
+      "scientific": true,
+      "seed": 1476838592
+    },
+    {
+      "attack_ground_truth_expected": false,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": null,
+          "duration_seconds": 36,
+          "enabled": false,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "continuous",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 360,
+        "id": "stage14_calibration_2587138917_B",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 2587138917,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "9a13bd5164c3deb0b3d5ae1b0949ccfba087b3f4decbdcfde4bd985ce2c285ee",
+      "duration_seconds": 360,
+      "executed": false,
+      "fit_interval": null,
+      "order": 15,
+      "paired_positions": null,
+      "partition": "calibration",
+      "role": "calibration",
+      "scenario": "B",
+      "scientific": true,
+      "seed": 2587138917
+    },
+    {
+      "attack_ground_truth_expected": false,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": null,
+          "duration_seconds": 36,
+          "enabled": false,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "continuous",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 360,
+        "id": "stage14_calibration_1882561902_B",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 1882561902,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "0f3efd6ee26001d3348a488388e2bd52bdd6a71ed35cd218a087081e1fa44009",
+      "duration_seconds": 360,
+      "executed": false,
+      "fit_interval": null,
+      "order": 16,
+      "paired_positions": null,
+      "partition": "calibration",
+      "role": "calibration",
+      "scenario": "B",
+      "scientific": true,
+      "seed": 1882561902
+    },
+    {
+      "attack_ground_truth_expected": false,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": null,
+          "duration_seconds": 36,
+          "enabled": false,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "continuous",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 360,
+        "id": "stage14_calibration_3313573378_B",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 3313573378,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "1860303594416c04221dd94a49f3e2bb733951f992a8be33e0058cc5e071325e",
+      "duration_seconds": 360,
+      "executed": false,
+      "fit_interval": null,
+      "order": 17,
+      "paired_positions": null,
+      "partition": "calibration",
+      "role": "calibration",
+      "scenario": "B",
+      "scientific": true,
+      "seed": 3313573378
+    },
+    {
+      "attack_ground_truth_expected": false,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": null,
+          "duration_seconds": 36,
+          "enabled": false,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "continuous",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 360,
+        "id": "stage14_calibration_4091289086_B",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 4091289086,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "7c005cd891dd8e11dc9e3be41e308710403d09921318992cda1189b781f21d64",
+      "duration_seconds": 360,
+      "executed": false,
+      "fit_interval": null,
+      "order": 18,
+      "paired_positions": null,
+      "partition": "calibration",
+      "role": "calibration",
+      "scenario": "B",
+      "scientific": true,
+      "seed": 4091289086
+    },
+    {
+      "attack_ground_truth_expected": false,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": null,
+          "duration_seconds": 36,
+          "enabled": false,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "continuous",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 144,
+        "id": "stage14_test_171864802_B",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 171864802,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "60e8bd6a646c6eda3b42e9bd178a8f0024e245bce485e2770b29bf71e24c2272",
+      "duration_seconds": 144,
+      "executed": false,
+      "fit_interval": null,
+      "order": 19,
+      "paired_positions": {
+        "ATTACK": [
+          48,
+          84
+        ],
+        "POST": [
+          84,
+          144
+        ],
+        "PRE": [
+          0,
+          48
+        ]
+      },
+      "partition": "test",
+      "role": "test",
+      "scenario": "B",
+      "scientific": true,
+      "seed": 171864802
+    },
+    {
+      "attack_ground_truth_expected": true,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": null,
+          "duration_seconds": 36,
+          "enabled": true,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "continuous",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 144,
+        "id": "stage14_test_171864802_C",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 171864802,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "4e142fef8f5a2a1037127463a34a470bd277b7eb7a250b92c1809cd2a18a79f8",
+      "duration_seconds": 144,
+      "executed": false,
+      "fit_interval": null,
+      "order": 20,
+      "paired_positions": {
+        "ATTACK": [
+          48,
+          84
+        ],
+        "POST": [
+          84,
+          144
+        ],
+        "PRE": [
+          0,
+          48
+        ]
+      },
+      "partition": "test",
+      "role": "test",
+      "scenario": "C",
+      "scientific": true,
+      "seed": 171864802
+    },
+    {
+      "attack_ground_truth_expected": true,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": {
+            "duration_seconds": 2,
+            "period_seconds": 6
+          },
+          "duration_seconds": 36,
+          "enabled": true,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "periodic_burst",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 144,
+        "id": "stage14_test_171864802_P",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 171864802,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "6dedb88c3e356e9d8aece2aaa40124edcbdb4515592012d9791391bd814db5f4",
+      "duration_seconds": 144,
+      "executed": false,
+      "fit_interval": null,
+      "order": 21,
+      "paired_positions": {
+        "ATTACK": [
+          48,
+          84
+        ],
+        "POST": [
+          84,
+          144
+        ],
+        "PRE": [
+          0,
+          48
+        ]
+      },
+      "partition": "test",
+      "role": "test",
+      "scenario": "P",
+      "scientific": true,
+      "seed": 171864802
+    },
+    {
+      "attack_ground_truth_expected": false,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": null,
+          "duration_seconds": 36,
+          "enabled": false,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "continuous",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 144,
+        "id": "stage14_test_2617993097_B",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 2617993097,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "c8eb324a8cbc9ff79c00e7776db7f6ff3f3e05bff4b2aacb3786748358535f56",
+      "duration_seconds": 144,
+      "executed": false,
+      "fit_interval": null,
+      "order": 22,
+      "paired_positions": {
+        "ATTACK": [
+          48,
+          84
+        ],
+        "POST": [
+          84,
+          144
+        ],
+        "PRE": [
+          0,
+          48
+        ]
+      },
+      "partition": "test",
+      "role": "test",
+      "scenario": "B",
+      "scientific": true,
+      "seed": 2617993097
+    },
+    {
+      "attack_ground_truth_expected": true,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": null,
+          "duration_seconds": 36,
+          "enabled": true,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "continuous",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 144,
+        "id": "stage14_test_2617993097_C",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 2617993097,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "fabc4fd9d58883ad58eb14e7659075cf16aec85ae48c27d4d410ad7aa53628be",
+      "duration_seconds": 144,
+      "executed": false,
+      "fit_interval": null,
+      "order": 23,
+      "paired_positions": {
+        "ATTACK": [
+          48,
+          84
+        ],
+        "POST": [
+          84,
+          144
+        ],
+        "PRE": [
+          0,
+          48
+        ]
+      },
+      "partition": "test",
+      "role": "test",
+      "scenario": "C",
+      "scientific": true,
+      "seed": 2617993097
+    },
+    {
+      "attack_ground_truth_expected": true,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": {
+            "duration_seconds": 2,
+            "period_seconds": 6
+          },
+          "duration_seconds": 36,
+          "enabled": true,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "periodic_burst",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 144,
+        "id": "stage14_test_2617993097_P",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 2617993097,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "5632a3f4cc0619ff74413619386ee0037153f6a89ec1b75411940de4e4e8985a",
+      "duration_seconds": 144,
+      "executed": false,
+      "fit_interval": null,
+      "order": 24,
+      "paired_positions": {
+        "ATTACK": [
+          48,
+          84
+        ],
+        "POST": [
+          84,
+          144
+        ],
+        "PRE": [
+          0,
+          48
+        ]
+      },
+      "partition": "test",
+      "role": "test",
+      "scenario": "P",
+      "scientific": true,
+      "seed": 2617993097
+    },
+    {
+      "attack_ground_truth_expected": false,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": null,
+          "duration_seconds": 36,
+          "enabled": false,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "continuous",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 144,
+        "id": "stage14_test_4207362430_B",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 4207362430,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "fdf50bfe514a6f3ad56be81a920f3887af883121a4685c3ea722be277093cee9",
+      "duration_seconds": 144,
+      "executed": false,
+      "fit_interval": null,
+      "order": 25,
+      "paired_positions": {
+        "ATTACK": [
+          48,
+          84
+        ],
+        "POST": [
+          84,
+          144
+        ],
+        "PRE": [
+          0,
+          48
+        ]
+      },
+      "partition": "test",
+      "role": "test",
+      "scenario": "B",
+      "scientific": true,
+      "seed": 4207362430
+    },
+    {
+      "attack_ground_truth_expected": true,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": null,
+          "duration_seconds": 36,
+          "enabled": true,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "continuous",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 144,
+        "id": "stage14_test_4207362430_C",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 4207362430,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "3c6177646f1349551b956f2f2efe9b5ef8244a882e0b97ea5abaf3dcc94d968e",
+      "duration_seconds": 144,
+      "executed": false,
+      "fit_interval": null,
+      "order": 26,
+      "paired_positions": {
+        "ATTACK": [
+          48,
+          84
+        ],
+        "POST": [
+          84,
+          144
+        ],
+        "PRE": [
+          0,
+          48
+        ]
+      },
+      "partition": "test",
+      "role": "test",
+      "scenario": "C",
+      "scientific": true,
+      "seed": 4207362430
+    },
+    {
+      "attack_ground_truth_expected": true,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": {
+            "duration_seconds": 2,
+            "period_seconds": 6
+          },
+          "duration_seconds": 36,
+          "enabled": true,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "periodic_burst",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 144,
+        "id": "stage14_test_4207362430_P",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 4207362430,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "e05cb48c8d023d9cf8160dd64d95e43627209f3a76331f0eb3e307c7aa851925",
+      "duration_seconds": 144,
+      "executed": false,
+      "fit_interval": null,
+      "order": 27,
+      "paired_positions": {
+        "ATTACK": [
+          48,
+          84
+        ],
+        "POST": [
+          84,
+          144
+        ],
+        "PRE": [
+          0,
+          48
+        ]
+      },
+      "partition": "test",
+      "role": "test",
+      "scenario": "P",
+      "scientific": true,
+      "seed": 4207362430
+    },
+    {
+      "attack_ground_truth_expected": false,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": null,
+          "duration_seconds": 36,
+          "enabled": false,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "continuous",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 144,
+        "id": "stage14_test_3751420894_B",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 3751420894,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "0d0a2f11769403438b11f16dd8aa2e9312197c73d19efddf32a9cd2683b6282e",
+      "duration_seconds": 144,
+      "executed": false,
+      "fit_interval": null,
+      "order": 28,
+      "paired_positions": {
+        "ATTACK": [
+          48,
+          84
+        ],
+        "POST": [
+          84,
+          144
+        ],
+        "PRE": [
+          0,
+          48
+        ]
+      },
+      "partition": "test",
+      "role": "test",
+      "scenario": "B",
+      "scientific": true,
+      "seed": 3751420894
+    },
+    {
+      "attack_ground_truth_expected": true,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": null,
+          "duration_seconds": 36,
+          "enabled": true,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "continuous",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 144,
+        "id": "stage14_test_3751420894_C",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 3751420894,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "b25b421aae7c4566fcdd869b74562a9fe41184329aa06c22bffaac6f4f506ba3",
+      "duration_seconds": 144,
+      "executed": false,
+      "fit_interval": null,
+      "order": 29,
+      "paired_positions": {
+        "ATTACK": [
+          48,
+          84
+        ],
+        "POST": [
+          84,
+          144
+        ],
+        "PRE": [
+          0,
+          48
+        ]
+      },
+      "partition": "test",
+      "role": "test",
+      "scenario": "C",
+      "scientific": true,
+      "seed": 3751420894
+    },
+    {
+      "attack_ground_truth_expected": true,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": {
+            "duration_seconds": 2,
+            "period_seconds": 6
+          },
+          "duration_seconds": 36,
+          "enabled": true,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "periodic_burst",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 144,
+        "id": "stage14_test_3751420894_P",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 3751420894,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "cbb0f430386dffc63c9b19808b826d8c0b3cfdacc767c3997cb2195a43c651d0",
+      "duration_seconds": 144,
+      "executed": false,
+      "fit_interval": null,
+      "order": 30,
+      "paired_positions": {
+        "ATTACK": [
+          48,
+          84
+        ],
+        "POST": [
+          84,
+          144
+        ],
+        "PRE": [
+          0,
+          48
+        ]
+      },
+      "partition": "test",
+      "role": "test",
+      "scenario": "P",
+      "scientific": true,
+      "seed": 3751420894
+    },
+    {
+      "attack_ground_truth_expected": false,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": null,
+          "duration_seconds": 36,
+          "enabled": false,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "continuous",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 144,
+        "id": "stage14_test_3321204838_B",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 3321204838,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "928c4fbbe456171723e1315bac5206102ab9df64fdbd029544ebb160e3b7bdfe",
+      "duration_seconds": 144,
+      "executed": false,
+      "fit_interval": null,
+      "order": 31,
+      "paired_positions": {
+        "ATTACK": [
+          48,
+          84
+        ],
+        "POST": [
+          84,
+          144
+        ],
+        "PRE": [
+          0,
+          48
+        ]
+      },
+      "partition": "test",
+      "role": "test",
+      "scenario": "B",
+      "scientific": true,
+      "seed": 3321204838
+    },
+    {
+      "attack_ground_truth_expected": true,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": null,
+          "duration_seconds": 36,
+          "enabled": true,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "continuous",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 144,
+        "id": "stage14_test_3321204838_C",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 3321204838,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "80cf36ad2622888f70462fc36ad0128e2166a0fdf070137efb1248e76fa2edf2",
+      "duration_seconds": 144,
+      "executed": false,
+      "fit_interval": null,
+      "order": 32,
+      "paired_positions": {
+        "ATTACK": [
+          48,
+          84
+        ],
+        "POST": [
+          84,
+          144
+        ],
+        "PRE": [
+          0,
+          48
+        ]
+      },
+      "partition": "test",
+      "role": "test",
+      "scenario": "C",
+      "scientific": true,
+      "seed": 3321204838
+    },
+    {
+      "attack_ground_truth_expected": true,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": {
+            "duration_seconds": 2,
+            "period_seconds": 6
+          },
+          "duration_seconds": 36,
+          "enabled": true,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "periodic_burst",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 144,
+        "id": "stage14_test_3321204838_P",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 3321204838,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "da4fb59ec94f40542a96e5157289788e9123496158115a75aebcd61045683cc3",
+      "duration_seconds": 144,
+      "executed": false,
+      "fit_interval": null,
+      "order": 33,
+      "paired_positions": {
+        "ATTACK": [
+          48,
+          84
+        ],
+        "POST": [
+          84,
+          144
+        ],
+        "PRE": [
+          0,
+          48
+        ]
+      },
+      "partition": "test",
+      "role": "test",
+      "scenario": "P",
+      "scientific": true,
+      "seed": 3321204838
+    },
+    {
+      "attack_ground_truth_expected": false,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": null,
+          "duration_seconds": 36,
+          "enabled": false,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "continuous",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 144,
+        "id": "stage14_test_1145928936_B",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 1145928936,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "ea476351504e051f3d8bfa92e3f98502ea5c783448662f48b9282095b5fdc372",
+      "duration_seconds": 144,
+      "executed": false,
+      "fit_interval": null,
+      "order": 34,
+      "paired_positions": {
+        "ATTACK": [
+          48,
+          84
+        ],
+        "POST": [
+          84,
+          144
+        ],
+        "PRE": [
+          0,
+          48
+        ]
+      },
+      "partition": "test",
+      "role": "test",
+      "scenario": "B",
+      "scientific": true,
+      "seed": 1145928936
+    },
+    {
+      "attack_ground_truth_expected": true,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": null,
+          "duration_seconds": 36,
+          "enabled": true,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "continuous",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 144,
+        "id": "stage14_test_1145928936_C",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 1145928936,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "e8d575e766e17ea1cc21964fe9d3c32f01289de0a5c6fa50c65b84febfe0e648",
+      "duration_seconds": 144,
+      "executed": false,
+      "fit_interval": null,
+      "order": 35,
+      "paired_positions": {
+        "ATTACK": [
+          48,
+          84
+        ],
+        "POST": [
+          84,
+          144
+        ],
+        "PRE": [
+          0,
+          48
+        ]
+      },
+      "partition": "test",
+      "role": "test",
+      "scenario": "C",
+      "scientific": true,
+      "seed": 1145928936
+    },
+    {
+      "attack_ground_truth_expected": true,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": {
+            "duration_seconds": 2,
+            "period_seconds": 6
+          },
+          "duration_seconds": 36,
+          "enabled": true,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "periodic_burst",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 144,
+        "id": "stage14_test_1145928936_P",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 1145928936,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "500797063845dc2f28350f09f8e4980784ad5cde056e3e5cc833f1517ae4b41a",
+      "duration_seconds": 144,
+      "executed": false,
+      "fit_interval": null,
+      "order": 36,
+      "paired_positions": {
+        "ATTACK": [
+          48,
+          84
+        ],
+        "POST": [
+          84,
+          144
+        ],
+        "PRE": [
+          0,
+          48
+        ]
+      },
+      "partition": "test",
+      "role": "test",
+      "scenario": "P",
+      "scientific": true,
+      "seed": 1145928936
+    },
+    {
+      "attack_ground_truth_expected": false,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": null,
+          "duration_seconds": 36,
+          "enabled": false,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "continuous",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 144,
+        "id": "stage14_test_3205651767_B",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 3205651767,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "52c114e9e4dd2044f89da7ce6dc4bb26a74bba57505f32773c1f21dd8d663402",
+      "duration_seconds": 144,
+      "executed": false,
+      "fit_interval": null,
+      "order": 37,
+      "paired_positions": {
+        "ATTACK": [
+          48,
+          84
+        ],
+        "POST": [
+          84,
+          144
+        ],
+        "PRE": [
+          0,
+          48
+        ]
+      },
+      "partition": "test",
+      "role": "test",
+      "scenario": "B",
+      "scientific": true,
+      "seed": 3205651767
+    },
+    {
+      "attack_ground_truth_expected": true,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": null,
+          "duration_seconds": 36,
+          "enabled": true,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "continuous",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 144,
+        "id": "stage14_test_3205651767_C",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 3205651767,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "136b4f7e92f606bc5a70c06aee9622410d1f994fcd194e0cf5a1aecc1ff886cf",
+      "duration_seconds": 144,
+      "executed": false,
+      "fit_interval": null,
+      "order": 38,
+      "paired_positions": {
+        "ATTACK": [
+          48,
+          84
+        ],
+        "POST": [
+          84,
+          144
+        ],
+        "PRE": [
+          0,
+          48
+        ]
+      },
+      "partition": "test",
+      "role": "test",
+      "scenario": "C",
+      "scientific": true,
+      "seed": 3205651767
+    },
+    {
+      "attack_ground_truth_expected": true,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": {
+            "duration_seconds": 2,
+            "period_seconds": 6
+          },
+          "duration_seconds": 36,
+          "enabled": true,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "periodic_burst",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 144,
+        "id": "stage14_test_3205651767_P",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 3205651767,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "a3649981c4178e9c75278277009165793aba6e08e0c52f668a695774d94c095e",
+      "duration_seconds": 144,
+      "executed": false,
+      "fit_interval": null,
+      "order": 39,
+      "paired_positions": {
+        "ATTACK": [
+          48,
+          84
+        ],
+        "POST": [
+          84,
+          144
+        ],
+        "PRE": [
+          0,
+          48
+        ]
+      },
+      "partition": "test",
+      "role": "test",
+      "scenario": "P",
+      "scientific": true,
+      "seed": 3205651767
+    },
+    {
+      "attack_ground_truth_expected": false,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": null,
+          "duration_seconds": 36,
+          "enabled": false,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "continuous",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 144,
+        "id": "stage14_test_1156532787_B",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 1156532787,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "f487ce2b250dba63b6e83ff4f137746858af0808a2ba959547cfc1944cd3ddef",
+      "duration_seconds": 144,
+      "executed": false,
+      "fit_interval": null,
+      "order": 40,
+      "paired_positions": {
+        "ATTACK": [
+          48,
+          84
+        ],
+        "POST": [
+          84,
+          144
+        ],
+        "PRE": [
+          0,
+          48
+        ]
+      },
+      "partition": "test",
+      "role": "test",
+      "scenario": "B",
+      "scientific": true,
+      "seed": 1156532787
+    },
+    {
+      "attack_ground_truth_expected": true,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": null,
+          "duration_seconds": 36,
+          "enabled": true,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "continuous",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 144,
+        "id": "stage14_test_1156532787_C",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 1156532787,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "4065f62746a352297a345cc0c0803e46849d1e7bf30d3b3763459482daf0bffd",
+      "duration_seconds": 144,
+      "executed": false,
+      "fit_interval": null,
+      "order": 41,
+      "paired_positions": {
+        "ATTACK": [
+          48,
+          84
+        ],
+        "POST": [
+          84,
+          144
+        ],
+        "PRE": [
+          0,
+          48
+        ]
+      },
+      "partition": "test",
+      "role": "test",
+      "scenario": "C",
+      "scientific": true,
+      "seed": 1156532787
+    },
+    {
+      "attack_ground_truth_expected": true,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": {
+            "duration_seconds": 2,
+            "period_seconds": 6
+          },
+          "duration_seconds": 36,
+          "enabled": true,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "periodic_burst",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 144,
+        "id": "stage14_test_1156532787_P",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 1156532787,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "f702bb8b5c435c2ad2e7fa3652386490c7152d1ddee886ad516ef26ce027cca2",
+      "duration_seconds": 144,
+      "executed": false,
+      "fit_interval": null,
+      "order": 42,
+      "paired_positions": {
+        "ATTACK": [
+          48,
+          84
+        ],
+        "POST": [
+          84,
+          144
+        ],
+        "PRE": [
+          0,
+          48
+        ]
+      },
+      "partition": "test",
+      "role": "test",
+      "scenario": "P",
+      "scientific": true,
+      "seed": 1156532787
+    },
+    {
+      "attack_ground_truth_expected": false,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": null,
+          "duration_seconds": 36,
+          "enabled": false,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "continuous",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 144,
+        "id": "stage14_test_258231394_B",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 258231394,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "6bd0bac84e36a4464d5ac148607e5dc708104d9a37de91b3f7ec0ba72692a528",
+      "duration_seconds": 144,
+      "executed": false,
+      "fit_interval": null,
+      "order": 43,
+      "paired_positions": {
+        "ATTACK": [
+          48,
+          84
+        ],
+        "POST": [
+          84,
+          144
+        ],
+        "PRE": [
+          0,
+          48
+        ]
+      },
+      "partition": "test",
+      "role": "test",
+      "scenario": "B",
+      "scientific": true,
+      "seed": 258231394
+    },
+    {
+      "attack_ground_truth_expected": true,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": null,
+          "duration_seconds": 36,
+          "enabled": true,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "continuous",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 144,
+        "id": "stage14_test_258231394_C",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 258231394,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "73db8eedb826651841f124802347d49839fd5ec8cba6ea678dd7b9791b787729",
+      "duration_seconds": 144,
+      "executed": false,
+      "fit_interval": null,
+      "order": 44,
+      "paired_positions": {
+        "ATTACK": [
+          48,
+          84
+        ],
+        "POST": [
+          84,
+          144
+        ],
+        "PRE": [
+          0,
+          48
+        ]
+      },
+      "partition": "test",
+      "role": "test",
+      "scenario": "C",
+      "scientific": true,
+      "seed": 258231394
+    },
+    {
+      "attack_ground_truth_expected": true,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": {
+            "duration_seconds": 2,
+            "period_seconds": 6
+          },
+          "duration_seconds": 36,
+          "enabled": true,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "periodic_burst",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 144,
+        "id": "stage14_test_258231394_P",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 258231394,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "a59165e83053d2153c1b61f089687fc8588a4b4d0c99dbe21c5a051e68204eba",
+      "duration_seconds": 144,
+      "executed": false,
+      "fit_interval": null,
+      "order": 45,
+      "paired_positions": {
+        "ATTACK": [
+          48,
+          84
+        ],
+        "POST": [
+          84,
+          144
+        ],
+        "PRE": [
+          0,
+          48
+        ]
+      },
+      "partition": "test",
+      "role": "test",
+      "scenario": "P",
+      "scientific": true,
+      "seed": 258231394
+    },
+    {
+      "attack_ground_truth_expected": false,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": null,
+          "duration_seconds": 36,
+          "enabled": false,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "continuous",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 144,
+        "id": "stage14_test_4052934802_B",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 4052934802,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "fb307acf52a09da2b5807334209a24d3fb85fc286e9c4b71644f5f1a2b6a9857",
+      "duration_seconds": 144,
+      "executed": false,
+      "fit_interval": null,
+      "order": 46,
+      "paired_positions": {
+        "ATTACK": [
+          48,
+          84
+        ],
+        "POST": [
+          84,
+          144
+        ],
+        "PRE": [
+          0,
+          48
+        ]
+      },
+      "partition": "test",
+      "role": "test",
+      "scenario": "B",
+      "scientific": true,
+      "seed": 4052934802
+    },
+    {
+      "attack_ground_truth_expected": true,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": null,
+          "duration_seconds": 36,
+          "enabled": true,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "continuous",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 144,
+        "id": "stage14_test_4052934802_C",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 4052934802,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "5f7abfc64beff3240e4b50db3315538648c42c19261e6431d12ecef15e28a981",
+      "duration_seconds": 144,
+      "executed": false,
+      "fit_interval": null,
+      "order": 47,
+      "paired_positions": {
+        "ATTACK": [
+          48,
+          84
+        ],
+        "POST": [
+          84,
+          144
+        ],
+        "PRE": [
+          0,
+          48
+        ]
+      },
+      "partition": "test",
+      "role": "test",
+      "scenario": "C",
+      "scientific": true,
+      "seed": 4052934802
+    },
+    {
+      "attack_ground_truth_expected": true,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": {
+            "duration_seconds": 2,
+            "period_seconds": 6
+          },
+          "duration_seconds": 36,
+          "enabled": true,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "periodic_burst",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 144,
+        "id": "stage14_test_4052934802_P",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 4052934802,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "70da7c8eeadcccebcb1b2594997b6f5257a08433d6728c616a2da3c764486d1c",
+      "duration_seconds": 144,
+      "executed": false,
+      "fit_interval": null,
+      "order": 48,
+      "paired_positions": {
+        "ATTACK": [
+          48,
+          84
+        ],
+        "POST": [
+          84,
+          144
+        ],
+        "PRE": [
+          0,
+          48
+        ]
+      },
+      "partition": "test",
+      "role": "test",
+      "scenario": "P",
+      "scientific": true,
+      "seed": 4052934802
+    },
+    {
+      "attack_ground_truth_expected": false,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": null,
+          "duration_seconds": 36,
+          "enabled": false,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "continuous",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 144,
+        "id": "stage14_test_1511736727_B",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 1511736727,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "65e5baca2291a3b46e9cafd911ab7586501266cb4f7712d9031de3be5e59139b",
+      "duration_seconds": 144,
+      "executed": false,
+      "fit_interval": null,
+      "order": 49,
+      "paired_positions": {
+        "ATTACK": [
+          48,
+          84
+        ],
+        "POST": [
+          84,
+          144
+        ],
+        "PRE": [
+          0,
+          48
+        ]
+      },
+      "partition": "test",
+      "role": "test",
+      "scenario": "B",
+      "scientific": true,
+      "seed": 1511736727
+    },
+    {
+      "attack_ground_truth_expected": true,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": null,
+          "duration_seconds": 36,
+          "enabled": true,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "continuous",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 144,
+        "id": "stage14_test_1511736727_C",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 1511736727,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "0a420b85f175d9789dd63e4a91bbbccf10f96428f83bbae28fcc466942c93c92",
+      "duration_seconds": 144,
+      "executed": false,
+      "fit_interval": null,
+      "order": 50,
+      "paired_positions": {
+        "ATTACK": [
+          48,
+          84
+        ],
+        "POST": [
+          84,
+          144
+        ],
+        "PRE": [
+          0,
+          48
+        ]
+      },
+      "partition": "test",
+      "role": "test",
+      "scenario": "C",
+      "scientific": true,
+      "seed": 1511736727
+    },
+    {
+      "attack_ground_truth_expected": true,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": {
+            "duration_seconds": 2,
+            "period_seconds": 6
+          },
+          "duration_seconds": 36,
+          "enabled": true,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "periodic_burst",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 144,
+        "id": "stage14_test_1511736727_P",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 1511736727,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "60a46987d75c7d8831ea5a7070d20cb88b6bf20937240c43c5a3e20d43091f77",
+      "duration_seconds": 144,
+      "executed": false,
+      "fit_interval": null,
+      "order": 51,
+      "paired_positions": {
+        "ATTACK": [
+          48,
+          84
+        ],
+        "POST": [
+          84,
+          144
+        ],
+        "PRE": [
+          0,
+          48
+        ]
+      },
+      "partition": "test",
+      "role": "test",
+      "scenario": "P",
+      "scientific": true,
+      "seed": 1511736727
+    },
+    {
+      "attack_ground_truth_expected": false,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": null,
+          "duration_seconds": 36,
+          "enabled": false,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "continuous",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 144,
+        "id": "stage14_test_3145659914_B",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 3145659914,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "e32f020fca7f53aeabe07eb495b73ef658346a7c033564b430f5b48ab307ab91",
+      "duration_seconds": 144,
+      "executed": false,
+      "fit_interval": null,
+      "order": 52,
+      "paired_positions": {
+        "ATTACK": [
+          48,
+          84
+        ],
+        "POST": [
+          84,
+          144
+        ],
+        "PRE": [
+          0,
+          48
+        ]
+      },
+      "partition": "test",
+      "role": "test",
+      "scenario": "B",
+      "scientific": true,
+      "seed": 3145659914
+    },
+    {
+      "attack_ground_truth_expected": true,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": null,
+          "duration_seconds": 36,
+          "enabled": true,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "continuous",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 144,
+        "id": "stage14_test_3145659914_C",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 3145659914,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "0f3adb4e0f158ae2cbda89edab4da7f69d2a95571d7079ba5d61aa17b24010f2",
+      "duration_seconds": 144,
+      "executed": false,
+      "fit_interval": null,
+      "order": 53,
+      "paired_positions": {
+        "ATTACK": [
+          48,
+          84
+        ],
+        "POST": [
+          84,
+          144
+        ],
+        "PRE": [
+          0,
+          48
+        ]
+      },
+      "partition": "test",
+      "role": "test",
+      "scenario": "C",
+      "scientific": true,
+      "seed": 3145659914
+    },
+    {
+      "attack_ground_truth_expected": true,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": {
+            "duration_seconds": 2,
+            "period_seconds": 6
+          },
+          "duration_seconds": 36,
+          "enabled": true,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "periodic_burst",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 144,
+        "id": "stage14_test_3145659914_P",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 3145659914,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "9be516a5e883b8f22ffee4897bdbd205017ad494ec7d888c1d6465a6bb0c50f9",
+      "duration_seconds": 144,
+      "executed": false,
+      "fit_interval": null,
+      "order": 54,
+      "paired_positions": {
+        "ATTACK": [
+          48,
+          84
+        ],
+        "POST": [
+          84,
+          144
+        ],
+        "PRE": [
+          0,
+          48
+        ]
+      },
+      "partition": "test",
+      "role": "test",
+      "scenario": "P",
+      "scientific": true,
+      "seed": 3145659914
+    },
+    {
+      "attack_ground_truth_expected": false,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": null,
+          "duration_seconds": 36,
+          "enabled": false,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "continuous",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 144,
+        "id": "stage14_test_1214769380_B",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 1214769380,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "63f382b97add45baa42fe402cd1d996f070675a8bdf9d0c9c074c5a89aac51a5",
+      "duration_seconds": 144,
+      "executed": false,
+      "fit_interval": null,
+      "order": 55,
+      "paired_positions": {
+        "ATTACK": [
+          48,
+          84
+        ],
+        "POST": [
+          84,
+          144
+        ],
+        "PRE": [
+          0,
+          48
+        ]
+      },
+      "partition": "test",
+      "role": "test",
+      "scenario": "B",
+      "scientific": true,
+      "seed": 1214769380
+    },
+    {
+      "attack_ground_truth_expected": true,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": null,
+          "duration_seconds": 36,
+          "enabled": true,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "continuous",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 144,
+        "id": "stage14_test_1214769380_C",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 1214769380,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "ad572136542b0de1c9e39a65c4e00c0c2525e3f3f563be8d6981e28e905ca54a",
+      "duration_seconds": 144,
+      "executed": false,
+      "fit_interval": null,
+      "order": 56,
+      "paired_positions": {
+        "ATTACK": [
+          48,
+          84
+        ],
+        "POST": [
+          84,
+          144
+        ],
+        "PRE": [
+          0,
+          48
+        ]
+      },
+      "partition": "test",
+      "role": "test",
+      "scenario": "C",
+      "scientific": true,
+      "seed": 1214769380
+    },
+    {
+      "attack_ground_truth_expected": true,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": {
+            "duration_seconds": 2,
+            "period_seconds": 6
+          },
+          "duration_seconds": 36,
+          "enabled": true,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "periodic_burst",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 144,
+        "id": "stage14_test_1214769380_P",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 1214769380,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "241d6014a8ea28f599a1c24ca22c5b2dd8c619b285f55bf9b3d6375f4ca86036",
+      "duration_seconds": 144,
+      "executed": false,
+      "fit_interval": null,
+      "order": 57,
+      "paired_positions": {
+        "ATTACK": [
+          48,
+          84
+        ],
+        "POST": [
+          84,
+          144
+        ],
+        "PRE": [
+          0,
+          48
+        ]
+      },
+      "partition": "test",
+      "role": "test",
+      "scenario": "P",
+      "scientific": true,
+      "seed": 1214769380
+    },
+    {
+      "attack_ground_truth_expected": false,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": null,
+          "duration_seconds": 36,
+          "enabled": false,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "continuous",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 144,
+        "id": "stage14_test_1981484633_B",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 1981484633,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "e8294dffe1f6c5015cfb699d4793c506bef28b038e9e6e23c0dc26b884fcfaaa",
+      "duration_seconds": 144,
+      "executed": false,
+      "fit_interval": null,
+      "order": 58,
+      "paired_positions": {
+        "ATTACK": [
+          48,
+          84
+        ],
+        "POST": [
+          84,
+          144
+        ],
+        "PRE": [
+          0,
+          48
+        ]
+      },
+      "partition": "test",
+      "role": "test",
+      "scenario": "B",
+      "scientific": true,
+      "seed": 1981484633
+    },
+    {
+      "attack_ground_truth_expected": true,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": null,
+          "duration_seconds": 36,
+          "enabled": true,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "continuous",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 144,
+        "id": "stage14_test_1981484633_C",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 1981484633,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "709e38d1a49a4d591b6ed7d432fae88b0077e98c77aa4219d468bee1cc514de2",
+      "duration_seconds": 144,
+      "executed": false,
+      "fit_interval": null,
+      "order": 59,
+      "paired_positions": {
+        "ATTACK": [
+          48,
+          84
+        ],
+        "POST": [
+          84,
+          144
+        ],
+        "PRE": [
+          0,
+          48
+        ]
+      },
+      "partition": "test",
+      "role": "test",
+      "scenario": "C",
+      "scientific": true,
+      "seed": 1981484633
+    },
+    {
+      "attack_ground_truth_expected": true,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": {
+            "duration_seconds": 2,
+            "period_seconds": 6
+          },
+          "duration_seconds": 36,
+          "enabled": true,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "periodic_burst",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 144,
+        "id": "stage14_test_1981484633_P",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 1981484633,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "490e91e2b18792474667d7a379e9cbdbb05992fd19be9cd7fb8432a7c30dfa55",
+      "duration_seconds": 144,
+      "executed": false,
+      "fit_interval": null,
+      "order": 60,
+      "paired_positions": {
+        "ATTACK": [
+          48,
+          84
+        ],
+        "POST": [
+          84,
+          144
+        ],
+        "PRE": [
+          0,
+          48
+        ]
+      },
+      "partition": "test",
+      "role": "test",
+      "scenario": "P",
+      "scientific": true,
+      "seed": 1981484633
+    },
+    {
+      "attack_ground_truth_expected": false,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": null,
+          "duration_seconds": 36,
+          "enabled": false,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "continuous",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 144,
+        "id": "stage14_test_1488329317_B",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 1488329317,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "c4492c906e60f0b0e583b74958538f3e718b5cf5663a0461b99de3abf6793f4d",
+      "duration_seconds": 144,
+      "executed": false,
+      "fit_interval": null,
+      "order": 61,
+      "paired_positions": {
+        "ATTACK": [
+          48,
+          84
+        ],
+        "POST": [
+          84,
+          144
+        ],
+        "PRE": [
+          0,
+          48
+        ]
+      },
+      "partition": "test",
+      "role": "test",
+      "scenario": "B",
+      "scientific": true,
+      "seed": 1488329317
+    },
+    {
+      "attack_ground_truth_expected": true,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": null,
+          "duration_seconds": 36,
+          "enabled": true,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "continuous",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 144,
+        "id": "stage14_test_1488329317_C",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 1488329317,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "8d51dbf03bf7ba43be05838df9b526604f4aca2fcf91f00f156d57a285fa6ed9",
+      "duration_seconds": 144,
+      "executed": false,
+      "fit_interval": null,
+      "order": 62,
+      "paired_positions": {
+        "ATTACK": [
+          48,
+          84
+        ],
+        "POST": [
+          84,
+          144
+        ],
+        "PRE": [
+          0,
+          48
+        ]
+      },
+      "partition": "test",
+      "role": "test",
+      "scenario": "C",
+      "scientific": true,
+      "seed": 1488329317
+    },
+    {
+      "attack_ground_truth_expected": true,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": {
+            "duration_seconds": 2,
+            "period_seconds": 6
+          },
+          "duration_seconds": 36,
+          "enabled": true,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "periodic_burst",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 144,
+        "id": "stage14_test_1488329317_P",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 1488329317,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "a65b91ea9069480c40c068ef2a37ff79ed22b7eef61e4b308692d287aff79213",
+      "duration_seconds": 144,
+      "executed": false,
+      "fit_interval": null,
+      "order": 63,
+      "paired_positions": {
+        "ATTACK": [
+          48,
+          84
+        ],
+        "POST": [
+          84,
+          144
+        ],
+        "PRE": [
+          0,
+          48
+        ]
+      },
+      "partition": "test",
+      "role": "test",
+      "scenario": "P",
+      "scientific": true,
+      "seed": 1488329317
+    },
+    {
+      "attack_ground_truth_expected": false,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": null,
+          "duration_seconds": 36,
+          "enabled": false,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "continuous",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 144,
+        "id": "stage14_test_814930163_B",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 814930163,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "dcc8b17f4c970fc6d97c22c74a0c10246202e95cd726b5463fc534f4d8d7d1ae",
+      "duration_seconds": 144,
+      "executed": false,
+      "fit_interval": null,
+      "order": 64,
+      "paired_positions": {
+        "ATTACK": [
+          48,
+          84
+        ],
+        "POST": [
+          84,
+          144
+        ],
+        "PRE": [
+          0,
+          48
+        ]
+      },
+      "partition": "test",
+      "role": "test",
+      "scenario": "B",
+      "scientific": true,
+      "seed": 814930163
+    },
+    {
+      "attack_ground_truth_expected": true,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": null,
+          "duration_seconds": 36,
+          "enabled": true,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "continuous",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 144,
+        "id": "stage14_test_814930163_C",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 814930163,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "00a84801c239981ca52312cde44a1356eb6b29731d84f0e36e9c6f8840dfcb59",
+      "duration_seconds": 144,
+      "executed": false,
+      "fit_interval": null,
+      "order": 65,
+      "paired_positions": {
+        "ATTACK": [
+          48,
+          84
+        ],
+        "POST": [
+          84,
+          144
+        ],
+        "PRE": [
+          0,
+          48
+        ]
+      },
+      "partition": "test",
+      "role": "test",
+      "scenario": "C",
+      "scientific": true,
+      "seed": 814930163
+    },
+    {
+      "attack_ground_truth_expected": true,
+      "config": {
+        "attack": {
+          "attackers": 1,
+          "burst": {
+            "duration_seconds": 2,
+            "period_seconds": 6
+          },
+          "duration_seconds": 36,
+          "enabled": true,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "profile": "periodic_burst",
+          "rate": 8,
+          "request_timeout_seconds": 2,
+          "start_seconds": 48
+        },
+        "autoscaler": {
+          "enabled": false
+        },
+        "duration_seconds": 144,
+        "id": "stage14_test_814930163_P",
+        "infrastructure": {
+          "initial_instances": 1,
+          "max_instances": 1,
+          "min_instances": 1
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "monitoring": {
+          "history_seconds": 30,
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1
+        },
+        "normal_traffic": {
+          "clients": 4,
+          "endpoint": "/medium",
+          "max_concurrent_sends": 64,
+          "rate": 2,
+          "request_timeout_seconds": 2
+        },
+        "seed": 814930163,
+        "server": {
+          "process_pool_workers": 2
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "config_sha256": "3afc4c7f53ca8b2570b602a6b44e594b0b84289dd3a0c8547a967d125e32d2ab",
+      "duration_seconds": 144,
+      "executed": false,
+      "fit_interval": null,
+      "order": 66,
+      "paired_positions": {
+        "ATTACK": [
+          48,
+          84
+        ],
+        "POST": [
+          84,
+          144
+        ],
+        "PRE": [
+          0,
+          48
+        ]
+      },
+      "partition": "test",
+      "role": "test",
+      "scenario": "P",
+      "scientific": true,
+      "seed": 814930163
+    }
+  ],
+  "schema_version": 1
+}

@@ -1,0 +1,247 @@
+{
+  "created_at_utc": "2026-10-15T22:32:21.477748+00:00",
+  "frozen": {
+    "attacker_rps_per_source": 8,
+    "attackers": 1,
+    "benign_rps_per_source": 2,
+    "benign_sources": 4,
+    "calibration_strategy": "benign_only",
+    "continuous": {
+      "active_seconds": 36,
+      "profile": "continuous"
+    },
+    "cov": {
+      "ddof": 1,
+      "missing": "consecutive_valid_observations",
+      "primary_lookback": 6,
+      "sensitivity_lookbacks": [
+        3,
+        12
+      ],
+      "zero_mean": "unavailable"
+    },
+    "detection_delay": "first_valid_detection_available_time_minus_actual_start",
+    "durations": {
+      "attack": 36,
+      "baseline": 240,
+      "calibration": 360,
+      "post": 60,
+      "pre": 48,
+      "test": 144
+    },
+    "event_truth": {
+      "availability_deadline": "none_eligibility_by_positive_half_open_observation_overlap",
+      "miss_censoring": "not_detected_in_supplied_series_no_finite_decision_deadline",
+      "policy": "global_observation_overlap_decision_availability_v2",
+      "primary": "global_actual_start_to_actual_end",
+      "source": "verified_stage8_attack_events"
+    },
+    "false_alarm_reporting": [
+      "benign_windows",
+      "benign_exposure_seconds",
+      "false_positives",
+      "fpr",
+      "alarms_per_time",
+      "uncertainty_when_appropriate"
+    ],
+    "features": [
+      "ingress_packet_count",
+      "ingress_tcp_payload_length_sum_bytes",
+      "request_starts",
+      "mean_duration_ms",
+      "mean_cpu_percent"
+    ],
+    "fit_interval": {
+      "end_seconds": 240,
+      "inclusion": "whole_windows_contained_in_half_open_interval",
+      "start_seconds": 48
+    },
+    "operation": "/medium",
+    "periodic": {
+      "burst_seconds": 2,
+      "duty_cycle": "1/3",
+      "period_seconds": 6,
+      "profile": "periodic_burst"
+    },
+    "primary_evaluation_horizon": "whole_windows_within_planned_run_duration",
+    "scenarios": {
+      "baseline": [
+        "B"
+      ],
+      "calibration": [
+        "B"
+      ],
+      "test": [
+        "B",
+        "C",
+        "P"
+      ]
+    },
+    "scoring_horizon": "full_feature_series_preserved",
+    "seed_counts": {
+      "baseline": 6,
+      "calibration": 12,
+      "test": 16
+    },
+    "seed_policy": "disjoint_partitions_independent_runs_no_pilot_seed_reuse",
+    "temporal_selections": {
+      "baseline": [
+        48,
+        240
+      ],
+      "calibration": [
+        48,
+        360
+      ],
+      "causal_history": "preserved_from_run_start_no_reset_at_selection_start",
+      "inclusion": "whole_windows_contained_in_half_open_interval",
+      "test": [
+        0,
+        144
+      ]
+    },
+    "test_isolation": "locked_until_models_features_parameters_and_policies_frozen",
+    "topology": {
+      "autoscaling": false,
+      "execution": "containers",
+      "monitor_interval_seconds": 1,
+      "parallel_runs": false,
+      "pool": 2,
+      "proxy": "nginx",
+      "request_timeout_seconds": 2,
+      "send_workers_per_class": 64,
+      "victims": 1
+    },
+    "window_size_seconds": 1,
+    "window_truth": {
+      "attack_overlap": 1,
+      "benign_overlap": 0,
+      "boundary": "excluded_from_primary",
+      "complementary": "continuous_overlap",
+      "primary": "pure_windows_only"
+    },
+    "zscore": {
+      "baseline": "pooled_independent_observations",
+      "ddof": 1,
+      "signed": true
+    }
+  },
+  "limitations": [
+    "One medium operation, host/topology, intensity and periodic pattern; no broad generalization.",
+    "Continuous and periodic differ in queue/admission semantics and average volume.",
+    "Rare false alarms need adequate independent benign exposure.",
+    "Aggregate coverage not proven complete; missing remains missing.",
+    "Sensitivity lookbacks are never selected retrospectively on TEST.",
+    "Thresholds/directions and final release remain unresolved."
+  ],
+  "previous_protocol_hash": "79b204d7d781a939de7a95ab77b8e98ccbd15b5fe250fa237e0db1d0e7fa9e13",
+  "protocol_id": "stage14-balanced",
+  "protocol_version": 2,
+  "provenance": {
+    "baseline_runs": 6,
+    "calibration_runs": 12,
+    "pilot_seeds": [
+      101,
+      211,
+      307,
+      401,
+      503
+    ],
+    "revision": "Stage14A.1 explicit correction BEFORE scientific collection",
+    "run_count": 66,
+    "scientific_runs_before_revision": 0,
+    "source": "user-approved Stage13C protocol B",
+    "stage14a_source_plan_sha256": "f50bfe5d71f2246d6dc7c35561eb7872eb3f4e1366bcfc27bcd0016c944423e1",
+    "test_runs": 48
+  },
+  "references": {
+    "docs/stage13-pilot/design.md": "09b734b797ab7863d47ba829a970c27ed859593b64a8114acebb3b6573050a08",
+    "docs/stage13-pilot/interpretation.md": "7bb79542625f20e4262231d6ba320095740580bd3263c404dad6d03345a3a219",
+    "docs/stage13-pilot/results.md": "3cfed642fa9afced75445b6799aadf70b0a6976241660cf860ea525718084f45",
+    "docs/stage13b-protocol-proposals/report.md": "96a27426ae99ed82f975ca8b369676d95d9f9d249590d4941d00a4f37ee565d7",
+    "experiments/protocols/stage14_environment_lock_v2.json": "5a809b09c9b08527a4ae09b4543e838d84de3702c6d5c033d5fca4aabd6e97e0",
+    "experiments/protocols/stage14_matrix_v2.json": "c211dfbfebc389208c88d4d0af9bab26eb39582b86790655b469eca6bca4f684",
+    "experiments/protocols/stage14_seed_plan_v2.json": "142cb4fd8668e0ebeed4bffbd0cd62d43667fdbd807651d110fa196b74593edb"
+  },
+  "seeds": {
+    "excluded": [
+      101,
+      211,
+      307,
+      401,
+      503
+    ],
+    "method": "sha256_protocol_namespace_partition_index_first32_collision_rejection_v1",
+    "namespace": "stage14-balanced-v1-seeds",
+    "partitions": {
+      "baseline": [
+        386892579,
+        15825709,
+        556499976,
+        678133177,
+        1027200967,
+        774915721
+      ],
+      "calibration": [
+        250861660,
+        1935927024,
+        688216134,
+        3772247283,
+        2534925364,
+        2465454157,
+        1258649561,
+        1476838592,
+        2587138917,
+        1882561902,
+        3313573378,
+        4091289086
+      ],
+      "test": [
+        171864802,
+        2617993097,
+        4207362430,
+        3751420894,
+        3321204838,
+        1145928936,
+        3205651767,
+        1156532787,
+        258231394,
+        4052934802,
+        1511736727,
+        3145659914,
+        1214769380,
+        1981484633,
+        1488329317,
+        814930163
+      ]
+    },
+    "status": "MATERIALIZED"
+  },
+  "status": "FROZEN_DESIGN_PENDING_RELEASE",
+  "unresolved": {
+    "confirmation_hysteresis": {
+      "status": "UNRESOLVED",
+      "value": null
+    },
+    "decision_directions": {
+      "status": "UNRESOLVED",
+      "value": null
+    },
+    "false_positive_operating_budget": {
+      "status": "UNRESOLVED",
+      "value": null
+    },
+    "numerical_thresholds": {
+      "status": "UNRESOLVED",
+      "value": null
+    },
+    "test_pre_region_false_positive_metric_roles": {
+      "status": "UNRESOLVED",
+      "value": null
+    },
+    "uncertainty_reporting_details": {
+      "status": "UNRESOLVED",
+      "value": null
+    }
+  }
+}

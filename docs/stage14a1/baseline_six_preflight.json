@@ -1,0 +1,457 @@
+{
+  "entries": [
+    {
+      "destination": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14-scientific-v2/01_baseline_386892579_B",
+      "execution_id": "7ef38b252782468d931f69f40b9ebff3",
+      "prepared_at_utc": "2026-10-15T22:33:21.598002+00:00",
+      "protocol": {
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiments/protocols/stage14_protocol_v2.json",
+        "protocol_hash": "59f5311e8ee0a05523c80938b7b08ddfaacd0bf8000a077c9de1ab675803872c",
+        "protocol_id": "stage14-balanced",
+        "protocol_version": 2
+      },
+      "row": {
+        "attack_ground_truth_expected": false,
+        "config": {
+          "attack": {
+            "attackers": 1,
+            "burst": null,
+            "duration_seconds": 36,
+            "enabled": false,
+            "endpoint": "/medium",
+            "max_concurrent_sends": 64,
+            "profile": "continuous",
+            "rate": 8,
+            "request_timeout_seconds": 2,
+            "start_seconds": 48
+          },
+          "autoscaler": {
+            "enabled": false
+          },
+          "duration_seconds": 240,
+          "id": "stage14_baseline_386892579_B",
+          "infrastructure": {
+            "initial_instances": 1,
+            "max_instances": 1,
+            "min_instances": 1
+          },
+          "load_balancer": {
+            "enabled": true
+          },
+          "monitoring": {
+            "history_seconds": 30,
+            "interval_seconds": 1,
+            "stats_poll_interval_seconds": 1
+          },
+          "normal_traffic": {
+            "clients": 4,
+            "endpoint": "/medium",
+            "max_concurrent_sends": 64,
+            "rate": 2,
+            "request_timeout_seconds": 2
+          },
+          "seed": 386892579,
+          "server": {
+            "process_pool_workers": 2
+          },
+          "traffic_sources": {
+            "execution": "containers"
+          }
+        },
+        "config_sha256": "27894cc6c0a3c7d52d4d67385d090a906c18e0f7191abc342a4eb7a4dff19299",
+        "duration_seconds": 240,
+        "executed": false,
+        "fit_interval": [
+          48,
+          240
+        ],
+        "order": 1,
+        "paired_positions": null,
+        "partition": "baseline",
+        "role": "baseline",
+        "scenario": "B",
+        "scientific": true,
+        "seed": 386892579
+      },
+      "status": "dry_run_ready"
+    },
+    {
+      "destination": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14-scientific-v2/02_baseline_15825709_B",
+      "execution_id": "0b0dc01edbdd49d48c1cc0456f78b6a9",
+      "prepared_at_utc": "2026-10-15T22:33:21.601071+00:00",
+      "protocol": {
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiments/protocols/stage14_protocol_v2.json",
+        "protocol_hash": "59f5311e8ee0a05523c80938b7b08ddfaacd0bf8000a077c9de1ab675803872c",
+        "protocol_id": "stage14-balanced",
+        "protocol_version": 2
+      },
+      "row": {
+        "attack_ground_truth_expected": false,
+        "config": {
+          "attack": {
+            "attackers": 1,
+            "burst": null,
+            "duration_seconds": 36,
+            "enabled": false,
+            "endpoint": "/medium",
+            "max_concurrent_sends": 64,
+            "profile": "continuous",
+            "rate": 8,
+            "request_timeout_seconds": 2,
+            "start_seconds": 48
+          },
+          "autoscaler": {
+            "enabled": false
+          },
+          "duration_seconds": 240,
+          "id": "stage14_baseline_15825709_B",
+          "infrastructure": {
+            "initial_instances": 1,
+            "max_instances": 1,
+            "min_instances": 1
+          },
+          "load_balancer": {
+            "enabled": true
+          },
+          "monitoring": {
+            "history_seconds": 30,
+            "interval_seconds": 1,
+            "stats_poll_interval_seconds": 1
+          },
+          "normal_traffic": {
+            "clients": 4,
+            "endpoint": "/medium",
+            "max_concurrent_sends": 64,
+            "rate": 2,
+            "request_timeout_seconds": 2
+          },
+          "seed": 15825709,
+          "server": {
+            "process_pool_workers": 2
+          },
+          "traffic_sources": {
+            "execution": "containers"
+          }
+        },
+        "config_sha256": "e01ffa250bcb3caedf47ddd26946071077794511f57e50e37b589a6a6fc7ccf3",
+        "duration_seconds": 240,
+        "executed": false,
+        "fit_interval": [
+          48,
+          240
+        ],
+        "order": 2,
+        "paired_positions": null,
+        "partition": "baseline",
+        "role": "baseline",
+        "scenario": "B",
+        "scientific": true,
+        "seed": 15825709
+      },
+      "status": "dry_run_ready"
+    },
+    {
+      "destination": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14-scientific-v2/03_baseline_556499976_B",
+      "execution_id": "fadb7523f1f9470ba0a18d3a386c9d16",
+      "prepared_at_utc": "2026-10-15T22:33:21.604641+00:00",
+      "protocol": {
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiments/protocols/stage14_protocol_v2.json",
+        "protocol_hash": "59f5311e8ee0a05523c80938b7b08ddfaacd0bf8000a077c9de1ab675803872c",
+        "protocol_id": "stage14-balanced",
+        "protocol_version": 2
+      },
+      "row": {
+        "attack_ground_truth_expected": false,
+        "config": {
+          "attack": {
+            "attackers": 1,
+            "burst": null,
+            "duration_seconds": 36,
+            "enabled": false,
+            "endpoint": "/medium",
+            "max_concurrent_sends": 64,
+            "profile": "continuous",
+            "rate": 8,
+            "request_timeout_seconds": 2,
+            "start_seconds": 48
+          },
+          "autoscaler": {
+            "enabled": false
+          },
+          "duration_seconds": 240,
+          "id": "stage14_baseline_556499976_B",
+          "infrastructure": {
+            "initial_instances": 1,
+            "max_instances": 1,
+            "min_instances": 1
+          },
+          "load_balancer": {
+            "enabled": true
+          },
+          "monitoring": {
+            "history_seconds": 30,
+            "interval_seconds": 1,
+            "stats_poll_interval_seconds": 1
+          },
+          "normal_traffic": {
+            "clients": 4,
+            "endpoint": "/medium",
+            "max_concurrent_sends": 64,
+            "rate": 2,
+            "request_timeout_seconds": 2
+          },
+          "seed": 556499976,
+          "server": {
+            "process_pool_workers": 2
+          },
+          "traffic_sources": {
+            "execution": "containers"
+          }
+        },
+        "config_sha256": "603960be964fa545ad35a56d69e8eed64cd6f543313d6f492f51c21832a9bdfd",
+        "duration_seconds": 240,
+        "executed": false,
+        "fit_interval": [
+          48,
+          240
+        ],
+        "order": 3,
+        "paired_positions": null,
+        "partition": "baseline",
+        "role": "baseline",
+        "scenario": "B",
+        "scientific": true,
+        "seed": 556499976
+      },
+      "status": "dry_run_ready"
+    },
+    {
+      "destination": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14-scientific-v2/04_baseline_678133177_B",
+      "execution_id": "6e4827182b8b453099de006faa16a88c",
+      "prepared_at_utc": "2026-10-15T22:33:21.607793+00:00",
+      "protocol": {
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiments/protocols/stage14_protocol_v2.json",
+        "protocol_hash": "59f5311e8ee0a05523c80938b7b08ddfaacd0bf8000a077c9de1ab675803872c",
+        "protocol_id": "stage14-balanced",
+        "protocol_version": 2
+      },
+      "row": {
+        "attack_ground_truth_expected": false,
+        "config": {
+          "attack": {
+            "attackers": 1,
+            "burst": null,
+            "duration_seconds": 36,
+            "enabled": false,
+            "endpoint": "/medium",
+            "max_concurrent_sends": 64,
+            "profile": "continuous",
+            "rate": 8,
+            "request_timeout_seconds": 2,
+            "start_seconds": 48
+          },
+          "autoscaler": {
+            "enabled": false
+          },
+          "duration_seconds": 240,
+          "id": "stage14_baseline_678133177_B",
+          "infrastructure": {
+            "initial_instances": 1,
+            "max_instances": 1,
+            "min_instances": 1
+          },
+          "load_balancer": {
+            "enabled": true
+          },
+          "monitoring": {
+            "history_seconds": 30,
+            "interval_seconds": 1,
+            "stats_poll_interval_seconds": 1
+          },
+          "normal_traffic": {
+            "clients": 4,
+            "endpoint": "/medium",
+            "max_concurrent_sends": 64,
+            "rate": 2,
+            "request_timeout_seconds": 2
+          },
+          "seed": 678133177,
+          "server": {
+            "process_pool_workers": 2
+          },
+          "traffic_sources": {
+            "execution": "containers"
+          }
+        },
+        "config_sha256": "0e57a08e290b402c0b2c9fd7f98b402ab6cebac10cb3aa09e13f4df8606c4185",
+        "duration_seconds": 240,
+        "executed": false,
+        "fit_interval": [
+          48,
+          240
+        ],
+        "order": 4,
+        "paired_positions": null,
+        "partition": "baseline",
+        "role": "baseline",
+        "scenario": "B",
+        "scientific": true,
+        "seed": 678133177
+      },
+      "status": "dry_run_ready"
+    },
+    {
+      "destination": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14-scientific-v2/05_baseline_1027200967_B",
+      "execution_id": "7917994c95584a23bb3d9b772771f1b1",
+      "prepared_at_utc": "2026-10-15T22:33:21.610871+00:00",
+      "protocol": {
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiments/protocols/stage14_protocol_v2.json",
+        "protocol_hash": "59f5311e8ee0a05523c80938b7b08ddfaacd0bf8000a077c9de1ab675803872c",
+        "protocol_id": "stage14-balanced",
+        "protocol_version": 2
+      },
+      "row": {
+        "attack_ground_truth_expected": false,
+        "config": {
+          "attack": {
+            "attackers": 1,
+            "burst": null,
+            "duration_seconds": 36,
+            "enabled": false,
+            "endpoint": "/medium",
+            "max_concurrent_sends": 64,
+            "profile": "continuous",
+            "rate": 8,
+            "request_timeout_seconds": 2,
+            "start_seconds": 48
+          },
+          "autoscaler": {
+            "enabled": false
+          },
+          "duration_seconds": 240,
+          "id": "stage14_baseline_1027200967_B",
+          "infrastructure": {
+            "initial_instances": 1,
+            "max_instances": 1,
+            "min_instances": 1
+          },
+          "load_balancer": {
+            "enabled": true
+          },
+          "monitoring": {
+            "history_seconds": 30,
+            "interval_seconds": 1,
+            "stats_poll_interval_seconds": 1
+          },
+          "normal_traffic": {
+            "clients": 4,
+            "endpoint": "/medium",
+            "max_concurrent_sends": 64,
+            "rate": 2,
+            "request_timeout_seconds": 2
+          },
+          "seed": 1027200967,
+          "server": {
+            "process_pool_workers": 2
+          },
+          "traffic_sources": {
+            "execution": "containers"
+          }
+        },
+        "config_sha256": "98febf0f977291a10fe2eb4f83a3d96d9e1e7859d1acf353d5f4ab8b95efae9a",
+        "duration_seconds": 240,
+        "executed": false,
+        "fit_interval": [
+          48,
+          240
+        ],
+        "order": 5,
+        "paired_positions": null,
+        "partition": "baseline",
+        "role": "baseline",
+        "scenario": "B",
+        "scientific": true,
+        "seed": 1027200967
+      },
+      "status": "dry_run_ready"
+    },
+    {
+      "destination": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14-scientific-v2/06_baseline_774915721_B",
+      "execution_id": "69175264306f4d2aa61673621650f021",
+      "prepared_at_utc": "2026-10-15T22:33:21.613785+00:00",
+      "protocol": {
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiments/protocols/stage14_protocol_v2.json",
+        "protocol_hash": "59f5311e8ee0a05523c80938b7b08ddfaacd0bf8000a077c9de1ab675803872c",
+        "protocol_id": "stage14-balanced",
+        "protocol_version": 2
+      },
+      "row": {
+        "attack_ground_truth_expected": false,
+        "config": {
+          "attack": {
+            "attackers": 1,
+            "burst": null,
+            "duration_seconds": 36,
+            "enabled": false,
+            "endpoint": "/medium",
+            "max_concurrent_sends": 64,
+            "profile": "continuous",
+            "rate": 8,
+            "request_timeout_seconds": 2,
+            "start_seconds": 48
+          },
+          "autoscaler": {
+            "enabled": false
+          },
+          "duration_seconds": 240,
+          "id": "stage14_baseline_774915721_B",
+          "infrastructure": {
+            "initial_instances": 1,
+            "max_instances": 1,
+            "min_instances": 1
+          },
+          "load_balancer": {
+            "enabled": true
+          },
+          "monitoring": {
+            "history_seconds": 30,
+            "interval_seconds": 1,
+            "stats_poll_interval_seconds": 1
+          },
+          "normal_traffic": {
+            "clients": 4,
+            "endpoint": "/medium",
+            "max_concurrent_sends": 64,
+            "rate": 2,
+            "request_timeout_seconds": 2
+          },
+          "seed": 774915721,
+          "server": {
+            "process_pool_workers": 2
+          },
+          "traffic_sources": {
+            "execution": "containers"
+          }
+        },
+        "config_sha256": "fdc4b01024c43b024528f3f8de0a6fe6ca68b5c9e261a3606519faa2780981eb",
+        "duration_seconds": 240,
+        "executed": false,
+        "fit_interval": [
+          48,
+          240
+        ],
+        "order": 6,
+        "paired_positions": null,
+        "partition": "baseline",
+        "role": "baseline",
+        "scenario": "B",
+        "scientific": true,
+        "seed": 774915721
+      },
+      "status": "dry_run_ready"
+    }
+  ],
+  "environment_sha256": "75d17a9edacc723e2cbf91fae034a0c3aabe0920b51415b8e947e4c8b95ca196",
+  "scientific_simulations_invoked": 0,
+  "scope": "Metadata-only preflight; no simulation, no scientific output reservation"
+}

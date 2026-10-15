@@ -1,0 +1,27 @@
+{
+  "output_root": "experiment_results/stage14-scientific-v2",
+  "references": {
+    "environment_lock": {
+      "path": "experiments/protocols/stage14_environment_lock_v2.json",
+      "sha256": "5a809b09c9b08527a4ae09b4543e838d84de3702c6d5c033d5fca4aabd6e97e0"
+    },
+    "matrix": {
+      "path": "experiments/protocols/stage14_matrix_v2.json",
+      "sha256": "c211dfbfebc389208c88d4d0af9bab26eb39582b86790655b469eca6bca4f684"
+    },
+    "protocol": {
+      "path": "experiments/protocols/stage14_protocol_v2.json",
+      "sha256": "59f5311e8ee0a05523c80938b7b08ddfaacd0bf8000a077c9de1ab675803872c"
+    },
+    "seed_plan": {
+      "path": "experiments/protocols/stage14_seed_plan_v2.json",
+      "sha256": "142cb4fd8668e0ebeed4bffbd0cd62d43667fdbd807651d110fa196b74593edb"
+    },
+    "source_stage14a_plan": {
+      "path": "docs/stage14a/materialized/campaign_plan.json",
+      "sha256": "f50bfe5d71f2246d6dc7c35561eb7872eb3f4e1366bcfc27bcd0016c944423e1"
+    }
+  },
+  "schema_version": 1,
+  "test_release": "LOCKED"
+}

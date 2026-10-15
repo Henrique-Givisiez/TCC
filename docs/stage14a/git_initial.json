@@ -1,0 +1,8 @@
+{
+  "head": "1e6cbf13ccfd2c2de453186325f64b584e724fe5\n",
+  "branch": "refactor/project-organization\n",
+  "tracked_diff": "",
+  "status_at_preservation_capture": "?? docs/stage14a/git_initial.json\n?? docs/stage14a/preservation_before.json\n",
+  "status_before_any_write": "",
+  "evidence": "Initial git status --short returned no entries before creating docs/stage14a; capture includes only this audit creation."
+}

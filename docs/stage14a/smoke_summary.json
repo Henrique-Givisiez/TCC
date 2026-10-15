@@ -1,0 +1,791 @@
+{
+  "decisions_generated": false,
+  "event_attribution_frozen_conflict_unmodified": true,
+  "ground_truth": [
+    {
+      "count": 0,
+      "events": [],
+      "name": "fit_B",
+      "reference": {
+        "dataset_manifest_sha256": "451c1e404a0d01057a85524a1ba0853bdfb7ecc43ae8759661439d49b67e7b7d",
+        "events_bytes": 321,
+        "events_path": "raw/attacks/attack_events.csv",
+        "events_sha256": "60ab7844339e419ae620d6b60cbe32eb46f3f03619ae2d5d97f28e73ab663e34",
+        "feature_manifest_sha256": "1b56dc16da478e5cfcd6d198f41d9a6dc6d360e1d40de1aae525cc9899bc3d52",
+        "run_id": "194bd04d7f614bb38d42a26ce93fb242",
+        "run_status_sha256": "7881cc9e33e49cba0f45a6194ef4458a517f778a4dd4059f23b8aab69208b201",
+        "stage8_dataset": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/datasets/fit_B",
+        "stage9_report_sha256": "1a680952d139d7e5fe7afd33a53a1e9bfe078e07446d912ecbb1bfebf8e2c720",
+        "time_basis": "elapsed_since_verified_experiment_start"
+      }
+    },
+    {
+      "count": 0,
+      "events": [],
+      "name": "score_B",
+      "reference": {
+        "dataset_manifest_sha256": "7e0bffd0a1678241b6094e6b240a3d6ede842e30bdb78a3fd3fc9023a448bc10",
+        "events_bytes": 321,
+        "events_path": "raw/attacks/attack_events.csv",
+        "events_sha256": "60ab7844339e419ae620d6b60cbe32eb46f3f03619ae2d5d97f28e73ab663e34",
+        "feature_manifest_sha256": "c7048e78f42a5eab15207cdff52408507aa47e0bfef1c04815ec6afcc8814522",
+        "run_id": "9b66495e3603428da8d4aa8475d19b91",
+        "run_status_sha256": "e9fe9ccc9a59040f85647063a117edc7a4a6ec8ef9e2c98845e92323b4b15a72",
+        "stage8_dataset": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/datasets/score_B",
+        "stage9_report_sha256": "1d7616424559a865a9719cf155f86ffe0294eb29cc27eed7a2da737772a193c2",
+        "time_basis": "elapsed_since_verified_experiment_start"
+      }
+    },
+    {
+      "count": 1,
+      "events": [
+        {
+          "actual_end_seconds": "20.004888162002317",
+          "actual_start_seconds": "8.002911867002695",
+          "drained_end_seconds": "19.873122053999396",
+          "event_id": "event_001",
+          "planned_end_seconds": "20",
+          "planned_start_seconds": "8",
+          "profile": "continuous",
+          "run_id": "20abb737b50c4968b21780d5991d83f7"
+        }
+      ],
+      "name": "score_C",
+      "reference": {
+        "dataset_manifest_sha256": "9383b519b60fa9bfa64affe99be92275906599238855fa2842d9f0845b98bc61",
+        "events_bytes": 609,
+        "events_path": "raw/attacks/attack_events.csv",
+        "events_sha256": "0a193d06d1acfb2d7428330f8292d35572af584223130deb90b6426503bf7ceb",
+        "feature_manifest_sha256": "611b1eacbdadec71cdc8fef0f415ebe2fceda9a02c34284487e749495706331b",
+        "run_id": "20abb737b50c4968b21780d5991d83f7",
+        "run_status_sha256": "6b11aaf4a15cb1cfb75db331303bda85a555011ed687d1321a887e855d22f914",
+        "stage8_dataset": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/datasets/score_C",
+        "stage9_report_sha256": "09d5deb45caab20d623c42b941bde6edbc24b7f3208e61bf767ebfdbf76e0c56",
+        "time_basis": "elapsed_since_verified_experiment_start"
+      }
+    },
+    {
+      "count": 1,
+      "events": [
+        {
+          "actual_end_seconds": "20.00803135499882",
+          "actual_start_seconds": "8.184027100000094",
+          "drained_end_seconds": "16.024956715998997",
+          "event_id": "event_001",
+          "planned_end_seconds": "20",
+          "planned_start_seconds": "8",
+          "profile": "periodic_burst",
+          "run_id": "e30c0bdba79442b6bdcd401bb5389b0a"
+        }
+      ],
+      "name": "score_P",
+      "reference": {
+        "dataset_manifest_sha256": "adbbb074e258fcfad217b67e7086c14908beffe43fdb070c00a8cdabd0dc480d",
+        "events_bytes": 613,
+        "events_path": "raw/attacks/attack_events.csv",
+        "events_sha256": "7c24d012c2e864d55d03c129dae1a0b439c9537b749fb3041837f4f231d960f9",
+        "feature_manifest_sha256": "ee65b9ac85fe1160c5b15cf2bb85131119253ac3a53e6d589253354f0b9b54e2",
+        "run_id": "e30c0bdba79442b6bdcd401bb5389b0a",
+        "run_status_sha256": "e5232688bb96ccaa7aff60c26d9bd11198285697342b878d3d07ec58b1185d3f",
+        "stage8_dataset": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/datasets/score_P",
+        "stage9_report_sha256": "f40b0bdb434b8d10e96b844aa44dda4859711cafd69c7a9e8225086ac47ab974",
+        "time_basis": "elapsed_since_verified_experiment_start"
+      }
+    }
+  ],
+  "runs": [
+    {
+      "analysis_eligible": true,
+      "dataset_sha256": "451c1e404a0d01057a85524a1ba0853bdfb7ecc43ae8759661439d49b67e7b7d",
+      "feature_sha256": "1b56dc16da478e5cfcd6d198f41d9a6dc6d360e1d40de1aae525cc9899bc3d52",
+      "name": "fit_B",
+      "seed": 2535420249
+    },
+    {
+      "analysis_eligible": true,
+      "dataset_sha256": "7e0bffd0a1678241b6094e6b240a3d6ede842e30bdb78a3fd3fc9023a448bc10",
+      "feature_sha256": "c7048e78f42a5eab15207cdff52408507aa47e0bfef1c04815ec6afcc8814522",
+      "name": "score_B",
+      "seed": 1027529830
+    },
+    {
+      "analysis_eligible": true,
+      "dataset_sha256": "9383b519b60fa9bfa64affe99be92275906599238855fa2842d9f0845b98bc61",
+      "feature_sha256": "611b1eacbdadec71cdc8fef0f415ebe2fceda9a02c34284487e749495706331b",
+      "name": "score_C",
+      "seed": 2443054165
+    },
+    {
+      "analysis_eligible": true,
+      "dataset_sha256": "adbbb074e258fcfad217b67e7086c14908beffe43fdb070c00a8cdabd0dc480d",
+      "feature_sha256": "ee65b9ac85fe1160c5b15cf2bb85131119253ac3a53e6d589253354f0b9b54e2",
+      "name": "score_P",
+      "seed": 1414720965
+    }
+  ],
+  "scientific_runs_executed": 0,
+  "scope": "FUNCTIONAL DEVELOPMENT ONLY; no scientific inference",
+  "scores": [
+    {
+      "artifact": {
+        "manifest_sha256": "55e5776a4b2da5de7a5f634a8aac3f1d26d077e2a98b2a824d11f0a5f2f4e354",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_B/ingress_packet_count/zscore"
+      },
+      "available": 31,
+      "feature": "ingress_packet_count",
+      "method": "zscore",
+      "name": "score_B",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "57e658aac029dc4d9b3055e77968b2d9baf35a2e5adb06e47ca3fc3ef1efce85",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_B/ingress_packet_count/cov_L6"
+      },
+      "available": 26,
+      "feature": "ingress_packet_count",
+      "method": "cov_L6",
+      "name": "score_B",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "16f4283e2c03f7fa479e3c97d9d4a6a91feb65fa8c1d4d8e860a5d4f4fe7e0a4",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_B/ingress_packet_count/cov_L3"
+      },
+      "available": 29,
+      "feature": "ingress_packet_count",
+      "method": "cov_L3",
+      "name": "score_B",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "2e97b0b80a89e79320db37ab72c9ebf5f29c0bf15e98fa5e82d9aa5eb3d2308e",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_B/ingress_packet_count/cov_L12"
+      },
+      "available": 20,
+      "feature": "ingress_packet_count",
+      "method": "cov_L12",
+      "name": "score_B",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "7717efe0b362ee9e592312879f07e42be03fb1755eab1f5d244cef9d62e10fc1",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_C/ingress_packet_count/zscore"
+      },
+      "available": 31,
+      "feature": "ingress_packet_count",
+      "method": "zscore",
+      "name": "score_C",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "7354c251d13d1867e2964ce645e0f27efe3e922e15930d8a4c6a3b40340f2d67",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_C/ingress_packet_count/cov_L6"
+      },
+      "available": 26,
+      "feature": "ingress_packet_count",
+      "method": "cov_L6",
+      "name": "score_C",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "532c97d423395f0433a4a55d4b4058a4af18ad0a787414f4074a4a87afda8509",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_C/ingress_packet_count/cov_L3"
+      },
+      "available": 29,
+      "feature": "ingress_packet_count",
+      "method": "cov_L3",
+      "name": "score_C",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "7fcce49c5b2b4e98fad1d118ef899d0009b3fae4255237027f73c9a289b94792",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_C/ingress_packet_count/cov_L12"
+      },
+      "available": 20,
+      "feature": "ingress_packet_count",
+      "method": "cov_L12",
+      "name": "score_C",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "f68889affa9fb3d1367a901f1af8312713731a371208673dc28dda442f5e45dc",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_P/ingress_packet_count/zscore"
+      },
+      "available": 31,
+      "feature": "ingress_packet_count",
+      "method": "zscore",
+      "name": "score_P",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "27121cb81b881080d616d6587ac195186b48c8f98c3d738f4ee7e9c1b650113b",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_P/ingress_packet_count/cov_L6"
+      },
+      "available": 26,
+      "feature": "ingress_packet_count",
+      "method": "cov_L6",
+      "name": "score_P",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "90b573ac16948c11f48eda214fb45301c4774bdb075568f69ba85e6decc6c2a4",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_P/ingress_packet_count/cov_L3"
+      },
+      "available": 29,
+      "feature": "ingress_packet_count",
+      "method": "cov_L3",
+      "name": "score_P",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "877d0edcd0799593c16d094dfe698d2d3dc5d20c99ebd74308ff3d0cb5cd8eae",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_P/ingress_packet_count/cov_L12"
+      },
+      "available": 20,
+      "feature": "ingress_packet_count",
+      "method": "cov_L12",
+      "name": "score_P",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "c34e4cebee16d0869b26f74ff43a00f50528088566c46565a30aea1579db5db1",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_B/ingress_tcp_payload_length_sum_bytes/zscore"
+      },
+      "available": 31,
+      "feature": "ingress_tcp_payload_length_sum_bytes",
+      "method": "zscore",
+      "name": "score_B",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "4138796c51ed3f0dab48052100a7a1af0e14e792d4d103ec0dbd068d96f9f971",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_B/ingress_tcp_payload_length_sum_bytes/cov_L6"
+      },
+      "available": 26,
+      "feature": "ingress_tcp_payload_length_sum_bytes",
+      "method": "cov_L6",
+      "name": "score_B",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "9d3eb1415255a9564e2484ab7f7dadc2a03920d4c9b5df101daad65a43e11f30",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_B/ingress_tcp_payload_length_sum_bytes/cov_L3"
+      },
+      "available": 29,
+      "feature": "ingress_tcp_payload_length_sum_bytes",
+      "method": "cov_L3",
+      "name": "score_B",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "8af1478490beab1011322a7304b93c66ae87db1cf708915ab29fbac001886b20",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_B/ingress_tcp_payload_length_sum_bytes/cov_L12"
+      },
+      "available": 20,
+      "feature": "ingress_tcp_payload_length_sum_bytes",
+      "method": "cov_L12",
+      "name": "score_B",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "001ad833a8b5649c83dbb9c83e5c3acff81f079ba1d354b98b4a0cdfc6b3c72b",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_C/ingress_tcp_payload_length_sum_bytes/zscore"
+      },
+      "available": 31,
+      "feature": "ingress_tcp_payload_length_sum_bytes",
+      "method": "zscore",
+      "name": "score_C",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "cb4a10257c19a89046d8be60ade45d01358e13588555b67730d05024998a264c",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_C/ingress_tcp_payload_length_sum_bytes/cov_L6"
+      },
+      "available": 26,
+      "feature": "ingress_tcp_payload_length_sum_bytes",
+      "method": "cov_L6",
+      "name": "score_C",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "9bf39352446ffc1d1e13eb0c5d9d528e09298bb32a11c79307d04dac38678ef2",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_C/ingress_tcp_payload_length_sum_bytes/cov_L3"
+      },
+      "available": 29,
+      "feature": "ingress_tcp_payload_length_sum_bytes",
+      "method": "cov_L3",
+      "name": "score_C",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "ac3f230ca6c2526b74ae915cbe2365bd0a01ad6dfd97f5938ca6a9e83704bcb9",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_C/ingress_tcp_payload_length_sum_bytes/cov_L12"
+      },
+      "available": 20,
+      "feature": "ingress_tcp_payload_length_sum_bytes",
+      "method": "cov_L12",
+      "name": "score_C",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "ec778117740b2091b3ebe1b58200f99bcee86f481b7306e172a58eba37956aa4",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_P/ingress_tcp_payload_length_sum_bytes/zscore"
+      },
+      "available": 31,
+      "feature": "ingress_tcp_payload_length_sum_bytes",
+      "method": "zscore",
+      "name": "score_P",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "ca9522b23f673d271d6afad410f8d1c43774438fa083c5f5371ed27347d6b1e3",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_P/ingress_tcp_payload_length_sum_bytes/cov_L6"
+      },
+      "available": 26,
+      "feature": "ingress_tcp_payload_length_sum_bytes",
+      "method": "cov_L6",
+      "name": "score_P",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "71b16a7b0122d4fa0eb371154bd1e0dccfce36ee2ec7a080c11cde153ed88f06",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_P/ingress_tcp_payload_length_sum_bytes/cov_L3"
+      },
+      "available": 29,
+      "feature": "ingress_tcp_payload_length_sum_bytes",
+      "method": "cov_L3",
+      "name": "score_P",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "48653f7fd4e9d6ec9d114af5e1e5977f8673e217a0e22a75457f10175f0a49b3",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_P/ingress_tcp_payload_length_sum_bytes/cov_L12"
+      },
+      "available": 20,
+      "feature": "ingress_tcp_payload_length_sum_bytes",
+      "method": "cov_L12",
+      "name": "score_P",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "d32cfd0aad2423548de93c897dc50067894b24d174c8adaf140b69c6e03b0780",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_B/request_starts/zscore"
+      },
+      "available": 31,
+      "feature": "request_starts",
+      "method": "zscore",
+      "name": "score_B",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "7a589703329053d21b863a93d287b09e481cf1fdeee2cb734daef5376330007a",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_B/request_starts/cov_L6"
+      },
+      "available": 26,
+      "feature": "request_starts",
+      "method": "cov_L6",
+      "name": "score_B",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "b9356620eec2a4a781298e69b6aa4d1646fcaa014a0e982ca927fdc3e573f41e",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_B/request_starts/cov_L3"
+      },
+      "available": 29,
+      "feature": "request_starts",
+      "method": "cov_L3",
+      "name": "score_B",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "e6d95007075e68e7df4ac386ef68bbe37ba335a2369accb776752434564b6874",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_B/request_starts/cov_L12"
+      },
+      "available": 20,
+      "feature": "request_starts",
+      "method": "cov_L12",
+      "name": "score_B",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "cd81ea4f8fea555b06549f2d6dd17ea9778f6d704e0ff138637b03040eca5bb6",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_C/request_starts/zscore"
+      },
+      "available": 31,
+      "feature": "request_starts",
+      "method": "zscore",
+      "name": "score_C",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "97daa9e36aeb45a42cf1cfe5b70c979e4941ae24b0bd6c1602328a120a3d21c1",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_C/request_starts/cov_L6"
+      },
+      "available": 26,
+      "feature": "request_starts",
+      "method": "cov_L6",
+      "name": "score_C",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "6456f67afb3343c3e4fc0fe89c4f0ff439cfa0ec6db4c3922a81805afcc56a71",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_C/request_starts/cov_L3"
+      },
+      "available": 29,
+      "feature": "request_starts",
+      "method": "cov_L3",
+      "name": "score_C",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "eee117c681b6335844a941df8f958b40295ed59819d71ba90e9e09ffdc99ac90",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_C/request_starts/cov_L12"
+      },
+      "available": 20,
+      "feature": "request_starts",
+      "method": "cov_L12",
+      "name": "score_C",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "ca1199014d3ddb599c07523d4ff25937dda592cbf33afc42b85f3a24285b7f7c",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_P/request_starts/zscore"
+      },
+      "available": 31,
+      "feature": "request_starts",
+      "method": "zscore",
+      "name": "score_P",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "247add3c057b35085a3d7faa2e375cee9d282c80fc9cc836381481ddc2018ab1",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_P/request_starts/cov_L6"
+      },
+      "available": 26,
+      "feature": "request_starts",
+      "method": "cov_L6",
+      "name": "score_P",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "68455eee53a16b15bccfacf46b0e2810cfc35abb382aff965c9ad20ca3f86363",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_P/request_starts/cov_L3"
+      },
+      "available": 29,
+      "feature": "request_starts",
+      "method": "cov_L3",
+      "name": "score_P",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "c9115b540af93f39bd1188ec84a4a4fc057bfdf0040c718ffc1c63ee2dd1c6d9",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_P/request_starts/cov_L12"
+      },
+      "available": 20,
+      "feature": "request_starts",
+      "method": "cov_L12",
+      "name": "score_P",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "dfb45f294977e8ea2a5e42a020ff68b25e492c08cc6339e3f4f13fa322eabda1",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_B/mean_duration_ms/zscore"
+      },
+      "available": 31,
+      "feature": "mean_duration_ms",
+      "method": "zscore",
+      "name": "score_B",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "e414003b5841655a68bc2f249004cd749d35e6125821b27781f83fbe01e2d248",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_B/mean_duration_ms/cov_L6"
+      },
+      "available": 26,
+      "feature": "mean_duration_ms",
+      "method": "cov_L6",
+      "name": "score_B",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "1ae6c0fed29cc80b9b01abd48ccb2739808799d328f9e882457eb4d6a581f283",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_B/mean_duration_ms/cov_L3"
+      },
+      "available": 29,
+      "feature": "mean_duration_ms",
+      "method": "cov_L3",
+      "name": "score_B",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "7eff8b1fc7ec88b25a70b2dfaa10b26636ef3b81f44a9bac7f15850bb6483488",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_B/mean_duration_ms/cov_L12"
+      },
+      "available": 20,
+      "feature": "mean_duration_ms",
+      "method": "cov_L12",
+      "name": "score_B",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "9ec991ac6acfba8210aab865d3efe38b5d3c1bb845b3e5a79940ec691c26bb80",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_C/mean_duration_ms/zscore"
+      },
+      "available": 30,
+      "feature": "mean_duration_ms",
+      "method": "zscore",
+      "name": "score_C",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "2e207e945ad19aaf521d51fc3562019fbdda5a9903726516aa4af2a717163d1b",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_C/mean_duration_ms/cov_L6"
+      },
+      "available": 25,
+      "feature": "mean_duration_ms",
+      "method": "cov_L6",
+      "name": "score_C",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "2726a7f6ed25a9671f86fb38d80dcda813f6736748bd9f3cb7aa3d6a5b6121e3",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_C/mean_duration_ms/cov_L3"
+      },
+      "available": 28,
+      "feature": "mean_duration_ms",
+      "method": "cov_L3",
+      "name": "score_C",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "ce399ddef59f33691566bd761d66fc584ef4e779572630e7e671ff6d781da890",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_C/mean_duration_ms/cov_L12"
+      },
+      "available": 19,
+      "feature": "mean_duration_ms",
+      "method": "cov_L12",
+      "name": "score_C",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "5489f6a8d43a29b0f922f39dd7d587cf78f7813b51e4e9e0e13a34ae6f6b34bf",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_P/mean_duration_ms/zscore"
+      },
+      "available": 30,
+      "feature": "mean_duration_ms",
+      "method": "zscore",
+      "name": "score_P",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "0fae3661aeb8306d5db5fef6ed27fe5ff45d55d160fce0fdaeedf8825dbf664a",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_P/mean_duration_ms/cov_L6"
+      },
+      "available": 25,
+      "feature": "mean_duration_ms",
+      "method": "cov_L6",
+      "name": "score_P",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "3a2dd6b8eeb35b106cc34b4915c0f5daf5b55113efa3cc42962c851d963da33f",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_P/mean_duration_ms/cov_L3"
+      },
+      "available": 28,
+      "feature": "mean_duration_ms",
+      "method": "cov_L3",
+      "name": "score_P",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "b3c5197801d36d5adb5b34aef8269ab129de36197a56b49b151e5546053fc493",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_P/mean_duration_ms/cov_L12"
+      },
+      "available": 19,
+      "feature": "mean_duration_ms",
+      "method": "cov_L12",
+      "name": "score_P",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "b57c345af13f5a6ea1a0fe76461f7fcafdf4d1bdde1108e4a7746d8251699372",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_B/mean_cpu_percent/zscore"
+      },
+      "available": 28,
+      "feature": "mean_cpu_percent",
+      "method": "zscore",
+      "name": "score_B",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "573aa446aab7675ddb20d0f2ef15f422bcf910fb415b6a5c60ad519f51452959",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_B/mean_cpu_percent/cov_L6"
+      },
+      "available": 23,
+      "feature": "mean_cpu_percent",
+      "method": "cov_L6",
+      "name": "score_B",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "bcda813cc012bc51d4567f8078bc0012b892c29060d532caf16fc0c6066160ee",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_B/mean_cpu_percent/cov_L3"
+      },
+      "available": 26,
+      "feature": "mean_cpu_percent",
+      "method": "cov_L3",
+      "name": "score_B",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "96412993a106331fcb2de17d9b40e4945c566513aba0898b1817dc33e6693665",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_B/mean_cpu_percent/cov_L12"
+      },
+      "available": 17,
+      "feature": "mean_cpu_percent",
+      "method": "cov_L12",
+      "name": "score_B",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "612f2b0876feb53823271c357f25b3ce5af485bd1043835a1d6e3b1ad31a04fe",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_C/mean_cpu_percent/zscore"
+      },
+      "available": 28,
+      "feature": "mean_cpu_percent",
+      "method": "zscore",
+      "name": "score_C",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "bab49566c28a05859882445b3f6b1505eb694b96ade96f817b8eb844313f98dd",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_C/mean_cpu_percent/cov_L6"
+      },
+      "available": 23,
+      "feature": "mean_cpu_percent",
+      "method": "cov_L6",
+      "name": "score_C",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "99413163984661e8aabe0fade53e78fd7a34a177bbef533f3e0299ebce122cb8",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_C/mean_cpu_percent/cov_L3"
+      },
+      "available": 26,
+      "feature": "mean_cpu_percent",
+      "method": "cov_L3",
+      "name": "score_C",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "2f9aa636ce2af85a83a99744f6a0fc1f9428c730c5b9433e3558e044b3aa5881",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_C/mean_cpu_percent/cov_L12"
+      },
+      "available": 17,
+      "feature": "mean_cpu_percent",
+      "method": "cov_L12",
+      "name": "score_C",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "e07d1ac645608caf46e884bb49c7d42cfb423eb353232c2734ea026d70bce449",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_P/mean_cpu_percent/zscore"
+      },
+      "available": 28,
+      "feature": "mean_cpu_percent",
+      "method": "zscore",
+      "name": "score_P",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "c7c6aaadfbde6cb953bcb3a45c6d18494c1674ce5cc4dde094d15c213edb937a",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_P/mean_cpu_percent/cov_L6"
+      },
+      "available": 23,
+      "feature": "mean_cpu_percent",
+      "method": "cov_L6",
+      "name": "score_P",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "53ff507fce24580c9a051016f588df52c5be2aa8f4e2162e8910ad4c1cb953d3",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_P/mean_cpu_percent/cov_L3"
+      },
+      "available": 26,
+      "feature": "mean_cpu_percent",
+      "method": "cov_L3",
+      "name": "score_P",
+      "windows": 31
+    },
+    {
+      "artifact": {
+        "manifest_sha256": "ef3d41adbec40c30750b7e2c21c7bbd676f299e7ef20de3d85b0480dc0f79df4",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14a-smoke-development/scores/score_P/mean_cpu_percent/cov_L12"
+      },
+      "available": 17,
+      "feature": "mean_cpu_percent",
+      "method": "cov_L12",
+      "name": "score_P",
+      "windows": 31
+    }
+  ],
+  "thresholds_selected": false
+}

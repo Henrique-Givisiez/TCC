@@ -1,0 +1,44 @@
+test_before_event_no_overlap (tests.test_stage14a1.EventV2Tests.test_before_event_no_overlap) ... ok
+test_computational_availability_after_event (tests.test_stage14a1.EventV2Tests.test_computational_availability_after_event) ... ok
+test_exact_half_open_boundaries (tests.test_stage14a1.EventV2Tests.test_exact_half_open_boundaries) ... ok
+test_first_available_eligible_decision (tests.test_stage14a1.EventV2Tests.test_first_available_eligible_decision) ... ok
+test_first_partial_overlap (tests.test_stage14a1.EventV2Tests.test_first_partial_overlap) ... ok
+test_last_partial_overlap_mandatory_example (tests.test_stage14a1.EventV2Tests.test_last_partial_overlap_mandatory_example) ... ok
+test_never_detected (tests.test_stage14a1.EventV2Tests.test_never_detected) ... ok
+test_periodic_global_silence (tests.test_stage14a1.EventV2Tests.test_periodic_global_silence) ... ok
+test_persisted_pipeline_detects_last_partial_window (tests.test_stage14a1.EventV2Tests.test_persisted_pipeline_detects_last_partial_window) ... ok
+test_window_fully_inside (tests.test_stage14a1.EventV2Tests.test_window_fully_inside) ... ok
+test_arbitrary_row_or_partition_rejected (tests.test_stage14a1.RunnerV2Tests.test_arbitrary_row_or_partition_rejected) ... ok
+test_backend_failure_preserves_failure_evidence (tests.test_stage14a1.RunnerV2Tests.test_backend_failure_preserves_failure_evidence) ... ok
+test_backend_stage8_to_10_binding_with_mocks (tests.test_stage14a1.RunnerV2Tests.test_backend_stage8_to_10_binding_with_mocks) ... ok
+test_baseline_horizon (tests.test_stage14a1.RunnerV2Tests.test_baseline_horizon) ... ok
+test_calibration_horizon_and_exposure (tests.test_stage14a1.RunnerV2Tests.test_calibration_horizon_and_exposure) ... ok
+test_campaign_calibration_filters_callback_not_scoring_history (tests.test_stage14a1.RunnerV2Tests.test_campaign_calibration_filters_callback_not_scoring_history) ... ok
+test_configuration_divergence (tests.test_stage14a1.RunnerV2Tests.test_configuration_divergence) ... ok
+test_dynamic_environment_only_recorded (tests.test_stage14a1.RunnerV2Tests.test_dynamic_environment_only_recorded) ... ok
+test_environment_fatal_prevents_execution_and_records_audit (tests.test_stage14a1.RunnerV2Tests.test_environment_fatal_prevents_execution_and_records_audit) ... ok
+test_environment_lock_hash_rejected (tests.test_stage14a1.RunnerV2Tests.test_environment_lock_hash_rejected) ... ok
+test_evaluation_callback_receives_only_selected_windows (tests.test_stage14a1.RunnerV2Tests.test_evaluation_callback_receives_only_selected_windows) ... ok
+test_matrix_hash_rejected (tests.test_stage14a1.RunnerV2Tests.test_matrix_hash_rejected) ... ok
+test_mock_execution_materializes_pre_and_post_lineage (tests.test_stage14a1.RunnerV2Tests.test_mock_execution_materializes_pre_and_post_lineage) ... ok
+test_null_preserved (tests.test_stage14a1.RunnerV2Tests.test_null_preserved) ... ok
+test_output_collision (tests.test_stage14a1.RunnerV2Tests.test_output_collision) ... ok
+test_partial_boundary_windows_excluded (tests.test_stage14a1.RunnerV2Tests.test_partial_boundary_windows_excluded) ... ok
+test_protocol_hash_rejected (tests.test_stage14a1.RunnerV2Tests.test_protocol_hash_rejected) ... ok
+test_protocol_v2_only_changes_approved_frozen_fields (tests.test_stage14a1.RunnerV2Tests.test_protocol_v2_only_changes_approved_frozen_fields) ... ok
+test_rehashed_matrix_still_cannot_change_scientific_config (tests.test_stage14a1.RunnerV2Tests.test_rehashed_matrix_still_cannot_change_scientific_config) ... ok
+test_runtime_drift_and_residuals_fatal (tests.test_stage14a1.RunnerV2Tests.test_runtime_drift_and_residuals_fatal) ... ok
+test_seed_plan_hash_rejected (tests.test_stage14a1.RunnerV2Tests.test_seed_plan_hash_rejected) ... ok
+test_temporal_selection_does_not_open_labels (tests.test_stage14a1.RunnerV2Tests.test_temporal_selection_does_not_open_labels) ... ok
+test_test_horizon_no_tail (tests.test_stage14a1.RunnerV2Tests.test_test_horizon_no_tail) ... ok
+test_test_never_released_even_dry_run (tests.test_stage14a1.RunnerV2Tests.test_test_never_released_even_dry_run) ... ok
+test_valid_plan_dry_run_has_no_scientific_output (tests.test_stage14a1.RunnerV2Tests.test_valid_plan_dry_run_has_no_scientific_output) ... ok
+test_wrong_binding_hash_rejected (tests.test_stage14a1.RunnerV2Tests.test_wrong_binding_hash_rejected) ... ok
+test_wrong_role_rejected (tests.test_stage14a1.RunnerV2Tests.test_wrong_role_rejected) ... ok
+test_wrong_scenario_rejected (tests.test_stage14a1.RunnerV2Tests.test_wrong_scenario_rejected) ... ok
+test_wrong_seed_rejected (tests.test_stage14a1.RunnerV2Tests.test_wrong_seed_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 39 tests in 0.832s
+
+OK

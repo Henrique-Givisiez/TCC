@@ -1,0 +1,49 @@
+{
+  "attack": {
+    "attackers": 1,
+    "burst": {
+      "duration_seconds": 2,
+      "period_seconds": 6
+    },
+    "duration_seconds": 36,
+    "enabled": true,
+    "endpoint": "/medium",
+    "max_concurrent_sends": 64,
+    "profile": "periodic_burst",
+    "rate": 8,
+    "request_timeout_seconds": 2,
+    "start_seconds": 48
+  },
+  "autoscaler": {
+    "enabled": false
+  },
+  "duration_seconds": 144,
+  "id": "stage14_test_1214769380_P",
+  "infrastructure": {
+    "initial_instances": 1,
+    "max_instances": 1,
+    "min_instances": 1
+  },
+  "load_balancer": {
+    "enabled": true
+  },
+  "monitoring": {
+    "history_seconds": 30,
+    "interval_seconds": 1,
+    "stats_poll_interval_seconds": 1
+  },
+  "normal_traffic": {
+    "clients": 4,
+    "endpoint": "/medium",
+    "max_concurrent_sends": 64,
+    "rate": 2,
+    "request_timeout_seconds": 2
+  },
+  "seed": 1214769380,
+  "server": {
+    "process_pool_workers": 2
+  },
+  "traffic_sources": {
+    "execution": "containers"
+  }
+}

@@ -119,30 +119,44 @@ def load_event_truth(feature_dataset, source_reference, *, stage8_dataset):
 
 
 def evaluate_events(decisions, truth, *, policy):
-    """Global event; overlapping evidence AND availability by actual_end (inclusive).
+    """Explicit V1 (historical deadline) or V2 (observation overlap) attribution.
 
     An alarm whose window ends at/before the causal start is not a detection,
     even if computationally delayed until after the start. No persistence rule.
     """
     from . import EventResult
     from ..pipeline import validate_decision_run
-    if policy != 'global_overlap_and_availability_within_event_v1':
+    from ..protocol import EVENT_POLICY_V2, load_protocol
+    legacy = policy == 'global_overlap_and_availability_within_event_v1'
+    if not legacy and policy != EVENT_POLICY_V2:
         raise ContractError('Explicit supported event attribution policy required')
     if not isinstance(truth, VerifiedEvents):
         raise ContractError('Verified original event truth required')
     manifest = validate_decision_run(decisions)
     if manifest['source'] != truth.source_reference:
         raise ContractError('Decisions and event truth refer to different sources')
+    eligible_records = decisions.records
+    campaign = manifest['source'].get('campaign')
+    if campaign:
+        ref = campaign['protocol']
+        doc, _ = load_protocol(ref['path'], expected_hash=ref['protocol_hash'])
+        if doc['frozen']['event_truth']['policy'] != policy:
+            raise ContractError('Event policy differs from campaign protocol')
+        if doc['protocol_version'] == 2:
+            from ..horizons import select_campaign_records
+            eligible_records, _ = select_campaign_records(decisions.records, ref, campaign['partition'])
     truth.verify()
     results = []
     for event in truth.events:
-        times = [r.available_at_seconds for r in decisions.records
+        times = [r.available_at_seconds for r in eligible_records
                  if r.decision is True and r.score.score_available
                  and r.score.window_start_seconds < event.actual_end_seconds
                  and r.score.window_end_seconds > event.actual_start_seconds
-                 and event.actual_start_seconds <= r.available_at_seconds <= event.actual_end_seconds]
+                 and event.actual_start_seconds < event.actual_end_seconds
+                 and r.available_at_seconds >= event.actual_start_seconds
+                 and (not legacy or r.available_at_seconds <= event.actual_end_seconds)]
         first = min(times) if times else None
         results.append(EventResult(event.event_id, first is not None, first,
-            None if first is None else first-event.actual_start_seconds, event.actual_end_seconds))
+            None if first is None else first-event.actual_start_seconds, event.actual_end_seconds if legacy else None))
     truth.verify()
     return tuple(results)

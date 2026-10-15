@@ -1,0 +1,66 @@
+{
+  "blocker": "First case returns false under frozen v1 but requested semantics require true, delay=1s. Correction requires explicit new frozen policy and review of event censoring/deadline. No production contract modified.",
+  "cases": [
+    {
+      "case": "last_overlapping_window",
+      "delay": null,
+      "detected": false,
+      "end": 10.5,
+      "start": 10,
+      "windows": [
+        [
+          10,
+          11,
+          11,
+          true
+        ]
+      ]
+    },
+    {
+      "case": "pre_event_alarm",
+      "delay": null,
+      "detected": false,
+      "end": 10.5,
+      "start": 10,
+      "windows": [
+        [
+          8,
+          9,
+          9,
+          true
+        ]
+      ]
+    },
+    {
+      "case": "delayed_pre_event_evidence",
+      "delay": null,
+      "detected": false,
+      "end": 10.5,
+      "start": 10,
+      "windows": [
+        [
+          8,
+          9,
+          10.2,
+          true
+        ]
+      ]
+    },
+    {
+      "case": "normal_overlap",
+      "delay": "0.6",
+      "detected": true,
+      "end": 15,
+      "start": 10.4,
+      "windows": [
+        [
+          10,
+          11,
+          11,
+          true
+        ]
+      ]
+    }
+  ],
+  "scope": "synthetic reproduction only; existing evaluator, no scientific decisions"
+}

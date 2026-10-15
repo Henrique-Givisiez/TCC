@@ -1,0 +1,41 @@
+{
+  "archived_originals_verified": {
+    "analysis/detection/evaluation/__init__.py": "35a80d6ee5c27d35f8811520ecbdf16bed47cf39ea3c93d8829e8d33e829e20c",
+    "analysis/detection/evaluation/events.py": "fdb98c5152fd4a24f67ef4f883793b0e667ea8c938cea26d1cc9c50890077b24",
+    "analysis/detection/pipeline.py": "c5c5687a9c1c54ed9e7ea2960521a06991b881fbba85af4facdbec2de6d1c67c",
+    "analysis/detection/protocol.py": "16c4668b7015372ad0bb85c4f78841d01ac529e58e2c65d11f1dc3cca59673df",
+    "tests/test_stage13c.py": "9938d38ea12c37a523f41e5f1bd993309c2ad5f69cdccdd7c95c48328fdb55d2"
+  },
+  "authorized_source_changes": {
+    "analysis/detection/evaluation/__init__.py": {
+      "after": "d8dd1ac7bbf145691326898f8e29d37e42cc3340d54f0d23c449ac411cf2d59f",
+      "before": "35a80d6ee5c27d35f8811520ecbdf16bed47cf39ea3c93d8829e8d33e829e20c"
+    },
+    "analysis/detection/evaluation/events.py": {
+      "after": "44836f114f560c7735ffd90f82bded4b1f5e45dcf05562abc8d90b12a0d55084",
+      "before": "fdb98c5152fd4a24f67ef4f883793b0e667ea8c938cea26d1cc9c50890077b24"
+    },
+    "analysis/detection/pipeline.py": {
+      "after": "1c2c63969bb4ef3da3befa95dae881db300936ee8180d29f07a05e1e4a5a6e39",
+      "before": "c5c5687a9c1c54ed9e7ea2960521a06991b881fbba85af4facdbec2de6d1c67c"
+    },
+    "analysis/detection/protocol.py": {
+      "after": "bae14b6a7688502f1cc5a0a77d07692451e35eb9b3b9a1641f40259cf4479afa",
+      "before": "16c4668b7015372ad0bb85c4f78841d01ac529e58e2c65d11f1dc3cca59673df"
+    },
+    "tests/test_stage13c.py": {
+      "after": "1ce4150363ac632f28c86cab91f721f121220286026ccd238416bc55502e4350",
+      "before": "9938d38ea12c37a523f41e5f1bd993309c2ad5f69cdccdd7c95c48328fdb55d2"
+    }
+  },
+  "dataset_outputs_unchanged": true,
+  "files_in_initial_inventory": 19588,
+  "historical_original_locations_unchanged": 18585,
+  "interpretation": "18585/18590 original paths byte-identical; 5 authorized source/test upgrades have all original bytes preserved in archive. No historical dataset/output changed.",
+  "original_source_archive_sha256": "a7eba1ef4c42a0a91f2f7fa81612a5978dd1f01c4e8d2a4e796a21f7c658793d",
+  "smoke_files_unchanged": 911,
+  "stage14a_files_unchanged": 87,
+  "stage14a_historical_inventory_count": 18590,
+  "stage8_9_10_sources_unchanged": true,
+  "unexpected_changes": []
+}

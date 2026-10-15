@@ -22,6 +22,16 @@ from tests import test_feature_extraction as extraction
 PROTOCOL = Path('experiments/protocols/stage14_protocol.json')
 
 
+def reviewed_v2(document):
+    # V2 now has explicit reviewed semantics; the original V1 fixture stays intact.
+    from analysis.detection.protocol import FROZEN_V2, UNRESOLVED_V2, V2_BINDINGS
+    document['frozen'] = copy.deepcopy(FROZEN_V2)
+    document['unresolved'] = {k:{'status':'UNRESOLVED','value':None} for k in UNRESOLVED_V2}
+    document['seeds'].update(status='MATERIALIZED',partitions=materialize_seeds(document['seeds']['namespace']))
+    document['references'].update({p:'a'*64 for p in V2_BINDINGS})
+    return document
+
+
 class FitIntervalTests(unittest.TestCase):
     def setUp(self):
         self.f = framework.DetectionFrameworkTests(); self.f.setUp()
@@ -232,7 +242,7 @@ class ProtocolTests(unittest.TestCase):
     def test_revision_requires_version_and_predecessor(self):
         d=copy.deepcopy(self.doc);d['limitations'].append('Additional declared limitation')
         with self.assertRaises(ContractError):write_protocol(self.f.root/'invalid.json',d,previous=self.ref)
-        d.update(protocol_version=2,previous_protocol_hash=self.ref['protocol_hash'])
+        reviewed_v2(d).update(protocol_version=2,previous_protocol_hash=self.ref['protocol_hash'])
         ref=write_protocol(self.f.root/'v2.json',d,previous=self.ref)
         self.assertNotEqual(ref['protocol_hash'],self.ref['protocol_hash'])
 
@@ -250,7 +260,7 @@ class ProtocolTests(unittest.TestCase):
 
     def test_binding_and_frozen_fit_interval(self):
         d=copy.deepcopy(self.doc);d['seeds'].update(status='MATERIALIZED',partitions=materialize_seeds(d['seeds']['namespace']))
-        d.update(protocol_version=2,previous_protocol_hash=self.ref['protocol_hash'])
+        reviewed_v2(d).update(protocol_version=2,previous_protocol_hash=self.ref['protocol_hash'])
         ref=write_protocol(self.f.root/'materialized.json',d,previous=self.ref)
         source=self.f.load(self.f.baseline,'baseline')
         bound=bind_source(source,ref,partition='baseline',seed=d['seeds']['partitions']['baseline'][0],scenario='B')
@@ -330,7 +340,7 @@ class AdditionalIsolationTests(unittest.TestCase):
         document,reference=load_protocol(PROTOCOL)
         document=copy.deepcopy(document)
         document['seeds'].update(status='MATERIALIZED',partitions=materialize_seeds(document['seeds']['namespace']))
-        document.update(protocol_version=2,previous_protocol_hash=reference['protocol_hash'])
+        reviewed_v2(document).update(protocol_version=2,previous_protocol_hash=reference['protocol_hash'])
         with tempfile.TemporaryDirectory() as temp:
             ref=write_protocol(Path(temp)/'v2.json',document,previous=reference)
             run=run_protocol_reference(ref,partition='test',seed=document['seeds']['partitions']['test'][0],scenario='P')

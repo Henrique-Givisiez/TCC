@@ -141,12 +141,24 @@ def evaluate(scores, decisions, dataset, evaluator, spec, plan, destination, *,
                 or score.window_start_seconds != truth.window_start_seconds
                 or score.window_end_seconds != truth.window_end_seconds):
             raise ContractError('Evaluation keys differ')
+    selected_scores, selected_decisions, selected_labels = scores.records, decisions.records, labels
+    temporal_selection = None
+    campaign = m['source'].get('campaign')
+    if campaign:
+        from ..protocol import load_protocol
+        from ..horizons import select_campaign_records
+        ref = campaign['protocol']
+        doc, _ = load_protocol(ref['path'], expected_hash=ref['protocol_hash'])
+        if doc['protocol_version'] == 2:
+            selected_scores, temporal_selection = select_campaign_records(scores.records, ref, campaign['partition'])
+            selected_decisions, _ = select_campaign_records(decisions.records, ref, campaign['partition'])
+            selected_labels, _ = select_campaign_records(labels, ref, campaign['partition'])
     event_results = None
     if event_truth is not None:
         event_results = evaluate_events(decisions, event_truth, policy=event_policy)
     elif event_policy is not None:
         raise ContractError('Event policy requires verified event truth')
-    result = evaluator.evaluate(EvaluationInput(scores.records, decisions.records, labels,
+    result = evaluator.evaluate(EvaluationInput(selected_scores, selected_decisions, selected_labels,
                                None if event_truth is None else event_truth.events), plan)
     if event_truth is not None:
         event_truth.verify()
@@ -159,7 +171,7 @@ def evaluate(scores, decisions, dataset, evaluator, spec, plan, destination, *,
     return publish(destination, 'evaluation', dict(component=component(spec),
         plan=dict(overlap_policy=plan.overlap_policy, overlap_config=dict(plan.overlap_config),
                   availability_policy=plan.availability_policy),
-        source=m['source'], scores=scores.artifact.reference, decisions=decisions.artifact.reference,
+        source=m['source'], temporal_selection=temporal_selection, scores=scores.artifact.reference, decisions=decisions.artifact.reference,
         truth=truth_ref, event_truth=None if event_truth is None else event_truth.reference,
         event_policy=event_policy, event_results=None if event_results is None else [
             dict(event_id=r.event_id, event_detected=r.detected,

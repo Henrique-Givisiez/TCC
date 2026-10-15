@@ -1,0 +1,46 @@
+{
+  "attack": {
+    "attackers": 1,
+    "burst": null,
+    "duration_seconds": 36,
+    "enabled": false,
+    "endpoint": "/medium",
+    "max_concurrent_sends": 64,
+    "profile": "continuous",
+    "rate": 8,
+    "request_timeout_seconds": 2,
+    "start_seconds": 48
+  },
+  "autoscaler": {
+    "enabled": false
+  },
+  "duration_seconds": 360,
+  "id": "stage14_calibration_1882561902_B",
+  "infrastructure": {
+    "initial_instances": 1,
+    "max_instances": 1,
+    "min_instances": 1
+  },
+  "load_balancer": {
+    "enabled": true
+  },
+  "monitoring": {
+    "history_seconds": 30,
+    "interval_seconds": 1,
+    "stats_poll_interval_seconds": 1
+  },
+  "normal_traffic": {
+    "clients": 4,
+    "endpoint": "/medium",
+    "max_concurrent_sends": 64,
+    "rate": 2,
+    "request_timeout_seconds": 2
+  },
+  "seed": 1882561902,
+  "server": {
+    "process_pool_workers": 2
+  },
+  "traffic_sources": {
+    "execution": "containers"
+  }
+}

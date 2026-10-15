@@ -222,8 +222,23 @@ def calibrate(score_runs, calibrator, spec, destination):
     for m in manifests:
         if any(m[k] != manifests[0][k] for k in ('feature', 'component', 'baseline')):
             raise ContractError('Calibration score model/feature mismatch')
-    params = calibrator.calibrate(tuple(CalibrationScores(m['source']['run_id'], r.records)
-                                        for r, m in zip(runs, manifests)),
+    selections, selected_runs = [], []
+    for run, manifest in zip(runs, manifests):
+        campaign = manifest['source'].get('campaign')
+        records = run.records
+        selection = None
+        if campaign:
+            from .protocol import load_protocol
+            from .horizons import select_campaign_records
+            ref = campaign['protocol']
+            doc, _ = load_protocol(ref['path'], expected_hash=ref['protocol_hash'])
+            if doc['protocol_version'] == 2:
+                records, selection = select_campaign_records(records, ref, 'calibration')
+                if not records:
+                    raise ContractError('Empty scientific calibration horizon')
+        selected_runs.append(CalibrationScores(manifest['source']['run_id'], records))
+        selections.append(selection)
+    params = calibrator.calibrate(tuple(selected_runs),
                                   json.loads(encoded(dict(spec.config))))
     if not isinstance(params, dict):
         raise ContractError('Calibrator must return JSON parameter mapping')
@@ -234,7 +249,7 @@ def calibrate(score_runs, calibrator, spec, destination):
         score_component=manifests[0]['component'], feature=manifests[0]['feature'],
         baseline=manifests[0]['baseline'], baseline_sources=manifests[0]['baseline_sources'],
         sources=refs, score_artifacts=[r.artifact.reference for r in runs],
-        parameters=params, provenance=provenance(calibrator)),
+        parameters=params, temporal_selections=selections, provenance=provenance(calibrator)),
         protected=[*source_roots(refs + manifests[0]['baseline_sources']),
                    *[r.artifact.root for r in runs],
                    *([manifests[0]['baseline']['path']] if manifests[0]['baseline'] else [])])

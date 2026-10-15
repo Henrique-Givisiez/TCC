@@ -1,0 +1,86 @@
+{
+  "generation": {
+    "encoding": "UTF-8 namespace:partition:index; index starts at 0 per partition; first four SHA256 bytes big endian unsigned; reject pilot or any previously accepted seed; increment index on every candidate",
+    "external_random_seed": null,
+    "method": "sha256_protocol_namespace_partition_index_first32_collision_rejection_v1",
+    "namespace": "stage14-balanced-v1-seeds",
+    "outcome_independent": true,
+    "partition_order": [
+      "baseline",
+      "calibration",
+      "test"
+    ]
+  },
+  "partitions": {
+    "baseline": [
+      386892579,
+      15825709,
+      556499976,
+      678133177,
+      1027200967,
+      774915721
+    ],
+    "calibration": [
+      250861660,
+      1935927024,
+      688216134,
+      3772247283,
+      2534925364,
+      2465454157,
+      1258649561,
+      1476838592,
+      2587138917,
+      1882561902,
+      3313573378,
+      4091289086
+    ],
+    "test": [
+      171864802,
+      2617993097,
+      4207362430,
+      3751420894,
+      3321204838,
+      1145928936,
+      3205651767,
+      1156532787,
+      258231394,
+      4052934802,
+      1511736727,
+      3145659914,
+      1214769380,
+      1981484633,
+      1488329317,
+      814930163
+    ]
+  },
+  "pilot_exclusions": [
+    101,
+    211,
+    307,
+    401,
+    503
+  ],
+  "schema_version": 1,
+  "smoke_development": {
+    "assignments": {
+      "fit_B": 2535420249,
+      "score_B": 1027529830,
+      "score_C": 2443054165,
+      "score_P": 1414720965
+    },
+    "excluded_from_all_scientific_partitions": true,
+    "method": "SHA256 UTF-8 namespace:index, first four bytes big endian; index from 0; reject pilot/scientific/previous smoke seeds",
+    "namespace": "stage14a-smoke-development-v1",
+    "scientific": false,
+    "seeds": [
+      2535420249,
+      1027529830,
+      2443054165,
+      1414720965
+    ]
+  },
+  "source_stage14a_plan": {
+    "path": "docs/stage14a/materialized/campaign_plan.json",
+    "sha256": "f50bfe5d71f2246d6dc7c35561eb7872eb3f4e1366bcfc27bcd0016c944423e1"
+  }
+}

@@ -44,13 +44,40 @@ UNRESOLVED = ('numerical_thresholds','decision_directions','false_positive_opera
               'uncertainty_reporting_details','exact_image_and_environment_lock')
 
 
+V1_SHA256 = '79b204d7d781a939de7a95ab77b8e98ccbd15b5fe250fa237e0db1d0e7fa9e13'
+EVENT_POLICY_V2 = 'global_observation_overlap_decision_availability_v2'
+
+# V1 remains immutable and readable. Version 2 changes only the approved blockers.
+from copy import deepcopy
+FROZEN_V2 = deepcopy(FROZEN)
+FROZEN_V2['event_truth'] = dict(source='verified_stage8_attack_events',
+    primary='global_actual_start_to_actual_end', policy=EVENT_POLICY_V2,
+    availability_deadline='none_eligibility_by_positive_half_open_observation_overlap',
+    miss_censoring='not_detected_in_supplied_series_no_finite_decision_deadline')
+FROZEN_V2['temporal_selections'] = dict(
+    baseline=[48,240], calibration=[48,360], test=[0,144],
+    inclusion='whole_windows_contained_in_half_open_interval',
+    causal_history='preserved_from_run_start_no_reset_at_selection_start')
+UNRESOLVED_V2 = tuple(k for k in UNRESOLVED if k != 'exact_image_and_environment_lock') + (
+    'test_pre_region_false_positive_metric_roles', 'confirmation_hysteresis')
+V2_BINDINGS = ('experiments/protocols/stage14_seed_plan_v2.json',
+               'experiments/protocols/stage14_matrix_v2.json',
+               'experiments/protocols/stage14_environment_lock_v2.json')
+
+
+def frozen_for_version(version):
+    if type(version) is not int or version not in (1,2):
+        raise ContractError('Unsupported protocol version')
+    return FROZEN if version == 1 else FROZEN_V2
+
+
 def validate_protocol(document):
     required = {'protocol_id','protocol_version','status','created_at_utc','references',
                 'frozen','unresolved','seeds','limitations','provenance','previous_protocol_hash'}
     if not isinstance(document,dict) or set(document) != required:
         raise ContractError('Protocol schema: missing/unknown fields')
     if (document['protocol_id'] != 'stage14-balanced' or type(document['protocol_version']) is not int
-            or document['protocol_version'] < 1 or document['status'] != 'FROZEN_DESIGN_PENDING_RELEASE'):
+            or document['protocol_version'] not in (1,2) or document['status'] != 'FROZEN_DESIGN_PENDING_RELEASE'):
         raise ContractError('Protocol identity/version/status invalid')
     from datetime import datetime
     try:
@@ -59,9 +86,10 @@ def validate_protocol(document):
             raise ValueError()
     except (ValueError,TypeError,AttributeError) as exc:
         raise ContractError('Protocol UTC timestamp invalid') from exc
-    if encoded(document['frozen']) != encoded(FROZEN):
+    if encoded(document['frozen']) != encoded(frozen_for_version(document['protocol_version'])):
         raise ContractError('FROZEN design differs from approved protocol B')
-    if set(document['unresolved']) != set(UNRESOLVED) or any(
+    unresolved = UNRESOLVED if document['protocol_version'] == 1 else UNRESOLVED_V2
+    if set(document['unresolved']) != set(unresolved) or any(
         v != {'status':'UNRESOLVED','value':None} for v in document['unresolved'].values()):
         raise ContractError('Unresolved choices must remain explicitly UNRESOLVED')
     if (not isinstance(document['references'],dict) or not isinstance(document['limitations'],list)
@@ -98,6 +126,11 @@ def validate_protocol(document):
             raise ContractError('Initial protocol cannot reference predecessor')
     elif not isinstance(document['previous_protocol_hash'],str) or not re.fullmatch('[0-9a-f]{64}', document['previous_protocol_hash']):
         raise ContractError('Revised protocol requires predecessor hash')
+    if document['protocol_version'] == 2:
+        if document['previous_protocol_hash'] != V1_SHA256 or seeds['status'] != 'MATERIALIZED':
+            raise ContractError('V2 requires original V1 predecessor and materialized seeds')
+        if not all(path in document['references'] for path in V2_BINDINGS):
+            raise ContractError('V2 requires seed plan, matrix and environment lock bindings')
     return document
 
 
