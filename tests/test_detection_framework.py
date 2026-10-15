@@ -111,7 +111,7 @@ class DetectionFrameworkTests(unittest.TestCase):
         self.write_json(root/'feature_manifest.json', manifest)
         return root
 
-    def load(self, root=None, role='test', family='service', feature='request_starts', **overrides):
+    def load(self, root=None, role='development', family='service', feature='request_starts', **overrides):
         root = root or self.test
         m = json.loads((root/'feature_manifest.json').read_text())
         args = dict(run_id=m['source_run_id'], family=family, feature=feature,
@@ -129,7 +129,7 @@ class DetectionFrameworkTests(unittest.TestCase):
         self.change_manifest(root,update)
 
     def fit(self):
-        return fit_baseline([self.load(self.baseline,'baseline')],FakeFitter(),self.spec,self.root/'model')
+        return fit_baseline([self.load(self.baseline,'baseline')],FakeFitter(),self.spec,self.root/'model',fit_start_seconds=0,fit_end_seconds=5)
 
     def pipeline(self):
         model=self.fit()
@@ -212,15 +212,14 @@ class DetectionFrameworkTests(unittest.TestCase):
 
     def test_same_run_cannot_be_test_after_fit(self):
         model=self.fit()
-        with self.assertRaisesRegex(ContractError,'disjoint'):
+        with self.assertRaisesRegex(ContractError,'TEST locked'):
             score_run(self.load(self.baseline,'test'),FakeDetector(),self.spec,self.root/'bad',baseline=model)
 
     def test_same_run_cannot_be_test_after_calibration(self):
         _,policy,_,_=self.pipeline()
         model=open_artifact(policy.read()['baseline'],'baseline')
-        s=score_run(self.load(self.calibration,'test'),FakeDetector(),self.spec,self.root/'same-s',baseline=model)
-        with self.assertRaisesRegex(ContractError,'overlaps'):
-            decide(s,FakePolicy(),self.policy_spec,policy,self.root/'bad')
+        with self.assertRaisesRegex(ContractError,'TEST locked'):
+            score_run(self.load(self.calibration,'test'),FakeDetector(),self.spec,self.root/'same-s',baseline=model)
 
     def test_model_configuration_mismatch(self):
         model=self.fit()
@@ -239,7 +238,7 @@ class DetectionFrameworkTests(unittest.TestCase):
         a=evaluate(s,d,self.test,FakeEvaluator(),self.spec,
                    EvaluationPlan('test_only_no_metrics',{},'closure'),self.root/'eval')
         self.assertEqual(a.read()['results']['test_only_label_rows'],5)
-        self.assertEqual(a.read()['event_truth'],'unavailable_in_stage10_v1_union_labels')
+        self.assertIsNone(a.read()['event_truth'])
 
     def test_available_times_at_closure(self):
         _,_,s,d=self.pipeline()

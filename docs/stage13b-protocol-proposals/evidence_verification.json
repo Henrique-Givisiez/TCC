@@ -1,0 +1,19 @@
+{
+  "pilot_manifest_entries_checked": 1520,
+  "errors": [],
+  "files_snapshotted": 3961,
+  "sources": {
+    "docs/stage13-pilot/design.md": "09b734b797ab7863d47ba829a970c27ed859593b64a8114acebb3b6573050a08",
+    "docs/stage13-pilot/results.md": "3cfed642fa9afced75445b6799aadf70b0a6976241660cf860ea525718084f45",
+    "docs/stage13-pilot/interpretation.md": "7bb79542625f20e4262231d6ba320095740580bd3263c404dad6d03345a3a219",
+    "experiment_results/stage13-pilot/analysis/summary.json": "80b828222c3a1b00b9bdb5c1a6a7ab2a2eba7a5ec9e92f0124b3161fa63cab35",
+    "experiment_results/stage13-pilot/completion.json": "141a6521aef941f0930caf09d74c5e7b1185de228d9e639203cdb4561f78784e"
+  },
+  "no_new_runs": true,
+  "no_prior_outputs_modified": true,
+  "files_checked_unchanged_sha256_and_mtime": 3961,
+  "changed_existing_files": [],
+  "arithmetic_checks": "PASS: counts, exposure, PRE support, cycles and phase totals",
+  "report_sha256": "96a27426ae99ed82f975ca8b369676d95d9f9d249590d4941d00a4f37ee565d7",
+  "estimate_file_sha256": "f3df0d01b422fb7b85e2d390565f18570e0c704d60670e8852512b92e958223e"
+}

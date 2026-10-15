@@ -217,8 +217,8 @@ class ScoreArtifactTests(unittest.TestCase):
             if path.name=='labels.csv':raise AssertionError('Detector attempted labels IO')
             return original(path,*args,**kwargs)
         with patch.object(Path,'open',guard):
-            model=fit_baseline([self.load(baseline,'baseline')],ZScore(),zscore_spec(),self.root/'model-real')
-            source=self.load(target,'test')
+            model=fit_baseline([self.load(baseline,'baseline')],ZScore(),zscore_spec(),self.root/'model-real',fit_start_seconds=0,fit_end_seconds=4)
+            source=self.load(target,'development')
             z=score_run(source,ZScore(),zscore_spec(),self.root/'z',baseline=model)
             cv=score_run(source,CoV(),cov_spec(lookback=2),self.root/'cv')
             z2=score_run(source,ZScore(),zscore_spec(),self.root/'z2',baseline=model)
@@ -242,7 +242,7 @@ class ScoreArtifactTests(unittest.TestCase):
     def test_failed_degenerate_fit_publishes_no_artifact(self):
         baseline=self.fixture.fixture('constant','constant',[3,3,3])
         with self.assertRaisesRegex(ContractError,'zero_baseline_sigma'):
-            fit_baseline([self.load(baseline,'baseline')],ZScore(),zscore_spec(),self.root/'bad-model')
+            fit_baseline([self.load(baseline,'baseline')],ZScore(),zscore_spec(),self.root/'bad-model',fit_start_seconds=0,fit_end_seconds=3)
         self.assertFalse((self.root/'bad-model').exists())
 
     def test_no_future_access_in_rolling_prefix(self):

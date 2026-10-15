@@ -1,8 +1,8 @@
 """The only Stage 11 module permitted to open labels.csv.
 
 No scientific overlap rule or metric is implemented here. Evaluators are callbacks
-which must interpret an explicit plan; actual event identities/boundaries require
-an independently verified future truth binding, not inference from window labels.
+which must interpret an explicit plan; original event identities/boundaries use the verified Stage 8 binding,
+never inference from window labels.
 """
 import csv
 from dataclasses import dataclass
@@ -51,12 +51,7 @@ class WindowResult:
 
 
 
-@dataclass(frozen=True)
-class EventTruth:
-    """Future verified event-level input. Never reconstructed from overlap bins."""
-    event_id: str
-    actual_start_seconds: Decimal
-    actual_end_seconds: Decimal
+from .events import EventTruth, VerifiedEvents, load_event_truth, evaluate_events
 
 
 @dataclass(frozen=True)
@@ -75,7 +70,7 @@ class EvaluationInput:
     decisions: tuple[DecisionRecord, ...]
     labels: tuple[WindowTruth, ...]
     # Stage 10 v1 labels contain union overlap, not complete event identities.
-    events: None = None
+    events: tuple[EventTruth, ...] | None = None
 
 
 class Evaluator(Protocol):
@@ -126,7 +121,8 @@ def load_window_truth(dataset, source_reference):
     return tuple(records), dict(path='timeseries/labels.csv', sha256=before)
 
 
-def evaluate(scores, decisions, dataset, evaluator, spec, plan, destination):
+def evaluate(scores, decisions, dataset, evaluator, spec, plan, destination, *,
+             event_truth=None, event_policy=None):
     if not isinstance(plan, EvaluationPlan):
         raise ContractError('Explicit EvaluationPlan required')
     plan.validate()
@@ -145,7 +141,15 @@ def evaluate(scores, decisions, dataset, evaluator, spec, plan, destination):
                 or score.window_start_seconds != truth.window_start_seconds
                 or score.window_end_seconds != truth.window_end_seconds):
             raise ContractError('Evaluation keys differ')
-    result = evaluator.evaluate(EvaluationInput(scores.records, decisions.records, labels), plan)
+    event_results = None
+    if event_truth is not None:
+        event_results = evaluate_events(decisions, event_truth, policy=event_policy)
+    elif event_policy is not None:
+        raise ContractError('Event policy requires verified event truth')
+    result = evaluator.evaluate(EvaluationInput(scores.records, decisions.records, labels,
+                               None if event_truth is None else event_truth.events), plan)
+    if event_truth is not None:
+        event_truth.verify()
     if not isinstance(result, dict):
         raise ContractError('Evaluator must return JSON result mapping')
     validate_score_run(scores); validate_decision_run(decisions)
@@ -156,6 +160,27 @@ def evaluate(scores, decisions, dataset, evaluator, spec, plan, destination):
         plan=dict(overlap_policy=plan.overlap_policy, overlap_config=dict(plan.overlap_config),
                   availability_policy=plan.availability_policy),
         source=m['source'], scores=scores.artifact.reference, decisions=decisions.artifact.reference,
-        truth=truth_ref, event_truth='unavailable_in_stage10_v1_union_labels',
+        truth=truth_ref, event_truth=None if event_truth is None else event_truth.reference,
+        event_policy=event_policy, event_results=None if event_results is None else [
+            dict(event_id=r.event_id, event_detected=r.detected,
+                 first_detection_available_at_seconds=r.first_detection_available_at_seconds,
+                 detection_delay_seconds=r.detection_delay_seconds,
+                 censored_at_seconds=r.censored_at_seconds) for r in event_results],
         results=result, provenance=provenance(evaluator)),
         protected=[dataset, scores.artifact.root, decisions.artifact.root])
+
+
+def pure_window_groups(labels):
+    """Primary policy: 0 benign, 1 attack, partial overlap separate; no rounding.
+
+    Callers retain the original continuous overlap for complementary analyses.
+    This helper defines groups, not metrics or any detector decision threshold.
+    """
+    groups = {'benign': [], 'attack': [], 'boundary': []}
+    for row in labels:
+        fraction = row.attack_event_overlap_fraction
+        if not 0 <= fraction <= 1:
+            raise ContractError('Invalid ground-truth overlap')
+        group = 'benign' if fraction == 0 else 'attack' if fraction == 1 else 'boundary'
+        groups[group].append(row)
+    return {key: tuple(values) for key, values in groups.items()}

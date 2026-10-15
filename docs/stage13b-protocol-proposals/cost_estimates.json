@@ -1,0 +1,138 @@
+{
+  "pilot": {
+    "runs": 15,
+    "nominal_seconds": 1260,
+    "wall_seconds": 1475.4535453069975,
+    "total_bytes_snapshot": 125380671,
+    "means_bytes_by_scenario": {
+      "B": {
+        "raw": 2998089.2,
+        "datasets": 3077982.4,
+        "features": 83112.4,
+        "validation": 34745.6
+      },
+      "C": {
+        "raw": 4801225.4,
+        "datasets": 4885577.8,
+        "features": 84861,
+        "validation": 35990.4
+      },
+      "P": {
+        "raw": 3675176.4,
+        "datasets": 3759601.2,
+        "features": 84641.2,
+        "validation": 35990.8
+      }
+    },
+    "overhead_seconds_by_scenario": {
+      "B": 13.325903425999604,
+      "C": 14.700906852799744,
+      "P": 15.063898782600154
+    },
+    "score_manifest_mean_bytes": 4415.469565217391,
+    "score_csv_bytes_per_window": 103.29919863597613
+  },
+  "assumptions": "Normal bytes scale with duration; excess C/P bytes scale with event duration; P2 same duty as P but unverified; no regime/saturation changes. Wall = duration + scenario startup/teardown measured. Reserve is planning allowance, not CI.",
+  "alternatives": [
+    {
+      "id": "A",
+      "baseline": 4,
+      "calibration": 6,
+      "test": 8,
+      "Tb": 120,
+      "Tc": 180,
+      "pre": 36,
+      "attack": 36,
+      "post": 36,
+      "patterns": [
+        "B",
+        "C",
+        "P"
+      ],
+      "K": 20,
+      "seeds_total": 18,
+      "runs": 34,
+      "test_run_seconds": 108,
+      "nominal_seconds": 4152,
+      "estimated_run_wall_seconds": 4629.984706751192,
+      "estimated_with_20pct_reserve_seconds": 5555.98164810143,
+      "acquisition_MiB": 329.93195691789896,
+      "score_MiB": 9.820513158929927,
+      "total_MiB_with_15pct_metadata": 390.71534058835323,
+      "suggested_storage_budget_MiB": 586.0730108825298,
+      "cal_confirm_steady_seconds": 432,
+      "zero_alarm_poisson_upper95_per_hour": 24.964435612949924,
+      "optimistic_mean_relative_halfwidth95_range": [
+        0.030975519656657898,
+        0.0457331026379573
+      ]
+    },
+    {
+      "id": "B",
+      "baseline": 6,
+      "calibration": 12,
+      "test": 16,
+      "Tb": 240,
+      "Tc": 360,
+      "pre": 48,
+      "attack": 36,
+      "post": 60,
+      "patterns": [
+        "B",
+        "C",
+        "P"
+      ],
+      "K": 32,
+      "seeds_total": 34,
+      "runs": 66,
+      "test_run_seconds": 144,
+      "nominal_seconds": 12672,
+      "estimated_run_wall_seconds": 13601.317606650384,
+      "estimated_with_20pct_reserve_seconds": 16321.58112798046,
+      "acquisition_MiB": 967.0274758475168,
+      "score_MiB": 27.301458833894458,
+      "total_MiB_with_15pct_metadata": 1143.4782748836228,
+      "suggested_storage_budget_MiB": 1715.2174123254342,
+      "cal_confirm_steady_seconds": 1872,
+      "zero_alarm_poisson_upper95_per_hour": 5.761023602988444,
+      "optimistic_mean_relative_halfwidth95_range": [
+        0.021903,
+        0.032338187
+      ]
+    },
+    {
+      "id": "C",
+      "baseline": 10,
+      "calibration": 20,
+      "test": 32,
+      "Tb": 300,
+      "Tc": 600,
+      "pre": 72,
+      "attack": 60,
+      "post": 120,
+      "patterns": [
+        "B",
+        "C",
+        "P",
+        "P2"
+      ],
+      "K": 56,
+      "seeds_total": 62,
+      "runs": 158,
+      "test_run_seconds": 252,
+      "nominal_seconds": 47256,
+      "estimated_run_wall_seconds": 49516.72455378798,
+      "estimated_with_20pct_reserve_seconds": 59420.06946454557,
+      "acquisition_MiB": 3645.4051560174844,
+      "score_MiB": 99.95245193260303,
+      "total_MiB_with_15pct_metadata": 4307.1612491426,
+      "suggested_storage_budget_MiB": 6460.7418737139005,
+      "cal_confirm_steady_seconds": 5280,
+      "zero_alarm_poisson_upper95_per_hour": 2.04254473196863,
+      "optimistic_mean_relative_halfwidth95_range": [
+        0.015487759828328949,
+        0.02286655131897865
+      ]
+    }
+  ]
+}

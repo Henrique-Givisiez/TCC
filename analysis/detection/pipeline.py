@@ -32,6 +32,8 @@ def verify_sources(sources, role=None):
     if not sources or not all(isinstance(s, BoundSeries) for s in sources):
         raise ContractError('Expected bound Stage 10 series')
     for s in sources:
+        from .protocol import guard_reference
+        guard_reference(s.reference, 'fit' if role == 'baseline' else 'scoring')
         s.verify()
         if role and s.role != role:
             raise ContractError(f'Phase requires {role} sources')
@@ -56,23 +58,50 @@ def refs_verify(refs):
     from pathlib import Path
     from .inputs import digest, safe_file
     for ref in refs:
+        from .protocol import guard_reference
+        guard_reference(ref, 'artifact_verification')
         root = Path(ref['feature_dataset'])
         for path, expected in ref['consumed_files_sha256'].items():
             if digest(safe_file(root, path)) != expected:
                 raise ContractError('Referenced Stage 10 source changed')
 
 
-def fit_baseline(sources, fitter, spec, destination):
+def fit_baseline(sources, fitter, spec, destination, *, fit_start_seconds=None,
+                 fit_end_seconds=None, fit_intervals=None):
     sources = tuple(sources)
     verify_sources(sources, 'baseline')
-    missing_check(sources, spec)
-    params = fitter.fit(tuple(s.series for s in sources), json.loads(encoded(dict(spec.config))))
+    from .fitting import select_interval
+    if fit_intervals is not None and (fit_start_seconds is not None or fit_end_seconds is not None):
+        raise ContractError('Use common bounds or per-run fit_intervals, not both')
+    if fit_intervals is None:
+        if fit_start_seconds is None or fit_end_seconds is None:
+            raise ContractError('Explicit fit_start_seconds and fit_end_seconds required')
+        fit_intervals = {s.series.run_id: (fit_start_seconds, fit_end_seconds) for s in sources}
+    if set(fit_intervals) != {s.series.run_id for s in sources}:
+        raise ContractError('fit_intervals must identify every baseline run exactly once')
+    selected, selections = [], []
+    for source in sources:
+        bounds = fit_intervals[source.series.run_id]
+        if not isinstance(bounds, (tuple, list)) or len(bounds) != 2:
+            raise ContractError('Each fit_interval requires start and end')
+        if source.reference.get('campaign'):
+            from .protocol import FROZEN
+            interval = FROZEN['fit_interval']
+            if tuple(map(number, bounds)) != (number(interval['start_seconds']), number(interval['end_seconds'])):
+                raise ContractError('Campaign fitting must use frozen fit_interval')
+        series, record = select_interval(source, *bounds)
+        selected.append(series); selections.append(record)
+    component(spec)
+    if spec.missing == 'reject' and any(o.value is None for s in selected for o in s.observations):
+        raise ContractError('Partial null fitting selection refused')
+    params = fitter.fit(tuple(selected), json.loads(encoded(dict(spec.config))))
     if not isinstance(params, dict):
         raise ContractError('Fitter must return JSON parameter mapping')
     verify_sources(sources, 'baseline')
     return publish(destination, 'baseline', dict(component=component(spec),
         feature=feature_key(sources[0].series), sources=[s.reference for s in sources],
-        parameters=params, provenance=provenance(fitter)), protected=[s.root for s in sources])
+        parameters=params, fit_selections=selections,
+        fitting_contract_version=2, provenance=provenance(fitter)), protected=[s.root for s in sources])
 
 
 def score_run(source, detector, spec, destination, *, baseline=None):
@@ -182,6 +211,9 @@ def calibrate(score_runs, calibrator, spec, destination):
     if not runs:
         raise ContractError('Calibration scores required')
     manifests = [validate_score_run(r) for r in runs]
+    from .protocol import guard_reference
+    for m in manifests:
+        guard_reference(m['source'], 'calibration')
     if any(m['source']['role'] != 'calibration' for m in manifests):
         raise ContractError('Calibration accepts only designated calibration scores, never test')
     ids = [m['source']['run_id'] for m in manifests]

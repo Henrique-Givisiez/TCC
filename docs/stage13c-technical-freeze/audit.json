@@ -1,0 +1,48 @@
+{
+  "timestamp_utc": "2026-10-15T19:14:39.831240+00:00",
+  "specific_tests": 41,
+  "full_suite_tests": 295,
+  "full_suite_result": "OK",
+  "git_diff_check": "OK",
+  "existing_output_files": 17968,
+  "unchanged_output_files": 17968,
+  "changed_files": [],
+  "new_output_files": [],
+  "deleted_files": [],
+  "new_runs": 0,
+  "stage14_executed": false,
+  "test_accessed": false,
+  "test_seeds": "not materialized; dataset does not exist",
+  "scientific_thresholds_selected": false,
+  "new_detectors": false,
+  "containers_running": 0,
+  "docker_check": "read-only Docker info after full suite",
+  "tcpdump_processes": 0,
+  "protocol": {
+    "protocol_id": "stage14-balanced",
+    "protocol_version": 1,
+    "protocol_hash": "79b204d7d781a939de7a95ab77b8e98ccbd15b5fe250fa237e0db1d0e7fa9e13",
+    "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiments/protocols/stage14_protocol.json"
+  },
+  "code_files_sha256": {
+    "analysis/detection/validate_stage12a.py": "dc1d27171cd4d10ceae073b1a37caefc4db591215f80286d0fb6eb539d0c5060",
+    "analysis/detection/fitting.py": "7fe4ed3a6a8805c85cab87723cee09680f5d7f7d0d29c6c7afbd81507ade35fb",
+    "analysis/detection/artifacts.py": "6296e9a8d4cabe94ae46ceee7610b7ed7b4daf797e2527af4baeab340e3b581b",
+    "analysis/detection/inputs.py": "989d9539fc13f2d43cc34dd98ba2a54522e33e8a3c40dec4a22a8d5c7ce6fa0a",
+    "analysis/detection/__init__.py": "f84a7263fb2027dc56a3fef56dd47e563bfbe1601e83203ba124d29ec8ba91b0",
+    "analysis/detection/contracts.py": "8716cd62428322610583845375a799040a60d12b8b94e30103313b400f6fdd84",
+    "analysis/detection/pipeline.py": "c5c5687a9c1c54ed9e7ea2960521a06991b881fbba85af4facdbec2de6d1c67c",
+    "analysis/detection/protocol.py": "16c4668b7015372ad0bb85c4f78841d01ac529e58e2c65d11f1dc3cca59673df",
+    "analysis/detection/detectors/_moments.py": "3cf50cd4a2fbce80d6283739f05f7959b8caffa0c1c0d70ad51094c0b50f7ca3",
+    "analysis/detection/detectors/zscore.py": "da9c51d1965b4578eea03b83b83d6741f524d5a0f0c42e4df5ce3c3da88a876b",
+    "analysis/detection/detectors/__init__.py": "4fb501080a8e6032640a260e5e8462f0977830cb66d3c3084211f84965ff448c",
+    "analysis/detection/detectors/cov.py": "d5ae557f222831d2df1db5b7d49cfa71213774cf943c78161570965cdb8a4588",
+    "analysis/detection/evaluation/events.py": "fdb98c5152fd4a24f67ef4f883793b0e667ea8c938cea26d1cc9c50890077b24",
+    "analysis/detection/evaluation/__init__.py": "35a80d6ee5c27d35f8811520ecbdf16bed47cf39ea3c93d8829e8d33e829e20c"
+  },
+  "notes": [
+    "No commit made.",
+    "Historical Stage13B documentation existed untracked before this task and was preserved.",
+    "All experiment_results files, not only Stage8\u201313 datasets, were compared byte-for-byte by SHA256."
+  ]
+}

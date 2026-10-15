@@ -92,6 +92,10 @@ class BoundSeries:
         return json.loads(self.reference_json)
 
     def verify(self):
+        if self.role != self.reference['role']:
+            raise ContractError('Bound series role differs from source reference')
+        from .protocol import guard_reference
+        guard_reference(self.reference, 'source_verification')
         for relative, expected in self.snapshot:
             if digest(safe_file(self.root, relative)) != expected:
                 raise ContractError(f'Stage 10 input changed: {relative}')
@@ -102,6 +106,8 @@ def load_series(dataset, *, run_id, family, feature, window_size_seconds,
     """Explicit selection/identity; no glob of numeric columns and no labels IO."""
     if role not in ('baseline', 'calibration', 'test', 'development'):
         raise ContractError('An explicit phase role is required')
+    if role == 'test':
+        raise ContractError('TEST locked: final release required before input access')
     if family not in FEATURES or feature not in FEATURES[family]:
         raise ContractError('Not an observable feature (labels/keys/unknown refused)')
     raw_root = Path(dataset).absolute()
