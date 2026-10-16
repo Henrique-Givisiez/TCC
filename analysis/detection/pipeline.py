@@ -236,7 +236,8 @@ def calibrate(score_runs, calibrator, spec, destination):
                 records, selection = select_campaign_records(records, ref, 'calibration')
                 if not records:
                     raise ContractError('Empty scientific calibration horizon')
-        selected_runs.append(CalibrationScores(manifest['source']['run_id'], records))
+        selected_runs.append(CalibrationScores(manifest['source']['run_id'], records,
+                                               seed=campaign['seed'] if campaign else None))
         selections.append(selection)
     params = calibrator.calibrate(tuple(selected_runs),
                                   json.loads(encoded(dict(spec.config))))

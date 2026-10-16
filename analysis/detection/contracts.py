@@ -54,6 +54,8 @@ class CalibrationScores:
     """Only scores and alignment keys; no feature values, paths or labels."""
     run_id: str
     records: tuple['PolicyScore', ...]
+    # Verified campaign metadata only; None for unbound development fixtures.
+    seed: int | None = None
 
 
 @dataclass(frozen=True)
