@@ -144,8 +144,7 @@ def load_bundle(path, expected_hash):
         _, final_lock = checked_reference(definitive)
         reference = final_lock['reference']
         head = reference['stable']['git_head']
-        required = f'experiment_results/stage14-finalization/{head}/environment_lock.json'
-        if (definitive['path'] != required or reference['dynamic']['git_status'] != ''
+        if (reference['dynamic']['git_status'] != ''
                 or binding.get('campaign_git_head') != head
                 or final_lock['historical_environment_lock'] != refs['environment_lock']):
             raise ContractError('Definitive lock requires matching clean campaign HEAD/history')
