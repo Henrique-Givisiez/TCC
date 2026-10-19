@@ -108,7 +108,11 @@ def score_run(source, detector, spec, destination, *, baseline=None):
     verify_sources((source,))
     missing_check((source,), spec)
     model = baseline.read('baseline') if baseline else None
-    if model and (model['component'] != component(spec) or model['feature'] != feature_key(source.series)):
+    # A standardized detector declares a separate, checked normalization model.
+    # Detectors without this capability retain the original identity check.
+    baseline_spec = getattr(detector, 'baseline_spec', None)
+    expected_model = component(baseline_spec(spec, feature_key(source.series)) if baseline_spec else spec)
+    if model and (model['component'] != expected_model or model['feature'] != feature_key(source.series)):
         raise ContractError('Baseline detector/config/feature mismatch')
     if model:
         refs_verify(model['sources'])
