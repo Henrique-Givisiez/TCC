@@ -5,14 +5,14 @@ ChatGPT/Codex. Consome a matriz, na ordem persistida, e a autoridade explicitame
 identificada por path e SHA256. Não escolhe seeds, cenários, parâmetros,
 detectores, thresholds ou métricas. Não importa scorer, calibrator ou evaluator.
 
-**TEST execution continua LOCKED.** Esta entrega não inicia campanha, não cria
-release e não executa os 48 preflights novamente. O adaptador de produção recusa
-execução antes de criar checkpoint ou abrir resultados científicos. O executor
-científico mantém também seu próprio guard fatal. Não existe flag de release,
-backend alternativo selecionável pela CLI ou variável que remova esse bloqueio.
-A futura release e sua integração com o adaptador exigem autorização e revisão
-separadas; os comandos abaixo são a interface operacional futura, não uma forma
-de executar TEST hoje.
+**Sem release explícita TEST permanece LOCKED.** O adaptador e o executor
+exigem manifesto de release com path e SHA256, vinculado à identidade exata da
+campanha, HEAD, environment, binding, freeze, evaluation protocol, protocol v2,
+matrix, seed plan e ordem das entradas. Não existe `--allow-test`, backend
+alternativo pela CLI ou variável que retire esse bloqueio. O binding histórico
+e o evaluation protocol continuam LOCKED: a autorização é um artefato separado.
+Criar esse artefato requer autorização humana explícita; a existência do código
+não constitui release. A entrega original Stage14D.0 não executou TEST.
 
 ## Estado e persistência
 
@@ -82,6 +82,7 @@ mkdir -p experiment_results/stage14d-campaign
 nohup .venv/bin/python -B -m experiments.stage14_campaign start \
   --campaign-dir experiment_results/stage14d-campaign \
   --binding <binding.json> --binding-sha256 <SHA256> \
+  --release <release.json> --release-sha256 <SHA256> \
   --evaluation-protocol experiments/protocols/stage14_test_evaluation_protocol_v1.json \
   --evaluation-sha256 <SHA256> \
   > experiment_results/stage14d-campaign/console.log 2>&1 < /dev/null &
@@ -109,6 +110,7 @@ Retomar no mesmo diretório, com os mesmos paths/hashes de autoridade:
 nohup .venv/bin/python -B -m experiments.stage14_campaign resume \
   --campaign-dir experiment_results/stage14d-campaign \
   --binding <binding.json> --binding-sha256 <SHA256> \
+  --release <release.json> --release-sha256 <SHA256> \
   --evaluation-protocol experiments/protocols/stage14_test_evaluation_protocol_v1.json \
   --evaluation-sha256 <SHA256> \
   >> experiment_results/stage14d-campaign/console.log 2>&1 < /dev/null &
@@ -132,5 +134,36 @@ automaticamente. Em falhas/orfandade, esta operação **não** autoriza retry.
 Testes usam exclusivamente temporários, fixtures sintéticas DEVELOPMENT e mocks.
 Cobrem planejamento de 48 entradas, ordem, persistência, interrupções, concorrência,
 retomada, certificados técnicos, colisão, atomicidade, idempotência e o guard fatal.
-Não há execução ou inspeção científica TEST nesta etapa. A análise científica
-TEST só poderá ocorrer após terminar a futura coleta e mediante autorização.
+Os testes não executam nem inspecionam TEST real. A análise científica TEST só
+poderá ocorrer após terminar a coleta e mediante autorização separada.
+
+## Release explícita e checkpoint inicial
+
+`experiments.stage14_test_release` valida a release independentemente de sua
+construção, recarregando metadados/ambiente e exigindo os hashes e a ordem exatos.
+Permite somente coleta científica e validação técnica. Fitting, calibration,
+tuning, scoring/evaluation científicos, alteração de detector/threshold e retry
+automático permanecem proibidos. Não autoriza novos runs fora da matriz.
+
+A identidade da campanha é SHA256 do plano congelado antes da release. A release
+refere essa identidade; o checkpoint contém adicionalmente path/SHA da release
+e compara o plano completo no resume. Isso evita referência circular. A release
+deve ser emitida somente após o commit e a finalização do environment/binding.
+Nenhum parâmetro científico ou artefato histórico é reescrito.
+
+Antes de destacar o processo, criar e consultar o checkpoint sem executar:
+
+```bash
+.venv/bin/python -B -m experiments.stage14_campaign initialize \
+  --campaign-dir <diretorio-administrativo> \
+  --binding <binding.json> --binding-sha256 <SHA256> \
+  --evaluation-protocol experiments/protocols/stage14_test_evaluation_protocol_v1.json \
+  --evaluation-sha256 <SHA256> \
+  --release <release.json> --release-sha256 <SHA256>
+```
+
+O estado inicial deve ser exclusivamente PENDING. A seguir iniciar `resume`
+via nohup, usando os mesmos paths/hashes, não `start` sobre o checkpoint criado.
+O executor persiste a referência da release no registro administrativo de cada
+run. O log operacional registra `execution_authority_accepted` antes de RUNNING.
+Preflight continua independente da release e não concede execução por si só.

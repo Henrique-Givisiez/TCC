@@ -1,6 +1,6 @@
 """One planned scientific row per invocation. Default is read-only dry-run.
 
-No TEST release capability. No Stage 11 fitting, thresholds or evaluation.
+TEST requires explicit hash-bound campaign release. No fitting or evaluation.
 """
 import argparse
 import fcntl
@@ -247,13 +247,17 @@ def run_pipeline(config, destination):
             dataset_manifest_sha256=feature_manifest['dataset_manifest_sha256']))
 
 
-def execute_entry(binding_path, expected_hash, *, partition, run, execute=False):
+def execute_entry(binding_path, expected_hash, *, partition, run, execute=False,
+                  release_path=None, release_sha256=None):
     # Dry-run never creates scientific directories or invokes run_pipeline.
     if not execute:
         return preflight_entry(binding_path,expected_hash,partition=partition,run=run)
-    # Fatal before locks, metadata preparation, output creation or any backend IO.
+    # Absent release is fatal before locks, output creation or backend IO.
+    authorization = None
     if partition == 'test':
-        raise ContractError('TEST locked: scientific execution forbidden (preflight only)')
+        from experiments.stage14_test_release import validate_release
+        authorization = validate_release(release_path, release_sha256,
+            binding_path=binding_path, binding_sha256=expected_hash, run=run)
     # Cross-invocation host lock; automatically released on exit. Evidence file retained.
     lock_path = ROOT/'experiment_results/.stage14-scientific.lock'
     lock_path.parent.mkdir(parents=True, exist_ok=True)
@@ -262,10 +266,17 @@ def execute_entry(binding_path, expected_hash, *, partition, run, execute=False)
             fcntl.flock(guard,fcntl.LOCK_EX|fcntl.LOCK_NB)
         except BlockingIOError as exc:
             raise ContractError('Concurrent scientific executor') from exc
-        metadata = prepare_entry(binding_path,expected_hash,partition=partition,run=run)
+        metadata = (preflight_entry if partition == 'test' else prepare_entry)(
+            binding_path,expected_hash,partition=partition,run=run)
         if metadata['environment_comparison']['fatal']:
             write(ROOT/'experiment_results/stage14-preflight-v2'/f"{metadata['execution_id']}.json",metadata)
             return metadata
+        if authorization is not None:
+            metadata.update(release=authorization['reference'],
+                released_campaign_identity=authorization['campaign_identity'],
+                execution_authorized=True, test_execution='RELEASED_FOR_CAMPAIGN',
+                capability='released_scientific_execution',
+                pipeline=['simulation','stage8','stage9','stage10'])
         destination = Path(metadata['destination'])
         destination.mkdir(parents=True,exist_ok=False)
         metadata.update(status='prepared',started_at_utc=now())
@@ -273,6 +284,11 @@ def execute_entry(binding_path, expected_hash, *, partition, run, execute=False)
         # Pin all refs and current runtime again immediately before invocation.
         try:
             load_bundle(binding_path,expected_hash)
+            if authorization is not None:
+                repeated = validate_release(release_path, release_sha256,
+                    binding_path=binding_path, binding_sha256=expected_hash, run=run)
+                if repeated != authorization:
+                    raise ContractError('Campaign release changed after preflight')
             for path, expected in metadata['environment']['runtime_sha256'].items():
                 if sha(ROOT/path) != expected:
                     raise ContractError('Runtime changed after preflight')
@@ -297,10 +313,13 @@ def main():
     p.add_argument('--run',type=int,required=True,help='Global matrix order, not arbitrary seed')
     mode=p.add_mutually_exclusive_group()
     mode.add_argument('--preflight',action='store_true',help='Administrative dry-run only; TEST execution remains LOCKED')
-    mode.add_argument('--execute',action='store_true',help='Execute BASELINE/CALIBRATION only; TEST always LOCKED')
+    mode.add_argument('--execute',action='store_true',help='TEST requires explicit campaign release')
+    p.add_argument('--release',type=Path)
+    p.add_argument('--release-sha256')
     p.add_argument('--audit-output',type=Path)
     args=p.parse_args()
-    result=execute_entry(args.binding,args.binding_sha256,partition=args.partition,run=args.run,execute=args.execute)
+    result=execute_entry(args.binding,args.binding_sha256,partition=args.partition,run=args.run,execute=args.execute,
+                         release_path=args.release,release_sha256=args.release_sha256)
     if args.audit_output:
         target=args.audit_output.resolve()
         scientific=(ROOT/OUTPUT_ROOT).resolve()

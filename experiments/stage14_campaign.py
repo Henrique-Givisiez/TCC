@@ -1,7 +1,7 @@
-"""Operational campaign coordinator. TEST execution remains locked by its executor.
+"""Operational campaign coordinator. TEST requires explicit campaign release.
 
 No detector, scoring, label parsing or scientific evaluation lives here. The CLI
-has no release switch and no selectable executor. Tests inject DEVELOPMENT fakes.
+accepts a hash-bound release artifact, never a boolean bypass or alternate executor.
 """
 import argparse
 from collections import Counter
@@ -17,6 +17,7 @@ from datetime import datetime, timezone
 
 from analysis.detection.inputs import ContractError
 from experiments import stage14_scientific as scientific
+from experiments.stage14_test_release import campaign_identity, validate_release
 
 
 STATES = ('PENDING', 'RUNNING', 'COMPLETED_VALID', 'FAILED', 'INCOMPLETE', 'INVALID')
@@ -91,16 +92,15 @@ class TechnicalFailure(ContractError):
 
 
 class FrozenExecutor:
-    """Administrative adapter to the frozen scientific executor, with no release.
-
-    Execution is deliberately fatal today. A future scientific release requires
-    a separately reviewed executor contract, not an argument to this runner.
-    """
-    def __init__(self, binding, binding_sha256, evaluation, evaluation_sha256):
+    """Frozen executor adapter; release is explicit and tied to the whole plan."""
+    def __init__(self, binding, binding_sha256, evaluation, evaluation_sha256,
+                 release_path=None, release_sha256=None):
         self.binding = Path(binding).resolve()
         self.binding_sha256 = binding_sha256
         self.evaluation = Path(evaluation).resolve()
         self.evaluation_sha256 = evaluation_sha256
+        self.release_path = release_path
+        self.release_sha256 = release_sha256
 
     def plan(self):
         binding, _, _, documents = scientific.load_bundle(self.binding, self.binding_sha256)
@@ -147,12 +147,16 @@ class FrozenExecutor:
         if output_root.exists() and any(p.name not in known or p.is_symlink() or not p.is_dir()
                                        for p in output_root.iterdir()):
             raise ContractError('Unexpected scientific output identity')
-        return dict(authority=authority, entries=entries)
+        plan = dict(authority=authority, entries=entries)
+        if self.release_path is not None or self.release_sha256 is not None:
+            authorization = self.require_execution()
+            plan['release'] = authorization['reference']
+        return plan
 
     def require_execution(self):
-        # There is intentionally no flag, token, environment variable or alternate
-        # backend in the CLI that bypasses the current executor's fatal TEST guard.
-        raise ContractError('TEST execution LOCKED: no scientific release capability exists')
+        return validate_release(self.release_path, self.release_sha256,
+            binding_path=self.binding, binding_sha256=self.binding_sha256,
+            evaluation_path=self.evaluation, evaluation_sha256=self.evaluation_sha256)
 
     def preflight(self, entry):
         metadata = scientific.preflight_entry(self.binding, self.binding_sha256,
@@ -164,7 +168,8 @@ class FrozenExecutor:
 
     def execute(self, entry):
         return scientific.execute_entry(self.binding, self.binding_sha256,
-                                       partition='test', run=entry['order'], execute=True)
+            partition='test', run=entry['order'], execute=True,
+            release_path=self.release_path, release_sha256=self.release_sha256)
 
     def cleanup(self, entry):
         # Resource teardown belongs to the existing executor/run_recorded finally
@@ -190,6 +195,10 @@ class FrozenExecutor:
             # Reject symlinks before opening any certificate through them.
             files = inventory(root)
             after, status, stage8, stage9, stage10 = [read_json(root/p) for p in required]
+            if self.release_path is not None and after.get('release') != dict(
+                    path=str(Path(self.release_path).resolve().relative_to(scientific.ROOT.resolve())),
+                    sha256=self.release_sha256):
+                raise TechnicalFailure('INVALID', 'Completed run release lineage mismatch')
             if status['status'] != 'completed':
                 raise TechnicalFailure('INCOMPLETE', 'Simulation has no normal completion')
             if after['status'] != 'completed':
@@ -280,18 +289,25 @@ class Campaign:
         for entry in plan['entries']:
             if Path(entry['output']).exists() or Path(entry['output']).is_symlink():
                 raise ContractError('Scientific output collision before initialization')
-        checkpoint = dict(schema_version=1, campaign_identity=digest(plan), plan=deepcopy(plan),
+        checkpoint = dict(schema_version=1, campaign_identity=campaign_identity(plan), plan=deepcopy(plan),
             total_entries=len(plan['entries']), created_at=scientific.now(),
             entries=[dict(plan=deepcopy(p), state='PENDING', attempt=1, validation=None,
                           reason=None, started_at=None, finished_at=None) for p in plan['entries']])
         self.save(checkpoint)
         return checkpoint
 
+    def initialize_authorized(self):
+        """Create the initial all-PENDING administrative checkpoint, no execution."""
+        with campaign_lock(self.directory):
+            plan = self.executor.plan()
+            self.executor.require_execution()
+            return self.initialize(plan)
+
     def load(self, plan):
         checkpoint = read_json(self.path)
         try:
             entries = checkpoint['entries']
-            if (checkpoint['schema_version'] != 1 or checkpoint['campaign_identity'] != digest(plan)
+            if (checkpoint['schema_version'] != 1 or checkpoint['campaign_identity'] != campaign_identity(plan)
                     or checkpoint['plan'] != plan or checkpoint['total_entries'] != len(plan['entries'])
                     or len(entries) != len(plan['entries'])):
                 raise ContractError('Campaign identity/checkpoint mismatch')
@@ -323,8 +339,7 @@ class Campaign:
         with campaign_lock(self.directory):
             plan = self.executor.plan()  # Revalidate before checkpoint/output access.
             checkpoint = self.load(plan) if resume else None
-            # This gate is before initialization, output reads and RUNNING. CLI
-            # cannot start/resume real TEST while the scientific guard is LOCKED.
+            # Authorization is checked before initialization, outputs and RUNNING.
             self.executor.require_execution()
             if checkpoint is None:
                 checkpoint = self.initialize(plan)
@@ -357,6 +372,8 @@ class Campaign:
                 if self.executor.plan() != plan:
                     raise ContractError('Authority or ordered plan changed')
                 self.executor.require_execution()
+                self.log('execution_authority_accepted', order=entry['plan']['order'],
+                         release=plan.get('release'))
                 self.executor.preflight(entry['plan'])
                 destination = Path(entry['plan']['output'])
                 if destination.exists() or destination.is_symlink():
@@ -421,12 +438,14 @@ def request_stop(directory):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('action', choices=('start', 'resume', 'status', 'abort'))
+    parser.add_argument('action', choices=('initialize', 'start', 'resume', 'status', 'abort'))
     parser.add_argument('--campaign-dir', type=Path, required=True)
     parser.add_argument('--binding', type=Path)
     parser.add_argument('--binding-sha256')
     parser.add_argument('--evaluation-protocol', type=Path)
     parser.add_argument('--evaluation-sha256')
+    parser.add_argument('--release', type=Path)
+    parser.add_argument('--release-sha256')
     args = parser.parse_args()
     directory = args.campaign_dir.resolve()
     scientific_root = (scientific.ROOT/scientific.OUTPUT_ROOT).resolve()
@@ -442,8 +461,13 @@ def main():
             required = (args.binding, args.binding_sha256, args.evaluation_protocol, args.evaluation_sha256)
             if not all(required):
                 parser.error('start/resume require explicit binding/evaluation paths and SHA256')
-            executor = FrozenExecutor(*required)
-            Campaign(directory, executor).run(resume=args.action == 'resume')
+            executor = FrozenExecutor(*required, release_path=args.release,
+                                      release_sha256=args.release_sha256)
+            coordinator = Campaign(directory, executor)
+            if args.action == 'initialize':
+                coordinator.initialize_authorized()
+            else:
+                coordinator.run(resume=args.action == 'resume')
             result = status(directory)
         print(json.dumps(result, indent=2))
     except (ContractError, OSError, ValueError) as exc:
