@@ -1,0 +1,87 @@
+{
+  "B": 16,
+  "C": 16,
+  "P": 16,
+  "accepted_runs": 48,
+  "administrative_evidence": {
+    "campaign_state.json": "aadcd33852bfabb667fc1dcbe0c2a13fd0bcabc77f392164c6a3750c88c24c9c",
+    "console.log": "9a96eea6d6b602b49718750eff73335160123860fa7797790bdd338f7f1d2df2",
+    "operations.jsonl": "d142ee923e8675f59b508a07934fcdbc9c8d64e95167fb6677bb19156a9fafe8"
+  },
+  "analysis_eligible": "48/48",
+  "authority": {
+    "binding": {
+      "path": "experiment_results/stage14d-release-20261019/authority/binding.json",
+      "sha256": "45eeed559cf863873ff6d0e70bf01571a4591789c1cf863279a8e530fe2fa46b"
+    },
+    "environment": {
+      "path": "experiment_results/stage14d-release-20261019/authority/environment_lock.json",
+      "sha256": "a6859c8b2db988560dfdb2717cbfa3a582b38a06fa5b23ab439dcf42e7ce5ed7"
+    },
+    "evaluation_protocol": {
+      "path": "experiments/protocols/stage14_test_evaluation_protocol_v1.json",
+      "sha256": "c2e1ab6314ab67c984b6b0e8f505982d72ea4de2f463e8607488e73c2764ef20"
+    },
+    "four_method_freeze": {
+      "path": "experiment_results/stage14-ewma-cusum-calibration-20261019/four_method_calibration_freeze_manifest.json",
+      "sha256": "898e79394ac48a86a734100d324d0b6b966412166a0eac105dbdeccb2bd236f5"
+    },
+    "head": "f27a5ae6117667f980f6de0217222d25da0e6e42",
+    "references": {
+      "definitive_environment_lock": {
+        "path": "experiment_results/stage14d-release-20261019/authority/environment_lock.json",
+        "sha256": "a6859c8b2db988560dfdb2717cbfa3a582b38a06fa5b23ab439dcf42e7ce5ed7"
+      },
+      "environment_lock": {
+        "path": "experiments/protocols/stage14_environment_lock_v2.json",
+        "sha256": "5a809b09c9b08527a4ae09b4543e838d84de3702c6d5c033d5fca4aabd6e97e0"
+      },
+      "matrix": {
+        "path": "experiments/protocols/stage14_matrix_v2.json",
+        "sha256": "c211dfbfebc389208c88d4d0af9bab26eb39582b86790655b469eca6bca4f684"
+      },
+      "protocol": {
+        "path": "experiments/protocols/stage14_protocol_v2.json",
+        "sha256": "59f5311e8ee0a05523c80938b7b08ddfaacd0bf8000a077c9de1ab675803872c"
+      },
+      "seed_plan": {
+        "path": "experiments/protocols/stage14_seed_plan_v2.json",
+        "sha256": "142cb4fd8668e0ebeed4bffbd0cd62d43667fdbd807651d110fa196b74593edb"
+      },
+      "source_stage14a_plan": {
+        "path": "docs/stage14a/materialized/campaign_plan.json",
+        "sha256": "f50bfe5d71f2246d6dc7c35561eb7872eb3f4e1366bcfc27bcd0016c944423e1"
+      }
+    }
+  },
+  "automatic_retries": 0,
+  "campaign_identity": "56c72f0445a08bb909d5abde24078fab448d2b47691decbf99df1d7cdd582ad3",
+  "campaign_total": 48,
+  "collection_authority_head": "f27a5ae6117667f980f6de0217222d25da0e6e42",
+  "dataset_valid": "48/48",
+  "detector_changes": false,
+  "evaluation_protocol_changes": false,
+  "failed": 0,
+  "feature_selection_changes": false,
+  "genealogy": "Post-collection administrative commit is recorded separately; never collection authority.",
+  "incomplete": 0,
+  "invalid": 0,
+  "inventory": {
+    "path": "experiment_results/stage14d-test-campaign-20261019/test_collection_inventory.json",
+    "sha256": "10ab05b24e9896d41e944192909f79b366e8cbbe7e08eb24f695b5d2ad1c2b47"
+  },
+  "isolation_evidence": "Exhaustive run receipts; unchanged authority hashes and clean collection Git records; exactly one execution per matrix entry. Negative claims limited to available administrative records.",
+  "matrix_changes": false,
+  "post_test_tuning": false,
+  "release": {
+    "path": "experiment_results/stage14d-release-20261019/test_campaign_release_v1.json",
+    "sha256": "ae4aa451b7088696071fc12ff17557e72c2df0eaa0427d5c8600173d0cc4400e"
+  },
+  "replacement_runs": 0,
+  "schema_version": 1,
+  "scientific_evaluation_performed_before_freeze": false,
+  "seed_changes": false,
+  "status": "FROZEN",
+  "threshold_changes": false,
+  "unique_seeds": 16
+}
