@@ -1,0 +1,2116 @@
+{
+  "alpha": "0.01",
+  "campaign_entry": 29,
+  "counts": {
+    "negative_decision_count": 144,
+    "observation_count": 144,
+    "positive_decision_count": 0,
+    "unavailable_score_count": 0,
+    "valid_score_count": 144
+  },
+  "detector_configuration": {
+    "config": {
+      "decimal_precision": 50,
+      "direction": "upper-tail",
+      "initial_state": "0",
+      "lambda": "0.2",
+      "missing_policy": "unavailable_reset_zero",
+      "normalization": "frozen_zscore_baseline",
+      "rounding": "ROUND_HALF_EVEN"
+    },
+    "missing": "preserve",
+    "name": "ewma",
+    "version": "1"
+  },
+  "feature": "ingress_tcp_payload_length_sum_bytes",
+  "lineage": {
+    "collection_authority_head": "f27a5ae6117667f980f6de0217222d25da0e6e42",
+    "detector": {
+      "baseline": {
+        "manifest_sha256": "f7030e9e0e01698f318e6e67a48243b23f36d6629c92b7c9ff6234369670094f",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14b-zscore-baseline/417860198812d8a8ae900219fb112cccd9489cfb/20261016T173501845399Z/models/ingress_tcp_payload_length_sum_bytes"
+      },
+      "component": {
+        "config": {
+          "decimal_precision": 50,
+          "direction": "upper-tail",
+          "initial_state": "0",
+          "lambda": "0.2",
+          "missing_policy": "unavailable_reset_zero",
+          "normalization": "frozen_zscore_baseline",
+          "rounding": "ROUND_HALF_EVEN"
+        },
+        "missing": "preserve",
+        "name": "ewma",
+        "version": "1"
+      },
+      "configuration": {
+        "alpha": "0.01",
+        "calibration_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "detector": "ewma",
+        "feature": "ingress_tcp_payload_length_sum_bytes",
+        "k": null,
+        "lambda_value": "0.2",
+        "lookback": null,
+        "threshold": "0.82573857066077832446383047934128345052979511053479",
+        "threshold_artifact": {
+          "manifest_sha256": "9e57bd19d3f6a20da8ccb239d866f70331d6946ca375efe0f6993ba4e94397c4",
+          "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14-ewma-cusum-calibration-20261019/thresholds/ingress_tcp_payload_length_sum_bytes__ewma/0.01"
+        }
+      },
+      "threshold_artifact": {
+        "manifest_sha256": "9e57bd19d3f6a20da8ccb239d866f70331d6946ca375efe0f6993ba4e94397c4",
+        "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/stage14-ewma-cusum-calibration-20261019/thresholds/ingress_tcp_payload_length_sum_bytes__ewma/0.01"
+      },
+      "threshold_identity": "9e57bd19d3f6a20da8ccb239d866f70331d6946ca375efe0f6993ba4e94397c4"
+    },
+    "inputs": {
+      "evaluation_protocol": {
+        "path": "experiments/protocols/stage14_test_evaluation_protocol_v1.json",
+        "sha256": "c2e1ab6314ab67c984b6b0e8f505982d72ea4de2f463e8607488e73c2764ef20"
+      },
+      "four_method_freeze": {
+        "path": "experiment_results/stage14-ewma-cusum-calibration-20261019/four_method_calibration_freeze_manifest.json",
+        "sha256": "898e79394ac48a86a734100d324d0b6b966412166a0eac105dbdeccb2bd236f5"
+      },
+      "provenance_bridge": {
+        "path": "experiment_results/stage15a-preflight-20261019/provenance_bridge.json",
+        "sha256": "9c361e6b873dc39eb7d1d51de4c2b3476260aa25f4959ea126e0e07dd115c7a7"
+      },
+      "provenance_review": {
+        "path": "experiment_results/stage15a-preflight-20261019/provenance_review.json",
+        "sha256": "31b9fe33452b7b92af226569149c2e40938015ed2653ac0f2615d6a5ab572923"
+      },
+      "test_collection_freeze": {
+        "path": "experiment_results/stage14d-test-campaign-20261019/test_collection_freeze_manifest.json",
+        "sha256": "8d784758ff7b751f68dc595d434a65bae1d764d5a21312b0e3d96a5f6613327d"
+      },
+      "test_inventory": {
+        "path": "experiment_results/stage14d-test-campaign-20261019/test_collection_inventory.json",
+        "sha256": "10ab05b24e9896d41e944192909f79b366e8cbbe7e08eb24f695b5d2ad1c2b47"
+      }
+    },
+    "source": {
+      "feature_schema_sha256": "b827da954200a740804b7ed3a9ed8cfade9b68b3fb170ce91f19e1239f3afe6b",
+      "feature_table": {
+        "path": "experiment_results/stage14-scientific-v2/29_test_3751420894_C/stage10/timeseries/network.csv",
+        "sha256": "86d4b25dd686dcd8c7cd64a5be19c20700f4547c27b5a6658c663b5102a8e993"
+      },
+      "scoring_horizon": "[0,144)",
+      "selected_window_indices": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143
+      ],
+      "source_window_count": 306,
+      "stage10_manifest": {
+        "path": "stage10/feature_manifest.json",
+        "sha256": "8d09af4035903dc768f6808d7e3ce2bfb6846824a7a1d600bb4c18db415f0e5e"
+      }
+    },
+    "stage10_warnings": [
+      {
+        "code": "INFRASTRUCTURE_RECORDS_WITHOUT_SUPPORT",
+        "message": "Recorded collector placeholders preserved in diagnostics, excluded from resource means.",
+        "records": 2
+      },
+      {
+        "check_id": "REQUEST_FAILURES_OBSERVED",
+        "code": "STAGE9_WARNING",
+        "evidence": {
+          "examples": [
+            "request_normal_2_000000040"
+          ],
+          "violation_count": 1
+        }
+      },
+      {
+        "check_id": "EXPECTED_PHASE_OBSERVATIONS",
+        "code": "STAGE9_WARNING",
+        "evidence": {
+          "examples": [
+            {
+              "phase": "during",
+              "table": "packets"
+            }
+          ],
+          "table": "packets",
+          "violation_count": 1
+        }
+      }
+    ],
+    "stage9_diagnostics": [
+      {
+        "affects": [],
+        "check_id": "OPTIONAL_EVIDENCE_PRESENT",
+        "evidence": {
+          "examples": [],
+          "violation_count": 0
+        },
+        "message": "Missing optional evidence limits auditability",
+        "passed": true,
+        "severity": "WARNING",
+        "stage": "structural"
+      },
+      {
+        "affects": [],
+        "check_id": "REQUEST_FAILURES_OBSERVED",
+        "evidence": {
+          "examples": [
+            "request_normal_2_000000040"
+          ],
+          "violation_count": 1
+        },
+        "message": "Request failures are preserved observations, not automatic dataset corruption",
+        "passed": false,
+        "severity": "WARNING",
+        "stage": "quality"
+      },
+      {
+        "affects": [],
+        "check_id": "SOURCE_JOURNAL_AVAILABLE",
+        "evidence": {
+          "examples": [],
+          "violation_count": 0
+        },
+        "message": "Missing journals limit admission/backlog evidence; primary observations remain authoritative",
+        "passed": true,
+        "severity": "WARNING",
+        "stage": "quality"
+      },
+      {
+        "affects": [],
+        "check_id": "SOURCE_JOURNAL_PARSEABLE",
+        "evidence": {
+          "examples": [],
+          "violation_count": 0
+        },
+        "message": "Malformed optional journals limit auditability",
+        "passed": true,
+        "severity": "WARNING",
+        "stage": "quality"
+      },
+      {
+        "affects": [],
+        "check_id": "EXECUTION_CODE_RECORDED",
+        "evidence": {},
+        "message": "Git unavailable limits reproducibility, without inventing SHA",
+        "passed": true,
+        "severity": "WARNING",
+        "stage": "quality"
+      },
+      {
+        "affects": [],
+        "check_id": "EXECUTION_WORKTREE_CLEAN",
+        "evidence": {},
+        "message": "Dirty or unavailable working tree cannot be reconstructed from hashes alone",
+        "passed": true,
+        "severity": "WARNING",
+        "stage": "quality"
+      },
+      {
+        "affects": [],
+        "check_id": "RANDOM_SEED_RECORDED",
+        "evidence": {},
+        "message": "Missing resolved seed limits reproduction without corrupting observations",
+        "passed": true,
+        "severity": "WARNING",
+        "stage": "quality"
+      },
+      {
+        "affects": [],
+        "check_id": "CAPTURE_TEMPORAL_COVERAGE",
+        "evidence": {
+          "clock": "epoch-derived",
+          "first": 0.12260842323303223,
+          "last": 305.4410893917084,
+          "monitoring_interval": null,
+          "observed_span": 305.31848096847534,
+          "planned_duration": 144,
+          "rows": 5525
+        },
+        "message": "Observed span only; first/last observations do not prove uninterrupted coverage and no percentage threshold is used",
+        "passed": true,
+        "severity": "WARNING",
+        "stage": "quality"
+      },
+      {
+        "affects": [],
+        "check_id": "EXPECTED_PHASE_OBSERVATIONS",
+        "evidence": {
+          "examples": [
+            {
+              "phase": "during",
+              "table": "packets"
+            }
+          ],
+          "table": "packets",
+          "violation_count": 1
+        },
+        "message": "Missing phase observations limit interpretation, but may follow stochastic generation or incomplete execution",
+        "passed": false,
+        "severity": "WARNING",
+        "stage": "quality"
+      },
+      {
+        "affects": [],
+        "check_id": "SERVICE_TEMPORAL_COVERAGE",
+        "evidence": {
+          "clock": "monotonic",
+          "first": 0.12129238600027747,
+          "last": 143.93303300700063,
+          "monitoring_interval": null,
+          "observed_span": 143.81174062100035,
+          "planned_duration": 144,
+          "rows": 1415
+        },
+        "message": "Observed span only; first/last observations do not prove uninterrupted coverage and no percentage threshold is used",
+        "passed": true,
+        "severity": "WARNING",
+        "stage": "quality"
+      },
+      {
+        "affects": [],
+        "check_id": "EXPECTED_PHASE_OBSERVATIONS",
+        "evidence": {
+          "examples": [],
+          "table": "requests",
+          "violation_count": 0
+        },
+        "message": "Missing phase observations limit interpretation, but may follow stochastic generation or incomplete execution",
+        "passed": true,
+        "severity": "WARNING",
+        "stage": "quality"
+      },
+      {
+        "affects": [],
+        "check_id": "METRICS_TEMPORAL_COVERAGE",
+        "evidence": {
+          "clock": "monotonic",
+          "first": 0.051808721998895635,
+          "last": 143.03267753,
+          "monitoring_interval": 1,
+          "observed_span": 142.9808688080011,
+          "planned_duration": 144,
+          "rows": 144
+        },
+        "message": "Observed span only; first/last observations do not prove uninterrupted coverage and no percentage threshold is used",
+        "passed": true,
+        "severity": "WARNING",
+        "stage": "quality"
+      },
+      {
+        "affects": [],
+        "check_id": "EXPECTED_PHASE_OBSERVATIONS",
+        "evidence": {
+          "examples": [],
+          "table": "metrics",
+          "violation_count": 0
+        },
+        "message": "Missing phase observations limit interpretation, but may follow stochastic generation or incomplete execution",
+        "passed": true,
+        "severity": "WARNING",
+        "stage": "quality"
+      },
+      {
+        "affects": [],
+        "check_id": "PACKET_EPOCH_ORDER",
+        "evidence": {
+          "examples": [],
+          "violation_count": 0
+        },
+        "message": "Backward capture epoch observations may indicate reordering or clock adjustment",
+        "passed": true,
+        "severity": "WARNING",
+        "stage": "quality"
+      },
+      {
+        "affects": [],
+        "check_id": "REQUEST_WALL_CLOCK_ORDER",
+        "evidence": {
+          "examples": [],
+          "violation_count": 0
+        },
+        "message": "Backward epoch timestamps may indicate clock adjustment; monotonic duration remains authoritative",
+        "passed": true,
+        "severity": "WARNING",
+        "stage": "quality"
+      },
+      {
+        "affects": [],
+        "check_id": "SOURCE_IP_OBSERVED",
+        "evidence": {
+          "examples": [],
+          "violation_count": 0
+        },
+        "message": "Missing inventoried IPs are a coverage warning, not absence of source identity",
+        "passed": true,
+        "severity": "WARNING",
+        "stage": "quality"
+      },
+      {
+        "affects": [],
+        "check_id": "EXPECTED_VICTIM_METRICS_OBSERVED",
+        "evidence": {
+          "examples": [],
+          "violation_count": 0
+        },
+        "message": "Missing named victims limit infrastructure attribution; startup cache gaps are not invalidity",
+        "passed": true,
+        "severity": "WARNING",
+        "stage": "quality"
+      },
+      {
+        "affects": [],
+        "check_id": "RAW_CAPTURE_NONEMPTY",
+        "evidence": {
+          "bytes": 1024718
+        },
+        "message": "A classic PCAP with only its 24-byte global header has no observations; this does not assert equality with CSV capture",
+        "passed": true,
+        "severity": "WARNING",
+        "stage": "quality"
+      }
+    ],
+    "stage9_summary": {
+      "eligibility_blockers": [],
+      "errors": 0,
+      "info": 8,
+      "warnings": 2
+    }
+  },
+  "method": "ewma",
+  "records": [
+    {
+      "availability": true,
+      "available_at": "1",
+      "decision": false,
+      "observation_value": "1764",
+      "score": "0.078586319429890655249266105355008178281647791013808",
+      "unavailable_reason": null,
+      "window_end_seconds": "1",
+      "window_index": 0,
+      "window_start_seconds": "0"
+    },
+    {
+      "availability": true,
+      "available_at": "2",
+      "decision": false,
+      "observation_value": "2548",
+      "score": "0.43069320239627613423192037420441223330459623228463",
+      "unavailable_reason": null,
+      "window_end_seconds": "2",
+      "window_index": 1,
+      "window_start_seconds": "1"
+    },
+    {
+      "availability": true,
+      "available_at": "3",
+      "decision": false,
+      "observation_value": "1568",
+      "score": "0.35083142449129332393899205857718858682591722472657",
+      "unavailable_reason": null,
+      "window_end_seconds": "3",
+      "window_index": 2,
+      "window_start_seconds": "2"
+    },
+    {
+      "availability": true,
+      "available_at": "4",
+      "decision": false,
+      "observation_value": "1960",
+      "score": "0.43156091587854355309627009835810842584178912291001",
+      "unavailable_reason": null,
+      "window_end_seconds": "4",
+      "window_index": 3,
+      "window_start_seconds": "3"
+    },
+    {
+      "availability": true,
+      "available_at": "5",
+      "decision": false,
+      "observation_value": "1176",
+      "score": "0.20690668156587078163885114561744678465685643299699",
+      "unavailable_reason": null,
+      "window_end_seconds": "5",
+      "window_index": 4,
+      "window_start_seconds": "4"
+    },
+    {
+      "availability": true,
+      "available_at": "6",
+      "decision": false,
+      "observation_value": "1176",
+      "score": "0.02718329411573256447291598342491747170891028106657",
+      "unavailable_reason": null,
+      "window_end_seconds": "6",
+      "window_index": 5,
+      "window_start_seconds": "5"
+    },
+    {
+      "availability": true,
+      "available_at": "7",
+      "decision": false,
+      "observation_value": "784",
+      "score": "-0.26121432955561448665145283861180473484826174470764",
+      "unavailable_reason": null,
+      "window_end_seconds": "7",
+      "window_index": 6,
+      "window_start_seconds": "6"
+    },
+    {
+      "availability": true,
+      "available_at": "8",
+      "decision": false,
+      "observation_value": "2156",
+      "score": "0.01423376949663554331972452674826314660185349947759",
+      "unavailable_reason": null,
+      "window_end_seconds": "8",
+      "window_index": 7,
+      "window_start_seconds": "7"
+    },
+    {
+      "availability": true,
+      "available_at": "9",
+      "decision": false,
+      "observation_value": "2352",
+      "score": "0.30690170559405380599247676517766682986135324694071",
+      "unavailable_reason": null,
+      "window_end_seconds": "9",
+      "window_index": 8,
+      "window_start_seconds": "8"
+    },
+    {
+      "availability": true,
+      "available_at": "10",
+      "decision": false,
+      "observation_value": "2156",
+      "score": "0.46872659761637017743486820977984039836954549279627",
+      "unavailable_reason": null,
+      "window_end_seconds": "10",
+      "window_index": 9,
+      "window_start_seconds": "9"
+    },
+    {
+      "availability": true,
+      "available_at": "11",
+      "decision": false,
+      "observation_value": "1568",
+      "score": "0.38125814066736855850135032703753111887787663313589",
+      "unavailable_reason": null,
+      "window_end_seconds": "11",
+      "window_index": 10,
+      "window_start_seconds": "10"
+    },
+    {
+      "availability": true,
+      "available_at": "12",
+      "decision": false,
+      "observation_value": "588",
+      "score": "-0.05026390916992393012451570986306319521249621516713",
+      "unavailable_reason": null,
+      "window_end_seconds": "12",
+      "window_index": 11,
+      "window_start_seconds": "11"
+    },
+    {
+      "availability": true,
+      "available_at": "13",
+      "decision": false,
+      "observation_value": "1372",
+      "score": "-0.10624372161728496624196715481814113408716428534978",
+      "unavailable_reason": null,
+      "window_end_seconds": "13",
+      "window_index": 12,
+      "window_start_seconds": "12"
+    },
+    {
+      "availability": true,
+      "available_at": "14",
+      "decision": false,
+      "observation_value": "1372",
+      "score": "-0.15102757157517379513592831078220348518689874149590",
+      "unavailable_reason": null,
+      "window_end_seconds": "14",
+      "window_index": 13,
+      "window_start_seconds": "13"
+    },
+    {
+      "availability": true,
+      "available_at": "15",
+      "decision": false,
+      "observation_value": "1568",
+      "score": "-0.11454519468586661955528688941210398796727875429785",
+      "unavailable_reason": null,
+      "window_end_seconds": "15",
+      "window_index": 14,
+      "window_start_seconds": "14"
+    },
+    {
+      "availability": true,
+      "available_at": "16",
+      "decision": false,
+      "observation_value": "1764",
+      "score": "-0.013049836318802640394963406174675012092175212424472",
+      "unavailable_reason": null,
+      "window_end_seconds": "16",
+      "window_index": 15,
+      "window_start_seconds": "15"
+    },
+    {
+      "availability": true,
+      "available_at": "17",
+      "decision": false,
+      "observation_value": "2352",
+      "score": "0.28507482094170325902072641883931630290613027741906",
+      "unavailable_reason": null,
+      "window_end_seconds": "17",
+      "window_index": 16,
+      "window_start_seconds": "16"
+    },
+    {
+      "availability": true,
+      "available_at": "18",
+      "decision": false,
+      "observation_value": "1176",
+      "score": "0.08971780561639854637841620200241308630832935660423",
+      "unavailable_reason": null,
+      "window_end_seconds": "18",
+      "window_index": 17,
+      "window_start_seconds": "17"
+    },
+    {
+      "availability": true,
+      "available_at": "19",
+      "decision": false,
+      "observation_value": "588",
+      "score": "-0.28349617721069993982286300989115762126813403639246",
+      "unavailable_reason": null,
+      "window_end_seconds": "19",
+      "window_index": 18,
+      "window_start_seconds": "18"
+    },
+    {
+      "availability": true,
+      "available_at": "20",
+      "decision": false,
+      "observation_value": "1764",
+      "score": "-0.14821062233866929660902430255791791873285943810016",
+      "unavailable_reason": null,
+      "window_end_seconds": "20",
+      "window_index": 19,
+      "window_start_seconds": "19"
+    },
+    {
+      "availability": true,
+      "available_at": "21",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-0.69076729014160893030024645196347055959930772850079",
+      "unavailable_reason": null,
+      "window_end_seconds": "21",
+      "window_index": 20,
+      "window_start_seconds": "20"
+    },
+    {
+      "availability": true,
+      "available_at": "22",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-1.1248126243839606372532241714879126722924663608213",
+      "unavailable_reason": null,
+      "window_end_seconds": "22",
+      "window_index": 21,
+      "window_start_seconds": "21"
+    },
+    {
+      "availability": true,
+      "available_at": "23",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-1.4720488917778420028156063471074663624469932666777",
+      "unavailable_reason": null,
+      "window_end_seconds": "23",
+      "window_index": 22,
+      "window_start_seconds": "22"
+    },
+    {
+      "availability": true,
+      "available_at": "24",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-1.7498379056929470952655120876031093145706147913629",
+      "unavailable_reason": null,
+      "window_end_seconds": "24",
+      "window_index": 23,
+      "window_start_seconds": "23"
+    },
+    {
+      "availability": true,
+      "available_at": "25",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-1.9720691168250311692254366799996236762695120111110",
+      "unavailable_reason": null,
+      "window_end_seconds": "25",
+      "window_index": 24,
+      "window_start_seconds": "24"
+    },
+    {
+      "availability": true,
+      "available_at": "26",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.1498540857306984283933763539168351656286297869095",
+      "unavailable_reason": null,
+      "window_end_seconds": "26",
+      "window_index": 25,
+      "window_start_seconds": "25"
+    },
+    {
+      "availability": true,
+      "available_at": "27",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.2920820608552322357277280930506043571159240075483",
+      "unavailable_reason": null,
+      "window_end_seconds": "27",
+      "window_index": 26,
+      "window_start_seconds": "26"
+    },
+    {
+      "availability": true,
+      "available_at": "28",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.4058644409548592815952094843576197103057593840593",
+      "unavailable_reason": null,
+      "window_end_seconds": "28",
+      "window_index": 27,
+      "window_start_seconds": "27"
+    },
+    {
+      "availability": true,
+      "available_at": "29",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.4968903450345609182891945974032319928576276852681",
+      "unavailable_reason": null,
+      "window_end_seconds": "29",
+      "window_index": 28,
+      "window_start_seconds": "28"
+    },
+    {
+      "availability": true,
+      "available_at": "30",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.5697110682983222276443826878397218188991223262352",
+      "unavailable_reason": null,
+      "window_end_seconds": "30",
+      "window_index": 29,
+      "window_start_seconds": "29"
+    },
+    {
+      "availability": true,
+      "available_at": "31",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.6279676469093312751285331601889136797323180390089",
+      "unavailable_reason": null,
+      "window_end_seconds": "31",
+      "window_index": 30,
+      "window_start_seconds": "30"
+    },
+    {
+      "availability": true,
+      "available_at": "32",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.6745729097981385131158535380682671683988746092278",
+      "unavailable_reason": null,
+      "window_end_seconds": "32",
+      "window_index": 31,
+      "window_start_seconds": "31"
+    },
+    {
+      "availability": true,
+      "available_at": "33",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.7118571201091843035057098403717499593321198654029",
+      "unavailable_reason": null,
+      "window_end_seconds": "33",
+      "window_index": 32,
+      "window_start_seconds": "32"
+    },
+    {
+      "availability": true,
+      "available_at": "34",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.7416844883580209358175948822145361920787160703430",
+      "unavailable_reason": null,
+      "window_end_seconds": "34",
+      "window_index": 33,
+      "window_start_seconds": "33"
+    },
+    {
+      "availability": true,
+      "available_at": "35",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.7655463829570902416671029156887651782759930342951",
+      "unavailable_reason": null,
+      "window_end_seconds": "35",
+      "window_index": 34,
+      "window_start_seconds": "34"
+    },
+    {
+      "availability": true,
+      "available_at": "36",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.7846358986363456863467093424681483672338146054568",
+      "unavailable_reason": null,
+      "window_end_seconds": "36",
+      "window_index": 35,
+      "window_start_seconds": "35"
+    },
+    {
+      "availability": true,
+      "available_at": "37",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.7999075111797500420903944838916549184000718623861",
+      "unavailable_reason": null,
+      "window_end_seconds": "37",
+      "window_index": 36,
+      "window_start_seconds": "36"
+    },
+    {
+      "availability": true,
+      "available_at": "38",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8121248012144735266853425970304601593330776679296",
+      "unavailable_reason": null,
+      "window_end_seconds": "38",
+      "window_index": 37,
+      "window_start_seconds": "37"
+    },
+    {
+      "availability": true,
+      "available_at": "39",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8218986332422523143613010875415043520794823123644",
+      "unavailable_reason": null,
+      "window_end_seconds": "39",
+      "window_index": 38,
+      "window_start_seconds": "38"
+    },
+    {
+      "availability": true,
+      "available_at": "40",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8297176988644753445020678799503397062766060279122",
+      "unavailable_reason": null,
+      "window_end_seconds": "40",
+      "window_index": 39,
+      "window_start_seconds": "39"
+    },
+    {
+      "availability": true,
+      "available_at": "41",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8359729513622537686146813138774079896343050003505",
+      "unavailable_reason": null,
+      "window_end_seconds": "41",
+      "window_index": 40,
+      "window_start_seconds": "40"
+    },
+    {
+      "availability": true,
+      "available_at": "42",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8409771533604765079047720610190626163204641783011",
+      "unavailable_reason": null,
+      "window_end_seconds": "42",
+      "window_index": 41,
+      "window_start_seconds": "41"
+    },
+    {
+      "availability": true,
+      "available_at": "43",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8449805149590546993368446587323863176693915206616",
+      "unavailable_reason": null,
+      "window_end_seconds": "43",
+      "window_index": 42,
+      "window_start_seconds": "42"
+    },
+    {
+      "availability": true,
+      "available_at": "44",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8481832042379172524825027369030452787485333945500",
+      "unavailable_reason": null,
+      "window_end_seconds": "44",
+      "window_index": 43,
+      "window_start_seconds": "43"
+    },
+    {
+      "availability": true,
+      "available_at": "45",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8507453556610072949990291994395724476118468936607",
+      "unavailable_reason": null,
+      "window_end_seconds": "45",
+      "window_index": 44,
+      "window_start_seconds": "44"
+    },
+    {
+      "availability": true,
+      "available_at": "46",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8527950767994793290122503694687941827024976929493",
+      "unavailable_reason": null,
+      "window_end_seconds": "46",
+      "window_index": 45,
+      "window_start_seconds": "45"
+    },
+    {
+      "availability": true,
+      "available_at": "47",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8544348537102569562228273054921715707750183323801",
+      "unavailable_reason": null,
+      "window_end_seconds": "47",
+      "window_index": 46,
+      "window_start_seconds": "46"
+    },
+    {
+      "availability": true,
+      "available_at": "48",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8557466752388790579912888543108734812330348439248",
+      "unavailable_reason": null,
+      "window_end_seconds": "48",
+      "window_index": 47,
+      "window_start_seconds": "47"
+    },
+    {
+      "availability": true,
+      "available_at": "49",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8567961324617767394060580933658350095994480531605",
+      "unavailable_reason": null,
+      "window_end_seconds": "49",
+      "window_index": 48,
+      "window_start_seconds": "48"
+    },
+    {
+      "availability": true,
+      "available_at": "50",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8576356982400948845378734846098042322925786205491",
+      "unavailable_reason": null,
+      "window_end_seconds": "50",
+      "window_index": 49,
+      "window_start_seconds": "49"
+    },
+    {
+      "availability": true,
+      "available_at": "51",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8583073508627494006433257976049796104470830744600",
+      "unavailable_reason": null,
+      "window_end_seconds": "51",
+      "window_index": 50,
+      "window_start_seconds": "50"
+    },
+    {
+      "availability": true,
+      "available_at": "52",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8588446729608730135276876480011199129706866375887",
+      "unavailable_reason": null,
+      "window_end_seconds": "52",
+      "window_index": 51,
+      "window_start_seconds": "51"
+    },
+    {
+      "availability": true,
+      "available_at": "53",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8592745306393719038351771283180321549895694880917",
+      "unavailable_reason": null,
+      "window_end_seconds": "53",
+      "window_index": 52,
+      "window_start_seconds": "52"
+    },
+    {
+      "availability": true,
+      "available_at": "54",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8596184167821710160811687125715619486046757684941",
+      "unavailable_reason": null,
+      "window_end_seconds": "54",
+      "window_index": 53,
+      "window_start_seconds": "53"
+    },
+    {
+      "availability": true,
+      "available_at": "55",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8598935256964103058779619799743857834967607928160",
+      "unavailable_reason": null,
+      "window_end_seconds": "55",
+      "window_index": 54,
+      "window_start_seconds": "54"
+    },
+    {
+      "availability": true,
+      "available_at": "56",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8601136128278017377153965938966448514104288122735",
+      "unavailable_reason": null,
+      "window_end_seconds": "56",
+      "window_index": 55,
+      "window_start_seconds": "55"
+    },
+    {
+      "availability": true,
+      "available_at": "57",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8602896825329148831853442850344521057413632278395",
+      "unavailable_reason": null,
+      "window_end_seconds": "57",
+      "window_index": 56,
+      "window_start_seconds": "56"
+    },
+    {
+      "availability": true,
+      "available_at": "58",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8604305382970053995613024379446979092061107602923",
+      "unavailable_reason": null,
+      "window_end_seconds": "58",
+      "window_index": 57,
+      "window_start_seconds": "57"
+    },
+    {
+      "availability": true,
+      "available_at": "59",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8605432229082778126620689602728945519779087862545",
+      "unavailable_reason": null,
+      "window_end_seconds": "59",
+      "window_index": 58,
+      "window_start_seconds": "58"
+    },
+    {
+      "availability": true,
+      "available_at": "60",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8606333705972957431426821781354518661953472070243",
+      "unavailable_reason": null,
+      "window_end_seconds": "60",
+      "window_index": 59,
+      "window_start_seconds": "59"
+    },
+    {
+      "availability": true,
+      "available_at": "61",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8607054887485100875271727524254977175692979436401",
+      "unavailable_reason": null,
+      "window_end_seconds": "61",
+      "window_index": 60,
+      "window_start_seconds": "60"
+    },
+    {
+      "availability": true,
+      "available_at": "62",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8607631832694815630347652118575343986684585329328",
+      "unavailable_reason": null,
+      "window_end_seconds": "62",
+      "window_index": 61,
+      "window_start_seconds": "61"
+    },
+    {
+      "availability": true,
+      "available_at": "63",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8608093388862587434408391794031637435477870043669",
+      "unavailable_reason": null,
+      "window_end_seconds": "63",
+      "window_index": 62,
+      "window_start_seconds": "62"
+    },
+    {
+      "availability": true,
+      "available_at": "64",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8608462633796804877656983534396672194512497815142",
+      "unavailable_reason": null,
+      "window_end_seconds": "64",
+      "window_index": 63,
+      "window_start_seconds": "63"
+    },
+    {
+      "availability": true,
+      "available_at": "65",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8608758029744178832255856926688700001740200032321",
+      "unavailable_reason": null,
+      "window_end_seconds": "65",
+      "window_index": 64,
+      "window_start_seconds": "64"
+    },
+    {
+      "availability": true,
+      "available_at": "66",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8608994346502077995934955640522322247522361806064",
+      "unavailable_reason": null,
+      "window_end_seconds": "66",
+      "window_index": 65,
+      "window_start_seconds": "65"
+    },
+    {
+      "availability": true,
+      "available_at": "67",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609183399908397326878234611589220044148091225058",
+      "unavailable_reason": null,
+      "window_end_seconds": "67",
+      "window_index": 66,
+      "window_start_seconds": "66"
+    },
+    {
+      "availability": true,
+      "available_at": "68",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609334642633452791632857788442738281448674760253",
+      "unavailable_reason": null,
+      "window_end_seconds": "68",
+      "window_index": 67,
+      "window_start_seconds": "67"
+    },
+    {
+      "availability": true,
+      "available_at": "69",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609455636813497163436556329925552871289141588409",
+      "unavailable_reason": null,
+      "window_end_seconds": "69",
+      "window_index": 68,
+      "window_start_seconds": "68"
+    },
+    {
+      "availability": true,
+      "available_at": "70",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609552432157532660879515163111804543161515050934",
+      "unavailable_reason": null,
+      "window_end_seconds": "70",
+      "window_index": 69,
+      "window_start_seconds": "69"
+    },
+    {
+      "availability": true,
+      "available_at": "71",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609629868432761058833882229660805880659413820954",
+      "unavailable_reason": null,
+      "window_end_seconds": "71",
+      "window_index": 70,
+      "window_start_seconds": "70"
+    },
+    {
+      "availability": true,
+      "available_at": "72",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609691817452943777197375882900006950657732836970",
+      "unavailable_reason": null,
+      "window_end_seconds": "72",
+      "window_index": 71,
+      "window_start_seconds": "71"
+    },
+    {
+      "availability": true,
+      "available_at": "73",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609741376669089951888170805491367806656388049783",
+      "unavailable_reason": null,
+      "window_end_seconds": "73",
+      "window_index": 72,
+      "window_start_seconds": "72"
+    },
+    {
+      "availability": true,
+      "available_at": "74",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609781024042006891640806743564456491455312220033",
+      "unavailable_reason": null,
+      "window_end_seconds": "74",
+      "window_index": 73,
+      "window_start_seconds": "73"
+    },
+    {
+      "availability": true,
+      "available_at": "75",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609812741940340443442915494022927439294451556233",
+      "unavailable_reason": null,
+      "window_end_seconds": "75",
+      "window_index": 74,
+      "window_start_seconds": "74"
+    },
+    {
+      "availability": true,
+      "available_at": "76",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609838116259007284884602494389704197565763025193",
+      "unavailable_reason": null,
+      "window_end_seconds": "76",
+      "window_index": 75,
+      "window_start_seconds": "75"
+    },
+    {
+      "availability": true,
+      "available_at": "77",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609858415713940758037952094683125604182812200361",
+      "unavailable_reason": null,
+      "window_end_seconds": "77",
+      "window_index": 76,
+      "window_start_seconds": "76"
+    },
+    {
+      "availability": true,
+      "available_at": "78",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609874655277887536560631774917862729476451540496",
+      "unavailable_reason": null,
+      "window_end_seconds": "78",
+      "window_index": 77,
+      "window_start_seconds": "77"
+    },
+    {
+      "availability": true,
+      "available_at": "79",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609887646929044959378775519105652429711363012604",
+      "unavailable_reason": null,
+      "window_end_seconds": "79",
+      "window_index": 78,
+      "window_start_seconds": "78"
+    },
+    {
+      "availability": true,
+      "available_at": "80",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609898040249970897633290514455884189899292190290",
+      "unavailable_reason": null,
+      "window_end_seconds": "80",
+      "window_index": 79,
+      "window_start_seconds": "79"
+    },
+    {
+      "availability": true,
+      "available_at": "81",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609906354906711648236902510736069598049635532439",
+      "unavailable_reason": null,
+      "window_end_seconds": "81",
+      "window_index": 80,
+      "window_start_seconds": "80"
+    },
+    {
+      "availability": true,
+      "available_at": "82",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609913006632104248719792107760217924569910206158",
+      "unavailable_reason": null,
+      "window_end_seconds": "82",
+      "window_index": 81,
+      "window_start_seconds": "81"
+    },
+    {
+      "availability": true,
+      "available_at": "83",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609918328012418329106103785379536585786129945133",
+      "unavailable_reason": null,
+      "window_end_seconds": "83",
+      "window_index": 82,
+      "window_start_seconds": "82"
+    },
+    {
+      "availability": true,
+      "available_at": "84",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609922585116669593415153127474991514759105736313",
+      "unavailable_reason": null,
+      "window_end_seconds": "84",
+      "window_index": 83,
+      "window_start_seconds": "83"
+    },
+    {
+      "availability": true,
+      "available_at": "85",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609925990800070604862392601151355457937486369257",
+      "unavailable_reason": null,
+      "window_end_seconds": "85",
+      "window_index": 84,
+      "window_start_seconds": "84"
+    },
+    {
+      "availability": true,
+      "available_at": "86",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609928715346791414020184180092446612480190875613",
+      "unavailable_reason": null,
+      "window_end_seconds": "86",
+      "window_index": 85,
+      "window_start_seconds": "85"
+    },
+    {
+      "availability": true,
+      "available_at": "87",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609930894984168061346417443245319536114354480697",
+      "unavailable_reason": null,
+      "window_end_seconds": "87",
+      "window_index": 86,
+      "window_start_seconds": "86"
+    },
+    {
+      "availability": true,
+      "available_at": "88",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609932638694069379207404053767617875021685364765",
+      "unavailable_reason": null,
+      "window_end_seconds": "88",
+      "window_index": 87,
+      "window_start_seconds": "87"
+    },
+    {
+      "availability": true,
+      "available_at": "89",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609934033661990433496193342185456546147550072019",
+      "unavailable_reason": null,
+      "window_end_seconds": "89",
+      "window_index": 88,
+      "window_start_seconds": "88"
+    },
+    {
+      "availability": true,
+      "available_at": "90",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609935149636327276927224772919727483048241837822",
+      "unavailable_reason": null,
+      "window_end_seconds": "90",
+      "window_index": 89,
+      "window_start_seconds": "89"
+    },
+    {
+      "availability": true,
+      "available_at": "91",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609936042415796751672049917507144232568795250465",
+      "unavailable_reason": null,
+      "window_end_seconds": "91",
+      "window_index": 90,
+      "window_start_seconds": "90"
+    },
+    {
+      "availability": true,
+      "available_at": "92",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609936756639372331467910033177077632185237980579",
+      "unavailable_reason": null,
+      "window_end_seconds": "92",
+      "window_index": 91,
+      "window_start_seconds": "91"
+    },
+    {
+      "availability": true,
+      "available_at": "93",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609937328018232795304598125713024351878392164670",
+      "unavailable_reason": null,
+      "window_end_seconds": "93",
+      "window_index": 92,
+      "window_start_seconds": "92"
+    },
+    {
+      "availability": true,
+      "available_at": "94",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609937785121321166373948599741781727632915511943",
+      "unavailable_reason": null,
+      "window_end_seconds": "94",
+      "window_index": 93,
+      "window_start_seconds": "93"
+    },
+    {
+      "availability": true,
+      "available_at": "95",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609938150803791863229428978964787628236534189761",
+      "unavailable_reason": null,
+      "window_end_seconds": "95",
+      "window_index": 94,
+      "window_start_seconds": "94"
+    },
+    {
+      "availability": true,
+      "available_at": "96",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609938443349768420713813282343192348719429132016",
+      "unavailable_reason": null,
+      "window_end_seconds": "96",
+      "window_index": 95,
+      "window_start_seconds": "95"
+    },
+    {
+      "availability": true,
+      "available_at": "97",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609938677386549666701320725045916125105745085820",
+      "unavailable_reason": null,
+      "window_end_seconds": "97",
+      "window_index": 96,
+      "window_start_seconds": "96"
+    },
+    {
+      "availability": true,
+      "available_at": "98",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609938864615974663491326679208095146214797848863",
+      "unavailable_reason": null,
+      "window_end_seconds": "98",
+      "window_index": 97,
+      "window_start_seconds": "97"
+    },
+    {
+      "availability": true,
+      "available_at": "99",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609939014399514660923331442537838363102040059297",
+      "unavailable_reason": null,
+      "window_end_seconds": "99",
+      "window_index": 98,
+      "window_start_seconds": "98"
+    },
+    {
+      "availability": true,
+      "available_at": "100",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609939134226346658868935253201632936611833827645",
+      "unavailable_reason": null,
+      "window_end_seconds": "100",
+      "window_index": 99,
+      "window_start_seconds": "99"
+    },
+    {
+      "availability": true,
+      "available_at": "101",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609939230087812257225418301732668595419668842323",
+      "unavailable_reason": null,
+      "window_end_seconds": "101",
+      "window_index": 100,
+      "window_start_seconds": "100"
+    },
+    {
+      "availability": true,
+      "available_at": "102",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609939306776984735910604740557497122465936854065",
+      "unavailable_reason": null,
+      "window_end_seconds": "102",
+      "window_index": 101,
+      "window_start_seconds": "101"
+    },
+    {
+      "availability": true,
+      "available_at": "103",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609939368128322718858753891617359944102951263459",
+      "unavailable_reason": null,
+      "window_end_seconds": "103",
+      "window_index": 102,
+      "window_start_seconds": "102"
+    },
+    {
+      "availability": true,
+      "available_at": "104",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609939417209393105217273212465250201412562790974",
+      "unavailable_reason": null,
+      "window_end_seconds": "104",
+      "window_index": 103,
+      "window_start_seconds": "103"
+    },
+    {
+      "availability": true,
+      "available_at": "105",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609939456474249414304088669143562407260252012986",
+      "unavailable_reason": null,
+      "window_end_seconds": "105",
+      "window_index": 104,
+      "window_start_seconds": "104"
+    },
+    {
+      "availability": true,
+      "available_at": "106",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609939487886134461573541034486212171938403390596",
+      "unavailable_reason": null,
+      "window_end_seconds": "106",
+      "window_index": 105,
+      "window_start_seconds": "105"
+    },
+    {
+      "availability": true,
+      "available_at": "107",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609939513015642499389102926760331983680924492684",
+      "unavailable_reason": null,
+      "window_end_seconds": "107",
+      "window_index": 106,
+      "window_start_seconds": "106"
+    },
+    {
+      "availability": true,
+      "available_at": "108",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609939533119248929641552440579627833074941374354",
+      "unavailable_reason": null,
+      "window_end_seconds": "108",
+      "window_index": 107,
+      "window_start_seconds": "107"
+    },
+    {
+      "availability": true,
+      "available_at": "109",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609939549202134073843512051635064512590154879690",
+      "unavailable_reason": null,
+      "window_end_seconds": "109",
+      "window_index": 108,
+      "window_start_seconds": "108"
+    },
+    {
+      "availability": true,
+      "available_at": "110",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609939562068442189205079740479413856202325683959",
+      "unavailable_reason": null,
+      "window_end_seconds": "110",
+      "window_index": 109,
+      "window_start_seconds": "109"
+    },
+    {
+      "availability": true,
+      "available_at": "111",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609939572361488681494333891554893331092062327374",
+      "unavailable_reason": null,
+      "window_end_seconds": "111",
+      "window_index": 110,
+      "window_start_seconds": "110"
+    },
+    {
+      "availability": true,
+      "available_at": "112",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609939580595925875325737212415276911003851642106",
+      "unavailable_reason": null,
+      "window_end_seconds": "112",
+      "window_index": 111,
+      "window_start_seconds": "111"
+    },
+    {
+      "availability": true,
+      "available_at": "113",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609939587183475630390859869103583774933283093892",
+      "unavailable_reason": null,
+      "window_end_seconds": "113",
+      "window_index": 112,
+      "window_start_seconds": "112"
+    },
+    {
+      "availability": true,
+      "available_at": "114",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609939592453515434442957994454229266076828255321",
+      "unavailable_reason": null,
+      "window_end_seconds": "114",
+      "window_index": 113,
+      "window_start_seconds": "113"
+    },
+    {
+      "availability": true,
+      "available_at": "115",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609939596669547277684636494734745658991664384464",
+      "unavailable_reason": null,
+      "window_end_seconds": "115",
+      "window_index": 114,
+      "window_start_seconds": "114"
+    },
+    {
+      "availability": true,
+      "available_at": "116",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609939600042372752277979294959158773323533287778",
+      "unavailable_reason": null,
+      "window_end_seconds": "116",
+      "window_index": 115,
+      "window_start_seconds": "115"
+    },
+    {
+      "availability": true,
+      "available_at": "117",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609939602740633131952653535138689264789028410429",
+      "unavailable_reason": null,
+      "window_end_seconds": "117",
+      "window_index": 116,
+      "window_start_seconds": "116"
+    },
+    {
+      "availability": true,
+      "available_at": "118",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609939604899241435692392927282313657961424508550",
+      "unavailable_reason": null,
+      "window_end_seconds": "118",
+      "window_index": 117,
+      "window_start_seconds": "117"
+    },
+    {
+      "availability": true,
+      "available_at": "119",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609939606626128078684184440997213172499341387047",
+      "unavailable_reason": null,
+      "window_end_seconds": "119",
+      "window_index": 118,
+      "window_start_seconds": "118"
+    },
+    {
+      "availability": true,
+      "available_at": "120",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609939608007637393077617651969132784129674889845",
+      "unavailable_reason": null,
+      "window_end_seconds": "120",
+      "window_index": 119,
+      "window_start_seconds": "119"
+    },
+    {
+      "availability": true,
+      "available_at": "121",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609939609112844844592364220746668473433941692083",
+      "unavailable_reason": null,
+      "window_end_seconds": "121",
+      "window_index": 120,
+      "window_start_seconds": "120"
+    },
+    {
+      "availability": true,
+      "available_at": "122",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609939609997010805804161475768697024877355133873",
+      "unavailable_reason": null,
+      "window_end_seconds": "122",
+      "window_index": 121,
+      "window_start_seconds": "121"
+    },
+    {
+      "availability": true,
+      "available_at": "123",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609939610704343574773599279786319866032085887305",
+      "unavailable_reason": null,
+      "window_end_seconds": "123",
+      "window_index": 122,
+      "window_start_seconds": "122"
+    },
+    {
+      "availability": true,
+      "available_at": "124",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609939611270209789949149523000418138955870490051",
+      "unavailable_reason": null,
+      "window_end_seconds": "124",
+      "window_index": 123,
+      "window_start_seconds": "123"
+    },
+    {
+      "availability": true,
+      "available_at": "125",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609939611722902762089589717571696757294898172248",
+      "unavailable_reason": null,
+      "window_end_seconds": "125",
+      "window_index": 124,
+      "window_start_seconds": "124"
+    },
+    {
+      "availability": true,
+      "available_at": "126",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609939612085057139801941873228719651966120318005",
+      "unavailable_reason": null,
+      "window_end_seconds": "126",
+      "window_index": 125,
+      "window_start_seconds": "125"
+    },
+    {
+      "availability": true,
+      "available_at": "127",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609939612374780641971823597754337967703098034611",
+      "unavailable_reason": null,
+      "window_end_seconds": "127",
+      "window_index": 126,
+      "window_start_seconds": "126"
+    },
+    {
+      "availability": true,
+      "available_at": "128",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609939612606559443707728977374832620292680207896",
+      "unavailable_reason": null,
+      "window_end_seconds": "128",
+      "window_index": 127,
+      "window_start_seconds": "127"
+    },
+    {
+      "availability": true,
+      "available_at": "129",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609939612791982485096453281071228342364345946524",
+      "unavailable_reason": null,
+      "window_end_seconds": "129",
+      "window_index": 128,
+      "window_start_seconds": "128"
+    },
+    {
+      "availability": true,
+      "available_at": "130",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609939612940320918207432724028344920021678537426",
+      "unavailable_reason": null,
+      "window_end_seconds": "130",
+      "window_index": 129,
+      "window_start_seconds": "129"
+    },
+    {
+      "availability": true,
+      "available_at": "131",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609939613058991664696216278394038182147544610148",
+      "unavailable_reason": null,
+      "window_end_seconds": "131",
+      "window_index": 130,
+      "window_start_seconds": "130"
+    },
+    {
+      "availability": true,
+      "available_at": "132",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609939613153928261887243121886592791848237468325",
+      "unavailable_reason": null,
+      "window_end_seconds": "132",
+      "window_index": 131,
+      "window_start_seconds": "131"
+    },
+    {
+      "availability": true,
+      "available_at": "133",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609939613229877539640064596680636479608791754867",
+      "unavailable_reason": null,
+      "window_end_seconds": "133",
+      "window_index": 132,
+      "window_start_seconds": "132"
+    },
+    {
+      "availability": true,
+      "available_at": "134",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609939613290636961842321776515871429817235184101",
+      "unavailable_reason": null,
+      "window_end_seconds": "134",
+      "window_index": 133,
+      "window_start_seconds": "133"
+    },
+    {
+      "availability": true,
+      "available_at": "135",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609939613339244499604127520384059389983989927488",
+      "unavailable_reason": null,
+      "window_end_seconds": "135",
+      "window_index": 134,
+      "window_start_seconds": "134"
+    },
+    {
+      "availability": true,
+      "available_at": "136",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609939613378130529813572115478609758117393722197",
+      "unavailable_reason": null,
+      "window_end_seconds": "136",
+      "window_index": 135,
+      "window_start_seconds": "135"
+    },
+    {
+      "availability": true,
+      "available_at": "137",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609939613409239353981127791554250052624116757965",
+      "unavailable_reason": null,
+      "window_end_seconds": "137",
+      "window_index": 136,
+      "window_start_seconds": "136"
+    },
+    {
+      "availability": true,
+      "available_at": "138",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609939613434126413315172332414762288229495186579",
+      "unavailable_reason": null,
+      "window_end_seconds": "138",
+      "window_index": 137,
+      "window_start_seconds": "137"
+    },
+    {
+      "availability": true,
+      "available_at": "139",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609939613454036060782407965103172076713797929470",
+      "unavailable_reason": null,
+      "window_end_seconds": "139",
+      "window_index": 138,
+      "window_start_seconds": "138"
+    },
+    {
+      "availability": true,
+      "available_at": "140",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609939613469963778756196471253899907501240123783",
+      "unavailable_reason": null,
+      "window_end_seconds": "140",
+      "window_index": 139,
+      "window_start_seconds": "139"
+    },
+    {
+      "availability": true,
+      "available_at": "141",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609939613482705953135227276174482172131193879233",
+      "unavailable_reason": null,
+      "window_end_seconds": "141",
+      "window_index": 140,
+      "window_start_seconds": "140"
+    },
+    {
+      "availability": true,
+      "available_at": "142",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609939613492899692638451920110947983835156883593",
+      "unavailable_reason": null,
+      "window_end_seconds": "142",
+      "window_index": 141,
+      "window_start_seconds": "141"
+    },
+    {
+      "availability": true,
+      "available_at": "143",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609939613501054684241031635260120633198327287081",
+      "unavailable_reason": null,
+      "window_end_seconds": "143",
+      "window_index": 142,
+      "window_start_seconds": "142"
+    },
+    {
+      "availability": true,
+      "available_at": "144",
+      "decision": false,
+      "observation_value": "0",
+      "score": "-2.8609939613507578677523095407379458752688863609872",
+      "unavailable_reason": null,
+      "window_end_seconds": "144",
+      "window_index": 143,
+      "window_start_seconds": "143"
+    }
+  ],
+  "run_id": "13d5594baf2b4977983bc95d7994c6a4",
+  "scenario": "C",
+  "schema_version": 1,
+  "seed": 3751420894,
+  "threshold": "0.82573857066077832446383047934128345052979511053479",
+  "threshold_identity": "9e57bd19d3f6a20da8ccb239d866f70331d6946ca375efe0f6993ba4e94397c4"
+}

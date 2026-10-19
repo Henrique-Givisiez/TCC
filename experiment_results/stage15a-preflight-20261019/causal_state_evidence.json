@@ -1,0 +1,23 @@
+[
+  {
+    "continuous_at_48_differs_from_reset_at_48": true,
+    "full_series_start": 0,
+    "method": "ewma",
+    "prefix_causal": true,
+    "reset_at_48": false
+  },
+  {
+    "continuous_at_48_differs_from_reset_at_48": true,
+    "full_series_start": 0,
+    "method": "cusum",
+    "prefix_causal": true,
+    "reset_at_48": false
+  },
+  {
+    "continuous_at_48_differs_from_reset_at_48": true,
+    "full_series_start": 0,
+    "method": "cov",
+    "prefix_causal": true,
+    "reset_at_48": false
+  }
+]

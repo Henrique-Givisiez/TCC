@@ -1,0 +1,60 @@
+Materialized campaign entry 19
+Materialized campaign entry 20
+Materialized campaign entry 21
+Materialized campaign entry 22
+Materialized campaign entry 23
+Materialized campaign entry 24
+Materialized campaign entry 25
+Materialized campaign entry 26
+Materialized campaign entry 27
+Materialized campaign entry 28
+Materialized campaign entry 29
+Materialized campaign entry 30
+Materialized campaign entry 31
+Materialized campaign entry 32
+Materialized campaign entry 33
+Materialized campaign entry 34
+Materialized campaign entry 35
+Materialized campaign entry 36
+Materialized campaign entry 37
+Materialized campaign entry 38
+Materialized campaign entry 39
+Materialized campaign entry 40
+Materialized campaign entry 41
+Materialized campaign entry 42
+Materialized campaign entry 43
+Materialized campaign entry 44
+Materialized campaign entry 45
+Materialized campaign entry 46
+Materialized campaign entry 47
+Materialized campaign entry 48
+Materialized campaign entry 49
+Materialized campaign entry 50
+Materialized campaign entry 51
+Materialized campaign entry 52
+Materialized campaign entry 53
+Materialized campaign entry 54
+Materialized campaign entry 55
+Materialized campaign entry 56
+Materialized campaign entry 57
+Materialized campaign entry 58
+Materialized campaign entry 59
+Materialized campaign entry 60
+Materialized campaign entry 61
+Materialized campaign entry 62
+Materialized campaign entry 63
+Materialized campaign entry 64
+Materialized campaign entry 65
+Materialized campaign entry 66
+{
+  "manifest_sha256": "089a25681dd13810a94a92def805aa9a7e314955ebdcca671d625d959ae3a9d5",
+  "output_artifacts": 961,
+  "counts": {
+    "observation_count": 138240,
+    "valid_score_count": 136354,
+    "unavailable_score_count": 1886,
+    "positive_decision_count": 16487,
+    "negative_decision_count": 119867
+  },
+  "combinations": 960
+}

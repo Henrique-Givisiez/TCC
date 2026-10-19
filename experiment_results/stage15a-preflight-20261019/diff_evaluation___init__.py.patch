@@ -1,0 +1,71 @@
+diff --git a/analysis/detection/evaluation/__init__.py b/analysis/detection/evaluation/__init__.py
+index d60fbe5..59d7963 100644
+--- a/analysis/detection/evaluation/__init__.py
++++ b/analysis/detection/evaluation/__init__.py
+@@ -13,6 +13,7 @@ from ..artifacts import component, provenance, publish
+ from ..contracts import DecisionRecord, PolicyScore
+ from ..inputs import ContractError, checked_output, number, read_json, safe_file, digest, grid_edges
+ from ..pipeline import DecisionRun, ScoreRun, refs_verify, validate_score_run, validate_decision_run
++from ..horizons import EvaluationSelection, select_for_evaluation
+ 
+ 
+ @dataclass(frozen=True)
+@@ -21,10 +22,15 @@ class EvaluationPlan:
+     overlap_config: Mapping
+     # No default event attribution, persistence, or delay rule.
+     availability_policy: str
++    selection: EvaluationSelection | None = None
+ 
+     def validate(self):
+         if not self.overlap_policy.strip() or not self.availability_policy.strip():
+             raise ContractError('Explicit overlap and availability policies required')
++        if self.selection is not None:
++            if not isinstance(self.selection, EvaluationSelection):
++                raise ContractError('Explicit EvaluationSelection required')
++            self.selection.bounds()
+ 
+ 
+ @dataclass(frozen=True)
+@@ -132,6 +138,8 @@ def evaluate(scores, decisions, dataset, evaluator, spec, plan, destination, *,
+     d = validate_decision_run(decisions)
+     if d['score_artifact'] != scores.artifact.reference:
+         raise ContractError('Decisions belong to different scores')
++    selected_scores, temporal_selection = select_for_evaluation(scores.records, m['source'], plan.selection)
++    selected_decisions, _ = select_for_evaluation(decisions.records, m['source'], plan.selection)
+     labels, truth_ref = load_window_truth(dataset, m['source'])
+     if len(labels) != len(scores.records) or len(labels) != len(decisions.records):
+         raise ContractError('Evaluation alignment mismatch')
+@@ -141,21 +149,10 @@ def evaluate(scores, decisions, dataset, evaluator, spec, plan, destination, *,
+                 or score.window_start_seconds != truth.window_start_seconds
+                 or score.window_end_seconds != truth.window_end_seconds):
+             raise ContractError('Evaluation keys differ')
+-    selected_scores, selected_decisions, selected_labels = scores.records, decisions.records, labels
+-    temporal_selection = None
+-    campaign = m['source'].get('campaign')
+-    if campaign:
+-        from ..protocol import load_protocol
+-        from ..horizons import select_campaign_records
+-        ref = campaign['protocol']
+-        doc, _ = load_protocol(ref['path'], expected_hash=ref['protocol_hash'])
+-        if doc['protocol_version'] == 2:
+-            selected_scores, temporal_selection = select_campaign_records(scores.records, ref, campaign['partition'])
+-            selected_decisions, _ = select_campaign_records(decisions.records, ref, campaign['partition'])
+-            selected_labels, _ = select_campaign_records(labels, ref, campaign['partition'])
++    selected_labels, _ = select_for_evaluation(labels, m['source'], plan.selection)
+     event_results = None
+     if event_truth is not None:
+-        event_results = evaluate_events(decisions, event_truth, policy=event_policy)
++        event_results = evaluate_events(decisions, event_truth, policy=event_policy, selection=plan.selection)
+     elif event_policy is not None:
+         raise ContractError('Event policy requires verified event truth')
+     result = evaluator.evaluate(EvaluationInput(selected_scores, selected_decisions, selected_labels,
+@@ -170,7 +167,8 @@ def evaluate(scores, decisions, dataset, evaluator, spec, plan, destination, *,
+         raise ContractError('Truth changed during evaluation')
+     return publish(destination, 'evaluation', dict(component=component(spec),
+         plan=dict(overlap_policy=plan.overlap_policy, overlap_config=dict(plan.overlap_config),
+-                  availability_policy=plan.availability_policy),
++                  availability_policy=plan.availability_policy,
++                  **({} if plan.selection is None else {'selection': dict(region=plan.selection.region, version=1)})),
+         source=m['source'], temporal_selection=temporal_selection, scores=scores.artifact.reference, decisions=decisions.artifact.reference,
+         truth=truth_ref, event_truth=None if event_truth is None else event_truth.reference,
+         event_policy=event_policy, event_results=None if event_results is None else [

@@ -1,0 +1,65 @@
+{
+  "combinations": 960,
+  "execution_sources": {
+    "analysis/detection/__init__.py": "f84a7263fb2027dc56a3fef56dd47e563bfbe1601e83203ba124d29ec8ba91b0",
+    "analysis/detection/artifacts.py": "6296e9a8d4cabe94ae46ceee7610b7ed7b4daf797e2527af4baeab340e3b581b",
+    "analysis/detection/contracts.py": "83099a6ae05199c965794f66a7f178556c1c189807de8aa68f873eab057d19e0",
+    "analysis/detection/detectors/__init__.py": "4fb501080a8e6032640a260e5e8462f0977830cb66d3c3084211f84965ff448c",
+    "analysis/detection/detectors/_moments.py": "3cf50cd4a2fbce80d6283739f05f7959b8caffa0c1c0d70ad51094c0b50f7ca3",
+    "analysis/detection/detectors/_standardized.py": "90c8c59de1a8acd277efa2fe2fa0ee2025f814abb5e6c2c4f0bd192dba6ac724",
+    "analysis/detection/detectors/cov.py": "d5ae557f222831d2df1db5b7d49cfa71213774cf943c78161570965cdb8a4588",
+    "analysis/detection/detectors/cusum.py": "0c2689b621d0bc74e1bec584e8768cd7dc5bc22751622781bc43a5e6a8ab5e8e",
+    "analysis/detection/detectors/ewma.py": "8cec7c85b855efbe24197506d3b666b5d376369408421abc05e1a3e0ea976eea",
+    "analysis/detection/detectors/zscore.py": "da9c51d1965b4578eea03b83b83d6741f524d5a0f0c42e4df5ce3c3da88a876b",
+    "analysis/detection/empirical.py": "f3a1ce6f8e779c5f4187832eed26adcb8a098f7d2a1324a45b561ef1f6cda820",
+    "analysis/detection/evaluation/__init__.py": "31ddb70da03505f8e506b3a6581d3b4a8186c684eea0998bff0a8c8d2594da98",
+    "analysis/detection/evaluation/events.py": "e6c0c18d00c577a7ff42f9bc57e8f07b9015aa3c04d66a9ae530ae27978b8dec",
+    "analysis/detection/fitting.py": "7fe4ed3a6a8805c85cab87723cee09680f5d7f7d0d29c6c7afbd81507ade35fb",
+    "analysis/detection/horizons.py": "3626399fa7b45f0dcb9b729f25ac54c5d9945eca0c9837e5d8ced06e4703a4cc",
+    "analysis/detection/inputs.py": "989d9539fc13f2d43cc34dd98ba2a54522e33e8a3c40dec4a22a8d5c7ce6fa0a",
+    "analysis/detection/pipeline.py": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48",
+    "analysis/detection/protocol.py": "bae14b6a7688502f1cc5a0a77d07692451e35eb9b3b9a1641f40259cf4479afa",
+    "analysis/detection/validate_stage12a.py": "dc1d27171cd4d10ceae073b1a37caefc4db591215f80286d0fb6eb539d0c5060",
+    "experiments/feature_schema.py": "279aab2adf08dc1986d2e3079946e3ea8176330ca93e8d5ee4e209387a588c57",
+    "experiments/stage14_test_collection.py": "3b0f4a0b90f11c1074f122714fb7e5dcaef38959a286fdde6421514e64a634d9",
+    "experiments/stage15a_provenance.py": "3d8fc174f9ddbb08600b6c9520bdeba904ef9c7d2dbee19e985292457431b141",
+    "experiments/stage15a_test_scoring.py": "426f387a7be6d10ff87a4cc5561c87bdb315c5b4106722dbfe31bef15912a63e"
+  },
+  "full_suite_executed": false,
+  "full_suite_note": "Selected detector/policy/protocol regressions; full suite includes evaluator execution deliberately outside Stage15A scope.",
+  "inputs": {
+    "evaluation_protocol": {
+      "path": "experiments/protocols/stage14_test_evaluation_protocol_v1.json",
+      "sha256": "c2e1ab6314ab67c984b6b0e8f505982d72ea4de2f463e8607488e73c2764ef20"
+    },
+    "four_method_freeze": {
+      "path": "experiment_results/stage14-ewma-cusum-calibration-20261019/four_method_calibration_freeze_manifest.json",
+      "sha256": "898e79394ac48a86a734100d324d0b6b966412166a0eac105dbdeccb2bd236f5"
+    },
+    "provenance_bridge": {
+      "path": "experiment_results/stage15a-preflight-20261019/provenance_bridge.json",
+      "sha256": "9c361e6b873dc39eb7d1d51de4c2b3476260aa25f4959ea126e0e07dd115c7a7"
+    },
+    "provenance_review": {
+      "path": "experiment_results/stage15a-preflight-20261019/provenance_review.json",
+      "sha256": "31b9fe33452b7b92af226569149c2e40938015ed2653ac0f2615d6a5ab572923"
+    },
+    "test_collection_freeze": {
+      "path": "experiment_results/stage14d-test-campaign-20261019/test_collection_freeze_manifest.json",
+      "sha256": "8d784758ff7b751f68dc595d434a65bae1d764d5a21312b0e3d96a5f6613327d"
+    },
+    "test_inventory": {
+      "path": "experiment_results/stage14d-test-campaign-20261019/test_collection_inventory.json",
+      "sha256": "10ab05b24e9896d41e944192909f79b366e8cbbe7e08eb24f695b5d2ad1c2b47"
+    }
+  },
+  "primary_configurations": 20,
+  "processing_head": "ec086c25aaa81ac4da85f5f3c83875dce9b830c1",
+  "regression_log_sha256": "e06f024865def4c331167b19ff95b2f274e59014a1e15140c47c0109b9a76dfc",
+  "regression_tests": 104,
+  "regression_tests_passed": true,
+  "stage": "15A",
+  "status": "PREFLIGHT_PASSED_BEFORE_FIRST_TEST_SCORE",
+  "test_runs": 48,
+  "test_scoring_already_performed": false
+}

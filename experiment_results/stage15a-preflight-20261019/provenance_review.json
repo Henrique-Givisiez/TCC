@@ -1,0 +1,3126 @@
+{
+  "classification": [
+    {
+      "changes_stage15a_numeric_result": false,
+      "classification": "EVALUATION_ONLY",
+      "path": "analysis/detection/evaluation/__init__.py"
+    },
+    {
+      "changes_stage15a_numeric_result": false,
+      "classification": "EVALUATION_ONLY",
+      "path": "analysis/detection/evaluation/events.py"
+    },
+    {
+      "changes_stage15a_numeric_result": false,
+      "classification": "EVALUATION_ONLY",
+      "path": "analysis/detection/horizons.py"
+    },
+    {
+      "changes_stage15a_numeric_result": false,
+      "classification": "SCIENTIFIC_EQUIVALENT",
+      "path": "analysis/detection/pipeline.py"
+    }
+  ],
+  "dataflow": {
+    "draft_observation": "Draft directly calls detector and StrictUpperTail, not pipeline.score_run/decide. analysis.detection.__init__ imports pipeline indirectly. Evaluation modules are not imported. Administrative Stage14 import chain is recorded separately; it is not numeric input to callbacks.",
+    "exact_import_and_function_call_catalog": "static_dataflow_evidence.json",
+    "horizon_conclusion": "Neither historical nor current score_run/decide invokes horizons. pipeline.calibrate invokes select_campaign_records AFTER scores; those semantics are unchanged. Current explicit evaluation region code is needed for generic evaluator enforcement of the approved pre-TEST primary [48,144) contract; it is not necessary to compute Stage15A scores and does not change causal state.",
+    "import_only_project_module_probe": "import_only_evidence.json",
+    "methods": {
+      "cov": {
+        "classes_functions": [
+          "CoV.start_run",
+          "cov_spec(lookback=6)",
+          "CoV.update",
+          "sample_moments",
+          "standard_deviation",
+          "decimal_ratio"
+        ],
+        "decision_files": [
+          "analysis/detection/empirical.py",
+          "analysis/detection/inputs.py",
+          "analysis/detection/contracts.py"
+        ],
+        "decision_functions": [
+          "upper_tail_spec(alpha=0.01)",
+          "StrictUpperTail.start_run",
+          "validate_config",
+          "quantile_index (validates persisted calibration support, does not estimate threshold)",
+          "checked_score",
+          "StrictUpperTail.decide"
+        ],
+        "decision_rule": "score > frozen threshold; equality negative; unavailable remains None",
+        "draft_path": [
+          "read_observations",
+          "combination",
+          "score_decide",
+          "detector.start_run once",
+          "detector.update",
+          "PolicyScore",
+          "StrictUpperTail.start_run",
+          "StrictUpperTail.decide",
+          "metadata serialization after callbacks"
+        ],
+        "files_not_in_score_decision_calls": [
+          "analysis/detection/evaluation/__init__.py",
+          "analysis/detection/evaluation/events.py",
+          "analysis/detection/horizons.py",
+          "analysis/detection/fitting.py"
+        ],
+        "formula": "sample SD / arithmetic mean of last six consecutive nonnull observations; no static baseline; no abs/epsilon",
+        "framework_path": [
+          "analysis.detection.inputs.load_series (generic TEST gate remains locked)",
+          "analysis.detection.pipeline.score_run",
+          "detector.start_run once",
+          "detector.update for each observation from t=0",
+          "PolicyScore"
+        ],
+        "frozen_inputs": [
+          "Stage10 selected feature CSV and manifest/schema",
+          "BASELINE model manifest/parameters except CoV",
+          "CALIBRATION threshold artifact and component config"
+        ],
+        "labels_gt_scenario_in_callbacks": false,
+        "numerical_files": [
+          "analysis/detection/contracts.py",
+          "analysis/detection/inputs.py",
+          "analysis/detection/detectors/_moments.py",
+          "analysis/detection/detectors/cov.py"
+        ],
+        "orchestration_files_that_can_affect_inputs_or_representation": [
+          "experiments/stage15a_test_scoring.py (draft selector and serialization)",
+          "analysis/detection/inputs.py",
+          "experiments/feature_schema.py",
+          "analysis/detection/artifacts.py (exact parameter serialization and hash validation)",
+          "analysis/detection/pipeline.py (framework validation, iteration, availability; draft does not call its score/decide)"
+        ],
+        "parameters": [
+          "lookback=6",
+          "ddof=1",
+          "includes_current=True",
+          "missing_policy=consecutive_valid_reset",
+          "zero_mean=unavailable",
+          "definition=sigma/mean"
+        ],
+        "score_input_reader": [
+          "experiments.stage15a_test_scoring.read_observations (draft, not executed on TEST)",
+          "analysis.detection.inputs.safe_file/number/read_json",
+          "experiments.feature_schema.feature_schema",
+          "csv.DictReader"
+        ],
+        "standard_library_numerics": [
+          "decimal.Decimal/localcontext (private precision 50, ROUND_HALF_EVEN)",
+          "fractions.Fraction",
+          "dataclasses"
+        ]
+      },
+      "cusum": {
+        "classes_functions": [
+          "CUSUM.start_run inherited StandardizedUpperTail.start_run",
+          "ZScore.start_run",
+          "StandardizedUpperTail.residual",
+          "ZScore.update",
+          "CUSUM.update"
+        ],
+        "decision_files": [
+          "analysis/detection/empirical.py",
+          "analysis/detection/inputs.py",
+          "analysis/detection/contracts.py"
+        ],
+        "decision_functions": [
+          "upper_tail_spec(alpha=0.01)",
+          "StrictUpperTail.start_run",
+          "validate_config",
+          "quantile_index (validates persisted calibration support, does not estimate threshold)",
+          "checked_score",
+          "StrictUpperTail.decide"
+        ],
+        "decision_rule": "score > frozen threshold; equality negative; unavailable remains None",
+        "draft_path": [
+          "read_observations",
+          "combination",
+          "score_decide",
+          "detector.start_run once",
+          "detector.update",
+          "PolicyScore",
+          "StrictUpperTail.start_run",
+          "StrictUpperTail.decide",
+          "metadata serialization after callbacks"
+        ],
+        "files_not_in_score_decision_calls": [
+          "analysis/detection/evaluation/__init__.py",
+          "analysis/detection/evaluation/events.py",
+          "analysis/detection/horizons.py",
+          "analysis/detection/fitting.py"
+        ],
+        "formula": "C=max(0,Cprev+z-0.5); no reset on alarm",
+        "framework_path": [
+          "analysis.detection.inputs.load_series (generic TEST gate remains locked)",
+          "analysis.detection.pipeline.score_run",
+          "detector.start_run once",
+          "detector.update for each observation from t=0",
+          "PolicyScore"
+        ],
+        "frozen_inputs": [
+          "Stage10 selected feature CSV and manifest/schema",
+          "BASELINE model manifest/parameters except CoV",
+          "CALIBRATION threshold artifact and component config"
+        ],
+        "labels_gt_scenario_in_callbacks": false,
+        "numerical_files": [
+          "analysis/detection/contracts.py",
+          "analysis/detection/inputs.py",
+          "analysis/detection/detectors/_moments.py",
+          "analysis/detection/detectors/zscore.py",
+          "analysis/detection/detectors/_standardized.py",
+          "analysis/detection/detectors/cusum.py"
+        ],
+        "orchestration_files_that_can_affect_inputs_or_representation": [
+          "experiments/stage15a_test_scoring.py (draft selector and serialization)",
+          "analysis/detection/inputs.py",
+          "experiments/feature_schema.py",
+          "analysis/detection/artifacts.py (exact parameter serialization and hash validation)",
+          "analysis/detection/pipeline.py (framework validation, iteration, availability; draft does not call its score/decide)"
+        ],
+        "parameters": [
+          "frozen Z-score baseline parameters",
+          "k=0.5",
+          "initial_state=0",
+          "missing_policy=unavailable_reset_zero"
+        ],
+        "score_input_reader": [
+          "experiments.stage15a_test_scoring.read_observations (draft, not executed on TEST)",
+          "analysis.detection.inputs.safe_file/number/read_json",
+          "experiments.feature_schema.feature_schema",
+          "csv.DictReader"
+        ],
+        "standard_library_numerics": [
+          "decimal.Decimal/localcontext (private precision 50, ROUND_HALF_EVEN)",
+          "fractions.Fraction",
+          "dataclasses"
+        ]
+      },
+      "ewma": {
+        "classes_functions": [
+          "EWMA.start_run inherited StandardizedUpperTail.start_run",
+          "ZScore.start_run",
+          "StandardizedUpperTail.residual",
+          "ZScore.update",
+          "EWMA.update"
+        ],
+        "decision_files": [
+          "analysis/detection/empirical.py",
+          "analysis/detection/inputs.py",
+          "analysis/detection/contracts.py"
+        ],
+        "decision_functions": [
+          "upper_tail_spec(alpha=0.01)",
+          "StrictUpperTail.start_run",
+          "validate_config",
+          "quantile_index (validates persisted calibration support, does not estimate threshold)",
+          "checked_score",
+          "StrictUpperTail.decide"
+        ],
+        "decision_rule": "score > frozen threshold; equality negative; unavailable remains None",
+        "draft_path": [
+          "read_observations",
+          "combination",
+          "score_decide",
+          "detector.start_run once",
+          "detector.update",
+          "PolicyScore",
+          "StrictUpperTail.start_run",
+          "StrictUpperTail.decide",
+          "metadata serialization after callbacks"
+        ],
+        "files_not_in_score_decision_calls": [
+          "analysis/detection/evaluation/__init__.py",
+          "analysis/detection/evaluation/events.py",
+          "analysis/detection/horizons.py",
+          "analysis/detection/fitting.py"
+        ],
+        "formula": "E=0.2*z+0.8*Eprev",
+        "framework_path": [
+          "analysis.detection.inputs.load_series (generic TEST gate remains locked)",
+          "analysis.detection.pipeline.score_run",
+          "detector.start_run once",
+          "detector.update for each observation from t=0",
+          "PolicyScore"
+        ],
+        "frozen_inputs": [
+          "Stage10 selected feature CSV and manifest/schema",
+          "BASELINE model manifest/parameters except CoV",
+          "CALIBRATION threshold artifact and component config"
+        ],
+        "labels_gt_scenario_in_callbacks": false,
+        "numerical_files": [
+          "analysis/detection/contracts.py",
+          "analysis/detection/inputs.py",
+          "analysis/detection/detectors/_moments.py",
+          "analysis/detection/detectors/zscore.py",
+          "analysis/detection/detectors/_standardized.py",
+          "analysis/detection/detectors/ewma.py"
+        ],
+        "orchestration_files_that_can_affect_inputs_or_representation": [
+          "experiments/stage15a_test_scoring.py (draft selector and serialization)",
+          "analysis/detection/inputs.py",
+          "experiments/feature_schema.py",
+          "analysis/detection/artifacts.py (exact parameter serialization and hash validation)",
+          "analysis/detection/pipeline.py (framework validation, iteration, availability; draft does not call its score/decide)"
+        ],
+        "parameters": [
+          "frozen Z-score baseline parameters",
+          "lambda=0.2",
+          "initial_state=0",
+          "missing_policy=unavailable_reset_zero"
+        ],
+        "score_input_reader": [
+          "experiments.stage15a_test_scoring.read_observations (draft, not executed on TEST)",
+          "analysis.detection.inputs.safe_file/number/read_json",
+          "experiments.feature_schema.feature_schema",
+          "csv.DictReader"
+        ],
+        "standard_library_numerics": [
+          "decimal.Decimal/localcontext (private precision 50, ROUND_HALF_EVEN)",
+          "fractions.Fraction",
+          "dataclasses"
+        ]
+      },
+      "zscore": {
+        "classes_functions": [
+          "ZScore.start_run",
+          "validate_config",
+          "read_fraction",
+          "number",
+          "decimal_ratio",
+          "standard_deviation",
+          "ZScore.update",
+          "finite_fraction"
+        ],
+        "decision_files": [
+          "analysis/detection/empirical.py",
+          "analysis/detection/inputs.py",
+          "analysis/detection/contracts.py"
+        ],
+        "decision_functions": [
+          "upper_tail_spec(alpha=0.01)",
+          "StrictUpperTail.start_run",
+          "validate_config",
+          "quantile_index (validates persisted calibration support, does not estimate threshold)",
+          "checked_score",
+          "StrictUpperTail.decide"
+        ],
+        "decision_rule": "score > frozen threshold; equality negative; unavailable remains None",
+        "draft_path": [
+          "read_observations",
+          "combination",
+          "score_decide",
+          "detector.start_run once",
+          "detector.update",
+          "PolicyScore",
+          "StrictUpperTail.start_run",
+          "StrictUpperTail.decide",
+          "metadata serialization after callbacks"
+        ],
+        "files_not_in_score_decision_calls": [
+          "analysis/detection/evaluation/__init__.py",
+          "analysis/detection/evaluation/events.py",
+          "analysis/detection/horizons.py",
+          "analysis/detection/fitting.py"
+        ],
+        "formula": "signed (x - exact frozen baseline mean)/frozen sigma; upper-tail policy; no abs",
+        "framework_path": [
+          "analysis.detection.inputs.load_series (generic TEST gate remains locked)",
+          "analysis.detection.pipeline.score_run",
+          "detector.start_run once",
+          "detector.update for each observation from t=0",
+          "PolicyScore"
+        ],
+        "frozen_inputs": [
+          "Stage10 selected feature CSV and manifest/schema",
+          "BASELINE model manifest/parameters except CoV",
+          "CALIBRATION threshold artifact and component config"
+        ],
+        "labels_gt_scenario_in_callbacks": false,
+        "numerical_files": [
+          "analysis/detection/contracts.py",
+          "analysis/detection/inputs.py",
+          "analysis/detection/detectors/_moments.py",
+          "analysis/detection/detectors/zscore.py"
+        ],
+        "orchestration_files_that_can_affect_inputs_or_representation": [
+          "experiments/stage15a_test_scoring.py (draft selector and serialization)",
+          "analysis/detection/inputs.py",
+          "experiments/feature_schema.py",
+          "analysis/detection/artifacts.py (exact parameter serialization and hash validation)",
+          "analysis/detection/pipeline.py (framework validation, iteration, availability; draft does not call its score/decide)"
+        ],
+        "parameters": [
+          "mean_exact",
+          "variance_exact",
+          "mu (consistency check)",
+          "sigma",
+          "ddof",
+          "n_valid",
+          "config"
+        ],
+        "score_input_reader": [
+          "experiments.stage15a_test_scoring.read_observations (draft, not executed on TEST)",
+          "analysis.detection.inputs.safe_file/number/read_json",
+          "experiments.feature_schema.feature_schema",
+          "csv.DictReader"
+        ],
+        "standard_library_numerics": [
+          "decimal.Decimal/localcontext (private precision 50, ROUND_HALF_EVEN)",
+          "fractions.Fraction",
+          "dataclasses"
+        ]
+      }
+    },
+    "scoring_contract": "Observation/scoring [0,144); start at 0, preserve state through 48; evaluation [48,144) applied only later."
+  },
+  "divergence_analysis": {
+    "evaluation/__init__.py": {
+      "affected_primary_configurations": 20,
+      "change_commit": "b0b025b3edbc6d981d6cff9929fa3b256ebaf00a",
+      "changed_logic_only_evaluation": true,
+      "changes_stage15a_numeric_result": false,
+      "classification": "EVALUATION_ONLY",
+      "current_sha256": "31ddb70da03505f8e506b3a6581d3b4a8186c684eea0998bff0a8c8d2594da98",
+      "diff_evidence": "diff_evaluation___init__.py.patch",
+      "historical_heads": [
+        "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "63cba02cf1e11722a66df6f2643e78d88bfdc477"
+      ],
+      "path": "analysis/detection/evaluation/__init__.py",
+      "provenance_interpretation": "Whole-framework snapshot is broader than effective numerical dependencies; historical hashes remain true and unchanged.",
+      "recorded_sha256": "d8dd1ac7bbf145691326898f8e29d37e42cc3340d54f0d23c449ac411cf2d59f",
+      "semantic_change": "EvaluationPlan accepts explicit EvaluationSelection; evaluate selects existing scores, decisions and labels with select_for_evaluation; selection is passed to event evaluator. No scorer or policy callback is called here.",
+      "stage": "Stage 14 pre-TEST evaluation horizon/preflight contract",
+      "used_in_decision": false,
+      "used_in_score": false
+    },
+    "evaluation/events.py": {
+      "affected_primary_configurations": 20,
+      "change_commit": "b0b025b3edbc6d981d6cff9929fa3b256ebaf00a",
+      "changed_logic_only_evaluation": true,
+      "changes_stage15a_numeric_result": false,
+      "classification": "EVALUATION_ONLY",
+      "current_sha256": "e6c0c18d00c577a7ff42f9bc57e8f07b9015aa3c04d66a9ae530ae27978b8dec",
+      "diff_evidence": "diff_evaluation_events.py.patch",
+      "historical_heads": [
+        "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "63cba02cf1e11722a66df6f2643e78d88bfdc477"
+      ],
+      "path": "analysis/detection/evaluation/events.py",
+      "provenance_interpretation": "Whole-framework snapshot is broader than effective numerical dependencies; historical hashes remain true and unchanged.",
+      "recorded_sha256": "44836f114f560c7735ffd90f82bded4b1f5e45dcf05562abc8d90b12a0d55084",
+      "semantic_change": "evaluate_events accepts selection and selects eligible existing decisions through select_for_evaluation. Removes the old implicit campaign selection. Event/GT attribution is downstream of decisions.",
+      "stage": "Stage 14 pre-TEST evaluation horizon/preflight contract",
+      "used_in_decision": false,
+      "used_in_score": false
+    },
+    "horizons.py": {
+      "affected_primary_configurations": 20,
+      "change_commit": "b0b025b3edbc6d981d6cff9929fa3b256ebaf00a",
+      "changed_logic_only_evaluation": true,
+      "changes_stage15a_numeric_result": false,
+      "classification": "EVALUATION_ONLY",
+      "current_sha256": "3626399fa7b45f0dcb9b729f25ac54c5d9945eca0c9837e5d8ced06e4703a4cc",
+      "diff_evidence": "diff_horizons.py.patch",
+      "historical_heads": [
+        "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "63cba02cf1e11722a66df6f2643e78d88bfdc477"
+      ],
+      "module_also_used_in_calibration_selection": true,
+      "path": "analysis/detection/horizons.py",
+      "provenance_interpretation": "Whole-framework snapshot is broader than effective numerical dependencies; historical hashes remain true and unchanged.",
+      "recorded_sha256": "f4e04910ee68bbdaf8b1997dde6257f0a3332ab65be2127a65c3bf3e3e0099d1",
+      "semantic_change": "Factors existing whole-window selection into _contained and adds explicit evaluation regions primary=[48,144), startup=[0,48). select_campaign_records preserves historical records and metadata for all partitions. Changes evaluation selection, not the score stream.",
+      "stage": "Stage 14 pre-TEST evaluation horizon/preflight contract",
+      "used_in_decision": false,
+      "used_in_score": false
+    },
+    "pipeline.py": {
+      "affected_primary_configurations": 10,
+      "change_commit": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+      "changed_logic_only_evaluation": false,
+      "changes_stage15a_numeric_result": false,
+      "classification": "SCIENTIFIC_EQUIVALENT",
+      "current_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48",
+      "diff_evidence": "diff_pipeline.py.patch",
+      "draft_calls_pipeline_score_or_decide": false,
+      "draft_imports_pipeline_indirectly": true,
+      "historical_heads": [
+        "6c5d9b6d26bc667bfb29e770bc39228d78982909"
+      ],
+      "orchestration_api_extension": true,
+      "path": "analysis/detection/pipeline.py",
+      "provenance_interpretation": "Whole-framework snapshot is broader than effective numerical dependencies; historical hashes remain true and unchanged.",
+      "recorded_sha256": "651bbaa11c4e8696d86b0bbf3ad498f441f927fefbc6eaafd9685e8531ab80e6",
+      "semantic_change": "score_run adds optional detector.baseline_spec to validate a separate frozen normalization model. ZScore/CoV do not have this attribute: expected_model remains component(spec). EWMA/CUSUM declare Z-score normalization. The update loop and all other functions, including decide, have identical AST.",
+      "semantic_checklist": {
+        "available_at_changed": false,
+        "ddof_changed": false,
+        "formula_changed": false,
+        "null_behavior_changed": false,
+        "reset_changed": false,
+        "tail_changed": false,
+        "temporal_score_selection_changed": false,
+        "threshold_comparison_changed": false,
+        "warmup_changed": false
+      },
+      "stage": "Stage 14 standardized EWMA/CUSUM detector extension, before their calibration freeze",
+      "used_in_decision": true,
+      "used_in_score": true
+    }
+  },
+  "evidence": {
+    "causal_state_evidence.json": {
+      "path": "experiment_results/stage15a-preflight-20261019/causal_state_evidence.json",
+      "sha256": "ee3a70ad6ed627a0fb1673e4ce244bbb9ec7cc7f9d508e84562d0a8209fb70cd"
+    },
+    "diff_evaluation___init__.py.patch": {
+      "path": "experiment_results/stage15a-preflight-20261019/diff_evaluation___init__.py.patch",
+      "sha256": "d73f6bbc0f2b4a85c80b863e6c1eab75180da2cc237b65150d136941e6a50872"
+    },
+    "diff_evaluation_events.py.patch": {
+      "path": "experiment_results/stage15a-preflight-20261019/diff_evaluation_events.py.patch",
+      "sha256": "f8910f2a34e5532983ba7fbe2fdf131f64613fe5071292e1bac7e604f8957f12"
+    },
+    "diff_horizons.py.patch": {
+      "path": "experiment_results/stage15a-preflight-20261019/diff_horizons.py.patch",
+      "sha256": "d0ac706f13a7dd17602e8cd2c736e2d6d4c62a6e63611a54fc92b6bc1965b044"
+    },
+    "diff_pipeline.py.patch": {
+      "path": "experiment_results/stage15a-preflight-20261019/diff_pipeline.py.patch",
+      "sha256": "57e53ace19aa171c3307d6850776ae63577cc62f12ea4be4b33df9838fe70730"
+    },
+    "import_only_evidence.json": {
+      "path": "experiment_results/stage15a-preflight-20261019/import_only_evidence.json",
+      "sha256": "b41e25c46148d4af2e59b26dbf5d3fac00d67be91e848e43eea1d282061b4b14"
+    },
+    "static_dataflow_evidence.json": {
+      "path": "experiment_results/stage15a-preflight-20261019/static_dataflow_evidence.json",
+      "sha256": "45490b23e814fc9d7ed6615f1eb5e9bd930bbd48fb691820f895bc2fd8ca3e05"
+    },
+    "synthetic_reproduction_audit.py": {
+      "path": "experiment_results/stage15a-preflight-20261019/synthetic_reproduction_audit.py",
+      "sha256": "71bc5f570eab647c4614778ce4a77ee104e1dcc3d86b6052d94a98b703d16de3"
+    },
+    "synthetic_reproduction_evidence.json": {
+      "path": "experiment_results/stage15a-preflight-20261019/synthetic_reproduction_evidence.json",
+      "sha256": "4f8f023da591b54f1f363a7014095ac2eb9d80a0f24e47e7b5112c2c8e653e0c"
+    },
+    "threshold_provenance_genealogy.json": {
+      "path": "experiment_results/stage15a-preflight-20261019/threshold_provenance_genealogy.json",
+      "sha256": "6c6961340009534fddd02fb51eeb8899e8177b28994668ea075173708a7f4365"
+    }
+  },
+  "head": "ec086c25aaa81ac4da85f5f3c83875dce9b830c1",
+  "historical_provenance": {
+    "collection_authority_head": "f27a5ae6117667f980f6de0217222d25da0e6e42",
+    "commits": {
+      "63cba02cf1e11722a66df6f2643e78d88bfdc477": "Stage14 EWMA/CUSUM extension and calibration; 10 EWMA/CUSUM threshold provenance heads",
+      "6c5d9b6d26bc667bfb29e770bc39228d78982909": "Stage14 original empirical calibration and strict decisions; 10 Z/CoV threshold provenance heads",
+      "b0b025b3edbc6d981d6cff9929fa3b256ebaf00a": "Stage14 pre-TEST evaluation selection/preflight; explicitly authority_head of frozen evaluation protocol"
+    },
+    "current_source_head": "ec086c25aaa81ac4da85f5f3c83875dce9b830c1",
+    "inputs": {
+      "evaluation_protocol": {
+        "path": "experiments/protocols/stage14_test_evaluation_protocol_v1.json",
+        "sha256": "c2e1ab6314ab67c984b6b0e8f505982d72ea4de2f463e8607488e73c2764ef20"
+      },
+      "four_method_freeze": {
+        "path": "experiment_results/stage14-ewma-cusum-calibration-20261019/four_method_calibration_freeze_manifest.json",
+        "sha256": "898e79394ac48a86a734100d324d0b6b966412166a0eac105dbdeccb2bd236f5"
+      },
+      "test_collection_freeze": {
+        "path": "experiment_results/stage14d-test-campaign-20261019/test_collection_freeze_manifest.json",
+        "sha256": "8d784758ff7b751f68dc595d434a65bae1d764d5a21312b0e3d96a5f6613327d"
+      },
+      "test_inventory": {
+        "path": "experiment_results/stage14d-test-campaign-20261019/test_collection_inventory.json",
+        "sha256": "10ab05b24e9896d41e944192909f79b366e8cbbe7e08eb24f695b5d2ad1c2b47"
+      }
+    },
+    "threshold_versions": [
+      {
+        "feature": "ingress_packet_count",
+        "files": {
+          "evaluation/__init__.py": {
+            "current_sha256": "31ddb70da03505f8e506b3a6581d3b4a8186c684eea0998bff0a8c8d2594da98",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "d8dd1ac7bbf145691326898f8e29d37e42cc3340d54f0d23c449ac411cf2d59f"
+          },
+          "evaluation/events.py": {
+            "current_sha256": "e6c0c18d00c577a7ff42f9bc57e8f07b9015aa3c04d66a9ae530ae27978b8dec",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "44836f114f560c7735ffd90f82bded4b1f5e45dcf05562abc8d90b12a0d55084"
+          },
+          "horizons.py": {
+            "current_sha256": "3626399fa7b45f0dcb9b729f25ac54c5d9945eca0c9837e5d8ced06e4703a4cc",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "f4e04910ee68bbdaf8b1997dde6257f0a3332ab65be2127a65c3bf3e3e0099d1"
+          },
+          "pipeline.py": {
+            "current_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "651bbaa11c4e8696d86b0bbf3ad498f441f927fefbc6eaafd9685e8531ab80e6"
+          }
+        },
+        "method": "zscore",
+        "provenance_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "threshold": "2.7004634585982279860028752630854378028354693685147",
+        "threshold_manifest_path": "experiment_results/stage14c-controlled-retry-20261019/thresholds/ingress_packet_count__zscore/0.01/manifest.json",
+        "threshold_manifest_sha256": "d2044356a1f7d3971f3a61a1551b1333c10ed1e9da2ae1428def5aad010d46e9"
+      },
+      {
+        "feature": "ingress_packet_count",
+        "files": {
+          "evaluation/__init__.py": {
+            "current_sha256": "31ddb70da03505f8e506b3a6581d3b4a8186c684eea0998bff0a8c8d2594da98",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "d8dd1ac7bbf145691326898f8e29d37e42cc3340d54f0d23c449ac411cf2d59f"
+          },
+          "evaluation/events.py": {
+            "current_sha256": "e6c0c18d00c577a7ff42f9bc57e8f07b9015aa3c04d66a9ae530ae27978b8dec",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "44836f114f560c7735ffd90f82bded4b1f5e45dcf05562abc8d90b12a0d55084"
+          },
+          "horizons.py": {
+            "current_sha256": "3626399fa7b45f0dcb9b729f25ac54c5d9945eca0c9837e5d8ced06e4703a4cc",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "f4e04910ee68bbdaf8b1997dde6257f0a3332ab65be2127a65c3bf3e3e0099d1"
+          },
+          "pipeline.py": {
+            "current_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "651bbaa11c4e8696d86b0bbf3ad498f441f927fefbc6eaafd9685e8531ab80e6"
+          }
+        },
+        "method": "cov",
+        "provenance_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "threshold": "0.66732005127784943046992825005472409981316937096157",
+        "threshold_manifest_path": "experiment_results/stage14c-controlled-retry-20261019/thresholds/ingress_packet_count__cov_L6/0.01/manifest.json",
+        "threshold_manifest_sha256": "bb6a99047fba4a7a8ea222631440daac42df15c20d034c71e115f124f1f94ab2"
+      },
+      {
+        "feature": "ingress_tcp_payload_length_sum_bytes",
+        "files": {
+          "evaluation/__init__.py": {
+            "current_sha256": "31ddb70da03505f8e506b3a6581d3b4a8186c684eea0998bff0a8c8d2594da98",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "d8dd1ac7bbf145691326898f8e29d37e42cc3340d54f0d23c449ac411cf2d59f"
+          },
+          "evaluation/events.py": {
+            "current_sha256": "e6c0c18d00c577a7ff42f9bc57e8f07b9015aa3c04d66a9ae530ae27978b8dec",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "44836f114f560c7735ffd90f82bded4b1f5e45dcf05562abc8d90b12a0d55084"
+          },
+          "horizons.py": {
+            "current_sha256": "3626399fa7b45f0dcb9b729f25ac54c5d9945eca0c9837e5d8ced06e4703a4cc",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "f4e04910ee68bbdaf8b1997dde6257f0a3332ab65be2127a65c3bf3e3e0099d1"
+          },
+          "pipeline.py": {
+            "current_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "651bbaa11c4e8696d86b0bbf3ad498f441f927fefbc6eaafd9685e8531ab80e6"
+          }
+        },
+        "method": "zscore",
+        "provenance_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "threshold": "2.5622153028180004371206409110155222343904655185173",
+        "threshold_manifest_path": "experiment_results/stage14c-controlled-retry-20261019/thresholds/ingress_tcp_payload_length_sum_bytes__zscore/0.01/manifest.json",
+        "threshold_manifest_sha256": "ac829200c6d97fd51868e655692734c7df50e6162ed8cf9a2c9a63008e9a6154"
+      },
+      {
+        "feature": "ingress_tcp_payload_length_sum_bytes",
+        "files": {
+          "evaluation/__init__.py": {
+            "current_sha256": "31ddb70da03505f8e506b3a6581d3b4a8186c684eea0998bff0a8c8d2594da98",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "d8dd1ac7bbf145691326898f8e29d37e42cc3340d54f0d23c449ac411cf2d59f"
+          },
+          "evaluation/events.py": {
+            "current_sha256": "e6c0c18d00c577a7ff42f9bc57e8f07b9015aa3c04d66a9ae530ae27978b8dec",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "44836f114f560c7735ffd90f82bded4b1f5e45dcf05562abc8d90b12a0d55084"
+          },
+          "horizons.py": {
+            "current_sha256": "3626399fa7b45f0dcb9b729f25ac54c5d9945eca0c9837e5d8ced06e4703a4cc",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "f4e04910ee68bbdaf8b1997dde6257f0a3332ab65be2127a65c3bf3e3e0099d1"
+          },
+          "pipeline.py": {
+            "current_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "651bbaa11c4e8696d86b0bbf3ad498f441f927fefbc6eaafd9685e8531ab80e6"
+          }
+        },
+        "method": "cov",
+        "provenance_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "threshold": "0.61501219500104223543079411111946064534022065342411",
+        "threshold_manifest_path": "experiment_results/stage14c-controlled-retry-20261019/thresholds/ingress_tcp_payload_length_sum_bytes__cov_L6/0.01/manifest.json",
+        "threshold_manifest_sha256": "27c381d7011c261f8c45d41f85375192c148f1679e943761b801d2dd6bb4b381"
+      },
+      {
+        "feature": "request_starts",
+        "files": {
+          "evaluation/__init__.py": {
+            "current_sha256": "31ddb70da03505f8e506b3a6581d3b4a8186c684eea0998bff0a8c8d2594da98",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "d8dd1ac7bbf145691326898f8e29d37e42cc3340d54f0d23c449ac411cf2d59f"
+          },
+          "evaluation/events.py": {
+            "current_sha256": "e6c0c18d00c577a7ff42f9bc57e8f07b9015aa3c04d66a9ae530ae27978b8dec",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "44836f114f560c7735ffd90f82bded4b1f5e45dcf05562abc8d90b12a0d55084"
+          },
+          "horizons.py": {
+            "current_sha256": "3626399fa7b45f0dcb9b729f25ac54c5d9945eca0c9837e5d8ced06e4703a4cc",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "f4e04910ee68bbdaf8b1997dde6257f0a3332ab65be2127a65c3bf3e3e0099d1"
+          },
+          "pipeline.py": {
+            "current_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "651bbaa11c4e8696d86b0bbf3ad498f441f927fefbc6eaafd9685e8531ab80e6"
+          }
+        },
+        "method": "zscore",
+        "provenance_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "threshold": "2.5671764186142405161374608347593000041810678434519",
+        "threshold_manifest_path": "experiment_results/stage14c-controlled-retry-20261019/thresholds/request_starts__zscore/0.01/manifest.json",
+        "threshold_manifest_sha256": "b68a02951b7698e425bbd22041735e17027fe72c045a65c74c49135791f81ff9"
+      },
+      {
+        "feature": "request_starts",
+        "files": {
+          "evaluation/__init__.py": {
+            "current_sha256": "31ddb70da03505f8e506b3a6581d3b4a8186c684eea0998bff0a8c8d2594da98",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "d8dd1ac7bbf145691326898f8e29d37e42cc3340d54f0d23c449ac411cf2d59f"
+          },
+          "evaluation/events.py": {
+            "current_sha256": "e6c0c18d00c577a7ff42f9bc57e8f07b9015aa3c04d66a9ae530ae27978b8dec",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "44836f114f560c7735ffd90f82bded4b1f5e45dcf05562abc8d90b12a0d55084"
+          },
+          "horizons.py": {
+            "current_sha256": "3626399fa7b45f0dcb9b729f25ac54c5d9945eca0c9837e5d8ced06e4703a4cc",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "f4e04910ee68bbdaf8b1997dde6257f0a3332ab65be2127a65c3bf3e3e0099d1"
+          },
+          "pipeline.py": {
+            "current_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "651bbaa11c4e8696d86b0bbf3ad498f441f927fefbc6eaafd9685e8531ab80e6"
+          }
+        },
+        "method": "cov",
+        "provenance_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "threshold": "0.61501219500104223543079411111946064534022065342412",
+        "threshold_manifest_path": "experiment_results/stage14c-controlled-retry-20261019/thresholds/request_starts__cov_L6/0.01/manifest.json",
+        "threshold_manifest_sha256": "016086ab0bf38ec574a9e9cffc13b4c31086923db095a96a76303c06089ebded"
+      },
+      {
+        "feature": "mean_duration_ms",
+        "files": {
+          "evaluation/__init__.py": {
+            "current_sha256": "31ddb70da03505f8e506b3a6581d3b4a8186c684eea0998bff0a8c8d2594da98",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "d8dd1ac7bbf145691326898f8e29d37e42cc3340d54f0d23c449ac411cf2d59f"
+          },
+          "evaluation/events.py": {
+            "current_sha256": "e6c0c18d00c577a7ff42f9bc57e8f07b9015aa3c04d66a9ae530ae27978b8dec",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "44836f114f560c7735ffd90f82bded4b1f5e45dcf05562abc8d90b12a0d55084"
+          },
+          "horizons.py": {
+            "current_sha256": "3626399fa7b45f0dcb9b729f25ac54c5d9945eca0c9837e5d8ced06e4703a4cc",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "f4e04910ee68bbdaf8b1997dde6257f0a3332ab65be2127a65c3bf3e3e0099d1"
+          },
+          "pipeline.py": {
+            "current_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "651bbaa11c4e8696d86b0bbf3ad498f441f927fefbc6eaafd9685e8531ab80e6"
+          }
+        },
+        "method": "zscore",
+        "provenance_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "threshold": "2.3113747887931722604984652806262497453059968379509",
+        "threshold_manifest_path": "experiment_results/stage14c-controlled-retry-20261019/thresholds/mean_duration_ms__zscore/0.01/manifest.json",
+        "threshold_manifest_sha256": "b2f37cfc69937c4b97624b0a3b04bc1da9ea9de20eab8370103080d6da7b0c04"
+      },
+      {
+        "feature": "mean_duration_ms",
+        "files": {
+          "evaluation/__init__.py": {
+            "current_sha256": "31ddb70da03505f8e506b3a6581d3b4a8186c684eea0998bff0a8c8d2594da98",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "d8dd1ac7bbf145691326898f8e29d37e42cc3340d54f0d23c449ac411cf2d59f"
+          },
+          "evaluation/events.py": {
+            "current_sha256": "e6c0c18d00c577a7ff42f9bc57e8f07b9015aa3c04d66a9ae530ae27978b8dec",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "44836f114f560c7735ffd90f82bded4b1f5e45dcf05562abc8d90b12a0d55084"
+          },
+          "horizons.py": {
+            "current_sha256": "3626399fa7b45f0dcb9b729f25ac54c5d9945eca0c9837e5d8ced06e4703a4cc",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "f4e04910ee68bbdaf8b1997dde6257f0a3332ab65be2127a65c3bf3e3e0099d1"
+          },
+          "pipeline.py": {
+            "current_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "651bbaa11c4e8696d86b0bbf3ad498f441f927fefbc6eaafd9685e8531ab80e6"
+          }
+        },
+        "method": "cov",
+        "provenance_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "threshold": "0.44480904425800453748511092201074159947937070916752",
+        "threshold_manifest_path": "experiment_results/stage14c-controlled-retry-20261019/thresholds/mean_duration_ms__cov_L6/0.01/manifest.json",
+        "threshold_manifest_sha256": "a09bb2f9f1c39ea8e118ba86f125b2d66fc39b2d73e0874ecc69fefe655963da"
+      },
+      {
+        "feature": "mean_cpu_percent",
+        "files": {
+          "evaluation/__init__.py": {
+            "current_sha256": "31ddb70da03505f8e506b3a6581d3b4a8186c684eea0998bff0a8c8d2594da98",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "d8dd1ac7bbf145691326898f8e29d37e42cc3340d54f0d23c449ac411cf2d59f"
+          },
+          "evaluation/events.py": {
+            "current_sha256": "e6c0c18d00c577a7ff42f9bc57e8f07b9015aa3c04d66a9ae530ae27978b8dec",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "44836f114f560c7735ffd90f82bded4b1f5e45dcf05562abc8d90b12a0d55084"
+          },
+          "horizons.py": {
+            "current_sha256": "3626399fa7b45f0dcb9b729f25ac54c5d9945eca0c9837e5d8ced06e4703a4cc",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "f4e04910ee68bbdaf8b1997dde6257f0a3332ab65be2127a65c3bf3e3e0099d1"
+          },
+          "pipeline.py": {
+            "current_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "651bbaa11c4e8696d86b0bbf3ad498f441f927fefbc6eaafd9685e8531ab80e6"
+          }
+        },
+        "method": "zscore",
+        "provenance_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "threshold": "2.7105154588973491748268641960276111061451561339947",
+        "threshold_manifest_path": "experiment_results/stage14c-controlled-retry-20261019/thresholds/mean_cpu_percent__zscore/0.01/manifest.json",
+        "threshold_manifest_sha256": "69d353aa0a98bb5126c175b27fbe68c090af9a6b4ff2f023a8e2310ace458b23"
+      },
+      {
+        "feature": "mean_cpu_percent",
+        "files": {
+          "evaluation/__init__.py": {
+            "current_sha256": "31ddb70da03505f8e506b3a6581d3b4a8186c684eea0998bff0a8c8d2594da98",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "d8dd1ac7bbf145691326898f8e29d37e42cc3340d54f0d23c449ac411cf2d59f"
+          },
+          "evaluation/events.py": {
+            "current_sha256": "e6c0c18d00c577a7ff42f9bc57e8f07b9015aa3c04d66a9ae530ae27978b8dec",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "44836f114f560c7735ffd90f82bded4b1f5e45dcf05562abc8d90b12a0d55084"
+          },
+          "horizons.py": {
+            "current_sha256": "3626399fa7b45f0dcb9b729f25ac54c5d9945eca0c9837e5d8ced06e4703a4cc",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "f4e04910ee68bbdaf8b1997dde6257f0a3332ab65be2127a65c3bf3e3e0099d1"
+          },
+          "pipeline.py": {
+            "current_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "651bbaa11c4e8696d86b0bbf3ad498f441f927fefbc6eaafd9685e8531ab80e6"
+          }
+        },
+        "method": "cov",
+        "provenance_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "threshold": "0.70389890072221888094459758893495817988643894219260",
+        "threshold_manifest_path": "experiment_results/stage14c-controlled-retry-20261019/thresholds/mean_cpu_percent__cov_L6/0.01/manifest.json",
+        "threshold_manifest_sha256": "3ce71c64ec266f2d184add580295d3c4d5116fea9fb3912fb90618c35a0a9723"
+      },
+      {
+        "feature": "ingress_packet_count",
+        "files": {
+          "evaluation/__init__.py": {
+            "current_sha256": "31ddb70da03505f8e506b3a6581d3b4a8186c684eea0998bff0a8c8d2594da98",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "d8dd1ac7bbf145691326898f8e29d37e42cc3340d54f0d23c449ac411cf2d59f"
+          },
+          "evaluation/events.py": {
+            "current_sha256": "e6c0c18d00c577a7ff42f9bc57e8f07b9015aa3c04d66a9ae530ae27978b8dec",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "44836f114f560c7735ffd90f82bded4b1f5e45dcf05562abc8d90b12a0d55084"
+          },
+          "horizons.py": {
+            "current_sha256": "3626399fa7b45f0dcb9b729f25ac54c5d9945eca0c9837e5d8ced06e4703a4cc",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "f4e04910ee68bbdaf8b1997dde6257f0a3332ab65be2127a65c3bf3e3e0099d1"
+          },
+          "pipeline.py": {
+            "current_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48"
+          }
+        },
+        "method": "ewma",
+        "provenance_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "threshold": "0.89264036131897389171707441532287689140142887646083",
+        "threshold_manifest_path": "experiment_results/stage14-ewma-cusum-calibration-20261019/thresholds/ingress_packet_count__ewma/0.01/manifest.json",
+        "threshold_manifest_sha256": "dfa2647147038468a5a48543a13c53cfd8b83cd117212c5e432fb1428b875715"
+      },
+      {
+        "feature": "ingress_packet_count",
+        "files": {
+          "evaluation/__init__.py": {
+            "current_sha256": "31ddb70da03505f8e506b3a6581d3b4a8186c684eea0998bff0a8c8d2594da98",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "d8dd1ac7bbf145691326898f8e29d37e42cc3340d54f0d23c449ac411cf2d59f"
+          },
+          "evaluation/events.py": {
+            "current_sha256": "e6c0c18d00c577a7ff42f9bc57e8f07b9015aa3c04d66a9ae530ae27978b8dec",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "44836f114f560c7735ffd90f82bded4b1f5e45dcf05562abc8d90b12a0d55084"
+          },
+          "horizons.py": {
+            "current_sha256": "3626399fa7b45f0dcb9b729f25ac54c5d9945eca0c9837e5d8ced06e4703a4cc",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "f4e04910ee68bbdaf8b1997dde6257f0a3332ab65be2127a65c3bf3e3e0099d1"
+          },
+          "pipeline.py": {
+            "current_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48"
+          }
+        },
+        "method": "cusum",
+        "provenance_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "threshold": "5.8663947859740460635472807483006250374772689605873",
+        "threshold_manifest_path": "experiment_results/stage14-ewma-cusum-calibration-20261019/thresholds/ingress_packet_count__cusum/0.01/manifest.json",
+        "threshold_manifest_sha256": "b6dcc2d89e08d6c8f8a816fc1f8efb4763b3368416004b71b2c66a0fe34a1ac3"
+      },
+      {
+        "feature": "ingress_tcp_payload_length_sum_bytes",
+        "files": {
+          "evaluation/__init__.py": {
+            "current_sha256": "31ddb70da03505f8e506b3a6581d3b4a8186c684eea0998bff0a8c8d2594da98",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "d8dd1ac7bbf145691326898f8e29d37e42cc3340d54f0d23c449ac411cf2d59f"
+          },
+          "evaluation/events.py": {
+            "current_sha256": "e6c0c18d00c577a7ff42f9bc57e8f07b9015aa3c04d66a9ae530ae27978b8dec",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "44836f114f560c7735ffd90f82bded4b1f5e45dcf05562abc8d90b12a0d55084"
+          },
+          "horizons.py": {
+            "current_sha256": "3626399fa7b45f0dcb9b729f25ac54c5d9945eca0c9837e5d8ced06e4703a4cc",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "f4e04910ee68bbdaf8b1997dde6257f0a3332ab65be2127a65c3bf3e3e0099d1"
+          },
+          "pipeline.py": {
+            "current_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48"
+          }
+        },
+        "method": "ewma",
+        "provenance_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "threshold": "0.82573857066077832446383047934128345052979511053479",
+        "threshold_manifest_path": "experiment_results/stage14-ewma-cusum-calibration-20261019/thresholds/ingress_tcp_payload_length_sum_bytes__ewma/0.01/manifest.json",
+        "threshold_manifest_sha256": "9e57bd19d3f6a20da8ccb239d866f70331d6946ca375efe0f6993ba4e94397c4"
+      },
+      {
+        "feature": "ingress_tcp_payload_length_sum_bytes",
+        "files": {
+          "evaluation/__init__.py": {
+            "current_sha256": "31ddb70da03505f8e506b3a6581d3b4a8186c684eea0998bff0a8c8d2594da98",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "d8dd1ac7bbf145691326898f8e29d37e42cc3340d54f0d23c449ac411cf2d59f"
+          },
+          "evaluation/events.py": {
+            "current_sha256": "e6c0c18d00c577a7ff42f9bc57e8f07b9015aa3c04d66a9ae530ae27978b8dec",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "44836f114f560c7735ffd90f82bded4b1f5e45dcf05562abc8d90b12a0d55084"
+          },
+          "horizons.py": {
+            "current_sha256": "3626399fa7b45f0dcb9b729f25ac54c5d9945eca0c9837e5d8ced06e4703a4cc",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "f4e04910ee68bbdaf8b1997dde6257f0a3332ab65be2127a65c3bf3e3e0099d1"
+          },
+          "pipeline.py": {
+            "current_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48"
+          }
+        },
+        "method": "cusum",
+        "provenance_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "threshold": "4.8878672499186342834174285944764078144967611839658",
+        "threshold_manifest_path": "experiment_results/stage14-ewma-cusum-calibration-20261019/thresholds/ingress_tcp_payload_length_sum_bytes__cusum/0.01/manifest.json",
+        "threshold_manifest_sha256": "a6d84158e8a39fb85b8f47ef570144fb81b7d64743bd49180171ffa70d16cf31"
+      },
+      {
+        "feature": "request_starts",
+        "files": {
+          "evaluation/__init__.py": {
+            "current_sha256": "31ddb70da03505f8e506b3a6581d3b4a8186c684eea0998bff0a8c8d2594da98",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "d8dd1ac7bbf145691326898f8e29d37e42cc3340d54f0d23c449ac411cf2d59f"
+          },
+          "evaluation/events.py": {
+            "current_sha256": "e6c0c18d00c577a7ff42f9bc57e8f07b9015aa3c04d66a9ae530ae27978b8dec",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "44836f114f560c7735ffd90f82bded4b1f5e45dcf05562abc8d90b12a0d55084"
+          },
+          "horizons.py": {
+            "current_sha256": "3626399fa7b45f0dcb9b729f25ac54c5d9945eca0c9837e5d8ced06e4703a4cc",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "f4e04910ee68bbdaf8b1997dde6257f0a3332ab65be2127a65c3bf3e3e0099d1"
+          },
+          "pipeline.py": {
+            "current_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48"
+          }
+        },
+        "method": "ewma",
+        "provenance_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "threshold": "0.82779444543581353802971905513083190899190644665803",
+        "threshold_manifest_path": "experiment_results/stage14-ewma-cusum-calibration-20261019/thresholds/request_starts__ewma/0.01/manifest.json",
+        "threshold_manifest_sha256": "79950d9c41a940b21417291bce4038d8bbd611908e454edbce0b6e089447f737"
+      },
+      {
+        "feature": "request_starts",
+        "files": {
+          "evaluation/__init__.py": {
+            "current_sha256": "31ddb70da03505f8e506b3a6581d3b4a8186c684eea0998bff0a8c8d2594da98",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "d8dd1ac7bbf145691326898f8e29d37e42cc3340d54f0d23c449ac411cf2d59f"
+          },
+          "evaluation/events.py": {
+            "current_sha256": "e6c0c18d00c577a7ff42f9bc57e8f07b9015aa3c04d66a9ae530ae27978b8dec",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "44836f114f560c7735ffd90f82bded4b1f5e45dcf05562abc8d90b12a0d55084"
+          },
+          "horizons.py": {
+            "current_sha256": "3626399fa7b45f0dcb9b729f25ac54c5d9945eca0c9837e5d8ced06e4703a4cc",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "f4e04910ee68bbdaf8b1997dde6257f0a3332ab65be2127a65c3bf3e3e0099d1"
+          },
+          "pipeline.py": {
+            "current_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48"
+          }
+        },
+        "method": "cusum",
+        "provenance_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "threshold": "4.9021720840493902192400573309938660091159158543431",
+        "threshold_manifest_path": "experiment_results/stage14-ewma-cusum-calibration-20261019/thresholds/request_starts__cusum/0.01/manifest.json",
+        "threshold_manifest_sha256": "48bc05a116e2e844eb4b871baf708a9223fc34dfc8267ea3344ac06909883481"
+      },
+      {
+        "feature": "mean_duration_ms",
+        "files": {
+          "evaluation/__init__.py": {
+            "current_sha256": "31ddb70da03505f8e506b3a6581d3b4a8186c684eea0998bff0a8c8d2594da98",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "d8dd1ac7bbf145691326898f8e29d37e42cc3340d54f0d23c449ac411cf2d59f"
+          },
+          "evaluation/events.py": {
+            "current_sha256": "e6c0c18d00c577a7ff42f9bc57e8f07b9015aa3c04d66a9ae530ae27978b8dec",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "44836f114f560c7735ffd90f82bded4b1f5e45dcf05562abc8d90b12a0d55084"
+          },
+          "horizons.py": {
+            "current_sha256": "3626399fa7b45f0dcb9b729f25ac54c5d9945eca0c9837e5d8ced06e4703a4cc",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "f4e04910ee68bbdaf8b1997dde6257f0a3332ab65be2127a65c3bf3e3e0099d1"
+          },
+          "pipeline.py": {
+            "current_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48"
+          }
+        },
+        "method": "ewma",
+        "provenance_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "threshold": "0.71295386200542092906349038061027821574428545142786",
+        "threshold_manifest_path": "experiment_results/stage14-ewma-cusum-calibration-20261019/thresholds/mean_duration_ms__ewma/0.01/manifest.json",
+        "threshold_manifest_sha256": "5f1cbb04f41088d0046aeaefc5ba8c10224e8f98af3e59a9d24f6bae77d1b079"
+      },
+      {
+        "feature": "mean_duration_ms",
+        "files": {
+          "evaluation/__init__.py": {
+            "current_sha256": "31ddb70da03505f8e506b3a6581d3b4a8186c684eea0998bff0a8c8d2594da98",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "d8dd1ac7bbf145691326898f8e29d37e42cc3340d54f0d23c449ac411cf2d59f"
+          },
+          "evaluation/events.py": {
+            "current_sha256": "e6c0c18d00c577a7ff42f9bc57e8f07b9015aa3c04d66a9ae530ae27978b8dec",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "44836f114f560c7735ffd90f82bded4b1f5e45dcf05562abc8d90b12a0d55084"
+          },
+          "horizons.py": {
+            "current_sha256": "3626399fa7b45f0dcb9b729f25ac54c5d9945eca0c9837e5d8ced06e4703a4cc",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "f4e04910ee68bbdaf8b1997dde6257f0a3332ab65be2127a65c3bf3e3e0099d1"
+          },
+          "pipeline.py": {
+            "current_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48"
+          }
+        },
+        "method": "cusum",
+        "provenance_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "threshold": "3.8390589930821925373397703543671427677669646126365",
+        "threshold_manifest_path": "experiment_results/stage14-ewma-cusum-calibration-20261019/thresholds/mean_duration_ms__cusum/0.01/manifest.json",
+        "threshold_manifest_sha256": "231a17b4c468663d4f99e23ff236566cdbebd4d2a455cd13a9b1ac35de27b229"
+      },
+      {
+        "feature": "mean_cpu_percent",
+        "files": {
+          "evaluation/__init__.py": {
+            "current_sha256": "31ddb70da03505f8e506b3a6581d3b4a8186c684eea0998bff0a8c8d2594da98",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "d8dd1ac7bbf145691326898f8e29d37e42cc3340d54f0d23c449ac411cf2d59f"
+          },
+          "evaluation/events.py": {
+            "current_sha256": "e6c0c18d00c577a7ff42f9bc57e8f07b9015aa3c04d66a9ae530ae27978b8dec",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "44836f114f560c7735ffd90f82bded4b1f5e45dcf05562abc8d90b12a0d55084"
+          },
+          "horizons.py": {
+            "current_sha256": "3626399fa7b45f0dcb9b729f25ac54c5d9945eca0c9837e5d8ced06e4703a4cc",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "f4e04910ee68bbdaf8b1997dde6257f0a3332ab65be2127a65c3bf3e3e0099d1"
+          },
+          "pipeline.py": {
+            "current_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48"
+          }
+        },
+        "method": "ewma",
+        "provenance_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "threshold": "1.1914443528412446367639003672683561444828116048704",
+        "threshold_manifest_path": "experiment_results/stage14-ewma-cusum-calibration-20261019/thresholds/mean_cpu_percent__ewma/0.01/manifest.json",
+        "threshold_manifest_sha256": "079aa1f891c70c8f5d2befdcf43895b665a57f0ac5789883ac20e246c2f8df9b"
+      },
+      {
+        "feature": "mean_cpu_percent",
+        "files": {
+          "evaluation/__init__.py": {
+            "current_sha256": "31ddb70da03505f8e506b3a6581d3b4a8186c684eea0998bff0a8c8d2594da98",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "d8dd1ac7bbf145691326898f8e29d37e42cc3340d54f0d23c449ac411cf2d59f"
+          },
+          "evaluation/events.py": {
+            "current_sha256": "e6c0c18d00c577a7ff42f9bc57e8f07b9015aa3c04d66a9ae530ae27978b8dec",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "44836f114f560c7735ffd90f82bded4b1f5e45dcf05562abc8d90b12a0d55084"
+          },
+          "horizons.py": {
+            "current_sha256": "3626399fa7b45f0dcb9b729f25ac54c5d9945eca0c9837e5d8ced06e4703a4cc",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "f4e04910ee68bbdaf8b1997dde6257f0a3332ab65be2127a65c3bf3e3e0099d1"
+          },
+          "pipeline.py": {
+            "current_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48",
+            "historical_bytes_match_recorded_head": true,
+            "historical_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48"
+          }
+        },
+        "method": "cusum",
+        "provenance_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "threshold": "14.747404925084325097400505015132607700697130678430",
+        "threshold_manifest_path": "experiment_results/stage14-ewma-cusum-calibration-20261019/thresholds/mean_cpu_percent__cusum/0.01/manifest.json",
+        "threshold_manifest_sha256": "b84872e84c7f25615aaa2ddf082eefd6334f52635758bac0d88eeb39051b3987"
+      }
+    ]
+  },
+  "isolation": {
+    "TEST_GT": false,
+    "TEST_decisions": false,
+    "TEST_scoring": false,
+    "calibration": false,
+    "commit": false,
+    "detectors_modified": false,
+    "efficacy_metrics": false,
+    "evaluator_executed": false,
+    "fitting": false,
+    "frozen_manifests_modified": false,
+    "push": false,
+    "resolution_implemented": false,
+    "scientific_datasets_modified": false,
+    "stage15a_started": false,
+    "stage15b_started": false,
+    "thresholds_modified": false,
+    "tuning": false
+  },
+  "mandatory_answers": {
+    "10_pipeline_change": "Optional baseline_spec normalization-model identity validation for standardized EWMA/CUSUM; original model component validation retained for Z/CoV.",
+    "11_pipeline_changes_zscore_numerics": false,
+    "12_pipeline_changes_cov_numerics": false,
+    "13_historical_current_equivalent_on_non_TEST_checks": true,
+    "14_historical_provenance_broader_than_scientific_dependencies": true,
+    "15_scientific_risk": "No numerical risk identified from these divergences; future draft execution tooling still requires validation and human authorization.",
+    "16_recommendation": "OPTION A",
+    "17_recalibration_required": false,
+    "18_TEST_regeneration_required": false,
+    "19_historical_files_modified": false,
+    "1_TEST_scored": false,
+    "20_stage15a_still_stopped": true,
+    "2_TEST_decisions_produced": false,
+    "3_TEST_GT_consumed": false,
+    "4_efficacy_metrics_calculated": false,
+    "5_frozen_thresholds_changed": false,
+    "6_four_mathematical_implementations_changed": false,
+    "7_evaluation_init_participates_in_score_decision": false,
+    "8_evaluation_events_participates_in_score_decision": false,
+    "9_horizons_role": "No scorer/decision calls. Shared existing CALIBRATION selection remains equivalent; changed logic is evaluation-only selection after scoring."
+  },
+  "original_stop": {
+    "path": "experiment_results/stage15a-preflight-20261019/stop_report.json",
+    "sha256": "17f987bc0419d86ec350be9a913dd83f47e21280d15bf8124e9fdd14ca19d857",
+    "unchanged": true
+  },
+  "recommendation": {
+    "implemented": false,
+    "new_human_review_required": true,
+    "option": "OPTION A",
+    "proceed_now": false,
+    "proposed_mechanism": [
+      "Keep historical manifests, their recorded Git heads and broad framework snapshots unchanged.",
+      "If human review authorizes continuation, publish a separate content-addressed execution/provenance bridge referencing historical hashes, current execution HEAD/source hashes, this review and exact historical diffs.",
+      "Verify actual numerical and input/availability dependencies by immutable file/component/parameter identities; explicitly record EVALUATION_ONLY exclusions and SCIENTIFIC_EQUIVALENT pipeline mapping rather than treating whole-framework snapshot as a universal runtime lock.",
+      "Keep threshold/model/feature/alpha/configuration, collection inventory and collection freeze checks strict; reject unreviewed changes in any effective dependency.",
+      "Require dedicated tests/review of the incomplete scoped Stage15A reader/orchestration and deterministic outputs before any future TEST scoring. This audit does not certify the entire draft tooling."
+    ],
+    "rationale": "The mismatches are evaluation-only changes or a demonstrated scientifically equivalent normalization-model API extension for Z/CoV. Relevant mathematical implementation bytes and frozen parameters/thresholds are unchanged. No scientific recalibration/regeneration is justified by these divergences.",
+    "risk": "No score/decision scientific change identified from the four divergences. Finite synthetic cases support, but do not alone prove, equivalence; exact dependency byte identities and the complete semantic diff provide the stronger argument. Future tooling implementation remains to be validated."
+  },
+  "reproduction_evidence": {
+    "all_decision_csv_byte_equal": true,
+    "all_decision_records_equal": true,
+    "all_score_csv_byte_equal": true,
+    "all_score_records_equal": true,
+    "canonical_synthetic_result_sha256": "99a2ce3015ae04ad69a6fb336dd454f8ff6c345ac1e3fb63c57d9d8e15295d13",
+    "checks": [
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_packet_count",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "zscore",
+        "pattern": "positive_variable",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_packet_count",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "zscore",
+        "pattern": "all_zero",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_packet_count",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "zscore",
+        "pattern": "null_reset_warmup",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_packet_count",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "zscore",
+        "pattern": "signed",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_packet_count",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "zscore",
+        "pattern": "large_offset_small_variance",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_packet_count",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "zscore",
+        "pattern": "boundary_nulls",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_packet_count",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "zscore",
+        "pattern": "boundary_state",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_packet_count",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "zscore",
+        "pattern": "all_null",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_packet_count",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "cov",
+        "pattern": "positive_variable",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_packet_count",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "cov",
+        "pattern": "all_zero",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_packet_count",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "cov",
+        "pattern": "null_reset_warmup",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_packet_count",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "cov",
+        "pattern": "signed",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_packet_count",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "cov",
+        "pattern": "large_offset_small_variance",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_packet_count",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "cov",
+        "pattern": "boundary_nulls",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_packet_count",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "cov",
+        "pattern": "boundary_state",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_packet_count",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "cov",
+        "pattern": "all_null",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_packet_count",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "ewma",
+        "pattern": "positive_variable",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_packet_count",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "ewma",
+        "pattern": "all_zero",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_packet_count",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "ewma",
+        "pattern": "null_reset_warmup",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_packet_count",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "ewma",
+        "pattern": "signed",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_packet_count",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "ewma",
+        "pattern": "large_offset_small_variance",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_packet_count",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "ewma",
+        "pattern": "boundary_nulls",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_packet_count",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "ewma",
+        "pattern": "boundary_state",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_packet_count",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "ewma",
+        "pattern": "all_null",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_packet_count",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "cusum",
+        "pattern": "positive_variable",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_packet_count",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "cusum",
+        "pattern": "all_zero",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_packet_count",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "cusum",
+        "pattern": "null_reset_warmup",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_packet_count",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "cusum",
+        "pattern": "signed",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_packet_count",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "cusum",
+        "pattern": "large_offset_small_variance",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_packet_count",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "cusum",
+        "pattern": "boundary_nulls",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_packet_count",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "cusum",
+        "pattern": "boundary_state",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_packet_count",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "cusum",
+        "pattern": "all_null",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_tcp_payload_length_sum_bytes",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "zscore",
+        "pattern": "positive_variable",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_tcp_payload_length_sum_bytes",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "zscore",
+        "pattern": "all_zero",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_tcp_payload_length_sum_bytes",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "zscore",
+        "pattern": "null_reset_warmup",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_tcp_payload_length_sum_bytes",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "zscore",
+        "pattern": "signed",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_tcp_payload_length_sum_bytes",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "zscore",
+        "pattern": "large_offset_small_variance",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_tcp_payload_length_sum_bytes",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "zscore",
+        "pattern": "boundary_nulls",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_tcp_payload_length_sum_bytes",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "zscore",
+        "pattern": "boundary_state",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_tcp_payload_length_sum_bytes",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "zscore",
+        "pattern": "all_null",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_tcp_payload_length_sum_bytes",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "cov",
+        "pattern": "positive_variable",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_tcp_payload_length_sum_bytes",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "cov",
+        "pattern": "all_zero",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_tcp_payload_length_sum_bytes",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "cov",
+        "pattern": "null_reset_warmup",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_tcp_payload_length_sum_bytes",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "cov",
+        "pattern": "signed",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_tcp_payload_length_sum_bytes",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "cov",
+        "pattern": "large_offset_small_variance",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_tcp_payload_length_sum_bytes",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "cov",
+        "pattern": "boundary_nulls",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_tcp_payload_length_sum_bytes",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "cov",
+        "pattern": "boundary_state",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_tcp_payload_length_sum_bytes",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "cov",
+        "pattern": "all_null",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_tcp_payload_length_sum_bytes",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "ewma",
+        "pattern": "positive_variable",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_tcp_payload_length_sum_bytes",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "ewma",
+        "pattern": "all_zero",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_tcp_payload_length_sum_bytes",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "ewma",
+        "pattern": "null_reset_warmup",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_tcp_payload_length_sum_bytes",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "ewma",
+        "pattern": "signed",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_tcp_payload_length_sum_bytes",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "ewma",
+        "pattern": "large_offset_small_variance",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_tcp_payload_length_sum_bytes",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "ewma",
+        "pattern": "boundary_nulls",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_tcp_payload_length_sum_bytes",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "ewma",
+        "pattern": "boundary_state",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_tcp_payload_length_sum_bytes",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "ewma",
+        "pattern": "all_null",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_tcp_payload_length_sum_bytes",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "cusum",
+        "pattern": "positive_variable",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_tcp_payload_length_sum_bytes",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "cusum",
+        "pattern": "all_zero",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_tcp_payload_length_sum_bytes",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "cusum",
+        "pattern": "null_reset_warmup",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_tcp_payload_length_sum_bytes",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "cusum",
+        "pattern": "signed",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_tcp_payload_length_sum_bytes",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "cusum",
+        "pattern": "large_offset_small_variance",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_tcp_payload_length_sum_bytes",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "cusum",
+        "pattern": "boundary_nulls",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_tcp_payload_length_sum_bytes",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "cusum",
+        "pattern": "boundary_state",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "ingress_tcp_payload_length_sum_bytes",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "cusum",
+        "pattern": "all_null",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "request_starts",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "zscore",
+        "pattern": "positive_variable",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "request_starts",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "zscore",
+        "pattern": "all_zero",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "request_starts",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "zscore",
+        "pattern": "null_reset_warmup",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "request_starts",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "zscore",
+        "pattern": "signed",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "request_starts",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "zscore",
+        "pattern": "large_offset_small_variance",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "request_starts",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "zscore",
+        "pattern": "boundary_nulls",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "request_starts",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "zscore",
+        "pattern": "boundary_state",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "request_starts",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "zscore",
+        "pattern": "all_null",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "request_starts",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "cov",
+        "pattern": "positive_variable",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "request_starts",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "cov",
+        "pattern": "all_zero",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "request_starts",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "cov",
+        "pattern": "null_reset_warmup",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "request_starts",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "cov",
+        "pattern": "signed",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "request_starts",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "cov",
+        "pattern": "large_offset_small_variance",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "request_starts",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "cov",
+        "pattern": "boundary_nulls",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "request_starts",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "cov",
+        "pattern": "boundary_state",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "request_starts",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "cov",
+        "pattern": "all_null",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "request_starts",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "ewma",
+        "pattern": "positive_variable",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "request_starts",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "ewma",
+        "pattern": "all_zero",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "request_starts",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "ewma",
+        "pattern": "null_reset_warmup",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "request_starts",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "ewma",
+        "pattern": "signed",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "request_starts",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "ewma",
+        "pattern": "large_offset_small_variance",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "request_starts",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "ewma",
+        "pattern": "boundary_nulls",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "request_starts",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "ewma",
+        "pattern": "boundary_state",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "request_starts",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "ewma",
+        "pattern": "all_null",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "request_starts",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "cusum",
+        "pattern": "positive_variable",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "request_starts",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "cusum",
+        "pattern": "all_zero",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "request_starts",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "cusum",
+        "pattern": "null_reset_warmup",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "request_starts",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "cusum",
+        "pattern": "signed",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "request_starts",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "cusum",
+        "pattern": "large_offset_small_variance",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "request_starts",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "cusum",
+        "pattern": "boundary_nulls",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "request_starts",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "cusum",
+        "pattern": "boundary_state",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "request_starts",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "cusum",
+        "pattern": "all_null",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_duration_ms",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "zscore",
+        "pattern": "positive_variable",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_duration_ms",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "zscore",
+        "pattern": "all_zero",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_duration_ms",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "zscore",
+        "pattern": "null_reset_warmup",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_duration_ms",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "zscore",
+        "pattern": "signed",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_duration_ms",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "zscore",
+        "pattern": "large_offset_small_variance",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_duration_ms",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "zscore",
+        "pattern": "boundary_nulls",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_duration_ms",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "zscore",
+        "pattern": "boundary_state",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_duration_ms",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "zscore",
+        "pattern": "all_null",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_duration_ms",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "cov",
+        "pattern": "positive_variable",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_duration_ms",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "cov",
+        "pattern": "all_zero",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_duration_ms",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "cov",
+        "pattern": "null_reset_warmup",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_duration_ms",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "cov",
+        "pattern": "signed",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_duration_ms",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "cov",
+        "pattern": "large_offset_small_variance",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_duration_ms",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "cov",
+        "pattern": "boundary_nulls",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_duration_ms",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "cov",
+        "pattern": "boundary_state",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_duration_ms",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "cov",
+        "pattern": "all_null",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_duration_ms",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "ewma",
+        "pattern": "positive_variable",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_duration_ms",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "ewma",
+        "pattern": "all_zero",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_duration_ms",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "ewma",
+        "pattern": "null_reset_warmup",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_duration_ms",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "ewma",
+        "pattern": "signed",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_duration_ms",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "ewma",
+        "pattern": "large_offset_small_variance",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_duration_ms",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "ewma",
+        "pattern": "boundary_nulls",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_duration_ms",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "ewma",
+        "pattern": "boundary_state",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_duration_ms",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "ewma",
+        "pattern": "all_null",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_duration_ms",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "cusum",
+        "pattern": "positive_variable",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_duration_ms",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "cusum",
+        "pattern": "all_zero",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_duration_ms",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "cusum",
+        "pattern": "null_reset_warmup",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_duration_ms",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "cusum",
+        "pattern": "signed",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_duration_ms",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "cusum",
+        "pattern": "large_offset_small_variance",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_duration_ms",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "cusum",
+        "pattern": "boundary_nulls",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_duration_ms",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "cusum",
+        "pattern": "boundary_state",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_duration_ms",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "cusum",
+        "pattern": "all_null",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_cpu_percent",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "zscore",
+        "pattern": "positive_variable",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_cpu_percent",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "zscore",
+        "pattern": "all_zero",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_cpu_percent",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "zscore",
+        "pattern": "null_reset_warmup",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_cpu_percent",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "zscore",
+        "pattern": "signed",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_cpu_percent",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "zscore",
+        "pattern": "large_offset_small_variance",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_cpu_percent",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "zscore",
+        "pattern": "boundary_nulls",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_cpu_percent",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "zscore",
+        "pattern": "boundary_state",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_cpu_percent",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "zscore",
+        "pattern": "all_null",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_cpu_percent",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "cov",
+        "pattern": "positive_variable",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_cpu_percent",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "cov",
+        "pattern": "all_zero",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_cpu_percent",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "cov",
+        "pattern": "null_reset_warmup",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_cpu_percent",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "cov",
+        "pattern": "signed",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_cpu_percent",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "cov",
+        "pattern": "large_offset_small_variance",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_cpu_percent",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "cov",
+        "pattern": "boundary_nulls",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_cpu_percent",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "cov",
+        "pattern": "boundary_state",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_cpu_percent",
+        "historical_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "method": "cov",
+        "pattern": "all_null",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_cpu_percent",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "ewma",
+        "pattern": "positive_variable",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_cpu_percent",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "ewma",
+        "pattern": "all_zero",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_cpu_percent",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "ewma",
+        "pattern": "null_reset_warmup",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_cpu_percent",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "ewma",
+        "pattern": "signed",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_cpu_percent",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "ewma",
+        "pattern": "large_offset_small_variance",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_cpu_percent",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "ewma",
+        "pattern": "boundary_nulls",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_cpu_percent",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "ewma",
+        "pattern": "boundary_state",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_cpu_percent",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "ewma",
+        "pattern": "all_null",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_cpu_percent",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "cusum",
+        "pattern": "positive_variable",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_cpu_percent",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "cusum",
+        "pattern": "all_zero",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_cpu_percent",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "cusum",
+        "pattern": "null_reset_warmup",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_cpu_percent",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "cusum",
+        "pattern": "signed",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_cpu_percent",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "cusum",
+        "pattern": "large_offset_small_variance",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_cpu_percent",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "cusum",
+        "pattern": "boundary_nulls",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_cpu_percent",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "cusum",
+        "pattern": "boundary_state",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      },
+      {
+        "decision_csv_byte_equal": true,
+        "decisions_equal": true,
+        "feature": "mean_cpu_percent",
+        "historical_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "method": "cusum",
+        "pattern": "all_null",
+        "score_csv_byte_equal": true,
+        "scores_equal": true,
+        "windows": 144
+      }
+    ],
+    "comparisons": 160,
+    "evaluator_modules_imported": false,
+    "forbidden_fit_calibrate_evaluate_calls": [],
+    "ground_truth_read": false,
+    "numeric_parameters_new_or_reestimated": false,
+    "scientific_observation_tables_read": false,
+    "scope": "SYNTHETIC_ONLY; frozen numeric parameters read from existing BASELINE/threshold manifests; no scientific observations read",
+    "temporary_artifacts_removed": true,
+    "test_observations_read": false,
+    "tie_negative_checks": 20,
+    "total_windows_compared": 23040,
+    "unavailable_preserved_checks": 20,
+    "unchanged_dependency_checks": [
+      {
+        "byte_identical": true,
+        "head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "path": "analysis/detection/contracts.py",
+        "sha256": "83099a6ae05199c965794f66a7f178556c1c189807de8aa68f873eab057d19e0"
+      },
+      {
+        "byte_identical": true,
+        "head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "path": "analysis/detection/inputs.py",
+        "sha256": "989d9539fc13f2d43cc34dd98ba2a54522e33e8a3c40dec4a22a8d5c7ce6fa0a"
+      },
+      {
+        "byte_identical": true,
+        "head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "path": "analysis/detection/artifacts.py",
+        "sha256": "6296e9a8d4cabe94ae46ceee7610b7ed7b4daf797e2527af4baeab340e3b581b"
+      },
+      {
+        "byte_identical": true,
+        "head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "path": "analysis/detection/empirical.py",
+        "sha256": "f3a1ce6f8e779c5f4187832eed26adcb8a098f7d2a1324a45b561ef1f6cda820"
+      },
+      {
+        "byte_identical": true,
+        "head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "path": "analysis/detection/protocol.py",
+        "sha256": "bae14b6a7688502f1cc5a0a77d07692451e35eb9b3b9a1641f40259cf4479afa"
+      },
+      {
+        "byte_identical": true,
+        "head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "path": "analysis/detection/detectors/_moments.py",
+        "sha256": "3cf50cd4a2fbce80d6283739f05f7959b8caffa0c1c0d70ad51094c0b50f7ca3"
+      },
+      {
+        "byte_identical": true,
+        "head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "path": "analysis/detection/detectors/zscore.py",
+        "sha256": "da9c51d1965b4578eea03b83b83d6741f524d5a0f0c42e4df5ce3c3da88a876b"
+      },
+      {
+        "byte_identical": true,
+        "head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+        "path": "analysis/detection/detectors/cov.py",
+        "sha256": "d5ae557f222831d2df1db5b7d49cfa71213774cf943c78161570965cdb8a4588"
+      },
+      {
+        "byte_identical": true,
+        "head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "path": "analysis/detection/contracts.py",
+        "sha256": "83099a6ae05199c965794f66a7f178556c1c189807de8aa68f873eab057d19e0"
+      },
+      {
+        "byte_identical": true,
+        "head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "path": "analysis/detection/inputs.py",
+        "sha256": "989d9539fc13f2d43cc34dd98ba2a54522e33e8a3c40dec4a22a8d5c7ce6fa0a"
+      },
+      {
+        "byte_identical": true,
+        "head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "path": "analysis/detection/artifacts.py",
+        "sha256": "6296e9a8d4cabe94ae46ceee7610b7ed7b4daf797e2527af4baeab340e3b581b"
+      },
+      {
+        "byte_identical": true,
+        "head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "path": "analysis/detection/empirical.py",
+        "sha256": "f3a1ce6f8e779c5f4187832eed26adcb8a098f7d2a1324a45b561ef1f6cda820"
+      },
+      {
+        "byte_identical": true,
+        "head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "path": "analysis/detection/protocol.py",
+        "sha256": "bae14b6a7688502f1cc5a0a77d07692451e35eb9b3b9a1641f40259cf4479afa"
+      },
+      {
+        "byte_identical": true,
+        "head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "path": "analysis/detection/detectors/_moments.py",
+        "sha256": "3cf50cd4a2fbce80d6283739f05f7959b8caffa0c1c0d70ad51094c0b50f7ca3"
+      },
+      {
+        "byte_identical": true,
+        "head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "path": "analysis/detection/detectors/zscore.py",
+        "sha256": "da9c51d1965b4578eea03b83b83d6741f524d5a0f0c42e4df5ce3c3da88a876b"
+      },
+      {
+        "byte_identical": true,
+        "head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "path": "analysis/detection/detectors/cov.py",
+        "sha256": "d5ae557f222831d2df1db5b7d49cfa71213774cf943c78161570965cdb8a4588"
+      },
+      {
+        "byte_identical": true,
+        "head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "path": "analysis/detection/detectors/_standardized.py",
+        "sha256": "90c8c59de1a8acd277efa2fe2fa0ee2025f814abb5e6c2c4f0bd192dba6ac724"
+      },
+      {
+        "byte_identical": true,
+        "head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "path": "analysis/detection/detectors/ewma.py",
+        "sha256": "8cec7c85b855efbe24197506d3b666b5d376369408421abc05e1a3e0ea976eea"
+      },
+      {
+        "byte_identical": true,
+        "head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+        "path": "analysis/detection/detectors/cusum.py",
+        "sha256": "0c2689b621d0bc74e1bec584e8768cd7dc5bc22751622781bc43a5e6a8ab5e8e"
+      }
+    ],
+    "windows_per_comparison": 144
+  },
+  "schema_version": 1,
+  "scope": "Investigation/recommendation only; no resolution implemented; no TEST observations read in this review.",
+  "status": "PROVENANCE_REVIEW_COMPLETE_STAGE15A_STOP_PRESERVED",
+  "threshold_provenance_explanation": {
+    "capture_expression": "{str(p.relative_to(base)): digest(p) for p in sorted(base.rglob('*.py'))}",
+    "capture_function": "analysis.detection.artifacts.provenance",
+    "component_source_separately_recorded": true,
+    "dependency_trace": false,
+    "explanation": "Snapshot includes all Python files under analysis/detection regardless of imports or executed calls. Evaluator/event files appear because rglob finds them, not because scoring or calibration called them. horizons is a real calibration-selection dependency, but its calibration-selection semantics remain identical. pipeline is a real framework dependency whose relevant change is explicitly reviewed.",
+    "publication_call": "pipeline.calibrate \u2192 publish(kind=calibration, provenance=provenance(calibrator))"
+  },
+  "untracked_draft": {
+    "path": "experiments/stage15a_test_scoring.py",
+    "preflight_not_relaxed": true,
+    "preserved": true,
+    "sha256": "dff69e2caa9ab0ad5b7a242e3889385768a6e04727698eb937c7ae4962da9fec"
+  }
+}

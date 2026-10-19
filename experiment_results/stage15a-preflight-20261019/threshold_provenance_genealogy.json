@@ -1,0 +1,602 @@
+[
+  {
+    "feature": "ingress_packet_count",
+    "files": {
+      "evaluation/__init__.py": {
+        "current_sha256": "31ddb70da03505f8e506b3a6581d3b4a8186c684eea0998bff0a8c8d2594da98",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "d8dd1ac7bbf145691326898f8e29d37e42cc3340d54f0d23c449ac411cf2d59f"
+      },
+      "evaluation/events.py": {
+        "current_sha256": "e6c0c18d00c577a7ff42f9bc57e8f07b9015aa3c04d66a9ae530ae27978b8dec",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "44836f114f560c7735ffd90f82bded4b1f5e45dcf05562abc8d90b12a0d55084"
+      },
+      "horizons.py": {
+        "current_sha256": "3626399fa7b45f0dcb9b729f25ac54c5d9945eca0c9837e5d8ced06e4703a4cc",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "f4e04910ee68bbdaf8b1997dde6257f0a3332ab65be2127a65c3bf3e3e0099d1"
+      },
+      "pipeline.py": {
+        "current_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "651bbaa11c4e8696d86b0bbf3ad498f441f927fefbc6eaafd9685e8531ab80e6"
+      }
+    },
+    "method": "zscore",
+    "provenance_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+    "threshold": "2.7004634585982279860028752630854378028354693685147",
+    "threshold_manifest_path": "experiment_results/stage14c-controlled-retry-20261019/thresholds/ingress_packet_count__zscore/0.01/manifest.json",
+    "threshold_manifest_sha256": "d2044356a1f7d3971f3a61a1551b1333c10ed1e9da2ae1428def5aad010d46e9"
+  },
+  {
+    "feature": "ingress_packet_count",
+    "files": {
+      "evaluation/__init__.py": {
+        "current_sha256": "31ddb70da03505f8e506b3a6581d3b4a8186c684eea0998bff0a8c8d2594da98",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "d8dd1ac7bbf145691326898f8e29d37e42cc3340d54f0d23c449ac411cf2d59f"
+      },
+      "evaluation/events.py": {
+        "current_sha256": "e6c0c18d00c577a7ff42f9bc57e8f07b9015aa3c04d66a9ae530ae27978b8dec",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "44836f114f560c7735ffd90f82bded4b1f5e45dcf05562abc8d90b12a0d55084"
+      },
+      "horizons.py": {
+        "current_sha256": "3626399fa7b45f0dcb9b729f25ac54c5d9945eca0c9837e5d8ced06e4703a4cc",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "f4e04910ee68bbdaf8b1997dde6257f0a3332ab65be2127a65c3bf3e3e0099d1"
+      },
+      "pipeline.py": {
+        "current_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "651bbaa11c4e8696d86b0bbf3ad498f441f927fefbc6eaafd9685e8531ab80e6"
+      }
+    },
+    "method": "cov",
+    "provenance_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+    "threshold": "0.66732005127784943046992825005472409981316937096157",
+    "threshold_manifest_path": "experiment_results/stage14c-controlled-retry-20261019/thresholds/ingress_packet_count__cov_L6/0.01/manifest.json",
+    "threshold_manifest_sha256": "bb6a99047fba4a7a8ea222631440daac42df15c20d034c71e115f124f1f94ab2"
+  },
+  {
+    "feature": "ingress_tcp_payload_length_sum_bytes",
+    "files": {
+      "evaluation/__init__.py": {
+        "current_sha256": "31ddb70da03505f8e506b3a6581d3b4a8186c684eea0998bff0a8c8d2594da98",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "d8dd1ac7bbf145691326898f8e29d37e42cc3340d54f0d23c449ac411cf2d59f"
+      },
+      "evaluation/events.py": {
+        "current_sha256": "e6c0c18d00c577a7ff42f9bc57e8f07b9015aa3c04d66a9ae530ae27978b8dec",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "44836f114f560c7735ffd90f82bded4b1f5e45dcf05562abc8d90b12a0d55084"
+      },
+      "horizons.py": {
+        "current_sha256": "3626399fa7b45f0dcb9b729f25ac54c5d9945eca0c9837e5d8ced06e4703a4cc",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "f4e04910ee68bbdaf8b1997dde6257f0a3332ab65be2127a65c3bf3e3e0099d1"
+      },
+      "pipeline.py": {
+        "current_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "651bbaa11c4e8696d86b0bbf3ad498f441f927fefbc6eaafd9685e8531ab80e6"
+      }
+    },
+    "method": "zscore",
+    "provenance_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+    "threshold": "2.5622153028180004371206409110155222343904655185173",
+    "threshold_manifest_path": "experiment_results/stage14c-controlled-retry-20261019/thresholds/ingress_tcp_payload_length_sum_bytes__zscore/0.01/manifest.json",
+    "threshold_manifest_sha256": "ac829200c6d97fd51868e655692734c7df50e6162ed8cf9a2c9a63008e9a6154"
+  },
+  {
+    "feature": "ingress_tcp_payload_length_sum_bytes",
+    "files": {
+      "evaluation/__init__.py": {
+        "current_sha256": "31ddb70da03505f8e506b3a6581d3b4a8186c684eea0998bff0a8c8d2594da98",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "d8dd1ac7bbf145691326898f8e29d37e42cc3340d54f0d23c449ac411cf2d59f"
+      },
+      "evaluation/events.py": {
+        "current_sha256": "e6c0c18d00c577a7ff42f9bc57e8f07b9015aa3c04d66a9ae530ae27978b8dec",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "44836f114f560c7735ffd90f82bded4b1f5e45dcf05562abc8d90b12a0d55084"
+      },
+      "horizons.py": {
+        "current_sha256": "3626399fa7b45f0dcb9b729f25ac54c5d9945eca0c9837e5d8ced06e4703a4cc",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "f4e04910ee68bbdaf8b1997dde6257f0a3332ab65be2127a65c3bf3e3e0099d1"
+      },
+      "pipeline.py": {
+        "current_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "651bbaa11c4e8696d86b0bbf3ad498f441f927fefbc6eaafd9685e8531ab80e6"
+      }
+    },
+    "method": "cov",
+    "provenance_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+    "threshold": "0.61501219500104223543079411111946064534022065342411",
+    "threshold_manifest_path": "experiment_results/stage14c-controlled-retry-20261019/thresholds/ingress_tcp_payload_length_sum_bytes__cov_L6/0.01/manifest.json",
+    "threshold_manifest_sha256": "27c381d7011c261f8c45d41f85375192c148f1679e943761b801d2dd6bb4b381"
+  },
+  {
+    "feature": "request_starts",
+    "files": {
+      "evaluation/__init__.py": {
+        "current_sha256": "31ddb70da03505f8e506b3a6581d3b4a8186c684eea0998bff0a8c8d2594da98",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "d8dd1ac7bbf145691326898f8e29d37e42cc3340d54f0d23c449ac411cf2d59f"
+      },
+      "evaluation/events.py": {
+        "current_sha256": "e6c0c18d00c577a7ff42f9bc57e8f07b9015aa3c04d66a9ae530ae27978b8dec",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "44836f114f560c7735ffd90f82bded4b1f5e45dcf05562abc8d90b12a0d55084"
+      },
+      "horizons.py": {
+        "current_sha256": "3626399fa7b45f0dcb9b729f25ac54c5d9945eca0c9837e5d8ced06e4703a4cc",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "f4e04910ee68bbdaf8b1997dde6257f0a3332ab65be2127a65c3bf3e3e0099d1"
+      },
+      "pipeline.py": {
+        "current_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "651bbaa11c4e8696d86b0bbf3ad498f441f927fefbc6eaafd9685e8531ab80e6"
+      }
+    },
+    "method": "zscore",
+    "provenance_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+    "threshold": "2.5671764186142405161374608347593000041810678434519",
+    "threshold_manifest_path": "experiment_results/stage14c-controlled-retry-20261019/thresholds/request_starts__zscore/0.01/manifest.json",
+    "threshold_manifest_sha256": "b68a02951b7698e425bbd22041735e17027fe72c045a65c74c49135791f81ff9"
+  },
+  {
+    "feature": "request_starts",
+    "files": {
+      "evaluation/__init__.py": {
+        "current_sha256": "31ddb70da03505f8e506b3a6581d3b4a8186c684eea0998bff0a8c8d2594da98",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "d8dd1ac7bbf145691326898f8e29d37e42cc3340d54f0d23c449ac411cf2d59f"
+      },
+      "evaluation/events.py": {
+        "current_sha256": "e6c0c18d00c577a7ff42f9bc57e8f07b9015aa3c04d66a9ae530ae27978b8dec",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "44836f114f560c7735ffd90f82bded4b1f5e45dcf05562abc8d90b12a0d55084"
+      },
+      "horizons.py": {
+        "current_sha256": "3626399fa7b45f0dcb9b729f25ac54c5d9945eca0c9837e5d8ced06e4703a4cc",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "f4e04910ee68bbdaf8b1997dde6257f0a3332ab65be2127a65c3bf3e3e0099d1"
+      },
+      "pipeline.py": {
+        "current_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "651bbaa11c4e8696d86b0bbf3ad498f441f927fefbc6eaafd9685e8531ab80e6"
+      }
+    },
+    "method": "cov",
+    "provenance_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+    "threshold": "0.61501219500104223543079411111946064534022065342412",
+    "threshold_manifest_path": "experiment_results/stage14c-controlled-retry-20261019/thresholds/request_starts__cov_L6/0.01/manifest.json",
+    "threshold_manifest_sha256": "016086ab0bf38ec574a9e9cffc13b4c31086923db095a96a76303c06089ebded"
+  },
+  {
+    "feature": "mean_duration_ms",
+    "files": {
+      "evaluation/__init__.py": {
+        "current_sha256": "31ddb70da03505f8e506b3a6581d3b4a8186c684eea0998bff0a8c8d2594da98",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "d8dd1ac7bbf145691326898f8e29d37e42cc3340d54f0d23c449ac411cf2d59f"
+      },
+      "evaluation/events.py": {
+        "current_sha256": "e6c0c18d00c577a7ff42f9bc57e8f07b9015aa3c04d66a9ae530ae27978b8dec",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "44836f114f560c7735ffd90f82bded4b1f5e45dcf05562abc8d90b12a0d55084"
+      },
+      "horizons.py": {
+        "current_sha256": "3626399fa7b45f0dcb9b729f25ac54c5d9945eca0c9837e5d8ced06e4703a4cc",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "f4e04910ee68bbdaf8b1997dde6257f0a3332ab65be2127a65c3bf3e3e0099d1"
+      },
+      "pipeline.py": {
+        "current_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "651bbaa11c4e8696d86b0bbf3ad498f441f927fefbc6eaafd9685e8531ab80e6"
+      }
+    },
+    "method": "zscore",
+    "provenance_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+    "threshold": "2.3113747887931722604984652806262497453059968379509",
+    "threshold_manifest_path": "experiment_results/stage14c-controlled-retry-20261019/thresholds/mean_duration_ms__zscore/0.01/manifest.json",
+    "threshold_manifest_sha256": "b2f37cfc69937c4b97624b0a3b04bc1da9ea9de20eab8370103080d6da7b0c04"
+  },
+  {
+    "feature": "mean_duration_ms",
+    "files": {
+      "evaluation/__init__.py": {
+        "current_sha256": "31ddb70da03505f8e506b3a6581d3b4a8186c684eea0998bff0a8c8d2594da98",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "d8dd1ac7bbf145691326898f8e29d37e42cc3340d54f0d23c449ac411cf2d59f"
+      },
+      "evaluation/events.py": {
+        "current_sha256": "e6c0c18d00c577a7ff42f9bc57e8f07b9015aa3c04d66a9ae530ae27978b8dec",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "44836f114f560c7735ffd90f82bded4b1f5e45dcf05562abc8d90b12a0d55084"
+      },
+      "horizons.py": {
+        "current_sha256": "3626399fa7b45f0dcb9b729f25ac54c5d9945eca0c9837e5d8ced06e4703a4cc",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "f4e04910ee68bbdaf8b1997dde6257f0a3332ab65be2127a65c3bf3e3e0099d1"
+      },
+      "pipeline.py": {
+        "current_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "651bbaa11c4e8696d86b0bbf3ad498f441f927fefbc6eaafd9685e8531ab80e6"
+      }
+    },
+    "method": "cov",
+    "provenance_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+    "threshold": "0.44480904425800453748511092201074159947937070916752",
+    "threshold_manifest_path": "experiment_results/stage14c-controlled-retry-20261019/thresholds/mean_duration_ms__cov_L6/0.01/manifest.json",
+    "threshold_manifest_sha256": "a09bb2f9f1c39ea8e118ba86f125b2d66fc39b2d73e0874ecc69fefe655963da"
+  },
+  {
+    "feature": "mean_cpu_percent",
+    "files": {
+      "evaluation/__init__.py": {
+        "current_sha256": "31ddb70da03505f8e506b3a6581d3b4a8186c684eea0998bff0a8c8d2594da98",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "d8dd1ac7bbf145691326898f8e29d37e42cc3340d54f0d23c449ac411cf2d59f"
+      },
+      "evaluation/events.py": {
+        "current_sha256": "e6c0c18d00c577a7ff42f9bc57e8f07b9015aa3c04d66a9ae530ae27978b8dec",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "44836f114f560c7735ffd90f82bded4b1f5e45dcf05562abc8d90b12a0d55084"
+      },
+      "horizons.py": {
+        "current_sha256": "3626399fa7b45f0dcb9b729f25ac54c5d9945eca0c9837e5d8ced06e4703a4cc",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "f4e04910ee68bbdaf8b1997dde6257f0a3332ab65be2127a65c3bf3e3e0099d1"
+      },
+      "pipeline.py": {
+        "current_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "651bbaa11c4e8696d86b0bbf3ad498f441f927fefbc6eaafd9685e8531ab80e6"
+      }
+    },
+    "method": "zscore",
+    "provenance_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+    "threshold": "2.7105154588973491748268641960276111061451561339947",
+    "threshold_manifest_path": "experiment_results/stage14c-controlled-retry-20261019/thresholds/mean_cpu_percent__zscore/0.01/manifest.json",
+    "threshold_manifest_sha256": "69d353aa0a98bb5126c175b27fbe68c090af9a6b4ff2f023a8e2310ace458b23"
+  },
+  {
+    "feature": "mean_cpu_percent",
+    "files": {
+      "evaluation/__init__.py": {
+        "current_sha256": "31ddb70da03505f8e506b3a6581d3b4a8186c684eea0998bff0a8c8d2594da98",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "d8dd1ac7bbf145691326898f8e29d37e42cc3340d54f0d23c449ac411cf2d59f"
+      },
+      "evaluation/events.py": {
+        "current_sha256": "e6c0c18d00c577a7ff42f9bc57e8f07b9015aa3c04d66a9ae530ae27978b8dec",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "44836f114f560c7735ffd90f82bded4b1f5e45dcf05562abc8d90b12a0d55084"
+      },
+      "horizons.py": {
+        "current_sha256": "3626399fa7b45f0dcb9b729f25ac54c5d9945eca0c9837e5d8ced06e4703a4cc",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "f4e04910ee68bbdaf8b1997dde6257f0a3332ab65be2127a65c3bf3e3e0099d1"
+      },
+      "pipeline.py": {
+        "current_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "651bbaa11c4e8696d86b0bbf3ad498f441f927fefbc6eaafd9685e8531ab80e6"
+      }
+    },
+    "method": "cov",
+    "provenance_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+    "threshold": "0.70389890072221888094459758893495817988643894219260",
+    "threshold_manifest_path": "experiment_results/stage14c-controlled-retry-20261019/thresholds/mean_cpu_percent__cov_L6/0.01/manifest.json",
+    "threshold_manifest_sha256": "3ce71c64ec266f2d184add580295d3c4d5116fea9fb3912fb90618c35a0a9723"
+  },
+  {
+    "feature": "ingress_packet_count",
+    "files": {
+      "evaluation/__init__.py": {
+        "current_sha256": "31ddb70da03505f8e506b3a6581d3b4a8186c684eea0998bff0a8c8d2594da98",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "d8dd1ac7bbf145691326898f8e29d37e42cc3340d54f0d23c449ac411cf2d59f"
+      },
+      "evaluation/events.py": {
+        "current_sha256": "e6c0c18d00c577a7ff42f9bc57e8f07b9015aa3c04d66a9ae530ae27978b8dec",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "44836f114f560c7735ffd90f82bded4b1f5e45dcf05562abc8d90b12a0d55084"
+      },
+      "horizons.py": {
+        "current_sha256": "3626399fa7b45f0dcb9b729f25ac54c5d9945eca0c9837e5d8ced06e4703a4cc",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "f4e04910ee68bbdaf8b1997dde6257f0a3332ab65be2127a65c3bf3e3e0099d1"
+      },
+      "pipeline.py": {
+        "current_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48"
+      }
+    },
+    "method": "ewma",
+    "provenance_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+    "threshold": "0.89264036131897389171707441532287689140142887646083",
+    "threshold_manifest_path": "experiment_results/stage14-ewma-cusum-calibration-20261019/thresholds/ingress_packet_count__ewma/0.01/manifest.json",
+    "threshold_manifest_sha256": "dfa2647147038468a5a48543a13c53cfd8b83cd117212c5e432fb1428b875715"
+  },
+  {
+    "feature": "ingress_packet_count",
+    "files": {
+      "evaluation/__init__.py": {
+        "current_sha256": "31ddb70da03505f8e506b3a6581d3b4a8186c684eea0998bff0a8c8d2594da98",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "d8dd1ac7bbf145691326898f8e29d37e42cc3340d54f0d23c449ac411cf2d59f"
+      },
+      "evaluation/events.py": {
+        "current_sha256": "e6c0c18d00c577a7ff42f9bc57e8f07b9015aa3c04d66a9ae530ae27978b8dec",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "44836f114f560c7735ffd90f82bded4b1f5e45dcf05562abc8d90b12a0d55084"
+      },
+      "horizons.py": {
+        "current_sha256": "3626399fa7b45f0dcb9b729f25ac54c5d9945eca0c9837e5d8ced06e4703a4cc",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "f4e04910ee68bbdaf8b1997dde6257f0a3332ab65be2127a65c3bf3e3e0099d1"
+      },
+      "pipeline.py": {
+        "current_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48"
+      }
+    },
+    "method": "cusum",
+    "provenance_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+    "threshold": "5.8663947859740460635472807483006250374772689605873",
+    "threshold_manifest_path": "experiment_results/stage14-ewma-cusum-calibration-20261019/thresholds/ingress_packet_count__cusum/0.01/manifest.json",
+    "threshold_manifest_sha256": "b6dcc2d89e08d6c8f8a816fc1f8efb4763b3368416004b71b2c66a0fe34a1ac3"
+  },
+  {
+    "feature": "ingress_tcp_payload_length_sum_bytes",
+    "files": {
+      "evaluation/__init__.py": {
+        "current_sha256": "31ddb70da03505f8e506b3a6581d3b4a8186c684eea0998bff0a8c8d2594da98",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "d8dd1ac7bbf145691326898f8e29d37e42cc3340d54f0d23c449ac411cf2d59f"
+      },
+      "evaluation/events.py": {
+        "current_sha256": "e6c0c18d00c577a7ff42f9bc57e8f07b9015aa3c04d66a9ae530ae27978b8dec",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "44836f114f560c7735ffd90f82bded4b1f5e45dcf05562abc8d90b12a0d55084"
+      },
+      "horizons.py": {
+        "current_sha256": "3626399fa7b45f0dcb9b729f25ac54c5d9945eca0c9837e5d8ced06e4703a4cc",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "f4e04910ee68bbdaf8b1997dde6257f0a3332ab65be2127a65c3bf3e3e0099d1"
+      },
+      "pipeline.py": {
+        "current_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48"
+      }
+    },
+    "method": "ewma",
+    "provenance_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+    "threshold": "0.82573857066077832446383047934128345052979511053479",
+    "threshold_manifest_path": "experiment_results/stage14-ewma-cusum-calibration-20261019/thresholds/ingress_tcp_payload_length_sum_bytes__ewma/0.01/manifest.json",
+    "threshold_manifest_sha256": "9e57bd19d3f6a20da8ccb239d866f70331d6946ca375efe0f6993ba4e94397c4"
+  },
+  {
+    "feature": "ingress_tcp_payload_length_sum_bytes",
+    "files": {
+      "evaluation/__init__.py": {
+        "current_sha256": "31ddb70da03505f8e506b3a6581d3b4a8186c684eea0998bff0a8c8d2594da98",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "d8dd1ac7bbf145691326898f8e29d37e42cc3340d54f0d23c449ac411cf2d59f"
+      },
+      "evaluation/events.py": {
+        "current_sha256": "e6c0c18d00c577a7ff42f9bc57e8f07b9015aa3c04d66a9ae530ae27978b8dec",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "44836f114f560c7735ffd90f82bded4b1f5e45dcf05562abc8d90b12a0d55084"
+      },
+      "horizons.py": {
+        "current_sha256": "3626399fa7b45f0dcb9b729f25ac54c5d9945eca0c9837e5d8ced06e4703a4cc",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "f4e04910ee68bbdaf8b1997dde6257f0a3332ab65be2127a65c3bf3e3e0099d1"
+      },
+      "pipeline.py": {
+        "current_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48"
+      }
+    },
+    "method": "cusum",
+    "provenance_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+    "threshold": "4.8878672499186342834174285944764078144967611839658",
+    "threshold_manifest_path": "experiment_results/stage14-ewma-cusum-calibration-20261019/thresholds/ingress_tcp_payload_length_sum_bytes__cusum/0.01/manifest.json",
+    "threshold_manifest_sha256": "a6d84158e8a39fb85b8f47ef570144fb81b7d64743bd49180171ffa70d16cf31"
+  },
+  {
+    "feature": "request_starts",
+    "files": {
+      "evaluation/__init__.py": {
+        "current_sha256": "31ddb70da03505f8e506b3a6581d3b4a8186c684eea0998bff0a8c8d2594da98",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "d8dd1ac7bbf145691326898f8e29d37e42cc3340d54f0d23c449ac411cf2d59f"
+      },
+      "evaluation/events.py": {
+        "current_sha256": "e6c0c18d00c577a7ff42f9bc57e8f07b9015aa3c04d66a9ae530ae27978b8dec",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "44836f114f560c7735ffd90f82bded4b1f5e45dcf05562abc8d90b12a0d55084"
+      },
+      "horizons.py": {
+        "current_sha256": "3626399fa7b45f0dcb9b729f25ac54c5d9945eca0c9837e5d8ced06e4703a4cc",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "f4e04910ee68bbdaf8b1997dde6257f0a3332ab65be2127a65c3bf3e3e0099d1"
+      },
+      "pipeline.py": {
+        "current_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48"
+      }
+    },
+    "method": "ewma",
+    "provenance_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+    "threshold": "0.82779444543581353802971905513083190899190644665803",
+    "threshold_manifest_path": "experiment_results/stage14-ewma-cusum-calibration-20261019/thresholds/request_starts__ewma/0.01/manifest.json",
+    "threshold_manifest_sha256": "79950d9c41a940b21417291bce4038d8bbd611908e454edbce0b6e089447f737"
+  },
+  {
+    "feature": "request_starts",
+    "files": {
+      "evaluation/__init__.py": {
+        "current_sha256": "31ddb70da03505f8e506b3a6581d3b4a8186c684eea0998bff0a8c8d2594da98",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "d8dd1ac7bbf145691326898f8e29d37e42cc3340d54f0d23c449ac411cf2d59f"
+      },
+      "evaluation/events.py": {
+        "current_sha256": "e6c0c18d00c577a7ff42f9bc57e8f07b9015aa3c04d66a9ae530ae27978b8dec",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "44836f114f560c7735ffd90f82bded4b1f5e45dcf05562abc8d90b12a0d55084"
+      },
+      "horizons.py": {
+        "current_sha256": "3626399fa7b45f0dcb9b729f25ac54c5d9945eca0c9837e5d8ced06e4703a4cc",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "f4e04910ee68bbdaf8b1997dde6257f0a3332ab65be2127a65c3bf3e3e0099d1"
+      },
+      "pipeline.py": {
+        "current_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48"
+      }
+    },
+    "method": "cusum",
+    "provenance_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+    "threshold": "4.9021720840493902192400573309938660091159158543431",
+    "threshold_manifest_path": "experiment_results/stage14-ewma-cusum-calibration-20261019/thresholds/request_starts__cusum/0.01/manifest.json",
+    "threshold_manifest_sha256": "48bc05a116e2e844eb4b871baf708a9223fc34dfc8267ea3344ac06909883481"
+  },
+  {
+    "feature": "mean_duration_ms",
+    "files": {
+      "evaluation/__init__.py": {
+        "current_sha256": "31ddb70da03505f8e506b3a6581d3b4a8186c684eea0998bff0a8c8d2594da98",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "d8dd1ac7bbf145691326898f8e29d37e42cc3340d54f0d23c449ac411cf2d59f"
+      },
+      "evaluation/events.py": {
+        "current_sha256": "e6c0c18d00c577a7ff42f9bc57e8f07b9015aa3c04d66a9ae530ae27978b8dec",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "44836f114f560c7735ffd90f82bded4b1f5e45dcf05562abc8d90b12a0d55084"
+      },
+      "horizons.py": {
+        "current_sha256": "3626399fa7b45f0dcb9b729f25ac54c5d9945eca0c9837e5d8ced06e4703a4cc",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "f4e04910ee68bbdaf8b1997dde6257f0a3332ab65be2127a65c3bf3e3e0099d1"
+      },
+      "pipeline.py": {
+        "current_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48"
+      }
+    },
+    "method": "ewma",
+    "provenance_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+    "threshold": "0.71295386200542092906349038061027821574428545142786",
+    "threshold_manifest_path": "experiment_results/stage14-ewma-cusum-calibration-20261019/thresholds/mean_duration_ms__ewma/0.01/manifest.json",
+    "threshold_manifest_sha256": "5f1cbb04f41088d0046aeaefc5ba8c10224e8f98af3e59a9d24f6bae77d1b079"
+  },
+  {
+    "feature": "mean_duration_ms",
+    "files": {
+      "evaluation/__init__.py": {
+        "current_sha256": "31ddb70da03505f8e506b3a6581d3b4a8186c684eea0998bff0a8c8d2594da98",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "d8dd1ac7bbf145691326898f8e29d37e42cc3340d54f0d23c449ac411cf2d59f"
+      },
+      "evaluation/events.py": {
+        "current_sha256": "e6c0c18d00c577a7ff42f9bc57e8f07b9015aa3c04d66a9ae530ae27978b8dec",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "44836f114f560c7735ffd90f82bded4b1f5e45dcf05562abc8d90b12a0d55084"
+      },
+      "horizons.py": {
+        "current_sha256": "3626399fa7b45f0dcb9b729f25ac54c5d9945eca0c9837e5d8ced06e4703a4cc",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "f4e04910ee68bbdaf8b1997dde6257f0a3332ab65be2127a65c3bf3e3e0099d1"
+      },
+      "pipeline.py": {
+        "current_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48"
+      }
+    },
+    "method": "cusum",
+    "provenance_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+    "threshold": "3.8390589930821925373397703543671427677669646126365",
+    "threshold_manifest_path": "experiment_results/stage14-ewma-cusum-calibration-20261019/thresholds/mean_duration_ms__cusum/0.01/manifest.json",
+    "threshold_manifest_sha256": "231a17b4c468663d4f99e23ff236566cdbebd4d2a455cd13a9b1ac35de27b229"
+  },
+  {
+    "feature": "mean_cpu_percent",
+    "files": {
+      "evaluation/__init__.py": {
+        "current_sha256": "31ddb70da03505f8e506b3a6581d3b4a8186c684eea0998bff0a8c8d2594da98",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "d8dd1ac7bbf145691326898f8e29d37e42cc3340d54f0d23c449ac411cf2d59f"
+      },
+      "evaluation/events.py": {
+        "current_sha256": "e6c0c18d00c577a7ff42f9bc57e8f07b9015aa3c04d66a9ae530ae27978b8dec",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "44836f114f560c7735ffd90f82bded4b1f5e45dcf05562abc8d90b12a0d55084"
+      },
+      "horizons.py": {
+        "current_sha256": "3626399fa7b45f0dcb9b729f25ac54c5d9945eca0c9837e5d8ced06e4703a4cc",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "f4e04910ee68bbdaf8b1997dde6257f0a3332ab65be2127a65c3bf3e3e0099d1"
+      },
+      "pipeline.py": {
+        "current_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48"
+      }
+    },
+    "method": "ewma",
+    "provenance_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+    "threshold": "1.1914443528412446367639003672683561444828116048704",
+    "threshold_manifest_path": "experiment_results/stage14-ewma-cusum-calibration-20261019/thresholds/mean_cpu_percent__ewma/0.01/manifest.json",
+    "threshold_manifest_sha256": "079aa1f891c70c8f5d2befdcf43895b665a57f0ac5789883ac20e246c2f8df9b"
+  },
+  {
+    "feature": "mean_cpu_percent",
+    "files": {
+      "evaluation/__init__.py": {
+        "current_sha256": "31ddb70da03505f8e506b3a6581d3b4a8186c684eea0998bff0a8c8d2594da98",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "d8dd1ac7bbf145691326898f8e29d37e42cc3340d54f0d23c449ac411cf2d59f"
+      },
+      "evaluation/events.py": {
+        "current_sha256": "e6c0c18d00c577a7ff42f9bc57e8f07b9015aa3c04d66a9ae530ae27978b8dec",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "44836f114f560c7735ffd90f82bded4b1f5e45dcf05562abc8d90b12a0d55084"
+      },
+      "horizons.py": {
+        "current_sha256": "3626399fa7b45f0dcb9b729f25ac54c5d9945eca0c9837e5d8ced06e4703a4cc",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "f4e04910ee68bbdaf8b1997dde6257f0a3332ab65be2127a65c3bf3e3e0099d1"
+      },
+      "pipeline.py": {
+        "current_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48",
+        "historical_bytes_match_recorded_head": true,
+        "historical_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48"
+      }
+    },
+    "method": "cusum",
+    "provenance_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+    "threshold": "14.747404925084325097400505015132607700697130678430",
+    "threshold_manifest_path": "experiment_results/stage14-ewma-cusum-calibration-20261019/thresholds/mean_cpu_percent__cusum/0.01/manifest.json",
+    "threshold_manifest_sha256": "b84872e84c7f25615aaa2ddf082eefd6334f52635758bac0d88eeb39051b3987"
+  }
+]

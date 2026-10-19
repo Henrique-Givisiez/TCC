@@ -1,0 +1,60 @@
+Verified campaign entry 19
+Verified campaign entry 20
+Verified campaign entry 21
+Verified campaign entry 22
+Verified campaign entry 23
+Verified campaign entry 24
+Verified campaign entry 25
+Verified campaign entry 26
+Verified campaign entry 27
+Verified campaign entry 28
+Verified campaign entry 29
+Verified campaign entry 30
+Verified campaign entry 31
+Verified campaign entry 32
+Verified campaign entry 33
+Verified campaign entry 34
+Verified campaign entry 35
+Verified campaign entry 36
+Verified campaign entry 37
+Verified campaign entry 38
+Verified campaign entry 39
+Verified campaign entry 40
+Verified campaign entry 41
+Verified campaign entry 42
+Verified campaign entry 43
+Verified campaign entry 44
+Verified campaign entry 45
+Verified campaign entry 46
+Verified campaign entry 47
+Verified campaign entry 48
+Verified campaign entry 49
+Verified campaign entry 50
+Verified campaign entry 51
+Verified campaign entry 52
+Verified campaign entry 53
+Verified campaign entry 54
+Verified campaign entry 55
+Verified campaign entry 56
+Verified campaign entry 57
+Verified campaign entry 58
+Verified campaign entry 59
+Verified campaign entry 60
+Verified campaign entry 61
+Verified campaign entry 62
+Verified campaign entry 63
+Verified campaign entry 64
+Verified campaign entry 65
+Verified campaign entry 66
+{
+  "manifest_sha256": "089a25681dd13810a94a92def805aa9a7e314955ebdcca671d625d959ae3a9d5",
+  "output_artifacts": 961,
+  "counts": {
+    "observation_count": 138240,
+    "valid_score_count": 136354,
+    "unavailable_score_count": 1886,
+    "positive_decision_count": 16487,
+    "negative_decision_count": 119867
+  },
+  "combinations": 960
+}

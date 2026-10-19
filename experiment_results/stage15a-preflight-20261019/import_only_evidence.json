@@ -1,0 +1,151 @@
+{
+  "evaluation_modules_imported": false,
+  "project_modules": [
+    {
+      "module": "analysis",
+      "path": "analysis/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "analysis.detection",
+      "path": "analysis/detection/__init__.py",
+      "sha256": "f84a7263fb2027dc56a3fef56dd47e563bfbe1601e83203ba124d29ec8ba91b0"
+    },
+    {
+      "module": "analysis.detection.artifacts",
+      "path": "analysis/detection/artifacts.py",
+      "sha256": "6296e9a8d4cabe94ae46ceee7610b7ed7b4daf797e2527af4baeab340e3b581b"
+    },
+    {
+      "module": "analysis.detection.contracts",
+      "path": "analysis/detection/contracts.py",
+      "sha256": "83099a6ae05199c965794f66a7f178556c1c189807de8aa68f873eab057d19e0"
+    },
+    {
+      "module": "analysis.detection.detectors",
+      "path": "analysis/detection/detectors/__init__.py",
+      "sha256": "4fb501080a8e6032640a260e5e8462f0977830cb66d3c3084211f84965ff448c"
+    },
+    {
+      "module": "analysis.detection.detectors._moments",
+      "path": "analysis/detection/detectors/_moments.py",
+      "sha256": "3cf50cd4a2fbce80d6283739f05f7959b8caffa0c1c0d70ad51094c0b50f7ca3"
+    },
+    {
+      "module": "analysis.detection.detectors._standardized",
+      "path": "analysis/detection/detectors/_standardized.py",
+      "sha256": "90c8c59de1a8acd277efa2fe2fa0ee2025f814abb5e6c2c4f0bd192dba6ac724"
+    },
+    {
+      "module": "analysis.detection.detectors.cov",
+      "path": "analysis/detection/detectors/cov.py",
+      "sha256": "d5ae557f222831d2df1db5b7d49cfa71213774cf943c78161570965cdb8a4588"
+    },
+    {
+      "module": "analysis.detection.detectors.cusum",
+      "path": "analysis/detection/detectors/cusum.py",
+      "sha256": "0c2689b621d0bc74e1bec584e8768cd7dc5bc22751622781bc43a5e6a8ab5e8e"
+    },
+    {
+      "module": "analysis.detection.detectors.ewma",
+      "path": "analysis/detection/detectors/ewma.py",
+      "sha256": "8cec7c85b855efbe24197506d3b666b5d376369408421abc05e1a3e0ea976eea"
+    },
+    {
+      "module": "analysis.detection.detectors.zscore",
+      "path": "analysis/detection/detectors/zscore.py",
+      "sha256": "da9c51d1965b4578eea03b83b83d6741f524d5a0f0c42e4df5ce3c3da88a876b"
+    },
+    {
+      "module": "analysis.detection.empirical",
+      "path": "analysis/detection/empirical.py",
+      "sha256": "f3a1ce6f8e779c5f4187832eed26adcb8a098f7d2a1324a45b561ef1f6cda820"
+    },
+    {
+      "module": "analysis.detection.inputs",
+      "path": "analysis/detection/inputs.py",
+      "sha256": "989d9539fc13f2d43cc34dd98ba2a54522e33e8a3c40dec4a22a8d5c7ce6fa0a"
+    },
+    {
+      "module": "analysis.detection.pipeline",
+      "path": "analysis/detection/pipeline.py",
+      "sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48"
+    },
+    {
+      "module": "analysis.detection.protocol",
+      "path": "analysis/detection/protocol.py",
+      "sha256": "bae14b6a7688502f1cc5a0a77d07692451e35eb9b3b9a1641f40259cf4479afa"
+    },
+    {
+      "module": "experiments",
+      "path": "experiments/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "experiments.dataset_schema",
+      "path": "experiments/dataset_schema.py",
+      "sha256": "0b9a23145636318b9bdfd42b0a33a4d6a50de246a341068ddc71573d30e3275d"
+    },
+    {
+      "module": "experiments.feature_schema",
+      "path": "experiments/feature_schema.py",
+      "sha256": "279aab2adf08dc1986d2e3079946e3ea8176330ca93e8d5ee4e209387a588c57"
+    },
+    {
+      "module": "experiments.stage14_campaign",
+      "path": "experiments/stage14_campaign.py",
+      "sha256": "4999c82e68ff645f9314c54ace3310b4578de995a7e7c8427548af5f3a0529d8"
+    },
+    {
+      "module": "experiments.stage14_scientific",
+      "path": "experiments/stage14_scientific.py",
+      "sha256": "c3419fadda480f2a2a83af6d8c040d4048bee25a1a252af61e59348e395a2150"
+    },
+    {
+      "module": "experiments.stage14_test_collection",
+      "path": "experiments/stage14_test_collection.py",
+      "sha256": "3b0f4a0b90f11c1074f122714fb7e5dcaef38959a286fdde6421514e64a634d9"
+    },
+    {
+      "module": "experiments.stage14_test_release",
+      "path": "experiments/stage14_test_release.py",
+      "sha256": "573b5c381ddd8265ddfc56be288e7bf14229fdef73acb108a5dfe4c4ba5488ff"
+    },
+    {
+      "module": "experiments.stage14a",
+      "path": "experiments/stage14a/__init__.py",
+      "sha256": "e25b156ce1f34fb4318a1fc518212abb0a0877d02bcbc589d9a959e8cb3027e7"
+    },
+    {
+      "module": "experiments.stage14a.prepare",
+      "path": "experiments/stage14a/prepare.py",
+      "sha256": "e8ec3c67a3232a4553631af02418fe04473420d11a5c269f2e18cddc4330342f"
+    },
+    {
+      "module": "experiments.stage15a_test_scoring",
+      "path": "experiments/stage15a_test_scoring.py",
+      "sha256": "dff69e2caa9ab0ad5b7a242e3889385768a6e04727698eb937c7ae4962da9fec"
+    },
+    {
+      "module": "pilot_stage13",
+      "path": "pilot_stage13/__init__.py",
+      "sha256": "b10630ca1be6c78b17c9b8f33556388692220b0446d62c69d3f2ba242bf883b0"
+    },
+    {
+      "module": "pilot_stage13.run",
+      "path": "pilot_stage13/run.py",
+      "sha256": "e4be28acd72a23bc6c35cb13e9c352345399b14c03734751695ca29f533a98f0"
+    },
+    {
+      "module": "simulator",
+      "path": "simulator/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "module": "simulator.experiment_config",
+      "path": "simulator/experiment_config.py",
+      "sha256": "992290a03f7bfe8c4264abcd0cc59e6eb21e4f522a028d1a6b208006be9b21e4"
+    }
+  ],
+  "scope": "Import-only probe of unchanged untracked draft; guarded against scoring, decisions, fitting, calibration and evaluation"
+}

@@ -1,0 +1,2066 @@
+{
+  "horizon_checks": [
+    {
+      "object_identity_preserved": true,
+      "partition": "baseline",
+      "selected_records_and_metadata_equal": true,
+      "selected_windows": 192,
+      "synthetic_records_only": true
+    },
+    {
+      "object_identity_preserved": true,
+      "partition": "calibration",
+      "selected_records_and_metadata_equal": true,
+      "selected_windows": 312,
+      "synthetic_records_only": true
+    },
+    {
+      "object_identity_preserved": true,
+      "partition": "test",
+      "selected_records_and_metadata_equal": true,
+      "selected_windows": 144,
+      "synthetic_records_only": true
+    }
+  ],
+  "modules": {
+    "analysis/detection/__init__.py": {
+      "functions": {},
+      "imports": [
+        {
+          "line": 2,
+          "statement": "from .inputs import load_series"
+        },
+        {
+          "line": 3,
+          "statement": "from .pipeline import fit_baseline, score_run, calibrate, decide, load_scores, load_decisions"
+        },
+        {
+          "line": 4,
+          "statement": "from .contracts import Component, Observation, ObservedSeries, ScoreValue"
+        }
+      ],
+      "sha256": "f84a7263fb2027dc56a3fef56dd47e563bfbe1601e83203ba124d29ec8ba91b0"
+    },
+    "analysis/detection/artifacts.py": {
+      "functions": {
+        "component": {
+          "calls": [
+            "ContractError",
+            "dict",
+            "encoded",
+            "json.loads"
+          ],
+          "line": 37
+        },
+        "encoded": {
+          "calls": [
+            "json.dumps",
+            "plain"
+          ],
+          "line": 33
+        },
+        "open_artifact": {
+          "calls": [
+            "Artifact",
+            "Path",
+            "Path(reference['path']).resolve",
+            "a.read"
+          ],
+          "line": 89
+        },
+        "plain": {
+          "calls": [
+            "ContractError",
+            "all",
+            "isinstance",
+            "plain",
+            "str",
+            "value.is_finite",
+            "value.items"
+          ],
+          "line": 17
+        },
+        "provenance": {
+          "calls": [
+            "ContractError",
+            "Path",
+            "Path(__file__).resolve",
+            "Path(source).resolve",
+            "base.rglob",
+            "dict",
+            "digest",
+            "inspect.getsourcefile",
+            "p.relative_to",
+            "platform.platform",
+            "platform.python_version",
+            "sorted",
+            "str",
+            "subprocess.check_output",
+            "subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=base, stderr=subprocess.DEVNULL, timeout=5).decode",
+            "subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=base, stderr=subprocess.DEVNULL, timeout=5).decode().strip",
+            "type"
+          ],
+          "line": 44
+        },
+        "publish": {
+          "calls": [
+            "(temp / 'manifest.json').write_text",
+            "(temp / name).open",
+            "Artifact",
+            "ContractError",
+            "Path",
+            "Path(destination).absolute",
+            "Path(root).resolve",
+            "any",
+            "csv.DictWriter",
+            "dict",
+            "digest",
+            "encoded",
+            "os.mkdir",
+            "os.rename",
+            "outputs.append",
+            "p.is_symlink",
+            "p.stat",
+            "raw.resolve",
+            "shutil.rmtree",
+            "target.exists",
+            "target.parent.mkdir",
+            "temp.iterdir",
+            "tempfile.mkdtemp",
+            "writer.writeheader",
+            "writer.writerows"
+          ],
+          "line": 95
+        },
+        "read": {
+          "calls": [
+            "ContractError",
+            "digest",
+            "m.get",
+            "path.stat",
+            "read_json",
+            "safe_file"
+          ],
+          "line": 70
+        },
+        "reference": {
+          "calls": [
+            "dict",
+            "self.read",
+            "str"
+          ],
+          "line": 84
+        }
+      },
+      "imports": [
+        {
+          "line": 2,
+          "statement": "import csv"
+        },
+        {
+          "line": 3,
+          "statement": "from dataclasses import dataclass"
+        },
+        {
+          "line": 4,
+          "statement": "from decimal import Decimal"
+        },
+        {
+          "line": 5,
+          "statement": "import inspect"
+        },
+        {
+          "line": 6,
+          "statement": "import json"
+        },
+        {
+          "line": 7,
+          "statement": "import os"
+        },
+        {
+          "line": 8,
+          "statement": "from pathlib import Path"
+        },
+        {
+          "line": 9,
+          "statement": "import platform"
+        },
+        {
+          "line": 10,
+          "statement": "import shutil"
+        },
+        {
+          "line": 11,
+          "statement": "import subprocess"
+        },
+        {
+          "line": 12,
+          "statement": "import tempfile"
+        },
+        {
+          "line": 14,
+          "statement": "from .inputs import ContractError, digest, read_json, safe_file"
+        }
+      ],
+      "sha256": "6296e9a8d4cabe94ae46ceee7610b7ed7b4daf797e2527af4baeab340e3b581b"
+    },
+    "analysis/detection/contracts.py": {
+      "functions": {
+        "calibrate": {
+          "calls": [],
+          "line": 98
+        },
+        "decide": {
+          "calls": [],
+          "line": 103
+        },
+        "fit": {
+          "calls": [],
+          "line": 89
+        },
+        "start_run": {
+          "calls": [],
+          "line": 102
+        },
+        "update": {
+          "calls": [],
+          "line": 94
+        }
+      },
+      "imports": [
+        {
+          "line": 2,
+          "statement": "from dataclasses import dataclass"
+        },
+        {
+          "line": 3,
+          "statement": "from decimal import Decimal"
+        },
+        {
+          "line": 4,
+          "statement": "from typing import Any, Mapping, Protocol"
+        }
+      ],
+      "sha256": "83099a6ae05199c965794f66a7f178556c1c189807de8aa68f873eab057d19e0"
+    },
+    "analysis/detection/detectors/_moments.py": {
+      "functions": {
+        "decimal_ratio": {
+          "calls": [
+            "Decimal",
+            "localcontext"
+          ],
+          "line": 31
+        },
+        "finite_fraction": {
+          "calls": [
+            "ContractError",
+            "Fraction",
+            "isinstance",
+            "value.is_finite"
+          ],
+          "line": 15
+        },
+        "fraction_record": {
+          "calls": [
+            "dict",
+            "str"
+          ],
+          "line": 41
+        },
+        "read_fraction": {
+          "calls": [
+            "ContractError",
+            "Fraction",
+            "ValueError",
+            "int",
+            "isinstance"
+          ],
+          "line": 45
+        },
+        "sample_moments": {
+          "calls": [
+            "ContractError",
+            "Fraction",
+            "finite_fraction",
+            "len",
+            "sum"
+          ],
+          "line": 21
+        },
+        "standard_deviation": {
+          "calls": [
+            "decimal_ratio",
+            "decimal_ratio(variance).sqrt",
+            "localcontext"
+          ],
+          "line": 36
+        }
+      },
+      "imports": [
+        {
+          "line": 6,
+          "statement": "from decimal import Context, Decimal, ROUND_HALF_EVEN, localcontext"
+        },
+        {
+          "line": 7,
+          "statement": "from fractions import Fraction"
+        },
+        {
+          "line": 9,
+          "statement": "from ..inputs import ContractError"
+        }
+      ],
+      "sha256": "3cf50cd4a2fbce80d6283739f05f7959b8caffa0c1c0d70ad51094c0b50f7ca3"
+    },
+    "analysis/detection/detectors/_standardized.py": {
+      "functions": {
+        "baseline_spec": {
+          "calls": [
+            "ContractError",
+            "self.spec",
+            "zscore_spec"
+          ],
+          "line": 37
+        },
+        "residual": {
+          "calls": [
+            "ContractError",
+            "Decimal",
+            "ZScore",
+            "ZScore().update"
+          ],
+          "line": 51
+        },
+        "start_run": {
+          "calls": [
+            "ContractError",
+            "ZScore",
+            "ZScore().start_run",
+            "_State",
+            "dict",
+            "self.spec",
+            "zscore_spec"
+          ],
+          "line": 44
+        }
+      },
+      "imports": [
+        {
+          "line": 2,
+          "statement": "from dataclasses import dataclass"
+        },
+        {
+          "line": 3,
+          "statement": "from decimal import Decimal"
+        },
+        {
+          "line": 5,
+          "statement": "from ..inputs import ContractError"
+        },
+        {
+          "line": 6,
+          "statement": "from ._moments import PRECISION"
+        },
+        {
+          "line": 7,
+          "statement": "from .zscore import ZScore, zscore_spec"
+        }
+      ],
+      "sha256": "90c8c59de1a8acd277efa2fe2fa0ee2025f814abb5e6c2c4f0bd192dba6ac724"
+    },
+    "analysis/detection/detectors/cov.py": {
+      "functions": {
+        "cov_spec": {
+          "calls": [
+            "Component",
+            "ContractError",
+            "dict",
+            "type"
+          ],
+          "line": 16
+        },
+        "start_run": {
+          "calls": [
+            "ContractError",
+            "_State",
+            "cov_spec",
+            "deque",
+            "dict"
+          ],
+          "line": 36
+        },
+        "update": {
+          "calls": [
+            "ContractError",
+            "ScoreValue",
+            "decimal_ratio",
+            "len",
+            "localcontext",
+            "sample_moments",
+            "standard_deviation",
+            "state.values.append",
+            "state.values.clear"
+          ],
+          "line": 46
+        }
+      },
+      "imports": [
+        {
+          "line": 2,
+          "statement": "from collections import deque"
+        },
+        {
+          "line": 3,
+          "statement": "from dataclasses import dataclass"
+        },
+        {
+          "line": 4,
+          "statement": "from decimal import Decimal, localcontext"
+        },
+        {
+          "line": 6,
+          "statement": "from ..contracts import Component, ScoreValue"
+        },
+        {
+          "line": 7,
+          "statement": "from ..inputs import ContractError"
+        },
+        {
+          "line": 8,
+          "statement": "from ._moments import CONTEXT, PRECISION, decimal_ratio, sample_moments, standard_deviation"
+        }
+      ],
+      "sha256": "d5ae557f222831d2df1db5b7d49cfa71213774cf943c78161570965cdb8a4588"
+    },
+    "analysis/detection/detectors/cusum.py": {
+      "functions": {
+        "cusum_spec": {
+          "calls": [
+            "Component",
+            "dict"
+          ],
+          "line": 12
+        },
+        "update": {
+          "calls": [
+            "Decimal",
+            "ScoreValue",
+            "localcontext",
+            "max",
+            "self.residual"
+          ],
+          "line": 20
+        }
+      },
+      "imports": [
+        {
+          "line": 2,
+          "statement": "from decimal import Decimal, localcontext"
+        },
+        {
+          "line": 4,
+          "statement": "from ..contracts import Component, ScoreValue"
+        },
+        {
+          "line": 5,
+          "statement": "from ._moments import CONTEXT"
+        },
+        {
+          "line": 6,
+          "statement": "from ._standardized import COMMON_CONFIG, StandardizedUpperTail"
+        }
+      ],
+      "sha256": "0c2689b621d0bc74e1bec584e8768cd7dc5bc22751622781bc43a5e6a8ab5e8e"
+    },
+    "analysis/detection/detectors/ewma.py": {
+      "functions": {
+        "ewma_spec": {
+          "calls": [
+            "Component",
+            "dict"
+          ],
+          "line": 12
+        },
+        "update": {
+          "calls": [
+            "Decimal",
+            "ScoreValue",
+            "localcontext",
+            "self.residual"
+          ],
+          "line": 21
+        }
+      },
+      "imports": [
+        {
+          "line": 2,
+          "statement": "from decimal import Decimal, localcontext"
+        },
+        {
+          "line": 4,
+          "statement": "from ..contracts import Component, ScoreValue"
+        },
+        {
+          "line": 5,
+          "statement": "from ._moments import CONTEXT"
+        },
+        {
+          "line": 6,
+          "statement": "from ._standardized import COMMON_CONFIG, StandardizedUpperTail"
+        }
+      ],
+      "sha256": "8cec7c85b855efbe24197506d3b666b5d376369408421abc05e1a3e0ea976eea"
+    },
+    "analysis/detection/detectors/zscore.py": {
+      "functions": {
+        "fit": {
+          "calls": [
+            "ContractError",
+            "any",
+            "decimal_ratio",
+            "dict",
+            "fraction_record",
+            "key",
+            "len",
+            "sample_moments",
+            "standard_deviation",
+            "sum",
+            "support.append",
+            "validate_config",
+            "values.extend"
+          ],
+          "line": 39
+        },
+        "start_run": {
+          "calls": [
+            "ContractError",
+            "_State",
+            "decimal_ratio",
+            "number",
+            "read_fraction",
+            "standard_deviation",
+            "type",
+            "validate_config"
+          ],
+          "line": 62
+        },
+        "update": {
+          "calls": [
+            "ScoreValue",
+            "decimal_ratio",
+            "finite_fraction",
+            "localcontext"
+          ],
+          "line": 82
+        },
+        "validate_config": {
+          "calls": [
+            "ContractError",
+            "dict"
+          ],
+          "line": 22
+        },
+        "zscore_spec": {
+          "calls": [
+            "Component",
+            "dict"
+          ],
+          "line": 18
+        }
+      },
+      "imports": [
+        {
+          "line": 2,
+          "statement": "from dataclasses import dataclass"
+        },
+        {
+          "line": 3,
+          "statement": "from decimal import Decimal, localcontext"
+        },
+        {
+          "line": 4,
+          "statement": "from fractions import Fraction"
+        },
+        {
+          "line": 6,
+          "statement": "from ..contracts import Component, ScoreValue"
+        },
+        {
+          "line": 7,
+          "statement": "from ..inputs import ContractError, number"
+        },
+        {
+          "line": 8,
+          "statement": "from ._moments import CONTEXT, PRECISION, decimal_ratio, finite_fraction, fraction_record, read_fraction, sample_moments, standard_deviation"
+        }
+      ],
+      "sha256": "da9c51d1965b4578eea03b83b83d6741f524d5a0f0c42e4df5ce3c3da88a876b"
+    },
+    "analysis/detection/empirical.py": {
+      "functions": {
+        "calibrate": {
+          "calls": [
+            "ContractError",
+            "any",
+            "checked_score",
+            "dict",
+            "isinstance",
+            "len",
+            "number",
+            "pools.append",
+            "quantile_index",
+            "ratio",
+            "set",
+            "sorted",
+            "sum",
+            "support.append",
+            "type",
+            "validate_config",
+            "values.append"
+          ],
+          "line": 97
+        },
+        "checked_score": {
+          "calls": [
+            "ContractError",
+            "isinstance",
+            "map",
+            "record.score.is_finite",
+            "type"
+          ],
+          "line": 75
+        },
+        "decide": {
+          "calls": [
+            "ContractError",
+            "DecisionValue",
+            "checked_score",
+            "type"
+          ],
+          "line": 178
+        },
+        "exact_alpha": {
+          "calls": [
+            "ContractError",
+            "Fraction",
+            "isinstance",
+            "number"
+          ],
+          "line": 23
+        },
+        "quantile_index": {
+          "calls": [
+            "ContractError",
+            "exact_alpha",
+            "type"
+          ],
+          "line": 60
+        },
+        "ratio": {
+          "calls": [
+            "Decimal",
+            "localcontext"
+          ],
+          "line": 68
+        },
+        "start_run": {
+          "calls": [
+            "ContractError",
+            "_Threshold",
+            "any",
+            "dict",
+            "isinstance",
+            "number",
+            "quantile_index",
+            "sum",
+            "type",
+            "validate_config"
+          ],
+          "line": 159
+        },
+        "upper_tail_spec": {
+          "calls": [
+            "Component",
+            "dict",
+            "exact_alpha",
+            "str"
+          ],
+          "line": 37
+        },
+        "validate_config": {
+          "calls": [
+            "ContractError",
+            "Fraction",
+            "ValueError",
+            "any",
+            "dict",
+            "exact_alpha",
+            "int",
+            "isinstance",
+            "set",
+            "upper_tail_spec"
+          ],
+          "line": 45
+        }
+      },
+      "imports": [
+        {
+          "line": 7,
+          "statement": "from dataclasses import dataclass"
+        },
+        {
+          "line": 8,
+          "statement": "from decimal import Context, Decimal, ROUND_HALF_EVEN, localcontext"
+        },
+        {
+          "line": 9,
+          "statement": "from fractions import Fraction"
+        },
+        {
+          "line": 11,
+          "statement": "from .contracts import CalibrationScores, Component, DecisionValue, PolicyScore"
+        },
+        {
+          "line": 12,
+          "statement": "from .inputs import ContractError, number"
+        }
+      ],
+      "sha256": "f3a1ce6f8e779c5f4187832eed26adcb8a098f7d2a1324a45b561ef1f6cda820"
+    },
+    "analysis/detection/evaluation/__init__.py": {
+      "functions": {
+        "evaluate": {
+          "calls": [],
+          "line": 83
+        },
+        "load_window_truth": {
+          "calls": [
+            "ContractError",
+            "Path",
+            "Path(dataset).resolve",
+            "Path(source_reference['feature_dataset']).resolve",
+            "WindowTruth",
+            "any",
+            "checked_output",
+            "csv.DictReader",
+            "dict",
+            "digest",
+            "enumerate",
+            "grid_edges",
+            "len",
+            "localcontext",
+            "number",
+            "p.open",
+            "read_json",
+            "records.append",
+            "refs_verify",
+            "row.values",
+            "safe_file",
+            "str",
+            "tuple"
+          ],
+          "line": 92
+        },
+        "pure_window_groups": {
+          "calls": [
+            "ContractError",
+            "groups.items",
+            "groups[group].append",
+            "tuple"
+          ],
+          "line": 183
+        },
+        "validate": {
+          "calls": [
+            "ContractError",
+            "isinstance",
+            "self.availability_policy.strip",
+            "self.overlap_policy.strip",
+            "self.selection.bounds"
+          ],
+          "line": 27
+        }
+      },
+      "imports": [
+        {
+          "line": 7,
+          "statement": "import csv"
+        },
+        {
+          "line": 8,
+          "statement": "from dataclasses import dataclass"
+        },
+        {
+          "line": 9,
+          "statement": "from decimal import Decimal, localcontext"
+        },
+        {
+          "line": 10,
+          "statement": "from typing import Mapping, Protocol"
+        },
+        {
+          "line": 12,
+          "statement": "from ..artifacts import component, provenance, publish"
+        },
+        {
+          "line": 13,
+          "statement": "from ..contracts import DecisionRecord, PolicyScore"
+        },
+        {
+          "line": 14,
+          "statement": "from ..inputs import ContractError, checked_output, number, read_json, safe_file, digest, grid_edges"
+        },
+        {
+          "line": 15,
+          "statement": "from ..pipeline import DecisionRun, ScoreRun, refs_verify, validate_score_run, validate_decision_run"
+        },
+        {
+          "line": 16,
+          "statement": "from ..horizons import EvaluationSelection, select_for_evaluation"
+        },
+        {
+          "line": 60,
+          "statement": "from .events import EventTruth, VerifiedEvents, load_event_truth, evaluate_events"
+        },
+        {
+          "line": 94,
+          "statement": "from pathlib import Path"
+        }
+      ],
+      "sha256": "31ddb70da03505f8e506b3a6581d3b4a8186c684eea0998bff0a8c8d2594da98"
+    },
+    "analysis/detection/evaluation/events.py": {
+      "functions": {
+        "evaluate_events": {
+          "calls": [
+            "ContractError",
+            "EventResult",
+            "isinstance",
+            "load_protocol",
+            "manifest['source'].get",
+            "min",
+            "results.append",
+            "select_for_evaluation",
+            "truth.verify",
+            "tuple",
+            "validate_decision_run"
+          ],
+          "line": 121
+        },
+        "linked": {
+          "calls": [
+            "ContractError",
+            "any",
+            "digest",
+            "len",
+            "path.stat",
+            "safe_file"
+          ],
+          "line": 68
+        },
+        "load_event_truth": {
+          "calls": [
+            "ContractError",
+            "EventTruth",
+            "Path",
+            "Path(feature_dataset).resolve",
+            "Path(source_reference['feature_dataset']).resolve",
+            "Path(stage8_dataset).resolve",
+            "VerifiedEvents",
+            "any",
+            "checked_output",
+            "csv.DictReader",
+            "dict",
+            "digest",
+            "fm['window']['anchors'].items",
+            "len",
+            "linked",
+            "m.get",
+            "number",
+            "path.open",
+            "path.stat",
+            "read_json",
+            "records.append",
+            "refs_verify",
+            "report.get",
+            "required.issubset",
+            "row.get",
+            "safe_file",
+            "status.get",
+            "str",
+            "tuple",
+            "val"
+          ],
+          "line": 38
+        },
+        "verify": {
+          "calls": [
+            "ContractError",
+            "load_event_truth"
+          ],
+          "line": 31
+        }
+      },
+      "imports": [
+        {
+          "line": 2,
+          "statement": "import csv"
+        },
+        {
+          "line": 3,
+          "statement": "from dataclasses import dataclass"
+        },
+        {
+          "line": 4,
+          "statement": "from decimal import Decimal"
+        },
+        {
+          "line": 5,
+          "statement": "from pathlib import Path"
+        },
+        {
+          "line": 7,
+          "statement": "from ..inputs import ContractError, checked_output, digest, number, read_json, safe_file"
+        },
+        {
+          "line": 8,
+          "statement": "from ..pipeline import refs_verify"
+        },
+        {
+          "line": 127,
+          "statement": "from . import EventResult"
+        },
+        {
+          "line": 128,
+          "statement": "from ..pipeline import validate_decision_run"
+        },
+        {
+          "line": 129,
+          "statement": "from ..protocol import EVENT_POLICY_V2, load_protocol"
+        },
+        {
+          "line": 138,
+          "statement": "from ..horizons import select_for_evaluation"
+        }
+      ],
+      "sha256": "e6c0c18d00c577a7ff42f9bc57e8f07b9015aa3c04d66a9ae530ae27978b8dec"
+    },
+    "analysis/detection/horizons.py": {
+      "functions": {
+        "_contained": {
+          "calls": [
+            "ContractError",
+            "dict",
+            "hasattr",
+            "len",
+            "str",
+            "tuple",
+            "window"
+          ],
+          "line": 19
+        },
+        "bounds": {
+          "calls": [
+            "ContractError"
+          ],
+          "line": 13
+        },
+        "select_campaign_records": {
+          "calls": [
+            "ContractError",
+            "_contained",
+            "dict",
+            "load_protocol",
+            "map"
+          ],
+          "line": 72
+        },
+        "select_evaluation_records": {
+          "calls": [
+            "ContractError",
+            "_contained",
+            "dict",
+            "isinstance",
+            "map",
+            "selection.bounds"
+          ],
+          "line": 38
+        },
+        "select_for_evaluation": {
+          "calls": [
+            "ContractError",
+            "load_protocol",
+            "select_campaign_records",
+            "select_evaluation_records",
+            "source_reference.get",
+            "tuple"
+          ],
+          "line": 48
+        },
+        "window": {
+          "calls": [
+            "hasattr"
+          ],
+          "line": 21
+        }
+      },
+      "imports": [
+        {
+          "line": 2,
+          "statement": "from dataclasses import dataclass"
+        },
+        {
+          "line": 4,
+          "statement": "from .inputs import ContractError, number"
+        },
+        {
+          "line": 5,
+          "statement": "from .protocol import load_protocol"
+        }
+      ],
+      "sha256": "3626399fa7b45f0dcb9b729f25ac54c5d9945eca0c9837e5d8ced06e4703a4cc"
+    },
+    "analysis/detection/inputs.py": {
+      "functions": {
+        "checked_output": {
+          "calls": [
+            "ContractError",
+            "digest",
+            "len",
+            "p.stat",
+            "safe_file"
+          ],
+          "line": 70
+        },
+        "digest": {
+          "calls": [
+            "Path",
+            "Path(path).read_bytes",
+            "hashlib.sha256",
+            "hashlib.sha256(Path(path).read_bytes()).hexdigest"
+          ],
+          "line": 34
+        },
+        "grid_edges": {
+          "calls": [
+            "len",
+            "localcontext",
+            "max",
+            "str",
+            "width.as_tuple"
+          ],
+          "line": 27
+        },
+        "load_series": {
+          "calls": [
+            "BoundSeries",
+            "ContractError",
+            "Observation",
+            "ObservedSeries",
+            "Path",
+            "Path(dataset).absolute",
+            "any",
+            "bound.verify",
+            "checked_output",
+            "csv.DictReader",
+            "dict",
+            "digest",
+            "enumerate",
+            "feature_schema",
+            "grid_edges",
+            "json.dumps",
+            "len",
+            "next",
+            "number",
+            "raw_root.is_symlink",
+            "raw_root.resolve",
+            "read_json",
+            "row.values",
+            "rows.append",
+            "safe_file",
+            "str",
+            "tuple",
+            "value.to_integral_value",
+            "values_path.open"
+          ],
+          "line": 104
+        },
+        "number": {
+          "calls": [
+            "ContractError",
+            "Decimal",
+            "result.is_finite",
+            "str"
+          ],
+          "line": 17
+        },
+        "read_json": {
+          "calls": [
+            "ContractError",
+            "Path",
+            "Path(path).read_text",
+            "json.loads"
+          ],
+          "line": 38
+        },
+        "reference": {
+          "calls": [
+            "json.loads"
+          ],
+          "line": 91
+        },
+        "reject": {
+          "calls": [
+            "ContractError"
+          ],
+          "line": 46
+        },
+        "safe_file": {
+          "calls": [
+            "ContractError",
+            "PurePosixPath",
+            "isinstance",
+            "p.is_file",
+            "p.resolve",
+            "parent.is_symlink",
+            "pure.as_posix",
+            "pure.is_absolute"
+          ],
+          "line": 51
+        },
+        "unique": {
+          "calls": [
+            "ContractError"
+          ],
+          "line": 39
+        },
+        "verify": {
+          "calls": [
+            "ContractError",
+            "digest",
+            "guard_reference",
+            "safe_file"
+          ],
+          "line": 94
+        }
+      },
+      "imports": [
+        {
+          "line": 2,
+          "statement": "import csv"
+        },
+        {
+          "line": 3,
+          "statement": "from dataclasses import dataclass"
+        },
+        {
+          "line": 4,
+          "statement": "from decimal import Decimal, InvalidOperation, localcontext"
+        },
+        {
+          "line": 5,
+          "statement": "import hashlib"
+        },
+        {
+          "line": 6,
+          "statement": "import json"
+        },
+        {
+          "line": 7,
+          "statement": "from pathlib import Path, PurePosixPath"
+        },
+        {
+          "line": 9,
+          "statement": "from experiments.feature_schema import FEATURES, KEYS, feature_schema"
+        },
+        {
+          "line": 10,
+          "statement": "from .contracts import Observation, ObservedSeries"
+        },
+        {
+          "line": 97,
+          "statement": "from .protocol import guard_reference"
+        }
+      ],
+      "sha256": "989d9539fc13f2d43cc34dd98ba2a54522e33e8a3c40dec4a22a8d5c7ce6fa0a"
+    },
+    "analysis/detection/pipeline.py": {
+      "functions": {
+        "calibrate": {
+          "calls": [
+            "CalibrationScores",
+            "ContractError",
+            "any",
+            "calibrator.calibrate",
+            "component",
+            "dict",
+            "encoded",
+            "guard_reference",
+            "isinstance",
+            "json.loads",
+            "len",
+            "load_protocol",
+            "manifest['source'].get",
+            "provenance",
+            "publish",
+            "select_campaign_records",
+            "selected_runs.append",
+            "selections.append",
+            "set",
+            "source_roots",
+            "tuple",
+            "validate_score_run",
+            "zip"
+          ],
+          "line": 213
+        },
+        "decide": {
+          "calls": [
+            "ContractError",
+            "DecisionRecord",
+            "DecisionRun",
+            "DecisionValue",
+            "component",
+            "decision_row",
+            "dict",
+            "encoded",
+            "isinstance",
+            "json.loads",
+            "number",
+            "open_artifact",
+            "policy.decide",
+            "policy.start_run",
+            "provenance",
+            "publish",
+            "records.append",
+            "refs_verify",
+            "score_row",
+            "source_roots",
+            "tuple",
+            "type",
+            "validate_calibration",
+            "validate_score_run"
+          ],
+          "line": 263
+        },
+        "decision_row": {
+          "calls": [
+            "row.update",
+            "score_row",
+            "str",
+            "str(r.decision).lower"
+          ],
+          "line": 193
+        },
+        "feature_key": {
+          "calls": [
+            "dict",
+            "str"
+          ],
+          "line": 25
+        },
+        "fit_baseline": {
+          "calls": [
+            "ContractError",
+            "any",
+            "component",
+            "dict",
+            "encoded",
+            "feature_key",
+            "fitter.fit",
+            "isinstance",
+            "json.loads",
+            "len",
+            "map",
+            "number",
+            "provenance",
+            "publish",
+            "select_interval",
+            "selected.append",
+            "selections.append",
+            "set",
+            "source.reference.get",
+            "tuple",
+            "verify_sources"
+          ],
+          "line": 69
+        },
+        "load_decisions": {
+          "calls": [
+            "ContractError",
+            "DecisionRecord",
+            "DecisionRun",
+            "artifact.read",
+            "csv.DictReader",
+            "len",
+            "list",
+            "load_scores",
+            "number",
+            "open_artifact",
+            "records.append",
+            "safe_file",
+            "safe_file(artifact.root, 'decisions.csv').open",
+            "tuple",
+            "validate_decision_run",
+            "zip"
+          ],
+          "line": 332
+        },
+        "load_scores": {
+          "calls": [
+            "ContractError",
+            "PolicyScore",
+            "ScoreRun",
+            "artifact.read",
+            "csv.DictReader",
+            "int",
+            "number",
+            "open_artifact",
+            "records.append",
+            "safe_file",
+            "safe_file(artifact.root, 'scores.csv').open",
+            "tuple",
+            "validate_score_run"
+          ],
+          "line": 306
+        },
+        "missing_check": {
+          "calls": [
+            "ContractError",
+            "any",
+            "component"
+          ],
+          "line": 46
+        },
+        "refs_verify": {
+          "calls": [
+            "ContractError",
+            "Path",
+            "digest",
+            "guard_reference",
+            "ref['consumed_files_sha256'].items",
+            "safe_file"
+          ],
+          "line": 56
+        },
+        "score_row": {
+          "calls": [
+            "dict",
+            "str",
+            "str(r.score_available).lower"
+          ],
+          "line": 155
+        },
+        "score_run": {
+          "calls": [
+            "ContractError",
+            "PolicyScore",
+            "ScoreRun",
+            "baseline.read",
+            "baseline_spec",
+            "component",
+            "detector.start_run",
+            "detector.update",
+            "dict",
+            "encoded",
+            "feature_key",
+            "getattr",
+            "isinstance",
+            "json.loads",
+            "missing_check",
+            "number",
+            "provenance",
+            "publish",
+            "records.append",
+            "refs_verify",
+            "score_row",
+            "source_roots",
+            "tuple",
+            "verify_sources"
+          ],
+          "line": 107
+        },
+        "source_roots": {
+          "calls": [],
+          "line": 52
+        },
+        "validate_calibration": {
+          "calls": [
+            "artifact.read",
+            "open_artifact",
+            "open_artifact(c['baseline'], 'baseline').read",
+            "open_artifact(ref, 'scores').read",
+            "refs_verify"
+          ],
+          "line": 201
+        },
+        "validate_decision_run": {
+          "calls": [
+            "ContractError",
+            "decision_row",
+            "isinstance",
+            "open_artifact",
+            "refs_verify",
+            "run.artifact.read",
+            "validate_calibration",
+            "verify_table"
+          ],
+          "line": 182
+        },
+        "validate_score_run": {
+          "calls": [
+            "ContractError",
+            "isinstance",
+            "open_artifact",
+            "refs_verify",
+            "run.artifact.read",
+            "score_row",
+            "verify_table"
+          ],
+          "line": 162
+        },
+        "verify_sources": {
+          "calls": [
+            "ContractError",
+            "all",
+            "any",
+            "feature_key",
+            "guard_reference",
+            "isinstance",
+            "len",
+            "s.verify"
+          ],
+          "line": 31
+        },
+        "verify_table": {
+          "calls": [
+            "ContractError",
+            "csv.DictReader",
+            "list",
+            "row.items",
+            "safe_file",
+            "safe_file(artifact.root, filename).open",
+            "str"
+          ],
+          "line": 173
+        }
+      },
+      "imports": [
+        {
+          "line": 2,
+          "statement": "import csv"
+        },
+        {
+          "line": 3,
+          "statement": "from dataclasses import dataclass"
+        },
+        {
+          "line": 4,
+          "statement": "from decimal import Decimal"
+        },
+        {
+          "line": 5,
+          "statement": "import json"
+        },
+        {
+          "line": 7,
+          "statement": "from .artifacts import component, encoded, open_artifact, provenance, publish"
+        },
+        {
+          "line": 8,
+          "statement": "from .contracts import CalibrationScores, DecisionRecord, DecisionValue, PolicyScore, ScoreValue"
+        },
+        {
+          "line": 10,
+          "statement": "from .inputs import BoundSeries, ContractError, number"
+        },
+        {
+          "line": 58,
+          "statement": "from pathlib import Path"
+        },
+        {
+          "line": 59,
+          "statement": "from .inputs import digest, safe_file"
+        },
+        {
+          "line": 73,
+          "statement": "from .fitting import select_interval"
+        },
+        {
+          "line": 174,
+          "statement": "from .inputs import safe_file"
+        },
+        {
+          "line": 218,
+          "statement": "from .protocol import guard_reference"
+        },
+        {
+          "line": 308,
+          "statement": "from .inputs import safe_file"
+        },
+        {
+          "line": 334,
+          "statement": "from .inputs import safe_file"
+        },
+        {
+          "line": 35,
+          "statement": "from .protocol import guard_reference"
+        },
+        {
+          "line": 61,
+          "statement": "from .protocol import guard_reference"
+        },
+        {
+          "line": 88,
+          "statement": "from .protocol import FROZEN"
+        },
+        {
+          "line": 235,
+          "statement": "from .protocol import load_protocol"
+        },
+        {
+          "line": 236,
+          "statement": "from .horizons import select_campaign_records"
+        }
+      ],
+      "sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48"
+    },
+    "analysis/detection/protocol.py": {
+      "functions": {
+        "bind_source": {
+          "calls": [
+            "ContractError",
+            "dict",
+            "json.dumps",
+            "load_protocol",
+            "replace",
+            "source.verify"
+          ],
+          "line": 186
+        },
+        "frozen_for_version": {
+          "calls": [
+            "ContractError",
+            "type"
+          ],
+          "line": 68
+        },
+        "guard_reference": {
+          "calls": [
+            "ContractError",
+            "load_protocol",
+            "reference.get"
+          ],
+          "line": 213
+        },
+        "load_campaign_series": {
+          "calls": [
+            "ContractError",
+            "bind_source",
+            "load_protocol",
+            "load_series"
+          ],
+          "line": 235
+        },
+        "load_protocol": {
+          "calls": [
+            "ContractError",
+            "Path",
+            "Path(path).resolve",
+            "dict",
+            "digest",
+            "read_json",
+            "str",
+            "validate_protocol"
+          ],
+          "line": 152
+        },
+        "materialize_seeds": {
+          "calls": [
+            "FROZEN['seed_counts'].items",
+            "f'{namespace}:{partition}:{index}'.encode",
+            "hashlib.sha256",
+            "hashlib.sha256(f'{namespace}:{partition}:{index}'.encode()).digest",
+            "int.from_bytes",
+            "len",
+            "result[partition].append",
+            "used.add"
+          ],
+          "line": 137
+        },
+        "run_protocol_reference": {
+          "calls": [
+            "ContractError",
+            "dict",
+            "load_protocol",
+            "type"
+          ],
+          "line": 252
+        },
+        "validate_protocol": {
+          "calls": [
+            "ContractError",
+            "ValueError",
+            "all",
+            "any",
+            "datetime.fromisoformat",
+            "document['created_at_utc'].replace",
+            "document['provenance'].get",
+            "document['references'].items",
+            "document['unresolved'].values",
+            "encoded",
+            "frozen_for_version",
+            "isinstance",
+            "materialize_seeds",
+            "re.fullmatch",
+            "seeds.get",
+            "set",
+            "timestamp.utcoffset",
+            "timestamp.utcoffset().total_seconds",
+            "type"
+          ],
+          "line": 74
+        },
+        "write_protocol": {
+          "calls": [
+            "ContractError",
+            "Path",
+            "Path(__file__).resolve",
+            "approved.exists",
+            "encoded",
+            "encoded(document).encode",
+            "load_protocol",
+            "path.open",
+            "read_json",
+            "stream.write",
+            "validate_protocol"
+          ],
+          "line": 164
+        }
+      },
+      "imports": [
+        {
+          "line": 5,
+          "statement": "from dataclasses import replace"
+        },
+        {
+          "line": 6,
+          "statement": "import hashlib"
+        },
+        {
+          "line": 7,
+          "statement": "from pathlib import Path"
+        },
+        {
+          "line": 9,
+          "statement": "from .artifacts import encoded"
+        },
+        {
+          "line": 10,
+          "statement": "from .inputs import ContractError, digest, read_json"
+        },
+        {
+          "line": 51,
+          "statement": "from copy import deepcopy"
+        },
+        {
+          "line": 82,
+          "statement": "from datetime import datetime"
+        },
+        {
+          "line": 99,
+          "statement": "import re"
+        },
+        {
+          "line": 193,
+          "statement": "import json"
+        },
+        {
+          "line": 239,
+          "statement": "from .inputs import load_series"
+        }
+      ],
+      "sha256": "bae14b6a7688502f1cc5a0a77d07692451e35eb9b3b9a1641f40259cf4479afa"
+    },
+    "experiments/feature_schema.py": {
+      "functions": {
+        "feature_schema": {
+          "calls": [
+            "dict",
+            "fields.append",
+            "name.startswith",
+            "{**FEATURES, 'labels': LABELS}.items"
+          ],
+          "line": 13
+        }
+      },
+      "imports": [],
+      "sha256": "279aab2adf08dc1986d2e3079946e3ea8176330ca93e8d5ee4e209387a588c57"
+    },
+    "experiments/stage15a_test_scoring.py": {
+      "functions": {
+        "byte_hash": {
+          "calls": [
+            "hashlib.sha256",
+            "hashlib.sha256(data).hexdigest"
+          ],
+          "line": 48
+        },
+        "checked": {
+          "calls": [
+            "read_json",
+            "require",
+            "sha",
+            "str"
+          ],
+          "line": 52
+        },
+        "combination": {
+          "calls": [
+            "component",
+            "dict",
+            "len",
+            "read_observations",
+            "score_decide",
+            "sum"
+          ],
+          "line": 188
+        },
+        "configurations": {
+          "calls": [
+            "FrozenConfiguration",
+            "StrictUpperTail",
+            "StrictUpperTail().start_run",
+            "artifact.read",
+            "checked",
+            "cls",
+            "cls().start_run",
+            "component",
+            "dict",
+            "len",
+            "open_artifact",
+            "require",
+            "result.append",
+            "sha",
+            "str",
+            "threshold['provenance']['framework_files_sha256'].items",
+            "tuple",
+            "upper_tail_spec",
+            "zscore_spec"
+          ],
+          "line": 103
+        },
+        "read_observations": {
+          "calls": [
+            "Decimal",
+            "Observation",
+            "csv.DictReader",
+            "dict",
+            "enumerate",
+            "feature_schema",
+            "len",
+            "list",
+            "number",
+            "observations.append",
+            "path.open",
+            "path.relative_to",
+            "range",
+            "read_json",
+            "require",
+            "safe_file",
+            "sha",
+            "str",
+            "tuple"
+          ],
+          "line": 138
+        },
+        "require": {
+          "calls": [
+            "ContractError"
+          ],
+          "line": 43
+        },
+        "run": {
+          "calls": [
+            "OUTPUT.resolve",
+            "Path",
+            "byte_hash",
+            "combination",
+            "configurations",
+            "destination.exists",
+            "destination.resolve",
+            "destination.rglob",
+            "dict",
+            "encoded",
+            "encoded(combination(entry, config)).encode",
+            "encoded(files).encode",
+            "encoded(manifest).encode",
+            "encoded(value).encode",
+            "files.append",
+            "len",
+            "mp.open",
+            "mp.read_bytes",
+            "p.is_file",
+            "p.relative_to",
+            "path.open",
+            "path.parent.mkdir",
+            "path.read_bytes",
+            "require",
+            "sha",
+            "source_hashes",
+            "str",
+            "stream.write",
+            "subprocess.check_output",
+            "subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip",
+            "subprocess.run",
+            "validate_collection"
+          ],
+          "line": 205
+        },
+        "score_decide": {
+          "calls": [
+            "PolicyScore",
+            "StrictUpperTail",
+            "cls",
+            "detector.start_run",
+            "detector.update",
+            "dict",
+            "enumerate",
+            "number",
+            "policy.decide",
+            "policy.start_run",
+            "records.append",
+            "require",
+            "str",
+            "type",
+            "upper_tail_spec"
+          ],
+          "line": 163
+        },
+        "source_hashes": {
+          "calls": [
+            "(ROOT / 'analysis/detection').rglob",
+            "Path",
+            "p.relative_to",
+            "sha",
+            "sorted",
+            "str"
+          ],
+          "line": 58
+        },
+        "validate_collection": {
+          "calls": [
+            "EXPECTED.items",
+            "INPUTS.items",
+            "checked",
+            "dict",
+            "entry['artifacts'].items",
+            "freeze['authority']['references'].values",
+            "len",
+            "p.is_file",
+            "p.relative_to",
+            "p.stat",
+            "pairing",
+            "require",
+            "root.rglob",
+            "safe_file",
+            "set",
+            "sha",
+            "str"
+          ],
+          "line": 64
+        }
+      },
+      "imports": [
+        {
+          "line": 7,
+          "statement": "import argparse"
+        },
+        {
+          "line": 8,
+          "statement": "import csv"
+        },
+        {
+          "line": 9,
+          "statement": "from dataclasses import dataclass"
+        },
+        {
+          "line": 10,
+          "statement": "from decimal import Decimal"
+        },
+        {
+          "line": 11,
+          "statement": "import hashlib"
+        },
+        {
+          "line": 12,
+          "statement": "import io"
+        },
+        {
+          "line": 13,
+          "statement": "import json"
+        },
+        {
+          "line": 14,
+          "statement": "from pathlib import Path"
+        },
+        {
+          "line": 15,
+          "statement": "import subprocess"
+        },
+        {
+          "line": 17,
+          "statement": "from analysis.detection.artifacts import component, encoded, open_artifact"
+        },
+        {
+          "line": 18,
+          "statement": "from analysis.detection.contracts import Observation, PolicyScore"
+        },
+        {
+          "line": 19,
+          "statement": "from analysis.detection.detectors.zscore import ZScore, zscore_spec"
+        },
+        {
+          "line": 20,
+          "statement": "from analysis.detection.detectors.cov import CoV, cov_spec"
+        },
+        {
+          "line": 21,
+          "statement": "from analysis.detection.detectors.ewma import EWMA, ewma_spec"
+        },
+        {
+          "line": 22,
+          "statement": "from analysis.detection.detectors.cusum import CUSUM, cusum_spec"
+        },
+        {
+          "line": 23,
+          "statement": "from analysis.detection.empirical import StrictUpperTail, upper_tail_spec"
+        },
+        {
+          "line": 24,
+          "statement": "from analysis.detection.inputs import ContractError, number, read_json, safe_file"
+        },
+        {
+          "line": 25,
+          "statement": "from experiments.feature_schema import feature_schema"
+        },
+        {
+          "line": 26,
+          "statement": "from experiments.stage14_test_collection import ROOT, HEAD, IDENTITY, RELEASE, RELEASE_SHA, EXPECTED, sha, pairing"
+        }
+      ],
+      "sha256": "dff69e2caa9ab0ad5b7a242e3889385768a6e04727698eb937c7ae4962da9fec"
+    }
+  },
+  "pipeline_semantic_ast": {
+    "all_other_functions_identical": true,
+    "changed_functions": [
+      "score_run"
+    ],
+    "decide_function_identical": true,
+    "score_update_loop_identical": true
+  },
+  "primary_selection_checks": {
+    "evaluator_executed": false,
+    "indices": [
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95,
+      96,
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      126,
+      127,
+      128,
+      129,
+      130,
+      131,
+      132,
+      133,
+      134,
+      135,
+      136,
+      137,
+      138,
+      139,
+      140,
+      141,
+      142,
+      143
+    ],
+    "objects_preserved": true
+  }
+}

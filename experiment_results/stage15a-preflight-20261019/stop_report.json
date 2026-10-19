@@ -1,0 +1,351 @@
+{
+  "accepted_test_runs_byte_integrity_verified": 48,
+  "calibration": false,
+  "commit_created": false,
+  "decision_policy_applied_to_test": false,
+  "detector_implementation_divergence_observed": false,
+  "efficacy_metrics_calculated": false,
+  "fitting": false,
+  "head": "ec086c25aaa81ac4da85f5f3c83875dce9b830c1",
+  "historical_change_commits": [
+    "63cba02: EWMA/CUSUM pipeline extension",
+    "b0b025b: TEST evaluation horizon/preflight separation"
+  ],
+  "implementation_provenance_differences": {
+    "evaluation/__init__.py": {
+      "configurations": [
+        {
+          "feature": "ingress_packet_count",
+          "method": "zscore"
+        },
+        {
+          "feature": "ingress_packet_count",
+          "method": "cov"
+        },
+        {
+          "feature": "ingress_tcp_payload_length_sum_bytes",
+          "method": "zscore"
+        },
+        {
+          "feature": "ingress_tcp_payload_length_sum_bytes",
+          "method": "cov"
+        },
+        {
+          "feature": "request_starts",
+          "method": "zscore"
+        },
+        {
+          "feature": "request_starts",
+          "method": "cov"
+        },
+        {
+          "feature": "mean_duration_ms",
+          "method": "zscore"
+        },
+        {
+          "feature": "mean_duration_ms",
+          "method": "cov"
+        },
+        {
+          "feature": "mean_cpu_percent",
+          "method": "zscore"
+        },
+        {
+          "feature": "mean_cpu_percent",
+          "method": "cov"
+        },
+        {
+          "feature": "ingress_packet_count",
+          "method": "ewma"
+        },
+        {
+          "feature": "ingress_packet_count",
+          "method": "cusum"
+        },
+        {
+          "feature": "ingress_tcp_payload_length_sum_bytes",
+          "method": "ewma"
+        },
+        {
+          "feature": "ingress_tcp_payload_length_sum_bytes",
+          "method": "cusum"
+        },
+        {
+          "feature": "request_starts",
+          "method": "ewma"
+        },
+        {
+          "feature": "request_starts",
+          "method": "cusum"
+        },
+        {
+          "feature": "mean_duration_ms",
+          "method": "ewma"
+        },
+        {
+          "feature": "mean_duration_ms",
+          "method": "cusum"
+        },
+        {
+          "feature": "mean_cpu_percent",
+          "method": "ewma"
+        },
+        {
+          "feature": "mean_cpu_percent",
+          "method": "cusum"
+        }
+      ],
+      "current_sha256": "31ddb70da03505f8e506b3a6581d3b4a8186c684eea0998bff0a8c8d2594da98",
+      "recorded_sha256": "d8dd1ac7bbf145691326898f8e29d37e42cc3340d54f0d23c449ac411cf2d59f"
+    },
+    "evaluation/events.py": {
+      "configurations": [
+        {
+          "feature": "ingress_packet_count",
+          "method": "zscore"
+        },
+        {
+          "feature": "ingress_packet_count",
+          "method": "cov"
+        },
+        {
+          "feature": "ingress_tcp_payload_length_sum_bytes",
+          "method": "zscore"
+        },
+        {
+          "feature": "ingress_tcp_payload_length_sum_bytes",
+          "method": "cov"
+        },
+        {
+          "feature": "request_starts",
+          "method": "zscore"
+        },
+        {
+          "feature": "request_starts",
+          "method": "cov"
+        },
+        {
+          "feature": "mean_duration_ms",
+          "method": "zscore"
+        },
+        {
+          "feature": "mean_duration_ms",
+          "method": "cov"
+        },
+        {
+          "feature": "mean_cpu_percent",
+          "method": "zscore"
+        },
+        {
+          "feature": "mean_cpu_percent",
+          "method": "cov"
+        },
+        {
+          "feature": "ingress_packet_count",
+          "method": "ewma"
+        },
+        {
+          "feature": "ingress_packet_count",
+          "method": "cusum"
+        },
+        {
+          "feature": "ingress_tcp_payload_length_sum_bytes",
+          "method": "ewma"
+        },
+        {
+          "feature": "ingress_tcp_payload_length_sum_bytes",
+          "method": "cusum"
+        },
+        {
+          "feature": "request_starts",
+          "method": "ewma"
+        },
+        {
+          "feature": "request_starts",
+          "method": "cusum"
+        },
+        {
+          "feature": "mean_duration_ms",
+          "method": "ewma"
+        },
+        {
+          "feature": "mean_duration_ms",
+          "method": "cusum"
+        },
+        {
+          "feature": "mean_cpu_percent",
+          "method": "ewma"
+        },
+        {
+          "feature": "mean_cpu_percent",
+          "method": "cusum"
+        }
+      ],
+      "current_sha256": "e6c0c18d00c577a7ff42f9bc57e8f07b9015aa3c04d66a9ae530ae27978b8dec",
+      "recorded_sha256": "44836f114f560c7735ffd90f82bded4b1f5e45dcf05562abc8d90b12a0d55084"
+    },
+    "horizons.py": {
+      "configurations": [
+        {
+          "feature": "ingress_packet_count",
+          "method": "zscore"
+        },
+        {
+          "feature": "ingress_packet_count",
+          "method": "cov"
+        },
+        {
+          "feature": "ingress_tcp_payload_length_sum_bytes",
+          "method": "zscore"
+        },
+        {
+          "feature": "ingress_tcp_payload_length_sum_bytes",
+          "method": "cov"
+        },
+        {
+          "feature": "request_starts",
+          "method": "zscore"
+        },
+        {
+          "feature": "request_starts",
+          "method": "cov"
+        },
+        {
+          "feature": "mean_duration_ms",
+          "method": "zscore"
+        },
+        {
+          "feature": "mean_duration_ms",
+          "method": "cov"
+        },
+        {
+          "feature": "mean_cpu_percent",
+          "method": "zscore"
+        },
+        {
+          "feature": "mean_cpu_percent",
+          "method": "cov"
+        },
+        {
+          "feature": "ingress_packet_count",
+          "method": "ewma"
+        },
+        {
+          "feature": "ingress_packet_count",
+          "method": "cusum"
+        },
+        {
+          "feature": "ingress_tcp_payload_length_sum_bytes",
+          "method": "ewma"
+        },
+        {
+          "feature": "ingress_tcp_payload_length_sum_bytes",
+          "method": "cusum"
+        },
+        {
+          "feature": "request_starts",
+          "method": "ewma"
+        },
+        {
+          "feature": "request_starts",
+          "method": "cusum"
+        },
+        {
+          "feature": "mean_duration_ms",
+          "method": "ewma"
+        },
+        {
+          "feature": "mean_duration_ms",
+          "method": "cusum"
+        },
+        {
+          "feature": "mean_cpu_percent",
+          "method": "ewma"
+        },
+        {
+          "feature": "mean_cpu_percent",
+          "method": "cusum"
+        }
+      ],
+      "current_sha256": "3626399fa7b45f0dcb9b729f25ac54c5d9945eca0c9837e5d8ced06e4703a4cc",
+      "recorded_sha256": "f4e04910ee68bbdaf8b1997dde6257f0a3332ab65be2127a65c3bf3e3e0099d1"
+    },
+    "pipeline.py": {
+      "configurations": [
+        {
+          "feature": "ingress_packet_count",
+          "method": "zscore"
+        },
+        {
+          "feature": "ingress_packet_count",
+          "method": "cov"
+        },
+        {
+          "feature": "ingress_tcp_payload_length_sum_bytes",
+          "method": "zscore"
+        },
+        {
+          "feature": "ingress_tcp_payload_length_sum_bytes",
+          "method": "cov"
+        },
+        {
+          "feature": "request_starts",
+          "method": "zscore"
+        },
+        {
+          "feature": "request_starts",
+          "method": "cov"
+        },
+        {
+          "feature": "mean_duration_ms",
+          "method": "zscore"
+        },
+        {
+          "feature": "mean_duration_ms",
+          "method": "cov"
+        },
+        {
+          "feature": "mean_cpu_percent",
+          "method": "zscore"
+        },
+        {
+          "feature": "mean_cpu_percent",
+          "method": "cov"
+        }
+      ],
+      "current_sha256": "22cb26f9a5e9da26ea9a2373faba6accb3b935b860c2e983316a9ca7e1e5db48",
+      "recorded_sha256": "651bbaa11c4e8696d86b0bbf3ad498f441f927fefbc6eaafd9685e8531ab80e6"
+    }
+  },
+  "input_authority_hashes_verified": {
+    "evaluation_protocol": {
+      "path": "experiments/protocols/stage14_test_evaluation_protocol_v1.json",
+      "sha256": "c2e1ab6314ab67c984b6b0e8f505982d72ea4de2f463e8607488e73c2764ef20"
+    },
+    "four_method_freeze": {
+      "path": "experiment_results/stage14-ewma-cusum-calibration-20261019/four_method_calibration_freeze_manifest.json",
+      "sha256": "898e79394ac48a86a734100d324d0b6b966412166a0eac105dbdeccb2bd236f5"
+    },
+    "test_collection_freeze": {
+      "path": "experiment_results/stage14d-test-campaign-20261019/test_collection_freeze_manifest.json",
+      "sha256": "8d784758ff7b751f68dc595d434a65bae1d764d5a21312b0e3d96a5f6613327d"
+    },
+    "test_inventory": {
+      "path": "experiment_results/stage14d-test-campaign-20261019/test_collection_inventory.json",
+      "sha256": "10ab05b24e9896d41e944192909f79b366e8cbbe7e08eb24f695b5d2ad1c2b47"
+    }
+  },
+  "materialized_combinations": 0,
+  "pending_untracked_tooling": "experiments/stage15a_test_scoring.py; incomplete, not tested or committed",
+  "processed_test_runs": 0,
+  "push": false,
+  "reason": "Threshold manifests record historical whole-framework hashes differing from current authorized repository. Do not silently relax provenance gate.",
+  "scientific_evaluator_executed": false,
+  "scope_note": "Divergences concern historical whole-framework provenance; no conclusion that thresholds or detector formulas are corrupted.",
+  "scoring_performed": false,
+  "stage": "15A",
+  "stage15a_output_directory_exists": false,
+  "status": "STOP_REQUIRES_HUMAN_REVIEW",
+  "threshold_manifest_hash_divergence_observed": false,
+  "tuning": false
+}

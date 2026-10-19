@@ -1,0 +1,32 @@
+diff --git a/analysis/detection/evaluation/events.py b/analysis/detection/evaluation/events.py
+index 0ef7df7..3c20e74 100644
+--- a/analysis/detection/evaluation/events.py
++++ b/analysis/detection/evaluation/events.py
+@@ -118,7 +118,7 @@ def load_event_truth(feature_dataset, source_reference, *, stage8_dataset):
+     return VerifiedEvents(tuple(records), reference, root, original, dict(source_reference))
+ 
+ 
+-def evaluate_events(decisions, truth, *, policy):
++def evaluate_events(decisions, truth, *, policy, selection=None):
+     """Explicit V1 (historical deadline) or V2 (observation overlap) attribution.
+ 
+     An alarm whose window ends at/before the causal start is not a detection,
+@@ -135,16 +135,14 @@ def evaluate_events(decisions, truth, *, policy):
+     manifest = validate_decision_run(decisions)
+     if manifest['source'] != truth.source_reference:
+         raise ContractError('Decisions and event truth refer to different sources')
+-    eligible_records = decisions.records
++    from ..horizons import select_for_evaluation
++    eligible_records, _ = select_for_evaluation(decisions.records, manifest['source'], selection)
+     campaign = manifest['source'].get('campaign')
+     if campaign:
+         ref = campaign['protocol']
+         doc, _ = load_protocol(ref['path'], expected_hash=ref['protocol_hash'])
+         if doc['frozen']['event_truth']['policy'] != policy:
+             raise ContractError('Event policy differs from campaign protocol')
+-        if doc['protocol_version'] == 2:
+-            from ..horizons import select_campaign_records
+-            eligible_records, _ = select_campaign_records(decisions.records, ref, campaign['partition'])
+     truth.verify()
+     results = []
+     for event in truth.events:
