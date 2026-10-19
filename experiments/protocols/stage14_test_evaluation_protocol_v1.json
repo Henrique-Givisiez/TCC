@@ -1,0 +1,757 @@
+{
+  "TEST_release": false,
+  "anti_leakage": {
+    "TEST_influences_parameters": false,
+    "calibrate_on_TEST": false,
+    "change_lambda_k_L_after_TEST": false,
+    "fit_on_TEST": false,
+    "replace_primary_with_sensitivity_based_on_TEST": false,
+    "select_feature_on_TEST": false,
+    "select_method_on_TEST": false,
+    "select_threshold_on_TEST": false
+  },
+  "authority_head": "b0b025b3edbc6d981d6cff9929fa3b256ebaf00a",
+  "authority_scope": "Approved pre-TEST contract authority; post-commit administrative authority is hash-bound externally without rewriting this file",
+  "between_seed_statistics": {
+    "consecutive_windows_independent": false,
+    "equal_weight_per_defined_run": true,
+    "hypothesis_tests_implemented_this_step": false,
+    "number_of_seeds_per_scenario": 16,
+    "paired_BCP_identity_preserved": true,
+    "pooled_metrics_primary": false,
+    "sample_standard_deviation_ddof": 1,
+    "summary": [
+      "mean",
+      "median",
+      "sample_standard_deviation",
+      "minimum",
+      "maximum"
+    ],
+    "unit": "run/seed"
+  },
+  "binding": {
+    "path": "experiment_results/stage14-pretest-capability-20261019/authority/binding.json",
+    "sha256": "7ccec6079a86559e7192a36687f503cc5a4a724be2b17fd77d754a4dafc0e8b8"
+  },
+  "campaign_runner_implemented_this_step": false,
+  "decision_policy": {
+    "positive": "score > threshold",
+    "threshold_recalibration_on_TEST": false,
+    "threshold_source": "four_method_freeze only",
+    "ties": "negative",
+    "unavailable": "unavailable; never imputed or forced negative"
+  },
+  "environment": {
+    "path": "experiment_results/stage14-pretest-capability-20261019/authority/environment_lock.json",
+    "sha256": "4a5bef30e8eed35ad4a5311e46cbf845b7777b2b358b632a0ad241147b6cbaa5"
+  },
+  "event_level": {
+    "availability_used_for_overlap_eligibility": false,
+    "delay": "detection_time-E.actual_start",
+    "delay_summary": [
+      "mean",
+      "median",
+      "sample_standard_deviation",
+      "minimum",
+      "maximum"
+    ],
+    "delay_summary_population": "detected events only, preserving seed identity; undetected events remain in detection-rate denominator",
+    "detected": "exists d: d.positive AND min(d.window_end,E.actual_end)-max(d.window_start,E.actual_start) > 0",
+    "detection_time": "min(available_at of eligible positive decisions)",
+    "drained_end_as_attacker_endpoint": false,
+    "eligibility_uses_observational_overlap": true,
+    "eligible_decisions": "positive available decisions whose observation windows are selected in primary [48,144)",
+    "event_detection_rate": "detected_events/total_events",
+    "event_not_clipped_to_primary_horizon": true,
+    "ground_truth": "verified persisted actual_start_seconds and actual_end_seconds",
+    "miss_delay": null,
+    "per_run_configuration": [
+      "total_events",
+      "detected_events",
+      "event_detection_rate",
+      "detected_event_delays"
+    ],
+    "policy": "global_observation_overlap_decision_availability_v2",
+    "require_available_at_before_or_at_actual_end": false,
+    "scenarios": [
+      "C",
+      "P"
+    ]
+  },
+  "experimental_unit": "run/seed",
+  "features": [
+    "ingress_packet_count",
+    "ingress_tcp_payload_length_sum_bytes",
+    "request_starts",
+    "mean_duration_ms",
+    "mean_cpu_percent"
+  ],
+  "finalization": {
+    "kind": "existing_post_commit_definitive_environment_and_binding",
+    "manifest_pins_approved_parent_authority": true,
+    "no_self_commit_hash": true,
+    "post_commit_sidecar_pins_new_HEAD_and_manifest_SHA": true
+  },
+  "four_method_freeze": {
+    "path": "experiment_results/stage14-ewma-cusum-calibration-20261019/four_method_calibration_freeze_manifest.json",
+    "sha256": "898e79394ac48a86a734100d324d0b6b966412166a0eac105dbdeccb2bd236f5"
+  },
+  "frozen_baseline_models": {
+    "ingress_packet_count": {
+      "path": "experiment_results/stage14b-zscore-baseline/417860198812d8a8ae900219fb112cccd9489cfb/20261016T173501845399Z/models/ingress_packet_count/manifest.json",
+      "sha256": "5f444ab7ce6119c298c1b8bda7f62e49c827e7696e894ae5c21a88736c956122"
+    },
+    "ingress_tcp_payload_length_sum_bytes": {
+      "path": "experiment_results/stage14b-zscore-baseline/417860198812d8a8ae900219fb112cccd9489cfb/20261016T173501845399Z/models/ingress_tcp_payload_length_sum_bytes/manifest.json",
+      "sha256": "f7030e9e0e01698f318e6e67a48243b23f36d6629c92b7c9ff6234369670094f"
+    },
+    "mean_cpu_percent": {
+      "path": "experiment_results/stage14b-zscore-baseline/417860198812d8a8ae900219fb112cccd9489cfb/20261016T173501845399Z/models/mean_cpu_percent/manifest.json",
+      "sha256": "d1373c2f174485aeb5be42bdeabbf9eec67ce252fd0b68c3d96247d3177f6d05"
+    },
+    "mean_duration_ms": {
+      "path": "experiment_results/stage14b-zscore-baseline/417860198812d8a8ae900219fb112cccd9489cfb/20261016T173501845399Z/models/mean_duration_ms/manifest.json",
+      "sha256": "84f56bd93d42c0983f83b08f938f2c635e7a12cb5ca7df193d471e3b95fd1d88"
+    },
+    "request_starts": {
+      "path": "experiment_results/stage14b-zscore-baseline/417860198812d8a8ae900219fb112cccd9489cfb/20261016T173501845399Z/models/request_starts/manifest.json",
+      "sha256": "b2a58d67502bb4263527e52e147423e49246413a52e986073b9de5b04fb2e1e2"
+    }
+  },
+  "horizons": {
+    "consumer": {
+      "module": "analysis.detection.horizons",
+      "primary_region": "primary",
+      "selection_class": "EvaluationSelection",
+      "selection_contract_version": 1,
+      "startup_region": "startup_diagnostic"
+    },
+    "inclusion": "whole_windows_contained_in_half_open_interval",
+    "nominal_candidate_windows_per_primary_run": 96,
+    "nominal_candidate_windows_per_startup_run": 48,
+    "observation_scoring": [
+      0,
+      144
+    ],
+    "original_protocol_v2_unchanged": true,
+    "original_timestamps_preserved": true,
+    "primary_evaluation": [
+      48,
+      144
+    ],
+    "reset_at_48": false,
+    "score_and_decide_causally_from_zero": true,
+    "selection_after_scoring_and_decisions": true,
+    "startup_diagnostic": [
+      0,
+      48
+    ],
+    "window_seconds": 1,
+    "window_semantics": "[start,end)"
+  },
+  "limitations": [
+    "Within-run windows are temporally dependent; pooled results are complementary and not independent inferential replicates",
+    "Unavailable and zero-denominator results reduce support and remain explicit",
+    "Detection availability is causal simulated window closure unless explicitly supplied; no measured computational latency is inferred",
+    "Calibration FPR is descriptive, not guaranteed per TEST seed; no retuning permitted",
+    "Event and startup boundaries use effective persisted clocks; partial binary boundaries remain excluded",
+    "This manifest freezes metric definitions; it does not implement a campaign runner, TEST release, or new scientific metric callbacks"
+  ],
+  "matrix": {
+    "path": "experiments/protocols/stage14_matrix_v2.json",
+    "sha256": "c211dfbfebc389208c88d4d0af9bab26eb39582b86790655b469eca6bca4f684"
+  },
+  "method_comparison": {
+    "arbitrary_composite_score": false,
+    "best_detector_from_single_metric": false,
+    "dimensions": [
+      "B_false_positives",
+      "C_continuous_detection",
+      "P_periodic_detection",
+      "window_level",
+      "event_level",
+      "delay",
+      "post_event_persistence",
+      "between_seed_stability"
+    ],
+    "global_weighted_ranking": false
+  },
+  "nominal_design": {
+    "ATTACK_seconds": 36,
+    "POST_seconds": 60,
+    "PRE_seconds": 48,
+    "duration_seconds": 144,
+    "event_boundaries": "effective persisted actual_start/actual_end; never assume exact [48,84)"
+  },
+  "paired_design": {
+    "entries_per_seed": 3,
+    "identity": "For each seed i preserve the paired triple B_i,C_i,P_i",
+    "partition": "test",
+    "preserve_pairs_for_future_analysis": true,
+    "scenarios": [
+      "B",
+      "C",
+      "P"
+    ],
+    "seed_count": 16,
+    "seeds": [
+      171864802,
+      2617993097,
+      4207362430,
+      3751420894,
+      3321204838,
+      1145928936,
+      3205651767,
+      1156532787,
+      258231394,
+      4052934802,
+      1511736727,
+      3145659914,
+      1214769380,
+      1981484633,
+      1488329317,
+      814930163
+    ],
+    "total_entries": 48
+  },
+  "periodic": {
+    "attack_request_starts": "diagnostic only, never primary ground truth",
+    "bursts_are_independent_primary_events": false,
+    "future_burst_analysis": "complementary only; cannot replace primary event semantics",
+    "primary_event": "one global actual_start-to-actual_end interval including inter-burst silence"
+  },
+  "post_event": {
+    "decision_eligibility": "d.window_start >= max(E.actual_end,48) AND d.window_end <= 144",
+    "inclusion": "whole_windows_contained_in_half_open_interval",
+    "interval": "[max(E.actual_end,48),144)",
+    "per_run_configuration": [
+      "candidate_post_event_decisions",
+      "valid_post_event_decisions",
+      "unavailable_post_event_decisions",
+      "positive_post_event_decisions",
+      "post_event_alarm_rate"
+    ],
+    "post_event_alarm_rate": "positive_post_event_decisions/valid_post_event_decisions",
+    "role": "complementary separate from detection delay",
+    "scenarios": [
+      "C",
+      "P"
+    ],
+    "threshold_or_reset_policy_change": false,
+    "zero_denominator": null
+  },
+  "preflight_contract": {
+    "api": "experiments.stage14_scientific.preflight_entry",
+    "capability": "preflight_only",
+    "execution_authorized": false,
+    "expected_status": "dry_run_ready",
+    "observed_data_access": false,
+    "scientific_output_creation": false,
+    "test_execution": "LOCKED"
+  },
+  "primary_alpha": "0.01",
+  "primary_configuration_count": 20,
+  "primary_configurations": [
+    {
+      "alpha": "0.01",
+      "calibration_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+      "feature": "ingress_packet_count",
+      "id": "zscore__ingress_packet_count",
+      "method": "zscore",
+      "normalization": "frozen_zscore_baseline",
+      "parameters": {},
+      "threshold": {
+        "artifact": {
+          "path": "experiment_results/stage14c-controlled-retry-20261019/thresholds/ingress_packet_count__zscore/0.01/manifest.json",
+          "sha256": "d2044356a1f7d3971f3a61a1551b1333c10ed1e9da2ae1428def5aad010d46e9"
+        },
+        "source_section": "four_method_freeze.primary_test_configurations",
+        "value": "2.7004634585982279860028752630854378028354693685147"
+      }
+    },
+    {
+      "alpha": "0.01",
+      "calibration_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+      "feature": "ingress_packet_count",
+      "id": "cov__ingress_packet_count",
+      "method": "cov",
+      "normalization": "none_local_CoV",
+      "parameters": {
+        "lookback": 6
+      },
+      "threshold": {
+        "artifact": {
+          "path": "experiment_results/stage14c-controlled-retry-20261019/thresholds/ingress_packet_count__cov_L6/0.01/manifest.json",
+          "sha256": "bb6a99047fba4a7a8ea222631440daac42df15c20d034c71e115f124f1f94ab2"
+        },
+        "source_section": "four_method_freeze.primary_test_configurations",
+        "value": "0.66732005127784943046992825005472409981316937096157"
+      }
+    },
+    {
+      "alpha": "0.01",
+      "calibration_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+      "feature": "ingress_tcp_payload_length_sum_bytes",
+      "id": "zscore__ingress_tcp_payload_length_sum_bytes",
+      "method": "zscore",
+      "normalization": "frozen_zscore_baseline",
+      "parameters": {},
+      "threshold": {
+        "artifact": {
+          "path": "experiment_results/stage14c-controlled-retry-20261019/thresholds/ingress_tcp_payload_length_sum_bytes__zscore/0.01/manifest.json",
+          "sha256": "ac829200c6d97fd51868e655692734c7df50e6162ed8cf9a2c9a63008e9a6154"
+        },
+        "source_section": "four_method_freeze.primary_test_configurations",
+        "value": "2.5622153028180004371206409110155222343904655185173"
+      }
+    },
+    {
+      "alpha": "0.01",
+      "calibration_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+      "feature": "ingress_tcp_payload_length_sum_bytes",
+      "id": "cov__ingress_tcp_payload_length_sum_bytes",
+      "method": "cov",
+      "normalization": "none_local_CoV",
+      "parameters": {
+        "lookback": 6
+      },
+      "threshold": {
+        "artifact": {
+          "path": "experiment_results/stage14c-controlled-retry-20261019/thresholds/ingress_tcp_payload_length_sum_bytes__cov_L6/0.01/manifest.json",
+          "sha256": "27c381d7011c261f8c45d41f85375192c148f1679e943761b801d2dd6bb4b381"
+        },
+        "source_section": "four_method_freeze.primary_test_configurations",
+        "value": "0.61501219500104223543079411111946064534022065342411"
+      }
+    },
+    {
+      "alpha": "0.01",
+      "calibration_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+      "feature": "request_starts",
+      "id": "zscore__request_starts",
+      "method": "zscore",
+      "normalization": "frozen_zscore_baseline",
+      "parameters": {},
+      "threshold": {
+        "artifact": {
+          "path": "experiment_results/stage14c-controlled-retry-20261019/thresholds/request_starts__zscore/0.01/manifest.json",
+          "sha256": "b68a02951b7698e425bbd22041735e17027fe72c045a65c74c49135791f81ff9"
+        },
+        "source_section": "four_method_freeze.primary_test_configurations",
+        "value": "2.5671764186142405161374608347593000041810678434519"
+      }
+    },
+    {
+      "alpha": "0.01",
+      "calibration_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+      "feature": "request_starts",
+      "id": "cov__request_starts",
+      "method": "cov",
+      "normalization": "none_local_CoV",
+      "parameters": {
+        "lookback": 6
+      },
+      "threshold": {
+        "artifact": {
+          "path": "experiment_results/stage14c-controlled-retry-20261019/thresholds/request_starts__cov_L6/0.01/manifest.json",
+          "sha256": "016086ab0bf38ec574a9e9cffc13b4c31086923db095a96a76303c06089ebded"
+        },
+        "source_section": "four_method_freeze.primary_test_configurations",
+        "value": "0.61501219500104223543079411111946064534022065342412"
+      }
+    },
+    {
+      "alpha": "0.01",
+      "calibration_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+      "feature": "mean_duration_ms",
+      "id": "zscore__mean_duration_ms",
+      "method": "zscore",
+      "normalization": "frozen_zscore_baseline",
+      "parameters": {},
+      "threshold": {
+        "artifact": {
+          "path": "experiment_results/stage14c-controlled-retry-20261019/thresholds/mean_duration_ms__zscore/0.01/manifest.json",
+          "sha256": "b2f37cfc69937c4b97624b0a3b04bc1da9ea9de20eab8370103080d6da7b0c04"
+        },
+        "source_section": "four_method_freeze.primary_test_configurations",
+        "value": "2.3113747887931722604984652806262497453059968379509"
+      }
+    },
+    {
+      "alpha": "0.01",
+      "calibration_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+      "feature": "mean_duration_ms",
+      "id": "cov__mean_duration_ms",
+      "method": "cov",
+      "normalization": "none_local_CoV",
+      "parameters": {
+        "lookback": 6
+      },
+      "threshold": {
+        "artifact": {
+          "path": "experiment_results/stage14c-controlled-retry-20261019/thresholds/mean_duration_ms__cov_L6/0.01/manifest.json",
+          "sha256": "a09bb2f9f1c39ea8e118ba86f125b2d66fc39b2d73e0874ecc69fefe655963da"
+        },
+        "source_section": "four_method_freeze.primary_test_configurations",
+        "value": "0.44480904425800453748511092201074159947937070916752"
+      }
+    },
+    {
+      "alpha": "0.01",
+      "calibration_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+      "feature": "mean_cpu_percent",
+      "id": "zscore__mean_cpu_percent",
+      "method": "zscore",
+      "normalization": "frozen_zscore_baseline",
+      "parameters": {},
+      "threshold": {
+        "artifact": {
+          "path": "experiment_results/stage14c-controlled-retry-20261019/thresholds/mean_cpu_percent__zscore/0.01/manifest.json",
+          "sha256": "69d353aa0a98bb5126c175b27fbe68c090af9a6b4ff2f023a8e2310ace458b23"
+        },
+        "source_section": "four_method_freeze.primary_test_configurations",
+        "value": "2.7105154588973491748268641960276111061451561339947"
+      }
+    },
+    {
+      "alpha": "0.01",
+      "calibration_head": "6c5d9b6d26bc667bfb29e770bc39228d78982909",
+      "feature": "mean_cpu_percent",
+      "id": "cov__mean_cpu_percent",
+      "method": "cov",
+      "normalization": "none_local_CoV",
+      "parameters": {
+        "lookback": 6
+      },
+      "threshold": {
+        "artifact": {
+          "path": "experiment_results/stage14c-controlled-retry-20261019/thresholds/mean_cpu_percent__cov_L6/0.01/manifest.json",
+          "sha256": "3ce71c64ec266f2d184add580295d3c4d5116fea9fb3912fb90618c35a0a9723"
+        },
+        "source_section": "four_method_freeze.primary_test_configurations",
+        "value": "0.70389890072221888094459758893495817988643894219260"
+      }
+    },
+    {
+      "alpha": "0.01",
+      "calibration_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+      "feature": "ingress_packet_count",
+      "id": "ewma__ingress_packet_count",
+      "method": "ewma",
+      "normalization": "frozen_zscore_baseline",
+      "parameters": {
+        "lambda": "0.2"
+      },
+      "threshold": {
+        "artifact": {
+          "path": "experiment_results/stage14-ewma-cusum-calibration-20261019/thresholds/ingress_packet_count__ewma/0.01/manifest.json",
+          "sha256": "dfa2647147038468a5a48543a13c53cfd8b83cd117212c5e432fb1428b875715"
+        },
+        "source_section": "four_method_freeze.primary_test_configurations",
+        "value": "0.89264036131897389171707441532287689140142887646083"
+      }
+    },
+    {
+      "alpha": "0.01",
+      "calibration_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+      "feature": "ingress_packet_count",
+      "id": "cusum__ingress_packet_count",
+      "method": "cusum",
+      "normalization": "frozen_zscore_baseline",
+      "parameters": {
+        "k": "0.5"
+      },
+      "threshold": {
+        "artifact": {
+          "path": "experiment_results/stage14-ewma-cusum-calibration-20261019/thresholds/ingress_packet_count__cusum/0.01/manifest.json",
+          "sha256": "b6dcc2d89e08d6c8f8a816fc1f8efb4763b3368416004b71b2c66a0fe34a1ac3"
+        },
+        "source_section": "four_method_freeze.primary_test_configurations",
+        "value": "5.8663947859740460635472807483006250374772689605873"
+      }
+    },
+    {
+      "alpha": "0.01",
+      "calibration_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+      "feature": "ingress_tcp_payload_length_sum_bytes",
+      "id": "ewma__ingress_tcp_payload_length_sum_bytes",
+      "method": "ewma",
+      "normalization": "frozen_zscore_baseline",
+      "parameters": {
+        "lambda": "0.2"
+      },
+      "threshold": {
+        "artifact": {
+          "path": "experiment_results/stage14-ewma-cusum-calibration-20261019/thresholds/ingress_tcp_payload_length_sum_bytes__ewma/0.01/manifest.json",
+          "sha256": "9e57bd19d3f6a20da8ccb239d866f70331d6946ca375efe0f6993ba4e94397c4"
+        },
+        "source_section": "four_method_freeze.primary_test_configurations",
+        "value": "0.82573857066077832446383047934128345052979511053479"
+      }
+    },
+    {
+      "alpha": "0.01",
+      "calibration_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+      "feature": "ingress_tcp_payload_length_sum_bytes",
+      "id": "cusum__ingress_tcp_payload_length_sum_bytes",
+      "method": "cusum",
+      "normalization": "frozen_zscore_baseline",
+      "parameters": {
+        "k": "0.5"
+      },
+      "threshold": {
+        "artifact": {
+          "path": "experiment_results/stage14-ewma-cusum-calibration-20261019/thresholds/ingress_tcp_payload_length_sum_bytes__cusum/0.01/manifest.json",
+          "sha256": "a6d84158e8a39fb85b8f47ef570144fb81b7d64743bd49180171ffa70d16cf31"
+        },
+        "source_section": "four_method_freeze.primary_test_configurations",
+        "value": "4.8878672499186342834174285944764078144967611839658"
+      }
+    },
+    {
+      "alpha": "0.01",
+      "calibration_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+      "feature": "request_starts",
+      "id": "ewma__request_starts",
+      "method": "ewma",
+      "normalization": "frozen_zscore_baseline",
+      "parameters": {
+        "lambda": "0.2"
+      },
+      "threshold": {
+        "artifact": {
+          "path": "experiment_results/stage14-ewma-cusum-calibration-20261019/thresholds/request_starts__ewma/0.01/manifest.json",
+          "sha256": "79950d9c41a940b21417291bce4038d8bbd611908e454edbce0b6e089447f737"
+        },
+        "source_section": "four_method_freeze.primary_test_configurations",
+        "value": "0.82779444543581353802971905513083190899190644665803"
+      }
+    },
+    {
+      "alpha": "0.01",
+      "calibration_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+      "feature": "request_starts",
+      "id": "cusum__request_starts",
+      "method": "cusum",
+      "normalization": "frozen_zscore_baseline",
+      "parameters": {
+        "k": "0.5"
+      },
+      "threshold": {
+        "artifact": {
+          "path": "experiment_results/stage14-ewma-cusum-calibration-20261019/thresholds/request_starts__cusum/0.01/manifest.json",
+          "sha256": "48bc05a116e2e844eb4b871baf708a9223fc34dfc8267ea3344ac06909883481"
+        },
+        "source_section": "four_method_freeze.primary_test_configurations",
+        "value": "4.9021720840493902192400573309938660091159158543431"
+      }
+    },
+    {
+      "alpha": "0.01",
+      "calibration_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+      "feature": "mean_duration_ms",
+      "id": "ewma__mean_duration_ms",
+      "method": "ewma",
+      "normalization": "frozen_zscore_baseline",
+      "parameters": {
+        "lambda": "0.2"
+      },
+      "threshold": {
+        "artifact": {
+          "path": "experiment_results/stage14-ewma-cusum-calibration-20261019/thresholds/mean_duration_ms__ewma/0.01/manifest.json",
+          "sha256": "5f1cbb04f41088d0046aeaefc5ba8c10224e8f98af3e59a9d24f6bae77d1b079"
+        },
+        "source_section": "four_method_freeze.primary_test_configurations",
+        "value": "0.71295386200542092906349038061027821574428545142786"
+      }
+    },
+    {
+      "alpha": "0.01",
+      "calibration_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+      "feature": "mean_duration_ms",
+      "id": "cusum__mean_duration_ms",
+      "method": "cusum",
+      "normalization": "frozen_zscore_baseline",
+      "parameters": {
+        "k": "0.5"
+      },
+      "threshold": {
+        "artifact": {
+          "path": "experiment_results/stage14-ewma-cusum-calibration-20261019/thresholds/mean_duration_ms__cusum/0.01/manifest.json",
+          "sha256": "231a17b4c468663d4f99e23ff236566cdbebd4d2a455cd13a9b1ac35de27b229"
+        },
+        "source_section": "four_method_freeze.primary_test_configurations",
+        "value": "3.8390589930821925373397703543671427677669646126365"
+      }
+    },
+    {
+      "alpha": "0.01",
+      "calibration_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+      "feature": "mean_cpu_percent",
+      "id": "ewma__mean_cpu_percent",
+      "method": "ewma",
+      "normalization": "frozen_zscore_baseline",
+      "parameters": {
+        "lambda": "0.2"
+      },
+      "threshold": {
+        "artifact": {
+          "path": "experiment_results/stage14-ewma-cusum-calibration-20261019/thresholds/mean_cpu_percent__ewma/0.01/manifest.json",
+          "sha256": "079aa1f891c70c8f5d2befdcf43895b665a57f0ac5789883ac20e246c2f8df9b"
+        },
+        "source_section": "four_method_freeze.primary_test_configurations",
+        "value": "1.1914443528412446367639003672683561444828116048704"
+      }
+    },
+    {
+      "alpha": "0.01",
+      "calibration_head": "63cba02cf1e11722a66df6f2643e78d88bfdc477",
+      "feature": "mean_cpu_percent",
+      "id": "cusum__mean_cpu_percent",
+      "method": "cusum",
+      "normalization": "frozen_zscore_baseline",
+      "parameters": {
+        "k": "0.5"
+      },
+      "threshold": {
+        "artifact": {
+          "path": "experiment_results/stage14-ewma-cusum-calibration-20261019/thresholds/mean_cpu_percent__cusum/0.01/manifest.json",
+          "sha256": "b84872e84c7f25615aaa2ddf082eefd6334f52635758bac0d88eeb39051b3987"
+        },
+        "source_section": "four_method_freeze.primary_test_configurations",
+        "value": "14.747404925084325097400505015132607700697130678430"
+      }
+    }
+  ],
+  "protocol_id": "stage14-test-evaluation",
+  "protocol_v2": {
+    "path": "experiments/protocols/stage14_protocol_v2.json",
+    "sha256": "59f5311e8ee0a05523c80938b7b08ddfaacd0bf8000a077c9de1ab675803872c"
+  },
+  "scenario_B": {
+    "FP": "positive valid decisions",
+    "FPR": "FP/(FP+TN)",
+    "TN": "negative valid decisions",
+    "benign_only": true,
+    "between_seed_summary": [
+      "mean",
+      "median",
+      "sample_standard_deviation",
+      "minimum",
+      "maximum"
+    ],
+    "candidate_decisions": "all selected primary windows including unavailable",
+    "per_run_configuration": [
+      "candidate_decisions",
+      "valid_decisions",
+      "unavailable",
+      "FP",
+      "TN",
+      "positive_alarms",
+      "FPR"
+    ],
+    "pooled_FPR": "complementary only; label explicitly as pooled",
+    "positive_alarms": "FP; count positive windows, not merged alarm episodes",
+    "unavailable": "candidate_decisions-valid_decisions",
+    "valid_decisions": "selected decisions that are true or false"
+  },
+  "scenario_CP": {
+    "F1": "2*TP/(2*TP+FP+FN)",
+    "FN": "negative decision on overlap == 1",
+    "FP": "positive decision on overlap == 0",
+    "FPR": "FP/(FP+TN)",
+    "Precision": "TP/(TP+FP)",
+    "Recall": "TP/(TP+FN)",
+    "TN": "negative decision on overlap == 0",
+    "TP": "positive decision on overlap == 1",
+    "confusion_matrix": "available decisions on pure windows only; boundary excluded; unavailable excluded and counted separately by truth group",
+    "per_run_configuration": [
+      "candidate_decisions",
+      "valid_decisions",
+      "unavailable",
+      "boundary_windows",
+      "TP",
+      "FP",
+      "TN",
+      "FN",
+      "Precision",
+      "Recall",
+      "F1",
+      "FPR"
+    ],
+    "pooled_metrics": "complementary only; label explicitly as pooled",
+    "results_by_run_seed": true
+  },
+  "schema_version": 1,
+  "seed_plan": {
+    "path": "experiments/protocols/stage14_seed_plan_v2.json",
+    "sha256": "142cb4fd8668e0ebeed4bffbd0cd62d43667fdbd807651d110fa196b74593edb"
+  },
+  "sensitivity": {
+    "CoV_lookback": [
+      3,
+      12
+    ],
+    "alpha": [
+      "0.005",
+      "0.02"
+    ],
+    "may_replace_primary_after_TEST": false,
+    "separate_from_primary": true,
+    "source": {
+      "CoV_lookback": [
+        3,
+        12
+      ],
+      "alpha": [
+        "0.005",
+        "0.02"
+      ],
+      "cannot_replace_primary": true,
+      "inherited_sensitivity": {
+        "path": "experiment_results/stage14c-controlled-retry-20261019/threshold_audit.json",
+        "sha256": "56ed69c731d5bae6d4efbab8aa307c0e226e0c1692ede3e73c72806c992391bf"
+      },
+      "new_sensitivity": {
+        "path": "experiment_results/stage14-ewma-cusum-calibration-20261019/threshold_audit.json",
+        "sha256": "ede6d487f5fe411072702e60efa2fe109103a18693cd762fc7d51bf8068b41f8"
+      },
+      "no_grid_search": true,
+      "no_tuning": true
+    }
+  },
+  "startup_diagnostic": {
+    "interval": [
+      0,
+      48
+    ],
+    "primary_metric": false,
+    "uses": [
+      "warmup",
+      "initial_state_behavior",
+      "startup_alarms",
+      "stability_diagnostics"
+    ]
+  },
+  "status": "FROZEN",
+  "test_execution": "LOCKED",
+  "undefined_metrics": {
+    "sample_standard_deviation_ddof": 1,
+    "standard_deviation_if_fewer_than_two_defined_runs": null,
+    "summaries": "use defined run values, report number defined/undefined and seed identities; never replace undefined with zero",
+    "unavailable": "preserve and count; no imputation",
+    "zero_denominator": "null/undefined; never invent zero"
+  },
+  "version": 1,
+  "window_ground_truth": {
+    "attack": "overlap == 1",
+    "benign": "overlap == 0",
+    "boundary": "0 < overlap < 1",
+    "boundary_excluded_from_primary_binary_metrics": true,
+    "continuous_overlap_use": "complementary only; no new complex overlap metric or posthoc substitution",
+    "preserve_continuous_overlap": true,
+    "round_overlap": false,
+    "source": "attack_event_overlap_fraction"
+  },
+  "windows_are_independent_replicates": false
+}
