@@ -1,0 +1,173 @@
+{
+  "B": 16,
+  "C": 16,
+  "P": 16,
+  "all_20_configurations_included": true,
+  "collection_authority_head": "f27a5ae6117667f980f6de0217222d25da0e6e42",
+  "csv_null": "empty cell; reasons in reason columns; evaluation_results.json contains explicit null",
+  "decision_policy_reexecuted": false,
+  "decisions_modified": false,
+  "detectors_reexecuted": false,
+  "evaluation_protocol_sha256": "c2e1ab6314ab67c984b6b0e8f505982d72ea4de2f463e8607488e73c2764ef20",
+  "event_evaluation": true,
+  "event_run_config_evaluations": 640,
+  "execution_head": "0edd677d57dccb0bc0c2f513f039b68c21300c16",
+  "execution_source_sha256": {
+    "experiments/stage15b_evaluation.py": "95184adb3b9cbccbcf45699edc798d8a72b3a4b5db7703c0eddfa386b7d23f97",
+    "experiments/stage15b_reproduce.py": "89f1020753cb0d2031d33d48f1abd39d432c30dfced745b17d0c54d18ba3ebe2",
+    "tests/test_stage15b_evaluation.py": "10e12c770fb95cecc16f9768224a7d483791d576938a07e8d6fddfd8f7a95642"
+  },
+  "experimental_unit": "run/seed",
+  "ground_truth_consumed_by_decision_policy": false,
+  "ground_truth_consumed_by_evaluator": true,
+  "ground_truth_consumed_by_scorer": false,
+  "hypothesis_testing_performed": false,
+  "independent_reproduction": "Separate algorithms; exact counts/rational metrics; byte-equivalent canonical tables",
+  "inputs": {
+    "evaluation_protocol": {
+      "path": "experiments/protocols/stage14_test_evaluation_protocol_v1.json",
+      "sha256": "c2e1ab6314ab67c984b6b0e8f505982d72ea4de2f463e8607488e73c2764ef20"
+    },
+    "four_method_freeze": {
+      "path": "experiment_results/stage14-ewma-cusum-calibration-20261019/four_method_calibration_freeze_manifest.json",
+      "sha256": "898e79394ac48a86a734100d324d0b6b966412166a0eac105dbdeccb2bd236f5"
+    },
+    "provenance_bridge": {
+      "path": "experiment_results/stage15a-preflight-20261019/provenance_bridge.json",
+      "sha256": "9c361e6b873dc39eb7d1d51de4c2b3476260aa25f4959ea126e0e07dd115c7a7"
+    },
+    "stage15a_manifest": {
+      "path": "experiment_results/stage15a-test-scoring-20261019/stage15a_scoring_manifest.json",
+      "sha256": "089a25681dd13810a94a92def805aa9a7e314955ebdcca671d625d959ae3a9d5"
+    },
+    "test_collection_freeze": {
+      "path": "experiment_results/stage14d-test-campaign-20261019/test_collection_freeze_manifest.json",
+      "sha256": "8d784758ff7b751f68dc595d434a65bae1d764d5a21312b0e3d96a5f6613327d"
+    },
+    "test_inventory": {
+      "path": "experiment_results/stage14d-test-campaign-20261019/test_collection_inventory.json",
+      "sha256": "10ab05b24e9896d41e944192909f79b366e8cbbe7e08eb24f695b5d2ad1c2b47"
+    }
+  },
+  "metric_definition_source": "evaluation_protocol.scenario_CP; direct count-form F1, null only for its zero denominator",
+  "outputs": [
+    {
+      "bytes": 246730,
+      "path": "window_metrics_per_run.csv",
+      "rows": 960,
+      "sha256": "9597398f5ac8fa51369426314f9d03fa37c4a705f52d94b40e9885ddeeafbc61"
+    },
+    {
+      "bytes": 152754,
+      "path": "event_metrics_per_run.csv",
+      "rows": 640,
+      "sha256": "e3c1401b0e0c737ae68684b0e3a2be5f85b681625033a5f409bcbe5b5717bd2a"
+    },
+    {
+      "bytes": 107117,
+      "path": "post_event_metrics_per_run.csv",
+      "rows": 640,
+      "sha256": "d25c77ed8698b3229aeeedf8d4017a99a8595bcee09b82821c67267f8e17ddaf"
+    },
+    {
+      "bytes": 258846,
+      "path": "startup_diagnostic_per_run.csv",
+      "rows": 960,
+      "sha256": "00242fb3ca2a681eabdfeb7a2912872ed43d92505102fb3b1b360ca9adfecfe9"
+    },
+    {
+      "bytes": 18814,
+      "path": "window_metrics_pooled.csv",
+      "rows": 60,
+      "sha256": "1d8c9c664b88725013d8753f0a846413b3f751021011b605e4a3f18fa044ef75"
+    },
+    {
+      "bytes": 113384,
+      "path": "run_level_descriptive_summary.csv",
+      "rows": 280,
+      "sha256": "83191265c06db6e0bc2725be0d60806a65536e00fa8a3a59da58774b8f3cddf4"
+    },
+    {
+      "bytes": 15155,
+      "path": "event_descriptive_summary.csv",
+      "rows": 40,
+      "sha256": "7c8ec3c14bdf52c821b2634d5f5f179c08d67fc2dea23cf87e4d8bcb0c45c5de"
+    },
+    {
+      "bytes": 73969,
+      "path": "startup_descriptive_summary.csv",
+      "rows": 240,
+      "sha256": "8f0bddb9eb648e5eed4f7649536c1717d502e0aeb920eac166d66f2e3abe9e0b"
+    },
+    {
+      "bytes": 3481989,
+      "path": "evaluation_results.json",
+      "rows": null,
+      "sha256": "dbf190cd1d68e6ebed9acc71f9db44f598ba8637d58c90b3b9602c11a1bdb7c3"
+    },
+    {
+      "bytes": 1459044,
+      "path": "evaluation_inventory.json",
+      "rows": null,
+      "sha256": "b9c325e9c8c0d7a3943797f7841579925cef6225c1a415eae61fd82bf6ce413b"
+    }
+  ],
+  "outputs_set_sha256": "71a50ed10a9734b0917676decbe7417830fdb1a759f53280394b86d25d2782db",
+  "pooled_role": "SUPPLEMENTARY_POOLED_WINDOWS",
+  "post_event_evaluation": true,
+  "post_test_tuning": false,
+  "primary_configurations": 20,
+  "primary_evaluation_horizon": [
+    48,
+    144
+  ],
+  "primary_run_config_evaluations": 960,
+  "ranking_performed": false,
+  "runs": 48,
+  "schema_version": 1,
+  "scientific_interpretation_performed": false,
+  "scores_modified": false,
+  "semantics": {
+    "arithmetic": "Exact Fraction from decimal inputs; 50-digit ROUND_HALF_EVEN only at serialization/square root",
+    "delay": "min(eligible available_at)-actual_start; misses null",
+    "event": "positive available primary observation-window overlap with global [actual_start,actual_end); no availability deadline",
+    "f1": "2*TP/(2*TP+FP+FN)",
+    "fpr": "FP/(FP+TN)",
+    "overlap": {
+      "attack": "==1",
+      "benign": "==0",
+      "boundary": "0<overlap<1; excluded"
+    },
+    "post_event": "whole windows in [max(actual_end,48),144); positive/available; unavailable counted separately",
+    "precision": "TP/(TP+FP)",
+    "primary_horizon": [
+      48,
+      144
+    ],
+    "recall": "TP/(TP+FN)",
+    "startup_horizon": [
+      0,
+      48
+    ],
+    "summaries": "run/seed; defined values only, defined/undefined counts and seed identities; sample SD ddof=1",
+    "unavailable": "Excluded from confusion matrix; count separately by benign/attack/boundary truth group",
+    "undefined": "null (CSV empty cell); never imputed zero",
+    "whole_windows": true
+  },
+  "source_stage15a_manifest_sha256": "089a25681dd13810a94a92def805aa9a7e314955ebdcca671d625d959ae3a9d5",
+  "stage": "15B",
+  "stage15a_commit": "0edd677d57dccb0bc0c2f513f039b68c21300c16",
+  "stage15c_started": false,
+  "startup_diagnostic_horizon": [
+    0,
+    48
+  ],
+  "startup_run_config_evaluations": 960,
+  "status": "FROZEN",
+  "test_calibration": false,
+  "test_collection_freeze_sha256": "8d784758ff7b751f68dc595d434a65bae1d764d5a21312b0e3d96a5f6613327d",
+  "test_fitting": false,
+  "thresholds_modified": false,
+  "unique_paired_seeds": 16,
+  "window_evaluation": true
+}

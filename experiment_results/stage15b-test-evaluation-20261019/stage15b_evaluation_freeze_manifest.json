@@ -1,0 +1,53 @@
+{
+  "evaluation_inventory": {
+    "path": "experiment_results/stage15b-test-evaluation-20261019/evaluation_inventory.json",
+    "sha256": "b9c325e9c8c0d7a3943797f7841579925cef6225c1a415eae61fd82bf6ce413b"
+  },
+  "event_rows": 640,
+  "execution_source_sha256": {
+    "experiments/stage15b_evaluation.py": "95184adb3b9cbccbcf45699edc798d8a72b3a4b5db7703c0eddfa386b7d23f97",
+    "experiments/stage15b_reproduce.py": "89f1020753cb0d2031d33d48f1abd39d432c30dfced745b17d0c54d18ba3ebe2",
+    "tests/test_stage15b_evaluation.py": "10e12c770fb95cecc16f9768224a7d483791d576938a07e8d6fddfd8f7a95642"
+  },
+  "experimental_unit": "run/seed",
+  "historical_authorities_unchanged": true,
+  "independent_reproduction_passed": true,
+  "inputs": {
+    "evaluation_protocol": {
+      "path": "experiments/protocols/stage14_test_evaluation_protocol_v1.json",
+      "sha256": "c2e1ab6314ab67c984b6b0e8f505982d72ea4de2f463e8607488e73c2764ef20"
+    },
+    "four_method_freeze": {
+      "path": "experiment_results/stage14-ewma-cusum-calibration-20261019/four_method_calibration_freeze_manifest.json",
+      "sha256": "898e79394ac48a86a734100d324d0b6b966412166a0eac105dbdeccb2bd236f5"
+    },
+    "provenance_bridge": {
+      "path": "experiment_results/stage15a-preflight-20261019/provenance_bridge.json",
+      "sha256": "9c361e6b873dc39eb7d1d51de4c2b3476260aa25f4959ea126e0e07dd115c7a7"
+    },
+    "stage15a_manifest": {
+      "path": "experiment_results/stage15a-test-scoring-20261019/stage15a_scoring_manifest.json",
+      "sha256": "089a25681dd13810a94a92def805aa9a7e314955ebdcca671d625d959ae3a9d5"
+    },
+    "test_collection_freeze": {
+      "path": "experiment_results/stage14d-test-campaign-20261019/test_collection_freeze_manifest.json",
+      "sha256": "8d784758ff7b751f68dc595d434a65bae1d764d5a21312b0e3d96a5f6613327d"
+    },
+    "test_inventory": {
+      "path": "experiment_results/stage14d-test-campaign-20261019/test_collection_inventory.json",
+      "sha256": "10ab05b24e9896d41e944192909f79b366e8cbbe7e08eb24f695b5d2ad1c2b47"
+    }
+  },
+  "manifest": {
+    "path": "experiment_results/stage15b-test-evaluation-20261019/stage15b_evaluation_manifest.json",
+    "sha256": "2b36134d60f9dd5a4dc5bd721f4c5df194cc8ad695ab5d71c73156b5bb5863ca"
+  },
+  "outputs_set_sha256": "71a50ed10a9734b0917676decbe7417830fdb1a759f53280394b86d25d2782db",
+  "primary_rows": 960,
+  "schema_version": 1,
+  "semantics_sha256": "6e41cbc8141c0d5fe4c0be9b26a4e891c22842e19c0ee3f5481acbc439dab283",
+  "stage": "15B",
+  "stage15c_authorized": false,
+  "startup_rows": 960,
+  "status": "FROZEN"
+}

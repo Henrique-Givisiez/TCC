@@ -1,0 +1,16 @@
+{
+  "manifest_sha256": "2b36134d60f9dd5a4dc5bd721f4c5df194cc8ad695ab5d71c73156b5bb5863ca",
+  "freeze_sha256": "8232ce397022963dd8741d7e14746630a822cdf74cda4f4a113d7ca5a974f2c2",
+  "output_artifacts": 12,
+  "table_rows": {
+    "window_metrics_per_run": 960,
+    "event_metrics_per_run": 640,
+    "post_event_metrics_per_run": 640,
+    "startup_diagnostic_per_run": 960,
+    "window_metrics_pooled": 60,
+    "run_level_descriptive_summary": 280,
+    "event_descriptive_summary": 40,
+    "startup_descriptive_summary": 240
+  },
+  "independent_reproduction": true
+}

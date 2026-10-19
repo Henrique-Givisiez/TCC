@@ -1,0 +1,127 @@
+{
+  "B": 16,
+  "C": 16,
+  "P": 16,
+  "all_20_configurations_reported": true,
+  "collection_authority_head": "f27a5ae6117667f980f6de0217222d25da0e6e42",
+  "configurations": 20,
+  "entry29_C_included_and_unchanged": true,
+  "evidence": {
+    "execution_preflight.json": "460db26246f298cf0a10f9af03241c028bab471c57ab84bcd2d922c015148c91",
+    "full_tests_before_evaluation.log": "57877b85b9d64007f6160a27a061d6c32f29ba33ac7c96aeee246b5f8f34d26a",
+    "independent_published_reproduction.log": "9293f415741619e16054b26c13a29a3b2b632aaed39f69a108b1e8d34589a5a5",
+    "materialization.log": "9293f415741619e16054b26c13a29a3b2b632aaed39f69a108b1e8d34589a5a5",
+    "post_publication_tests.log": "a5ce25ab617c9c7fbc326351eaf2e6f41af321ef8a1a44928ad413f70fc338cc"
+  },
+  "execution_head": "0edd677d57dccb0bc0c2f513f039b68c21300c16",
+  "experimental_unit": "run/seed",
+  "final_git_provenance": "Recorded separately after the single local commit in administrative_finalization.json",
+  "freeze": {
+    "path": "experiment_results/stage15b-test-evaluation-20261019/stage15b_evaluation_freeze_manifest.json",
+    "sha256": "8232ce397022963dd8741d7e14746630a822cdf74cda4f4a113d7ca5a974f2c2"
+  },
+  "full_suite_before": {
+    "passed": 539,
+    "skipped_published_output_test": 1,
+    "total": 540
+  },
+  "historical_inputs_unchanged": true,
+  "independent_metric_reproduction_passed": true,
+  "inputs": {
+    "evaluation_protocol": {
+      "path": "experiments/protocols/stage14_test_evaluation_protocol_v1.json",
+      "sha256": "c2e1ab6314ab67c984b6b0e8f505982d72ea4de2f463e8607488e73c2764ef20"
+    },
+    "four_method_freeze": {
+      "path": "experiment_results/stage14-ewma-cusum-calibration-20261019/four_method_calibration_freeze_manifest.json",
+      "sha256": "898e79394ac48a86a734100d324d0b6b966412166a0eac105dbdeccb2bd236f5"
+    },
+    "provenance_bridge": {
+      "path": "experiment_results/stage15a-preflight-20261019/provenance_bridge.json",
+      "sha256": "9c361e6b873dc39eb7d1d51de4c2b3476260aa25f4959ea126e0e07dd115c7a7"
+    },
+    "stage15a_manifest": {
+      "path": "experiment_results/stage15a-test-scoring-20261019/stage15a_scoring_manifest.json",
+      "sha256": "089a25681dd13810a94a92def805aa9a7e314955ebdcca671d625d959ae3a9d5"
+    },
+    "test_collection_freeze": {
+      "path": "experiment_results/stage14d-test-campaign-20261019/test_collection_freeze_manifest.json",
+      "sha256": "8d784758ff7b751f68dc595d434a65bae1d764d5a21312b0e3d96a5f6613327d"
+    },
+    "test_inventory": {
+      "path": "experiment_results/stage14d-test-campaign-20261019/test_collection_inventory.json",
+      "sha256": "10ab05b24e9896d41e944192909f79b366e8cbbe7e08eb24f695b5d2ad1c2b47"
+    }
+  },
+  "isolation": {
+    "decision_policy_reexecuted": false,
+    "decisions_modified": false,
+    "detectors_reexecuted": false,
+    "ground_truth_consumed_by_decision_policy": false,
+    "ground_truth_consumed_by_evaluator": true,
+    "ground_truth_consumed_by_scorer": false,
+    "hypothesis_testing_performed": false,
+    "post_test_tuning": false,
+    "ranking_performed": false,
+    "scientific_interpretation_performed": false,
+    "scores_modified": false,
+    "stage15c_started": false,
+    "test_calibration": false,
+    "test_fitting": false,
+    "thresholds_modified": false
+  },
+  "manifest": {
+    "path": "experiment_results/stage15b-test-evaluation-20261019/stage15b_evaluation_manifest.json",
+    "sha256": "2b36134d60f9dd5a4dc5bd721f4c5df194cc8ad695ab5d71c73156b5bb5863ca"
+  },
+  "mathematical_validations": true,
+  "negative_delays": 0,
+  "paired_seeds": 16,
+  "primary_horizon": [
+    48,
+    144
+  ],
+  "published_bytes_reproduced": true,
+  "push": false,
+  "rows": {
+    "event_descriptive_summary": 40,
+    "event_metrics_per_run": 640,
+    "post_event_metrics_per_run": 640,
+    "run_level_descriptive_summary": 280,
+    "startup_descriptive_summary": 240,
+    "startup_diagnostic_per_run": 960,
+    "window_metrics_per_run": 960,
+    "window_metrics_pooled": 60
+  },
+  "runs": 48,
+  "specific_tests_after": {
+    "passed": 18,
+    "total": 18
+  },
+  "stage": "15B",
+  "startup_diagnostic_horizon": [
+    0,
+    48
+  ],
+  "status": "FROZEN",
+  "undefined_metric_counts": {
+    "B": {
+      "f1": 191,
+      "fpr": 0,
+      "precision": 191,
+      "recall": 320
+    },
+    "C": {
+      "f1": 2,
+      "fpr": 2,
+      "precision": 56,
+      "recall": 2
+    },
+    "P": {
+      "f1": 0,
+      "fpr": 0,
+      "precision": 55,
+      "recall": 0
+    }
+  }
+}
