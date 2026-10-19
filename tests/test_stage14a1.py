@@ -161,7 +161,7 @@ class RunnerV2Tests(unittest.TestCase):
         r=self.prepare();Path(r['destination']).mkdir(parents=True)
         with self.assertRaisesRegex(ContractError,'collision'):self.prepare()
 
-    def test_test_never_released_even_dry_run(self):
+    def test_legacy_scientific_preparation_still_rejects_test(self):
         with patch.object(runner,'run_pipeline',side_effect=AssertionError('TEST invoked')):
             with self.assertRaisesRegex(ContractError,'TEST locked'):self.prepare(partition='test',run=19)
 

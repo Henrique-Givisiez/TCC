@@ -1,6 +1,72 @@
 """Scientific selection after Stage 10; never truncates inputs or resets state."""
+from dataclasses import dataclass
+
 from .inputs import ContractError, number
 from .protocol import load_protocol
+
+
+@dataclass(frozen=True)
+class EvaluationSelection:
+    """Evaluation-only TEST regions; never a scoring or TEST release capability."""
+    region: str
+
+    def bounds(self):
+        if self.region not in ('primary', 'startup_diagnostic'):
+            raise ContractError('Explicit primary or startup_diagnostic evaluation region required')
+        return (48, 144) if self.region == 'primary' else (0, 48)
+
+
+def _contained(records, a, b):
+    records = tuple(records)
+    def window(row):
+        return row.score if hasattr(row, 'decision') else row
+    for row in records:
+        w = window(row)
+        if w.window_end_seconds <= w.window_start_seconds:
+            raise ContractError('Invalid observation window')
+    chosen = tuple(row for row in records if a <= window(row).window_start_seconds
+                   and window(row).window_end_seconds <= b)
+    return chosen, dict(start_seconds=str(a), end_seconds=str(b),
+        inclusion='whole_windows_contained_in_half_open_interval',
+        supplied_windows=len(records), selected_windows=len(chosen),
+        selected_window_indices=[window(row).window_index for row in chosen],
+        nominal_exposure_seconds=str(b-a),
+        causal_history='preserved_from_run_start_no_reset_at_selection_start',
+        nulls_and_unavailable='preserved; not zero, not imputed')
+
+
+def select_evaluation_records(records, selection):
+    """Select already computed windows, without changing timestamps or state."""
+    if not isinstance(selection, EvaluationSelection):
+        raise ContractError('Explicit EvaluationSelection required')
+    a, b = map(number, selection.bounds())
+    chosen, metadata = _contained(records, a, b)
+    return chosen, dict(metadata, selection_contract_version=1, purpose='evaluation_only',
+                        region=selection.region, observation_scoring_horizon=['0', '144'])
+
+
+def select_for_evaluation(records, source_reference, selection=None):
+    """Common window/event selection. No observation IO, scoring or release here.
+
+    The historical campaign selection is preserved for BASELINE/CALIBRATION.
+    TEST evaluation requires an explicit region, independently of full scoring.
+    Unbound DEVELOPMENT fixtures can exercise that contract without TEST data.
+    """
+    campaign = source_reference.get('campaign')
+    if selection is not None:
+        if source_reference['role'] not in ('development', 'test'):
+            raise ContractError('TEST evaluation regions require TEST or synthetic DEVELOPMENT sources')
+        if campaign and campaign['partition'] != 'test':
+            raise ContractError('Evaluation region differs from campaign partition')
+        return select_evaluation_records(records, selection)
+    if source_reference['role'] == 'test' or (campaign and campaign['partition'] == 'test'):
+        raise ContractError('TEST evaluation requires an explicit EvaluationSelection')
+    if campaign:
+        ref = campaign['protocol']
+        doc, _ = load_protocol(ref['path'], expected_hash=ref['protocol_hash'])
+        if doc['protocol_version'] == 2:
+            return select_campaign_records(records, ref, campaign['partition'])
+    return tuple(records), None
 
 
 def select_campaign_records(records, protocol_reference, partition):
@@ -15,19 +81,5 @@ def select_campaign_records(records, protocol_reference, partition):
     if partition not in ('baseline', 'calibration', 'test'):
         raise ContractError('Unknown temporal selection partition')
     a, b = map(number, doc['frozen']['temporal_selections'][partition])
-    records = tuple(records)
-    def window(row):
-        return row.score if hasattr(row, 'decision') else row
-    for row in records:
-        w = window(row)
-        if w.window_end_seconds <= w.window_start_seconds:
-            raise ContractError('Invalid observation window')
-    chosen = tuple(row for row in records if a <= window(row).window_start_seconds
-                   and window(row).window_end_seconds <= b)
-    return chosen, dict(protocol=ref, partition=partition, start_seconds=str(a), end_seconds=str(b),
-        inclusion='whole_windows_contained_in_half_open_interval',
-        supplied_windows=len(records), selected_windows=len(chosen),
-        selected_window_indices=[window(row).window_index for row in chosen],
-        nominal_exposure_seconds=str(b-a),
-        causal_history='preserved_from_run_start_no_reset_at_selection_start',
-        nulls_and_unavailable='preserved; not zero, not imputed')
+    chosen, metadata = _contained(records, a, b)
+    return chosen, dict(protocol=ref, partition=partition, **metadata)

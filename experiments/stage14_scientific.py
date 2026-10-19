@@ -158,13 +158,12 @@ def load_bundle(path, expected_hash):
     return binding, doc, protocol_ref, documents
 
 
-def prepare_entry(binding_path, expected_hash, *, partition, run, role=None, seed=None,
-                  scenario=None, configuration=None, environment=None):
+def preflight_entry(binding_path, expected_hash, *, partition, run, role=None, seed=None,
+                    scenario=None, configuration=None, environment=None):
+    """Administrative validation only, including LOCKED TEST. Never creates runs."""
     binding, doc, ref, documents = load_bundle(binding_path, expected_hash)
     if partition not in ('baseline','calibration','test') or (role is not None and role != partition):
         raise ContractError('Role/partition mismatch')
-    if partition == 'test':
-        raise ContractError('TEST locked: no release capability in this executor')
     rows = [r for r in documents['matrix']['runs'] if r['partition'] == partition and r['order'] == run]
     if len(rows) != 1:
         raise ContractError('No unique planned row for partition/run')
@@ -180,7 +179,9 @@ def prepare_entry(binding_path, expected_hash, *, partition, run, role=None, see
     if row['config_sha256'] != hashlib.sha256(encode(config)).hexdigest():
         raise ContractError('Configuration hash mismatch')
     experiment = ExperimentConfig.from_dict(config)
-    if experiment.seed != row['seed'] or experiment.attack.enabled or row['scenario'] != 'B':
+    if experiment.seed != row['seed']:
+        raise ContractError('Seed/configuration mismatch')
+    if partition != 'test' and (experiment.attack.enabled or row['scenario'] != 'B'):
         raise ContractError('BASELINE/CALIBRATION require planned benign configuration')
     destination = ROOT/OUTPUT_ROOT/f"{row['order']:02d}_{partition}_{row['seed']}_{row['scenario']}"
     if destination.exists() or destination.is_symlink():
@@ -195,7 +196,17 @@ def prepare_entry(binding_path, expected_hash, *, partition, run, role=None, see
         configuration=config,effective_configuration=json.loads(experiment.to_json()),
         destination=str(destination),environment=current,environment_comparison=check,
         pipeline=['simulation','stage8','stage9','stage10'],test_release='LOCKED')
+    if partition == 'test':
+        result.update(capability='preflight_only', execution_authorized=False,
+                      pipeline=[], test_execution='LOCKED')
     return result
+
+
+def prepare_entry(binding_path, expected_hash, *, partition, run, **selection):
+    """Legacy scientific preparation; TEST can only use preflight_entry."""
+    if partition == 'test':
+        raise ContractError('TEST locked: scientific preparation forbidden; use preflight_entry')
+    return preflight_entry(binding_path, expected_hash, partition=partition, run=run, **selection)
 
 
 def run_pipeline(config, destination):
@@ -239,7 +250,10 @@ def run_pipeline(config, destination):
 def execute_entry(binding_path, expected_hash, *, partition, run, execute=False):
     # Dry-run never creates scientific directories or invokes run_pipeline.
     if not execute:
-        return prepare_entry(binding_path,expected_hash,partition=partition,run=run)
+        return preflight_entry(binding_path,expected_hash,partition=partition,run=run)
+    # Fatal before locks, metadata preparation, output creation or any backend IO.
+    if partition == 'test':
+        raise ContractError('TEST locked: scientific execution forbidden (preflight only)')
     # Cross-invocation host lock; automatically released on exit. Evidence file retained.
     lock_path = ROOT/'experiment_results/.stage14-scientific.lock'
     lock_path.parent.mkdir(parents=True, exist_ok=True)
@@ -281,11 +295,18 @@ def main():
     p.add_argument('--binding-sha256',required=True)
     p.add_argument('--partition',choices=['baseline','calibration','test'],required=True)
     p.add_argument('--run',type=int,required=True,help='Global matrix order, not arbitrary seed')
-    p.add_argument('--execute',action='store_true',help='Actually execute one row; requires separate human authorization')
+    mode=p.add_mutually_exclusive_group()
+    mode.add_argument('--preflight',action='store_true',help='Administrative dry-run only; TEST execution remains LOCKED')
+    mode.add_argument('--execute',action='store_true',help='Execute BASELINE/CALIBRATION only; TEST always LOCKED')
     p.add_argument('--audit-output',type=Path)
     args=p.parse_args()
     result=execute_entry(args.binding,args.binding_sha256,partition=args.partition,run=args.run,execute=args.execute)
-    if args.audit_output:write(args.audit_output,result)
+    if args.audit_output:
+        target=args.audit_output.resolve()
+        scientific=(ROOT/OUTPUT_ROOT).resolve()
+        if args.partition == 'test' and (target == scientific or scientific in target.parents):
+            raise ContractError('TEST preflight audit must stay outside scientific output root')
+        write(args.audit_output,result)
     print(json.dumps(dict(status=result['status'],run=result['row']['order'],partition=result['role'],
                          fatal=result['environment_comparison']['fatal']),indent=2))
     if result['environment_comparison']['fatal']:raise SystemExit(2)
