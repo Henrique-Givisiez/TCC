@@ -43,6 +43,11 @@ http {
         keepalive_requests 1000;
     }
     server {
+        listen 127.0.0.1:8081;
+        location = /nginx_status { stub_status; }
+        location / { return 404; }
+    }
+    server {
         listen 80;
         keepalive_timeout 60s;
         keepalive_requests 1000;
@@ -74,6 +79,7 @@ class HttpProxy:
         self.identity = {}
         self.checks = 0
         self.run_id = None
+        self.monitor = None
 
     def start(self, victims, source_network=None):
         info = self.client.info()
@@ -112,6 +118,10 @@ class HttpProxy:
             self.identity['source_network'] = source_network.name
             self.identity['internal_service_endpoint'] = config.SOURCE_SERVICE_ENDPOINT
             self.identity['source_ip'] = self.container.attrs['NetworkSettings']['Networks'][source_network.name]['IPAddress']
+        version = self.container.exec_run(['nginx', '-V'])
+        (self.directory / 'nginx_build.txt').write_bytes(version.output)
+        if version.exit_code != 0 or b'--with-http_stub_status_module' not in version.output:
+            raise ProxyIntegrityError('NGINX stub_status module unavailable')
         self.expected_id = self.container.id
         self.identity.update(id=self.expected_id, name=self.container.name)
         write_json(self.directory / 'proxy_identity.json', self.identity)
@@ -142,6 +152,18 @@ class HttpProxy:
         self.identity['checks'] = self.checks
         write_json(self.directory / 'proxy_identity.json', self.identity)
 
+    def start_monitoring(self, clock):
+        from simulator.proxy_monitor import ProxyMonitor
+        # Record Docker network identities separately from interface counters.
+        self.container.reload()
+        write_json(self.directory / 'monitor_networks.json', dict(
+            run_id=self.run_id, container_id=self.expected_id,
+            networks=self.container.attrs['NetworkSettings']['Networks']))
+        addresses = self.container.exec_run(['ip', '-o', 'addr'])
+        (self.directory / 'monitor_interfaces.txt').write_bytes(addresses.output)
+        self.monitor = ProxyMonitor(self, clock)
+        self.monitor.start()
+
     def verify(self):
         try:
             container = self.client.containers.get(self.expected_id)
@@ -156,6 +178,8 @@ class HttpProxy:
 
     def close(self, drained):
         """Preserve mounted evidence even if inspect/removal fails. Never recreate."""
+        if self.monitor is not None:
+            self.monitor.stop()
         if self.container is None:
             return
         try:

@@ -75,3 +75,7 @@ SOURCE_SERVICE_ENDPOINT = "http://edos_service:80"
 SOURCE_ARTIFACT_DIR = "source_artifacts"
 SOURCE_INVENTORY_FILE = "source_inventory.json"
 SOURCE_IMAGE = "edos_sources:stage5"
+
+# Independent proxy observability; no scientific feature/detector inputs.
+PROXY_POLL_INTERVAL_SECONDS = 1.0
+PROXY_COLLECTION_TIMEOUT_SECONDS = 2.0

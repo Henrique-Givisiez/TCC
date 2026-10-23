@@ -320,6 +320,7 @@ def _run(experiment=None):
                                    routing_log=Path(config.PROXY_ARTIFACT_DIR) / 'routing_evidence.jsonl') if http_proxy else RequestLogger(ground_truth, config.REQUEST_LOG_FILE)
     if http_proxy:
         http_proxy.bind_run(ground_truth.run_id)
+        http_proxy.start_monitoring(ground_truth.clock)
         from simulator.http_proxy import write_json
         write_json(Path(config.PROXY_ARTIFACT_DIR) / 'capture_metadata.json',
                    dict(run_id=ground_truth.run_id, segment='client_proxy', interface=config.PROXY_CAPTURE_INTERFACE,

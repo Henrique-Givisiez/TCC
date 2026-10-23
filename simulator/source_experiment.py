@@ -66,6 +66,7 @@ def run(experiment):
         if experiment.attack.enabled:
             gt.plan_event('attack_001','event_001',experiment.attack.profile,experiment.attack.start_seconds,experiment.attack.end_seconds)
         proxy.bind_run(gt.run_id)
+        proxy.start_monitoring(gt.clock)
         write_json(proxy.directory/'capture_metadata.json',dict(run_id=gt.run_id,segment='source_proxy',
                    interface=capture['selected_interface'],bpf=capture['bpf'],proxy_ip=capture['proxy_ip'],
                    audit='source_artifacts/network_audit/comparison.json'))

@@ -1,0 +1,27 @@
+{
+  "id": "proxy_observability_continuous",
+  "duration_seconds": 8,
+  "seed": 42,
+  "traffic_sources": {
+    "execution": "containers"
+  },
+  "load_balancer": {
+    "enabled": true
+  },
+  "infrastructure": {
+    "initial_instances": 1,
+    "min_instances": 1,
+    "max_instances": 1
+  },
+  "autoscaler": {
+    "enabled": false
+  },
+  "attack": {
+    "enabled": true,
+    "start_seconds": 2,
+    "duration_seconds": 3
+  },
+  "monitoring": {
+    "interval_seconds": 1
+  }
+}
