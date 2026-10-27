@@ -1,0 +1,51 @@
+{
+  "created_utc": "2026-10-27T19:07:56.394111+00:00",
+  "validation": {
+    "schema_version": 1,
+    "manifest_sha256": "d54d370d4ccc61b1887012e5611b8771796f5000e9ad8d2998564a3c16974308",
+    "instrumentation_commit": "105cd72a70a1de471d449bb064d84e883d9dfe60",
+    "configurations": 7,
+    "comparative_runs": 6,
+    "probe_runs": 1,
+    "seed_collisions": [],
+    "outputs_absent": true,
+    "docker_accessed": false,
+    "experiments_executed": false
+  },
+  "manifest_path": "experiments/protocols/development_d2_endpoint_comparison_20261027/manifest.json",
+  "manifest_sha256": "d54d370d4ccc61b1887012e5611b8771796f5000e9ad8d2998564a3c16974308",
+  "instrumentation_commit": "105cd72a70a1de471d449bb064d84e883d9dfe60",
+  "runtime_source_hashes": {
+    "simulator/app/simple_server.py": "0190f18db595ab8d0e99759a8b7c54c1191a01c96cff218a21bee22a8871629e",
+    "simulator/config.py": "c15f8181ced5053d00dc36504d71488884851b21980e2ad14dec8dd1672c8970",
+    "simulator/docker_manager.py": "91470811a84535ce489e2cc3255db401ab92e01c1ae0a2071f54dbf4ce9bfb06",
+    "simulator/experiment_config.py": "992290a03f7bfe8c4264abcd0cc59e6eb21e4f522a028d1a6b208006be9b21e4",
+    "simulator/capture_lifecycle.py": "6f35fafc833ec06aa9c1e83b53d5771e8aaab7cf61a92ec64fb4861fb1df0387",
+    "simulator/capture_evidence.py": "a78a5a65141c7ebf683655b120ddbf6fb78d8dc42f34164ee12da2d5277d208a",
+    "simulator/tcpdump_sniffer.py": "266781c5e8b3d419e0083281103f3bf77979f95a45d17a07b2ec87ae90c8c1cc",
+    "simulator/source_experiment.py": "99494f5f5841b41b251c36a6851eec96547e4d2fc0591ed688e0a0ef430f6a11",
+    "experiments/development_d1_ops.py": "b4e5602cc71458b8e6013be8afdbb7f2b9c89bcea438e94b5e9b57c51702e851",
+    "experiments/development_d1_review.py": "7d4668504dcc783c8121c29f211cab8166a2941761241a2581f5b74825461966",
+    "experiments/development_d1.py": "cc3aa12b36611aabd5faf16f2c5e2d8c197529d0ca939f5a3fe0c1859fa479a6",
+    "experiments/development_d2.py": "49046fc385eefc6c2eb61d00591e972023f27f69de482e4c5836923f095b8e9d",
+    "experiments/development_d2_compare.py": "5dcae4ff98feccd04e3006d707b54957a9243e8ef278f13e65c1062d51b73b0f",
+    "experiments/summarize_service.py": "ad65a55552b8c922dc42fa2bdd6359b3b49fa84b808813d43c50778ba17fcfa7",
+    "experiments/validate_dataset.py": "d339f46ae843b5d6b9ff5ee3c3ad8d1691d1af4eabf554659bf06473bd5fc68f"
+  },
+  "seed_audit_path": "experiments/protocols/development_d2_endpoint_comparison_20261027/seed_audit.json",
+  "seed_audit_sha256": "ec984ac75050186d04c2baf8120d4c36bf7f99552624ea4adc43f3c5687d7c8e",
+  "offline_test_command": ".venv/bin/python -B -m unittest tests.test_development_d2 tests.test_development_d1 tests.test_capture_lifecycle tests.test_source_containers",
+  "offline_test_result": "22 tests passed",
+  "checks": {
+    "seven_complete_ExperimentConfig_files": true,
+    "seed_collisions": 0,
+    "comparison_seed_pairing_and_order": true,
+    "probe_precedes_comparisons": true,
+    "D2_p95_absolute_gate": null,
+    "outputs_absent": true,
+    "operations_command_parsers": true,
+    "no_experiment_or_docker": true
+  },
+  "experiments_executed": false,
+  "docker_accessed": false
+}

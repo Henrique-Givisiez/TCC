@@ -33,6 +33,7 @@ BASE = ROOT / "experiment_results/development-d1-20261027"
 MANIFEST = ROOT / "experiments/protocols/development_d1_20261027/manifest.json"
 CONTINUATION_V1 = ROOT / "experiments/protocols/development_d1_20261027/continuation_capturefix_v1.json"
 CONTINUATION = ROOT / "experiments/protocols/development_d1_20261027/continuation_capturefix_v2.json"
+D2_MANIFEST = ROOT / "experiments/protocols/development_d2_endpoint_comparison_20261027/manifest.json"
 ACTIVE_MANIFEST = MANIFEST
 EXPECTED_HEAD = "20bfd3fb66a6c3fe51a1fad9f11455a85dee8412"
 
@@ -57,6 +58,12 @@ def put(path, obj):
 
 def get_plan():
     plan = read(ACTIVE_MANIFEST)
+    global BASE
+    if plan.get("campaign_schema") == "development-endpoint-comparison/v1":
+        BASE = ROOT / plan["results_root"]
+        from experiments.development_d2 import validate_plan
+        validation = validate_plan(ACTIVE_MANIFEST, check_outputs=False)
+        return plan, validation
     if ACTIVE_MANIFEST == CONTINUATION:
         parent_path = ROOT / plan["parent_manifest_path"]
         parent = read(parent_path)
@@ -199,7 +206,7 @@ def entry_id_is_replacement(entry):
 
 
 def target_commit(plan):
-    if plan.get("continuation_schema") == "development-d1-continuation/v2":
+    if plan.get("continuation_schema") == "development-d1-continuation/v2" or plan.get("campaign_schema") == "development-endpoint-comparison/v1":
         return plan["instrumentation_commit"]
     return EXPECTED_HEAD
 
@@ -237,9 +244,15 @@ def preflight(entry_id):
         raise FileExistsError(f"Refusing existing entry outputs: {present}")
     predecessor_evidence = check_predecessors(plan, index)
     reference_path = BASE / "analysis/d1_L01_reference.json"
-    reference = read(reference_path)
-    if reference["p95_ref_ms"] != "56.79376310008592650" or reference["next_levels_duration_limit_ms"] != "250":
-        raise ValueError("L01 service reference or progression ceiling changed")
+    if plan.get("campaign_schema") == "development-endpoint-comparison/v1":
+        reference = None
+        reference_evidence = None
+    else:
+        reference = read(reference_path)
+        if reference["p95_ref_ms"] != "56.79376310008592650" or reference["next_levels_duration_limit_ms"] != "250":
+            raise ValueError("L01 service reference or progression ceiling changed")
+        reference_evidence = {"path": str(reference_path.relative_to(ROOT)), "sha256": sha(reference_path),
+            "p95_ref_ms": reference["p95_ref_ms"], "limit_ms": reference["next_levels_duration_limit_ms"]}
     ops = BASE / "operations" / entry_id
     ops.mkdir(parents=True, exist_ok=False)
     previous_files = prior_snapshot(ops)
@@ -249,8 +262,7 @@ def preflight(entry_id):
               "approved_commit": target_commit(plan), "checks": {"plan": plan_validation,
               "outputs_absent": {key: not path.exists() for key, path in outputs.items()},
               "predecessors": predecessor_evidence,
-              "service_reference": {"path": str(reference_path.relative_to(ROOT)), "sha256": sha(reference_path),
-                  "p95_ref_ms": reference["p95_ref_ms"], "limit_ms": reference["next_levels_duration_limit_ms"]}}}
+              "service_reference": reference_evidence}}
     recovery_entry = plan["entries"][index - 1] if index else None
     if ACTIVE_MANIFEST == CONTINUATION_V1 and entry_id_is_replacement(entry):
         recovery_entry = find_entry(read(MANIFEST), "d1_L04_B")
@@ -561,7 +573,7 @@ def pair_review(level, dry_run=False):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--manifest", choices=(str(MANIFEST.relative_to(ROOT)), str(CONTINUATION_V1.relative_to(ROOT)), str(CONTINUATION.relative_to(ROOT))),
+    parser.add_argument("--manifest", choices=(str(MANIFEST.relative_to(ROOT)), str(CONTINUATION_V1.relative_to(ROOT)), str(CONTINUATION.relative_to(ROOT)), str(D2_MANIFEST.relative_to(ROOT))),
                         default=str(MANIFEST.relative_to(ROOT)))
     sub = parser.add_subparsers(dest="action", required=True)
     for action in ("preflight", "run", "postprocess", "review"):

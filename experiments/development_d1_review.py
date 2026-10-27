@@ -10,9 +10,9 @@ from experiments.summarize_service import quantile
 
 import argparse
 parser=argparse.ArgumentParser();parser.add_argument('--entry',required=True);parser.add_argument('--manifest',default='experiments/protocols/development_d1_20261027/manifest.json');parser.add_argument('--preflight-file',default='preflight.json');parser.add_argument('--dry-run',action='store_true');ARGS=parser.parse_args();ENTRY_ID=ARGS.entry
-ROOT=Path.cwd();BASE=ROOT/'experiment_results/development-d1-20261027';OPS=BASE/'operations'/ENTRY_ID
 MANIFEST=ROOT/ARGS.manifest
-plan=json.loads(MANIFEST.read_text());entry=next(e for e in plan['entries'] if e['id']==ENTRY_ID);RAW=ROOT/entry['outputs']['raw'];DATASET=ROOT/entry['outputs']['dataset'];ANALYSIS=ROOT/entry['outputs']['analysis'];REVIEW=ROOT/entry['outputs']['review']
+ROOT=Path.cwd();plan=json.loads(MANIFEST.read_text());BASE=ROOT/plan.get('results_root','experiment_results/development-d1-20261027');OPS=BASE/'operations'/ENTRY_ID
+entry=next(e for e in plan['entries'] if e['id']==ENTRY_ID);RAW=ROOT/entry['outputs']['raw'];DATASET=ROOT/entry['outputs']['dataset'];ANALYSIS=ROOT/entry['outputs']['analysis'];REVIEW=ROOT/entry['outputs']['review']
 def read(p):return json.loads(Path(p).read_text())
 def csvrows(p):
  with Path(p).open(newline='') as f:return list(csv.DictReader(f))
@@ -105,6 +105,19 @@ service=dict(useful_interval_seconds=[30,150],exposure_seconds=120,nominal_rps_p
  success_fraction_per_started=success_ratio,failures_per_started=failure_ratio,success_duration_2xx_ms=measure['duration_success_2xx_ms'],
  terminal_successes_in_useful_phase=measure['end_outcomes']['success_2xx'],terminal_successes_per_second=success_throughput,cohort_successes_per_exposure_second=ratio(counts['success_2xx'],120),
  completed_cross_phase=measure['completed_cross_phase'],per_source=by_source,cohorts_30s=bins,late_starts=summary['d1_evidence']['starts_at_or_after_nominal_end'],reconciliation=summary['reconciliation'])
+if plan.get('campaign_schema')=='development-endpoint-comparison/v1':
+ cutoff=max(D(str(c['elapsed_seconds'])) for c in summary['d1_evidence']['closures'])
+ inflight=[]
+ for index,binrow in enumerate(bins):
+  left=D(30+30*index);right=left+D(30);area=D(0)
+  for request in requests:
+   start=D(str(request['elapsed_seconds']))
+   end=D(str(request['end_elapsed_seconds'])) if request['end_elapsed_seconds'] else cutoff
+   area+=max(D(0),min(right,end)-max(left,start))
+  inflight.append(dict(phase=binrow['phase'],start_seconds=str(left),end_seconds=str(right),
+                       mean_open_requests=str(area/(right-left)),starts=binrow['starts'],
+                       known_successes=binrow['duration_success_2xx_ms']['n']))
+ service['mean_inflight_requests_by_30s']=inflight
 
 # Victim samples: supported ticks, not falsely reconstructed Docker raw intervals.
 metrics=csvrows(RAW/'simulation_metrics.csv');useful=[r for r in metrics if D(30)<=D(r['elapsed_seconds'])<D(150)];supported=[r for r in useful if r['active_containers_names'].strip()]
@@ -162,6 +175,9 @@ criterion('image_code_ready',pre_match,dict(files_checked=len(preflight['checks'
 criterion('journal_csv_status_outcome_duration_origin',sets_match and not mismatches,correspondence,'all compared fields and origin identities agree','technical')
 closed_ok=len(closures)==4 and all(c['drained'] and c['logger_complete'] for c in closures) and all(s['sequence_ok'] and s['identity_ok'] and s['closure_count']==1 and s['final_status']['drained'] and s['final_status']['logger_complete'] and not s['inventory_final']['forced'] and s['inventory_final']['exit_code']==0 for s in source_invariants)
 criterion('four_source_closed_and_drain',closed_ok,dict(closures=closures,evidence=summary['d1_evidence']),'four observed complete closures; no forced termination','technical')
+if plan.get('campaign_schema')=='development-endpoint-comparison/v1':
+ drain=D(str(summary['d1_evidence']['observed_drain_seconds']))
+ criterion('drain_budget',D(0)<=drain<=D(30),drain,'observed drain from nominal 150s through <=180s; no invented cutoff','technical')
 criterion('aggregate_start_adherence',adherence is not None and D('.8')<=adherence<=D('1.2'),adherence,[.8,1.2],'generator')
 criterion('per_source_start_adherence',all(D('.65')<=r['achieved_over_nominal']<=D('1.35') for r in by_source),by_source,[.65,1.35],'generator')
 late_limit=max(D(4),D('.01')*len(requests));criterion('late_starts',service['late_starts']<=late_limit,service['late_starts'],late_limit,'generator')
@@ -171,12 +187,14 @@ criterion('failure_fraction',failure_ratio is not None and failure_ratio<=D('.01
 criterion('no_incomplete_open_cohort',measure['cohort_open_as_of']==0 and measure['cohort_incomplete_no_end']==0 and all(r['outcome']!='incomplete' for r in requests),dict(useful_open=measure['cohort_open_as_of'],all_incomplete=sum(r['outcome']=='incomplete' for r in requests)),'zero; no invented end/duration','service')
 criterion('no_other_response',counts['other_response']==0 and all(r['outcome']!='response' or 200<=int(r['http_status'])<300 for r in requests),counts['other_response'],'zero; response is not automatically2xx','service')
 criterion('terminal_success_throughput',success_throughput is not None and ratio(success_throughput,offered)>=D('.8'),dict(successes_per_second=success_throughput,over_nominal=ratio(success_throughput,offered)),f">=0.8 of{offered}RPS; ends grouped by end",'service')
-reference_path=BASE/'analysis/d1_L01_reference.json'
-reference=read(reference_path)
-assert reference['p95_ref_ms']=='56.79376310008592650' and reference['next_levels_duration_limit_ms']=='250'
-p95=measure['duration_success_2xx_ms']['p95'];criterion('success_p95',p95 is not None and D(p95)<=D(reference['next_levels_duration_limit_ms']),dict(p95_ms=p95,p95_reference_ms=reference['p95_ref_ms'],reference_path=str(reference_path.relative_to(ROOT)),reference_sha256=sha(reference_path)),'registered L01 service progression limit250ms, unchanged','service')
-first,last=bins[0],bins[-1];fn=first['duration_success_2xx_ms']['n'];ln=last['duration_success_2xx_ms']['n'];fr=D(first['rates_per_second']['success_2xx_ends']);lr=D(last['rates_per_second']['success_2xx_ends']);fp=first['duration_success_2xx_ms']['p95'];lp=last['duration_success_2xx_ms']['p95'];stop_trend=fn>=50 and ln>=50 and lr<=fr*D('.8') and D(lp)>=D(fp)*2
-criterion('within_run_trend',fn>=50 and ln>=50 and not stop_trend,dict(first_success_n=fn,last_success_n=ln,first_success_rps=fr,last_success_rps=lr,first_p95_ms=fp,last_p95_ms=lp,stop_condition=stop_trend),'stop if rate falls>=20% AND p95 doubles; n>=50 each. Intermediate bins also retained for review','service')
+p95=measure['duration_success_2xx_ms']['p95']
+if plan.get('campaign_schema')!='development-endpoint-comparison/v1':
+ reference_path=BASE/'analysis/d1_L01_reference.json'
+ reference=read(reference_path)
+ assert reference['p95_ref_ms']=='56.79376310008592650' and reference['next_levels_duration_limit_ms']=='250'
+ criterion('success_p95',p95 is not None and D(p95)<=D(reference['next_levels_duration_limit_ms']),dict(p95_ms=p95,p95_reference_ms=reference['p95_ref_ms'],reference_path=str(reference_path.relative_to(ROOT)),reference_sha256=sha(reference_path)),'registered L01 service progression limit250ms, unchanged','service')
+first,last=bins[0],bins[-1];fn=first['duration_success_2xx_ms']['n'];ln=last['duration_success_2xx_ms']['n'];fr0=first['rates_per_second']['success_2xx_ends'];lr0=last['rates_per_second']['success_2xx_ends'];fp=first['duration_success_2xx_ms']['p95'];lp=last['duration_success_2xx_ms']['p95'];trend_support=fn>=50 and ln>=50 and fr0 is not None and lr0 is not None and fp is not None and lp is not None;fr=D(str(fr0)) if fr0 is not None else None;lr=D(str(lr0)) if lr0 is not None else None;stop_trend=trend_support and lr<=fr*D('.8') and D(str(lp))>=D(str(fp))*2
+criterion('within_run_trend',trend_support and not stop_trend,dict(first_success_n=fn,last_success_n=ln,first_success_rps=fr,last_success_rps=lr,first_p95_ms=fp,last_p95_ms=lp,support_sufficient=trend_support,stop_condition=bool(stop_trend)),'stop if rate falls>=20% AND p95 doubles; n>=50 each. Missing bin support fails closed. Intermediate bins also retained for review','service')
 criterion('victim_resource_support',len(supported)>=108 and victim['max_supported_tick_gap_including_edges_seconds']<=5,dict(supported=len(supported),expected=120,max_gap=victim['max_supported_tick_gap_including_edges_seconds']),'>=90% of120 ticks, gap<=5s; cache freshness remains unknown','collection')
 for s in ('status','docker'):
  r=proxy['sources'][s]
@@ -194,6 +212,19 @@ cleanup['preexisting_stopped_containers_preserved']=prior_states_preserved
 cleanup['new_containers_remaining']=new_containers
 criterion('cleanup',cleanup['no_active_containers'] and cleanup['no_scientific_processes'] and not new_containers and prior_states_preserved and cleanup['port_check_returncode']==0 and len(cleanup['port_8080'].strip().splitlines())==1,cleanup,'current-run containers removed; preexisting stopped containers preserved; no experiment processes or8080 listener','technical')
 criterion('postprocess_commands',all(c['returncode']==0 for c in post),post,'validation and summary commands exit0; no retry','technical')
+if plan.get('campaign_schema')=='development-endpoint-comparison/v1' and entry.get('role')=='capacity_probe':
+ first_in,last_in=service['mean_inflight_requests_by_30s'][0],service['mean_inflight_requests_by_30s'][-1]
+ first_open=D(first_in['mean_open_requests']);last_open=D(last_in['mean_open_requests'])
+ inflight_rise=last_open>=max(first_open*D(2),first_open+D('.5'))
+ support_ok=first_in['starts']>=50 and last_in['starts']>=50
+ criterion('probe_no_open_request_accumulation',support_ok and not inflight_rise,
+   dict(first_bin=first_in,last_bin=last_in,accumulation_signal=inflight_rise),
+   'no doubling plus >=0.5 increase in mean in-flight requests; >=50 starts in boundary bins','service')
+ probe_base_pass=all(c['passed'] for c in criteria)
+ criterion('probe_4rps_adequacy',probe_base_pass,
+   dict(prior_criteria_pass=probe_base_pass,mean_inflight_by_30s=service['mean_inflight_requests_by_30s'],
+        p95_ms_descriptive=p95),
+   'retain 4 aggregate RPS only if all integrity, service, generator, collection and no-accumulation criteria pass; no absolute p95 ceiling','gate')
 
 finished_epoch=time.time();idle=finished_epoch-cleanup['observed_epoch'];all_pass=all(c['passed'] for c in criteria)
 raw_inventory={str(p.relative_to(ROOT)):sha(p) for root in (RAW,DATASET) for p in root.rglob('*') if p.is_file()}

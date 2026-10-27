@@ -183,7 +183,13 @@ def resolve_observation(raw, config):
 
 def summarize_entry(manifest_path, entry_id, destination):
     plan = json.loads(Path(manifest_path).read_text())
-    if plan.get('continuation_schema') in ('development-d1-continuation/v1', 'development-d1-continuation/v2'):
+    if plan.get('campaign_schema') == 'development-endpoint-comparison/v1':
+        if digest(ROOT / plan['d1_evidence']['synthesis_path']) != plan['d1_evidence']['synthesis_sha256']:
+            raise ValueError('D2 DEVELOPMENT evidence hash mismatch')
+        entry = next(e for e in plan['entries'] if e['id'] == entry_id)
+        if digest(ROOT / entry['config']) != entry['config_sha256']:
+            raise ValueError('D2 configuration hash mismatch')
+    elif plan.get('continuation_schema') in ('development-d1-continuation/v1', 'development-d1-continuation/v2'):
         parent = ROOT / plan['parent_manifest_path']
         if digest(parent) != plan['parent_manifest_sha256']:
             raise ValueError('Continuation parent manifest hash mismatch')
