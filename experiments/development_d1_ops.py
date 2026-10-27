@@ -36,7 +36,8 @@ CONTINUATION_V1 = ROOT / "experiments/protocols/development_d1_20261027/continua
 CONTINUATION = ROOT / "experiments/protocols/development_d1_20261027/continuation_capturefix_v2.json"
 D2_MANIFEST_V1 = ROOT / "experiments/protocols/development_d2_endpoint_comparison_20261027/manifest.json"
 D2_MANIFEST_V2 = ROOT / "experiments/protocols/development_d2_endpoint_comparison_20261027/manifest_v2.json"
-D2_MANIFEST = ROOT / "experiments/protocols/development_d2_endpoint_comparison_20261027/manifest_v3.json"
+D2_MANIFEST_V3 = ROOT / "experiments/protocols/development_d2_endpoint_comparison_20261027/manifest_v3.json"
+D2_MANIFEST = ROOT / "experiments/protocols/development_d2_endpoint_comparison_20261027/manifest_v4.json"
 ACTIVE_MANIFEST = MANIFEST
 EXPECTED_HEAD = "20bfd3fb66a6c3fe51a1fad9f11455a85dee8412"
 
@@ -62,7 +63,7 @@ def put(path, obj):
 def get_plan():
     plan = read(ACTIVE_MANIFEST)
     global BASE
-    if plan.get("campaign_schema") in {"development-endpoint-comparison/v1", "development-endpoint-comparison/v2", "development-endpoint-comparison/v3"}:
+    if plan.get("campaign_schema") in {"development-endpoint-comparison/v1", "development-endpoint-comparison/v2", "development-endpoint-comparison/v3", "development-endpoint-comparison/v4"}:
         BASE = ROOT / plan["results_root"]
         from experiments.development_d2 import validate_plan
         validation = validate_plan(ACTIVE_MANIFEST, check_outputs=False)
@@ -209,7 +210,7 @@ def entry_id_is_replacement(entry):
 
 
 def target_commit(plan):
-    if plan.get("continuation_schema") == "development-d1-continuation/v2" or plan.get("campaign_schema") in {"development-endpoint-comparison/v1", "development-endpoint-comparison/v2", "development-endpoint-comparison/v3"}:
+    if plan.get("continuation_schema") == "development-d1-continuation/v2" or plan.get("campaign_schema") in {"development-endpoint-comparison/v1", "development-endpoint-comparison/v2", "development-endpoint-comparison/v3", "development-endpoint-comparison/v4"}:
         return plan["instrumentation_commit"]
     return EXPECTED_HEAD
 
@@ -283,7 +284,7 @@ def preflight(entry_id):
         raise FileExistsError(f"Refusing existing entry outputs: {present}")
     predecessor_evidence = check_predecessors(plan, index)
     reference_path = BASE / "analysis/d1_L01_reference.json"
-    if plan.get("campaign_schema") in {"development-endpoint-comparison/v1", "development-endpoint-comparison/v2", "development-endpoint-comparison/v3"}:
+    if plan.get("campaign_schema") in {"development-endpoint-comparison/v1", "development-endpoint-comparison/v2", "development-endpoint-comparison/v3", "development-endpoint-comparison/v4"}:
         reference = None
         reference_evidence = None
     else:
@@ -329,7 +330,7 @@ def preflight(entry_id):
             raise ValueError("Prior evidence changed after snapshot")
         head = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
         report["checks"]["head"] = head
-        if head != target_commit(plan) and plan.get("campaign_schema") not in {"development-endpoint-comparison/v1", "development-endpoint-comparison/v2", "development-endpoint-comparison/v3"}:
+        if head != target_commit(plan) and plan.get("campaign_schema") not in {"development-endpoint-comparison/v1", "development-endpoint-comparison/v2", "development-endpoint-comparison/v3", "development-endpoint-comparison/v4"}:
             raise ValueError(f"Expected checkout {target_commit(plan)}, got {head}")
         report["checks"]["git_status"] = subprocess.check_output(["git", "status", "--short"], text=True)
         cfg = ROOT / entry["config"]
@@ -625,7 +626,7 @@ def pair_review(level, dry_run=False):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--manifest", choices=(str(MANIFEST.relative_to(ROOT)), str(CONTINUATION_V1.relative_to(ROOT)), str(CONTINUATION.relative_to(ROOT)), str(D2_MANIFEST_V1.relative_to(ROOT)), str(D2_MANIFEST_V2.relative_to(ROOT)), str(D2_MANIFEST.relative_to(ROOT))),
+    parser.add_argument("--manifest", choices=(str(MANIFEST.relative_to(ROOT)), str(CONTINUATION_V1.relative_to(ROOT)), str(CONTINUATION.relative_to(ROOT)), str(D2_MANIFEST_V1.relative_to(ROOT)), str(D2_MANIFEST_V2.relative_to(ROOT)), str(D2_MANIFEST_V3.relative_to(ROOT)), str(D2_MANIFEST.relative_to(ROOT))),
                         default=str(MANIFEST.relative_to(ROOT)))
     sub = parser.add_subparsers(dest="action", required=True)
     for action in ("preflight", "run", "postprocess", "review"):

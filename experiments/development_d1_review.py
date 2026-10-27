@@ -9,14 +9,36 @@ from zoneinfo import ZoneInfo
 from experiments.summarize_service import quantile
 
 import argparse
-parser=argparse.ArgumentParser();parser.add_argument('--entry',required=True);parser.add_argument('--manifest',default='experiments/protocols/development_d1_20261027/manifest.json');parser.add_argument('--preflight-file',default='preflight.json');parser.add_argument('--dry-run',action='store_true');ARGS=parser.parse_args();ENTRY_ID=ARGS.entry
+ROOT=Path.cwd()
+parser=argparse.ArgumentParser();parser.add_argument('--entry',required=True);parser.add_argument('--manifest',default='experiments/protocols/development_d1_20261027/manifest.json');parser.add_argument('--dry-run',action='store_true');parser.add_argument('--preflight-binding-only',action='store_true');ARGS=parser.parse_args();ENTRY_ID=ARGS.entry
 MANIFEST=ROOT/ARGS.manifest
-ROOT=Path.cwd();plan=json.loads(MANIFEST.read_text());BASE=ROOT/plan.get('results_root','experiment_results/development-d1-20261027');OPS=BASE/'operations'/ENTRY_ID
+plan=json.loads(MANIFEST.read_text());BASE=ROOT/plan.get('results_root','experiment_results/development-d1-20261027');OPS=BASE/'operations'/ENTRY_ID
 entry=next(e for e in plan['entries'] if e['id']==ENTRY_ID);RAW=ROOT/entry['outputs']['raw'];DATASET=ROOT/entry['outputs']['dataset'];ANALYSIS=ROOT/entry['outputs']['analysis'];REVIEW=ROOT/entry['outputs']['review']
 def read(p):return json.loads(Path(p).read_text())
 def csvrows(p):
  with Path(p).open(newline='') as f:return list(csv.DictReader(f))
 def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
+def load_bound_preflight():
+ attempt_path=OPS/'attempt.json'
+ attempt=read(attempt_path)
+ required=('preflight_id','preflight_path','preflight_sha256','authorization_scope','manifest_sha256')
+ missing=[key for key in required if not attempt.get(key)]
+ if missing:raise ValueError(f'attempt.json lacks explicit preflight binding fields: {missing}')
+ if attempt['authorization_scope']!=ENTRY_ID:raise ValueError('attempt authorization scope differs from review entry')
+ manifest_hash=sha(MANIFEST)
+ if attempt['manifest_sha256']!=manifest_hash:raise ValueError('attempt manifest hash differs from review manifest')
+ relative=Path(attempt['preflight_path'])
+ if relative.is_absolute():raise ValueError('attempt preflight path must be repository-relative')
+ path=(ROOT/relative).resolve()
+ if not path.is_relative_to(OPS.resolve()):raise ValueError('attempt preflight path escapes this entry operations directory')
+ if not path.is_file():raise FileNotFoundError(f'Bound preflight report is missing: {relative}')
+ if sha(path)!=attempt['preflight_sha256']:raise ValueError('Bound preflight report hash differs from attempt.json')
+ preflight=read(path)
+ if preflight.get('preflight_id')!=attempt['preflight_id']:raise ValueError('Bound preflight ID differs from attempt.json')
+ if preflight.get('approved_entry')!=ENTRY_ID:raise ValueError('Bound preflight entry differs from review entry')
+ if preflight.get('manifest_sha256')!=manifest_hash:raise ValueError('Bound preflight manifest differs from review manifest')
+ if preflight.get('ready') is not True:raise ValueError('Bound preflight was not successful')
+ return attempt,preflight,path
 def stamp(epoch):
  dt=datetime.datetime.fromtimestamp(float(epoch),datetime.timezone.utc)
  return dict(epoch=float(epoch),utc=dt.isoformat(),America_Sao_Paulo=dt.astimezone(ZoneInfo('America/Sao_Paulo')).isoformat())
@@ -31,9 +53,13 @@ def default(x):
  if isinstance(x,D):return str(x)
  raise TypeError(type(x).__name__)
 assert ARGS.dry_run or not REVIEW.exists(),'Never overwrite review'
+attempt,preflight,preflight_path=load_bound_preflight()
+if ARGS.preflight_binding_only:
+ print(json.dumps({'entry':ENTRY_ID,'preflight_id':attempt['preflight_id'],'preflight_path':str(preflight_path.relative_to(ROOT)),'preflight_sha256':attempt['preflight_sha256'],'manifest_sha256':attempt['manifest_sha256'],'ready':preflight['ready']}))
+ raise SystemExit(0)
 initial_files={str(p.relative_to(ROOT)):sha(p) for root in (RAW,DATASET) for p in root.rglob('*') if p.is_file()}
 status=read(RAW/'run_status.json');validation=read(ROOT/entry['outputs']['validation']);summary=read(ANALYSIS/'service_summary.json');inventory=read(RAW/'source_inventory.json');requests=csvrows(RAW/'request_log.csv');run_id=status['run_id']
-post=read(OPS/'postprocess.json');execution=read(OPS/'execution_result.json');cleanup=read(OPS/'cleanup_observation.json');preflight=read(OPS/ARGS.preflight_file);attempt=read(OPS/'attempt.json')
+post=read(OPS/'postprocess.json');execution=read(OPS/'execution_result.json');cleanup=read(OPS/'cleanup_observation.json')
 for path, expected in preflight['checks'].get('operational_code_sha256', {}).items():
  if sha(ROOT/path)!=expected:raise ValueError(f'Operational utility changed after preflight: {path}')
 criteria=[]
@@ -105,7 +131,7 @@ service=dict(useful_interval_seconds=[30,150],exposure_seconds=120,nominal_rps_p
  success_fraction_per_started=success_ratio,failures_per_started=failure_ratio,success_duration_2xx_ms=measure['duration_success_2xx_ms'],
  terminal_successes_in_useful_phase=measure['end_outcomes']['success_2xx'],terminal_successes_per_second=success_throughput,cohort_successes_per_exposure_second=ratio(counts['success_2xx'],120),
  completed_cross_phase=measure['completed_cross_phase'],per_source=by_source,cohorts_30s=bins,late_starts=summary['d1_evidence']['starts_at_or_after_nominal_end'],reconciliation=summary['reconciliation'])
-if plan.get('campaign_schema') in {'development-endpoint-comparison/v1','development-endpoint-comparison/v2','development-endpoint-comparison/v3'}:
+if plan.get('campaign_schema') in {'development-endpoint-comparison/v1','development-endpoint-comparison/v2','development-endpoint-comparison/v3','development-endpoint-comparison/v4'}:
  cutoff=max(D(str(c['elapsed_seconds'])) for c in summary['d1_evidence']['closures'])
  inflight=[]
  for index,binrow in enumerate(bins):
@@ -168,14 +194,17 @@ for name,base,stderr_path in (
  capture_reports[name]=report;capture_diagnostics[name]=diagnostic;capture_integrity.append(valid)
 capture=capture_diagnostics.get('csv','');log=(OPS/'execution.log').read_text();log_flags=[line for line in log.splitlines() if any(token in line.lower() for token in ('error','failed','traceback','warning','exception'))]
 pre_match=all(x['match'] for x in preflight['checks']['image_source_files'])
-criterion('plan_commit_and_configuration',preflight['checks']['head']==preflight['approved_commit'] and read(RAW/'effective_config.json')==entry['effective_configuration'],dict(head=preflight['checks']['head'],approved_commit=preflight['approved_commit'],config_sha256=sha(RAW/'effective_config.json')),'preflight-bound current commit and exact effective configuration','technical')
+source_hashes_match=attempt.get('approved_source_hashes')==preflight['checks'].get('operational_code_sha256')
+checkout_record=preflight['checks'].get('plan',{}).get('source_checkout',{})
+checkout_valid=checkout_record.get('effective_checkout_commit')==preflight['checks'].get('head') and checkout_record.get('source_tree_unchanged') is True
+criterion('plan_commit_and_configuration',checkout_valid and source_hashes_match and read(RAW/'effective_config.json')==entry['effective_configuration'],dict(preflight_id=attempt['preflight_id'],preflight_checkout=preflight['checks']['head'],run_checkout=attempt.get('effective_checkout_commit'),approved_anchor=preflight['approved_commit'],source_hashes_match=source_hashes_match,config_sha256=sha(RAW/'effective_config.json')),'successful linked preflight, approved source hashes and exact effective configuration','technical')
 criterion('single_execution_completed',execution['returncode']==0 and status['status']=='completed' and status.get('producers_drained') is True and not status.get('errors'),dict(execution=execution,status=status),'one attempt, exit0, completed/drained/errors=[]','technical')
 criterion('dataset_valid_and_eligible',validation['dataset_valid'] and validation['analysis_eligible'],dict(dataset_valid=validation['dataset_valid'],analysis_eligible=validation['analysis_eligible'],summary=validation['summary']),'both true; preserve warnings','technical')
 criterion('image_code_ready',pre_match,dict(files_checked=len(preflight['checks']['image_source_files'])),'all image source hashes match checkout','technical')
 criterion('journal_csv_status_outcome_duration_origin',sets_match and not mismatches,correspondence,'all compared fields and origin identities agree','technical')
 closed_ok=len(closures)==4 and all(c['drained'] and c['logger_complete'] for c in closures) and all(s['sequence_ok'] and s['identity_ok'] and s['closure_count']==1 and s['final_status']['drained'] and s['final_status']['logger_complete'] and not s['inventory_final']['forced'] and s['inventory_final']['exit_code']==0 for s in source_invariants)
 criterion('four_source_closed_and_drain',closed_ok,dict(closures=closures,evidence=summary['d1_evidence']),'four observed complete closures; no forced termination','technical')
-if plan.get('campaign_schema') in {'development-endpoint-comparison/v1','development-endpoint-comparison/v2','development-endpoint-comparison/v3'}:
+if plan.get('campaign_schema') in {'development-endpoint-comparison/v1','development-endpoint-comparison/v2','development-endpoint-comparison/v3','development-endpoint-comparison/v4'}:
  drain=D(str(summary['d1_evidence']['observed_drain_seconds']))
  criterion('drain_budget',D(0)<=drain<=D(30),drain,'observed drain from nominal 150s through <=180s; no invented cutoff','technical')
 criterion('aggregate_start_adherence',adherence is not None and D('.8')<=adherence<=D('1.2'),adherence,[.8,1.2],'generator')
@@ -188,7 +217,7 @@ criterion('no_incomplete_open_cohort',measure['cohort_open_as_of']==0 and measur
 criterion('no_other_response',counts['other_response']==0 and all(r['outcome']!='response' or 200<=int(r['http_status'])<300 for r in requests),counts['other_response'],'zero; response is not automatically2xx','service')
 criterion('terminal_success_throughput',success_throughput is not None and ratio(success_throughput,offered)>=D('.8'),dict(successes_per_second=success_throughput,over_nominal=ratio(success_throughput,offered)),f">=0.8 of{offered}RPS; ends grouped by end",'service')
 p95=measure['duration_success_2xx_ms']['p95']
-if plan.get('campaign_schema') not in {'development-endpoint-comparison/v1','development-endpoint-comparison/v2','development-endpoint-comparison/v3'}:
+if plan.get('campaign_schema') not in {'development-endpoint-comparison/v1','development-endpoint-comparison/v2','development-endpoint-comparison/v3','development-endpoint-comparison/v4'}:
  reference_path=BASE/'analysis/d1_L01_reference.json'
  reference=read(reference_path)
  assert reference['p95_ref_ms']=='56.79376310008592650' and reference['next_levels_duration_limit_ms']=='250'
@@ -212,7 +241,7 @@ cleanup['preexisting_stopped_containers_preserved']=prior_states_preserved
 cleanup['new_containers_remaining']=new_containers
 criterion('cleanup',cleanup['no_active_containers'] and cleanup['no_scientific_processes'] and not new_containers and prior_states_preserved and cleanup['port_check_returncode']==0 and len(cleanup['port_8080'].strip().splitlines())==1,cleanup,'current-run containers removed; preexisting stopped containers preserved; no experiment processes or8080 listener','technical')
 criterion('postprocess_commands',all(c['returncode']==0 for c in post),post,'validation and summary commands exit0; no retry','technical')
-if plan.get('campaign_schema') in {'development-endpoint-comparison/v1','development-endpoint-comparison/v2','development-endpoint-comparison/v3'} and entry.get('role')=='capacity_probe':
+if plan.get('campaign_schema') in {'development-endpoint-comparison/v1','development-endpoint-comparison/v2','development-endpoint-comparison/v3','development-endpoint-comparison/v4'} and entry.get('role')=='capacity_probe':
  first_in,last_in=service['mean_inflight_requests_by_30s'][0],service['mean_inflight_requests_by_30s'][-1]
  first_open=D(first_in['mean_open_requests']);last_open=D(last_in['mean_open_requests'])
  inflight_rise=last_open>=max(first_open*D(2),first_open+D('.5'))
@@ -230,7 +259,7 @@ finished_epoch=time.time();idle=finished_epoch-cleanup['observed_epoch'];all_pas
 raw_inventory={str(p.relative_to(ROOT)):sha(p) for root in (RAW,DATASET) for p in root.rglob('*') if p.is_file()}
 assert initial_files==raw_inventory,'Raw/dataset changed during audit'
 result=dict(schema_version=1,review_type='single real DEVELOPMENT run; no detectors/calibration/TEST',entry_id=entry['id'],run_id=run_id,
- authority=dict(commit=preflight['checks']['head'],manifest_path=str(MANIFEST.relative_to(ROOT)),manifest_sha256=sha(MANIFEST),config_path=entry['config'],config_sha256=entry['config_sha256'],user_authorization=f'Entry-scoped DEVELOPMENT authorization: {ENTRY_ID}; no detectors, calibration or TEST'),
+ authority=dict(commit=attempt['effective_checkout_commit'],manifest_path=str(MANIFEST.relative_to(ROOT)),manifest_sha256=sha(MANIFEST),config_path=entry['config'],config_sha256=entry['config_sha256'],preflight_id=attempt['preflight_id'],preflight_path=attempt['preflight_path'],preflight_sha256=attempt['preflight_sha256'],user_authorization=f'Entry-scoped DEVELOPMENT authorization: {ENTRY_ID}; no detectors, calibration or TEST'),
  timing=dict(invocation=stamp(attempt['invoked_epoch']),experiment_anchor=stamp(status['experiment_start_timestamp']),
  nominal_end=stamp(D(str(status['experiment_start_timestamp']))+150),
  source_closed=[dict(source_id=c['source_id'],elapsed_seconds=c['elapsed_seconds'],anchor_derived_wall_time=stamp(D(str(status['experiment_start_timestamp']))+D(str(c['elapsed_seconds']))),wall_conversion='epoch anchor + monotonic elapsed; approximate, not atomic clock sampling') for c in closures],

@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "manifest_path": "experiments/protocols/development_d2_endpoint_comparison_20261027/manifest_v4.json",
+  "manifest_sha256": "020128bf603a11e65d5ba239bfc260cd4527fa303c61c8c6ed660193af2dc9d8",
+  "effective_checkout": "19e1cae21bafd4a93b916a268cbd27cb6cd917bc",
+  "offline_plan_validation": "passed; outputs absent; no Docker access; no experiment",
+  "tests": {
+    "command": ".venv/bin/python -B -m unittest tests.test_development_d2 tests.test_development_d1 tests.test_development_d1_review_preflight_cli",
+    "passed": 15,
+    "failed": 0,
+    "cli_fixture": "failed legacy preflight retained; linked successful pf-0002 selected; invalid path/hash/entry/manifest/readiness rejected",
+    "provenance": "descendant commit with identical approved source accepted; changed source rejected"
+  },
+  "prior_failed_preflight_sha256": "05a510fca01ba74e04885fc35b49a9da16160fde93ef300e85c143fd76587f3b",
+  "historical_authorities_unchanged": [
+    "manifest.json",
+    "manifest_v2.json",
+    "manifest_v3.json"
+  ],
+  "experiments_executed": 0
+}

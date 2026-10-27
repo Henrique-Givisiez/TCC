@@ -1,7 +1,7 @@
 # DEVELOPMENT D2 — comparação exploratória de endpoints
 
 Estado: protocolo e configurações preparados offline; nenhum ensaio D2 executado.
-Autoridade prospectiva: [manifesto D2 v3](../experiments/protocols/development_d2_endpoint_comparison_20261027/manifest_v3.json). As autoridades [v1](../experiments/protocols/development_d2_endpoint_comparison_20261027/manifest.json) e [v2](../experiments/protocols/development_d2_endpoint_comparison_20261027/manifest_v2.json) foram preservadas. V3 vincula os hashes aprovados ao anchor `d84a70d`: commits descendentes são aceitos apenas se o conjunto de fontes relevantes mantiver os mesmos hashes.
+Autoridade prospectiva: [manifesto D2 v4](../experiments/protocols/development_d2_endpoint_comparison_20261027/manifest_v4.json). As autoridades [v1](../experiments/protocols/development_d2_endpoint_comparison_20261027/manifest.json), [v2](../experiments/protocols/development_d2_endpoint_comparison_20261027/manifest_v2.json) e [v3](../experiments/protocols/development_d2_endpoint_comparison_20261027/manifest_v3.json) foram preservadas. V4 mantém o anchor `d84a70d` e os hashes aprovados, aceitando commits descendentes apenas se todos os fontes relevantes permanecerem idênticos; também vincula cada run ao ID/hash do preflight escolhido.
 
 ## Objetivo e evidência de D1
 
@@ -139,7 +139,7 @@ Validação offline (não acessa Docker):
 
 ```bash
 .venv/bin/python -B -m experiments.development_d2 validate-plan \
-  --manifest experiments/protocols/development_d2_endpoint_comparison_20261027/manifest_v3.json
+  --manifest experiments/protocols/development_d2_endpoint_comparison_20261027/manifest_v4.json
 ```
 
 Após autorização separada e decisão do probe, iniciar somente a entrada
@@ -147,16 +147,16 @@ individual. Exemplo para a primeira tentativa, sem batch:
 
 ```bash
 .venv/bin/python -B -m experiments.development_d1_ops \
-  --manifest experiments/protocols/development_d2_endpoint_comparison_20261027/manifest_v3.json \
+  --manifest experiments/protocols/development_d2_endpoint_comparison_20261027/manifest_v4.json \
   preflight --entry d2_probe_expensive_4rps
 .venv/bin/python -B -m experiments.development_d1_ops \
-  --manifest experiments/protocols/development_d2_endpoint_comparison_20261027/manifest_v3.json \
+  --manifest experiments/protocols/development_d2_endpoint_comparison_20261027/manifest_v4.json \
   run --entry d2_probe_expensive_4rps --preflight-id pf-0002
 .venv/bin/python -B -m experiments.development_d1_ops \
-  --manifest experiments/protocols/development_d2_endpoint_comparison_20261027/manifest_v3.json \
+  --manifest experiments/protocols/development_d2_endpoint_comparison_20261027/manifest_v4.json \
   postprocess --entry d2_probe_expensive_4rps
 .venv/bin/python -B -m experiments.development_d1_ops \
-  --manifest experiments/protocols/development_d2_endpoint_comparison_20261027/manifest_v3.json \
+  --manifest experiments/protocols/development_d2_endpoint_comparison_20261027/manifest_v4.json \
   review --entry d2_probe_expensive_4rps
 ```
 
@@ -165,9 +165,9 @@ na ordem do manifesto. Após as seis revisões, gerar comparações com:
 
 ```bash
 .venv/bin/python -B -m experiments.development_d2_compare \
-  --manifest experiments/protocols/development_d2_endpoint_comparison_20261027/manifest_v3.json
+  --manifest experiments/protocols/development_d2_endpoint_comparison_20261027/manifest_v4.json
 ```
 
-O preflight anterior foi preservado em `operations/d2_probe_expensive_4rps/preflight.json` como `pf-0001`; ele falhou com `PermissionError` no socket Docker, sem iniciar o probe. O utilitário aceita novos preflights versionados em subdiretórios e o comando `run` exige `--preflight-id`; repetição de prontidão não repete a tentativa científica. A síntese da parada está em `analysis/d2_stop_synthesis.md`. Docker CLI e SDK Python apontam para `/var/run/docker.sock`; o ambiente do Codex impede conexão. No terminal de usuário, executar primeiro o preflight acima; usar no `run` exatamente o ID retornado, que será `pf-0002` se não houver outra checagem. D2 não inclui ataques,
+O preflight anterior foi preservado em `operations/d2_probe_expensive_4rps/preflight.json` como `pf-0001`; ele falhou com `PermissionError` no socket Docker, sem iniciar o probe. O utilitário aceita novos preflights versionados em subdiretórios e o comando `run` exige `--preflight-id`; repetição de prontidão não repete a tentativa científica. A síntese da parada está em `analysis/d2_stop_synthesis.md`. Docker CLI e SDK Python apontam para `/var/run/docker.sock`; neste contexto Codex ambos recebem `EPERM`. No terminal do usuário, execute o preflight acima e só prossiga se retornar `ready: true`; passe ao `run` exatamente o ID retornado (`pf-0002` se não houver outra checagem). D2 não inclui ataques,
 autoscaling, host adicional, RTT específico ou UDP; não usa detectores,
 calibração nem TEST.

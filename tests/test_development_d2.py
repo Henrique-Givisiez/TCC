@@ -10,7 +10,7 @@ from experiments.development_d2 import validate_plan
 from experiments.development_d2 import verify_approved_checkout
 
 
-MANIFEST = ops.ROOT / "experiments/protocols/development_d2_endpoint_comparison_20261027/manifest_v3.json"
+MANIFEST = ops.ROOT / "experiments/protocols/development_d2_endpoint_comparison_20261027/manifest_v4.json"
 
 
 class D2PreparationTests(unittest.TestCase):
@@ -24,9 +24,9 @@ class D2PreparationTests(unittest.TestCase):
         plan = json.loads(MANIFEST.read_text())
         self.assertEqual([e["endpoint"] for e in plan["entries"][1:]],
                          ["/light", "/medium", "/expensive", "/expensive", "/medium", "/light"])
-        self.assertEqual(plan["campaign_schema"], "development-endpoint-comparison/v3")
+        self.assertEqual(plan["campaign_schema"], "development-endpoint-comparison/v4")
         self.assertEqual(plan["provenance"]["parent_manifest_path"],
-                         "experiments/protocols/development_d2_endpoint_comparison_20261027/manifest_v2.json")
+                         "experiments/protocols/development_d2_endpoint_comparison_20261027/manifest_v3.json")
         self.assertEqual(plan["source_approval"]["anchor_commit"], plan["instrumentation_commit"])
         self.assertEqual(plan["source_approval"]["source_hashes"], plan["runtime_source_hashes"])
         self.assertTrue(all("parent_sha256" in x and "effective_sha256" in x

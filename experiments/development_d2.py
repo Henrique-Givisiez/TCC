@@ -11,10 +11,11 @@ from pathlib import Path
 from simulator.experiment_config import ExperimentConfig
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_MANIFEST = ROOT / "experiments/protocols/development_d2_endpoint_comparison_20261027/manifest_v3.json"
+DEFAULT_MANIFEST = ROOT / "experiments/protocols/development_d2_endpoint_comparison_20261027/manifest_v4.json"
 V1_SCHEMA = "development-endpoint-comparison/v1"
 V2_SCHEMA = "development-endpoint-comparison/v2"
 V3_SCHEMA = "development-endpoint-comparison/v3"
+V4_SCHEMA = "development-endpoint-comparison/v4"
 
 
 def verify_approved_checkout(anchor_commit, checkout_commit, approved_hashes, actual_hashes, *, is_ancestor):
@@ -41,7 +42,7 @@ def read(path):
 def validate_plan(manifest_path=DEFAULT_MANIFEST, *, check_outputs=True):
     manifest_path = Path(manifest_path)
     plan = read(manifest_path)
-    if plan.get("campaign_schema") not in {V1_SCHEMA, V2_SCHEMA, V3_SCHEMA}:
+    if plan.get("campaign_schema") not in {V1_SCHEMA, V2_SCHEMA, V3_SCHEMA, V4_SCHEMA}:
         raise ValueError("Unknown D2 protocol schema")
     head = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
     if plan["campaign_schema"] == V1_SCHEMA and head != plan["instrumentation_commit"]:
@@ -53,7 +54,7 @@ def validate_plan(manifest_path=DEFAULT_MANIFEST, *, check_outputs=True):
             raise ValueError(f"Operational source changed: {path}")
     checkout_evidence = verify_approved_checkout(anchor, head, plan["runtime_source_hashes"],
         {path: sha(ROOT / path) for path in plan["runtime_source_hashes"]}, is_ancestor=ancestor)
-    if plan["campaign_schema"] == V3_SCHEMA:
+    if plan["campaign_schema"] in {V3_SCHEMA, V4_SCHEMA}:
         approval = plan["source_approval"]
         if approval.get("anchor_commit") != plan["instrumentation_commit"]:
             raise ValueError("D2 source approval anchor differs from instrumentation provenance")
@@ -67,8 +68,9 @@ def validate_plan(manifest_path=DEFAULT_MANIFEST, *, check_outputs=True):
         if sha(parent_path) != provenance["parent_manifest_sha256"]:
             raise ValueError("Parent D2 authority hash mismatch")
         parent = read(parent_path)
-        if parent.get("campaign_schema") != V2_SCHEMA or provenance["parent_instrumentation_commit"] != parent["instrumentation_commit"]:
-            raise ValueError("D2 v3 parent provenance mismatch")
+        expected_parent_schema = V2_SCHEMA if plan["campaign_schema"] == V3_SCHEMA else V3_SCHEMA
+        if parent.get("campaign_schema") != expected_parent_schema or provenance["parent_instrumentation_commit"] != parent["instrumentation_commit"]:
+            raise ValueError("D2 versioned parent provenance mismatch")
         transitions = provenance["source_hash_transitions"]
         if set(transitions) != set(plan["runtime_source_hashes"]) or set(transitions) != set(parent["runtime_source_hashes"]):
             raise ValueError("D2 provenance source set differs")
@@ -146,7 +148,7 @@ def validate_plan(manifest_path=DEFAULT_MANIFEST, *, check_outputs=True):
         raise ValueError("D2 is not using the common 4 RPS candidate")
     if plan["probe"]["entry_id"] != plan["entries"][0]["id"] or plan["probe"]["retain_4rps"] is None or plan["probe"]["if_inadequate"] is None:
         raise ValueError("D2 probe gate or reduction rule is unspecified")
-    revised_order = plan["campaign_schema"] in {V2_SCHEMA, V3_SCHEMA}
+    revised_order = plan["campaign_schema"] in {V2_SCHEMA, V3_SCHEMA, V4_SCHEMA}
     expected_ids = (["d2_probe_expensive_4rps", "d2_A_light", "d2_A_medium", "d2_A_expensive",
                      "d2_B_expensive", "d2_B_medium", "d2_B_light"]
                     if revised_order else
@@ -207,7 +209,7 @@ def validate_plan(manifest_path=DEFAULT_MANIFEST, *, check_outputs=True):
 def summarize(manifest_path, entry_id, destination):
     from experiments.development_d1 import summarize_entry
     plan = read(manifest_path)
-    if plan.get("campaign_schema") not in {V1_SCHEMA, V2_SCHEMA, V3_SCHEMA}:
+    if plan.get("campaign_schema") not in {V1_SCHEMA, V2_SCHEMA, V3_SCHEMA, V4_SCHEMA}:
         raise ValueError("Not a D2 endpoint comparison plan")
     return summarize_entry(manifest_path, entry_id, destination)
 
