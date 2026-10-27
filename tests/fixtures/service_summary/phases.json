@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "run_id": "synthetic-service-v1",
+  "phases": [
+    {
+      "name": "PRE",
+      "start_seconds": "0",
+      "end_seconds": "3"
+    },
+    {
+      "name": "ACTIVE",
+      "start_seconds": "3",
+      "end_seconds": "6"
+    },
+    {
+      "name": "POST",
+      "start_seconds": "6",
+      "end_seconds": "9"
+    },
+    {
+      "name": "DRAIN",
+      "start_seconds": "9",
+      "end_seconds": "12"
+    }
+  ]
+}

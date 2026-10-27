@@ -1,0 +1,69 @@
+{
+  "document_type": "development_design_not_experiment_config",
+  "schema_version": 1,
+  "status": "DRAFT_NOT_RELEASED",
+  "runnable": false,
+  "configuration_contract": "simulator/experiment_config.py:ExperimentConfig",
+  "pending_decisions_document": "docs/development_service_pending_20261027.md",
+  "fixed_configuration_fields_proposed": {
+    "traffic_sources.execution": "containers",
+    "load_balancer.enabled": true,
+    "infrastructure.initial_instances": 1,
+    "infrastructure.min_instances": 1,
+    "infrastructure.max_instances": 1,
+    "autoscaler.enabled": false,
+    "normal_traffic.clients": 4,
+    "server.process_pool_workers": 2,
+    "normal_traffic.max_concurrent_sends": 64,
+    "attack.max_concurrent_sends": 64,
+    "normal_traffic.request_timeout_seconds": 2,
+    "attack.request_timeout_seconds": 2,
+    "monitoring.interval_seconds": 1,
+    "monitoring.stats_poll_interval_seconds": 1,
+    "monitoring.history_seconds": 30,
+    "attack.profile": "continuous"
+  },
+  "blocks": [
+    {
+      "id": "D1",
+      "question": "Characterize legitimate capacity without detectors selecting load",
+      "fixed_fields": {"normal_traffic.endpoint": "/medium", "attack.enabled": false},
+      "factor_fields": ["normal_traffic.rate"]
+    },
+    {
+      "id": "D2",
+      "question": "Compare operation costs at the same low nominal offered load",
+      "fixed_fields": {"attack.enabled": false},
+      "factor_fields": ["normal_traffic.endpoint"],
+      "operation_levels": ["/light", "/medium", "/expensive"],
+      "matched_fields": ["normal_traffic.rate"]
+    },
+    {
+      "id": "D3_rate",
+      "question": "Check offensive range, generator support and drain",
+      "fixed_fields": {"normal_traffic.endpoint": "/medium", "attack.enabled": true,
+        "attack.attackers": 1, "attack.endpoint": "/medium"},
+      "factor_fields": ["attack.rate"],
+      "matched_fields": ["normal_traffic.rate", "attack.start_seconds", "attack.duration_seconds", "duration_seconds"],
+      "control_overrides": {"attack.enabled": false}
+    },
+    {
+      "id": "D3_cost",
+      "question": "Check expensive offensive operation without changing nominal rates",
+      "fixed_fields": {"normal_traffic.endpoint": "/medium", "attack.enabled": true, "attack.attackers": 1},
+      "factor_fields": ["attack.endpoint"],
+      "operation_levels": ["/medium", "/expensive"],
+      "matched_fields": ["normal_traffic.rate", "attack.rate", "attack.start_seconds", "attack.duration_seconds", "duration_seconds"],
+      "control_overrides": {"attack.enabled": false}
+    }
+  ],
+  "configuration_fields_to_resolve_before_generation": [
+    "id", "seed", "duration_seconds", "normal_traffic.rate",
+    "attack.rate", "attack.start_seconds", "attack.duration_seconds"
+  ],
+  "generation_policy": "No executable config is generated until decisions are closed; explicit values, ExperimentConfig validation and distinct output directories required.",
+  "partition": "DEVELOPMENT",
+  "scientific_calibration_or_test": false,
+  "detector_selection_from_capacity_runs": false,
+  "new_experiments_authorized_by_this_document": false
+}

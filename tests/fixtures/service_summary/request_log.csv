@@ -1,0 +1,10 @@
+run_id,request_id,generator,worker_id,target_url,timestamp,elapsed_seconds,end_timestamp,end_elapsed_seconds,duration_ms,traffic_class,attack_active,attack_id,event_id,active_event_ids,http_status,outcome,error_type
+synthetic-service-v1,synthetic_0,normal,0,http://synthetic.invalid/medium,1000,0,1001,1,1000,benign,,,,[],200,response,
+synthetic-service-v1,synthetic_1,normal,0,http://synthetic.invalid/medium,1002.5,2.5,1003.5,3.5,1000.0,benign,,,,[],204,response,
+synthetic-service-v1,synthetic_2,normal,0,http://synthetic.invalid/medium,1003,3,1003.5,3.5,500.0,benign,,,,[],200,response,
+synthetic-service-v1,synthetic_3,normal,0,http://synthetic.invalid/medium,1004,4,1004.25,4.25,250.00,benign,,,,[],302,response,
+synthetic-service-v1,synthetic_4,normal,0,http://synthetic.invalid/medium,1005,5,1005.25,5.25,250.00,benign,,,,[],503,http_error,
+synthetic-service-v1,synthetic_5,normal,0,http://synthetic.invalid/medium,1005.5,5.5,1008,8,2500.0,benign,,,,[],,transport_error,ReadTimeout
+synthetic-service-v1,synthetic_6,normal,0,http://synthetic.invalid/medium,1006.5,6.5,1009.5,9.5,3000.0,benign,,,,[],200,response,
+synthetic-service-v1,synthetic_7,normal,0,http://synthetic.invalid/medium,1007.5,7.5,,,,benign,,,,[],,incomplete,
+synthetic-service-v1,synthetic_8,attack,0,http://synthetic.invalid/medium,1008,8,1012,12,4000,attack,,,,[],,client_error,ValueError
