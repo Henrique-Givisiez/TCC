@@ -129,6 +129,7 @@ class SourceTests(unittest.TestCase):
 
     def test_partial_capture_reconciles_timeline_before_reporting_failure(self):
         from simulator.tcpdump_sniffer import TcpdumpSniffer
+        from simulator.capture_lifecycle import CaptureLifecycle
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
             clock = Clock()
@@ -143,6 +144,17 @@ class SourceTests(unittest.TestCase):
             clock.value = 3
             gt.stop('event_001')
             capture.process = MagicMock(returncode=1)
+            capture.process.poll.return_value = 1
+            capture.process.wait.return_value = 1
+            capture.stderr_file = tempfile.TemporaryFile(mode='w+t')
+            capture.stderr_file.write('listening on bridge\n12 packets captured\n12 packets received by filter\n0 packets dropped by kernel\n')
+            capture.stderr_file.flush()
+            command = capture.build_command()
+            capture.lifecycle = CaptureLifecycle(name='csv',command=command,interface='bridge',
+                bpf_filter=command[-1],output_path=capture.output_csv,stderr_path=capture.stderr_path,
+                report_path=capture.lifecycle_path)
+            capture.lifecycle.process_spawn_observed();capture.lifecycle.listening_observed()
+            capture.running = True
             with self.assertRaisesRegex(RuntimeError,'exited with status'):
                 capture.stop()
             with (root/'packets.csv').open() as stream:

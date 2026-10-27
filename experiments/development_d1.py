@@ -182,9 +182,19 @@ def resolve_observation(raw, config):
 
 
 def summarize_entry(manifest_path, entry_id, destination):
-    validate_plan(manifest_path, check_outputs=False)
     plan = json.loads(Path(manifest_path).read_text())
-    entry = next(e for e in plan['entries'] if e['id'] == entry_id)
+    if plan.get('continuation_schema') == 'development-d1-continuation/v1':
+        parent = ROOT / plan['parent_manifest_path']
+        if digest(parent) != plan['parent_manifest_sha256']:
+            raise ValueError('Continuation parent manifest hash mismatch')
+        if digest(ROOT / plan['diagnosis_path']) != plan['diagnosis_sha256']:
+            raise ValueError('Continuation diagnosis hash mismatch')
+        entry = next(e for e in plan['entries'] if e['id'] == entry_id)
+        if digest(ROOT / entry['config']) != entry['config_sha256']:
+            raise ValueError('Continuation configuration hash mismatch')
+    else:
+        validate_plan(manifest_path, check_outputs=False)
+        entry = next(e for e in plan['entries'] if e['id'] == entry_id)
     if Path(destination).resolve() != (ROOT / entry['outputs']['analysis']).resolve():
         raise ValueError('Summary destination must match reserved entry analysis path')
     raw = ROOT / entry['outputs']['raw']

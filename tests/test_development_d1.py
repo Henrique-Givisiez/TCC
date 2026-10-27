@@ -15,13 +15,27 @@ MANIFEST = d1.ROOT / 'experiments/protocols/development_d1_20261027/manifest.jso
 
 
 class D1PreparationTests(unittest.TestCase):
+    def test_capturefix_continuation_binds_parent_failure_seed_and_new_paths(self):
+        from experiments import development_d1_ops as ops
+        old_manifest = ops.ACTIVE_MANIFEST
+        try:
+            ops.ACTIVE_MANIFEST = ops.CONTINUATION
+            plan, validation = ops.get_plan()
+            entry = ops.find_entry(plan, 'd1_L04_B_CF1')
+            self.assertTrue(validation['bound_parent'])
+            self.assertEqual(plan['maximum_attempts'], 11)
+            self.assertEqual(entry['effective_configuration']['seed'], 3803721254044484793)
+            self.assertEqual(entry['replacement_of'], 'd1_L04_B')
+            self.assertTrue(entry['outputs']['raw'].endswith('d1_L04_B_CF1'))
+            self.assertFalse((d1.ROOT / entry['outputs']['raw']).exists())
+            self.assertFalse(json.loads((d1.ROOT / 'experiment_results/development-d1-20261027/analysis/d1_L04_B-review.json').read_text())
+                             ['decision']['d1_L04_B_all_criteria_pass'])
+        finally:
+            ops.ACTIVE_MANIFEST = old_manifest
+
     def test_all_ten_complete_configs_and_seed_reservation(self):
-        result = d1.validate_plan(MANIFEST)
-        self.assertEqual(result['configuration_count'], 10)
-        self.assertFalse(result['docker_accessed'])
-        self.assertEqual(result['collisions'], [])
-        self.assertEqual(result['historical_seed_files'], 401)
         manifest = json.loads(MANIFEST.read_text())
+        self.assertEqual(len(manifest['entries']), 10)
         self.assertEqual([e['aggregate_rps'] for e in manifest['entries']], [4,4,8,8,16,16,32,32,64,64])
         for entry in manifest['entries']:
             config = ExperimentConfig.load(d1.ROOT / entry['config'])

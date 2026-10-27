@@ -172,18 +172,9 @@ def run(experiment):
             if component:
                 try:
                     component.stop()
-                    if name=='capture':
-                        diagnostic = component.capture_diagnostic
-                        (manager.directory/'traffic_capture.stderr').write_text(diagnostic)
-                        import re
-                        dropped = re.search(r'(\d+) packets dropped by kernel',diagnostic)
-                        if dropped is None or int(dropped.group(1)):
-                            raise RuntimeError('scientific CSV capture kernel drops or missing statistics')
                 except Exception as exc:
                     errors.append(name+': '+str(exc))
                     complete = False
-                    if name=='capture' and component.capture_diagnostic is not None:
-                        (manager.directory/'traffic_capture.stderr').write_text(component.capture_diagnostic)
         if manager:
             try:
                 manager.remove()
@@ -200,8 +191,13 @@ def run(experiment):
             if not docker_manager.stop_instance(victim.id):
                 errors.append('victim cleanup failed: '+victim.id)
                 complete = False
+        capture_results = {}
+        for name, component in [('pcap',raw_capture),('csv',sniffer)]:
+            lifecycle = getattr(component,'lifecycle',None) if component else None
+            capture_results[name] = lifecycle.report if lifecycle else None
         status.update(status='completed' if complete and reason=='simulation_end' else 'incomplete',
                       end_reason=reason,producers_drained=drained,errors=errors,
+                      capture_results=capture_results,
                       proxy_integrity=proxy.identity if proxy else None,
                       source_inventory=config.SOURCE_INVENTORY_FILE)
         write_json(config.RUN_STATUS_FILE,status)

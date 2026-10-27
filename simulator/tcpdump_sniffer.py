@@ -5,9 +5,12 @@ import csv
 import os
 import tempfile
 import re
+import signal
 import time
+from pathlib import Path
 from typing import Optional
 from simulator.ground_truth import encode_event_ids
+from simulator.capture_lifecycle import CaptureLifecycle
 
 PACKET_FIELDS = ["run_id", "timestamp", "elapsed_seconds", "src_ip", "src_port",
                  "dst_ip", "dst_port", "packet_length", "traffic_class",
@@ -35,10 +38,14 @@ TCPDUMP_REGEX = re.compile(
 
 
 class TcpdumpSniffer:
+    DEFAULT_CAPTURE_BUFFER_KIB = 4096
+
     def __init__(self, interface: str, output_csv: str, ground_truth,
-                 port_range: Optional[tuple] = None, bpf_filter=None):
+                 port_range: Optional[tuple] = None, bpf_filter=None,
+                 buffer_size_kib: int = DEFAULT_CAPTURE_BUFFER_KIB):
         self.interface = interface
         self.output_csv = output_csv
+        self.buffer_size_kib = buffer_size_kib
         self.process: Optional[subprocess.Popen] = None
         self.thread: Optional[threading.Thread] = None
         self.running = False
@@ -46,12 +53,32 @@ class TcpdumpSniffer:
         self.reader_error = None
         self.stderr_file = None
         self.capture_diagnostic = None
+        paths = self.artifact_paths(output_csv)
+        self.stderr_path = paths['stderr']
+        self.lifecycle_path = paths['lifecycle']
+        self.lifecycle = None
         # (min_port, max_port) dos containers alvo: restringe a captura a
         # essas portas via filtro BPF, em vez de depender de qual interface
         # de rede é escolhida (ver start()).
         self.port_range = port_range
         self.bpf_filter = bpf_filter
         self._init_csv()
+
+    @staticmethod
+    def artifact_paths(output_csv):
+        path = Path(output_csv)
+        return {"stderr": path.with_suffix('.stderr'),
+                "lifecycle": path.with_suffix(path.suffix + '.capture.json')}
+
+    def build_command(self):
+        bpf_filter = "tcp"
+        if self.port_range:
+            lo, hi = self.port_range
+            bpf_filter = f"tcp and portrange {lo}-{hi}"
+        if self.bpf_filter is not None:
+            bpf_filter = self.bpf_filter
+        return ["tcpdump", "--immediate-mode", "-B", str(self.buffer_size_kib),
+                "-i", self.interface, "-l", "-n", "-tt", "-q", bpf_filter]
 
     def _init_csv(self):
         with open(self.output_csv, "w", newline="") as f:
@@ -62,41 +89,28 @@ class TcpdumpSniffer:
             print("[Sniffer] Realtime tcpdump already running.")
             return
 
-        # -i any: a captura roda no host (fora dos containers), e o tráfego
-        # do simulador contra "http://localhost:<porta>" trafega pela
-        # interface de loopback (lo), não pela bridge Docker (br-xxxx) — só
-        # o lado do container é que aparece nela. Uma interface Docker
-        # específica ficaria cega para esse tráfego, então "any" é
-        # intencional aqui, não um placeholder. O escopo é restrito via
-        # filtro de portas (BPF) abaixo em vez de por interface, o que
-        # também evita depender de um nome de bridge gerado dinamicamente
-        # pelo Docker (muda se a rede for recriada).
-        bpf_filter = "tcp"
-        if self.port_range:
-            lo, hi = self.port_range
-            bpf_filter = f"tcp and portrange {lo}-{hi}"
-        if self.bpf_filter is not None:
-            bpf_filter = self.bpf_filter
-
-        cmd = [
-            "tcpdump",
-            "--immediate-mode",
-            "-i", self.interface,
-            "-l",
-            "-n",
-            "-tt",
-            "-q",     # saída mais simples
-            bpf_filter
-            ]
+        cmd = self.build_command()
+        bpf_filter = cmd[-1]
+        self.lifecycle = CaptureLifecycle(name='csv', command=cmd, interface=self.interface,
+            bpf_filter=bpf_filter, output_path=self.output_csv, stderr_path=self.stderr_path,
+            report_path=self.lifecycle_path)
 
         self.stderr_file = tempfile.TemporaryFile(mode='w+t')
-        self.process = subprocess.Popen(
-            cmd,
-            stdout=subprocess.PIPE,
-            stderr=self.stderr_file,
-            text=True,
-            bufsize=1
-        )
+        try:
+            self.process = subprocess.Popen(
+                cmd,
+                stdout=subprocess.PIPE,
+                stderr=self.stderr_file,
+                text=True,
+                bufsize=1
+            )
+            self.lifecycle.process_spawn_observed()
+        except BaseException as exc:
+            self.stderr_file.close()
+            self.stderr_file = None
+            self.stderr_path.open('x').close()
+            self.lifecycle.finish(returncode=None, stderr_text='', launch_error=repr(exc))
+            raise
 
         self.running = True
         self.thread = threading.Thread(
@@ -114,6 +128,8 @@ class TcpdumpSniffer:
             self.check_running()
             # pread does not change the descriptor position used by tcpdump.
             if b'listening on' in os.pread(self.stderr_file.fileno(), 8192, 0):
+                if 'tcpdump_listening_message_observed' not in self.lifecycle.record['timestamps']:
+                    self.lifecycle.listening_observed()
                 return
             time.sleep(.02)
         raise RuntimeError('tcpdump readiness timeout')
@@ -169,24 +185,55 @@ class TcpdumpSniffer:
         os.replace(temporary, self.output_csv)
 
     def stop(self):
-        if self.process and self.running:
+        if self.process is None:
+            if self.lifecycle is not None and self.lifecycle.report is not None:
+                if not self.lifecycle.report['accepted']:
+                    raise RuntimeError('tcpdump CSV launch/capture failed')
+                return self.lifecycle.report
+            return None
+        wait_error = None
+        if self.process.poll() is None:
+            self.lifecycle.termination_requested(signal.SIGTERM)
             self.process.terminate()
+        try:
             self.process.wait(timeout=5)
+        except Exception as exc:
+            wait_error = exc
+            if self.process.poll() is None:
+                self.lifecycle.termination_requested(signal.SIGKILL)
+                self.process.kill()
+                try:
+                    self.process.wait(timeout=5)
+                except Exception as kill_exc:
+                    wait_error = RuntimeError(f"{exc!r}; kill_wait={kill_exc!r}")
         if self.thread:
             self.thread.join(timeout=5)  # consume stdout through EOF, including buffered lines
-            if self.thread.is_alive():
-                raise RuntimeError('tcpdump reader did not drain')
         self.running = False
-        if self.reader_error:
-            raise RuntimeError('tcpdump CSV writer failed') from self.reader_error
         diagnostic = ''
         if self.stderr_file is not None:
             self.stderr_file.seek(0)
-            diagnostic = self.stderr_file.read().strip()
+            diagnostic = self.stderr_file.read()
             self.stderr_file.close()
             self.stderr_file = None
         self.capture_diagnostic = diagnostic
-        self.finalize_context()  # partial captures retain the authoritative final timeline too
-        if self.process and self.process.returncode not in (0, -15):
-            raise RuntimeError(f'tcpdump exited with status {self.process.returncode}: {diagnostic}')
+        with self.stderr_path.open('x') as stream:
+            stream.write(diagnostic + ('\n' if diagnostic and not diagnostic.endswith('\n') else ''))
+        report = self.lifecycle.finish(returncode=self.process.returncode, stderr_text=diagnostic,
+                                       launch_error=repr(wait_error) if wait_error else None)
+        finalize_error = None
+        try:
+            self.finalize_context()  # partial captures retain the authoritative final timeline too
+        except Exception as exc:
+            finalize_error = exc
+        if self.thread and self.thread.is_alive():
+            raise RuntimeError('tcpdump reader did not drain')
+        if self.reader_error:
+            raise RuntimeError('tcpdump CSV writer failed') from self.reader_error
+        if finalize_error:
+            raise RuntimeError('tcpdump CSV context finalization failed') from finalize_error
+        if not report['accepted']:
+            if self.process.returncode not in (0,-signal.SIGTERM):
+                raise RuntimeError(f'tcpdump exited with status {self.process.returncode}: {report["capture_counters"]}')
+            raise RuntimeError(f"tcpdump CSV capture failed: returncode={self.process.returncode}, counters={report['capture_counters']}")
         print("[Sniffer] Realtime tcpdump stopped.")
+        return report

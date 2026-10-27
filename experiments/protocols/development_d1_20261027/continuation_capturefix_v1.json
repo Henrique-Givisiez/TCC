@@ -1,0 +1,178 @@
+{
+  "continuation_schema": "development-d1-continuation/v1",
+  "status": "prospective_single_entry_continuation",
+  "version": "capturefix-v1",
+  "parent_manifest_path": "experiments/protocols/development_d1_20261027/manifest.json",
+  "parent_manifest_sha256": "a7cb013e7ca87fab5bc6342d269fe81c008216efcd4aff155ba368feac5202d9",
+  "diagnosis_path": "docs/d1_capture_failure_diagnosis_20261027.md",
+  "diagnosis_sha256": "c6b36a93a77dc3c385c40f080459562b5aba5f74d9ae61a5172c00aa6a60fd28",
+  "instrumentation_change": {
+    "csv_command_addition": [
+      "-B",
+      "4096"
+    ],
+    "requested_buffer_kib": 4096,
+    "interpretation": "Requested tcpdump capture buffer; not evidence that kernel applied it fully or that buffer was the prior bottleneck.",
+    "separate_stderr": {
+      "csv": "traffic_capture.stderr",
+      "pcap": "source_artifacts/traffic_capture.pcap.stderr"
+    },
+    "per_process_record": "command argv, interface/filter/output/stderr, return code, stderr SHA/counters, spawn/listening/termination/exit observations, each in dedicated capture JSON.",
+    "integrity_policy": "Both CSV and PCAP require all three end statistics exactly once, zero kernel drops, and accepted exit; missing statistics or drops fail."
+  },
+  "historical_attempt": {
+    "id": "d1_L04_B",
+    "classification": "technical_failure_ineligible",
+    "review_path": "experiment_results/development-d1-20261027/analysis/d1_L04_B-review.json",
+    "reason": "CSV tcpdump reported 2 kernel drops; do not reclassify or reuse its outputs."
+  },
+  "maximum_attempts": 11,
+  "attempt_budget_interpretation": "The original ten ordered DEVELOPMENT attempts remain counted; this continuation authorizes one replacement attempt, for eleven total. Failed technical attempts count.",
+  "original_order": [
+    "d1_L01_A",
+    "d1_L01_B",
+    "d1_L02_B",
+    "d1_L02_A",
+    "d1_L03_A",
+    "d1_L03_B",
+    "d1_L04_B",
+    "d1_L04_A",
+    "d1_L05_A",
+    "d1_L05_B"
+  ],
+  "continuation_order": [
+    "d1_L01_A",
+    "d1_L01_B",
+    "d1_L02_B",
+    "d1_L02_A",
+    "d1_L03_A",
+    "d1_L03_B",
+    "d1_L04_B",
+    "d1_L04_B_CF1",
+    "d1_L04_A",
+    "d1_L05_A",
+    "d1_L05_B"
+  ],
+  "seed_policy": {
+    "replacement_seed": 3803721254044484793,
+    "relation": "retain replicate B seed for descriptive pairing; replacement is a new attempt/path and cannot make the failed old attempt eligible."
+  },
+  "fixed_reference": {
+    "path": "experiment_results/development-d1-20261027/analysis/d1_L01_reference.json",
+    "p95_ref_ms": "56.79376310008592650",
+    "progression_limit_ms": "250",
+    "policy": "unchanged from parent"
+  },
+  "criteria": {
+    "aggregate_start_ratio": [
+      0.8,
+      1.2
+    ],
+    "per_source_start_ratio": [
+      0.65,
+      1.35
+    ],
+    "minimum_known_success_2xx_support": 200,
+    "success_2xx_per_started_min": 0.99,
+    "failures_per_started_max": 0.01,
+    "incomplete_max": 0,
+    "other_response_max": 0,
+    "terminal_success_rps_over_nominal_min": 0.8,
+    "p95_limit_ms": "max(250,3*reference_p95_ms); 250 for first level",
+    "late_starts_limit": "max(4,0.01*all_starts); diagnostic of source queues, not causal attribution",
+    "within_run_trend": "Review four 30s bins; stop if success falls >=20% AND p95 doubles first-to-last, with >=50 successes in both bins; low support requires review",
+    "manual_capture_proxy_resource_review_required": true
+  },
+  "replacement_gate": "Run this entry once only after offline validation, readiness, recovery, and output-absence checks; review both capture processes. No automatic next entry.",
+  "entries": [
+    {
+      "order": 8,
+      "id": "d1_L04_B_CF1",
+      "level": 4,
+      "replicate": "B",
+      "rps_per_client": 8,
+      "aggregate_rps": 32,
+      "config": "experiments/configs/development_d1_20261027/d1_L04_B_CF1.json",
+      "config_sha256": "a16b171b8b8e8f71c0b269cfd0f80365349214f5667444466896145884dfb8cb",
+      "effective_configuration": {
+        "id": "d1_L04_B_CF1",
+        "duration_seconds": 150,
+        "seed": 3803721254044484793,
+        "normal_traffic": {
+          "clients": 4,
+          "rate": 8,
+          "endpoint": "/medium",
+          "work_units": 10,
+          "sleep_seconds": 0.0,
+          "max_concurrent_sends": 64,
+          "request_timeout_seconds": 2
+        },
+        "attack": {
+          "enabled": false,
+          "profile": "continuous",
+          "attackers": 0,
+          "rate": 0,
+          "start_seconds": 0,
+          "duration_seconds": 0,
+          "endpoint": "/medium",
+          "work_units": 5000,
+          "sleep_seconds": 0.0,
+          "max_concurrent_sends": 64,
+          "request_timeout_seconds": 2.0,
+          "burst": null
+        },
+        "infrastructure": {
+          "initial_instances": 1,
+          "min_instances": 1,
+          "max_instances": 1,
+          "cost_per_instance_per_hour": 0.02
+        },
+        "autoscaler": {
+          "enabled": false,
+          "scale_up_threshold": 60.0,
+          "scale_down_threshold": 25.0,
+          "cooldown_seconds": 20
+        },
+        "server": {
+          "process_pool_workers": 2,
+          "default_work_units": 1000000,
+          "default_sleep_seconds": 0.0
+        },
+        "monitoring": {
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1,
+          "history_seconds": 30
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "prerequisites": [
+        "manual release of this single entry",
+        "prior entry reviewed",
+        "cleanup and 60s idle recorded"
+      ],
+      "outputs": {
+        "raw": "experiment_results/development-d1-20261027/raw/d1_L04_B_CF1",
+        "dataset": "experiment_results/development-d1-20261027/dataset/d1_L04_B_CF1",
+        "validation": "experiment_results/development-d1-20261027/analysis/d1_L04_B_CF1-validation.json",
+        "analysis": "experiment_results/development-d1-20261027/analysis/d1_L04_B_CF1",
+        "review": "experiment_results/development-d1-20261027/analysis/d1_L04_B_CF1-review.json"
+      },
+      "replacement_of": "d1_L04_B",
+      "replacement_reason": "Prospective capture lifecycle/stderr/statistics instrumentation; prior attempt retained as failed."
+    }
+  ],
+  "runtime_source_hashes": {
+    "simulator/capture_lifecycle.py": "6f35fafc833ec06aa9c1e83b53d5771e8aaab7cf61a92ec64fb4861fb1df0387",
+    "simulator/capture_evidence.py": "a78a5a65141c7ebf683655b120ddbf6fb78d8dc42f34164ee12da2d5277d208a",
+    "simulator/tcpdump_sniffer.py": "266781c5e8b3d419e0083281103f3bf77979f95a45d17a07b2ec87ae90c8c1cc",
+    "simulator/source_experiment.py": "99494f5f5841b41b251c36a6851eec96547e4d2fc0591ed688e0a0ef430f6a11",
+    "experiments/development_d1_ops.py": "64c393c72d88911ed7603193a8be3da2075352e228f4ad3043a7a7a0f4420b5b",
+    "experiments/development_d1_review.py": "124b84b813759df8ac94626572b48dd8a069b3218a01a1aa91edf29de65b0a59",
+    "experiments/development_d1.py": "130d71759a162ca8efa88082f1d86276270b939006e03f893564200f0750205a"
+  }
+}
