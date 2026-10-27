@@ -6,6 +6,11 @@ e a [proposta da campanha](new_campaign_protocol_proposal_20261027.md).
 O plano é um documento de desenho, **não** um `ExperimentConfig` parcial
 executável. Não há configurações com placeholders, taxas ou seeds inventadas.
 
+A [preparação operacional de D1](development_d1_20261027.md) propõe valores
+concretos e configurações completas para esse bloco, com execução condicionada
+a revisão por patamar. As demais decisões deste documento continuam aplicáveis
+a D2/D3 e à futura campanha científica.
+
 ## Decisões necessárias
 
 | Decisão | Recomendação/critério | Campos reais afetados |

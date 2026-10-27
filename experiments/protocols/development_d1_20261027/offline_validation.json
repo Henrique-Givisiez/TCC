@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "manifest_sha256": "a7cb013e7ca87fab5bc6342d269fe81c008216efcd4aff155ba368feac5202d9",
+  "configuration_count": 10,
+  "historical_seed_files": 401,
+  "historical_seeds": 47,
+  "reserved_development_seeds": [
+    2273943714116859802,
+    3803721254044484793
+  ],
+  "collisions": [],
+  "configurations": [
+    {
+      "id": "d1_L01_A",
+      "seed": 2273943714116859802,
+      "configuration_valid": true,
+      "complete_fields": true
+    },
+    {
+      "id": "d1_L01_B",
+      "seed": 3803721254044484793,
+      "configuration_valid": true,
+      "complete_fields": true
+    },
+    {
+      "id": "d1_L02_B",
+      "seed": 3803721254044484793,
+      "configuration_valid": true,
+      "complete_fields": true
+    },
+    {
+      "id": "d1_L02_A",
+      "seed": 2273943714116859802,
+      "configuration_valid": true,
+      "complete_fields": true
+    },
+    {
+      "id": "d1_L03_A",
+      "seed": 2273943714116859802,
+      "configuration_valid": true,
+      "complete_fields": true
+    },
+    {
+      "id": "d1_L03_B",
+      "seed": 3803721254044484793,
+      "configuration_valid": true,
+      "complete_fields": true
+    },
+    {
+      "id": "d1_L04_B",
+      "seed": 3803721254044484793,
+      "configuration_valid": true,
+      "complete_fields": true
+    },
+    {
+      "id": "d1_L04_A",
+      "seed": 2273943714116859802,
+      "configuration_valid": true,
+      "complete_fields": true
+    },
+    {
+      "id": "d1_L05_A",
+      "seed": 2273943714116859802,
+      "configuration_valid": true,
+      "complete_fields": true
+    },
+    {
+      "id": "d1_L05_B",
+      "seed": 3803721254044484793,
+      "configuration_valid": true,
+      "complete_fields": true
+    }
+  ],
+  "docker_accessed": false,
+  "experiments_executed": false
+}

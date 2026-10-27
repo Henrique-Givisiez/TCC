@@ -1,0 +1,909 @@
+{
+  "schema_version": 1,
+  "status": "PREPARED_NOT_EXECUTED",
+  "partition": "DEVELOPMENT",
+  "block": "D1",
+  "prepared_from_head": "d64a29904d0ceca18d34bba55702cd91646573d2",
+  "execution_authorized": false,
+  "automatic_progression": false,
+  "operational_protocol": "docs/development_d1_20261027.md",
+  "configuration_contract": "simulator/experiment_config.py:ExperimentConfig",
+  "seed_generation": {
+    "namespace": "development-d1-benign-20261027-v1",
+    "indices": {
+      "A": 0,
+      "B": 0
+    },
+    "method": "SHA256 UTF-8 namespace:replicate:index, first eight bytes unsigned big endian, reject historical/reserved collisions"
+  },
+  "development_seeds": {
+    "A": 2273943714116859802,
+    "B": 3803721254044484793
+  },
+  "seed_audit": "experiments/protocols/development_d1_20261027/seed_audit.json",
+  "fixed_effective_configuration": {
+    "id": "d1_fixed_conditions",
+    "duration_seconds": 150,
+    "seed": 2273943714116859802,
+    "normal_traffic": {
+      "clients": 4,
+      "rate": 1,
+      "endpoint": "/medium",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2
+    },
+    "attack": {
+      "enabled": false,
+      "profile": "continuous",
+      "attackers": 0,
+      "rate": 0,
+      "start_seconds": 0,
+      "duration_seconds": 0,
+      "endpoint": "/medium",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1,
+      "history_seconds": 30
+    },
+    "load_balancer": {
+      "enabled": true
+    },
+    "traffic_sources": {
+      "execution": "containers"
+    }
+  },
+  "warmup_seconds": 30,
+  "useful_interval_seconds": [
+    30,
+    150
+  ],
+  "drain_policy": "Resolve observation end from all four source_closed journal records; local drain timeout30s, host wait35s. No fabricated drain end.",
+  "recovery_policy": "Verified cleanup, no experiment overlap, 60s idle minimum and fresh instances/readiness/warmup next run",
+  "proposed_criteria": {
+    "aggregate_start_ratio": [
+      0.8,
+      1.2
+    ],
+    "per_source_start_ratio": [
+      0.65,
+      1.35
+    ],
+    "minimum_known_success_2xx_support": 200,
+    "success_2xx_per_started_min": 0.99,
+    "failures_per_started_max": 0.01,
+    "incomplete_max": 0,
+    "other_response_max": 0,
+    "terminal_success_rps_over_nominal_min": 0.8,
+    "p95_limit_ms": "max(250,3*reference_p95_ms); 250 for first level",
+    "late_starts_limit": "max(4,0.01*all_starts); diagnostic of source queues, not causal attribution",
+    "within_run_trend": "Review four 30s bins; stop if success falls >=20% AND p95 doubles first-to-last, with >=50 successes in both bins; low support requires review",
+    "manual_capture_proxy_resource_review_required": true
+  },
+  "maximum_runs": 10,
+  "nominal_traffic_seconds": 1500,
+  "minimum_runs_if_stopped_after_first": 1,
+  "entries": [
+    {
+      "order": 1,
+      "id": "d1_L01_A",
+      "level": 1,
+      "replicate": "A",
+      "rps_per_client": 1,
+      "aggregate_rps": 4,
+      "config": "experiments/configs/development_d1_20261027/d1_L01_A.json",
+      "config_sha256": "119da82aa3b9efcca81cd2db035ba7a75b2eab827a7ea8af8bf121c7e6c71978",
+      "effective_configuration": {
+        "id": "d1_L01_A",
+        "duration_seconds": 150,
+        "seed": 2273943714116859802,
+        "normal_traffic": {
+          "clients": 4,
+          "rate": 1,
+          "endpoint": "/medium",
+          "work_units": 10,
+          "sleep_seconds": 0.0,
+          "max_concurrent_sends": 64,
+          "request_timeout_seconds": 2
+        },
+        "attack": {
+          "enabled": false,
+          "profile": "continuous",
+          "attackers": 0,
+          "rate": 0,
+          "start_seconds": 0,
+          "duration_seconds": 0,
+          "endpoint": "/medium",
+          "work_units": 5000,
+          "sleep_seconds": 0.0,
+          "max_concurrent_sends": 64,
+          "request_timeout_seconds": 2.0,
+          "burst": null
+        },
+        "infrastructure": {
+          "initial_instances": 1,
+          "min_instances": 1,
+          "max_instances": 1,
+          "cost_per_instance_per_hour": 0.02
+        },
+        "autoscaler": {
+          "enabled": false,
+          "scale_up_threshold": 60.0,
+          "scale_down_threshold": 25.0,
+          "cooldown_seconds": 20
+        },
+        "server": {
+          "process_pool_workers": 2,
+          "default_work_units": 1000000,
+          "default_sleep_seconds": 0.0
+        },
+        "monitoring": {
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1,
+          "history_seconds": 30
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "prerequisites": [
+        "manual release of this single entry",
+        "prior entry reviewed",
+        "cleanup and 60s idle recorded"
+      ],
+      "outputs": {
+        "raw": "experiment_results/development-d1-20261027/raw/d1_L01_A",
+        "dataset": "experiment_results/development-d1-20261027/dataset/d1_L01_A",
+        "validation": "experiment_results/development-d1-20261027/analysis/d1_L01_A-validation.json",
+        "analysis": "experiment_results/development-d1-20261027/analysis/d1_L01_A",
+        "review": "experiment_results/development-d1-20261027/analysis/d1_L01_A-review.json"
+      }
+    },
+    {
+      "order": 2,
+      "id": "d1_L01_B",
+      "level": 1,
+      "replicate": "B",
+      "rps_per_client": 1,
+      "aggregate_rps": 4,
+      "config": "experiments/configs/development_d1_20261027/d1_L01_B.json",
+      "config_sha256": "6150a9a20bce51c86451b97dc1d6c57242e82fe977d2845a7f6e658192479063",
+      "effective_configuration": {
+        "id": "d1_L01_B",
+        "duration_seconds": 150,
+        "seed": 3803721254044484793,
+        "normal_traffic": {
+          "clients": 4,
+          "rate": 1,
+          "endpoint": "/medium",
+          "work_units": 10,
+          "sleep_seconds": 0.0,
+          "max_concurrent_sends": 64,
+          "request_timeout_seconds": 2
+        },
+        "attack": {
+          "enabled": false,
+          "profile": "continuous",
+          "attackers": 0,
+          "rate": 0,
+          "start_seconds": 0,
+          "duration_seconds": 0,
+          "endpoint": "/medium",
+          "work_units": 5000,
+          "sleep_seconds": 0.0,
+          "max_concurrent_sends": 64,
+          "request_timeout_seconds": 2.0,
+          "burst": null
+        },
+        "infrastructure": {
+          "initial_instances": 1,
+          "min_instances": 1,
+          "max_instances": 1,
+          "cost_per_instance_per_hour": 0.02
+        },
+        "autoscaler": {
+          "enabled": false,
+          "scale_up_threshold": 60.0,
+          "scale_down_threshold": 25.0,
+          "cooldown_seconds": 20
+        },
+        "server": {
+          "process_pool_workers": 2,
+          "default_work_units": 1000000,
+          "default_sleep_seconds": 0.0
+        },
+        "monitoring": {
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1,
+          "history_seconds": 30
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "prerequisites": [
+        "manual release of this single entry",
+        "prior entry reviewed",
+        "cleanup and 60s idle recorded"
+      ],
+      "outputs": {
+        "raw": "experiment_results/development-d1-20261027/raw/d1_L01_B",
+        "dataset": "experiment_results/development-d1-20261027/dataset/d1_L01_B",
+        "validation": "experiment_results/development-d1-20261027/analysis/d1_L01_B-validation.json",
+        "analysis": "experiment_results/development-d1-20261027/analysis/d1_L01_B",
+        "review": "experiment_results/development-d1-20261027/analysis/d1_L01_B-review.json"
+      }
+    },
+    {
+      "order": 3,
+      "id": "d1_L02_B",
+      "level": 2,
+      "replicate": "B",
+      "rps_per_client": 2,
+      "aggregate_rps": 8,
+      "config": "experiments/configs/development_d1_20261027/d1_L02_B.json",
+      "config_sha256": "312803c183f6a10bfcb8e9be8a09fe3a502cb6a682f4d61ca7f244d51df01183",
+      "effective_configuration": {
+        "id": "d1_L02_B",
+        "duration_seconds": 150,
+        "seed": 3803721254044484793,
+        "normal_traffic": {
+          "clients": 4,
+          "rate": 2,
+          "endpoint": "/medium",
+          "work_units": 10,
+          "sleep_seconds": 0.0,
+          "max_concurrent_sends": 64,
+          "request_timeout_seconds": 2
+        },
+        "attack": {
+          "enabled": false,
+          "profile": "continuous",
+          "attackers": 0,
+          "rate": 0,
+          "start_seconds": 0,
+          "duration_seconds": 0,
+          "endpoint": "/medium",
+          "work_units": 5000,
+          "sleep_seconds": 0.0,
+          "max_concurrent_sends": 64,
+          "request_timeout_seconds": 2.0,
+          "burst": null
+        },
+        "infrastructure": {
+          "initial_instances": 1,
+          "min_instances": 1,
+          "max_instances": 1,
+          "cost_per_instance_per_hour": 0.02
+        },
+        "autoscaler": {
+          "enabled": false,
+          "scale_up_threshold": 60.0,
+          "scale_down_threshold": 25.0,
+          "cooldown_seconds": 20
+        },
+        "server": {
+          "process_pool_workers": 2,
+          "default_work_units": 1000000,
+          "default_sleep_seconds": 0.0
+        },
+        "monitoring": {
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1,
+          "history_seconds": 30
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "prerequisites": [
+        "manual release of this single entry",
+        "prior entry reviewed",
+        "cleanup and 60s idle recorded"
+      ],
+      "outputs": {
+        "raw": "experiment_results/development-d1-20261027/raw/d1_L02_B",
+        "dataset": "experiment_results/development-d1-20261027/dataset/d1_L02_B",
+        "validation": "experiment_results/development-d1-20261027/analysis/d1_L02_B-validation.json",
+        "analysis": "experiment_results/development-d1-20261027/analysis/d1_L02_B",
+        "review": "experiment_results/development-d1-20261027/analysis/d1_L02_B-review.json"
+      }
+    },
+    {
+      "order": 4,
+      "id": "d1_L02_A",
+      "level": 2,
+      "replicate": "A",
+      "rps_per_client": 2,
+      "aggregate_rps": 8,
+      "config": "experiments/configs/development_d1_20261027/d1_L02_A.json",
+      "config_sha256": "03b220ad61605ce897342d6b75f7e50eb7c81d5602d7b0bffb7efe8d06ee9e28",
+      "effective_configuration": {
+        "id": "d1_L02_A",
+        "duration_seconds": 150,
+        "seed": 2273943714116859802,
+        "normal_traffic": {
+          "clients": 4,
+          "rate": 2,
+          "endpoint": "/medium",
+          "work_units": 10,
+          "sleep_seconds": 0.0,
+          "max_concurrent_sends": 64,
+          "request_timeout_seconds": 2
+        },
+        "attack": {
+          "enabled": false,
+          "profile": "continuous",
+          "attackers": 0,
+          "rate": 0,
+          "start_seconds": 0,
+          "duration_seconds": 0,
+          "endpoint": "/medium",
+          "work_units": 5000,
+          "sleep_seconds": 0.0,
+          "max_concurrent_sends": 64,
+          "request_timeout_seconds": 2.0,
+          "burst": null
+        },
+        "infrastructure": {
+          "initial_instances": 1,
+          "min_instances": 1,
+          "max_instances": 1,
+          "cost_per_instance_per_hour": 0.02
+        },
+        "autoscaler": {
+          "enabled": false,
+          "scale_up_threshold": 60.0,
+          "scale_down_threshold": 25.0,
+          "cooldown_seconds": 20
+        },
+        "server": {
+          "process_pool_workers": 2,
+          "default_work_units": 1000000,
+          "default_sleep_seconds": 0.0
+        },
+        "monitoring": {
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1,
+          "history_seconds": 30
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "prerequisites": [
+        "manual release of this single entry",
+        "prior entry reviewed",
+        "cleanup and 60s idle recorded"
+      ],
+      "outputs": {
+        "raw": "experiment_results/development-d1-20261027/raw/d1_L02_A",
+        "dataset": "experiment_results/development-d1-20261027/dataset/d1_L02_A",
+        "validation": "experiment_results/development-d1-20261027/analysis/d1_L02_A-validation.json",
+        "analysis": "experiment_results/development-d1-20261027/analysis/d1_L02_A",
+        "review": "experiment_results/development-d1-20261027/analysis/d1_L02_A-review.json"
+      }
+    },
+    {
+      "order": 5,
+      "id": "d1_L03_A",
+      "level": 3,
+      "replicate": "A",
+      "rps_per_client": 4,
+      "aggregate_rps": 16,
+      "config": "experiments/configs/development_d1_20261027/d1_L03_A.json",
+      "config_sha256": "3f7a2cb571b490bd94763a7ffaf790b0308bf34cc7186f8d362a56b8ed8e28a4",
+      "effective_configuration": {
+        "id": "d1_L03_A",
+        "duration_seconds": 150,
+        "seed": 2273943714116859802,
+        "normal_traffic": {
+          "clients": 4,
+          "rate": 4,
+          "endpoint": "/medium",
+          "work_units": 10,
+          "sleep_seconds": 0.0,
+          "max_concurrent_sends": 64,
+          "request_timeout_seconds": 2
+        },
+        "attack": {
+          "enabled": false,
+          "profile": "continuous",
+          "attackers": 0,
+          "rate": 0,
+          "start_seconds": 0,
+          "duration_seconds": 0,
+          "endpoint": "/medium",
+          "work_units": 5000,
+          "sleep_seconds": 0.0,
+          "max_concurrent_sends": 64,
+          "request_timeout_seconds": 2.0,
+          "burst": null
+        },
+        "infrastructure": {
+          "initial_instances": 1,
+          "min_instances": 1,
+          "max_instances": 1,
+          "cost_per_instance_per_hour": 0.02
+        },
+        "autoscaler": {
+          "enabled": false,
+          "scale_up_threshold": 60.0,
+          "scale_down_threshold": 25.0,
+          "cooldown_seconds": 20
+        },
+        "server": {
+          "process_pool_workers": 2,
+          "default_work_units": 1000000,
+          "default_sleep_seconds": 0.0
+        },
+        "monitoring": {
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1,
+          "history_seconds": 30
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "prerequisites": [
+        "manual release of this single entry",
+        "prior entry reviewed",
+        "cleanup and 60s idle recorded"
+      ],
+      "outputs": {
+        "raw": "experiment_results/development-d1-20261027/raw/d1_L03_A",
+        "dataset": "experiment_results/development-d1-20261027/dataset/d1_L03_A",
+        "validation": "experiment_results/development-d1-20261027/analysis/d1_L03_A-validation.json",
+        "analysis": "experiment_results/development-d1-20261027/analysis/d1_L03_A",
+        "review": "experiment_results/development-d1-20261027/analysis/d1_L03_A-review.json"
+      }
+    },
+    {
+      "order": 6,
+      "id": "d1_L03_B",
+      "level": 3,
+      "replicate": "B",
+      "rps_per_client": 4,
+      "aggregate_rps": 16,
+      "config": "experiments/configs/development_d1_20261027/d1_L03_B.json",
+      "config_sha256": "ef980145c47bd432e72b3f7f87a1063ccf10934da4d9f61b374dc0875c2a8f69",
+      "effective_configuration": {
+        "id": "d1_L03_B",
+        "duration_seconds": 150,
+        "seed": 3803721254044484793,
+        "normal_traffic": {
+          "clients": 4,
+          "rate": 4,
+          "endpoint": "/medium",
+          "work_units": 10,
+          "sleep_seconds": 0.0,
+          "max_concurrent_sends": 64,
+          "request_timeout_seconds": 2
+        },
+        "attack": {
+          "enabled": false,
+          "profile": "continuous",
+          "attackers": 0,
+          "rate": 0,
+          "start_seconds": 0,
+          "duration_seconds": 0,
+          "endpoint": "/medium",
+          "work_units": 5000,
+          "sleep_seconds": 0.0,
+          "max_concurrent_sends": 64,
+          "request_timeout_seconds": 2.0,
+          "burst": null
+        },
+        "infrastructure": {
+          "initial_instances": 1,
+          "min_instances": 1,
+          "max_instances": 1,
+          "cost_per_instance_per_hour": 0.02
+        },
+        "autoscaler": {
+          "enabled": false,
+          "scale_up_threshold": 60.0,
+          "scale_down_threshold": 25.0,
+          "cooldown_seconds": 20
+        },
+        "server": {
+          "process_pool_workers": 2,
+          "default_work_units": 1000000,
+          "default_sleep_seconds": 0.0
+        },
+        "monitoring": {
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1,
+          "history_seconds": 30
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "prerequisites": [
+        "manual release of this single entry",
+        "prior entry reviewed",
+        "cleanup and 60s idle recorded"
+      ],
+      "outputs": {
+        "raw": "experiment_results/development-d1-20261027/raw/d1_L03_B",
+        "dataset": "experiment_results/development-d1-20261027/dataset/d1_L03_B",
+        "validation": "experiment_results/development-d1-20261027/analysis/d1_L03_B-validation.json",
+        "analysis": "experiment_results/development-d1-20261027/analysis/d1_L03_B",
+        "review": "experiment_results/development-d1-20261027/analysis/d1_L03_B-review.json"
+      }
+    },
+    {
+      "order": 7,
+      "id": "d1_L04_B",
+      "level": 4,
+      "replicate": "B",
+      "rps_per_client": 8,
+      "aggregate_rps": 32,
+      "config": "experiments/configs/development_d1_20261027/d1_L04_B.json",
+      "config_sha256": "a4b490e4e6c9ce9ad0d31b4a0955037b58c676253e24013cf86055949f46edbb",
+      "effective_configuration": {
+        "id": "d1_L04_B",
+        "duration_seconds": 150,
+        "seed": 3803721254044484793,
+        "normal_traffic": {
+          "clients": 4,
+          "rate": 8,
+          "endpoint": "/medium",
+          "work_units": 10,
+          "sleep_seconds": 0.0,
+          "max_concurrent_sends": 64,
+          "request_timeout_seconds": 2
+        },
+        "attack": {
+          "enabled": false,
+          "profile": "continuous",
+          "attackers": 0,
+          "rate": 0,
+          "start_seconds": 0,
+          "duration_seconds": 0,
+          "endpoint": "/medium",
+          "work_units": 5000,
+          "sleep_seconds": 0.0,
+          "max_concurrent_sends": 64,
+          "request_timeout_seconds": 2.0,
+          "burst": null
+        },
+        "infrastructure": {
+          "initial_instances": 1,
+          "min_instances": 1,
+          "max_instances": 1,
+          "cost_per_instance_per_hour": 0.02
+        },
+        "autoscaler": {
+          "enabled": false,
+          "scale_up_threshold": 60.0,
+          "scale_down_threshold": 25.0,
+          "cooldown_seconds": 20
+        },
+        "server": {
+          "process_pool_workers": 2,
+          "default_work_units": 1000000,
+          "default_sleep_seconds": 0.0
+        },
+        "monitoring": {
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1,
+          "history_seconds": 30
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "prerequisites": [
+        "manual release of this single entry",
+        "prior entry reviewed",
+        "cleanup and 60s idle recorded"
+      ],
+      "outputs": {
+        "raw": "experiment_results/development-d1-20261027/raw/d1_L04_B",
+        "dataset": "experiment_results/development-d1-20261027/dataset/d1_L04_B",
+        "validation": "experiment_results/development-d1-20261027/analysis/d1_L04_B-validation.json",
+        "analysis": "experiment_results/development-d1-20261027/analysis/d1_L04_B",
+        "review": "experiment_results/development-d1-20261027/analysis/d1_L04_B-review.json"
+      }
+    },
+    {
+      "order": 8,
+      "id": "d1_L04_A",
+      "level": 4,
+      "replicate": "A",
+      "rps_per_client": 8,
+      "aggregate_rps": 32,
+      "config": "experiments/configs/development_d1_20261027/d1_L04_A.json",
+      "config_sha256": "2b6df03ace288adfc90f6bc75806ff41f9722f753f2c662b59915c4e1b9cc843",
+      "effective_configuration": {
+        "id": "d1_L04_A",
+        "duration_seconds": 150,
+        "seed": 2273943714116859802,
+        "normal_traffic": {
+          "clients": 4,
+          "rate": 8,
+          "endpoint": "/medium",
+          "work_units": 10,
+          "sleep_seconds": 0.0,
+          "max_concurrent_sends": 64,
+          "request_timeout_seconds": 2
+        },
+        "attack": {
+          "enabled": false,
+          "profile": "continuous",
+          "attackers": 0,
+          "rate": 0,
+          "start_seconds": 0,
+          "duration_seconds": 0,
+          "endpoint": "/medium",
+          "work_units": 5000,
+          "sleep_seconds": 0.0,
+          "max_concurrent_sends": 64,
+          "request_timeout_seconds": 2.0,
+          "burst": null
+        },
+        "infrastructure": {
+          "initial_instances": 1,
+          "min_instances": 1,
+          "max_instances": 1,
+          "cost_per_instance_per_hour": 0.02
+        },
+        "autoscaler": {
+          "enabled": false,
+          "scale_up_threshold": 60.0,
+          "scale_down_threshold": 25.0,
+          "cooldown_seconds": 20
+        },
+        "server": {
+          "process_pool_workers": 2,
+          "default_work_units": 1000000,
+          "default_sleep_seconds": 0.0
+        },
+        "monitoring": {
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1,
+          "history_seconds": 30
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "prerequisites": [
+        "manual release of this single entry",
+        "prior entry reviewed",
+        "cleanup and 60s idle recorded"
+      ],
+      "outputs": {
+        "raw": "experiment_results/development-d1-20261027/raw/d1_L04_A",
+        "dataset": "experiment_results/development-d1-20261027/dataset/d1_L04_A",
+        "validation": "experiment_results/development-d1-20261027/analysis/d1_L04_A-validation.json",
+        "analysis": "experiment_results/development-d1-20261027/analysis/d1_L04_A",
+        "review": "experiment_results/development-d1-20261027/analysis/d1_L04_A-review.json"
+      }
+    },
+    {
+      "order": 9,
+      "id": "d1_L05_A",
+      "level": 5,
+      "replicate": "A",
+      "rps_per_client": 16,
+      "aggregate_rps": 64,
+      "config": "experiments/configs/development_d1_20261027/d1_L05_A.json",
+      "config_sha256": "669609854dda6e19fb4c0158cc3d1d62b075b6ea36656a9cdd6ad8bad847eb5c",
+      "effective_configuration": {
+        "id": "d1_L05_A",
+        "duration_seconds": 150,
+        "seed": 2273943714116859802,
+        "normal_traffic": {
+          "clients": 4,
+          "rate": 16,
+          "endpoint": "/medium",
+          "work_units": 10,
+          "sleep_seconds": 0.0,
+          "max_concurrent_sends": 64,
+          "request_timeout_seconds": 2
+        },
+        "attack": {
+          "enabled": false,
+          "profile": "continuous",
+          "attackers": 0,
+          "rate": 0,
+          "start_seconds": 0,
+          "duration_seconds": 0,
+          "endpoint": "/medium",
+          "work_units": 5000,
+          "sleep_seconds": 0.0,
+          "max_concurrent_sends": 64,
+          "request_timeout_seconds": 2.0,
+          "burst": null
+        },
+        "infrastructure": {
+          "initial_instances": 1,
+          "min_instances": 1,
+          "max_instances": 1,
+          "cost_per_instance_per_hour": 0.02
+        },
+        "autoscaler": {
+          "enabled": false,
+          "scale_up_threshold": 60.0,
+          "scale_down_threshold": 25.0,
+          "cooldown_seconds": 20
+        },
+        "server": {
+          "process_pool_workers": 2,
+          "default_work_units": 1000000,
+          "default_sleep_seconds": 0.0
+        },
+        "monitoring": {
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1,
+          "history_seconds": 30
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "prerequisites": [
+        "manual release of this single entry",
+        "prior entry reviewed",
+        "cleanup and 60s idle recorded"
+      ],
+      "outputs": {
+        "raw": "experiment_results/development-d1-20261027/raw/d1_L05_A",
+        "dataset": "experiment_results/development-d1-20261027/dataset/d1_L05_A",
+        "validation": "experiment_results/development-d1-20261027/analysis/d1_L05_A-validation.json",
+        "analysis": "experiment_results/development-d1-20261027/analysis/d1_L05_A",
+        "review": "experiment_results/development-d1-20261027/analysis/d1_L05_A-review.json"
+      }
+    },
+    {
+      "order": 10,
+      "id": "d1_L05_B",
+      "level": 5,
+      "replicate": "B",
+      "rps_per_client": 16,
+      "aggregate_rps": 64,
+      "config": "experiments/configs/development_d1_20261027/d1_L05_B.json",
+      "config_sha256": "c2d59b75f80bcda316dfbdaff2900f40a91f4932ae9154824aac2b526c15c117",
+      "effective_configuration": {
+        "id": "d1_L05_B",
+        "duration_seconds": 150,
+        "seed": 3803721254044484793,
+        "normal_traffic": {
+          "clients": 4,
+          "rate": 16,
+          "endpoint": "/medium",
+          "work_units": 10,
+          "sleep_seconds": 0.0,
+          "max_concurrent_sends": 64,
+          "request_timeout_seconds": 2
+        },
+        "attack": {
+          "enabled": false,
+          "profile": "continuous",
+          "attackers": 0,
+          "rate": 0,
+          "start_seconds": 0,
+          "duration_seconds": 0,
+          "endpoint": "/medium",
+          "work_units": 5000,
+          "sleep_seconds": 0.0,
+          "max_concurrent_sends": 64,
+          "request_timeout_seconds": 2.0,
+          "burst": null
+        },
+        "infrastructure": {
+          "initial_instances": 1,
+          "min_instances": 1,
+          "max_instances": 1,
+          "cost_per_instance_per_hour": 0.02
+        },
+        "autoscaler": {
+          "enabled": false,
+          "scale_up_threshold": 60.0,
+          "scale_down_threshold": 25.0,
+          "cooldown_seconds": 20
+        },
+        "server": {
+          "process_pool_workers": 2,
+          "default_work_units": 1000000,
+          "default_sleep_seconds": 0.0
+        },
+        "monitoring": {
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1,
+          "history_seconds": 30
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "prerequisites": [
+        "manual release of this single entry",
+        "prior entry reviewed",
+        "cleanup and 60s idle recorded"
+      ],
+      "outputs": {
+        "raw": "experiment_results/development-d1-20261027/raw/d1_L05_B",
+        "dataset": "experiment_results/development-d1-20261027/dataset/d1_L05_B",
+        "validation": "experiment_results/development-d1-20261027/analysis/d1_L05_B-validation.json",
+        "analysis": "experiment_results/development-d1-20261027/analysis/d1_L05_B",
+        "review": "experiment_results/development-d1-20261027/analysis/d1_L05_B-review.json"
+      }
+    }
+  ],
+  "reviewed_runtime_sources_sha256": {
+    "simulator/experiment_config.py": "992290a03f7bfe8c4264abcd0cc59e6eb21e4f522a028d1a6b208006be9b21e4",
+    "simulator/config.py": "c15f8181ced5053d00dc36504d71488884851b21980e2ad14dec8dd1672c8970",
+    "simulator/source_experiment.py": "6de61ba5c5dd7e8b6e4dad4096ce210e20aacb8ceae8b71aa044ed6a5e0b8781",
+    "simulator/source_runner.py": "f5b4b4906997987d6e0c0c22fff0cd4a6acd66d66fbc7731873c349c6dcd057b",
+    "simulator/source_manager.py": "cbf42972fa7814598b9c3d0107ec27082fa30c5995e8073ab6676ed5fa273f3c",
+    "simulator/source_aggregate.py": "2b2fbc1e5a2f61538d526f3c330dd14df37d8c751a39f071d3b93a0d203d2268",
+    "simulator/normal_traffic.py": "2df70d7f69eb3bd3d4e303235fd9bdcb8760b558d7c78895542d4482b0ca6d48",
+    "simulator/app/simple_server.py": "0190f18db595ab8d0e99759a8b7c54c1191a01c96cff218a21bee22a8871629e",
+    "simulator/service_destination.py": "026b1e991ae57d0b64faacd39bfea23eea7279c04e89917cbe8f405050c7b3a4",
+    "simulator/stats_collector.py": "9b4973ab0983821f05897190a21cf9f980c96816047e1d985222ac1a87f934a4",
+    "simulator/proxy_monitor.py": "1fc29ba053b13d11855372f95b40a8c133df0063739b6d5789b8bed0514aeb5e",
+    "simulator/docker_manager.py": "91470811a84535ce489e2cc3255db401ab92e01c1ae0a2071f54dbf4ce9bfb06",
+    "simulator/http_proxy.py": "82c8ab54ccc01194040f59b7b6b7714191788c9cdc8e075d6beb61a86c25e1d6",
+    "experiments/summarize_service.py": "ad65a55552b8c922dc42fa2bdd6359b3b49fa84b808813d43c50778ba17fcfa7",
+    "experiments/development_d1.py": "2525234806dd2ba3b9ecf2f61aa5f0651e68bbfc7eda8656e19884aa9dd8f374"
+  }
+}

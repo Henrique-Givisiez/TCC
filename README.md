@@ -101,3 +101,8 @@ A [variante CUSUM com congelamento](docs/cusum_freeze.md) mantém candidato,
 decisão e atualização de estado vinculados ao mesmo limiar explícito. Possui
 validação sintética e adaptador DEVELOPMENT próprios; a
 [calibração científica permanece pendente](docs/cusum_freeze_calibration_pending.md).
+
+O [D1 benigno de DEVELOPMENT](docs/development_d1_20261027.md) possui configurações
+completas, seeds reservadas e revisão obrigatória entre patamares. Seu utilitário
+offline valida o plano e resolve o resumo de serviço por encerramentos observados;
+não executa a grade experimental.
