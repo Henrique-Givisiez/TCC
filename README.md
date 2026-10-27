@@ -90,3 +90,14 @@ com grade decimal `[start,end)`, famílias network/service/infrastructure e labe
 separados. Use `python3 -m experiments.extract_features DATASET --validation-report
 REPORT --output FEATURE_DATASET --window-size-seconds 1`. Exige elegibilidade
 Stage 9 e verifica hashes dos inputs. Não aplica detectores ou tratamento estatístico.
+
+O [resumo offline de serviço](docs/service_summary.md) agrega `request_log.csv`
+por execução, classe e fase, separando inícios, términos e durações por coorte.
+O [plano documental de DEVELOPMENT](experiments/protocols/development_service_plan_20261027.json)
+e suas [decisões pendentes](docs/development_service_pending_20261027.md) preparam
+a nova campanha, sem configurações executáveis ou liberação de experimentos.
+
+A [variante CUSUM com congelamento](docs/cusum_freeze.md) mantém candidato,
+decisão e atualização de estado vinculados ao mesmo limiar explícito. Possui
+validação sintética e adaptador DEVELOPMENT próprios; a
+[calibração científica permanece pendente](docs/cusum_freeze_calibration_pending.md).
