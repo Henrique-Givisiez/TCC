@@ -6,7 +6,7 @@ from experiments import development_d1_ops as ops
 from experiments.development_d2 import validate_plan
 
 
-MANIFEST = ops.ROOT / "experiments/protocols/development_d2_endpoint_comparison_20261027/manifest.json"
+MANIFEST = ops.ROOT / "experiments/protocols/development_d2_endpoint_comparison_20261027/manifest_v2.json"
 
 
 class D2PreparationTests(unittest.TestCase):
@@ -19,7 +19,12 @@ class D2PreparationTests(unittest.TestCase):
         self.assertFalse(result["experiments_executed"])
         plan = json.loads(MANIFEST.read_text())
         self.assertEqual([e["endpoint"] for e in plan["entries"][1:]],
-                         ["/light", "/medium", "/expensive", "/medium", "/expensive", "/light"])
+                         ["/light", "/medium", "/expensive", "/expensive", "/medium", "/light"])
+        self.assertEqual(plan["campaign_schema"], "development-endpoint-comparison/v2")
+        self.assertEqual(plan["provenance"]["parent_manifest_path"],
+                         "experiments/protocols/development_d2_endpoint_comparison_20261027/manifest.json")
+        self.assertTrue(all("parent_sha256" in x and "effective_sha256" in x
+                            for x in plan["provenance"]["source_hash_transitions"].values()))
         for endpoint in ("/light", "/medium", "/expensive"):
             pair = [e for e in plan["entries"][1:] if e["endpoint"] == endpoint]
             self.assertEqual(pair[0]["effective_configuration"]["seed"], plan["development_seeds"]["A"])

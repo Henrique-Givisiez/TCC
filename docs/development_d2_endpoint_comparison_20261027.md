@@ -1,7 +1,7 @@
 # DEVELOPMENT D2 — comparação exploratória de endpoints
 
 Estado: protocolo e configurações preparados offline; nenhum ensaio D2 executado.
-Autoridade: [manifesto D2](../experiments/protocols/development_d2_endpoint_comparison_20261027/manifest.json).
+Autoridade prospectiva: [manifesto D2 v2](../experiments/protocols/development_d2_endpoint_comparison_20261027/manifest_v2.json). A [v1 preservada](../experiments/protocols/development_d2_endpoint_comparison_20261027/manifest.json) mantém o vínculo histórico com `105cd72`; v2 registra o HEAD `9c31f4f` e hashes SHA-256 explícitos do código efetivo.
 
 ## Objetivo e evidência de D1
 
@@ -42,14 +42,13 @@ endpoints reservados.
 | 2 | `d2_A_light` | `/light` | A, seed A | 4 RPS | Comparação, ordem A |
 | 3 | `d2_A_medium` | `/medium` | A, seed A | 4 RPS | Comparação, ordem A |
 | 4 | `d2_A_expensive` | `/expensive` | A, seed A | 4 RPS | Comparação, ordem A |
-| 5 | `d2_B_medium` | `/medium` | B, seed B | 4 RPS | Comparação, ordem B |
-| 6 | `d2_B_expensive` | `/expensive` | B, seed B | 4 RPS | Comparação, ordem B |
+| 5 | `d2_B_expensive` | `/expensive` | B, seed B | 4 RPS | Comparação, ordem B |
+| 6 | `d2_B_medium` | `/medium` | B, seed B | 4 RPS | Comparação, ordem B |
 | 7 | `d2_B_light` | `/light` | B, seed B | 4 RPS | Comparação, ordem B |
 
-Os ciclos A (`light, medium, expensive`) e B (`medium, expensive, light`)
-invertem a ordem relativa de cada par de endpoints; cada endpoint ocupa
-posições distintas entre as repetições. Isso contrabalança ordem de forma
-parcial, mas não remove deriva ambiental, efeitos de período ou carryover.
+Os ciclos A (`light, medium, expensive`) e B (`expensive, medium, light`)
+invertem a precedência de cada par de endpoints. Isso muda a ordem comparativa,
+mas não elimina deriva ambiental, efeitos de período ou carryover.
 Dentro de cada repetição, o seed comum entre endpoints permite comparação
 pareada de agenda; não torna os traços temporais idênticos. O probe tem seed
 separado e não entra nas duas repetições finais.
@@ -140,7 +139,7 @@ Validação offline (não acessa Docker):
 
 ```bash
 .venv/bin/python -B -m experiments.development_d2 validate-plan \
-  --manifest experiments/protocols/development_d2_endpoint_comparison_20261027/manifest.json
+  --manifest experiments/protocols/development_d2_endpoint_comparison_20261027/manifest_v2.json
 ```
 
 Após autorização separada e decisão do probe, iniciar somente a entrada
@@ -148,16 +147,16 @@ individual. Exemplo para a primeira tentativa, sem batch:
 
 ```bash
 .venv/bin/python -B -m experiments.development_d1_ops \
-  --manifest experiments/protocols/development_d2_endpoint_comparison_20261027/manifest.json \
+  --manifest experiments/protocols/development_d2_endpoint_comparison_20261027/manifest_v2.json \
   preflight --entry d2_probe_expensive_4rps
 .venv/bin/python -B -m experiments.development_d1_ops \
-  --manifest experiments/protocols/development_d2_endpoint_comparison_20261027/manifest.json \
+  --manifest experiments/protocols/development_d2_endpoint_comparison_20261027/manifest_v2.json \
   run --entry d2_probe_expensive_4rps
 .venv/bin/python -B -m experiments.development_d1_ops \
-  --manifest experiments/protocols/development_d2_endpoint_comparison_20261027/manifest.json \
+  --manifest experiments/protocols/development_d2_endpoint_comparison_20261027/manifest_v2.json \
   postprocess --entry d2_probe_expensive_4rps
 .venv/bin/python -B -m experiments.development_d1_ops \
-  --manifest experiments/protocols/development_d2_endpoint_comparison_20261027/manifest.json \
+  --manifest experiments/protocols/development_d2_endpoint_comparison_20261027/manifest_v2.json \
   review --entry d2_probe_expensive_4rps
 ```
 
@@ -166,9 +165,14 @@ na ordem do manifesto. Após as seis revisões, gerar comparações com:
 
 ```bash
 .venv/bin/python -B -m experiments.development_d2_compare \
-  --manifest experiments/protocols/development_d2_endpoint_comparison_20261027/manifest.json
+  --manifest experiments/protocols/development_d2_endpoint_comparison_20261027/manifest_v2.json
 ```
 
-Nenhum desses comandos foi executado nesta preparação. D2 não inclui ataques,
+O preflight efetivamente tentou iniciar a sequência, mas não confirmou
+prontidão: o cliente Docker Python recebeu `PermissionError` no socket. A
+evidência foi preservada em `experiment_results/development-d2-endpoint-comparison-20261027/operations/d2_probe_expensive_4rps/preflight.json`;
+o probe não foi executado. A síntese da parada está em
+`experiment_results/development-d2-endpoint-comparison-20261027/analysis/d2_stop_synthesis.md`.
+D2 não inclui ataques,
 autoscaling, host adicional, RTT específico ou UDP; não usa detectores,
 calibração nem TEST.

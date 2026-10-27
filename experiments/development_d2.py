@@ -11,7 +11,9 @@ from pathlib import Path
 from simulator.experiment_config import ExperimentConfig
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_MANIFEST = ROOT / "experiments/protocols/development_d2_endpoint_comparison_20261027/manifest.json"
+DEFAULT_MANIFEST = ROOT / "experiments/protocols/development_d2_endpoint_comparison_20261027/manifest_v2.json"
+V1_SCHEMA = "development-endpoint-comparison/v1"
+V2_SCHEMA = "development-endpoint-comparison/v2"
 
 
 def sha(path):
@@ -25,7 +27,7 @@ def read(path):
 def validate_plan(manifest_path=DEFAULT_MANIFEST, *, check_outputs=True):
     manifest_path = Path(manifest_path)
     plan = read(manifest_path)
-    if plan.get("campaign_schema") != "development-endpoint-comparison/v1":
+    if plan.get("campaign_schema") not in {V1_SCHEMA, V2_SCHEMA}:
         raise ValueError("Unknown D2 protocol schema")
     head = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
     if head != plan["instrumentation_commit"]:
@@ -33,6 +35,24 @@ def validate_plan(manifest_path=DEFAULT_MANIFEST, *, check_outputs=True):
     for path, expected in plan["runtime_source_hashes"].items():
         if sha(ROOT / path) != expected:
             raise ValueError(f"Operational source changed: {path}")
+    if plan["campaign_schema"] == V2_SCHEMA:
+        provenance = plan["provenance"]
+        parent_path = ROOT / provenance["parent_manifest_path"]
+        if sha(parent_path) != provenance["parent_manifest_sha256"]:
+            raise ValueError("Parent D2 authority hash mismatch")
+        parent = read(parent_path)
+        if parent.get("campaign_schema") != V1_SCHEMA or provenance["parent_instrumentation_commit"] != parent["instrumentation_commit"]:
+            raise ValueError("D2 v2 parent provenance mismatch")
+        transitions = provenance["source_hash_transitions"]
+        if set(transitions) != set(plan["runtime_source_hashes"]) or set(transitions) != set(parent["runtime_source_hashes"]):
+            raise ValueError("D2 provenance source set differs")
+        for source, transition in transitions.items():
+            actual = sha(ROOT / source)
+            old = parent["runtime_source_hashes"][source]
+            if (transition.get("parent_sha256") != old or transition.get("effective_sha256") != actual
+                    or transition.get("effective_sha256") != plan["runtime_source_hashes"][source]
+                    or transition.get("changed") != (old != actual)):
+                raise ValueError(f"D2 source hash provenance mismatch: {source}")
     audit_path = ROOT / plan["seed_audit_path"]
     if sha(audit_path) != plan["seed_audit_sha256"]:
         raise ValueError("Seed audit hash mismatch")
@@ -83,10 +103,18 @@ def validate_plan(manifest_path=DEFAULT_MANIFEST, *, check_outputs=True):
         raise ValueError("D2 is not using the common 4 RPS candidate")
     if plan["probe"]["entry_id"] != plan["entries"][0]["id"] or plan["probe"]["retain_4rps"] is None or plan["probe"]["if_inadequate"] is None:
         raise ValueError("D2 probe gate or reduction rule is unspecified")
-    expected_ids = ["d2_probe_expensive_4rps", "d2_A_light", "d2_A_medium", "d2_A_expensive",
-                    "d2_B_medium", "d2_B_expensive", "d2_B_light"]
+    expected_ids = (["d2_probe_expensive_4rps", "d2_A_light", "d2_A_medium", "d2_A_expensive",
+                     "d2_B_expensive", "d2_B_medium", "d2_B_light"]
+                    if plan["campaign_schema"] == V2_SCHEMA else
+                    ["d2_probe_expensive_4rps", "d2_A_light", "d2_A_medium", "d2_A_expensive",
+                     "d2_B_medium", "d2_B_expensive", "d2_B_light"])
     if [entry["id"] for entry in plan["entries"]] != expected_ids:
         raise ValueError("D2 entry order changed")
+    expected_endpoints = (["/expensive", "/light", "/medium", "/expensive", "/expensive", "/medium", "/light"]
+                          if plan["campaign_schema"] == V2_SCHEMA else
+                          ["/expensive", "/light", "/medium", "/expensive", "/medium", "/expensive", "/light"])
+    if [entry["endpoint"] for entry in plan["entries"]] != expected_endpoints:
+        raise ValueError("D2 endpoint sequence differs from its versioned order")
     base_config = ExperimentConfig.load(ROOT / "experiments/configs/development_d1_20261027/d1_L01_A.json")
     fixed = replace(base_config, id="d2_fixed", seed=generated["PROBE"],
                     normal_traffic=replace(base_config.normal_traffic, endpoint="/medium"))
@@ -134,7 +162,7 @@ def validate_plan(manifest_path=DEFAULT_MANIFEST, *, check_outputs=True):
 def summarize(manifest_path, entry_id, destination):
     from experiments.development_d1 import summarize_entry
     plan = read(manifest_path)
-    if plan.get("campaign_schema") != "development-endpoint-comparison/v1":
+    if plan.get("campaign_schema") not in {V1_SCHEMA, V2_SCHEMA}:
         raise ValueError("Not a D2 endpoint comparison plan")
     return summarize_entry(manifest_path, entry_id, destination)
 

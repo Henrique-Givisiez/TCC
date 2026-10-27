@@ -183,7 +183,7 @@ def resolve_observation(raw, config):
 
 def summarize_entry(manifest_path, entry_id, destination):
     plan = json.loads(Path(manifest_path).read_text())
-    if plan.get('campaign_schema') == 'development-endpoint-comparison/v1':
+    if plan.get('campaign_schema') in {'development-endpoint-comparison/v1', 'development-endpoint-comparison/v2'}:
         if digest(ROOT / plan['d1_evidence']['synthesis_path']) != plan['d1_evidence']['synthesis_sha256']:
             raise ValueError('D2 DEVELOPMENT evidence hash mismatch')
         entry = next(e for e in plan['entries'] if e['id'] == entry_id)

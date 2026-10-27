@@ -105,7 +105,7 @@ service=dict(useful_interval_seconds=[30,150],exposure_seconds=120,nominal_rps_p
  success_fraction_per_started=success_ratio,failures_per_started=failure_ratio,success_duration_2xx_ms=measure['duration_success_2xx_ms'],
  terminal_successes_in_useful_phase=measure['end_outcomes']['success_2xx'],terminal_successes_per_second=success_throughput,cohort_successes_per_exposure_second=ratio(counts['success_2xx'],120),
  completed_cross_phase=measure['completed_cross_phase'],per_source=by_source,cohorts_30s=bins,late_starts=summary['d1_evidence']['starts_at_or_after_nominal_end'],reconciliation=summary['reconciliation'])
-if plan.get('campaign_schema')=='development-endpoint-comparison/v1':
+if plan.get('campaign_schema') in {'development-endpoint-comparison/v1','development-endpoint-comparison/v2'}:
  cutoff=max(D(str(c['elapsed_seconds'])) for c in summary['d1_evidence']['closures'])
  inflight=[]
  for index,binrow in enumerate(bins):
@@ -175,7 +175,7 @@ criterion('image_code_ready',pre_match,dict(files_checked=len(preflight['checks'
 criterion('journal_csv_status_outcome_duration_origin',sets_match and not mismatches,correspondence,'all compared fields and origin identities agree','technical')
 closed_ok=len(closures)==4 and all(c['drained'] and c['logger_complete'] for c in closures) and all(s['sequence_ok'] and s['identity_ok'] and s['closure_count']==1 and s['final_status']['drained'] and s['final_status']['logger_complete'] and not s['inventory_final']['forced'] and s['inventory_final']['exit_code']==0 for s in source_invariants)
 criterion('four_source_closed_and_drain',closed_ok,dict(closures=closures,evidence=summary['d1_evidence']),'four observed complete closures; no forced termination','technical')
-if plan.get('campaign_schema')=='development-endpoint-comparison/v1':
+if plan.get('campaign_schema') in {'development-endpoint-comparison/v1','development-endpoint-comparison/v2'}:
  drain=D(str(summary['d1_evidence']['observed_drain_seconds']))
  criterion('drain_budget',D(0)<=drain<=D(30),drain,'observed drain from nominal 150s through <=180s; no invented cutoff','technical')
 criterion('aggregate_start_adherence',adherence is not None and D('.8')<=adherence<=D('1.2'),adherence,[.8,1.2],'generator')
@@ -188,7 +188,7 @@ criterion('no_incomplete_open_cohort',measure['cohort_open_as_of']==0 and measur
 criterion('no_other_response',counts['other_response']==0 and all(r['outcome']!='response' or 200<=int(r['http_status'])<300 for r in requests),counts['other_response'],'zero; response is not automatically2xx','service')
 criterion('terminal_success_throughput',success_throughput is not None and ratio(success_throughput,offered)>=D('.8'),dict(successes_per_second=success_throughput,over_nominal=ratio(success_throughput,offered)),f">=0.8 of{offered}RPS; ends grouped by end",'service')
 p95=measure['duration_success_2xx_ms']['p95']
-if plan.get('campaign_schema')!='development-endpoint-comparison/v1':
+if plan.get('campaign_schema') not in {'development-endpoint-comparison/v1','development-endpoint-comparison/v2'}:
  reference_path=BASE/'analysis/d1_L01_reference.json'
  reference=read(reference_path)
  assert reference['p95_ref_ms']=='56.79376310008592650' and reference['next_levels_duration_limit_ms']=='250'
@@ -212,7 +212,7 @@ cleanup['preexisting_stopped_containers_preserved']=prior_states_preserved
 cleanup['new_containers_remaining']=new_containers
 criterion('cleanup',cleanup['no_active_containers'] and cleanup['no_scientific_processes'] and not new_containers and prior_states_preserved and cleanup['port_check_returncode']==0 and len(cleanup['port_8080'].strip().splitlines())==1,cleanup,'current-run containers removed; preexisting stopped containers preserved; no experiment processes or8080 listener','technical')
 criterion('postprocess_commands',all(c['returncode']==0 for c in post),post,'validation and summary commands exit0; no retry','technical')
-if plan.get('campaign_schema')=='development-endpoint-comparison/v1' and entry.get('role')=='capacity_probe':
+if plan.get('campaign_schema') in {'development-endpoint-comparison/v1','development-endpoint-comparison/v2'} and entry.get('role')=='capacity_probe':
  first_in,last_in=service['mean_inflight_requests_by_30s'][0],service['mean_inflight_requests_by_30s'][-1]
  first_open=D(first_in['mean_open_requests']);last_open=D(last_in['mean_open_requests'])
  inflight_rise=last_open>=max(first_open*D(2),first_open+D('.5'))
