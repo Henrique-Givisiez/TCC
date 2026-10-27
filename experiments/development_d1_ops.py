@@ -31,7 +31,8 @@ from pathlib import Path
 ROOT = Path.cwd()
 BASE = ROOT / "experiment_results/development-d1-20261027"
 MANIFEST = ROOT / "experiments/protocols/development_d1_20261027/manifest.json"
-CONTINUATION = ROOT / "experiments/protocols/development_d1_20261027/continuation_capturefix_v1.json"
+CONTINUATION_V1 = ROOT / "experiments/protocols/development_d1_20261027/continuation_capturefix_v1.json"
+CONTINUATION = ROOT / "experiments/protocols/development_d1_20261027/continuation_capturefix_v2.json"
 ACTIVE_MANIFEST = MANIFEST
 EXPECTED_HEAD = "20bfd3fb66a6c3fe51a1fad9f11455a85dee8412"
 
@@ -57,6 +58,68 @@ def put(path, obj):
 def get_plan():
     plan = read(ACTIVE_MANIFEST)
     if ACTIVE_MANIFEST == CONTINUATION:
+        parent_path = ROOT / plan["parent_manifest_path"]
+        parent = read(parent_path)
+        if sha(parent_path) != plan["parent_manifest_sha256"]:
+            raise ValueError("Parent continuation manifest hash mismatch")
+        if sha(ROOT / plan["diagnosis_path"]) != plan["diagnosis_sha256"]:
+            raise ValueError("Capture diagnosis hash mismatch")
+        current_head = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
+        if current_head != plan["instrumentation_commit"]:
+            raise ValueError("Current HEAD differs from continuation's recorded instrumentation commit")
+        if plan.get("maximum_attempts") != 11:
+            raise ValueError("Unexpected continuation attempt budget")
+        for path, expected in plan["runtime_source_hashes"].items():
+            if sha(ROOT / path) != expected:
+                raise ValueError(f"Continuation code hash mismatch: {path}")
+        entries = plan["entries"]
+        if [e["id"] for e in entries] != ["d1_L04_B_CF1", "d1_L04_A", "d1_L05_A", "d1_L05_B"]:
+            raise ValueError("Continuation entries or order changed")
+        if plan["pairing"]["L04"] != {"A": "d1_L04_A", "B": "d1_L04_B_CF1", "excluded_historical_attempt": "d1_L04_B"}:
+            raise ValueError("L04 pair does not bind the accepted replacement B")
+        base = read(MANIFEST)
+        v1_path = ROOT / plan["parent_manifest_path"]
+        if v1_path != CONTINUATION_V1 or parent.get("continuation_schema") != "development-d1-continuation/v1":
+            raise ValueError("Unexpected parent continuation")
+        for entry in entries:
+            if sha(ROOT / entry["config"]) != entry["config_sha256"]:
+                raise ValueError(f"Configuration hash mismatch: {entry['id']}")
+            cfg = read(ROOT / entry["config"])
+            if cfg != entry["effective_configuration"]:
+                raise ValueError(f"Effective configuration mismatch: {entry['id']}")
+            from simulator.experiment_config import ExperimentConfig
+            ExperimentConfig.load(ROOT / entry["config"])
+            if entry["id"] == "d1_L04_B_CF1":
+                old = find_entry(base, "d1_L04_B")["effective_configuration"]
+                if {**old, "id": cfg["id"]} != cfg or cfg["seed"] != 3803721254044484793:
+                    raise ValueError("Accepted L04/B representative changed beyond its new ID/seed")
+            else:
+                historical = find_entry(base, entry["id"])
+                if historical["config_sha256"] != entry["config_sha256"] or historical["effective_configuration"] != cfg:
+                    raise ValueError(f"Historical config/seed changed: {entry['id']}")
+        old_failure = read(BASE / "analysis/d1_L04_B-review.json")
+        if old_failure["decision"].get("d1_L04_B_all_criteria_pass") is not False:
+            raise ValueError("Original L04/B technical failure was reclassified")
+        accepted_b = read(BASE / "analysis/d1_L04_B_CF1-review.json")
+        if accepted_b["authority"]["manifest_sha256"] != plan["representative_b"]["manifest_sha256"]:
+            raise ValueError("L04/B representative review manifest binding changed")
+        if sha(BASE / "analysis/d1_L04_B_CF1-review.json") != plan["representative_b"]["review_sha256"]:
+            raise ValueError("L04/B representative review hash mismatch")
+        if not all(c["passed"] for c in accepted_b["criteria"]):
+            raise ValueError("L04/B representative review is no longer accepted")
+        reference = read(BASE / "analysis/d1_L01_reference.json")
+        if reference["p95_ref_ms"] != plan["fixed_reference"]["p95_ref_ms"] or reference["next_levels_duration_limit_ms"] != plan["fixed_reference"]["progression_limit_ms"]:
+            raise ValueError("Fixed L01 reference changed")
+        ids = [e["id"] for e in entries]
+        paths = [str(path) for e in entries for path in entry_paths(e).values()]
+        if len(paths) != len(set(paths)):
+            raise ValueError("Continuation output paths collide")
+        if not all(e["outputs"]["raw"].endswith(e["id"]) for e in entries):
+            raise ValueError("Entry output identities do not match IDs")
+        return plan, {"manifest_sha256": sha(CONTINUATION), "parent_manifest_sha256": sha(parent_path),
+                      "instrumentation_commit": current_head, "bound_parent": True, "entry_ids": ids,
+                      "accepted_representative_b": True, "historical_failure_preserved": True}
+    if ACTIVE_MANIFEST == CONTINUATION_V1:
         parent = read(MANIFEST)
         if sha(MANIFEST) != plan["parent_manifest_sha256"]:
             raise ValueError("Parent manifest hash mismatch")
@@ -102,7 +165,7 @@ def entry_paths(entry):
 def check_predecessors(plan, index):
     """Require the ordered predecessor and, at level changes, its accepted pair."""
     entry = plan["entries"][index]
-    if ACTIVE_MANIFEST == CONTINUATION and entry_id_is_replacement(entry):
+    if ACTIVE_MANIFEST == CONTINUATION_V1 and entry_id_is_replacement(entry):
         prior = BASE / "analysis/d1_completed_runs_through_L04B_attempt.json"
         if not prior.is_file():
             raise ValueError("Missing historical completed-runs evidence")
@@ -133,6 +196,12 @@ def check_predecessors(plan, index):
 
 def entry_id_is_replacement(entry):
     return entry.get("replacement_of") == "d1_L04_B"
+
+
+def target_commit(plan):
+    if plan.get("continuation_schema") == "development-d1-continuation/v2":
+        return plan["instrumentation_commit"]
+    return EXPECTED_HEAD
 
 
 def prior_snapshot(ops):
@@ -177,13 +246,13 @@ def preflight(entry_id):
     put(ops / "previous_hashes.json", previous_files)
     put(ops / "preparation.json", {"entry": entry_id, "observed_utc": now(), "previous_file_count": len(previous_files)})
     report = {"started_utc": now(), "scope": "Readiness only; no scientific request generation", "approved_entry": entry_id,
-              "approved_commit": EXPECTED_HEAD, "checks": {"plan": plan_validation,
+              "approved_commit": target_commit(plan), "checks": {"plan": plan_validation,
               "outputs_absent": {key: not path.exists() for key, path in outputs.items()},
               "predecessors": predecessor_evidence,
               "service_reference": {"path": str(reference_path.relative_to(ROOT)), "sha256": sha(reference_path),
                   "p95_ref_ms": reference["p95_ref_ms"], "limit_ms": reference["next_levels_duration_limit_ms"]}}}
     recovery_entry = plan["entries"][index - 1] if index else None
-    if ACTIVE_MANIFEST == CONTINUATION and entry_id_is_replacement(entry):
+    if ACTIVE_MANIFEST == CONTINUATION_V1 and entry_id_is_replacement(entry):
         recovery_entry = find_entry(read(MANIFEST), "d1_L04_B")
     if recovery_entry:
         previous_review = read(ROOT / recovery_entry["outputs"]["review"])
@@ -201,8 +270,8 @@ def preflight(entry_id):
             raise ValueError("Prior evidence changed after snapshot")
         head = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
         report["checks"]["head"] = head
-        if head != EXPECTED_HEAD:
-            raise ValueError(f"Expected checkout {EXPECTED_HEAD}, got {head}")
+        if head != target_commit(plan):
+            raise ValueError(f"Expected checkout {target_commit(plan)}, got {head}")
         report["checks"]["git_status"] = subprocess.check_output(["git", "status", "--short"], text=True)
         cfg = ROOT / entry["config"]
         report["checks"]["config_sha256"] = sha(cfg)
@@ -300,7 +369,7 @@ def run_entry(entry_id):
     index = plan["entries"].index(entry)
     ops = BASE / "operations" / entry_id
     ready = read(ops / "preflight.json")
-    if not ready.get("ready") or ready["approved_commit"] != EXPECTED_HEAD:
+    if not ready.get("ready") or ready["approved_commit"] != target_commit(plan):
         raise RuntimeError("No successful matching preflight")
     current_tool_hashes = {path: sha(ROOT / path) for path in ready["checks"].get("operational_code_sha256", {})}
     if current_tool_hashes != ready["checks"].get("operational_code_sha256", {}):
@@ -316,7 +385,7 @@ def run_entry(entry_id):
     if (ops / "attempt.json").exists():
         raise RuntimeError("Attempt record exists; retries are forbidden")
     previous = plan["entries"][index - 1] if index else None
-    if ACTIVE_MANIFEST == CONTINUATION and entry_id_is_replacement(entry):
+    if ACTIVE_MANIFEST == CONTINUATION_V1 and entry_id_is_replacement(entry):
         previous = find_entry(read(MANIFEST), "d1_L04_B")
     if previous:
         prior_review = read(ROOT / previous["outputs"]["review"])
@@ -343,7 +412,7 @@ def run_entry(entry_id):
            "--output", entry["outputs"]["raw"], "--dataset-output", entry["outputs"]["dataset"]]
     put(ops / "attempt.json", {"command": cmd, "invoked_utc": now(), "invoked_epoch": time.time(),
         "attempt_number": 1, "automatic_retry": False, "authorization_scope": entry_id,
-        "manifest_sha256": sha(MANIFEST), "preflight_sha256": sha(ops / "preflight.json")})
+        "manifest_sha256": sha(ACTIVE_MANIFEST), "preflight_sha256": sha(ops / "preflight.json")})
     with (ops / "execution.log").open("x") as stream:
         started = time.monotonic()
         result = subprocess.run(cmd, stdout=stream, stderr=subprocess.STDOUT)
@@ -406,6 +475,7 @@ def pair_review(level, dry_run=False):
     entries = [e for e in plan["entries"] if e["level"] == number]
     if len(entries) != 2 or {e["replicate"] for e in entries} != {"A", "B"}:
         raise ValueError(f"Expected exactly A/B entries for L{number:02d}")
+    entries.sort(key=lambda e: e["replicate"])
     reviews = {e["id"]: read(ROOT / e["outputs"]["review"]) for e in entries}
     checks = {key: all(c["passed"] for c in value["criteria"]) for key, value in reviews.items()}
     accepted = all(checks.values())
@@ -491,7 +561,7 @@ def pair_review(level, dry_run=False):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--manifest", choices=(str(MANIFEST.relative_to(ROOT)), str(CONTINUATION.relative_to(ROOT))),
+    parser.add_argument("--manifest", choices=(str(MANIFEST.relative_to(ROOT)), str(CONTINUATION_V1.relative_to(ROOT)), str(CONTINUATION.relative_to(ROOT))),
                         default=str(MANIFEST.relative_to(ROOT)))
     sub = parser.add_subparsers(dest="action", required=True)
     for action in ("preflight", "run", "postprocess", "review"):

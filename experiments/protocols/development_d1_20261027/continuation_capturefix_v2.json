@@ -1,0 +1,444 @@
+{
+  "continuation_schema": "development-d1-continuation/v2",
+  "status": "prospective_resumable_D1_continuation",
+  "version": "capturefix-v2-remaining-L04-L05",
+  "parent_manifest_path": "experiments/protocols/development_d1_20261027/continuation_capturefix_v1.json",
+  "parent_manifest_sha256": "12b5100bf9b605b4152b00a4a180f506eedefae64f804d19d0383ac4ec5526cc",
+  "original_manifest_path": "experiments/protocols/development_d1_20261027/manifest.json",
+  "original_manifest_sha256": "a7cb013e7ca87fab5bc6342d269fe81c008216efcd4aff155ba368feac5202d9",
+  "diagnosis_path": "docs/d1_capture_failure_diagnosis_20261027.md",
+  "diagnosis_sha256": "c6b36a93a77dc3c385c40f080459562b5aba5f74d9ae61a5172c00aa6a60fd28",
+  "instrumentation_commit": "6b849d599dda6ed11ed8f3eeaaefb8a313216377",
+  "instrumentation_version": {
+    "implemented_in_commit": "capturefix commit recorded by instrumentation_commit",
+    "csv_capture_buffer_request_kib": 4096,
+    "capture_artifacts": "dedicated CSV/PCAP stderr and JSON lifecycle reports with argv, interface/filter, counters, exit code and host-observed lifecycle times",
+    "integrity": "both capturers require complete final counters, zero kernel drops and accepted exit; no relaxation",
+    "buffer_interpretation": "4096 KiB is requested; it is not proof of effective kernel allocation or prior bottleneck.",
+    "historical_CF1": "d1_L04_B_CF1 used the same prospective instrumentation; earlier runs retain their original instrumentation versions."
+  },
+  "representative_b": {
+    "entry_id": "d1_L04_B_CF1",
+    "review_path": "experiment_results/development-d1-20261027/analysis/d1_L04_B_CF1-review.json",
+    "review_sha256": "9e29cb3c26dd687290d2b646e93f97fc3dcb6365166b1d61d7adde6127164166",
+    "manifest_path": "experiments/protocols/development_d1_20261027/continuation_capturefix_v1.json",
+    "manifest_sha256": "12b5100bf9b605b4152b00a4a180f506eedefae64f804d19d0383ac4ec5526cc",
+    "config_path": "experiments/configs/development_d1_20261027/d1_L04_B_CF1.json",
+    "config_sha256": "a16b171b8b8e8f71c0b269cfd0f80365349214f5667444466896145884dfb8cb",
+    "accepted": true,
+    "pair_role": "B representative for L04; do not rerun."
+  },
+  "historical_failed_attempt": {
+    "entry_id": "d1_L04_B",
+    "review_path": "experiment_results/development-d1-20261027/analysis/d1_L04_B-review.json",
+    "review_sha256": "346bf65d87ec2967aa412e4ebd9c1aeab972ee5e343dfe1f650ef05f335330f8",
+    "classification": "technical_failure_ineligible",
+    "reason": "2 kernel drops recorded; retained unchanged and never treated as pair member."
+  },
+  "attempt_budget": {
+    "maximum_total_attempts": 11,
+    "accounting": "10 original ordered entries plus one authorized replacement attempt; failed attempts count. The accepted CF1 replacement consumes attempt 8; the three remaining runs bring total to 11.",
+    "remaining_authorized_entries": [
+      "d1_L04_A",
+      "d1_L05_A",
+      "d1_L05_B"
+    ]
+  },
+  "original_order": [
+    "d1_L01_A",
+    "d1_L01_B",
+    "d1_L02_B",
+    "d1_L02_A",
+    "d1_L03_A",
+    "d1_L03_B",
+    "d1_L04_B",
+    "d1_L04_A",
+    "d1_L05_A",
+    "d1_L05_B"
+  ],
+  "attempt_order": [
+    "d1_L01_A",
+    "d1_L01_B",
+    "d1_L02_B",
+    "d1_L02_A",
+    "d1_L03_A",
+    "d1_L03_B",
+    "d1_L04_B",
+    "d1_L04_B_CF1",
+    "d1_L04_A",
+    "d1_L05_A",
+    "d1_L05_B"
+  ],
+  "entries": [
+    {
+      "order": 7,
+      "id": "d1_L04_B_CF1",
+      "level": 4,
+      "replicate": "B",
+      "rps_per_client": 8,
+      "aggregate_rps": 32,
+      "config": "experiments/configs/development_d1_20261027/d1_L04_B_CF1.json",
+      "config_sha256": "a16b171b8b8e8f71c0b269cfd0f80365349214f5667444466896145884dfb8cb",
+      "effective_configuration": {
+        "id": "d1_L04_B_CF1",
+        "duration_seconds": 150,
+        "seed": 3803721254044484793,
+        "normal_traffic": {
+          "clients": 4,
+          "rate": 8,
+          "endpoint": "/medium",
+          "work_units": 10,
+          "sleep_seconds": 0.0,
+          "max_concurrent_sends": 64,
+          "request_timeout_seconds": 2
+        },
+        "attack": {
+          "enabled": false,
+          "profile": "continuous",
+          "attackers": 0,
+          "rate": 0,
+          "start_seconds": 0,
+          "duration_seconds": 0,
+          "endpoint": "/medium",
+          "work_units": 5000,
+          "sleep_seconds": 0.0,
+          "max_concurrent_sends": 64,
+          "request_timeout_seconds": 2.0,
+          "burst": null
+        },
+        "infrastructure": {
+          "initial_instances": 1,
+          "min_instances": 1,
+          "max_instances": 1,
+          "cost_per_instance_per_hour": 0.02
+        },
+        "autoscaler": {
+          "enabled": false,
+          "scale_up_threshold": 60.0,
+          "scale_down_threshold": 25.0,
+          "cooldown_seconds": 20
+        },
+        "server": {
+          "process_pool_workers": 2,
+          "default_work_units": 1000000,
+          "default_sleep_seconds": 0.0
+        },
+        "monitoring": {
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1,
+          "history_seconds": 30
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "prerequisites": [
+        "manual release of this single entry",
+        "prior entry reviewed",
+        "cleanup and 60s idle recorded"
+      ],
+      "outputs": {
+        "raw": "experiment_results/development-d1-20261027/raw/d1_L04_B_CF1",
+        "dataset": "experiment_results/development-d1-20261027/dataset/d1_L04_B_CF1",
+        "validation": "experiment_results/development-d1-20261027/analysis/d1_L04_B_CF1-validation.json",
+        "analysis": "experiment_results/development-d1-20261027/analysis/d1_L04_B_CF1",
+        "review": "experiment_results/development-d1-20261027/analysis/d1_L04_B_CF1-review.json"
+      },
+      "replacement_of": "d1_L04_B",
+      "replacement_reason": "Prospective capture lifecycle/stderr/statistics instrumentation; prior attempt retained as failed.",
+      "continuation_order": 8,
+      "representative_status": "accepted_pair_member_not_to_be_reexecuted"
+    },
+    {
+      "order": 8,
+      "id": "d1_L04_A",
+      "level": 4,
+      "replicate": "A",
+      "rps_per_client": 8,
+      "aggregate_rps": 32,
+      "config": "experiments/configs/development_d1_20261027/d1_L04_A.json",
+      "config_sha256": "2b6df03ace288adfc90f6bc75806ff41f9722f753f2c662b59915c4e1b9cc843",
+      "effective_configuration": {
+        "id": "d1_L04_A",
+        "duration_seconds": 150,
+        "seed": 2273943714116859802,
+        "normal_traffic": {
+          "clients": 4,
+          "rate": 8,
+          "endpoint": "/medium",
+          "work_units": 10,
+          "sleep_seconds": 0.0,
+          "max_concurrent_sends": 64,
+          "request_timeout_seconds": 2
+        },
+        "attack": {
+          "enabled": false,
+          "profile": "continuous",
+          "attackers": 0,
+          "rate": 0,
+          "start_seconds": 0,
+          "duration_seconds": 0,
+          "endpoint": "/medium",
+          "work_units": 5000,
+          "sleep_seconds": 0.0,
+          "max_concurrent_sends": 64,
+          "request_timeout_seconds": 2.0,
+          "burst": null
+        },
+        "infrastructure": {
+          "initial_instances": 1,
+          "min_instances": 1,
+          "max_instances": 1,
+          "cost_per_instance_per_hour": 0.02
+        },
+        "autoscaler": {
+          "enabled": false,
+          "scale_up_threshold": 60.0,
+          "scale_down_threshold": 25.0,
+          "cooldown_seconds": 20
+        },
+        "server": {
+          "process_pool_workers": 2,
+          "default_work_units": 1000000,
+          "default_sleep_seconds": 0.0
+        },
+        "monitoring": {
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1,
+          "history_seconds": 30
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "prerequisites": [
+        "manual release of this single entry",
+        "prior entry reviewed",
+        "cleanup and 60s idle recorded"
+      ],
+      "outputs": {
+        "raw": "experiment_results/development-d1-20261027/raw/d1_L04_A",
+        "dataset": "experiment_results/development-d1-20261027/dataset/d1_L04_A",
+        "validation": "experiment_results/development-d1-20261027/analysis/d1_L04_A-validation.json",
+        "analysis": "experiment_results/development-d1-20261027/analysis/d1_L04_A",
+        "review": "experiment_results/development-d1-20261027/analysis/d1_L04_A-review.json"
+      },
+      "continuation_order": 9
+    },
+    {
+      "order": 9,
+      "id": "d1_L05_A",
+      "level": 5,
+      "replicate": "A",
+      "rps_per_client": 16,
+      "aggregate_rps": 64,
+      "config": "experiments/configs/development_d1_20261027/d1_L05_A.json",
+      "config_sha256": "669609854dda6e19fb4c0158cc3d1d62b075b6ea36656a9cdd6ad8bad847eb5c",
+      "effective_configuration": {
+        "id": "d1_L05_A",
+        "duration_seconds": 150,
+        "seed": 2273943714116859802,
+        "normal_traffic": {
+          "clients": 4,
+          "rate": 16,
+          "endpoint": "/medium",
+          "work_units": 10,
+          "sleep_seconds": 0.0,
+          "max_concurrent_sends": 64,
+          "request_timeout_seconds": 2
+        },
+        "attack": {
+          "enabled": false,
+          "profile": "continuous",
+          "attackers": 0,
+          "rate": 0,
+          "start_seconds": 0,
+          "duration_seconds": 0,
+          "endpoint": "/medium",
+          "work_units": 5000,
+          "sleep_seconds": 0.0,
+          "max_concurrent_sends": 64,
+          "request_timeout_seconds": 2.0,
+          "burst": null
+        },
+        "infrastructure": {
+          "initial_instances": 1,
+          "min_instances": 1,
+          "max_instances": 1,
+          "cost_per_instance_per_hour": 0.02
+        },
+        "autoscaler": {
+          "enabled": false,
+          "scale_up_threshold": 60.0,
+          "scale_down_threshold": 25.0,
+          "cooldown_seconds": 20
+        },
+        "server": {
+          "process_pool_workers": 2,
+          "default_work_units": 1000000,
+          "default_sleep_seconds": 0.0
+        },
+        "monitoring": {
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1,
+          "history_seconds": 30
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "prerequisites": [
+        "manual release of this single entry",
+        "prior entry reviewed",
+        "cleanup and 60s idle recorded"
+      ],
+      "outputs": {
+        "raw": "experiment_results/development-d1-20261027/raw/d1_L05_A",
+        "dataset": "experiment_results/development-d1-20261027/dataset/d1_L05_A",
+        "validation": "experiment_results/development-d1-20261027/analysis/d1_L05_A-validation.json",
+        "analysis": "experiment_results/development-d1-20261027/analysis/d1_L05_A",
+        "review": "experiment_results/development-d1-20261027/analysis/d1_L05_A-review.json"
+      },
+      "continuation_order": 10
+    },
+    {
+      "order": 10,
+      "id": "d1_L05_B",
+      "level": 5,
+      "replicate": "B",
+      "rps_per_client": 16,
+      "aggregate_rps": 64,
+      "config": "experiments/configs/development_d1_20261027/d1_L05_B.json",
+      "config_sha256": "c2d59b75f80bcda316dfbdaff2900f40a91f4932ae9154824aac2b526c15c117",
+      "effective_configuration": {
+        "id": "d1_L05_B",
+        "duration_seconds": 150,
+        "seed": 3803721254044484793,
+        "normal_traffic": {
+          "clients": 4,
+          "rate": 16,
+          "endpoint": "/medium",
+          "work_units": 10,
+          "sleep_seconds": 0.0,
+          "max_concurrent_sends": 64,
+          "request_timeout_seconds": 2
+        },
+        "attack": {
+          "enabled": false,
+          "profile": "continuous",
+          "attackers": 0,
+          "rate": 0,
+          "start_seconds": 0,
+          "duration_seconds": 0,
+          "endpoint": "/medium",
+          "work_units": 5000,
+          "sleep_seconds": 0.0,
+          "max_concurrent_sends": 64,
+          "request_timeout_seconds": 2.0,
+          "burst": null
+        },
+        "infrastructure": {
+          "initial_instances": 1,
+          "min_instances": 1,
+          "max_instances": 1,
+          "cost_per_instance_per_hour": 0.02
+        },
+        "autoscaler": {
+          "enabled": false,
+          "scale_up_threshold": 60.0,
+          "scale_down_threshold": 25.0,
+          "cooldown_seconds": 20
+        },
+        "server": {
+          "process_pool_workers": 2,
+          "default_work_units": 1000000,
+          "default_sleep_seconds": 0.0
+        },
+        "monitoring": {
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1,
+          "history_seconds": 30
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "prerequisites": [
+        "manual release of this single entry",
+        "prior entry reviewed",
+        "cleanup and 60s idle recorded"
+      ],
+      "outputs": {
+        "raw": "experiment_results/development-d1-20261027/raw/d1_L05_B",
+        "dataset": "experiment_results/development-d1-20261027/dataset/d1_L05_B",
+        "validation": "experiment_results/development-d1-20261027/analysis/d1_L05_B-validation.json",
+        "analysis": "experiment_results/development-d1-20261027/analysis/d1_L05_B",
+        "review": "experiment_results/development-d1-20261027/analysis/d1_L05_B-review.json"
+      },
+      "continuation_order": 11
+    }
+  ],
+  "pairing": {
+    "L04": {
+      "A": "d1_L04_A",
+      "B": "d1_L04_B_CF1",
+      "excluded_historical_attempt": "d1_L04_B"
+    },
+    "L05": {
+      "A": "d1_L05_A",
+      "B": "d1_L05_B"
+    }
+  },
+  "fixed_reference": {
+    "path": "experiment_results/development-d1-20261027/analysis/d1_L01_reference.json",
+    "sha256": "b74d8240bfb4f2ad76ee208347a96b531bc417ff0a661411367b4e73c134bd26",
+    "p95_ref_ms": "56.79376310008592650",
+    "progression_limit_ms": "250",
+    "policy": "immutable L01 reference from original plan"
+  },
+  "criteria": {
+    "aggregate_start_ratio": [
+      0.8,
+      1.2
+    ],
+    "per_source_start_ratio": [
+      0.65,
+      1.35
+    ],
+    "minimum_known_success_2xx_support": 200,
+    "success_2xx_per_started_min": 0.99,
+    "failures_per_started_max": 0.01,
+    "incomplete_max": 0,
+    "other_response_max": 0,
+    "terminal_success_rps_over_nominal_min": 0.8,
+    "p95_limit_ms": "max(250,3*reference_p95_ms); 250 for first level",
+    "late_starts_limit": "max(4,0.01*all_starts); diagnostic of source queues, not causal attribution",
+    "within_run_trend": "Review four 30s bins; stop if success falls >=20% AND p95 doubles first-to-last, with >=50 successes in both bins; low support requires review",
+    "manual_capture_proxy_resource_review_required": true
+  },
+  "recovery_policy": "Verified cleanup, no experiment overlap, 60s idle minimum and fresh instances/readiness/warmup next run",
+  "execution_policy": "One entry at a time. Preflight must pass, outputs must be absent, minimum recovery must elapse, review must pass, and the L04/L05 pair review must pass before changing level. Stop immediately on any failure or interpretive result. No automatic retry.",
+  "runtime_source_hashes": {
+    "simulator/capture_lifecycle.py": "6f35fafc833ec06aa9c1e83b53d5771e8aaab7cf61a92ec64fb4861fb1df0387",
+    "simulator/capture_evidence.py": "a78a5a65141c7ebf683655b120ddbf6fb78d8dc42f34164ee12da2d5277d208a",
+    "simulator/tcpdump_sniffer.py": "266781c5e8b3d419e0083281103f3bf77979f95a45d17a07b2ec87ae90c8c1cc",
+    "simulator/source_experiment.py": "99494f5f5841b41b251c36a6851eec96547e4d2fc0591ed688e0a0ef430f6a11",
+    "experiments/development_d1_ops.py": "db610f1dd7e542b93ff7f803ae53347c4746db79a3cc75292af6afa8aff56d89",
+    "experiments/development_d1_review.py": "01b1cbc7811449226e4811bfeb63ba186375bda98dd57fd34389092481424cea",
+    "experiments/development_d1.py": "ba076639c7a06e0158924d3d46d0c6004a711f3975f5afd80582c74bc553a6ee",
+    "experiments/development_d1_synthesis.py": "cffcc70ddfb13b144753c38d79481e6bc29e07d6695f1e463e2c12842be98f24"
+  },
+  "maximum_attempts": 11
+}

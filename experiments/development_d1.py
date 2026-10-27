@@ -183,7 +183,7 @@ def resolve_observation(raw, config):
 
 def summarize_entry(manifest_path, entry_id, destination):
     plan = json.loads(Path(manifest_path).read_text())
-    if plan.get('continuation_schema') == 'development-d1-continuation/v1':
+    if plan.get('continuation_schema') in ('development-d1-continuation/v1', 'development-d1-continuation/v2'):
         parent = ROOT / plan['parent_manifest_path']
         if digest(parent) != plan['parent_manifest_sha256']:
             raise ValueError('Continuation parent manifest hash mismatch')

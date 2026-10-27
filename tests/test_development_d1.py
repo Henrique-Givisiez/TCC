@@ -15,7 +15,7 @@ MANIFEST = d1.ROOT / 'experiments/protocols/development_d1_20261027/manifest.jso
 
 
 class D1PreparationTests(unittest.TestCase):
-    def test_capturefix_continuation_binds_parent_failure_seed_and_new_paths(self):
+    def test_capturefix_v2_continuation_binds_parents_entries_and_pair_gate(self):
         from experiments import development_d1_ops as ops
         old_manifest = ops.ACTIVE_MANIFEST
         try:
@@ -24,12 +24,29 @@ class D1PreparationTests(unittest.TestCase):
             entry = ops.find_entry(plan, 'd1_L04_B_CF1')
             self.assertTrue(validation['bound_parent'])
             self.assertEqual(plan['maximum_attempts'], 11)
+            self.assertEqual([e['id'] for e in plan['entries']], ['d1_L04_B_CF1','d1_L04_A','d1_L05_A','d1_L05_B'])
             self.assertEqual(entry['effective_configuration']['seed'], 3803721254044484793)
             self.assertEqual(entry['replacement_of'], 'd1_L04_B')
             self.assertTrue(entry['outputs']['raw'].endswith('d1_L04_B_CF1'))
-            self.assertFalse((d1.ROOT / entry['outputs']['raw']).exists())
+            self.assertTrue((d1.ROOT / entry['outputs']['raw']).exists())
+            for future in plan['entries'][1:]:
+                self.assertFalse(any((d1.ROOT / path).exists() for path in future['outputs'].values()))
             self.assertFalse(json.loads((d1.ROOT / 'experiment_results/development-d1-20261027/analysis/d1_L04_B-review.json').read_text())
                              ['decision']['d1_L04_B_all_criteria_pass'])
+            evidence = ops.check_predecessors(plan, 1)
+            self.assertEqual(evidence[0]['entry'], 'd1_L04_B_CF1')
+            import tempfile
+            old_base = ops.BASE
+            try:
+                with tempfile.TemporaryDirectory() as temporary:
+                    ops.BASE = Path(temporary)
+                    previous = plan['entries'][1]
+                    previous['outputs']['review'] = str(Path(temporary) / 'L04_A-review.json')
+                    Path(previous['outputs']['review']).write_text(json.dumps({'criteria':[{'name':'ok','passed':True}]}))
+                    with self.assertRaisesRegex(ValueError, 'Missing accepted pair review'):
+                        ops.check_predecessors(plan, 2)
+            finally:
+                ops.BASE = old_base
         finally:
             ops.ACTIVE_MANIFEST = old_manifest
 
