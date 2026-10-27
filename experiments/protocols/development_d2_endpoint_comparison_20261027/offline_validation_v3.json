@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "manifest": "experiments/protocols/development_d2_endpoint_comparison_20261027/manifest_v3.json",
+  "manifest_sha256": "f980f7a120ac77841b55de634233a43e3a6017478c71e08d7767318d717a4d03",
+  "checkout_commit": "d84a70d03d39a63383266f3f77e30ef900f8a28b",
+  "validation": "passed; seven configs; six comparisons; one probe; reserved outputs absent; Docker not accessed",
+  "tests": {
+    "command": ".venv/bin/python -B -m unittest tests.test_development_d2 tests.test_development_d1",
+    "passed": 13,
+    "failed": 0,
+    "covers": [
+      "preserved failed readiness plus later successful fixture selection",
+      "explicit preflight ID selection",
+      "second experimental attempt refusal",
+      "later descendant commit with identical sources accepted",
+      "modified source rejected"
+    ]
+  },
+  "docker_access": "blocked in Codex execution context: CLI and Python SDK both EPERM on unix:///var/run/docker.sock; no Docker config or socket permissions changed",
+  "prior_failed_preflight_sha256": "05a510fca01ba74e04885fc35b49a9da16160fde93ef300e85c143fd76587f3b",
+  "experiments_executed": 0
+}

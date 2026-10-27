@@ -2,7 +2,7 @@
 
 Examples:
   python -m experiments.development_d1_ops preflight --entry d1_L03_A
-  python -m experiments.development_d1_ops run --entry d1_L03_A
+  python -m experiments.development_d1_ops run --entry d1_L03_A --preflight-id pf-0001
   python -m experiments.development_d1_ops postprocess --entry d1_L03_A
   python -m experiments.development_d1_ops review --entry d1_L03_A
   python -m experiments.development_d1_ops pair-review --level L03
@@ -20,6 +20,7 @@ import importlib.metadata
 import io
 import json
 import os
+import re
 import signal
 import socket
 import subprocess
@@ -34,7 +35,8 @@ MANIFEST = ROOT / "experiments/protocols/development_d1_20261027/manifest.json"
 CONTINUATION_V1 = ROOT / "experiments/protocols/development_d1_20261027/continuation_capturefix_v1.json"
 CONTINUATION = ROOT / "experiments/protocols/development_d1_20261027/continuation_capturefix_v2.json"
 D2_MANIFEST_V1 = ROOT / "experiments/protocols/development_d2_endpoint_comparison_20261027/manifest.json"
-D2_MANIFEST = ROOT / "experiments/protocols/development_d2_endpoint_comparison_20261027/manifest_v2.json"
+D2_MANIFEST_V2 = ROOT / "experiments/protocols/development_d2_endpoint_comparison_20261027/manifest_v2.json"
+D2_MANIFEST = ROOT / "experiments/protocols/development_d2_endpoint_comparison_20261027/manifest_v3.json"
 ACTIVE_MANIFEST = MANIFEST
 EXPECTED_HEAD = "20bfd3fb66a6c3fe51a1fad9f11455a85dee8412"
 
@@ -60,7 +62,7 @@ def put(path, obj):
 def get_plan():
     plan = read(ACTIVE_MANIFEST)
     global BASE
-    if plan.get("campaign_schema") in {"development-endpoint-comparison/v1", "development-endpoint-comparison/v2"}:
+    if plan.get("campaign_schema") in {"development-endpoint-comparison/v1", "development-endpoint-comparison/v2", "development-endpoint-comparison/v3"}:
         BASE = ROOT / plan["results_root"]
         from experiments.development_d2 import validate_plan
         validation = validate_plan(ACTIVE_MANIFEST, check_outputs=False)
@@ -207,9 +209,45 @@ def entry_id_is_replacement(entry):
 
 
 def target_commit(plan):
-    if plan.get("continuation_schema") == "development-d1-continuation/v2" or plan.get("campaign_schema") in {"development-endpoint-comparison/v1", "development-endpoint-comparison/v2"}:
+    if plan.get("continuation_schema") == "development-d1-continuation/v2" or plan.get("campaign_schema") in {"development-endpoint-comparison/v1", "development-endpoint-comparison/v2", "development-endpoint-comparison/v3"}:
         return plan["instrumentation_commit"]
     return EXPECTED_HEAD
+
+
+def preflight_records(entry_ops):
+    records = {}
+    legacy = entry_ops / "preflight.json"
+    if legacy.is_file():
+        records["pf-0001"] = legacy
+    for directory in entry_ops.glob("pf-[0-9][0-9][0-9][0-9]"):
+        report = directory / "report.json"
+        if report.is_file():
+            records[directory.name] = report
+    return records
+
+
+def resolve_preflight(entry_ops, preflight_id):
+    if not preflight_id or not re.fullmatch(r"pf-[0-9]{4}", preflight_id):
+        raise ValueError("Select an explicit preflight id (for example pf-0002)")
+    records = preflight_records(entry_ops)
+    if preflight_id not in records:
+        raise FileNotFoundError(f"No report for selected preflight {preflight_id}")
+    return records[preflight_id]
+
+
+def select_successful_preflight(entry_ops, preflight_id, entry_id, authority_sha256):
+    path = resolve_preflight(entry_ops, preflight_id)
+    report = read(path)
+    if (not report.get("ready") or report.get("preflight_id") != preflight_id
+            or report.get("approved_entry") != entry_id
+            or report.get("manifest_sha256") != authority_sha256):
+        raise RuntimeError("Selected preflight is not a successful match for this entry and authority")
+    return path, report
+
+
+def ensure_single_experimental_attempt(entry_ops):
+    if (entry_ops / "attempt.json").exists():
+        raise RuntimeError("Attempt record exists; retries are forbidden")
 
 
 def prior_snapshot(ops):
@@ -245,7 +283,7 @@ def preflight(entry_id):
         raise FileExistsError(f"Refusing existing entry outputs: {present}")
     predecessor_evidence = check_predecessors(plan, index)
     reference_path = BASE / "analysis/d1_L01_reference.json"
-    if plan.get("campaign_schema") in {"development-endpoint-comparison/v1", "development-endpoint-comparison/v2"}:
+    if plan.get("campaign_schema") in {"development-endpoint-comparison/v1", "development-endpoint-comparison/v2", "development-endpoint-comparison/v3"}:
         reference = None
         reference_evidence = None
     else:
@@ -254,36 +292,44 @@ def preflight(entry_id):
             raise ValueError("L01 service reference or progression ceiling changed")
         reference_evidence = {"path": str(reference_path.relative_to(ROOT)), "sha256": sha(reference_path),
             "p95_ref_ms": reference["p95_ref_ms"], "limit_ms": reference["next_levels_duration_limit_ms"]}
-    ops = BASE / "operations" / entry_id
-    ops.mkdir(parents=True, exist_ok=False)
+    entry_ops = BASE / "operations" / entry_id
+    entry_ops.mkdir(parents=True, exist_ok=True)
+    if (entry_ops / "attempt.json").exists():
+        raise RuntimeError("Experimental attempt already exists; no retry is permitted")
+    known = set(preflight_records(entry_ops)) | {p.name for p in entry_ops.glob("pf-[0-9][0-9][0-9][0-9]")}
+    number = max([int(re.search(r"[0-9]{4}$", item).group()) for item in known] or [0]) + 1
+    preflight_id = f"pf-{number:04d}"
+    ops = entry_ops / preflight_id
+    ops.mkdir(parents=False, exist_ok=False)
+    report_path = ops / "report.json"
     previous_files = prior_snapshot(ops)
     put(ops / "previous_hashes.json", previous_files)
-    put(ops / "preparation.json", {"entry": entry_id, "observed_utc": now(), "previous_file_count": len(previous_files)})
-    report = {"started_utc": now(), "scope": "Readiness only; no scientific request generation", "approved_entry": entry_id,
-              "approved_commit": target_commit(plan), "checks": {"plan": plan_validation,
+    put(ops / "preparation.json", {"entry": entry_id, "preflight_id": preflight_id, "observed_utc": now(), "previous_file_count": len(previous_files)})
+    report = {"preflight_id": preflight_id, "manifest_sha256": sha(ACTIVE_MANIFEST), "started_utc": now(), "scope": "Readiness only; no scientific request generation", "approved_entry": entry_id,
+              "approved_commit": target_commit(plan), "effective_checkout_commit": subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip(), "checks": {"plan": plan_validation,
               "outputs_absent": {key: not path.exists() for key, path in outputs.items()},
               "predecessors": predecessor_evidence,
               "service_reference": reference_evidence}}
     recovery_entry = plan["entries"][index - 1] if index else None
     if ACTIVE_MANIFEST == CONTINUATION_V1 and entry_id_is_replacement(entry):
         recovery_entry = find_entry(read(MANIFEST), "d1_L04_B")
-    if recovery_entry:
-        previous_review = read(ROOT / recovery_entry["outputs"]["review"])
-        idle = time.time() - previous_review["timing"]["cleanup_observation"]["epoch"]
-        report["checks"]["recovery"] = {"previous_entry": recovery_entry["id"],
-            "elapsed_seconds_at_preflight": idle, "minimum_seconds": 60, "passed": idle >= 60}
-        if idle < 60:
-            raise RuntimeError(f"Recovery interval not satisfied: {idle:.3f}s < 60s")
     clients = []
     created = []
     try:
+        if recovery_entry:
+            previous_review = read(ROOT / recovery_entry["outputs"]["review"])
+            idle = time.time() - previous_review["timing"]["cleanup_observation"]["epoch"]
+            report["checks"]["recovery"] = {"previous_entry": recovery_entry["id"],
+                "elapsed_seconds_at_preflight": idle, "minimum_seconds": 60, "passed": idle >= 60}
+            if idle < 60:
+                raise RuntimeError(f"Recovery interval not satisfied: {idle:.3f}s < 60s")
         if any(not value for value in report["checks"]["outputs_absent"].values()):
             raise ValueError("Selected entry output already exists")
         if any(sha(ROOT / path) != digest for path, digest in previous_files.items()):
             raise ValueError("Prior evidence changed after snapshot")
         head = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
         report["checks"]["head"] = head
-        if head != target_commit(plan):
+        if head != target_commit(plan) and plan.get("campaign_schema") not in {"development-endpoint-comparison/v1", "development-endpoint-comparison/v2", "development-endpoint-comparison/v3"}:
             raise ValueError(f"Expected checkout {target_commit(plan)}, got {head}")
         report["checks"]["git_status"] = subprocess.check_output(["git", "status", "--short"], text=True)
         cfg = ROOT / entry["config"]
@@ -357,6 +403,7 @@ def preflight(entry_id):
         if rc or "listening on" not in diagnostic:
             raise RuntimeError("Capture readiness failed")
         report["ready"] = True
+        report["report_path"] = str(report_path.relative_to(ROOT))
     except BaseException as exc:
         report["ready"] = False
         report["error"] = repr(exc)
@@ -372,18 +419,20 @@ def preflight(entry_id):
         if "client" in locals():
             client.close()
         report["finished_utc"] = now()
-        put(ops / "preflight.json", report)
-    print(json.dumps({"entry": entry_id, "ready": report.get("ready"), "report": str(ops / "preflight.json")}))
+        report["report_path"] = str(report_path.relative_to(ROOT))
+        put(report_path, report)
+    print(json.dumps({"entry": entry_id, "preflight_id": preflight_id, "ready": report.get("ready"), "report": str(report_path)}))
 
 
-def run_entry(entry_id):
+def run_entry(entry_id, preflight_id):
     plan, _ = get_plan()
     entry = find_entry(plan, entry_id)
     index = plan["entries"].index(entry)
-    ops = BASE / "operations" / entry_id
-    ready = read(ops / "preflight.json")
-    if not ready.get("ready") or ready["approved_commit"] != target_commit(plan):
-        raise RuntimeError("No successful matching preflight")
+    entry_ops = BASE / "operations" / entry_id
+    preflight_path, ready = select_successful_preflight(entry_ops, preflight_id, entry_id, sha(ACTIVE_MANIFEST))
+    if ready["approved_commit"] != target_commit(plan):
+        raise RuntimeError("Selected preflight code authority differs from this manifest")
+    ops = entry_ops / preflight_id
     current_tool_hashes = {path: sha(ROOT / path) for path in ready["checks"].get("operational_code_sha256", {})}
     if current_tool_hashes != ready["checks"].get("operational_code_sha256", {}):
         raise RuntimeError("Operational utility changed after preflight")
@@ -395,8 +444,7 @@ def run_entry(entry_id):
     changed = [p for p, digest in previous_files.items() if sha(ROOT / p) != digest]
     if changed:
         raise RuntimeError(f"Prior artifact hash mismatch: {changed[:5]}")
-    if (ops / "attempt.json").exists():
-        raise RuntimeError("Attempt record exists; retries are forbidden")
+    ensure_single_experimental_attempt(entry_ops)
     previous = plan["entries"][index - 1] if index else None
     if ACTIVE_MANIFEST == CONTINUATION_V1 and entry_id_is_replacement(entry):
         previous = find_entry(read(MANIFEST), "d1_L04_B")
@@ -423,15 +471,18 @@ def run_entry(entry_id):
         raise RuntimeError("Port 8080 is not free immediately before run") from exc
     cmd = [".venv/bin/python", "-B", "-m", "experiments.dataset_run", "--config", entry["config"],
            "--output", entry["outputs"]["raw"], "--dataset-output", entry["outputs"]["dataset"]]
-    put(ops / "attempt.json", {"command": cmd, "invoked_utc": now(), "invoked_epoch": time.time(),
+    put(entry_ops / "attempt.json", {"command": cmd, "invoked_utc": now(), "invoked_epoch": time.time(),
         "attempt_number": 1, "automatic_retry": False, "authorization_scope": entry_id,
-        "manifest_sha256": sha(ACTIVE_MANIFEST), "preflight_sha256": sha(ops / "preflight.json")})
-    with (ops / "execution.log").open("x") as stream:
+        "manifest_sha256": sha(ACTIVE_MANIFEST), "preflight_id": preflight_id,
+        "preflight_path": str(preflight_path.relative_to(ROOT)), "preflight_sha256": sha(preflight_path),
+        "effective_checkout_commit": subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip(),
+        "approved_source_hashes": current_tool_hashes})
+    with (entry_ops / "execution.log").open("x") as stream:
         started = time.monotonic()
         result = subprocess.run(cmd, stdout=stream, stderr=subprocess.STDOUT)
     execution = {"returncode": result.returncode, "command_return_observed_utc": now(),
                  "command_return_observed_epoch": time.time(), "wall_seconds": time.monotonic() - started}
-    put(ops / "execution_result.json", execution)
+    put(entry_ops / "execution_result.json", execution)
     client = docker.DockerClient(base_url=config.DOCKER_ENGINE_SOCKET)
     containers = [{"id": c.id, "name": c.name, "status": c.status} for c in client.containers.list(all=True)]
     port = subprocess.run(["ss", "-ltn", "sport = :8080"], text=True, capture_output=True)
@@ -439,7 +490,7 @@ def run_entry(entry_id):
                "matching_processes": process_rows(), "port_8080": port.stdout, "port_check_returncode": port.returncode,
                "no_active_containers": not any(c["status"] == "running" for c in containers)}
     cleanup["no_scientific_processes"] = not cleanup["matching_processes"]
-    put(ops / "cleanup_observation.json", cleanup)
+    put(entry_ops / "cleanup_observation.json", cleanup)
     client.close()
     print(json.dumps(execution))
     if result.returncode:
@@ -574,12 +625,14 @@ def pair_review(level, dry_run=False):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--manifest", choices=(str(MANIFEST.relative_to(ROOT)), str(CONTINUATION_V1.relative_to(ROOT)), str(CONTINUATION.relative_to(ROOT)), str(D2_MANIFEST_V1.relative_to(ROOT)), str(D2_MANIFEST.relative_to(ROOT))),
+    parser.add_argument("--manifest", choices=(str(MANIFEST.relative_to(ROOT)), str(CONTINUATION_V1.relative_to(ROOT)), str(CONTINUATION.relative_to(ROOT)), str(D2_MANIFEST_V1.relative_to(ROOT)), str(D2_MANIFEST_V2.relative_to(ROOT)), str(D2_MANIFEST.relative_to(ROOT))),
                         default=str(MANIFEST.relative_to(ROOT)))
     sub = parser.add_subparsers(dest="action", required=True)
     for action in ("preflight", "run", "postprocess", "review"):
         command = sub.add_parser(action)
         command.add_argument("--entry", required=True)
+        if action == "run":
+            command.add_argument("--preflight-id", required=True, help="Successful readiness report to bind to this one attempt")
     pair = sub.add_parser("pair-review")
     pair.add_argument("--level", required=True)
     pair.add_argument("--dry-run", action="store_true")
@@ -589,7 +642,7 @@ def main():
     if args.action == "preflight":
         preflight(args.entry)
     elif args.action == "run":
-        run_entry(args.entry)
+        run_entry(args.entry, args.preflight_id)
     elif args.action == "postprocess":
         postprocess(args.entry)
     elif args.action == "review":

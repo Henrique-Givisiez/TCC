@@ -11,9 +11,23 @@ from pathlib import Path
 from simulator.experiment_config import ExperimentConfig
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_MANIFEST = ROOT / "experiments/protocols/development_d2_endpoint_comparison_20261027/manifest_v2.json"
+DEFAULT_MANIFEST = ROOT / "experiments/protocols/development_d2_endpoint_comparison_20261027/manifest_v3.json"
 V1_SCHEMA = "development-endpoint-comparison/v1"
 V2_SCHEMA = "development-endpoint-comparison/v2"
+V3_SCHEMA = "development-endpoint-comparison/v3"
+
+
+def verify_approved_checkout(anchor_commit, checkout_commit, approved_hashes, actual_hashes, *, is_ancestor):
+    """Approve descendant commits only while the bound source set is byte-identical."""
+    if not is_ancestor:
+        raise ValueError("Checkout is not a descendant of the approved code anchor")
+    if set(approved_hashes) != set(actual_hashes):
+        raise ValueError("Approved source set differs from effective source set")
+    changed = [path for path, digest in approved_hashes.items() if actual_hashes[path] != digest]
+    if changed:
+        raise ValueError(f"Approved operational source changed: {changed}")
+    return {"approved_anchor_commit": anchor_commit, "effective_checkout_commit": checkout_commit,
+            "source_hashes": dict(actual_hashes), "source_tree_unchanged": True}
 
 
 def sha(path):
@@ -27,14 +41,43 @@ def read(path):
 def validate_plan(manifest_path=DEFAULT_MANIFEST, *, check_outputs=True):
     manifest_path = Path(manifest_path)
     plan = read(manifest_path)
-    if plan.get("campaign_schema") not in {V1_SCHEMA, V2_SCHEMA}:
+    if plan.get("campaign_schema") not in {V1_SCHEMA, V2_SCHEMA, V3_SCHEMA}:
         raise ValueError("Unknown D2 protocol schema")
     head = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
-    if head != plan["instrumentation_commit"]:
+    if plan["campaign_schema"] == V1_SCHEMA and head != plan["instrumentation_commit"]:
         raise ValueError(f"Expected instrumentation commit {plan['instrumentation_commit']}, got {head}")
+    anchor = plan.get("source_approval", {}).get("anchor_commit", plan["instrumentation_commit"])
+    ancestor = subprocess.run(["git", "merge-base", "--is-ancestor", anchor, head], cwd=ROOT).returncode == 0
     for path, expected in plan["runtime_source_hashes"].items():
         if sha(ROOT / path) != expected:
             raise ValueError(f"Operational source changed: {path}")
+    checkout_evidence = verify_approved_checkout(anchor, head, plan["runtime_source_hashes"],
+        {path: sha(ROOT / path) for path in plan["runtime_source_hashes"]}, is_ancestor=ancestor)
+    if plan["campaign_schema"] == V3_SCHEMA:
+        approval = plan["source_approval"]
+        if approval.get("anchor_commit") != plan["instrumentation_commit"]:
+            raise ValueError("D2 source approval anchor differs from instrumentation provenance")
+        if approval.get("source_hashes") != plan["runtime_source_hashes"]:
+            raise ValueError("Source approval hashes do not match operational hash authority")
+        diagnostic = ROOT / plan["docker_access_diagnosis"]["path"]
+        if sha(diagnostic) != plan["docker_access_diagnosis"]["sha256"]:
+            raise ValueError("Docker access diagnosis document hash mismatch")
+        provenance = plan["provenance"]
+        parent_path = ROOT / provenance["parent_manifest_path"]
+        if sha(parent_path) != provenance["parent_manifest_sha256"]:
+            raise ValueError("Parent D2 authority hash mismatch")
+        parent = read(parent_path)
+        if parent.get("campaign_schema") != V2_SCHEMA or provenance["parent_instrumentation_commit"] != parent["instrumentation_commit"]:
+            raise ValueError("D2 v3 parent provenance mismatch")
+        transitions = provenance["source_hash_transitions"]
+        if set(transitions) != set(plan["runtime_source_hashes"]) or set(transitions) != set(parent["runtime_source_hashes"]):
+            raise ValueError("D2 provenance source set differs")
+        for source, transition in transitions.items():
+            actual, old = sha(ROOT / source), parent["runtime_source_hashes"][source]
+            if (transition.get("parent_sha256") != old or transition.get("effective_sha256") != actual
+                    or transition.get("effective_sha256") != plan["runtime_source_hashes"][source]
+                    or transition.get("changed") != (old != actual)):
+                raise ValueError(f"D2 source hash provenance mismatch: {source}")
     if plan["campaign_schema"] == V2_SCHEMA:
         provenance = plan["provenance"]
         parent_path = ROOT / provenance["parent_manifest_path"]
@@ -103,15 +146,16 @@ def validate_plan(manifest_path=DEFAULT_MANIFEST, *, check_outputs=True):
         raise ValueError("D2 is not using the common 4 RPS candidate")
     if plan["probe"]["entry_id"] != plan["entries"][0]["id"] or plan["probe"]["retain_4rps"] is None or plan["probe"]["if_inadequate"] is None:
         raise ValueError("D2 probe gate or reduction rule is unspecified")
+    revised_order = plan["campaign_schema"] in {V2_SCHEMA, V3_SCHEMA}
     expected_ids = (["d2_probe_expensive_4rps", "d2_A_light", "d2_A_medium", "d2_A_expensive",
                      "d2_B_expensive", "d2_B_medium", "d2_B_light"]
-                    if plan["campaign_schema"] == V2_SCHEMA else
+                    if revised_order else
                     ["d2_probe_expensive_4rps", "d2_A_light", "d2_A_medium", "d2_A_expensive",
                      "d2_B_medium", "d2_B_expensive", "d2_B_light"])
     if [entry["id"] for entry in plan["entries"]] != expected_ids:
         raise ValueError("D2 entry order changed")
     expected_endpoints = (["/expensive", "/light", "/medium", "/expensive", "/expensive", "/medium", "/light"]
-                          if plan["campaign_schema"] == V2_SCHEMA else
+                          if revised_order else
                           ["/expensive", "/light", "/medium", "/expensive", "/medium", "/expensive", "/light"])
     if [entry["endpoint"] for entry in plan["entries"]] != expected_endpoints:
         raise ValueError("D2 endpoint sequence differs from its versioned order")
@@ -154,6 +198,7 @@ def validate_plan(manifest_path=DEFAULT_MANIFEST, *, check_outputs=True):
         if check_outputs and (ROOT / output).exists():
             raise FileExistsError(f"Comparison output already exists: {output}")
     return {"schema_version": 1, "manifest_sha256": sha(manifest_path), "instrumentation_commit": head,
+            "source_checkout": checkout_evidence,
             "configurations": len(plan["entries"]), "comparative_runs": 6, "probe_runs": 1,
             "seed_collisions": [], "outputs_absent": not any((ROOT / p).exists() for p in output_paths) if check_outputs else None,
             "docker_accessed": False, "experiments_executed": False}
@@ -162,7 +207,7 @@ def validate_plan(manifest_path=DEFAULT_MANIFEST, *, check_outputs=True):
 def summarize(manifest_path, entry_id, destination):
     from experiments.development_d1 import summarize_entry
     plan = read(manifest_path)
-    if plan.get("campaign_schema") not in {V1_SCHEMA, V2_SCHEMA}:
+    if plan.get("campaign_schema") not in {V1_SCHEMA, V2_SCHEMA, V3_SCHEMA}:
         raise ValueError("Not a D2 endpoint comparison plan")
     return summarize_entry(manifest_path, entry_id, destination)
 

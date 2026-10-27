@@ -1,0 +1,875 @@
+{
+  "campaign_schema": "development-endpoint-comparison/v3",
+  "status": "prepared_offline_not_executed",
+  "campaign_id": "development-d2-endpoint-comparison-20261027",
+  "partition": "DEVELOPMENT",
+  "instrumentation_commit": "d84a70d03d39a63383266f3f77e30ef900f8a28b",
+  "manifest_preservation": "New authority. The historical D1 manifest and both D1 continuation manifests remain unchanged.",
+  "results_root": "experiment_results/development-d2-endpoint-comparison-20261027",
+  "maximum_attempts": 7,
+  "attempt_budget": {
+    "probe": 1,
+    "comparative_runs": 6,
+    "retry": 0,
+    "nominal_seconds_per_attempt": 150,
+    "drain_budget_seconds": 30,
+    "minimum_recovery_seconds_between_attempts": 60,
+    "wall_budget_seconds_excluding_startup_preflight_interpretation": 1620
+  },
+  "d1_evidence": {
+    "synthesis_path": "experiment_results/development-d1-20261027/analysis/d1_final_synthesis_capturefix_v2.json",
+    "synthesis_sha256": "86e5066b5f3bf38c5cb5bbd7c1fa11f688afa6e450b97aacc881d926bafab788",
+    "files": [
+      {
+        "path": "experiment_results/development-d1-20261027/analysis/d1_L01_A-review.json",
+        "sha256": "6f4cb580302ee3be672534dae703882272fb233d46da9ad95c84adbda8f2f8bd"
+      },
+      {
+        "path": "experiment_results/development-d1-20261027/analysis/d1_L01_B-review.json",
+        "sha256": "cfb51c837be0d5a8c25682b7ddf7cca301860ada607f2487f62c99e81081d3a4"
+      },
+      {
+        "path": "experiment_results/development-d1-20261027/analysis/d1_L05_A-review.json",
+        "sha256": "9845a05db829cca623828337a0c13a4b5763f9c3ce86cc035f2dbba77a5179ef"
+      },
+      {
+        "path": "experiment_results/development-d1-20261027/analysis/d1_L05_B-review.json",
+        "sha256": "5982b0796b0b2a9e1853f3ac79d0a21ffd33300cc378d7e48d96be2f2a41f751"
+      },
+      {
+        "path": "experiment_results/development-d1-20261027/analysis/d1_final_synthesis_capturefix_v2.json",
+        "sha256": "86e5066b5f3bf38c5cb5bbd7c1fa11f688afa6e450b97aacc881d926bafab788"
+      }
+    ],
+    "interpretation": "D1 is DEVELOPMENT evidence: L01 /medium at 4 aggregate RPS achieved 96.5% and 102.1% adherence with 2xx responses and p95 about 56ms; L05 /medium at 64 RPS passed criteria but victim CPU mean was about 89\u201395%. This does not certify /expensive."
+  },
+  "fixed_configuration_template": {
+    "path": "experiments/configs/development_d1_20261027/d1_L01_A.json",
+    "sha256": "119da82aa3b9efcca81cd2db035ba7a75b2eab827a7ea8af8bf121c7e6c71978"
+  },
+  "seed_audit_path": "experiments/protocols/development_d2_endpoint_comparison_20261027/seed_audit.json",
+  "seed_audit_sha256": "ec984ac75050186d04c2baf8120d4c36bf7f99552624ea4adc43f3c5687d7c8e",
+  "seed_generation": {
+    "namespace": "development-d2-endpoint-comparison-20261027-v1",
+    "indices": {
+      "A": 0,
+      "B": 0,
+      "PROBE": 0
+    },
+    "method": "SHA256 UTF-8 namespace:label:index, first eight bytes unsigned big endian; collisions against audited historical and D1 seeds rejected."
+  },
+  "development_seeds": {
+    "A": 13280835547037124428,
+    "B": 15642065855960901168,
+    "PROBE": 5644129609849213637
+  },
+  "seed_pairing": "Within each replicate, use the same seed across all three endpoints (common random-number schedule). Probe seed is distinct and excluded from endpoint comparisons.",
+  "order": {
+    "probe": [
+      "/expensive"
+    ],
+    "A": [
+      "/light",
+      "/medium",
+      "/expensive"
+    ],
+    "B": [
+      "/expensive",
+      "/medium",
+      "/light"
+    ],
+    "rationale": "A light\u2192medium\u2192expensive; B expensive\u2192medium\u2192light inverte a preced\u00eancia de cada par, mas n\u00e3o elimina efeitos de per\u00edodo nem deriva ambiental."
+  },
+  "fixed_conditions": {
+    "victims": 1,
+    "proxy": "static",
+    "clients": 4,
+    "attack_enabled": false,
+    "autoscaler_enabled": false,
+    "aggregate_rps": 4,
+    "rps_per_client": 1,
+    "duration_seconds": 150,
+    "warmup_seconds": 30,
+    "useful_interval_seconds": [
+      30,
+      150
+    ],
+    "cohort_seconds": 30,
+    "cohorts": 4,
+    "drain": "At nominal 150s, drain to four observed source_closed records; use observed max elapsed as cutoff; source drain timeout 30s, no invented closure timestamp.",
+    "normal_traffic": {
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2
+    },
+    "attack": {
+      "enabled": false,
+      "profile": "continuous",
+      "attackers": 0,
+      "rate": 0,
+      "start_seconds": 0,
+      "duration_seconds": 0,
+      "endpoint": "/medium",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 1,
+      "history_seconds": 30
+    },
+    "load_balancer": {
+      "enabled": true
+    },
+    "traffic_sources": {
+      "execution": "containers"
+    }
+  },
+  "endpoint_work_units_from_server_code": {
+    "/light": 10000,
+    "/medium": 100000,
+    "/expensive": 1000000
+  },
+  "criteria": {
+    "aggregate_start_ratio": [
+      0.8,
+      1.2
+    ],
+    "per_source_start_ratio": [
+      0.65,
+      1.35
+    ],
+    "success_2xx_per_started_min": 0.99,
+    "failures_per_started_max": 0.01,
+    "incomplete_max": 0,
+    "other_response_max": 0,
+    "terminal_success_rps_over_nominal_min": 0.8,
+    "minimum_success_duration_support": 200,
+    "late_starts_max": "max(4,0.01*all_starts)",
+    "victim_monitor_support": "at least108/120 useful ticks; max supported gap5s",
+    "proxy_monitor_support": "at least90% of 120 expected slots per status/docker source; max success gap5s",
+    "capture": "CSV and PCAP each require complete final statistics exactly once, zero kernel drops, accepted process exit, separate stderr and lifecycle reports.",
+    "drain": "four source_closed, drained and logger_complete; no forced source termination; elapsed cutoff <=180s.",
+    "within_run_trend": "stop/gate if first and last bins each have at least50 2xx successes, terminal success rate falls>=20%, and p95 doubles.",
+    "p95_limit_ms": null,
+    "p95_interpretation": "Report mean/p50/p95 for known successful 2xx durations, grouped by start cohort. Descriptive; no inherited /medium absolute cap.",
+    "probe_mean_inflight": "Across useful 30s bins, fail adequacy when last-bin mean in-flight requests is >=2x first-bin and increases by >=0.5, with >=50 starts in boundary bins. This is client request concurrency, not directly measured server queue.",
+    "cpu": "Diagnostic only; high CPU alone does not reject a higher-cost endpoint.",
+    "no_retry": true
+  },
+  "probe": {
+    "entry_id": "d2_probe_expensive_4rps",
+    "purpose": "One attempt to test the candidate common rate before six comparisons.",
+    "budget": "One 150s nominal run plus at most30s drain, then60s recovery; no retry. Stop for technical failure or interpretation.",
+    "retain_4rps": "Only if capture/data integrity, generator/service/collection criteria and no request-concurrency accumulation all pass.",
+    "if_inadequate": "If technical integrity passes and generator adherence passes but service criteria or no-accumulation criteria fail, close this authority and prepare a new 2 aggregate RPS plan with new configs/seeds. Generator insufficiency, technical failure, or ambiguity stops for diagnosis; never reduce rate to mask it."
+  },
+  "pairing": {
+    "/light": {
+      "A": "d2_A_light",
+      "B": "d2_B_light"
+    },
+    "/medium": {
+      "A": "d2_A_medium",
+      "B": "d2_B_medium"
+    },
+    "/expensive": {
+      "A": "d2_A_expensive",
+      "B": "d2_B_expensive"
+    }
+  },
+  "entries": [
+    {
+      "order": 1,
+      "id": "d2_probe_expensive_4rps",
+      "level": 1,
+      "replicate": "PROBE",
+      "pair_key": null,
+      "role": "capacity_probe",
+      "endpoint": "/expensive",
+      "rps_per_client": 1,
+      "aggregate_rps": 4,
+      "duration_seconds": 150,
+      "config": "experiments/configs/development_d2_endpoint_comparison_20261027/d2_probe_expensive_4rps.json",
+      "config_sha256": "c3b4d5c0f342f84631cea3524662eea4b060bed3a432eadd740bc5204b57d53e",
+      "effective_configuration": {
+        "id": "d2_probe_expensive_4rps",
+        "duration_seconds": 150,
+        "seed": 5644129609849213637,
+        "normal_traffic": {
+          "clients": 4,
+          "rate": 1,
+          "endpoint": "/expensive",
+          "work_units": 10,
+          "sleep_seconds": 0.0,
+          "max_concurrent_sends": 64,
+          "request_timeout_seconds": 2
+        },
+        "attack": {
+          "enabled": false,
+          "profile": "continuous",
+          "attackers": 0,
+          "rate": 0,
+          "start_seconds": 0,
+          "duration_seconds": 0,
+          "endpoint": "/medium",
+          "work_units": 5000,
+          "sleep_seconds": 0.0,
+          "max_concurrent_sends": 64,
+          "request_timeout_seconds": 2.0,
+          "burst": null
+        },
+        "infrastructure": {
+          "initial_instances": 1,
+          "min_instances": 1,
+          "max_instances": 1,
+          "cost_per_instance_per_hour": 0.02
+        },
+        "autoscaler": {
+          "enabled": false,
+          "scale_up_threshold": 60.0,
+          "scale_down_threshold": 25.0,
+          "cooldown_seconds": 20
+        },
+        "server": {
+          "process_pool_workers": 2,
+          "default_work_units": 1000000,
+          "default_sleep_seconds": 0.0
+        },
+        "monitoring": {
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1,
+          "history_seconds": 30
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "outputs": {
+        "raw": "experiment_results/development-d2-endpoint-comparison-20261027/raw/d2_probe_expensive_4rps",
+        "dataset": "experiment_results/development-d2-endpoint-comparison-20261027/dataset/d2_probe_expensive_4rps",
+        "validation": "experiment_results/development-d2-endpoint-comparison-20261027/analysis/d2_probe_expensive_4rps-validation.json",
+        "analysis": "experiment_results/development-d2-endpoint-comparison-20261027/analysis/d2_probe_expensive_4rps",
+        "review": "experiment_results/development-d2-endpoint-comparison-20261027/analysis/d2_probe_expensive_4rps-review.json"
+      }
+    },
+    {
+      "order": 2,
+      "id": "d2_A_light",
+      "level": 1,
+      "replicate": "A",
+      "pair_key": "A",
+      "role": "comparative",
+      "endpoint": "/light",
+      "rps_per_client": 1,
+      "aggregate_rps": 4,
+      "duration_seconds": 150,
+      "config": "experiments/configs/development_d2_endpoint_comparison_20261027/d2_A_light.json",
+      "config_sha256": "4dbda0e7b2e48b7ed0643da5d13c961b61db73c2055024bc6d970c4e582903b4",
+      "effective_configuration": {
+        "id": "d2_A_light",
+        "duration_seconds": 150,
+        "seed": 13280835547037124428,
+        "normal_traffic": {
+          "clients": 4,
+          "rate": 1,
+          "endpoint": "/light",
+          "work_units": 10,
+          "sleep_seconds": 0.0,
+          "max_concurrent_sends": 64,
+          "request_timeout_seconds": 2
+        },
+        "attack": {
+          "enabled": false,
+          "profile": "continuous",
+          "attackers": 0,
+          "rate": 0,
+          "start_seconds": 0,
+          "duration_seconds": 0,
+          "endpoint": "/medium",
+          "work_units": 5000,
+          "sleep_seconds": 0.0,
+          "max_concurrent_sends": 64,
+          "request_timeout_seconds": 2.0,
+          "burst": null
+        },
+        "infrastructure": {
+          "initial_instances": 1,
+          "min_instances": 1,
+          "max_instances": 1,
+          "cost_per_instance_per_hour": 0.02
+        },
+        "autoscaler": {
+          "enabled": false,
+          "scale_up_threshold": 60.0,
+          "scale_down_threshold": 25.0,
+          "cooldown_seconds": 20
+        },
+        "server": {
+          "process_pool_workers": 2,
+          "default_work_units": 1000000,
+          "default_sleep_seconds": 0.0
+        },
+        "monitoring": {
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1,
+          "history_seconds": 30
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "outputs": {
+        "raw": "experiment_results/development-d2-endpoint-comparison-20261027/raw/d2_A_light",
+        "dataset": "experiment_results/development-d2-endpoint-comparison-20261027/dataset/d2_A_light",
+        "validation": "experiment_results/development-d2-endpoint-comparison-20261027/analysis/d2_A_light-validation.json",
+        "analysis": "experiment_results/development-d2-endpoint-comparison-20261027/analysis/d2_A_light",
+        "review": "experiment_results/development-d2-endpoint-comparison-20261027/analysis/d2_A_light-review.json"
+      }
+    },
+    {
+      "order": 3,
+      "id": "d2_A_medium",
+      "level": 1,
+      "replicate": "A",
+      "pair_key": "A",
+      "role": "comparative",
+      "endpoint": "/medium",
+      "rps_per_client": 1,
+      "aggregate_rps": 4,
+      "duration_seconds": 150,
+      "config": "experiments/configs/development_d2_endpoint_comparison_20261027/d2_A_medium.json",
+      "config_sha256": "8191515ae5fa5abb8ea8cd33b23afe5b85d9da6851a49f0d24dcc8e05074b3fa",
+      "effective_configuration": {
+        "id": "d2_A_medium",
+        "duration_seconds": 150,
+        "seed": 13280835547037124428,
+        "normal_traffic": {
+          "clients": 4,
+          "rate": 1,
+          "endpoint": "/medium",
+          "work_units": 10,
+          "sleep_seconds": 0.0,
+          "max_concurrent_sends": 64,
+          "request_timeout_seconds": 2
+        },
+        "attack": {
+          "enabled": false,
+          "profile": "continuous",
+          "attackers": 0,
+          "rate": 0,
+          "start_seconds": 0,
+          "duration_seconds": 0,
+          "endpoint": "/medium",
+          "work_units": 5000,
+          "sleep_seconds": 0.0,
+          "max_concurrent_sends": 64,
+          "request_timeout_seconds": 2.0,
+          "burst": null
+        },
+        "infrastructure": {
+          "initial_instances": 1,
+          "min_instances": 1,
+          "max_instances": 1,
+          "cost_per_instance_per_hour": 0.02
+        },
+        "autoscaler": {
+          "enabled": false,
+          "scale_up_threshold": 60.0,
+          "scale_down_threshold": 25.0,
+          "cooldown_seconds": 20
+        },
+        "server": {
+          "process_pool_workers": 2,
+          "default_work_units": 1000000,
+          "default_sleep_seconds": 0.0
+        },
+        "monitoring": {
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1,
+          "history_seconds": 30
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "outputs": {
+        "raw": "experiment_results/development-d2-endpoint-comparison-20261027/raw/d2_A_medium",
+        "dataset": "experiment_results/development-d2-endpoint-comparison-20261027/dataset/d2_A_medium",
+        "validation": "experiment_results/development-d2-endpoint-comparison-20261027/analysis/d2_A_medium-validation.json",
+        "analysis": "experiment_results/development-d2-endpoint-comparison-20261027/analysis/d2_A_medium",
+        "review": "experiment_results/development-d2-endpoint-comparison-20261027/analysis/d2_A_medium-review.json"
+      }
+    },
+    {
+      "order": 4,
+      "id": "d2_A_expensive",
+      "level": 1,
+      "replicate": "A",
+      "pair_key": "A",
+      "role": "comparative",
+      "endpoint": "/expensive",
+      "rps_per_client": 1,
+      "aggregate_rps": 4,
+      "duration_seconds": 150,
+      "config": "experiments/configs/development_d2_endpoint_comparison_20261027/d2_A_expensive.json",
+      "config_sha256": "3640d91d5a2c1c203370af7c8fa955b06b817c3cafb8947002e9d3983fcb3c99",
+      "effective_configuration": {
+        "id": "d2_A_expensive",
+        "duration_seconds": 150,
+        "seed": 13280835547037124428,
+        "normal_traffic": {
+          "clients": 4,
+          "rate": 1,
+          "endpoint": "/expensive",
+          "work_units": 10,
+          "sleep_seconds": 0.0,
+          "max_concurrent_sends": 64,
+          "request_timeout_seconds": 2
+        },
+        "attack": {
+          "enabled": false,
+          "profile": "continuous",
+          "attackers": 0,
+          "rate": 0,
+          "start_seconds": 0,
+          "duration_seconds": 0,
+          "endpoint": "/medium",
+          "work_units": 5000,
+          "sleep_seconds": 0.0,
+          "max_concurrent_sends": 64,
+          "request_timeout_seconds": 2.0,
+          "burst": null
+        },
+        "infrastructure": {
+          "initial_instances": 1,
+          "min_instances": 1,
+          "max_instances": 1,
+          "cost_per_instance_per_hour": 0.02
+        },
+        "autoscaler": {
+          "enabled": false,
+          "scale_up_threshold": 60.0,
+          "scale_down_threshold": 25.0,
+          "cooldown_seconds": 20
+        },
+        "server": {
+          "process_pool_workers": 2,
+          "default_work_units": 1000000,
+          "default_sleep_seconds": 0.0
+        },
+        "monitoring": {
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1,
+          "history_seconds": 30
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "outputs": {
+        "raw": "experiment_results/development-d2-endpoint-comparison-20261027/raw/d2_A_expensive",
+        "dataset": "experiment_results/development-d2-endpoint-comparison-20261027/dataset/d2_A_expensive",
+        "validation": "experiment_results/development-d2-endpoint-comparison-20261027/analysis/d2_A_expensive-validation.json",
+        "analysis": "experiment_results/development-d2-endpoint-comparison-20261027/analysis/d2_A_expensive",
+        "review": "experiment_results/development-d2-endpoint-comparison-20261027/analysis/d2_A_expensive-review.json"
+      }
+    },
+    {
+      "order": 5,
+      "id": "d2_B_expensive",
+      "level": 1,
+      "replicate": "B",
+      "pair_key": "B",
+      "role": "comparative",
+      "endpoint": "/expensive",
+      "rps_per_client": 1,
+      "aggregate_rps": 4,
+      "duration_seconds": 150,
+      "config": "experiments/configs/development_d2_endpoint_comparison_20261027/d2_B_expensive.json",
+      "config_sha256": "d2afd33ec82395f28b90972436bf4639bd60683b8fab1ed096ddaf22a7adf2f7",
+      "effective_configuration": {
+        "id": "d2_B_expensive",
+        "duration_seconds": 150,
+        "seed": 15642065855960901168,
+        "normal_traffic": {
+          "clients": 4,
+          "rate": 1,
+          "endpoint": "/expensive",
+          "work_units": 10,
+          "sleep_seconds": 0.0,
+          "max_concurrent_sends": 64,
+          "request_timeout_seconds": 2
+        },
+        "attack": {
+          "enabled": false,
+          "profile": "continuous",
+          "attackers": 0,
+          "rate": 0,
+          "start_seconds": 0,
+          "duration_seconds": 0,
+          "endpoint": "/medium",
+          "work_units": 5000,
+          "sleep_seconds": 0.0,
+          "max_concurrent_sends": 64,
+          "request_timeout_seconds": 2.0,
+          "burst": null
+        },
+        "infrastructure": {
+          "initial_instances": 1,
+          "min_instances": 1,
+          "max_instances": 1,
+          "cost_per_instance_per_hour": 0.02
+        },
+        "autoscaler": {
+          "enabled": false,
+          "scale_up_threshold": 60.0,
+          "scale_down_threshold": 25.0,
+          "cooldown_seconds": 20
+        },
+        "server": {
+          "process_pool_workers": 2,
+          "default_work_units": 1000000,
+          "default_sleep_seconds": 0.0
+        },
+        "monitoring": {
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1,
+          "history_seconds": 30
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "outputs": {
+        "raw": "experiment_results/development-d2-endpoint-comparison-20261027/raw/d2_B_expensive",
+        "dataset": "experiment_results/development-d2-endpoint-comparison-20261027/dataset/d2_B_expensive",
+        "validation": "experiment_results/development-d2-endpoint-comparison-20261027/analysis/d2_B_expensive-validation.json",
+        "analysis": "experiment_results/development-d2-endpoint-comparison-20261027/analysis/d2_B_expensive",
+        "review": "experiment_results/development-d2-endpoint-comparison-20261027/analysis/d2_B_expensive-review.json"
+      }
+    },
+    {
+      "order": 6,
+      "id": "d2_B_medium",
+      "level": 1,
+      "replicate": "B",
+      "pair_key": "B",
+      "role": "comparative",
+      "endpoint": "/medium",
+      "rps_per_client": 1,
+      "aggregate_rps": 4,
+      "duration_seconds": 150,
+      "config": "experiments/configs/development_d2_endpoint_comparison_20261027/d2_B_medium.json",
+      "config_sha256": "33a0b198b32d4f9d0bbc7e89c9fd80f411adc9afc1f8132b08c8b66fe09cb860",
+      "effective_configuration": {
+        "id": "d2_B_medium",
+        "duration_seconds": 150,
+        "seed": 15642065855960901168,
+        "normal_traffic": {
+          "clients": 4,
+          "rate": 1,
+          "endpoint": "/medium",
+          "work_units": 10,
+          "sleep_seconds": 0.0,
+          "max_concurrent_sends": 64,
+          "request_timeout_seconds": 2
+        },
+        "attack": {
+          "enabled": false,
+          "profile": "continuous",
+          "attackers": 0,
+          "rate": 0,
+          "start_seconds": 0,
+          "duration_seconds": 0,
+          "endpoint": "/medium",
+          "work_units": 5000,
+          "sleep_seconds": 0.0,
+          "max_concurrent_sends": 64,
+          "request_timeout_seconds": 2.0,
+          "burst": null
+        },
+        "infrastructure": {
+          "initial_instances": 1,
+          "min_instances": 1,
+          "max_instances": 1,
+          "cost_per_instance_per_hour": 0.02
+        },
+        "autoscaler": {
+          "enabled": false,
+          "scale_up_threshold": 60.0,
+          "scale_down_threshold": 25.0,
+          "cooldown_seconds": 20
+        },
+        "server": {
+          "process_pool_workers": 2,
+          "default_work_units": 1000000,
+          "default_sleep_seconds": 0.0
+        },
+        "monitoring": {
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1,
+          "history_seconds": 30
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "outputs": {
+        "raw": "experiment_results/development-d2-endpoint-comparison-20261027/raw/d2_B_medium",
+        "dataset": "experiment_results/development-d2-endpoint-comparison-20261027/dataset/d2_B_medium",
+        "validation": "experiment_results/development-d2-endpoint-comparison-20261027/analysis/d2_B_medium-validation.json",
+        "analysis": "experiment_results/development-d2-endpoint-comparison-20261027/analysis/d2_B_medium",
+        "review": "experiment_results/development-d2-endpoint-comparison-20261027/analysis/d2_B_medium-review.json"
+      }
+    },
+    {
+      "order": 7,
+      "id": "d2_B_light",
+      "level": 1,
+      "replicate": "B",
+      "pair_key": "B",
+      "role": "comparative",
+      "endpoint": "/light",
+      "rps_per_client": 1,
+      "aggregate_rps": 4,
+      "duration_seconds": 150,
+      "config": "experiments/configs/development_d2_endpoint_comparison_20261027/d2_B_light.json",
+      "config_sha256": "95b5d7ae90eb4db80504aae8192e4f4499366bb914d66b18962d30353950dcf7",
+      "effective_configuration": {
+        "id": "d2_B_light",
+        "duration_seconds": 150,
+        "seed": 15642065855960901168,
+        "normal_traffic": {
+          "clients": 4,
+          "rate": 1,
+          "endpoint": "/light",
+          "work_units": 10,
+          "sleep_seconds": 0.0,
+          "max_concurrent_sends": 64,
+          "request_timeout_seconds": 2
+        },
+        "attack": {
+          "enabled": false,
+          "profile": "continuous",
+          "attackers": 0,
+          "rate": 0,
+          "start_seconds": 0,
+          "duration_seconds": 0,
+          "endpoint": "/medium",
+          "work_units": 5000,
+          "sleep_seconds": 0.0,
+          "max_concurrent_sends": 64,
+          "request_timeout_seconds": 2.0,
+          "burst": null
+        },
+        "infrastructure": {
+          "initial_instances": 1,
+          "min_instances": 1,
+          "max_instances": 1,
+          "cost_per_instance_per_hour": 0.02
+        },
+        "autoscaler": {
+          "enabled": false,
+          "scale_up_threshold": 60.0,
+          "scale_down_threshold": 25.0,
+          "cooldown_seconds": 20
+        },
+        "server": {
+          "process_pool_workers": 2,
+          "default_work_units": 1000000,
+          "default_sleep_seconds": 0.0
+        },
+        "monitoring": {
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1,
+          "history_seconds": 30
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "outputs": {
+        "raw": "experiment_results/development-d2-endpoint-comparison-20261027/raw/d2_B_light",
+        "dataset": "experiment_results/development-d2-endpoint-comparison-20261027/dataset/d2_B_light",
+        "validation": "experiment_results/development-d2-endpoint-comparison-20261027/analysis/d2_B_light-validation.json",
+        "analysis": "experiment_results/development-d2-endpoint-comparison-20261027/analysis/d2_B_light",
+        "review": "experiment_results/development-d2-endpoint-comparison-20261027/analysis/d2_B_light-review.json"
+      }
+    }
+  ],
+  "comparison_outputs": {
+    "json": "experiment_results/development-d2-endpoint-comparison-20261027/analysis/d2_endpoint_comparison.json",
+    "markdown": "experiment_results/development-d2-endpoint-comparison-20261027/analysis/d2_endpoint_comparison.md"
+  },
+  "runtime_source_hashes": {
+    "simulator/app/simple_server.py": "0190f18db595ab8d0e99759a8b7c54c1191a01c96cff218a21bee22a8871629e",
+    "simulator/config.py": "c15f8181ced5053d00dc36504d71488884851b21980e2ad14dec8dd1672c8970",
+    "simulator/docker_manager.py": "91470811a84535ce489e2cc3255db401ab92e01c1ae0a2071f54dbf4ce9bfb06",
+    "simulator/experiment_config.py": "992290a03f7bfe8c4264abcd0cc59e6eb21e4f522a028d1a6b208006be9b21e4",
+    "simulator/capture_lifecycle.py": "6f35fafc833ec06aa9c1e83b53d5771e8aaab7cf61a92ec64fb4861fb1df0387",
+    "simulator/capture_evidence.py": "a78a5a65141c7ebf683655b120ddbf6fb78d8dc42f34164ee12da2d5277d208a",
+    "simulator/tcpdump_sniffer.py": "266781c5e8b3d419e0083281103f3bf77979f95a45d17a07b2ec87ae90c8c1cc",
+    "simulator/source_experiment.py": "99494f5f5841b41b251c36a6851eec96547e4d2fc0591ed688e0a0ef430f6a11",
+    "experiments/development_d1_ops.py": "cecff4599dc00ebe9b09b0c528b71bc74f525cbffc68ec08d28ba0f92bcbe092",
+    "experiments/development_d1_review.py": "0dbc14cd3e684613ecf0c6acfb2785c32b138899a40f570fb806e185c8835e27",
+    "experiments/development_d1.py": "1f232f4f315cc78a63e3bd5bab1af4423cc10b73a86be3dd58e1dcab15e5a102",
+    "experiments/development_d2.py": "66c190c85533f0659db188ceb4447e2736b08708cb59ad80c9cb00694dae319b",
+    "experiments/development_d2_compare.py": "e4dc321e8b46d47e0290b86d2c365a0116fd254207dea787cbfed9c580f24358",
+    "experiments/summarize_service.py": "ad65a55552b8c922dc42fa2bdd6359b3b49fa84b808813d43c50778ba17fcfa7",
+    "experiments/validate_dataset.py": "d339f46ae843b5d6b9ff5ee3c3ad8d1691d1af4eabf554659bf06473bd5fc68f"
+  },
+  "automatic_progression": false,
+  "no_detectors_calibration_test": true,
+  "authority_version": 3,
+  "provenance": {
+    "parent_manifest_path": "experiments/protocols/development_d2_endpoint_comparison_20261027/manifest_v2.json",
+    "parent_manifest_sha256": "17354916309adf8a1dc835632fd3d28023060808bde673725efef4da429fa1ee",
+    "parent_instrumentation_commit": "9c31f4f77d90bcba01c89a92ebaf8967fca7fb3b",
+    "source_hash_transitions": {
+      "simulator/app/simple_server.py": {
+        "parent_sha256": "0190f18db595ab8d0e99759a8b7c54c1191a01c96cff218a21bee22a8871629e",
+        "effective_sha256": "0190f18db595ab8d0e99759a8b7c54c1191a01c96cff218a21bee22a8871629e",
+        "changed": false
+      },
+      "simulator/config.py": {
+        "parent_sha256": "c15f8181ced5053d00dc36504d71488884851b21980e2ad14dec8dd1672c8970",
+        "effective_sha256": "c15f8181ced5053d00dc36504d71488884851b21980e2ad14dec8dd1672c8970",
+        "changed": false
+      },
+      "simulator/docker_manager.py": {
+        "parent_sha256": "91470811a84535ce489e2cc3255db401ab92e01c1ae0a2071f54dbf4ce9bfb06",
+        "effective_sha256": "91470811a84535ce489e2cc3255db401ab92e01c1ae0a2071f54dbf4ce9bfb06",
+        "changed": false
+      },
+      "simulator/experiment_config.py": {
+        "parent_sha256": "992290a03f7bfe8c4264abcd0cc59e6eb21e4f522a028d1a6b208006be9b21e4",
+        "effective_sha256": "992290a03f7bfe8c4264abcd0cc59e6eb21e4f522a028d1a6b208006be9b21e4",
+        "changed": false
+      },
+      "simulator/capture_lifecycle.py": {
+        "parent_sha256": "6f35fafc833ec06aa9c1e83b53d5771e8aaab7cf61a92ec64fb4861fb1df0387",
+        "effective_sha256": "6f35fafc833ec06aa9c1e83b53d5771e8aaab7cf61a92ec64fb4861fb1df0387",
+        "changed": false
+      },
+      "simulator/capture_evidence.py": {
+        "parent_sha256": "a78a5a65141c7ebf683655b120ddbf6fb78d8dc42f34164ee12da2d5277d208a",
+        "effective_sha256": "a78a5a65141c7ebf683655b120ddbf6fb78d8dc42f34164ee12da2d5277d208a",
+        "changed": false
+      },
+      "simulator/tcpdump_sniffer.py": {
+        "parent_sha256": "266781c5e8b3d419e0083281103f3bf77979f95a45d17a07b2ec87ae90c8c1cc",
+        "effective_sha256": "266781c5e8b3d419e0083281103f3bf77979f95a45d17a07b2ec87ae90c8c1cc",
+        "changed": false
+      },
+      "simulator/source_experiment.py": {
+        "parent_sha256": "99494f5f5841b41b251c36a6851eec96547e4d2fc0591ed688e0a0ef430f6a11",
+        "effective_sha256": "99494f5f5841b41b251c36a6851eec96547e4d2fc0591ed688e0a0ef430f6a11",
+        "changed": false
+      },
+      "experiments/development_d1_ops.py": {
+        "parent_sha256": "2d457c986d4613e1bce652ef040285f3a00bed5029691c57b236ae8fd7b22d42",
+        "effective_sha256": "cecff4599dc00ebe9b09b0c528b71bc74f525cbffc68ec08d28ba0f92bcbe092",
+        "changed": true
+      },
+      "experiments/development_d1_review.py": {
+        "parent_sha256": "0bd75aa73c5eb174b2e1c765911b296a21a1d7f6cb326b39457255ca4f14b7a8",
+        "effective_sha256": "0dbc14cd3e684613ecf0c6acfb2785c32b138899a40f570fb806e185c8835e27",
+        "changed": true
+      },
+      "experiments/development_d1.py": {
+        "parent_sha256": "8947f5d383e16ef7845868d2a470ca1a39bfdcd60360d07b66eae981ac5dc1b3",
+        "effective_sha256": "1f232f4f315cc78a63e3bd5bab1af4423cc10b73a86be3dd58e1dcab15e5a102",
+        "changed": true
+      },
+      "experiments/development_d2.py": {
+        "parent_sha256": "a701b35b551d061eb2e3d1c7c413a5a26c5172ac82fcbdb38239974224ca8eca",
+        "effective_sha256": "66c190c85533f0659db188ceb4447e2736b08708cb59ad80c9cb00694dae319b",
+        "changed": true
+      },
+      "experiments/development_d2_compare.py": {
+        "parent_sha256": "e4dc321e8b46d47e0290b86d2c365a0116fd254207dea787cbfed9c580f24358",
+        "effective_sha256": "e4dc321e8b46d47e0290b86d2c365a0116fd254207dea787cbfed9c580f24358",
+        "changed": false
+      },
+      "experiments/summarize_service.py": {
+        "parent_sha256": "ad65a55552b8c922dc42fa2bdd6359b3b49fa84b808813d43c50778ba17fcfa7",
+        "effective_sha256": "ad65a55552b8c922dc42fa2bdd6359b3b49fa84b808813d43c50778ba17fcfa7",
+        "changed": false
+      },
+      "experiments/validate_dataset.py": {
+        "parent_sha256": "d339f46ae843b5d6b9ff5ee3c3ad8d1691d1af4eabf554659bf06473bd5fc68f",
+        "effective_sha256": "d339f46ae843b5d6b9ff5ee3c3ad8d1691d1af4eabf554659bf06473bd5fc68f",
+        "changed": false
+      }
+    },
+    "note": "Prospective v3 authority. Existing v1/v2 remain unchanged; source digests explicitly approve current operational code against the d84a70d ancestry anchor."
+  },
+  "source_approval": {
+    "anchor_commit": "d84a70d03d39a63383266f3f77e30ef900f8a28b",
+    "source_hashes": {
+      "simulator/app/simple_server.py": "0190f18db595ab8d0e99759a8b7c54c1191a01c96cff218a21bee22a8871629e",
+      "simulator/config.py": "c15f8181ced5053d00dc36504d71488884851b21980e2ad14dec8dd1672c8970",
+      "simulator/docker_manager.py": "91470811a84535ce489e2cc3255db401ab92e01c1ae0a2071f54dbf4ce9bfb06",
+      "simulator/experiment_config.py": "992290a03f7bfe8c4264abcd0cc59e6eb21e4f522a028d1a6b208006be9b21e4",
+      "simulator/capture_lifecycle.py": "6f35fafc833ec06aa9c1e83b53d5771e8aaab7cf61a92ec64fb4861fb1df0387",
+      "simulator/capture_evidence.py": "a78a5a65141c7ebf683655b120ddbf6fb78d8dc42f34164ee12da2d5277d208a",
+      "simulator/tcpdump_sniffer.py": "266781c5e8b3d419e0083281103f3bf77979f95a45d17a07b2ec87ae90c8c1cc",
+      "simulator/source_experiment.py": "99494f5f5841b41b251c36a6851eec96547e4d2fc0591ed688e0a0ef430f6a11",
+      "experiments/development_d1_ops.py": "cecff4599dc00ebe9b09b0c528b71bc74f525cbffc68ec08d28ba0f92bcbe092",
+      "experiments/development_d1_review.py": "0dbc14cd3e684613ecf0c6acfb2785c32b138899a40f570fb806e185c8835e27",
+      "experiments/development_d1.py": "1f232f4f315cc78a63e3bd5bab1af4423cc10b73a86be3dd58e1dcab15e5a102",
+      "experiments/development_d2.py": "66c190c85533f0659db188ceb4447e2736b08708cb59ad80c9cb00694dae319b",
+      "experiments/development_d2_compare.py": "e4dc321e8b46d47e0290b86d2c365a0116fd254207dea787cbfed9c580f24358",
+      "experiments/summarize_service.py": "ad65a55552b8c922dc42fa2bdd6359b3b49fa84b808813d43c50778ba17fcfa7",
+      "experiments/validate_dataset.py": "d339f46ae843b5d6b9ff5ee3c3ad8d1691d1af4eabf554659bf06473bd5fc68f"
+    },
+    "rule": "Accept the anchor checkout or a descendant commit only when every approved relevant source path remains byte-identical; record the effective checkout commit per preflight and run. No hash is refreshed by the validator."
+  },
+  "docker_access_diagnosis": {
+    "path": "docs/development_d2_docker_access_diagnosis_20261027.md",
+    "sha256": "b0dd2d84343251dfc7521559370b5938963389e352715f0a66fed35b7972860c"
+  }
+}
