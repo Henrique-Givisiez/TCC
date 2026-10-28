@@ -1,0 +1,164 @@
+{
+  "schema": "development-d3-origins-design/v1",
+  "status": "PROPOSED_FOR_DESIGN_REVIEW_NOT_EXECUTABLE",
+  "partition": "DEVELOPMENT",
+  "execution_authorized": false,
+  "roadmap": "docs/new_campaign_protocol_proposal_20261027.md#22-experimentos-finais-propostos",
+  "adaptation": "N2 principle applied to /expensive after D3_cost, rather than roadmap /medium; DEVELOPMENT only.",
+  "conditions": [
+    {
+      "id": "N1",
+      "attackers": 1,
+      "rate_per_attacker": 8,
+      "aggregate_rps": 8,
+      "workers_per_attacker": 64
+    },
+    {
+      "id": "N2",
+      "attackers": 2,
+      "rate_per_attacker": 4,
+      "aggregate_rps": 8,
+      "workers_per_attacker": 32
+    }
+  ],
+  "blocks": [
+    {
+      "block": "A",
+      "order": [
+        "N1",
+        "N2"
+      ]
+    },
+    {
+      "block": "B",
+      "order": [
+        "N2",
+        "N1"
+      ]
+    }
+  ],
+  "seeds": "Two new audited seeds on operational materialization; shared within block, distinct between blocks; no historic seed reused.",
+  "constants": {
+    "legitimate_clients": 4,
+    "legitimate_rps_per_client": 4,
+    "legitimate_endpoint": "/medium",
+    "offensive_endpoint": "/expensive",
+    "victims": 1,
+    "autoscaling": false,
+    "proxy": "static",
+    "aggregate_attack_workers": 64,
+    "aggregate_benign_workers": 64,
+    "http_timeout_seconds": 2,
+    "nominal_seconds": 390
+  },
+  "phases": [
+    [
+      "WARMUP",
+      0,
+      30
+    ],
+    [
+      "PRE",
+      30,
+      150
+    ],
+    [
+      "ACTIVE",
+      150,
+      270
+    ],
+    [
+      "POST",
+      270,
+      390
+    ]
+  ],
+  "rule": {
+    "window_seconds": 30,
+    "minimum_exposure_fraction": "0.95",
+    "minimum_starts": 200,
+    "minimum_duration_2xx_n": 200,
+    "success_fraction_min": "0.99",
+    "failure_or_deadline_miss_max": "0.01",
+    "success_reference_tolerance": "0.01",
+    "p95_reference_factor": "1.25",
+    "pending_floor": 4,
+    "pending_reference_factor": "1.25",
+    "pending_age_seconds": 3,
+    "pending_growth_per_window_max": 2,
+    "pending_growth_per_pair_max": 2,
+    "confirmation_windows": 2,
+    "evidence_grace_seconds": 3,
+    "pre_p95_compatibility_ratio": [
+      "0.8",
+      "1.25"
+    ]
+  },
+  "primary_reference": {
+    "interval": [
+      30,
+      150
+    ],
+    "role": "Own PRE; main observed-service reference"
+  },
+  "secondary_reference": {
+    "review_path": "experiment_results/development-d3-pilots-20261028/analysis/d3_pilot_C-review.json",
+    "review_sha256": "13ad60f49f2ef91ccb548e0768241a731a69e1d4f6cfe327b3fc2af60c100140",
+    "raw": "experiment_results/development-d3-pilots-20261028/raw/d3_pilot_C",
+    "useful_interval": [
+      30,
+      390
+    ],
+    "role": "Secondary pooled benign reference, not a contemporaneous/paired control; no historical reclassification.",
+    "files": [
+      {
+        "path": "experiment_results/development-d3-pilots-20261028/analysis/d3_pilot_C-review.json",
+        "sha256": "13ad60f49f2ef91ccb548e0768241a731a69e1d4f6cfe327b3fc2af60c100140"
+      },
+      {
+        "path": "experiment_results/development-d3-pilots-20261028/raw/d3_pilot_C/effective_config.json",
+        "sha256": "c3ee3572770d12cd8c4d5e89abff8602412c068ed7ccb951b14cfe1a548d3847"
+      },
+      {
+        "path": "experiment_results/development-d3-pilots-20261028/raw/d3_pilot_C/request_log.csv",
+        "sha256": "e0fb32d41172789c497b0eb451fc5e3a052d957942fdcce7ec7bd754f2720e03"
+      },
+      {
+        "path": "experiment_results/development-d3-pilots-20261028/raw/d3_pilot_C/source_inventory.json",
+        "sha256": "2f71f95c10239e737e9230fa399c8168d4e13275da4596ce366b143649e40db4"
+      },
+      {
+        "path": "experiment_results/development-d3-pilots-20261028/raw/d3_pilot_C/run_status.json",
+        "sha256": "84075a1fb07f64e99f94027fd7c5add8b1d99b03bf2f971ea229be223c28769c"
+      }
+    ]
+  },
+  "budget": {
+    "per_entry": {
+      "nominal_seconds": 390,
+      "drain_seconds": 30,
+      "idle_seconds": 60,
+      "administrative_seconds": 600,
+      "envelope_seconds": 1080
+    },
+    "nominal_seconds": 1560,
+    "drain_seconds": 120,
+    "idle_seconds": 240,
+    "administrative_seconds": 2400,
+    "envelope_seconds": 4320
+  },
+  "maximum_attempts": 4,
+  "retry": 0,
+  "automatic_progression": false,
+  "closure_sha256": "b23e77ec12cfd8b006b960267c3694889a4d7ee06d7575ddd8026ec2041ced5b",
+  "source_sha256": {
+    "experiments/protocols/development_d3_cost_20261028/manifest.json": "2f99082023401f65a4d1bc3bf85283b697d9cbdfdb1a642f2a79c3a0a8fdabd4",
+    "experiment_results/development-d3-cost-20261028/analysis/d3_cost_comparison.json": "2819e27ac3f24009e6312ad2bb57c138829076f83f9d28bb23ded174d4b02d44",
+    "experiment_results/development-d3-cost-20261028/analysis/d3_cost_comparison.md": "1e97fe1586139f946a70122849e7305008567ca4136cfeb4a575399cfae90038",
+    "experiment_results/development-d3-cost-20261028/analysis/d3_cost_A_medium-review.json": "48af3b93b9e86b990faca8b7ffbd87db0a87f959da9fc360ef72831c471dc0b8",
+    "experiment_results/development-d3-cost-20261028/analysis/d3_cost_A_expensive-review.json": "e0a1f95d950fc3501894e1b4464a1d789d6aeeec3d7c58b51a2e65c778023ac1",
+    "experiment_results/development-d3-cost-20261028/analysis/d3_cost_B_expensive-review.json": "7694ad15d1695d25459f123907def66c5c9f8c9a723f6a6c9a73a603f27b8e0b",
+    "experiment_results/development-d3-cost-20261028/analysis/d3_cost_B_medium-review.json": "24127600e7ceff6c2cc87836f6b5a2cd2c9daa0c8b701d1801b8eefa95a7f827"
+  },
+  "operational_materialization_pending": true
+}
