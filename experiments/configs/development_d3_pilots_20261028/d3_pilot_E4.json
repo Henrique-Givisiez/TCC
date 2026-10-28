@@ -1,0 +1,56 @@
+{
+  "id": "d3_pilot_E4",
+  "duration_seconds": 390,
+  "seed": 12610705592690224256,
+  "normal_traffic": {
+    "clients": 4,
+    "rate": 4,
+    "endpoint": "/medium",
+    "work_units": 10,
+    "sleep_seconds": 0.0,
+    "max_concurrent_sends": 64,
+    "request_timeout_seconds": 2
+  },
+  "attack": {
+    "enabled": true,
+    "profile": "continuous",
+    "attackers": 1,
+    "rate": 4,
+    "start_seconds": 150,
+    "duration_seconds": 120,
+    "endpoint": "/expensive",
+    "work_units": 5000,
+    "sleep_seconds": 0.0,
+    "max_concurrent_sends": 64,
+    "request_timeout_seconds": 2.0,
+    "burst": null
+  },
+  "infrastructure": {
+    "initial_instances": 1,
+    "min_instances": 1,
+    "max_instances": 1,
+    "cost_per_instance_per_hour": 0.02
+  },
+  "autoscaler": {
+    "enabled": false,
+    "scale_up_threshold": 60.0,
+    "scale_down_threshold": 25.0,
+    "cooldown_seconds": 20
+  },
+  "server": {
+    "process_pool_workers": 2,
+    "default_work_units": 1000000,
+    "default_sleep_seconds": 0.0
+  },
+  "monitoring": {
+    "interval_seconds": 1,
+    "stats_poll_interval_seconds": 1,
+    "history_seconds": 30
+  },
+  "load_balancer": {
+    "enabled": true
+  },
+  "traffic_sources": {
+    "execution": "containers"
+  }
+}
