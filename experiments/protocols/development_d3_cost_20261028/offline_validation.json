@@ -1,0 +1,69 @@
+{
+  "schema": "development-d3-cost-offline-validation/v1",
+  "recorded_utc": "2026-10-28T18:41:42.921984+00:00",
+  "status": "passed",
+  "plan_validation": {
+    "entry_count": 4,
+    "blocks": 2,
+    "block_seeds": {
+      "A": 11511824618406474759,
+      "B": 1073246794152074529
+    },
+    "manifest_sha256": "2f99082023401f65a4d1bc3bf85283b697d9cbdfdb1a642f2a79c3a0a8fdabd4",
+    "seed_collisions": [],
+    "historical_seed_files": 5142,
+    "source_checkout": {
+      "effective_checkout_commit": "84114770b9d6b1463648f4e1c75501f1fb76734c",
+      "source_tree_unchanged": true
+    },
+    "docker_accessed": false,
+    "experiments_executed": false
+  },
+  "tests": {
+    "command": ".venv/bin/python -B -m unittest tests.test_development_d3_cost -v",
+    "count": 5,
+    "passed": 5,
+    "elapsed_seconds": 16.118,
+    "cases": [
+      "test_real_authority_pairing_order_rates_budget_and_tamper",
+      "test_contexts_restore_and_old_authorities_are_not_overridden",
+      "test_review_hash_terminal_gate_and_idle_required_active_failure_allowed",
+      "test_historical_pilot_review_cannot_replace_planned_entry",
+      "test_four_run_fixture_pipeline_and_seed_paired_comparison"
+    ]
+  },
+  "checks": {
+    "configs_complete_and_template_bound": true,
+    "new_block_seeds_audited": true,
+    "rule_phases_references_equal_E8_R2": true,
+    "historical_evidence_and_runtime_hashes_verified": true,
+    "review_identity_and_manual_predecessor_hash_gate": true,
+    "four_synthetic_runs_export_review_and_comparison": true,
+    "observed_offensive_rate_differences_explicit": true,
+    "paired_endpoint_and_between_seed_contrasts_separated": true,
+    "cli_help_and_validate_plan_passed": true,
+    "reserved_operational_results_absent": true
+  },
+  "scope": {
+    "docker_accessed": false,
+    "preflight_executed": false,
+    "experiments_executed": false,
+    "fixtures_only": true,
+    "historical_artifacts_modified": false
+  },
+  "budget": {
+    "per_entry": {
+      "nominal_seconds": 390,
+      "drain_seconds": 30,
+      "idle_seconds": 60,
+      "administrative_seconds": 600,
+      "envelope_seconds": 1080
+    },
+    "nominal_seconds": 1560,
+    "drain_seconds": 120,
+    "idle_seconds": 240,
+    "administrative_seconds": 2400,
+    "envelope_seconds": 4320
+  },
+  "first_preflight_command": ".venv/bin/python -B -m experiments.development_d3_cost_ops preflight --entry d3_cost_A_medium"
+}
