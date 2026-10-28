@@ -126,6 +126,10 @@
     {
       "path": "experiment_results/development-d3-pilots-20261028/analysis/d3_pilot_E4-recovery-diagnostic_20261028.json",
       "sha256": "64b890bd4dd1f524ffb07206e408bd40331fef8dbd844c4100d69cbfc33fe909"
+    },
+    {
+      "path": "docs/development_d3_minimal_20261028.md",
+      "sha256": "cbe1bc2b0aeba4db5b5b31cd40f108665fc33bcf7c48602f647f2bf5381b1a2d"
     }
   ],
   "runtime_source_hashes": {
@@ -144,8 +148,8 @@
     "experiments/development_d2.py": "5ae8b9c9cb87e973c082dbf13f206345103316fb92fda275a3399e82050c8df5",
     "experiments/development_d2_compare.py": "e4dc321e8b46d47e0290b86d2c365a0116fd254207dea787cbfed9c580f24358",
     "experiments/development_d3.py": "f3ef074492fce25d62550753e1a65dd13dfca685beaa0b362d18d0fea17892cf",
-    "experiments/development_d3_minimal.py": "5128f12e342813117843030fbed9af27f980e6c55c916601251d4b4bcdf26af3",
-    "experiments/development_d3_minimal_ops.py": "705a7c13e994bca1164e19fa27a7db86c59769c3088669bca712567999b51749",
+    "experiments/development_d3_minimal.py": "2b29d945d4600dfa87ccb17a7c893b38229c7a0c1ce6abcf78f66308db39e8ec",
+    "experiments/development_d3_minimal_ops.py": "bc850a7416b01ba462d12fc4ca661080fa9a5c6e7362c25ef111f81547a83be0",
     "experiments/development_d3_ops.py": "5c298df00c359646feadd4dee538ee4a5268289e10b3dfa5636dfb6d2aecc783",
     "experiments/export_dataset.py": "909ae8b1a9771a2fdc4441c2d76c0a9bfabfd834bb7ed4df940a4b0263df3a74",
     "experiments/extract_features.py": "fa08b2185fd6f3a78ce2ff9498d3a0534a03a6ab8ac767d8b304c95a1608ed7f",
@@ -237,7 +241,8 @@
     "simulator/source_runner.py": "f5b4b4906997987d6e0c0c22fff0cd4a6acd66d66fbc7731873c349c6dcd057b",
     "simulator/stats_collector.py": "9b4973ab0983821f05897190a21cf9f980c96816047e1d985222ac1a87f934a4",
     "simulator/tcpdump_sniffer.py": "266781c5e8b3d419e0083281103f3bf77979f95a45d17a07b2ec87ae90c8c1cc",
-    "simulator/traffic_injectorV0.py": "50c03355418ad82c49bd03fb30e022c6b00d9f64a0ff6b2cb08f372840fe28fc"
+    "simulator/traffic_injectorV0.py": "50c03355418ad82c49bd03fb30e022c6b00d9f64a0ff6b2cb08f372840fe28fc",
+    "tests/test_development_d3_minimal.py": "d81a398b6bfa95be99631d708775a149cb0ea56288c32b0e3fd8ef2d5c398f42"
   },
   "entries": [
     {
@@ -315,5 +320,6 @@
   "generator_instrumentation_changed": false,
   "detectors_or_calibration_changed": false,
   "original_E8": "Still blocked in original authority; outside this authority.",
-  "no_automatic_continuation": true
+  "no_automatic_continuation": true,
+  "source_approval": "Anchor or descendant with exact final bound source bytes; validator never refreshes expected hashes."
 }

@@ -184,6 +184,7 @@ class MinimalD3Tests(unittest.TestCase):
             event=r['service']['recovery_event']
             self.assertEqual(event['window_end_seconds'],330)
             self.assertEqual(event['required_evidence_horizon_seconds'],333)
+            self.assertGreaterEqual(event['decision_not_before_seconds'],r['lifecycle']['cutoff'])
             self.assertTrue(r['publication']['evaluation_published_at_utc'])
             self.assertFalse(r['generator']['full_scheduled_load_verified'])
             self.assertLess(len(json.dumps(m.compact(r))),400)
@@ -192,6 +193,20 @@ class MinimalD3Tests(unittest.TestCase):
         # without bypassing processing via a hand-written output formatter.
         with patch.object(sys,'argv',['minimal','review']),patch.object(m,'review_entry',return_value=r),patch('sys.stdout',new_callable=io.StringIO) as out:
             m.main();self.assertLess(len(out.getvalue()),400);self.assertNotIn('post_windows',out.getvalue())
+
+    def test_real_authority_and_config_reject_tampering(self):
+        r=m.validate_plan()
+        self.assertEqual(r['configurations'],1);self.assertEqual(r['seed_collisions'],[])
+        plan=m.read(m.DEFAULT_MANIFEST)
+        original=m.read(m.ROOT/plan['configuration_template']['path'])
+        effective=plan['entries'][0]['effective_configuration']
+        self.assertEqual({k:v for k,v in effective.items() if k not in ('id','seed')},
+                         {k:v for k,v in original.items() if k not in ('id','seed')})
+        bad=deepcopy(plan);bad['entries'].append(deepcopy(bad['entries'][0]))
+        path=self.root/'bad-authority.json';put(path,bad)
+        with self.assertRaisesRegex(ValueError,'authority'):m.validate_plan(path)
+        bad=deepcopy(plan);bad['secondary_reference']['review_sha256']='0'*64;put(path,bad)
+        with self.assertRaisesRegex(ValueError,'review hash mismatch'):m.validate_plan(path)
 
     def test_e8_and_second_attempt_are_rejected_before_docker(self):
         from experiments import development_d3_minimal_ops as ops
