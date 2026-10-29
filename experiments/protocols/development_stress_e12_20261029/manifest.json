@@ -1,0 +1,328 @@
+{
+  "schema": "development-stress-e12/v1",
+  "status": "PREPARED_OFFLINE_NOT_EXECUTED",
+  "partition": "DEVELOPMENT",
+  "maximum_attempts": 1,
+  "retry": 0,
+  "automatic_progression": false,
+  "instrumentation_commit": "52717dc7f0a7cc0a61139e577234ea0e5cf36ee6",
+  "results_root": "experiment_results/development-stress-e12-20261029",
+  "rule": {
+    "window_seconds": 30,
+    "minimum_exposure_fraction": "0.95",
+    "minimum_starts": 200,
+    "minimum_duration_2xx_n": 200,
+    "success_fraction_min": "0.99",
+    "failure_or_deadline_miss_max": "0.01",
+    "success_reference_tolerance": "0.01",
+    "p95_reference_factor": "1.25",
+    "pending_floor": 4,
+    "pending_reference_factor": "1.25",
+    "pending_age_seconds": 3,
+    "pending_growth_per_window_max": 2,
+    "pending_growth_per_pair_max": 2,
+    "confirmation_windows": 2,
+    "evidence_grace_seconds": 3,
+    "pre_p95_compatibility_ratio": [
+      "0.8",
+      "1.25"
+    ]
+  },
+  "budget": {
+    "nominal_seconds": 390,
+    "drain_seconds": 30,
+    "idle_seconds": 60,
+    "administrative_seconds": 600,
+    "envelope_seconds": 1080
+  },
+  "phases": [
+    [
+      "WARMUP",
+      0,
+      30
+    ],
+    [
+      "PRE",
+      30,
+      150
+    ],
+    [
+      "ACTIVE",
+      150,
+      270
+    ],
+    [
+      "POST",
+      270,
+      390
+    ]
+  ],
+  "primary_reference": {
+    "interval": [
+      30,
+      150
+    ],
+    "role": "Own PRE; main observed-service reference"
+  },
+  "secondary_reference": {
+    "role": "historical_context_only",
+    "raw": "experiment_results/development-d3-pilots-20261028/d3_pilot_C/raw"
+  },
+  "configuration_template": {
+    "path": "experiments/configs/development_d3_e8_20261028/d3_pilot_E8_R2.json",
+    "sha256": "ebb9d8e0057e47f6ef4ad64a2c127d2138ae87abb8245d3e31fe2014acd6420d"
+  },
+  "pilot_seed": 14077813496258071338,
+  "seed_generation": {
+    "namespace": "development-stress-e12-20261029",
+    "index": 0
+  },
+  "seed_audit": {
+    "path": "experiments/protocols/development_stress_e12_20261029/seed_audit.json",
+    "sha256": "50e652fe3e2ed4f62b05ebfdbaffe2125465f58b90e973a3c9955083ba3e7836"
+  },
+  "runtime_source_hashes": {
+    "simulator/tcpdump_sniffer.py": "266781c5e8b3d419e0083281103f3bf77979f95a45d17a07b2ec87ae90c8c1cc",
+    "simulator/source_experiment.py": "99494f5f5841b41b251c36a6851eec96547e4d2fc0591ed688e0a0ef430f6a11",
+    "simulator/source_journal.py": "b342e3d438805aa00f1ee717f053531c43c5e1fff0e3426418b1d16737f6e2d8",
+    "simulator/normal_traffic.py": "2df70d7f69eb3bd3d4e303235fd9bdcb8760b558d7c78895542d4482b0ca6d48",
+    "simulator/config.py": "c15f8181ced5053d00dc36504d71488884851b21980e2ad14dec8dd1672c8970",
+    "simulator/proxy_monitor.py": "1fc29ba053b13d11855372f95b40a8c133df0063739b6d5789b8bed0514aeb5e",
+    "simulator/source_manager.py": "cbf42972fa7814598b9c3d0107ec27082fa30c5995e8073ab6676ed5fa273f3c",
+    "simulator/request_logger.py": "d3720b558f6eba8a669c17779842e928f31035b397838682db1bc5d98c6e28ca",
+    "simulator/capture_evidence.py": "a78a5a65141c7ebf683655b120ddbf6fb78d8dc42f34164ee12da2d5277d208a",
+    "simulator/service_destination.py": "026b1e991ae57d0b64faacd39bfea23eea7279c04e89917cbe8f405050c7b3a4",
+    "simulator/source_aggregate.py": "2b2fbc1e5a2f61538d526f3c330dd14df37d8c751a39f071d3b93a0d203d2268",
+    "simulator/docker_manager.py": "91470811a84535ce489e2cc3255db401ab92e01c1ae0a2071f54dbf4ce9bfb06",
+    "simulator/cost_calculator.py": "92bff0a3bc8feaf0a356d79f1a77b87337243daa6134ecd9fa6695c3521606a5",
+    "simulator/traffic_injectorV0.py": "50c03355418ad82c49bd03fb30e022c6b00d9f64a0ff6b2cb08f372840fe28fc",
+    "simulator/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "simulator/load_balancer.py": "b67d1b8b405e1c0cede01542d3bf5d6e57c18d7207ba799ac665f43e9f936942",
+    "simulator/autoscaler_logic.py": "d2ae0a98d8c7329e7beea16a62bdd0007ceb9260cfb5a7c39f1c65fec853e0a7",
+    "simulator/experiment_config.py": "992290a03f7bfe8c4264abcd0cc59e6eb21e4f522a028d1a6b208006be9b21e4",
+    "simulator/http_proxy.py": "82c8ab54ccc01194040f59b7b6b7714191788c9cdc8e075d6beb61a86c25e1d6",
+    "simulator/host_stats.py": "05e29e6c92726330dba4019038f76139aa8c949b2b32e0a766b1bdde0e03282d",
+    "simulator/normal_traffic_summary_logger.py": "95fe6ffd0e28f814ccb6b4905c685d620a2c31920c18d8bdc35b29045a542bb2",
+    "simulator/ground_truth.py": "1e7edd1ee446cbca1a961a42435385d5a199eb121cdbf7caa22a8f1dd2b8aee9",
+    "simulator/attack_summary_logger.py": "65ac7260ce40a066593f3de4a322d0a5f47638beefa11182484ec7f5ba7e4a43",
+    "simulator/source_runner.py": "f5b4b4906997987d6e0c0c22fff0cd4a6acd66d66fbc7731873c349c6dcd057b",
+    "simulator/attack_patterns.py": "cae81bf8be017ca1a2af794847bcba778e5cfbe6d9879925bb3e8021d6ad0276",
+    "simulator/main_orchestrator.py": "a89e95f029e5174e86d6b65eec263813b6d8e56f0a59a07aa4a7d37cbf61b25b",
+    "simulator/capture_lifecycle.py": "6f35fafc833ec06aa9c1e83b53d5771e8aaab7cf61a92ec64fb4861fb1df0387",
+    "simulator/stats_collector.py": "9b4973ab0983821f05897190a21cf9f980c96816047e1d985222ac1a87f934a4",
+    "simulator/app/simple_server.py": "0190f18db595ab8d0e99759a8b7c54c1191a01c96cff218a21bee22a8871629e",
+    "experiments/stress_observer.py": "ecdf7ba32923ffabbe2d3b0e3ddec10a4ccbd25d73db3d8269915261b6045c99",
+    "experiments/stage14_test_release.py": "573b5c381ddd8265ddfc56be288e7bf14229fdef73acb108a5dfe4c4ba5488ff",
+    "experiments/stage15a_test_scoring.py": "426f387a7be6d10ff87a4cc5561c87bdb315c5b4106722dbfe31bef15912a63e",
+    "experiments/run_extra_reps_agg250.py": "e9b351cff7b30a85467fd25fba0259c5567f2135e7f23ea881c871081369d4c0",
+    "experiments/extract_features.py": "fa08b2185fd6f3a78ce2ff9498d3a0534a03a6ab8ac767d8b304c95a1608ed7f",
+    "experiments/audit_cusum_persistence.py": "c3b7cd8a9331ded537633e0e85a4c03ce8f6ea361bfec764cfeb1e60c058cd1d",
+    "experiments/development_d3_origins_revision.py": "24b91a84112738e281909e12fa7312fb5065a2230e43a0b889944e40627ab039",
+    "experiments/stage15c_figures.py": "43955fa26867e9aae811f19625d7707fc9309ad5d093ca9d61b6873df88af141",
+    "experiments/development_d3_e8_ops.py": "4f44d057939d8fde48eef684b9f96765a9d1de8e291dab72a4177bd5d4520134",
+    "experiments/source_network_audit.py": "4a7b0d77fcdbacddb12a84a71c200a6883c14fc1de6c5361857e185a1dd67e21",
+    "experiments/validate_source_containers.py": "15ff4ad7c766567762c079971ee5a4a79952ad161c672b18cfd2f4d161859c26",
+    "experiments/run_graph4_completar_150_350.py": "b113c230f43169a985822fb7da493d8b9db5acd360f52cedb8e4e20c93de7586",
+    "experiments/validate_proxy_protocol.py": "38594a460a1da29387ca5565bcde7bc03b758fcc23c9f61e6c4fce98e66a4f30",
+    "experiments/stage14_test_collection.py": "3b0f4a0b90f11c1074f122714fb7e5dcaef38959a286fdde6421514e64a634d9",
+    "experiments/dataset_run.py": "c5fac2b55faf5db8a910394a1b51b0e41d4e661ab4e420d6ff2c51a856b9108c",
+    "experiments/development_d3_ops.py": "5c298df00c359646feadd4dee538ee4a5268289e10b3dfa5636dfb6d2aecc783",
+    "experiments/development_d3_origins_processing.py": "bcce49fe54a5d517eb8cb5f1593c02d9fb0984d3f875d066bdcdecfadfb69de5",
+    "experiments/development_d1_review.py": "260dfb9a87d208c31fe9da906c730d3da638c169361eb92a4b72103c5b7e054b",
+    "experiments/run_desempate_rps1.py": "50b78c932b228684d510acc10812d24000e3ef72d9dfa08e0f7cd085a480241b",
+    "experiments/stage15b_reproduce.py": "89f1020753cb0d2031d33d48f1abd39d432c30dfced745b17d0c54d18ba3ebe2",
+    "experiments/run_graph4_refined.py": "6894c1714d30f447522d2c1d389d596e96b2b408e3cbf0b224bbea68ba4c745e",
+    "experiments/development_d2_compare.py": "e4dc321e8b46d47e0290b86d2c365a0116fd254207dea787cbfed9c580f24358",
+    "experiments/run_wu400000_only.py": "365a18206260514a3e3694c02ffe876e50227cc1be909a210049f2098f15e314",
+    "experiments/development_d3_e8.py": "1769227306310799e1a3361cf3a34571440793840031292df08c32c6748cdf4a",
+    "experiments/feature_schema.py": "279aab2adf08dc1986d2e3079946e3ea8176330ca93e8d5ee4e209387a588c57",
+    "experiments/wedos_repro_test.py": "454e23e4169b3166a608f55d20fbb90f830ff6b56414cf342974ee1d52a04636",
+    "experiments/validate_dataset.py": "d339f46ae843b5d6b9ff5ee3c3ad8d1691d1af4eabf554659bf06473bd5fc68f",
+    "experiments/development_d1_synthesis.py": "cffcc70ddfb13b144753c38d79481e6bc29e07d6695f1e463e2c12842be98f24",
+    "experiments/development_d1_ops.py": "6a293885da171985e59964b67e744ac88bb8ffab361bb2bf68e245bae58f7ab8",
+    "experiments/run_atacantes_intensidade_grid.py": "0ae152bda49511dd1f444ef170bc08b02bc49c4e902367ac367a10333886acf1",
+    "experiments/stress_review.py": "417333caba6a3ce9fd34556d4d1c0b51979bf564457dc7f6d2585273801523db",
+    "experiments/stage15a_provenance.py": "3d8fc174f9ddbb08600b6c9520bdeba904ef9c7d2dbee19e985292457431b141",
+    "experiments/development_d3_minimal_ops.py": "bc850a7416b01ba462d12fc4ca661080fa9a5c6e7362c25ef111f81547a83be0",
+    "experiments/export_dataset.py": "909ae8b1a9771a2fdc4441c2d76c0a9bfabfd834bb7ed4df940a4b0263df3a74",
+    "experiments/run_wedos_grid_fill_reps.py": "e0d6c87d8a7bb6e47084e115e1e996f839c1bd3fe4c87c1cad9000853529baeb",
+    "experiments/verify_s4_candidate.py": "d00a90d935a9a4aa02c12cf6ce95ca047ea731b50c231ef03f715dedca2e4bf7",
+    "experiments/validate_application_operations.py": "f37ab2ce6180e5d76c5ac03cf81d5566ae2f578b38d87fca5af0bc0171d7a031",
+    "experiments/run_desempate_combinado_isolado.py": "bd4c5588e2c00dcc663b932f45f1deb0bedb714257c6df77c31e6784da08afdf",
+    "experiments/summarize_service.py": "ad65a55552b8c922dc42fa2bdd6359b3b49fa84b808813d43c50778ba17fcfa7",
+    "experiments/run_graph4_pow2_base20.py": "f9c544e7e93bdf39115d2fb422907cb988f2ab1b79b1934baf359d4be7db321c",
+    "experiments/run_all_pipeline_v2.py": "019dbc6610fbf21a30eb5065f53258c069308b872361e620899be02cfef83df4",
+    "experiments/wedos_stage1b_refined.py": "ad67f2ccd4b8c8a0c6a201eb064e720b2ccb69c8dbda9288894c4f5031c2daff",
+    "experiments/plot_proxy_monitor.py": "52da4ed9e3f38f335f06625510e5415db3d4f3fad581fcdc76257e106f42808a",
+    "experiments/development_d3.py": "f3ef074492fce25d62550753e1a65dd13dfca685beaa0b362d18d0fea17892cf",
+    "experiments/development_d1.py": "778a6b6faa77053a8d57d0e862f4ea9bcc476543ccaefa1d33fa574cb86b0236",
+    "experiments/development_d3_origins_revision_ops.py": "370eda0b466c2eeabf2a779dbc05857281d7a38defdc72d7e9c004db9a6ab3d2",
+    "experiments/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "experiments/run_atacantes_intensidade_grid_pow2_reps.py": "2e9c9400b22b787bbdede1faa5087763121713632c77e7ddc0fb008d2ae5c341",
+    "experiments/run_all_desempate.py": "556153c88e88f038baf4abd050e5c2e57126578b78db0531cad00b2ea7a4acdf",
+    "experiments/stage14_finalize.py": "cfd570977a99924a743318fea299363cd96ff3f8f855581c543aeda29ca63f37",
+    "experiments/validate_attack_patterns.py": "88183da54e7d0cc959b2f2066964ec5b7ac0814935f19c8a33897ea7e3b2d07c",
+    "experiments/stage14_campaign.py": "4999c82e68ff645f9314c54ace3310b4578de995a7e7c8427548af5f3a0529d8",
+    "experiments/run_experiments.py": "efa1300e173eb280c8689f0f55d94ed46ed3c99f91ca4815b2de70b34c2c7b7f",
+    "experiments/run_experiments_normal.py": "b36004af5279a42b7898d900febc383e0cc7768e85089d6441c399052843f2d5",
+    "experiments/stress_pilot.py": "ae320125dccbbf3adddaf649e278e4b577d231a679fbcb48d7ae281bbe61d943",
+    "experiments/result_archive.py": "cf7085cd64f3933256c6fef1470e989b943b68d1eeb7ce4040ce65bc0d8a8dd6",
+    "experiments/validate_dataset_export.py": "5aede2797b298dd12eb7348b88568c86c573a760009284617ee7eb3ace783989",
+    "experiments/wedos_stage1b_resume.py": "ebaf37445d15566b73760d8c62e4e72db4f0726fbc92280e7bfb38309f4b52b8",
+    "experiments/stage14_bundle.py": "d10eabeef03494067b891d62bbc87d85cf15f7cc9098775dfd1f5a362eb6ed6e",
+    "experiments/development_d3_origins.py": "19ce80a61333e67215f368e446c547d7a79096af379f0b195af5d9b44be92842",
+    "experiments/wedos_s3_mystery.py": "cc2f45128d0c4e84e3a794931e619c86929d4a7c69a2c4c3d315c4af147f02d8",
+    "experiments/run_ataque_isolado.py": "50c71f41a9e450fc301afd0bbb09cd22c9b9335562104f909f45a4a43ceff570",
+    "experiments/stage15b_evaluation.py": "95184adb3b9cbccbcf45699edc798d8a72b3a4b5db7703c0eddfa386b7d23f97",
+    "experiments/wedos_failure_sweep.py": "1a55bb4aa7a9019b5c53ac73bffd189ee12e8783586176b10c139312b111d504",
+    "experiments/dataset_schema.py": "0b9a23145636318b9bdfd42b0a33a4d6a50de246a341068ddc71573d30e3275d",
+    "experiments/stress_runtime.py": "fe14e8d1cb86ac193e15ad9a9f13e45dc6fcf87dd5edc0f621104266c68797b7",
+    "experiments/stage15c_analysis.py": "e8d27de3ac1b14cec8e9f1e87e3ea022ff46442c5ca2a03f54ea9a56e2464e9d",
+    "experiments/run_experiments_combined.py": "c8418d200c261b16b49bcd322cf0955e32a676c05b582a609e42ac7e5fe38cd0",
+    "experiments/stage15c_report.py": "ec4bf70117f283d107f848e152e60e012cea9404c70e87e5228bbe80101a8eab",
+    "experiments/dataset_provenance.py": "ba6613472c95cc58adb9fc71a457f5a407b60889c14ae40c8efb0485716306d1",
+    "experiments/stage14_scientific.py": "c3419fadda480f2a2a83af6d8c040d4048bee25a1a252af61e59348e395a2150",
+    "experiments/wedos_rerun_contaminated.py": "b9211f7f1c03bf2929bf8f61b5807bdc8584f0c1157159c6225d9fc36b45b954",
+    "experiments/development_d3_minimal.py": "2b29d945d4600dfa87ccb17a7c893b38229c7a0c1ce6abcf78f66308db39e8ec",
+    "experiments/scientific_collection.py": "f4a0495bb823973a08d2209e06fac300822733d506ddb84a355f1266e180ac90",
+    "experiments/wedos_combined_grid.py": "62e587729338538dc9ed15f1eec9fb1411f94c22d337d0852ee924003c087694",
+    "experiments/run_experiments_clients_rps.py": "89acc99654dfae69e4b45ad9354fa40abad0d718caee78efa9313502da628d70",
+    "experiments/development_d3_origins_ops.py": "e2c82f89a785b56edf1c3c66ff1234781dbd79751172fdfb30af04b7ceee273a",
+    "experiments/run_all_pipeline.py": "e56b46eb020fe001693f56a1961a22493361b61ac6830713590712bb832236e9",
+    "experiments/development_d3_cost_ops.py": "86be2736fdb3386c44fcbe9074fa9b3e511c2dcf5f86fcf62ebadff0db0721cd",
+    "experiments/stress_pilot_ops.py": "b3b545229913984f190d1c62feb2a1e0f6195c65c5dc255ce944f72ec745f324",
+    "experiments/stress_processing.py": "07d5ca2c480a7f449fc49e6ba99d519b59ed3e2f4681f8b06eea397d3c559ff2",
+    "experiments/development_d2.py": "5ae8b9c9cb87e973c082dbf13f206345103316fb92fda275a3399e82050c8df5",
+    "experiments/run_extra_reps_clients8.py": "3c20fa88c9ce1df74b5a9f4d2424c025a200071062cb5a7d4fc9c1cca686144d",
+    "experiments/development_d3_cost.py": "36db7b9800c0dcc682efb1626727842cba0dc5e10afd2cb4d10e96c96a2be519",
+    "experiments/validate_single_victim.py": "a6ebbad97584e5c273845a2d8a1cbc56400cff0ae6f9526e77da3c26b945ce87",
+    "experiments/scientific_campaign.py": "364a73ec76b1843f13d7529b7fe52a44074ffa7d3fcd0662c03edd1179af6e99",
+    "experiments/validate_http_proxy.py": "388e54ef0daea391316ae6c412f4c5511cbcf19f2064d1383758d569f3a29cac",
+    "experiments/run_all_desempate_rps1.py": "24fe8dc5d516545e6aa0f5ec475553bc8cd6be8fa4fe466b04384c2aad9e5570",
+    "experiments/stage14a/smoke.py": "0bb732d0c4e7fae85dc1791bc2cbcb7f0d9e4e51651cb11564de2d5433460084",
+    "experiments/stage14a/environment.py": "61ae98987fb5d604228dded125ca7aad2ec0faf003615c4642e12ce889234b99",
+    "experiments/stage14a/__init__.py": "e25b156ce1f34fb4318a1fc518212abb0a0877d02bcbc589d9a959e8cb3027e7",
+    "experiments/stage14a/prepare.py": "e8ec3c67a3232a4553631af02418fe04473420d11a5c269f2e18cddc4330342f",
+    "experiments/stage14a/finalize.py": "d794b3cd1357d56bb6bb9441138d05c5eddaec74662b2854b3231b6f23d29c16",
+    "experiments/protocols/development_d3_origins_20261029/revision_r2/verify_handoff.py": "d93995221c9fe284bf1cb8ac4fbde85d061a36bf7f330887aa932d46da11733a",
+    "experiments/protocols/development_d3_origins_20261029/revision_r2/source_before/development_d3_origins_processing.py": "ef23e1d14926fec32c7021031f81976fab3ded0d8d88704f93a313affb259f78",
+    "tests/test_stress_pilot.py": "141bc4952be1fe1224ddb9d598c87a9f2b18c32fb28e25af96a5abda8d021a7b"
+  },
+  "evidence": [
+    {
+      "path": "experiment_results/development-d3-e8-20261028/analysis/d3_pilot_E8_R2-consolidation_20261028.json",
+      "sha256": "9121adf1193df18c6cb97fa002a4f02ae37ec2c53f4fb8881f879ed833499ecf"
+    },
+    {
+      "path": "experiment_results/development-d3-origins-20261029/analysis/d3_origins_closure_20261029.json",
+      "sha256": "cc165e17ed316aa591b36a5c70db4eaa335fc81fe350409a71e6e31c64f51cfe"
+    }
+  ],
+  "entries": [
+    {
+      "id": "stress_E12_A",
+      "config": "experiments/configs/development_stress_e12_20261029/stress_E12_A.json",
+      "config_sha256": "6f5dc7f19badedbe28282fc1f071dfd446bbd6e647b785eee82e183b203559c5",
+      "effective_configuration": {
+        "id": "stress_E12_A",
+        "duration_seconds": 390,
+        "seed": 14077813496258071338,
+        "normal_traffic": {
+          "clients": 4,
+          "rate": 4,
+          "endpoint": "/medium",
+          "work_units": 10,
+          "sleep_seconds": 0.0,
+          "max_concurrent_sends": 64,
+          "request_timeout_seconds": 2
+        },
+        "attack": {
+          "enabled": true,
+          "profile": "continuous",
+          "attackers": 1,
+          "rate": 12,
+          "start_seconds": 150,
+          "duration_seconds": 120,
+          "endpoint": "/expensive",
+          "work_units": 5000,
+          "sleep_seconds": 0.0,
+          "max_concurrent_sends": 64,
+          "request_timeout_seconds": 2.0,
+          "burst": null
+        },
+        "infrastructure": {
+          "initial_instances": 1,
+          "min_instances": 1,
+          "max_instances": 1,
+          "cost_per_instance_per_hour": 0.02
+        },
+        "autoscaler": {
+          "enabled": false,
+          "scale_up_threshold": 60.0,
+          "scale_down_threshold": 25.0,
+          "cooldown_seconds": 20
+        },
+        "server": {
+          "process_pool_workers": 2,
+          "default_work_units": 1000000,
+          "default_sleep_seconds": 0.0
+        },
+        "monitoring": {
+          "interval_seconds": 1,
+          "stats_poll_interval_seconds": 1,
+          "history_seconds": 30
+        },
+        "load_balancer": {
+          "enabled": true
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        }
+      },
+      "outputs": {
+        "raw": "experiment_results/development-stress-e12-20261029/stress_E12_A/raw",
+        "dataset": "experiment_results/development-stress-e12-20261029/stress_E12_A/dataset",
+        "analysis": "experiment_results/development-stress-e12-20261029/analysis/stress_E12_A-analysis.json",
+        "review": "experiment_results/development-stress-e12-20261029/analysis/stress_E12_A-review.json",
+        "validation": "experiment_results/development-stress-e12-20261029/analysis/stress_E12_A-validation.json"
+      }
+    }
+  ],
+  "thresholds_changed": false,
+  "generator_implementation_changed": false,
+  "detectors_or_calibration_changed": false,
+  "old_authorities": "Historical C/E4/original E8 and E4-R2 authorities remain byte-identical. This is a new single-entry preparation, no automatic release of the original E8.",
+  "comparison_scope": "Exploratory across distinct seeds; expected offensive rate 8, actual starts must be measured. Full scheduled load remains unverified without generator schedule.",
+  "next_execution_authorized": false,
+  "stress_policy": {
+    "maximum_design_rps": [
+      12,
+      16,
+      20
+    ],
+    "materialized_rps": [
+      12
+    ],
+    "advance": "explicit joint review of service, pending, throughput, resources and generator; no automatic progression",
+    "strong_compromise": "p95 > 2*PRE or success < .95; not saturation",
+    "stop_cohort": {
+      "width_seconds": 10,
+      "maturity_seconds": 3,
+      "minimum_starts": 50,
+      "unsuccessful_fraction": 0.2
+    },
+    "queue": {
+      "threshold": 128,
+      "sustained_seconds": 10
+    },
+    "collection_max_age_seconds": 5,
+    "post": "actual emission closure, retain nominal overall 390s",
+    "maximum_capacity_inference": false
+  },
+  "adapter_provenance": {
+    "experiments/development_d3_minimal_ops.py": "bc850a7416b01ba462d12fc4ca661080fa9a5c6e7362c25ef111f81547a83be0",
+    "experiments/development_d3_origins_processing.py": "bcce49fe54a5d517eb8cb5f1593c02d9fb0984d3f875d066bdcdecfadfb69de5",
+    "experiments/development_d3_minimal.py": "2b29d945d4600dfa87ccb17a7c893b38229c7a0c1ce6abcf78f66308db39e8ec"
+  },
+  "service_reference_policy": "own PRE only; historical evidence remains preserved, no new C audit"
+}
