@@ -102,7 +102,10 @@ decisão e atualização de estado vinculados ao mesmo limiar explícito. Possui
 validação sintética e adaptador DEVELOPMENT próprios; a
 [calibração científica permanece pendente](docs/cusum_freeze_calibration_pending.md).
 
-O [D1 benigno de DEVELOPMENT](docs/development_d1_20261027.md) possui configurações
-completas, seeds reservadas e revisão obrigatória entre patamares. Seu utilitário
-offline valida o plano e resolve o resumo de serviço por encerramentos observados;
-não executa a grade experimental.
+O [roadmap atualizado em 29/10](docs/new_campaign_roadmap_status_20261029.md)
+consolida D1, D2, pilotos D3, D3_cost e o
+[encerramento de D3_origins R2](docs/development_d3_origins_closure_20261029.md).
+Propõe quatro condições finais, com orçamento e escolhas ainda para decisão;
+integração científica do CUSUM congelado, partições independentes, repetições e
+intervalos de confiança permanecem pendentes. O roadmap histórico e as
+revisões/manifests anteriores ficam preservados; não há liberação de nova coleta.

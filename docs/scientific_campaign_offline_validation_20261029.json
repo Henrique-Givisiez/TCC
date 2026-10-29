@@ -1,0 +1,113 @@
+{
+  "elapsed_seconds": 180.133,
+  "first_future_command": ".venv/bin/python -B -m experiments.scientific_campaign --plan PLANO --plan-sha256 HASH_PLANO validate",
+  "fixture": {
+    "BCa_exact_and_degenerate_CIs": true,
+    "ambiguous_consumed_attempt_never_repeated": true,
+    "cal_a_no_candidate_rejected": true,
+    "cal_b_rejection_blocks_TEST": true,
+    "candidate_h_replay": true,
+    "checkpoints": [
+      "BASELINE",
+      "CAL_A",
+      "CAL_B",
+      "TEST"
+    ],
+    "controller_crash_recovers_without_collection_repeat": true,
+    "exclusive_lock_and_input_tamper_guards": true,
+    "features": 5,
+    "full_grid_tail_retained": true,
+    "global_replacement_limit_two": true,
+    "logical_runs": 98,
+    "methods": [
+      "zscore",
+      "cov",
+      "ewma",
+      "cusum-freeze"
+    ],
+    "misses_delay_null": true,
+    "no_truth_read_before_TEST": true,
+    "primary_selection": [
+      30,
+      390
+    ],
+    "real_format_raw_export_validation_features_recovery": true,
+    "secondary_failure_unassessed_without_feature_selection": true,
+    "technical_replacement_same_seed_and_slot": true,
+    "test_blocks": 16,
+    "window_end_availability_and_deadline_distinct": true
+  },
+  "kind": "scientific_campaign_offline_validation",
+  "pending": [
+    "Materialize and review the 98 complete configurations, 50 disjoint traffic seeds, full seed audit, new output paths and the campaign plan.",
+    "Record actual Python/dependency/image/daemon/kernel environment lock and freeze implementation hashes before BASELINE.",
+    "Actual Docker/image/capture readiness is untested; each future partition requires explicit authorization and the predecessor checkpoint hash."
+  ],
+  "preservation": {
+    "historical_existing_files_verified": 959,
+    "latest_R2_authority_validation_passed": true,
+    "new_campaign_configurations_created": 0,
+    "new_traffic_seeds_generated": 0,
+    "original_failed_review_and_R2_provenance_unchanged": true,
+    "runtime_files_unchanged_during_validation": true,
+    "simulator_configurations_unchanged": 40
+  },
+  "protocol": {
+    "path": "docs/scientific_protocol_20261029.json",
+    "sha256": "fa325534a34fba0cb3fef20068e5160d96ba71c1a6ca0b6ea1fe21e231debf5b"
+  },
+  "recorded_utc": "2026-10-29T15:03:55.285127+00:00",
+  "scope": {
+    "docker_accessed": false,
+    "experiments_executed": false,
+    "real_backend_recovery_only_no_collection": true,
+    "real_campaign_attempts_consumed": 0,
+    "real_preflight_executed": false,
+    "synthetic_fixtures_only": true
+  },
+  "sources_sha256": {
+    "analysis/detection/scientific/__init__.py": "9d48cb5a682d47a8e35d2960af6f8410251a513f5626fd41447a395012130543",
+    "analysis/detection/scientific/data.py": "448a7c6218d17b3e18410519c64be0dabf146c017ae4616d8f116c6cea18da15",
+    "analysis/detection/scientific/engine.py": "5543771f084abd7e6be6f567c467975299107cb37b31f420deffce0419dd2235",
+    "analysis/detection/scientific/evaluation.py": "de1e32e34755a07fcc132965ed36523de2da15706bd60b5eeba8488e4060111e",
+    "analysis/detection/scientific/protocol.py": "f2a5f148bf20ebaadf80444327f6f1854b430180fe773a34054116aada6930ab",
+    "analysis/detection/scientific/statistics.py": "370e36b63f758523c0791bf13658a3036c3ca905bc2e3c59a6f3da15b32c54c7",
+    "docs/scientific_campaign_implementation_20261029.md": "dd518fd6bb892c0cca1f79c2bb4c180fbab022fe7cfd3990ca0c0a4fc8a64514",
+    "docs/scientific_protocol_20261029.json": "fa325534a34fba0cb3fef20068e5160d96ba71c1a6ca0b6ea1fe21e231debf5b",
+    "experiments/scientific_campaign.py": "364a73ec76b1843f13d7529b7fe52a44074ffa7d3fcd0662c03edd1179af6e99",
+    "experiments/scientific_collection.py": "f4a0495bb823973a08d2209e06fac300822733d506ddb84a355f1266e180ac90",
+    "tests/test_scientific_campaign.py": "9e2e5491f9b9afab31d908240e9955ac0a37186008fc6afe130cbdf113e56ea1"
+  },
+  "status": "passed",
+  "tests": [
+    {
+      "cases": [
+        "test_CAL_B_rejection_blocks_TEST_and_does_not_retune",
+        "test_closed_numerical_edges_balanced_order_and_CI_reproducibility",
+        "test_controller_lock_and_immutable_consumed_attempt",
+        "test_deadline_and_degenerate_CIs",
+        "test_full_partition_pipeline_replay_misses_ICs_and_idempotent_resume",
+        "test_global_two_technical_replacements_and_indeterminate_guard",
+        "test_no_eligible_candidate_is_persisted_and_stops_chain",
+        "test_order_roles_seed_overlap_and_TEST_source_lock",
+        "test_real_backend_offline_recovery_and_export_features",
+        "test_resume_recovers_completed_collection_without_repeating_experiment",
+        "test_secondary_rejection_is_unassessed_without_feature_selection",
+        "test_technical_replacement_consumed_once_and_same_seed",
+        "test_unknown_consumed_attempt_never_repeats_or_gets_replacement"
+      ],
+      "command": ".venv/bin/python -B -m unittest tests.test_scientific_campaign -v",
+      "count": 13,
+      "elapsed_seconds": 174.296,
+      "passed": 13
+    },
+    {
+      "cases": [],
+      "command": ".venv/bin/python -B -m unittest tests.test_cusum_freeze tests.test_ewma_cusum tests.test_statistical_scores tests.test_empirical_policy -q",
+      "count": 95,
+      "elapsed_seconds": 0.827,
+      "passed": 95
+    }
+  ],
+  "unique_test_cases": 108
+}
