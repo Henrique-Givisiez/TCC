@@ -1,6 +1,8 @@
 # Roadmap atual — encerramento de DEVELOPMENT e proposta final enxuta
 
-Estado em 29/10/2026: **D1, D2, pilotos D3, D3_cost e D3_origins consolidados; desenho científico final ainda para decisão e integração**. Esta é a atualização corrente do [roadmap de 27/10](new_campaign_protocol_proposal_20261027.md), que permanece como documento histórico vinculado por hash a manifestos de DEVELOPMENT. Não reescrever esse arquivo, os manifests de coleta, os freezes Stage14/15 ou revisões anteriores para representar o estado atual. A [consolidação de D3_origins](development_d3_origins_closure_20261029.md) é o último encerramento deste percurso.
+Atualização após estresse: **E12/E16 encerrados; E20 fora do escopo; campanha de98 runs pausada**. A proposta corrente para decisão é [C16/M16/E16,18 blocos e6/12/16 benignos](scientific_reduced_protocol_proposal_20261029.md), com [encerramento documental](development_stress_closure_20261029.md). O texto abaixo preserva a proposta anterior; suas lacunas de CUSUM/ICs foram parcialmente resolvidas pela integração científica posterior, auditada na proposta corrente. Nenhuma configuração foi materializada nesta atualização.
+
+Estado anterior em 29/10/2026: **D1, D2, pilotos D3, D3_cost e D3_origins consolidados; desenho científico final ainda para decisão e integração**. Esta é a atualização corrente do [roadmap de 27/10](new_campaign_protocol_proposal_20261027.md), que permanece como documento histórico vinculado por hash a manifestos de DEVELOPMENT. Não reescrever esse arquivo, os manifests de coleta, os freezes Stage14/15 ou revisões anteriores para representar o estado atual. A [consolidação de D3_origins](development_d3_origins_closure_20261029.md) é o último encerramento deste percurso.
 
 | Etapa | Evidência existente | Consequência para o desenho final |
 |---|---|---|
