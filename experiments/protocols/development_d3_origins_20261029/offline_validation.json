@@ -1,0 +1,110 @@
+{
+  "schema": "development-d3-origins-offline-validation/v1",
+  "recorded_utc": "2026-10-29T12:13:39.029990+00:00",
+  "status": "passed",
+  "plan_validation": {
+    "entry_count": 4,
+    "blocks": 2,
+    "block_seeds": {
+      "A": 10653172235677825147,
+      "B": 853084928833962924
+    },
+    "manifest_sha256": "ce2931fa1b55d065d5046877c1e56aceb296ff7ac507224ae1f50b63b205845b",
+    "seed_collisions": [],
+    "historical_seed_files": 5214,
+    "source_checkout": {
+      "effective_checkout_commit": "bbbe4e4dafcb73c4674bfa9588fd0d839f2a5ee1",
+      "bound_source_files_verified": true
+    },
+    "docker_accessed": false,
+    "experiments_executed": false
+  },
+  "tests": {
+    "command": ".venv/bin/python -B -m unittest tests.test_development_d3_origins -v",
+    "count": 5,
+    "passed": 5,
+    "elapsed_seconds": 21.625,
+    "cases": [
+      "test_contexts_restore_and_old_authorities_are_not_overridden",
+      "test_four_run_fixture_pipeline_and_seed_paired_comparison",
+      "test_historical_pilot_review_cannot_replace_planned_entry",
+      "test_real_authority_pairing_order_rates_budget_and_tamper",
+      "test_review_hash_terminal_gate_and_idle_required_active_failure_allowed"
+    ]
+  },
+  "fixture_ACTIVE": {
+    "exposure_seconds": 120,
+    "legitimate_aggregate_rps": 16,
+    "N1": {
+      "attackers": 1,
+      "per_origin_nominal_starts": [
+        960
+      ],
+      "per_origin_observed_starts": [
+        960
+      ],
+      "per_origin_rps": [
+        8
+      ],
+      "aggregate_starts": 960,
+      "aggregate_rps": 8,
+      "workers": [
+        64
+      ]
+    },
+    "N2": {
+      "attackers": 2,
+      "per_origin_nominal_starts": [
+        480,
+        480
+      ],
+      "per_origin_observed_starts": [
+        480,
+        480
+      ],
+      "per_origin_rps": [
+        4,
+        4
+      ],
+      "aggregate_starts": 960,
+      "aggregate_rps": 8,
+      "workers": [
+        32,
+        32
+      ],
+      "local_emission_end_seconds": [
+        270.01,
+        270.03
+      ],
+      "certified_global_emission_end_seconds": 270.03,
+      "global_end_without_last_origin_certificate": null
+    }
+  },
+  "checks": {
+    "all_origin_inventory_and_journals_reconciled": true,
+    "production_aggregator_waits_for_last_origin": true,
+    "incomplete_inventory_worker_quota_csv_loss_missing_closure_and_early_global_end_rejected": true,
+    "frozen_N1_E8_service_results_identical": true,
+    "four_fixtures_exported_reviewed_compared": true,
+    "manifest_config_raw_identity_review_bindings_verified": true,
+    "manual_review_hash_idle_terminal_gates_verified": true,
+    "N2_minus_N1_by_block_and_B_minus_A_by_condition": true,
+    "aggregate_and_per_origin_offensive_rates_reported": true,
+    "unequal_observed_offensive_rates_retained_in_contrast": true,
+    "new_seeds_disjoint_from_history_and_reservations": true,
+    "operational_cli_help_passed": true,
+    "reserved_operational_results_absent": true
+  },
+  "scope": {
+    "docker_accessed": false,
+    "preflight_executed": false,
+    "experiments_executed": false,
+    "fixtures_only": true,
+    "historical_tracked_artifacts_modified": false
+  },
+  "pending": [
+    "Actual operational readiness remains to be checked by the first preflight; no empirical N1/N2 results exist.",
+    "Experiment execution requires separate entry-specific authorization after readiness and manual review gates."
+  ],
+  "first_preflight": ".venv/bin/python -B -m experiments.development_d3_origins_ops preflight --entry d3_origins_A_N1"
+}
