@@ -1,5 +1,7 @@
 # Integração científica reduzida — validação offline
 
+Atualização operacional: a [materialização aprovada](scientific_reduced_materialization_20261029.md) registra os56 JSONs,32 seeds, plano e lock real de ambiente, com comandos/hashes efetivos. A coleta permanece não iniciada. As descrições de pendências abaixo registram a entrega anterior à materialização.
+
 Contrato executável novo: [scientific_protocol_reduced_20261029.json](scientific_protocol_reduced_20261029.json), versão2. O protocolo anterior de98 runs e todos os resultados DEVELOPMENT/Stage14/15 permanecem preservados. Código atual exige4 BASELINE,8 CAL-A,8 CAL-B e12 blocos×C16/M16/E16=56 slots, com teto58 tentativas e duas substituições exclusivamente técnicas (uma por slot). Nenhuma configuração/plano executável/seed de tráfego real foi materializada.
 
 Ordem prospectiva: `CME,MEC,ECM,EMC,MCE,CEM; MEC,ECM,CME,MCE,CEM,EMC`, C=C16,M=M16,E=E16. Cada permutação duas vezes; posição e precedência adjacente balanceadas. São32 grupos de seeds independentes:20 preparações e12 blocos. Configurações futuras mantêm o template vinculado, uma vítima, pool2, legítimos4×4 `/medium`, uma origem ofensiva16 RPS `/medium` ou `/expensive`, mesmos workers/timeouts/recursos. Sem E12/E20 no TEST.
@@ -59,3 +61,11 @@ Cada comando executa somente a partição autorizada e para no checkpoint. Repet
 ```
 
 Escolher uma via explicitamente; slot aceito ou encerrado como atrição não pode ser substituído. Reprovação de CAL-B permanece bloqueio científico definitivo sob essa autoridade, sem autorização de refit ou nova amostra por essas opções.
+
+## Parametrização mínima da autoridade
+
+Inventário, taxas ofensivas/endpoints, cenário de controle, ordens, grupos de seeds e contraste operacional são lidos da especificação vinculada. A autoridade padrão continua a campanha56/58, com SHA256 literal conferido no carregamento: editar seu JSON não muda silenciosamente a campanha. Outra especificação requer seleção explícita das duas variáveis `SCIENTIFIC_SPEC_PATH` e `SCIENTIFIC_SPEC_SHA256`, além do vínculo correspondente no plano. O subprocesso de coleta herda essa seleção e revalida o mesmo plano. Não existe autodetecção de campanha ou alteração por resultados. Mantém-se o único contraste operacional suportado; não se criou um framework de múltiplas análises arbitrárias.
+
+O campo de impacto segue o formato `paired_<esquerda>_minus_<direita>`. Na campanha atual permanece exatamente `paired_E16_minus_M16`, com os mesmos valores e consumidores. Testes com rótulos diferentes verificam o nome derivado da especificação. O resumo de detecção também deriva os dois cenários do contraste. Contagens de slots e grupos de seeds são calculadas da partição e das ordens; o teto de tentativas vem do contrato.
+
+A validação de parametrização compara os resultados completos atuais com o avaliador anterior do commit de referência, incluindo chaves, ICs, pareamento e impacto. Uma autoridade temporária a7 RPS é aceita somente com seu próprio hash/plano; a autoridade atual a rejeita. Um controle C16 de fixture em formato real, sem evento, atravessa exportação, recuperação do backend, Stage9/features, calibração independente de fixture, processamento dos quatro métodos e avaliação: não fabrica detecção, miss ou atraso ofensivo. Todos os arquivos dessa fixture ficam em diretórios temporários.

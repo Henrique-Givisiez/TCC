@@ -74,7 +74,7 @@ def evaluate(entry,receipt,run,destination,authority):
 def aggregate(evaluations,destination,authority,attrition=None):
     docs=[a.read('scientific-evaluation') for a in evaluations]
     keys=[(d['entry']['id'],tuple(d['feature'])) for d in docs]
-    if len(keys)!=len(set(keys)) or len(keys)>180:raise ContractError('Duplicate or excessive TEST evaluations')
+    if len(keys)!=len(set(keys)) or len(keys)>SPEC['counts']['TEST']*len(FEATURES):raise ContractError('Duplicate or excessive TEST evaluations')
     from ..inputs import read_json
     planned={e['id']:e for e in read_json(authority['plan_path'])['entries'] if e['partition']=='TEST'}
     for d in docs:
@@ -103,9 +103,9 @@ def aggregate(evaluations,destination,authority,attrition=None):
                     f1=mean_ci(values('f1')),post_fpr=mean_ci(values('post_fpr')),
                     undefined_by_metric={key:sum(r[key] is None for r in rows) for key in ('fpr','recall','f1','post_fpr')},
                     any_false_alarm=proportion_ci(sum(r['fp']>0 for r in rows if r.get('scientifically_evaluated',True)),sum(r.get('scientifically_evaluated',True) for r in rows)),
-                    detection=None if scenario=='C16' else proportion_ci(sum(x is True for x in event),sum(x is not None for x in event)),
-                    unassessed_events=sum(x is None for x in event) if scenario!='C16' else None,
-                    misses=None if scenario=='C16' or all(x is None for x in event) else sum(x is False for x in event),
+                    detection=None if scenario==SPEC['control_scenario'] else proportion_ci(sum(x is True for x in event),sum(x is not None for x in event)),
+                    unassessed_events=sum(x is None for x in event) if scenario!=SPEC['control_scenario'] else None,
+                    misses=None if scenario==SPEC['control_scenario'] or all(x is None for x in event) else sum(x is False for x in event),
                     delay=delay_summary([r['observed_delay_seconds'] for r in rows]),
                     restricted=mean_ci(values('restricted_undetected_fraction')),
                     availability=[dict(benign=r['benign_available'],total_benign=r['benign_windows'],unavailable=r['unavailable']) for r in rows])
@@ -121,7 +121,7 @@ def aggregate(evaluations,destination,authority,attrition=None):
                     pairs=[(float(x[key]),float(y[key])) for x,y in zip(a,b) if x[key] is not None and y[key] is not None]
                     return paired_mean_ci([x for x,y in pairs],[y for x,y in pairs])
                 paired[f'{feature}/{scenario}/{left}-{right}']=dict(
-                    detection=None if scenario=='C16' else paired_detection_ci(
+                    detection=None if scenario==SPEC['control_scenario'] else paired_detection_ci(
                         [x['event_detected'] for x,y in zip(a,b) if x['event_detected'] is not None and y['event_detected'] is not None],
                         [y['event_detected'] for x,y in zip(a,b) if x['event_detected'] is not None and y['event_detected'] is not None]),
                     fpr=continuous('fpr'),recall=continuous('recall'),f1=continuous('f1'),restricted=continuous('restricted_undetected_fraction'),
@@ -130,10 +130,10 @@ def aggregate(evaluations,destination,authority,attrition=None):
     for family,feature in FEATURES:
         for method in METHODS:
             def scenario_rows(s):return sorted([d for d in docs if d['feature']==[family,feature] and d['entry']['scenario']==s],key=lambda d:d['entry']['block'])
-            for right in ('M16',):
-                aa={d['entry']['block']:d for d in scenario_rows('E16')};bb={d['entry']['block']:d for d in scenario_rows(right)}
+            for left,right in SPEC['scenario_contrasts']:
+                aa={d['entry']['block']:d for d in scenario_rows(left)};bb={d['entry']['block']:d for d in scenario_rows(right)}
                 common=sorted(aa.keys() & bb.keys());a=[aa[k] for k in common];b=[bb[k] for k in common]
-                contrasts[f'{feature}/{method}/E16-{right}']=paired_detection_ci(
+                contrasts[f'{feature}/{method}/{left}-{right}']=paired_detection_ci(
                     [x['results'][method]['event_detected'] for x,y in zip(a,b) if x['results'][method]['event_detected'] is not None and y['results'][method]['event_detected'] is not None],
                     [y['results'][method]['event_detected'] for x,y in zip(a,b) if x['results'][method]['event_detected'] is not None and y['results'][method]['event_detected'] is not None])
     return artifact(destination,'scientific-summary',dict(authority=authority,evaluations=[a.reference for a in evaluations],
@@ -202,13 +202,13 @@ def impact_aggregate(docs):
             recovery=proportion_ci(sum(o.get('recovery_confirmed') is True for o in ops),sum(o.get('recovery_confirmed') is not None for o in ops)),
             stop_reasons={reason:sum(o.get('stop',{}).get('reason')==reason for o in ops if o.get('stop')) for reason in sorted({o['stop']['reason'] for o in ops if o.get('stop')})},
             means={k:(mean_ci if k.endswith('fraction') else unbounded_mean_ci)([float(o['scalars'][k]) for o in ops if o['scalars'].get(k) is not None]) for k in keys})
-    a={d['entry']['block']:d.get('operational') for d in primary if d['entry']['scenario']=='E16'}
-    b={d['entry']['block']:d.get('operational') for d in primary if d['entry']['scenario']=='M16'}
+    a={d['entry']['block']:d.get('operational') for d in primary if d['entry']['scenario']==SPEC['scenario_contrasts'][0][0]}
+    b={d['entry']['block']:d.get('operational') for d in primary if d['entry']['scenario']==SPEC['scenario_contrasts'][0][1]}
     common=[k for k in sorted(a.keys()&b.keys()) if a[k] is not None and b[k] is not None]
     keys=sorted({k for i in common for k in a[i]['scalars']})
     for k in keys:
         pairs=[(float(a[i]['scalars'][k]),float(b[i]['scalars'][k])) for i in common if a[i]['scalars'].get(k) is not None and b[i]['scalars'].get(k) is not None]
         paired[k]=unbounded_mean_ci([x-y for x,y in pairs])
-    return dict(by_scenario=table,paired_E16_minus_M16=paired,paired_blocks=common,
+    return dict(by_scenario=table,**{'paired_'+SPEC['scenario_contrasts'][0][0]+'_minus_'+SPEC['scenario_contrasts'][0][1]:paired},paired_blocks=common,
         unit='whole_TEST_block',percentiles='individual_run_descriptions_only',
         inference='exposure_differences_are_part_of_protected_policy_not_causal_equal_dose')

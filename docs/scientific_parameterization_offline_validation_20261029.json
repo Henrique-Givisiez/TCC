@@ -1,0 +1,75 @@
+{
+  "status": "PASS_OFFLINE",
+  "tests": {
+    "command": ".venv/bin/python -B -m unittest tests.test_scientific_campaign -v",
+    "passed": 15,
+    "failed": 0,
+    "seconds": 111.502
+  },
+  "previous_work": {
+    "param_spec_script_executed": true,
+    "evidence": "Prior tool history invokes .venv/bin/python -B /tmp/param-spec.py; corresponding transformations present in diff",
+    "temporary_script_present": false,
+    "script_not_rerun_on_resume": true
+  },
+  "specification": {
+    "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/docs/scientific_protocol_reduced_20261029.json",
+    "sha256": "d4ac35dadcf97a85cecfdaecbdc28bf90ef711fc00cb2874a9872780d7ac9afb",
+    "pin_matches": true,
+    "all_prior_specification_values_preserved": true,
+    "logical_slots": 56,
+    "maximum_attempts": 58,
+    "seed_groups": 32
+  },
+  "equivalence": {
+    "reference": "HEAD:analysis/detection/scientific/evaluation.py",
+    "equal_fields": [
+      "results",
+      "paired",
+      "scenario_detection_contrasts",
+      "operational",
+      "missing_runs",
+      "ci"
+    ],
+    "current_output_key": "paired_E16_minus_M16",
+    "alternative_key_test": "paired_E7_minus_M7"
+  },
+  "fixtures": {
+    "alternative_rate": 7,
+    "wrong_hash_rejected": true,
+    "current_authority_rejects_other_rate": true,
+    "explicit_alternative_authority_accepts": true,
+    "subprocess_explicit_path_and_hash": true,
+    "real_control_no_event": true,
+    "real_control_stages": [
+      "export",
+      "backend_recover",
+      "Stage9",
+      "features",
+      "frozen_calibration",
+      "four_methods",
+      "evaluation",
+      "idempotent_recovery"
+    ]
+  },
+  "source_hashes": {
+    "analysis/detection/scientific/data.py": "9106890371298418da51e0b268245a64c7256e70ac80dd7f3b843f5c29923214",
+    "analysis/detection/scientific/evaluation.py": "f921273be4e8a58cd41db895ef6da206eb308f0e5e61880594032f29f4ba0b70",
+    "analysis/detection/scientific/protocol.py": "5c3cb30984557e26087626a37174d766b82320c3d9150dde4d50ed47e00b1a6d",
+    "docs/scientific_protocol_reduced_20261029.json": "d4ac35dadcf97a85cecfdaecbdc28bf90ef711fc00cb2874a9872780d7ac9afb",
+    "docs/scientific_reduced_implementation_20261029.md": "6772c6ac42303d3441c9a74e7fd54e116a680a3c31a8aeabd9ff3de3601c9239",
+    "experiments/scientific_campaign.py": "88b1252e807db688d6ebacfb11046be354f360c118f68ae5c22df03f143290da",
+    "tests/test_scientific_campaign.py": "0f3733d06e4b377f4cf6a80f3a2c04a4a63642dcee180efaa2e064396ef3e3e9"
+  },
+  "docker_accessed": false,
+  "experiments_executed": false,
+  "real_campaign_materialized": false,
+  "historical_results_modified": false,
+  "pending": [
+    "Future real materialization/environment readiness remains outside this task"
+  ],
+  "prior_validation": {
+    "path": "docs/scientific_reduced_offline_validation_20261029.json",
+    "sha256": "4185fd2e09ca71c6ad31b61e16118d4dccaecbfd77d2b12b7a109b398bfe3edc"
+  }
+}

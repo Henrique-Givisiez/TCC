@@ -134,6 +134,17 @@ class DockerBackend:
         if any(not p.exists() for p in required):raise CollectionFailure('INDETERMINATE_ATTEMPT','Consumed attempt lacks execution/cleanup/data evidence; never repeat automatically')
         cleanup=read_json(directory/'cleanup.json');execution=read_json(directory/'execution.json')
         if not cleanup['verified']:raise CollectionFailure('CLEANUP_UNCONFIRMED','Unconfirmed cleanup is not a replacement authorization')
+        status_path=directory/'raw/run_status.json'
+        inventory_path=directory/'raw/source_inventory.json'
+        if status_path.exists() and inventory_path.exists():
+            status=read_json(status_path);inventory=read_json(inventory_path)
+            sources=directory/'raw/source_artifacts'
+            if (execution['returncode']!=0 and status.get('status')=='incomplete'
+                and any('source monotonic clock is not demonstrably comparable' in e for e in status.get('errors',[]))
+                and inventory and all(e.get('run_id') is None for e in inventory)
+                and not any(sources.glob('*/control/command.json'))
+                and not any(sources.glob('*/output/journal.jsonl'))):
+                raise CollectionFailure('PRE_RELEASE_CLOCK_FAILURE','Clock guard rejected before source release; missing request CSV is not journal mismatch; preserve attempt and diagnose')
         if not (directory/'raw/run_status.json').exists() or not (directory/'dataset/dataset_manifest.json').exists():
             code='MISSING_REQUIRED_ARTIFACTS' if execution['returncode']==0 else 'INDETERMINATE_ATTEMPT'
             raise CollectionFailure(code,'Execution/cleanup recorded but required collected artifacts absent')

@@ -1,0 +1,46 @@
+{
+  "status": "CLOCK_GUARD_DIAGNOSTICS_CORRECTED_AND_ISOLATED_INSPECTION_PASSED",
+  "inspection": {
+    "path": "docs/clock-inspection-20261029T232505Z/inspection.json",
+    "sha256": "797befdb5ef8e2efb581753ecf9a531c5d4b4658038cb89781375193970e4033"
+  },
+  "samples": 16,
+  "accepted_with_explicit_proof": true,
+  "clock_source": "CLOCK_MONOTONIC",
+  "offsets": "monotonic=0;boottime=0 for host/init/exec",
+  "namespace_identity_alone_not_required": true,
+  "automatic_cross_namespace_acceptance": false,
+  "tolerance_added": false,
+  "original_plan_sha256": "752b8c516faf0c931ed19347b298d7348e670797d1e286dfe6c9f6fa7b518385",
+  "original_attempt_sha256": "dd995ffb13ac8bd39f80b0040621972e15f0e6355a65b1f3c4dc9a1c5e50c8d9",
+  "original_failure_sha256": "1608b5cf5d134fb96e11919ce87f01f2779154295654eb645186294638b0dfbd",
+  "original_failure_code": "IDENTITY_JOURNAL_MISMATCH",
+  "diagnostic_reclassification": "PRE_RELEASE_CLOCK_FAILURE",
+  "source_provenance": {
+    "simulator/source_manager.py": {
+      "before": "docs/clock_guard_correction_20261029/source_manager.before.py",
+      "before_sha256": "cbf42972fa7814598b9c3d0107ec27082fa30c5995e8073ab6676ed5fa273f3c",
+      "after_sha256": "380534b16c2f833063a3740a8ac68a4762e6819953a6a8ba1863044539273bb8"
+    },
+    "experiments/scientific_collection.py": {
+      "before": "docs/clock_guard_correction_20261029/scientific_collection.before.py",
+      "before_sha256": "75505daad642a572fad520c0e2c2fb5b4a1a84378cb3edd47706cefa7d998c1c",
+      "after_sha256": "021d61fcc2e2b5de5bec0ce316529297a9822711c47d4d48c9470e0fdf841b26"
+    }
+  },
+  "temporary_containers_removed": 8,
+  "http_generated": false,
+  "scientific_experiments_executed": false,
+  "substitution_authorized": false,
+  "prospective_bindings_required": [
+    "new code freeze for source_manager and scientific_collection",
+    "new plan/environment readiness references and hashes; preserve old plan",
+    "handoff to existing consumed attempt without repeating it",
+    "separate decision on technical substitution within original budget"
+  ],
+  "tests": {
+    "clock_and_source_tests": 12,
+    "scientific_recovery_tests": 2,
+    "all_passed": true
+  }
+}

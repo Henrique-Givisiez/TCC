@@ -1,0 +1,60 @@
+{
+  "status": "PASS_OFFLINE_NOT_APPROVED_NOT_EXECUTED",
+  "plan": {
+    "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiments/protocols/scientific_reduced_clock_r2_20261029/plan.json",
+    "sha256": "6240452e214b0748b023a084edd6dcf4fd2fd0a43744ed70a37bdb88a4319bc4"
+  },
+  "handoff": {
+    "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiments/protocols/scientific_reduced_clock_r2_20261029/handoff.json",
+    "sha256": "10a8020b986525bc066b6531b2cd237fab5dff3206886ba37602f8bb4b58a5ee"
+  },
+  "unchanged_fields": [
+    "entries",
+    "protocol",
+    "environment"
+  ],
+  "identical_entries": true,
+  "consumed_before": 1,
+  "approved_replacements_before": 0,
+  "prepared_replacement": {
+    "entry": "sci56_BASELINE_01_C16",
+    "attempt_number": 2,
+    "failure_sha256": "1608b5cf5d134fb96e11919ce87f01f2779154295654eb645186294638b0dfbd",
+    "corrected_code": "PRE_RELEASE_CLOCK_FAILURE",
+    "automatic_approval": false
+  },
+  "maximum_attempts": 58,
+  "successor_root_exists": false,
+  "tests": {
+    "suite_passed": 28,
+    "suite_seconds": 109.553,
+    "final_handoff_recheck_passed": true,
+    "adulterated_evidence_rejected": true,
+    "original_attempt_never_repeated": true
+  },
+  "commands": [
+    ".venv/bin/python -B -m experiments.scientific_campaign --plan experiments/protocols/scientific_reduced_clock_r2_20261029/plan.json --plan-sha256 6240452e214b0748b023a084edd6dcf4fd2fd0a43744ed70a37bdb88a4319bc4 validate",
+    ".venv/bin/python -B -m experiments.scientific_campaign --plan experiments/protocols/scientific_reduced_clock_r2_20261029/plan.json --plan-sha256 6240452e214b0748b023a084edd6dcf4fd2fd0a43744ed70a37bdb88a4319bc4 approve-technical-replacement --failure-sha256 1608b5cf5d134fb96e11919ce87f01f2779154295654eb645186294638b0dfbd",
+    ".venv/bin/python -B -m experiments.scientific_campaign --plan experiments/protocols/scientific_reduced_clock_r2_20261029/plan.json --plan-sha256 6240452e214b0748b023a084edd6dcf4fd2fd0a43744ed70a37bdb88a4319bc4 run --partition BASELINE --authorize-partition BASELINE"
+  ],
+  "code_changes": {
+    "analysis/detection/scientific/protocol.py": {
+      "old": "5c3cb30984557e26087626a37174d766b82320c3d9150dde4d50ed47e00b1a6d",
+      "new": "8034a867a9e303a83f0f9ba1c2b4eab99407d9906daf7e5ef93bd0652c685af1"
+    },
+    "experiments/scientific_campaign.py": {
+      "old": "88b1252e807db688d6ebacfb11046be354f360c118f68ae5c22df03f143290da",
+      "new": "603861af97fd8402329182460e9e27d433d6d829719575bb335915b6dd4e014d"
+    },
+    "experiments/scientific_collection.py": {
+      "old": "75505daad642a572fad520c0e2c2fb5b4a1a84378cb3edd47706cefa7d998c1c",
+      "new": "021d61fcc2e2b5de5bec0ce316529297a9822711c47d4d48c9470e0fdf841b26"
+    },
+    "simulator/source_manager.py": {
+      "old": "cbf42972fa7814598b9c3d0107ec27082fa30c5995e8073ab6676ed5fa273f3c",
+      "new": "380534b16c2f833063a3740a8ac68a4762e6819953a6a8ba1863044539273bb8"
+    }
+  },
+  "docker_accessed": false,
+  "experiments_executed": false
+}

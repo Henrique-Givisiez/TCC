@@ -22,6 +22,7 @@ class Campaign:
     def __init__(self,plan_path,plan_hash,backend=None):
         self.plan_path=Path(plan_path).resolve();self.plan_hash=plan_hash
         self.plan=p.load_plan(self.plan_path,plan_hash)
+        self.handoff=p.validate_handoff(self.plan)
         self.root=Path(self.plan['results_root']).resolve();p.validate_destination(self.root)
         self.backend=backend if backend is not None else DockerBackend(self.plan)
         self.authority=dict(plan_path=str(self.plan_path),plan_sha256=plan_hash,
@@ -29,6 +30,7 @@ class Campaign:
 
     @contextmanager
     def locked(self):
+        if self.handoff:p.validate_handoff(self.plan)
         new=not self.root.exists();self.root.mkdir(parents=True,exist_ok=True)
         with (self.root/'runner.lock').open('a') as lock:
             try:fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
@@ -40,6 +42,9 @@ class Campaign:
                 else:
                     if any(x.name!='runner.lock' for x in self.root.iterdir()):raise ContractError('Nonempty unbound output root')
                     save(binding,self.authority)
+                if self.handoff and not self.events():
+                    self.append('HANDOFF_IMPORTED',artifact=self.plan['handoff'],consumed_attempts=1,substitution_approved=False)
+                    self.append('TECHNICAL_FAILURE',entry=self.handoff['entry_id'],failure_path=self.handoff['failure_path'],failure_sha256=digest(self.handoff['failure_path']))
                 yield
             finally:fcntl.flock(lock,fcntl.LOCK_UN)
 
@@ -118,7 +123,7 @@ class Campaign:
                 if event['kind']=='REPLACEMENT_APPROVED':approvals.append(event['payload'])
             if failure is None:raise Halt('Select a recorded failure hash')
             path=Path(failure['failure_path']);doc=read_json(path)
-            if digest(path)!=failure_hash or doc['code'] not in p.TECHNICAL_CODES or doc['attempt_number']!=1:
+            if digest(path)!=failure_hash or (doc['code'] not in p.TECHNICAL_CODES and not (self.handoff and self.handoff['failure_path']==str(path) and self.handoff['entry_id']==doc['entry_id'] and digest(path)==self.handoff['evidence_hashes'][str(path)])) or doc['attempt_number']!=1:
                 raise Halt('Failure is not eligible for a technical replacement')
             if len(approvals)>=2 or any(x['entry']==doc['entry_id'] for x in approvals):raise Halt('Technical replacement budget exhausted or already approved')
             if doc['entry_id'] in self.accepted() or doc['entry_id'] in self.technical_attrition():raise Halt('Accepted logical slot cannot be replaced')
@@ -158,6 +163,7 @@ class Campaign:
                 time.sleep(remaining)
 
     def collect_slot(self,entry):
+        if self.handoff:p.validate_handoff(self.plan)
         accepted=self.accepted()
         for ref in accepted.values():
             op=self.receipt_document(ref,False).get('operational')
@@ -166,8 +172,9 @@ class Campaign:
             self.receipt_document(accepted[entry['id']]);return accepted[entry['id']]
         approvals=[e['payload'] for e,h in self.events() if e['kind']=='REPLACEMENT_APPROVED' and e['payload']['entry']==entry['id']]
         if approvals:
-            original=self.root/'collection'/entry['id']/'attempt-1/failure.json'
+            original=Path(self.handoff['failure_path']) if self.handoff and entry['id']==self.handoff['entry_id'] else self.root/'collection'/entry['id']/'attempt-1/failure.json'
             if digest(original)!=approvals[0]['failure_sha256']:raise ContractError('Approved failure evidence changed')
+        if self.handoff and entry['id']==self.handoff['entry_id'] and not approvals:raise Halt('Consumed predecessor slot requires explicit approval of its bound failure hash')
         attempt_number=2 if approvals else 1
         directory=self.root/'collection'/entry['id']/f'attempt-{attempt_number}'
         directory.mkdir(parents=True,exist_ok=True)
@@ -191,7 +198,7 @@ class Campaign:
                 # Recovery never calls preflight/collect or creates another intent.
                 receipt=self.backend.recover(entry,directory)
             else:
-                if sum(1 for x in (self.root/'collection').glob('*/attempt-*/attempt.json'))>=58:raise Halt('Total attempt budget exhausted')
+                if (self.handoff['original_consumed_attempts'] if self.handoff else 0)+sum(1 for x in (self.root/'collection').glob('*/attempt-*/attempt.json'))>=p.SPEC['replacements']['maximum_total_attempts']:raise Halt('Total attempt budget exhausted')
                 self.wait_idle()
                 preflights=sorted((directory/'preflights').glob('*/preparation.json')) if (directory/'preflights').exists() else []
                 started=min([read_json(x)['started_epoch'] for x in preflights],default=time.time())
@@ -295,7 +302,7 @@ def main():
     replace=sub.add_parser('approve-technical-replacement');replace.add_argument('--failure-sha256',required=True)
     attr=sub.add_parser('record-test-attrition');attr.add_argument('--failure-sha256',required=True)
     args=parser.parse_args();campaign=Campaign(args.plan,args.plan_sha256)
-    if args.action=='validate':out=dict(valid=True,logical_runs=56,maximum_attempts=58,docker_accessed=False)
+    if args.action=='validate':out=dict(valid=True,logical_runs=sum(p.SPEC['counts'].values()),maximum_attempts=p.SPEC['replacements']['maximum_total_attempts'],docker_accessed=False)
     elif args.action=='status':out=dict(checkpoints=campaign.checkpoints(),events=len(campaign.events()),docker_accessed=False)
     elif args.action=='approve-technical-replacement':campaign.authorize_replacement(args.failure_sha256);out=dict(replacement_approved=True,experiment_executed=False)
     elif args.action=='record-test-attrition':campaign.record_attrition(args.failure_sha256);out=dict(attrition_recorded=True,experiment_executed=False)

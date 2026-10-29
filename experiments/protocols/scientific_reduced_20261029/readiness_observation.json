@@ -1,0 +1,31 @@
+{
+  "observed_utc": "2026-10-29T23:09:10.820980+00:00",
+  "docker_query_succeeded": true,
+  "query_scope": "info, images.get, containers.list only; no containers started",
+  "running_containers": [],
+  "host_kernel": "7.0.0-38-generic",
+  "host_affinity": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "port_8080_bind_available": true,
+  "capture_capabilities": "",
+  "environment": {
+    "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiments/protocols/scientific_reduced_20261029/environment.json",
+    "sha256": "f6ad090b29f5a09aa20bcbb819e49735f624ccb2304a0314c06d40bc6a17f138"
+  },
+  "load_generated": false,
+  "partition_executed": false,
+  "victim_effective_resources_verified": false,
+  "full_per_attempt_preflight_pending": true
+}

@@ -18,27 +18,75 @@ def worker_quotas(budget, count):
     return [base + (index < remainder) for index in range(count)]
 
 
+CLOCK_SAMPLE_SCRIPT = """import time,os,json,pathlib
+r=dict(monotonic=time.monotonic(),epoch=time.time(),namespace=os.readlink('/proc/self/ns/time'),pid=os.getpid(),kernel=os.uname().release,clock_source=time.get_clock_info('monotonic').implementation)
+for key,path in [('thread_namespace','/proc/thread-self/ns/time'),('children_namespace','/proc/self/ns/time_for_children'),('init_namespace','/proc/1/ns/time')]:
+ try:r[key]=os.readlink(path)
+ except OSError as e:r[key]=dict(error=str(e))
+try:r['timens_offsets']=pathlib.Path('/proc/self/timens_offsets').read_text()
+except OSError as e:r['timens_offsets']=dict(error=str(e))
+print(json.dumps(r))
+"""
+
+
+def clock_metadata():
+    result=dict(namespace=os.readlink('/proc/self/ns/time'),kernel=os.uname().release,
+        clock_source=time.get_clock_info('monotonic').implementation)
+    try:
+        result['thread_namespace']=os.readlink('/proc/thread-self/ns/time')
+        result['children_namespace']=os.readlink('/proc/self/ns/time_for_children')
+        result['timens_offsets']=Path('/proc/self/timens_offsets').read_text()
+    except OSError:pass
+    return result
+
+
+def zero_offsets(value):
+    if not isinstance(value,str):return False
+    try:
+        rows=[line.split() for line in value.splitlines()]
+        return len(rows)==2 and {r[0] for r in rows}=={'monotonic','boottime'} and all(len(r)==3 and int(r[1])==int(r[2])==0 for r in rows)
+    except (ValueError,IndexError):return False
+
+
+def clock_checks(host,remote,before,after):
+    same=remote['namespace']==host['namespace']
+    identity=(host.get('thread_namespace')==host.get('children_namespace')==host['namespace']
+        and remote.get('thread_namespace')==remote.get('children_namespace')==remote.get('init_namespace')==remote['namespace'])
+    proof=(identity and zero_offsets(host.get('timens_offsets')) and zero_offsets(remote.get('timens_offsets'))
+        and host.get('kernel')==remote.get('kernel') and host.get('clock_source')==remote.get('clock_source')=='clock_gettime(CLOCK_MONOTONIC)')
+    bracket=before<=remote['monotonic']<=after
+    return dict(namespace_equal=same,zero_offsets_native_process_proof=bool(proof),
+        remote_within_host_bracket=bracket,comparable=bool(bracket and (same or proof)))
+
+
 def validate_clocks(containers, destination):
-    """Same time namespace plus bracketed remote samples, before timeline use."""
-    namespace = os.readlink('/proc/self/ns/time')
-    evidence = dict(host_time_namespace=namespace, sources=[], comparable=False)
+    """Require namespace identity or explicit native zero-offset proof, plus bracket."""
+    host=clock_metadata();namespace=host['namespace']
+    evidence = dict(host_time_namespace=namespace,host=host, host_pid=os.getpid(),sources=[], comparable=False)
+    write_json(destination,evidence)
     for container in containers:
-        samples = []
-        for _ in range(4):
-            before = time.monotonic()
-            result = container.exec_run(['python', '-c',
-                'import time,os,json; print(json.dumps(dict(monotonic=time.monotonic(),epoch=time.time(),namespace=os.readlink("/proc/self/ns/time"))))'])
-            after = time.monotonic()
-            if result.exit_code:
-                raise RuntimeError('unable to audit source clock')
-            remote = json.loads(result.output)
-            samples.append(dict(host_before=before, host_after=after, **remote))
-            if remote['namespace'] != namespace or not before <= remote['monotonic'] <= after:
-                write_json(destination, evidence)
-                raise RuntimeError('source monotonic clock is not demonstrably comparable; stop before experiment')
-        evidence['sources'].append(dict(container_id=container.id, samples=samples))
-    evidence['comparable'] = True
-    write_json(destination, evidence)
+        source=dict(container_id=str(container.id),samples=[])
+        evidence['sources'].append(source)
+        for index in range(4):
+            sample=dict(index=index+1,host_before=time.monotonic())
+            source['samples'].append(sample)
+            write_json(destination,evidence)
+            try:
+                result=container.exec_run(['python','-c',CLOCK_SAMPLE_SCRIPT])
+                sample.update(host_after=time.monotonic(),host_epoch_after=time.time(),exit_code=result.exit_code)
+                sample['raw_output']=result.output.decode(errors='replace')
+                if result.exit_code:raise RuntimeError('unable to audit source clock')
+                remote=json.loads(result.output)
+                sample.update(remote)
+                checks=clock_checks(host,remote,sample['host_before'],sample['host_after'])
+                sample.update(checks=checks,bracket_width_seconds=sample['host_after']-sample['host_before'],
+                    offset_interval_seconds=[remote['monotonic']-sample['host_after'],remote['monotonic']-sample['host_before']])
+                write_json(destination,evidence)
+                if not checks['comparable']:raise RuntimeError('source monotonic clock is not demonstrably comparable; stop before experiment')
+            except Exception as exc:
+                sample['error']=str(exc);write_json(destination,evidence);raise
+        write_json(destination,evidence)
+    evidence['comparable']=True;write_json(destination,evidence)
     return evidence
 
 

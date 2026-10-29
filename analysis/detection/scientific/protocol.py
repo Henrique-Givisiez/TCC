@@ -7,42 +7,33 @@ FEATURES=(('network','ingress_packet_count'),('network','ingress_tcp_payload_len
           ('service','request_starts'),('service','mean_duration_ms'),('infrastructure','mean_cpu_percent'))
 METHODS=('zscore','cov','ewma','cusum-freeze')
 PARTITIONS=('BASELINE','CAL_A','CAL_B','TEST')
-ROWS=(('C16','M16','E16'),('M16','E16','C16'),('E16','C16','M16'),('E16','M16','C16'),('M16','C16','E16'),('C16','E16','M16'))
-ORDER_INDICES=(0,1,2,3,4,5,1,2,0,4,5,3)
-TEST_ORDER=tuple(ROWS[i] for i in ORDER_INDICES)
 TECHNICAL_CODES=('CAPTURE_LOSS','IDENTITY_JOURNAL_MISMATCH','DATASET_INVALID','MISSING_REQUIRED_ARTIFACTS','MONITOR_SUPPORT')
-SPEC=dict(configuration_template_sha256='45214ec78e8650ba97b431c60ce83c4c15508f6832c35aa56cccfe81462531f5',protocol_id='single-victim-scientific-reduced-20261029',version=2,
- counts=dict(BASELINE=4,CAL_A=8,CAL_B=8,TEST=36),test_blocks=12,
- scenarios=['C16','M16','E16'],test_order=[list(row) for row in TEST_ORDER],
- methods=list(METHODS),components=dict(zscore=dict(version=1,ddof=1),cov=dict(version=1,lookback=6),
-   ewma=dict(version=1,lambda_='0.2'),cusum_freeze=dict(version=1,k='0.5',comparison='>',missing='null_reset')),
- decimal_precision=50,secondary_failure='retain_predeclared_feature_as_unassessed_no_retuning',features=[list(x) for x in FEATURES],primary_feature='request_starts',primary_conditions=dict(detection='E16',false_alarm='C16'),
- primary_contrast=['cusum-freeze','ewma','E16','request_starts'],
- nominal_seconds=390,maximum_feature_windows=421,full_causal_tail_retained=True,selection=[30,390],window_seconds=1,attack_interval=[150,270],
- drain_seconds=30,idle_seconds=60,administrative_seconds=600,entry_envelope_seconds=1080,
- alpha='0.01',minimum_available_fraction='0.95',cal_a_mean_max='0.01',cal_a_run_max='0.05',
- cal_b_mean_max='0.02',cal_b_run_max='0.05',
- h_grid=['0','0.25','0.5','0.75','1','1.5','2','3','4','8','16'],
- no_candidate='PUBLISH_REJECTION_AND_STOP_NO_GRID_EXTENSION',cal_b_failure='STOP_NO_RETUNING_NO_TEST',
- event_rule='positive_observation_overlap_and_window_end_le_decision_availability_le_actual_end',
- missing='no_window_decision_event_operational_miss_delay_null',
- ci=dict(level='0.95',unit='whole_TEST_block',mean_method='BCa',resamples=10000,rng_seed=2026102901,
-   degenerate='bounded_Hoeffding',marginal='Wilson_exact_at_extremes',
-   paired_event='discordant_exact_97.5_intervals_Bonferroni',minimum_delay_detections=8,bounds=dict(rates=[0,1],paired_differences=[-1,1],conditional_delay_seconds=[0,300]),
-   impact=dict(unit='whole_TEST_block',means='BCa_10000_no_CI_if_unbounded_degenerate',rates='BCa_bounded_Hoeffding_if_degenerate',percentiles='individual_run_only_no_averaging',paired='difference_before_resampling_complete_block_pairs_only',attrition='explicit_hash_bound_technical_TEST_closure'),
-   multiplicity='pointwise_estimation_no_superiority_tests'),
- replacements=dict(maximum=2,maximum_per_slot=1,maximum_total_attempts=58,
-   same_seed_scenario_partition=True,approval='explicit_failure_hash',codes=list(TECHNICAL_CODES),
-   prohibit=['CAL_A_REJECTION','CAL_B_REJECTION','MISS','HIGH_FPR','SERVICE_DEGRADATION','LOW_REALIZED_RPS','NO_RECOVERY']),
- protection=dict(poll_seconds='0.25',cohort_width_seconds=10,maturity_seconds=3,minimum_starts=50,unsuccessful_fraction='0.20',queue_threshold=128,queue_sustain_seconds=10,sample_max_age_seconds=5,stop_scope='attack_only_keep_legitimate_and_observation_until_390',valid_service_stop_is_not_replacement=True),
- checkpoints=list(PARTITIONS),test_feedback=False)
-PROTOCOL_PATH=ROOT/'docs/scientific_protocol_reduced_20261029.json'
+DEFAULT_PROTOCOL_PATH=ROOT/'docs/scientific_protocol_reduced_20261029.json'
+DEFAULT_PROTOCOL_SHA256='d4ac35dadcf97a85cecfdaecbdc28bf90ef711fc00cb2874a9872780d7ac9afb'
+
+def load_spec(path,sha256):
+    if digest(path)!=sha256:raise ContractError('Campaign specification hash changed')
+    spec=read_json(path)['specification']
+    if set(spec['scenario_parameters'])!=set(spec['scenarios']) or spec['control_scenario'] not in spec['scenarios']:raise ContractError('Scenario inventory differs')
+    if len(spec['test_order'])!=spec['test_blocks'] or any(sorted(row)!=sorted(spec['scenarios']) for row in spec['test_order']):raise ContractError('Invalid block inventory')
+    if spec['counts']['TEST']!=spec['test_blocks']*len(spec['scenarios']):raise ContractError('TEST count differs')
+    if len(spec['scenario_contrasts'])!=1:raise ContractError('Exactly one operational scenario contrast supported')
+    for left,right in spec['scenario_contrasts']:
+        if left not in spec['scenarios'] or right not in spec['scenarios']:raise ContractError('Unknown contrast scenario')
+    return spec
+
+import os
+_override=os.environ.get('SCIENTIFIC_SPEC_PATH');_hash=os.environ.get('SCIENTIFIC_SPEC_SHA256')
+if bool(_override)!=bool(_hash):raise ContractError('Explicit specification requires path AND hash')
+PROTOCOL_PATH=Path(_override).resolve() if _override else DEFAULT_PROTOCOL_PATH
+SPEC=load_spec(PROTOCOL_PATH,_hash or DEFAULT_PROTOCOL_SHA256)
+TEST_ORDER=tuple(tuple(row) for row in SPEC['test_order'])
 
 
 def expected_slots():
     slots=[]
-    for partition,count in (('BASELINE',4),('CAL_A',8),('CAL_B',8)):
-        slots.extend(dict(partition=partition,block=None,scenario='C16',ordinal=i+1) for i in range(count))
+    for partition,count in ((part,SPEC['counts'][part]) for part in PARTITIONS if part!='TEST'):
+        slots.extend(dict(partition=partition,block=None,scenario=SPEC['control_scenario'],ordinal=i+1) for i in range(count))
     for i,row in enumerate(TEST_ORDER,1):
         slots.extend(dict(partition='TEST',block=i,scenario=s,ordinal=j+1) for j,s in enumerate(row))
     return slots
@@ -60,8 +51,9 @@ def load_plan(path,expected_hash):
     path=Path(path).resolve()
     if digest(path)!=expected_hash:raise ContractError('Campaign plan hash changed')
     p=read_json(path)
-    if set(p)!={'protocol','runtime_hashes','environment','seed_audit','entries','results_root'}:
+    if set(p)-{'handoff'}!={'protocol','runtime_hashes','environment','seed_audit','entries','results_root'}:
         raise ContractError('Campaign plan fields differ from the closed contract')
+    handoff=validate_handoff(p)
     ref=p['protocol']
     if Path(ref['path']).resolve()!=PROTOCOL_PATH or digest(PROTOCOL_PATH)!=ref['sha256'] or read_json(PROTOCOL_PATH)['specification']!=SPEC:
         raise ContractError('Closed protocol binding changed')
@@ -84,7 +76,7 @@ def load_plan(path,expected_hash):
         if digest(item['path'])!=item['sha256']:raise ContractError('Historical seed source changed')
         seeds=sorted(collect_seeds(read_json(item['path'])))
         if seeds!=item['seeds']:raise ContractError('Historical seed audit disagrees')
-        used.update(seeds)
+        if not handoff or Path(item['path']).resolve()!=Path(handoff['old_plan']['path']).resolve():used.update(seeds)
     # Snapshot must cover all pre-existing seed-bearing files, not a chosen subset.
     expected=set()
     config_paths={Path(e['config']).resolve() for e in p['entries']}
@@ -92,6 +84,7 @@ def load_plan(path,expected_hash):
     for folder in ('experiments/configs','experiments/protocols','docs/stage14a/materialized','experiment_results'):
         for source in (ROOT/folder).rglob('*.json'):
             if result==source.resolve() or result in source.resolve().parents:continue
+            if handoff and Path(handoff['old_root']).resolve() in source.resolve().parents:continue
             if source.resolve() in config_paths:continue
             if source.resolve()==Path(p['seed_audit']['path']).resolve() or source.resolve()==path:continue
             try: values=collect_seeds(read_json(source)) if source.stat().st_size else set()
@@ -99,7 +92,7 @@ def load_plan(path,expected_hash):
             if values:expected.add(str(source.resolve()))
     if expected!={str(Path(x['path']).resolve()) for x in audit['sources']}:
         raise ContractError('Historical seed inventory coverage changed')
-    if len(p['entries'])!=56:raise ContractError('Exactly 56 logical slots required')
+    if len(p['entries'])!=sum(SPEC['counts'].values()):raise ContractError('Specification logical slot count required')
     from simulator.experiment_config import ExperimentConfig
     template_path=ROOT/'experiments/configs/development_d3_origins_20261029/d3_origins_A_N1.json'
     if digest(template_path)!=SPEC['configuration_template_sha256']:raise ContractError('Locked configuration template changed')
@@ -122,12 +115,11 @@ def load_plan(path,expected_hash):
         if digest(config_path)!=entry['config_sha256']:raise ContractError('Configuration hash changed')
         cfg=ExperimentConfig.load(config_path);effective=read_json(config_path)
         attack=dict(template['attack']);scenario=entry['scenario']
-        attack.update(enabled=scenario!='C16',attackers=0 if scenario=='C16' else 1,
-            rate=0 if scenario=='C16' else 16,
-            endpoint='/medium' if scenario=='M16' else '/expensive')
+        attack.update(enabled=scenario!=SPEC['control_scenario'],attackers=0 if scenario==SPEC['control_scenario'] else 1,
+            **SPEC['scenario_parameters'][scenario])
         expected_cfg={**template,'id':entry['id'],'seed':entry['seed'],'attack':attack}
         if effective!=expected_cfg or read_json_text(cfg.to_json())!=expected_cfg:raise ContractError('Configuration differs from closed scientific matrix')
-    if len(set(seeds_by_group.values()))!=32:raise ContractError('Partition or block seeds overlap')
+    if len(set(seeds_by_group.values()))!=sum(SPEC['counts'][part] for part in PARTITIONS if part!='TEST')+SPEC['test_blocks']:raise ContractError('Partition or block seeds overlap')
     validate_destination(result)
     return p
 
@@ -144,3 +136,40 @@ def validate_destination(path):
     tmp=Path('/tmp')
     if not (tmp in path.parents or (path.parent==ROOT/'experiment_results' and path.name.startswith('scientific-'))):
         raise ContractError('New scientific result root required; historical roots are protected')
+
+
+def validate_handoff(plan):
+    if 'handoff' not in plan:return None
+    ref=plan['handoff']
+    if digest(ref['path'])!=ref['sha256']:raise ContractError('Handoff changed')
+    h=read_json(ref['path'])
+    for path,expected in h['evidence_hashes'].items():
+        if digest(path)!=expected:raise ContractError('Handoff evidence changed: '+path)
+    old=read_json(h['old_plan']['path'])
+    if digest(h['old_plan']['path'])!=h['old_plan']['sha256']:raise ContractError('Predecessor plan changed')
+    if any(plan[k]!=old[k] for k in ('entries','protocol','environment')):raise ContractError('Handoff changes scientific entries/spec/environment')
+    if plan['results_root']==old['results_root'] or h['old_root']!=old['results_root']:raise ContractError('Handoff must preserve previous root')
+    previous=None;events=[]
+    for index,path in enumerate(sorted((Path(h['old_root'])/'journal').glob('*.json')),1):
+        event=read_json(path)
+        if event['sequence']!=index or event['previous_sha256']!=previous or event['plan_sha256']!=h['old_plan']['sha256']:raise ContractError('Predecessor journal chain changed')
+        previous=digest(path);events.append(event)
+    kinds=[e['kind'] for e in events]
+    if kinds!=['ATTEMPT_CONSUMED','TECHNICAL_FAILURE']:raise ContractError('Predecessor has additional activity')
+    attempt=read_json(h['attempt_path']);failure=read_json(h['failure_path']);status=read_json(h['status_path'])
+    if (h['original_consumed_attempts']!=1 or h['original_approved_replacements']!=0 or h['corrected_code']!='PRE_RELEASE_CLOCK_FAILURE'
+        or failure['code']!='IDENTITY_JOURNAL_MISMATCH' or failure['attempt_number']!=1
+        or attempt['entry']['partition']!='BASELINE' or attempt['entry']['scenario']!=SPEC['control_scenario'] or attempt['entry'] not in old['entries'] or attempt['entry']['id']!=h['entry_id']
+        or attempt['authority']['plan_sha256']!=h['old_plan']['sha256'] or attempt['authority']['plan_path']!=h['old_plan']['path']
+        or events[0]['payload']['sha256']!=digest(h['attempt_path']) or events[1]['payload']['failure_sha256']!=digest(h['failure_path'])
+        or failure['entry_id']!=h['entry_id'] or failure['consumed_attempt_sha256']!=digest(h['attempt_path'])
+        or not read_json(h['cleanup_path'])['verified'] or read_json(h['execution_path'])['returncode']==0
+        or status['status']!='incomplete' or not any('source monotonic clock is not demonstrably comparable' in x for x in status['errors'])
+        or not all(e['run_id'] is None for e in read_json(h['inventory_path']))):raise ContractError('Unproven pre-release handoff')
+    root=Path(h['old_root'])
+    if {str(x.resolve()) for x in root.rglob('*') if x.is_file()}!=set(h['evidence_hashes']):raise ContractError('Predecessor inventory changed')
+    if any(root.glob('checkpoints/*')) or any(root.glob('collection/*/attempt-2')):raise ContractError('Handoff already progressed')
+    if any(root.glob('collection/*/attempt-1/raw/source_artifacts/*/control/command.json')) or any(root.glob('collection/*/attempt-1/raw/source_artifacts/*/output/journal.jsonl')):raise ContractError('Sources were released')
+    diagnosis=read_json(h['diagnosis']['path'])
+    if digest(h['diagnosis']['path'])!=h['diagnosis']['sha256'] or diagnosis['diagnostic_reclassification']!=h['corrected_code'] or diagnosis['original_failure_sha256']!=digest(h['failure_path']):raise ContractError('Diagnosis does not bind original symptom')
+    return h

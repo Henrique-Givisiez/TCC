@@ -1,0 +1,400 @@
+{
+  "scope": "isolated clock inspection, network none, no HTTP or scientific experiment",
+  "host": {
+    "monotonic": 1991.403234254,
+    "epoch": 1793316224.7032316,
+    "namespace": "time:[4026531834]",
+    "pid": 57383,
+    "thread_namespace": "time:[4026531834]",
+    "children_namespace": "time:[4026531834]",
+    "init_namespace": {
+      "error": "[Errno 13] Permission denied: '/proc/1/ns/time'"
+    },
+    "timens_offsets": "monotonic           0         0\nboottime            0         0\n"
+  },
+  "sources": [
+    {
+      "id": "bfcde4c54d31fc0fa96bf7c17239d01fc160bd2dbcb7fc7979251c82e164fcb6",
+      "name": "edos_clock_inspection_20261029T232344Z_0",
+      "host_pid": 57421,
+      "samples": [
+        {
+          "host_before": 1991.571683942,
+          "host_after": 1991.623361472,
+          "remote": {
+            "monotonic": 1991.618955584,
+            "epoch": 1793316224.918953,
+            "namespace": "time:[4026533450]",
+            "pid": 7,
+            "thread_namespace": "time:[4026533450]",
+            "children_namespace": "time:[4026533450]",
+            "init_namespace": "time:[4026533450]",
+            "timens_offsets": "monotonic           0         0\nboottime            0         0\n"
+          },
+          "namespace_equal": false,
+          "within_bracket": true,
+          "offset_interval": [
+            -0.004405887999837432,
+            0.04727164200016887
+          ]
+        },
+        {
+          "host_before": 1991.623380651,
+          "host_after": 1991.673123109,
+          "remote": {
+            "monotonic": 1991.668796139,
+            "epoch": 1793316224.9687936,
+            "namespace": "time:[4026533450]",
+            "pid": 13,
+            "thread_namespace": "time:[4026533450]",
+            "children_namespace": "time:[4026533450]",
+            "init_namespace": "time:[4026533450]",
+            "timens_offsets": "monotonic           0         0\nboottime            0         0\n"
+          },
+          "namespace_equal": false,
+          "within_bracket": true,
+          "offset_interval": [
+            -0.004326969999965513,
+            0.045415488000116966
+          ]
+        },
+        {
+          "host_before": 1991.673146871,
+          "host_after": 1991.716616666,
+          "remote": {
+            "monotonic": 1991.712456297,
+            "epoch": 1793316225.0124536,
+            "namespace": "time:[4026533450]",
+            "pid": 19,
+            "thread_namespace": "time:[4026533450]",
+            "children_namespace": "time:[4026533450]",
+            "init_namespace": "time:[4026533450]",
+            "timens_offsets": "monotonic           0         0\nboottime            0         0\n"
+          },
+          "namespace_equal": false,
+          "within_bracket": true,
+          "offset_interval": [
+            -0.004160368999919228,
+            0.03930942600004528
+          ]
+        },
+        {
+          "host_before": 1991.71663462,
+          "host_after": 1991.764427816,
+          "remote": {
+            "monotonic": 1991.759793797,
+            "epoch": 1793316225.0597913,
+            "namespace": "time:[4026533450]",
+            "pid": 25,
+            "thread_namespace": "time:[4026533450]",
+            "children_namespace": "time:[4026533450]",
+            "init_namespace": "time:[4026533450]",
+            "timens_offsets": "monotonic           0         0\nboottime            0         0\n"
+          },
+          "namespace_equal": false,
+          "within_bracket": true,
+          "offset_interval": [
+            -0.004634019000150147,
+            0.04315917700000682
+          ]
+        }
+      ],
+      "init_output": "{\"monotonic\": 1991.585719518, \"epoch\": 1793316224.885717, \"namespace\": \"time:[4026533450]\", \"pid\": 1, \"thread_namespace\": \"time:[4026533450]\", \"children_namespace\": \"time:[4026533450]\", \"init_namespace\": \"time:[4026533450]\", \"timens_offsets\": \"monotonic           0         0\\nboottime            0         0\\n\"}\n",
+      "host_view_namespace": "[Errno 13] Permission denied: '/proc/57421/ns/time'",
+      "host_view_children_namespace": "[Errno 13] Permission denied: '/proc/57421/ns/time_for_children'",
+      "host_view_offsets": "monotonic           0         0\nboottime            0         0\n"
+    },
+    {
+      "id": "333405a80fe71c973d75f052a74eac65878189198f0e098a07d20e7f2eba481c",
+      "name": "edos_clock_inspection_20261029T232344Z_1",
+      "host_pid": 57542,
+      "samples": [
+        {
+          "host_before": 1991.927793853,
+          "host_after": 1991.979524925,
+          "remote": {
+            "monotonic": 1991.974438423,
+            "epoch": 1793316225.2744358,
+            "namespace": "time:[4026533511]",
+            "pid": 7,
+            "thread_namespace": "time:[4026533511]",
+            "children_namespace": "time:[4026533511]",
+            "init_namespace": "time:[4026533511]",
+            "timens_offsets": "monotonic           0         0\nboottime            0         0\n"
+          },
+          "namespace_equal": false,
+          "within_bracket": true,
+          "offset_interval": [
+            -0.005086502000040127,
+            0.046644570000125896
+          ]
+        },
+        {
+          "host_before": 1991.979543286,
+          "host_after": 1992.032078876,
+          "remote": {
+            "monotonic": 1992.02766212,
+            "epoch": 1793316225.3276598,
+            "namespace": "time:[4026533511]",
+            "pid": 13,
+            "thread_namespace": "time:[4026533511]",
+            "children_namespace": "time:[4026533511]",
+            "init_namespace": "time:[4026533511]",
+            "timens_offsets": "monotonic           0         0\nboottime            0         0\n"
+          },
+          "namespace_equal": false,
+          "within_bracket": true,
+          "offset_interval": [
+            -0.004416755999955058,
+            0.04811883399997896
+          ]
+        },
+        {
+          "host_before": 1992.032098522,
+          "host_after": 1992.075837521,
+          "remote": {
+            "monotonic": 1992.071619886,
+            "epoch": 1793316225.3716187,
+            "namespace": "time:[4026533511]",
+            "pid": 19,
+            "thread_namespace": "time:[4026533511]",
+            "children_namespace": "time:[4026533511]",
+            "init_namespace": "time:[4026533511]",
+            "timens_offsets": "monotonic           0         0\nboottime            0         0\n"
+          },
+          "namespace_equal": false,
+          "within_bracket": true,
+          "offset_interval": [
+            -0.004217635000031805,
+            0.03952136399993833
+          ]
+        },
+        {
+          "host_before": 1992.075869726,
+          "host_after": 1992.133635151,
+          "remote": {
+            "monotonic": 1992.128237934,
+            "epoch": 1793316225.4282355,
+            "namespace": "time:[4026533511]",
+            "pid": 25,
+            "thread_namespace": "time:[4026533511]",
+            "children_namespace": "time:[4026533511]",
+            "init_namespace": "time:[4026533511]",
+            "timens_offsets": "monotonic           0         0\nboottime            0         0\n"
+          },
+          "namespace_equal": false,
+          "within_bracket": true,
+          "offset_interval": [
+            -0.005397216999881493,
+            0.05236820799996167
+          ]
+        }
+      ],
+      "init_output": "{\"monotonic\": 1991.935373054, \"epoch\": 1793316225.2353704, \"namespace\": \"time:[4026533511]\", \"pid\": 1, \"thread_namespace\": \"time:[4026533511]\", \"children_namespace\": \"time:[4026533511]\", \"init_namespace\": \"time:[4026533511]\", \"timens_offsets\": \"monotonic           0         0\\nboottime            0         0\\n\"}\n",
+      "host_view_namespace": "[Errno 13] Permission denied: '/proc/57542/ns/time'",
+      "host_view_children_namespace": "[Errno 13] Permission denied: '/proc/57542/ns/time_for_children'",
+      "host_view_offsets": "monotonic           0         0\nboottime            0         0\n"
+    },
+    {
+      "id": "38dc1adb1d8df90c4855a3900097961b32b21a227d63ab072410ddcb6e3acb62",
+      "name": "edos_clock_inspection_20261029T232344Z_2",
+      "host_pid": 57660,
+      "samples": [
+        {
+          "host_before": 1992.291929429,
+          "host_after": 1992.340434233,
+          "remote": {
+            "monotonic": 1992.336154387,
+            "epoch": 1793316225.6361518,
+            "namespace": "time:[4026533572]",
+            "pid": 7,
+            "thread_namespace": "time:[4026533572]",
+            "children_namespace": "time:[4026533572]",
+            "init_namespace": "time:[4026533572]",
+            "timens_offsets": "monotonic           0         0\nboottime            0         0\n"
+          },
+          "namespace_equal": false,
+          "within_bracket": true,
+          "offset_interval": [
+            -0.0042798459999175975,
+            0.04422495800008619
+          ]
+        },
+        {
+          "host_before": 1992.340451302,
+          "host_after": 1992.386926814,
+          "remote": {
+            "monotonic": 1992.382614794,
+            "epoch": 1793316225.6826143,
+            "namespace": "time:[4026533572]",
+            "pid": 13,
+            "thread_namespace": "time:[4026533572]",
+            "children_namespace": "time:[4026533572]",
+            "init_namespace": "time:[4026533572]",
+            "timens_offsets": "monotonic           0         0\nboottime            0         0\n"
+          },
+          "namespace_equal": false,
+          "within_bracket": true,
+          "offset_interval": [
+            -0.004312020000043049,
+            0.04216349199987235
+          ]
+        },
+        {
+          "host_before": 1992.386945897,
+          "host_after": 1992.433891783,
+          "remote": {
+            "monotonic": 1992.428606101,
+            "epoch": 1793316225.728604,
+            "namespace": "time:[4026533572]",
+            "pid": 19,
+            "thread_namespace": "time:[4026533572]",
+            "children_namespace": "time:[4026533572]",
+            "init_namespace": "time:[4026533572]",
+            "timens_offsets": "monotonic           0         0\nboottime            0         0\n"
+          },
+          "namespace_equal": false,
+          "within_bracket": true,
+          "offset_interval": [
+            -0.005285682000021552,
+            0.041660203999981604
+          ]
+        },
+        {
+          "host_before": 1992.43391317,
+          "host_after": 1992.484135714,
+          "remote": {
+            "monotonic": 1992.479826696,
+            "epoch": 1793316225.779824,
+            "namespace": "time:[4026533572]",
+            "pid": 25,
+            "thread_namespace": "time:[4026533572]",
+            "children_namespace": "time:[4026533572]",
+            "init_namespace": "time:[4026533572]",
+            "timens_offsets": "monotonic           0         0\nboottime            0         0\n"
+          },
+          "namespace_equal": false,
+          "within_bracket": true,
+          "offset_interval": [
+            -0.0043090180001854606,
+            0.045913525999822014
+          ]
+        }
+      ],
+      "init_output": "{\"monotonic\": 1992.301565899, \"epoch\": 1793316225.6015635, \"namespace\": \"time:[4026533572]\", \"pid\": 1, \"thread_namespace\": \"time:[4026533572]\", \"children_namespace\": \"time:[4026533572]\", \"init_namespace\": \"time:[4026533572]\", \"timens_offsets\": \"monotonic           0         0\\nboottime            0         0\\n\"}\n",
+      "host_view_namespace": "[Errno 13] Permission denied: '/proc/57660/ns/time'",
+      "host_view_children_namespace": "[Errno 13] Permission denied: '/proc/57660/ns/time_for_children'",
+      "host_view_offsets": "monotonic           0         0\nboottime            0         0\n"
+    },
+    {
+      "id": "6dbd61138080463ec816778d1356c9f6c83010addb3befe53aa059129989fc62",
+      "name": "edos_clock_inspection_20261029T232344Z_3",
+      "host_pid": 57779,
+      "samples": [
+        {
+          "host_before": 1992.644508589,
+          "host_after": 1992.694408859,
+          "remote": {
+            "monotonic": 1992.689566471,
+            "epoch": 1793316225.989564,
+            "namespace": "time:[4026533633]",
+            "pid": 7,
+            "thread_namespace": "time:[4026533633]",
+            "children_namespace": "time:[4026533633]",
+            "init_namespace": "time:[4026533633]",
+            "timens_offsets": "monotonic           0         0\nboottime            0         0\n"
+          },
+          "namespace_equal": false,
+          "within_bracket": true,
+          "offset_interval": [
+            -0.004842388000042774,
+            0.04505788200003735
+          ]
+        },
+        {
+          "host_before": 1992.694428777,
+          "host_after": 1992.743876923,
+          "remote": {
+            "monotonic": 1992.738682925,
+            "epoch": 1793316226.0386803,
+            "namespace": "time:[4026533633]",
+            "pid": 14,
+            "thread_namespace": "time:[4026533633]",
+            "children_namespace": "time:[4026533633]",
+            "init_namespace": "time:[4026533633]",
+            "timens_offsets": "monotonic           0         0\nboottime            0         0\n"
+          },
+          "namespace_equal": false,
+          "within_bracket": true,
+          "offset_interval": [
+            -0.005193998000095235,
+            0.04425414799993632
+          ]
+        },
+        {
+          "host_before": 1992.743897455,
+          "host_after": 1992.79032239,
+          "remote": {
+            "monotonic": 1992.786178865,
+            "epoch": 1793316226.0861762,
+            "namespace": "time:[4026533633]",
+            "pid": 20,
+            "thread_namespace": "time:[4026533633]",
+            "children_namespace": "time:[4026533633]",
+            "init_namespace": "time:[4026533633]",
+            "timens_offsets": "monotonic           0         0\nboottime            0         0\n"
+          },
+          "namespace_equal": false,
+          "within_bracket": true,
+          "offset_interval": [
+            -0.004143525000017689,
+            0.04228140999998686
+          ]
+        },
+        {
+          "host_before": 1992.79033503,
+          "host_after": 1992.845788951,
+          "remote": {
+            "monotonic": 1992.839914623,
+            "epoch": 1793316226.1399126,
+            "namespace": "time:[4026533633]",
+            "pid": 26,
+            "thread_namespace": "time:[4026533633]",
+            "children_namespace": "time:[4026533633]",
+            "init_namespace": "time:[4026533633]",
+            "timens_offsets": "monotonic           0         0\nboottime            0         0\n"
+          },
+          "namespace_equal": false,
+          "within_bracket": true,
+          "offset_interval": [
+            -0.005874328000118112,
+            0.04957959299986214
+          ]
+        }
+      ],
+      "init_output": "{\"monotonic\": 1992.651473605, \"epoch\": 1793316225.951471, \"namespace\": \"time:[4026533633]\", \"pid\": 1, \"thread_namespace\": \"time:[4026533633]\", \"children_namespace\": \"time:[4026533633]\", \"init_namespace\": \"time:[4026533633]\", \"timens_offsets\": \"monotonic           0         0\\nboottime            0         0\\n\"}\n",
+      "host_view_namespace": "[Errno 13] Permission denied: '/proc/57779/ns/time'",
+      "host_view_children_namespace": "[Errno 13] Permission denied: '/proc/57779/ns/time_for_children'",
+      "host_view_offsets": "monotonic           0         0\nboottime            0         0\n"
+    }
+  ],
+  "cleanup": [
+    {
+      "id": "bfcde4c54d31fc0fa96bf7c17239d01fc160bd2dbcb7fc7979251c82e164fcb6",
+      "removed": true
+    },
+    {
+      "id": "333405a80fe71c973d75f052a74eac65878189198f0e098a07d20e7f2eba481c",
+      "removed": true
+    },
+    {
+      "id": "38dc1adb1d8df90c4855a3900097961b32b21a227d63ab072410ddcb6e3acb62",
+      "removed": true
+    },
+    {
+      "id": "6dbd61138080463ec816778d1356c9f6c83010addb3befe53aa059129989fc62",
+      "removed": true
+    }
+  ],
+  "load_generated": false
+}

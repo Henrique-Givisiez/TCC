@@ -1,0 +1,50 @@
+{
+  "status": "PASS_OFFLINE_ENVIRONMENT_OBSERVED_PER_ATTEMPT_PREFLIGHT_PENDING",
+  "plan": {
+    "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiments/protocols/scientific_reduced_20261029/plan.json",
+    "sha256": "752b8c516faf0c931ed19347b298d7348e670797d1e286dfe6c9f6fa7b518385"
+  },
+  "specification": {
+    "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/docs/scientific_protocol_reduced_20261029.json",
+    "sha256": "d4ac35dadcf97a85cecfdaecbdc28bf90ef711fc00cb2874a9872780d7ac9afb"
+  },
+  "environment": {
+    "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiments/protocols/scientific_reduced_20261029/environment.json",
+    "sha256": "f6ad090b29f5a09aa20bcbb819e49735f624ccb2304a0314c06d40bc6a17f138"
+  },
+  "seed_audit": {
+    "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiments/protocols/scientific_reduced_20261029/seed_audit.json",
+    "sha256": "aa351182d29bfe9b06844c755997e898f15abd6664df226cf499dfca941183ad"
+  },
+  "checks": {
+    "strict_load_plan": true,
+    "official_validate_cli": {
+      "valid": true,
+      "logical_runs": 56,
+      "maximum_attempts": 58,
+      "docker_accessed": false
+    },
+    "new_configs": 56,
+    "new_seed_groups": 32,
+    "historical_seed_sources": 5330,
+    "six_orders_twice": true,
+    "all_output_paths_new": true,
+    "results_root_absent": true,
+    "seed_derivations_reproduced": true
+  },
+  "environment_queries": {
+    "real_docker_info_and_image_ids": true,
+    "running_containers": 0,
+    "port_bind_available": true,
+    "no_listener_or_workload": true,
+    "containers_created": 0,
+    "images_built_or_pulled": 0
+  },
+  "attempts_consumed": 0,
+  "partitions_executed": 0,
+  "collection_released": false,
+  "pending": [
+    "Per-attempt image-source/capture/effective-victim-resource readiness",
+    "Separate authorization before running BASELINE"
+  ]
+}

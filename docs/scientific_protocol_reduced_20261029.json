@@ -253,6 +253,27 @@
       "CAL_B",
       "TEST"
     ],
-    "test_feedback": false
+    "test_feedback": false,
+    "control_scenario": "C16",
+    "scenario_parameters": {
+      "C16": {
+        "rate": 0,
+        "endpoint": "/expensive"
+      },
+      "M16": {
+        "rate": 16,
+        "endpoint": "/medium"
+      },
+      "E16": {
+        "rate": 16,
+        "endpoint": "/expensive"
+      }
+    },
+    "scenario_contrasts": [
+      [
+        "E16",
+        "M16"
+      ]
+    ]
   }
 }

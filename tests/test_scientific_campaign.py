@@ -147,6 +147,16 @@ class ScientificCampaignTests(unittest.TestCase):
         cp=self.run_phase('TEST');self.assertEqual(len(self.backend.calls),56)
         summary=open_artifact(cp.read()['artifacts']['summary']).read('scientific-summary')
         self.assertEqual(len(summary['results']),60)
+        # Compare numerical results and output keys against the pre-parameterization evaluator.
+        import subprocess
+        namespace=dict(evaluation.__dict__)
+        previous=subprocess.check_output(['git','show','HEAD:analysis/detection/scientific/evaluation.py'],text=True)
+        exec(compile(previous,'previous-evaluation','exec'),namespace)
+        old=namespace['aggregate']([open_artifact(ref) for ref in summary['evaluations']],self.root/'equivalence-summary',self.campaign.authority).read()
+        for key in ('results','paired','scenario_detection_contrasts','operational','missing_runs','ci'):
+            self.assertEqual(summary[key],old[key],key)
+        self.assertIn('paired_E16_minus_M16',summary['operational'])
+
         self.assertIn('request_starts/E16/cusum-freeze-ewma',summary['paired'])
         result=summary['results']['request_starts/M16/zscore']
         self.assertEqual(result['misses'],12);self.assertIsNone(result['delay']['mean_seconds'])
@@ -246,6 +256,104 @@ class ScientificCampaignTests(unittest.TestCase):
         self.assertIn(entry['id'],self.campaign.technical_attrition())
         with self.assertRaises(Halt):self.campaign.authorize_replacement(h)
         self.assertEqual(len(self.backend.calls),1)
+
+    def test_other_rate_spec_is_hash_bound_and_control_real_format(self):
+        other=deepcopy(read_json(p.PROTOCOL_PATH));other['specification']['scenario_parameters']['E16']['rate']=7
+        path=self.root/'other-spec.json';save(path,other)
+        self.assertEqual(p.load_spec(path,digest(path))['scenario_parameters']['E16']['rate'],7)
+        import os,subprocess,sys
+        selected=subprocess.check_output([sys.executable,'-B','-c',"from analysis.detection.scientific.protocol import SPEC,expected_slots; print(SPEC['scenario_parameters']['E16']['rate'],len(expected_slots()))"],text=True,env={**os.environ,'SCIENTIFIC_SPEC_PATH':str(path),'SCIENTIFIC_SPEC_SHA256':digest(path)})
+        self.assertEqual(selected.strip(),'7 56')
+
+        with self.assertRaises(ContractError):p.load_spec(path,'0'*64)
+        self.assertEqual(p.SPEC['scenario_parameters']['E16']['rate'],16)
+        with patch.dict(p.SPEC,dict(scenarios=['B','M7','E7'],control_scenario='B',scenario_contrasts=[['E7','M7']])):
+            docs=[dict(feature=['service','request_starts'],entry=dict(id=name,scenario=name,block=1),operational=dict(early_stop=False,scalars={'exposure_seconds':value})) for name,value in [('E7',7),('M7',9)]]
+            result=evaluation.impact_aggregate(docs)
+            self.assertIn('paired_E7_minus_M7',result);self.assertNotIn('paired_E16_minus_M16',result)
+            self.assertEqual(result['paired_E7_minus_M7']['exposure_seconds']['estimate'],-2)
+
+        # A second explicit authority accepts7 RPS; the current authority still rejects it.
+        alternate=deepcopy(self.plan)
+        for e in alternate['entries']:
+            if e['scenario']=='E16':
+                cfg=read_json(e['config']);cfg['attack']['rate']=7
+                Path(e['config']).write_text(encoded(cfg));e['config_sha256']=digest(e['config'])
+        alt_path=self.root/'alternate-plan.json';save(alt_path,alternate)
+        with self.assertRaises(ContractError):p.load_plan(alt_path,digest(alt_path))
+        protocol_path=Path(self.plan['protocol']['path']);before=protocol_path.read_text()
+        protocol_path.write_text(encoded(other));alternate['protocol']['sha256']=digest(protocol_path)
+        audit_path=Path(alternate['seed_audit']['path']);audit=read_json(audit_path);old_audit=audit_path.read_text()
+        for item in audit['sources']:item['sha256']=digest(item['path'])
+        audit_path.write_text(encoded(audit));alternate['seed_audit']['sha256']=digest(audit_path)
+        alt_path.write_text(encoded(alternate))
+        with patch.dict(p.SPEC,other['specification'],clear=True):
+            self.assertEqual(len(p.load_plan(alt_path,digest(alt_path))['entries']),56)
+        protocol_path.write_text(before);audit_path.write_text(old_audit)
+        for e in self.plan['entries']:
+            if e['scenario']=='E16':
+                cfg=read_json(e['config']);cfg['attack']['rate']=16;Path(e['config']).write_text(encoded(cfg))
+        entry=next(e for e in self.plan['entries'] if e['partition']=='TEST' and e['scenario']=='C16')
+        from tests.test_development_d3 import fixture
+        from simulator.experiment_config import ExperimentConfig
+        from experiments.export_dataset import export_run
+        directory=self.root/'real-control';directory.mkdir();raw=directory/'raw'
+        cfg=ExperimentConfig.load(entry['config'])
+        with patch('tests.test_development_d3.ExperimentConfig.load',return_value=cfg):fixture(raw,'C')
+        inventory=read_json(raw/'source_inventory.json')
+        tick=dict(run_id=inventory[0]['run_id'],journal_sequences={e['source_id']:0 for e in inventory},collection_samples={'v':dict(read='fixture',received_seconds=1)},actionable=True)
+        from experiments.stress_observer import Observer
+        tick.update(Observer().evaluate([],1,1))
+        (raw/'source_artifacts/stress_observer.jsonl').write_text(json.dumps(tick)+'\n')
+        export_run(raw,directory/'dataset')
+        save(directory/'execution.json',dict(returncode=0));save(directory/'cleanup.json',dict(verified=True,observed_epoch=0))
+        receipt=DockerBackend(self.plan).recover(entry,directory)
+        truth=data.load_truth(entry,receipt);self.assertEqual(truth['events'],[])
+        metrics=evaluation.metrics([dict(window_start_seconds=30,window_end_seconds=31,available_at_seconds=31,decision=False)],truth)
+        self.assertIsNone(metrics['event_detected']);self.assertEqual(metrics['fpr'],0)
+        self.assertIsNone(receipt['operational']['exposure_seconds'])
+        self.assertEqual(DockerBackend(self.plan).recover(entry,directory),receipt)
+        for part in p.PARTITIONS[:3]:self.run_phase(part)
+        cps=self.campaign.checkpoints()
+        refs={part:open_artifact(cps[part]).read()['artifacts']['request_starts'] for part in p.PARTITIONS[:3]}
+        source=data.load_source(entry,receipt,'service','request_starts',authority=self.campaign.authority,test_release=cps['CAL_B'])
+        run=engine.process(source,open_artifact(refs['BASELINE']),open_artifact(refs['CAL_A']),self.root/'real-control-score',self.campaign.authority,open_artifact(refs['CAL_B']))
+        evaluated=evaluation.evaluate(entry,receipt,run,self.root/'real-control-evaluation',self.campaign.authority).read()
+        for result in evaluated['results'].values():
+            self.assertIsNone(result['event_detected']);self.assertIsNone(result['observed_delay_seconds'])
+        self.assertEqual(evaluated['operational']['run_id'],receipt['run_id'])
+
+
+    def test_clock_handoff_specific_replacement_and_resume(self):
+        entry=self.plan['entries'][0];self.backend.fail_once=entry['id']
+        with self.assertRaises(Halt):
+            with self.campaign.locked():self.campaign.collect_slot(entry)
+        oldroot=self.root/'result';directory=oldroot/'collection'/entry['id']/'attempt-1'
+        failure_path=directory/'failure.json';failure=read_json(failure_path);failure['code']='IDENTITY_JOURNAL_MISMATCH';failure_path.write_text(encoded(failure))
+        journal=oldroot/'journal/000002.json';event=read_json(journal);event['payload']['failure_sha256']=digest(failure_path);journal.write_text(encoded(event))
+        save(directory/'cleanup.json',dict(verified=True));save(directory/'execution.json',dict(returncode=1))
+        save(directory/'raw/run_status.json',dict(status='incomplete',errors=['source monotonic clock is not demonstrably comparable']))
+        save(directory/'raw/source_inventory.json',[dict(run_id=None)])
+        diagnosis=self.root/'diagnosis.json';save(diagnosis,dict(diagnostic_reclassification='PRE_RELEASE_CLOCK_FAILURE',original_failure_sha256=digest(failure_path)))
+        h=dict(old_plan=dict(path=str(self.plan_path),sha256=digest(self.plan_path)),old_root=str(oldroot),entry_id=entry['id'],original_consumed_attempts=1,original_approved_replacements=0,corrected_code='PRE_RELEASE_CLOCK_FAILURE',diagnosis=dict(path=str(diagnosis),sha256=digest(diagnosis)),evidence_hashes={str(x.resolve()):digest(x) for x in oldroot.rglob('*') if x.is_file()})
+        for key,name in [('attempt_path','attempt.json'),('failure_path','failure.json'),('cleanup_path','cleanup.json'),('execution_path','execution.json'),('status_path','raw/run_status.json'),('inventory_path','raw/source_inventory.json')]:h[key]=str(directory/name)
+        hp=self.root/'handoff.json';save(hp,h)
+        successor={**self.plan,'handoff':dict(path=str(hp),sha256=digest(hp)),'results_root':str(self.root/'successor')}
+        sp=self.root/'successor-plan.json';save(sp,successor)
+        backend=FixtureBackend(self.root);campaign=Campaign(sp,digest(sp),backend)
+        with self.assertRaisesRegex(Halt,'explicit approval'):campaign.run_partition('BASELINE','BASELINE')
+        self.assertEqual(backend.calls,[])
+        original=failure_path.read_bytes();failure_path.write_bytes(original+b' ')
+        with self.assertRaises(ContractError):p.validate_handoff(successor)
+        with self.assertRaises(ContractError):campaign.authorize_replacement(h['evidence_hashes'][str(failure_path)])
+        self.assertFalse(any(e['kind']=='REPLACEMENT_APPROVED' for e,h in campaign.events()))
+        failure_path.write_bytes(original)
+        campaign.authorize_replacement(digest(failure_path))
+        campaign.run_partition('BASELINE','BASELINE');self.assertEqual(len(backend.calls),4)
+        self.assertTrue((self.root/'successor/collection'/entry['id']/'attempt-2/attempt.json').exists())
+        self.assertFalse((self.root/'successor/collection'/entry['id']/'attempt-1').exists())
+        campaign.run_partition('BASELINE','BASELINE');self.assertEqual(len(backend.calls),4)
+        self.assertEqual(sum(e['kind']=='REPLACEMENT_APPROVED' for e,h in campaign.events()),1)
 
     def test_real_backend_offline_recovery_and_export_features(self):
         from tests.test_development_d3_origins import origins_fixture

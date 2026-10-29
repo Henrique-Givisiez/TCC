@@ -7,7 +7,7 @@ from pathlib import Path
 from ..contracts import Observation, ObservedSeries
 from ..inputs import ContractError, read_json, digest, safe_file, checked_output, number
 from experiments.feature_schema import feature_schema
-from .protocol import FEATURES
+from .protocol import FEATURES,SPEC
 
 
 @dataclass(frozen=True)
@@ -122,7 +122,7 @@ def load_truth(entry,receipt):
     if config['id']!=entry['id'] or config['seed']!=entry['seed']:raise ContractError('Truth config identity differs')
     path=linked('raw/attacks/attack_events.csv')
     with path.open(newline='') as stream:events=list(csv.DictReader(stream))
-    if len(events)!=int(entry['scenario']!='C16'):raise ContractError('Wrong scientific event count')
+    if len(events)!=int(entry['scenario']!=SPEC['control_scenario']):raise ContractError('Wrong scientific event count')
     for event in events:
         if (event['run_id']!=receipt['run_id'] or event['experiment_id']!=entry['id'] or event['profile']!='continuous'
             or number(event['experiment_start_timestamp'])!=number(status['experiment_start_timestamp'])
