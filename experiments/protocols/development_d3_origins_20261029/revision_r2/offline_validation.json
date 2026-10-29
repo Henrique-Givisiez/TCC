@@ -1,0 +1,98 @@
+{
+  "schema": "development-d3-origins-r2-validation/v1",
+  "recorded_utc": "2026-10-29T13:01:51.980814+00:00",
+  "status": "passed",
+  "plan_validation": {
+    "entry_count": 4,
+    "blocks": 2,
+    "block_seeds": {
+      "A": 10653172235677825147,
+      "B": 853084928833962924
+    },
+    "manifest_sha256": "d206f422a73985a153dd6cb56ae7a3b3df9f89eff7c2000ba7d34effef225aa5",
+    "seed_collisions": [],
+    "historical_seed_files": 5214,
+    "source_checkout": {
+      "effective_checkout_commit": "24580bb0e464abe7353a4918cb0f2c251b4e0968",
+      "bound_source_files_verified": true
+    },
+    "docker_accessed": false,
+    "experiments_executed": false,
+    "processing_revision": "origins-processing-r2"
+  },
+  "tests": {
+    "command": ".venv/bin/python -B -m unittest tests.test_development_d3_origins_revision -v",
+    "count": 4,
+    "passed": 4,
+    "elapsed_seconds": 31.809,
+    "invalid_certificate_subcases": 18,
+    "four_inflight_fixture_pipeline": true
+  },
+  "corrected_review": {
+    "path": "experiment_results/development-d3-origins-20261029/analysis/d3_origins_A_N1-review-r2.json",
+    "sha256": "33e0da30446c7eb86a2697aff9a20af7aad0a5e4eb92e875a390e2fde706dc62",
+    "run_id": "26c7db45b9c549a89673078c0712fc2a",
+    "classification": {
+      "technical_integrity": true,
+      "service_observation_valid": true,
+      "service_state": "recovery_observed",
+      "full_scheduled_load_verified": false,
+      "continued_execution_authorized": false
+    },
+    "technical_checks_passed": 15,
+    "reference_compatible": true,
+    "last_two_post_windows_qualified": true,
+    "gate_passes": true,
+    "raw_hashes_identical_to_original": true,
+    "raw_file_count": 105
+  },
+  "prospective": {
+    "handoff_path": "experiments/protocols/development_d3_origins_20261029/revision_r2/handoff.json",
+    "handoff_sha256": "67133a1c9fc4c004f9610e2c5a0ee4e7cb455939d0bc3ee3e5bed7261c8fdd5b",
+    "gate": [
+      {
+        "entry": "d3_origins_A_N1",
+        "review_sha256": "33e0da30446c7eb86a2697aff9a20af7aad0a5e4eb92e875a390e2fde706dc62",
+        "idle_seconds": 1954.90727353096
+      }
+    ],
+    "old_failed_review_hash_rejected": true,
+    "altered_handoff_rejected": true,
+    "consumed_N1_retry_rejected": true,
+    "verifier_path": "experiments/protocols/development_d3_origins_20261029/revision_r2/verify_handoff.py",
+    "verifier_sha256": "d93995221c9fe284bf1cb8ac4fbde85d061a36bf7f330887aa932d46da11733a",
+    "next_preflight": ".venv/bin/python -B -m experiments.development_d3_origins_revision_ops preflight --entry d3_origins_A_N2 --reviewed-sha256 33e0da30446c7eb86a2697aff9a20af7aad0a5e4eb92e875a390e2fde706dc62"
+  },
+  "preservation": {
+    "original_diagnosis_protected_files": 347,
+    "unchanged_original_files": 346,
+    "only_modified_original_source": "experiments/development_d3_origins_processing.py",
+    "previous_source_archive": {
+      "path": "experiments/protocols/development_d3_origins_20261029/revision_r2/source_before/development_d3_origins_processing.py",
+      "sha256": "ef23e1d14926fec32c7021031f81976fab3ded0d8d88704f93a313affb259f78"
+    },
+    "original_manifest_unchanged": true,
+    "original_review_unchanged": true,
+    "raw_and_dataset_unchanged": true,
+    "original_attempt_unchanged": true,
+    "new_attempt_consumed": false,
+    "source_worktree_commit": "24580bb0e464abe7353a4918cb0f2c251b4e0968"
+  },
+  "scope": {
+    "docker_accessed": false,
+    "preflight_executed": false,
+    "experiment_executed": false,
+    "offline_reanalysis_only": true
+  },
+  "pending": [
+    "Actual A_N2 readiness not yet tested; preflight and entry-specific authorization still required.",
+    "Historical EXECUTION_WORKTREE_CLEAN warning preserved; no service criteria, seed, budget or attempt reset."
+  ],
+  "artifact_hashes": {
+    "experiments/protocols/development_d3_origins_20261029/manifest_r2.json": "d206f422a73985a153dd6cb56ae7a3b3df9f89eff7c2000ba7d34effef225aa5",
+    "experiment_results/development-d3-origins-20261029/analysis/d3_origins_A_N1-review-r2.json": "33e0da30446c7eb86a2697aff9a20af7aad0a5e4eb92e875a390e2fde706dc62",
+    "experiment_results/development-d3-origins-20261029/analysis/d3_origins_A_N1-summary-r2.json": "f570dea4e2f394f1d687d9104a3d91af679225a950ef0107127fe0e858dd043a",
+    "experiment_results/development-d3-origins-20261029/analysis/d3_origins_A_N1-validation-r2.json": "33a84f97daca93ff2ee3354f3392952268d65ba7288e9da50fd7f8d873444ad9",
+    "experiments/protocols/development_d3_origins_20261029/revision_r2/README.md": "99402675a1343799a59dfb7ebf42e2ed9d2790843247fd89e597afe835396413"
+  }
+}
