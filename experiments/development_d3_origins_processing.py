@@ -191,7 +191,38 @@ def certify_event(raw, config, aggregate, rows, run):
         closed=[x['payload'] for x in items if x['kind']=='emission_closed']
         if len(local)!=1 or not snapshots or len(closed)!=1:raise ValueError('Missing local emission certificate: '+sid)
         event=local[0]
-        if any(not matches(k,event[k],p.get(k)) for p in (snapshots[-1],closed[0]) for k in EVENT_FIELDS):raise ValueError('Local event certificate mismatch: '+sid)
+        if any(not matches(k,event[k],snapshots[-1].get(k)) for k in EVENT_FIELDS):
+            raise ValueError('Final local event snapshot mismatch: '+sid)
+        # A certificate closes emission, while already-started HTTP requests can
+        # drain later. Identity and emission milestones cannot change afterward.
+        invariants=set(EVENT_FIELDS)-{'status','drained_end_seconds'}
+        certificate=closed[0]
+        if any(not matches(k,event[k],certificate.get(k)) for k in invariants):
+            raise ValueError('Local emission invariant mismatch: '+sid)
+        emission_index=next(j for j,x in enumerate(items) if x['kind']=='emission_closed')
+        final_index=max(j for j,x in enumerate(items) if x['kind']=='event_snapshot')
+        if not emission_index<final_index<len(items)-1:
+            raise ValueError('Emission/final snapshot/source closure order mismatch: '+sid)
+        state=certificate.get('status')
+        if state not in ('emission_ended','completed'):
+            raise ValueError('Invalid emission certificate state: '+sid)
+        evolution=[certificate]+[x['payload'] for x in items[emission_index+1:] if x['kind']=='event_snapshot']
+        transitions={'emission_ended':{'emission_ended','completed','incomplete'},
+                     'completed':{'completed'},'incomplete':{'incomplete'}}
+        for observed in evolution:
+            next_state=observed.get('status')
+            if next_state not in transitions[state] or any(not matches(k,event[k],observed.get(k)) for k in invariants):
+                raise ValueError('Invalid post-emission event evolution: '+sid)
+            drain=observed.get('drained_end_seconds')
+            if next_state=='completed':
+                if drain in ('',None) or not matches('drained_end_seconds',event['drained_end_seconds'],drain):
+                    raise ValueError('Completed event drain certificate mismatch: '+sid)
+                if observed is certificate and number(drain)>number(certificate['actual_end_seconds']):
+                    raise ValueError('Emission prematurely certifies future drain: '+sid)
+            elif drain not in ('',None):
+                raise ValueError('Noncompleted event has drain certificate: '+sid)
+            state=next_state
+
         for key in ('schema_version','experiment_id','run_id','experiment_start_timestamp','experiment_start_monotonic','attack_id','event_id','profile','scheduled_start_seconds','scheduled_end_seconds'):
             if not matches(key,event[key],aggregate[key]):raise ValueError('Local event identity/anchors mismatch: '+sid)
         own=[r for r in rows.values() if r['request_id'].startswith('request_'+sid+'_')]

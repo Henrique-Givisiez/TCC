@@ -1,0 +1,13 @@
+{
+  "revision": "origins-processing-r2",
+  "manifest_path": "experiments/protocols/development_d3_origins_20261029/manifest_r2.json",
+  "manifest_sha256": "d206f422a73985a153dd6cb56ae7a3b3df9f89eff7c2000ba7d34effef225aa5",
+  "review_path": "experiment_results/development-d3-origins-20261029/analysis/d3_origins_A_N1-review-r2.json",
+  "review_sha256": "33e0da30446c7eb86a2697aff9a20af7aad0a5e4eb92e875a390e2fde706dc62",
+  "run_id": "26c7db45b9c549a89673078c0712fc2a",
+  "attempt_sha256": "5a07105360fda3eb667f6e909eae3aaed350649dc403d5a4ad6ce26bc4055e92",
+  "attempt_consumed": true,
+  "next_entry": "d3_origins_A_N2",
+  "manual_review_hash_required": true,
+  "automatic_execution_authorized": false
+}
