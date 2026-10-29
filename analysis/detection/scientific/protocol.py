@@ -7,17 +7,17 @@ FEATURES=(('network','ingress_packet_count'),('network','ingress_tcp_payload_len
           ('service','request_starts'),('service','mean_duration_ms'),('infrastructure','mean_cpu_percent'))
 METHODS=('zscore','cov','ewma','cusum-freeze')
 PARTITIONS=('BASELINE','CAL_A','CAL_B','TEST')
-ROWS=(('C16','M8','E8','E4'),('M8','E4','C16','E8'),('E4','E8','M8','C16'),('E8','C16','E4','M8'))
-ORDER_INDICES=(0,2,1,3,1,3,2,0,2,0,3,1,3,1,0,2)
+ROWS=(('C16','M16','E16'),('M16','E16','C16'),('E16','C16','M16'),('E16','M16','C16'),('M16','C16','E16'),('C16','E16','M16'))
+ORDER_INDICES=(0,1,2,3,4,5,1,2,0,4,5,3)
 TEST_ORDER=tuple(ROWS[i] for i in ORDER_INDICES)
 TECHNICAL_CODES=('CAPTURE_LOSS','IDENTITY_JOURNAL_MISMATCH','DATASET_INVALID','MISSING_REQUIRED_ARTIFACTS','MONITOR_SUPPORT')
-SPEC=dict(configuration_template_sha256='45214ec78e8650ba97b431c60ce83c4c15508f6832c35aa56cccfe81462531f5',protocol_id='single-victim-scientific-20261029',version=1,
- counts=dict(BASELINE=6,CAL_A=12,CAL_B=16,TEST=64),test_blocks=16,
- scenarios=['C16','M8','E4','E8'],test_order=[list(row) for row in TEST_ORDER],
+SPEC=dict(configuration_template_sha256='45214ec78e8650ba97b431c60ce83c4c15508f6832c35aa56cccfe81462531f5',protocol_id='single-victim-scientific-reduced-20261029',version=2,
+ counts=dict(BASELINE=4,CAL_A=8,CAL_B=8,TEST=36),test_blocks=12,
+ scenarios=['C16','M16','E16'],test_order=[list(row) for row in TEST_ORDER],
  methods=list(METHODS),components=dict(zscore=dict(version=1,ddof=1),cov=dict(version=1,lookback=6),
    ewma=dict(version=1,lambda_='0.2'),cusum_freeze=dict(version=1,k='0.5',comparison='>',missing='null_reset')),
- decimal_precision=50,secondary_failure='retain_predeclared_feature_as_unassessed_no_retuning',features=[list(x) for x in FEATURES],primary_feature='request_starts',primary_conditions=dict(detection='E8',false_alarm='C16'),
- primary_contrast=['cusum-freeze','ewma','E8','request_starts'],
+ decimal_precision=50,secondary_failure='retain_predeclared_feature_as_unassessed_no_retuning',features=[list(x) for x in FEATURES],primary_feature='request_starts',primary_conditions=dict(detection='E16',false_alarm='C16'),
+ primary_contrast=['cusum-freeze','ewma','E16','request_starts'],
  nominal_seconds=390,maximum_feature_windows=421,full_causal_tail_retained=True,selection=[30,390],window_seconds=1,attack_interval=[150,270],
  drain_seconds=30,idle_seconds=60,administrative_seconds=600,entry_envelope_seconds=1080,
  alpha='0.01',minimum_available_fraction='0.95',cal_a_mean_max='0.01',cal_a_run_max='0.05',
@@ -29,17 +29,19 @@ SPEC=dict(configuration_template_sha256='45214ec78e8650ba97b431c60ce83c4c15508f6
  ci=dict(level='0.95',unit='whole_TEST_block',mean_method='BCa',resamples=10000,rng_seed=2026102901,
    degenerate='bounded_Hoeffding',marginal='Wilson_exact_at_extremes',
    paired_event='discordant_exact_97.5_intervals_Bonferroni',minimum_delay_detections=8,bounds=dict(rates=[0,1],paired_differences=[-1,1],conditional_delay_seconds=[0,300]),
+   impact=dict(unit='whole_TEST_block',means='BCa_10000_no_CI_if_unbounded_degenerate',rates='BCa_bounded_Hoeffding_if_degenerate',percentiles='individual_run_only_no_averaging',paired='difference_before_resampling_complete_block_pairs_only',attrition='explicit_hash_bound_technical_TEST_closure'),
    multiplicity='pointwise_estimation_no_superiority_tests'),
- replacements=dict(maximum=2,maximum_per_slot=1,maximum_total_attempts=100,
+ replacements=dict(maximum=2,maximum_per_slot=1,maximum_total_attempts=58,
    same_seed_scenario_partition=True,approval='explicit_failure_hash',codes=list(TECHNICAL_CODES),
    prohibit=['CAL_A_REJECTION','CAL_B_REJECTION','MISS','HIGH_FPR','SERVICE_DEGRADATION','LOW_REALIZED_RPS','NO_RECOVERY']),
+ protection=dict(poll_seconds='0.25',cohort_width_seconds=10,maturity_seconds=3,minimum_starts=50,unsuccessful_fraction='0.20',queue_threshold=128,queue_sustain_seconds=10,sample_max_age_seconds=5,stop_scope='attack_only_keep_legitimate_and_observation_until_390',valid_service_stop_is_not_replacement=True),
  checkpoints=list(PARTITIONS),test_feedback=False)
-PROTOCOL_PATH=ROOT/'docs/scientific_protocol_20261029.json'
+PROTOCOL_PATH=ROOT/'docs/scientific_protocol_reduced_20261029.json'
 
 
 def expected_slots():
     slots=[]
-    for partition,count in (('BASELINE',6),('CAL_A',12),('CAL_B',16)):
+    for partition,count in (('BASELINE',4),('CAL_A',8),('CAL_B',8)):
         slots.extend(dict(partition=partition,block=None,scenario='C16',ordinal=i+1) for i in range(count))
     for i,row in enumerate(TEST_ORDER,1):
         slots.extend(dict(partition='TEST',block=i,scenario=s,ordinal=j+1) for j,s in enumerate(row))
@@ -97,7 +99,7 @@ def load_plan(path,expected_hash):
             if values:expected.add(str(source.resolve()))
     if expected!={str(Path(x['path']).resolve()) for x in audit['sources']}:
         raise ContractError('Historical seed inventory coverage changed')
-    if len(p['entries'])!=98:raise ContractError('Exactly 98 logical slots required')
+    if len(p['entries'])!=56:raise ContractError('Exactly 56 logical slots required')
     from simulator.experiment_config import ExperimentConfig
     template_path=ROOT/'experiments/configs/development_d3_origins_20261029/d3_origins_A_N1.json'
     if digest(template_path)!=SPEC['configuration_template_sha256']:raise ContractError('Locked configuration template changed')
@@ -121,11 +123,11 @@ def load_plan(path,expected_hash):
         cfg=ExperimentConfig.load(config_path);effective=read_json(config_path)
         attack=dict(template['attack']);scenario=entry['scenario']
         attack.update(enabled=scenario!='C16',attackers=0 if scenario=='C16' else 1,
-            rate=0 if scenario=='C16' else 4 if scenario=='E4' else 8,
-            endpoint='/medium' if scenario=='M8' else '/expensive')
+            rate=0 if scenario=='C16' else 16,
+            endpoint='/medium' if scenario=='M16' else '/expensive')
         expected_cfg={**template,'id':entry['id'],'seed':entry['seed'],'attack':attack}
         if effective!=expected_cfg or read_json_text(cfg.to_json())!=expected_cfg:raise ContractError('Configuration differs from closed scientific matrix')
-    if len(set(seeds_by_group.values()))!=50:raise ContractError('Partition or block seeds overlap')
+    if len(set(seeds_by_group.values()))!=32:raise ContractError('Partition or block seeds overlap')
     validate_destination(result)
     return p
 

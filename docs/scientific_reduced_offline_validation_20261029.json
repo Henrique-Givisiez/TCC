@@ -1,0 +1,68 @@
+{
+  "status": "PASS_OFFLINE",
+  "logical_slots": 56,
+  "partitions": {
+    "BASELINE": 4,
+    "CAL_A": 8,
+    "CAL_B": 8,
+    "TEST": 36
+  },
+  "maximum_attempts": 58,
+  "traffic_seed_groups": 32,
+  "tests": {
+    "unique_passed": 126,
+    "scientific": 14,
+    "protection_and_sources": 17,
+    "detector_regressions": 95,
+    "scientific_suite_seconds": 95.412
+  },
+  "fixtures": [
+    "56-slot full partition pipeline",
+    "early E16 emission end216 with valid detection deadline",
+    "short deadline operational miss with null delay",
+    "CAL-A no candidate and CAL-B rejection block TEST",
+    "h replay and corruption rejection",
+    "resume after crash never repeats collection",
+    "two technical replacements only",
+    "explicit TEST attrition requires cleanup",
+    "partial blocks align by block ID,11 pairs while other condition retains12 runs",
+    "real-format offline export/Stage9/features recovery",
+    "in-flight response after emission closure",
+    "causal observer and attack-only stop"
+  ],
+  "protocol": {
+    "path": "docs/scientific_protocol_reduced_20261029.json",
+    "sha256": "fdc2c1c22a9697376ea3c5000f522134865e6ef46c92eb860a0ea3b71183af65"
+  },
+  "source_hashes": {
+    "analysis/detection/scientific/engine.py": "cbff507b5ab23c689a0d0f4c95776bb018b6251c8b1bea10ef1d505eb47d2562",
+    "analysis/detection/scientific/evaluation.py": "821836232034a95442c668d8183f943ca6378be1bda96e85e6f351689c50cb12",
+    "analysis/detection/scientific/protocol.py": "a291ebd23a61afe7f7bbb60c8c56ed080738c614ac35a194ff352ed827720412",
+    "analysis/detection/scientific/statistics.py": "2c6fdf652c123604150a71fa7a95e2db1525f063d9faa8e0b62fd1735dde778f",
+    "experiments/scientific_campaign.py": "628c8b55a1459f457882eab9ef2223f51e3ff47c83bcdb18cbdb3e09d55c0e2a",
+    "experiments/scientific_collection.py": "75505daad642a572fad520c0e2c2fb5b4a1a84378cb3edd47706cefa7d998c1c",
+    "tests/test_scientific_campaign.py": "8d7c45dfbf92f83f4009e4bb7cd987260f828a8115270d9a50c88abe1ceaf27d",
+    "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/docs/scientific_protocol_reduced_20261029.json": "fdc2c1c22a9697376ea3c5000f522134865e6ef46c92eb860a0ea3b71183af65",
+    "docs/scientific_reduced_implementation_20261029.md": "4949ca466647f745351bd53e97c26f47003ddc9d7fac209221d0d0cd25dd561a"
+  },
+  "preservation": {
+    "historical_result_or_configuration_files_changed": false,
+    "original_98_run_protocol_preserved": true,
+    "previous_failed_review_and_R2_unchanged": true,
+    "historical_audits_not_repeated": true
+  },
+  "docker_accessed": false,
+  "experiments_executed": false,
+  "real_configurations_created": 0,
+  "traffic_seeds_generated": 0,
+  "pending": [
+    "Materialize56 configs/plan and32 audited traffic seeds only after separate authorization",
+    "Freeze real dependency/image/daemon/kernel/code bindings and new result paths",
+    "Real resource/image/capture readiness remains untested in this task",
+    "Unconfirmed service recovery halts further collection for diagnosis; no automatic bypass"
+  ],
+  "commands": [
+    ".venv/bin/python -B -m experiments.scientific_campaign --plan PLANO --plan-sha256 HASH_PLANO validate",
+    ".venv/bin/python -B -m experiments.scientific_campaign --plan PLANO --plan-sha256 HASH_PLANO run --partition BASELINE --authorize-partition BASELINE"
+  ]
+}

@@ -130,7 +130,7 @@ def eligible(support,mean_max,run_max):
 
 
 def fit(sources,destination,authority):
-    check_sources(sources,'BASELINE',6)
+    check_sources(sources,'BASELINE',SPEC['counts']['BASELINE'])
     if any(s.reference['authority']!=authority for s in sources):raise ContractError('Baseline authority mismatch')
     support_ok=all(sum(o.value is not None for o in s.series.observations[30:390])>=342 for s in sources)
     series=[replace(s.series,observations=s.series.observations[30:390]) for s in sources]
@@ -147,7 +147,7 @@ def fit(sources,destination,authority):
 def model_metadata(model):
     m=model.read('scientific-baseline')
     check_authority(m['authority'])
-    if len(m['sources'])!=6 or any(ref['partition']!='BASELINE' or ref['authority']!=m['authority'] for ref in m['sources']):raise ContractError('Baseline source partition/authority differs')
+    if len(m['sources'])!=SPEC['counts']['BASELINE'] or any(ref['partition']!='BASELINE' or ref['authority']!=m['authority'] for ref in m['sources']):raise ContractError('Baseline source partition/authority differs')
     if m['parameters'] is not None:ZScore().start_run(m['parameters'],zscore_spec().config)
     if m['code']!=runtime_hashes():raise ContractError('Baseline processing code changed')
     for ref in m['sources']:verify_reference(ref)
@@ -158,7 +158,7 @@ def calibration_metadata(calibration):
     c=calibration.read('scientific-calibration')
     if c['code']!=runtime_hashes():raise ContractError('Calibration code changed')
     baseline=model_metadata(open_artifact(c['baseline'],'scientific-baseline'))
-    if c['authority']!=baseline['authority'] or c['feature']!=baseline['feature'] or len(c['sources'])!=12:
+    if c['authority']!=baseline['authority'] or c['feature']!=baseline['feature'] or len(c['sources'])!=SPEC['counts']['CAL_A']:
         raise ContractError('Calibration model/authority/count differs')
     if any(ref['partition']!='CAL_A' or ref['authority']!=c['authority'] for ref in c['sources']):raise ContractError('Calibration A source membership differs')
     for ref in c['sources']:verify_reference(ref)
@@ -188,7 +188,7 @@ def load_calibration(reference,*,replay=True):
 
 @exact
 def calibrate(sources,model,destination,authority):
-    check_sources(sources,'CAL_A',12);m=model_metadata(model)
+    check_sources(sources,'CAL_A',SPEC['counts']['CAL_A']);m=model_metadata(model)
     if m['authority']!=authority or any(s.reference['authority']!=authority for s in sources):raise ContractError('CAL-A authority mismatch')
     if any(s.series.run_id in {x['run_id'] for x in m['sources']} or s.reference['seed'] in {x['seed'] for x in m['sources']} for s in sources):
         raise ContractError('Calibration overlaps baseline')
@@ -249,8 +249,8 @@ def verification_metadata(verification):
     if v['code']!=runtime_hashes():raise ContractError('CAL-B code changed')
     c=calibration_metadata(open_artifact(v['calibration']))
     if c['authority']!=v['authority']:raise ContractError('CAL-B calibration authority differs')
-    if len({x['seed'] for x in v['sources']})!=16:raise ContractError('CAL-B seed aliases')
-    if len(v['sources'])!=16 or len({r['run_id'] for r in v['sources']})!=16:raise ContractError('CAL-B inventory differs')
+    if len({x['seed'] for x in v['sources']})!=SPEC['counts']['CAL_B']:raise ContractError('CAL-B seed aliases')
+    if len(v['sources'])!=SPEC['counts']['CAL_B'] or len({r['run_id'] for r in v['sources']})!=SPEC['counts']['CAL_B']:raise ContractError('CAL-B inventory differs')
     for ref in v['sources']:
         verify_reference(ref)
         if ref['partition']!='CAL_B':raise ContractError('Verification source role changed')
@@ -313,11 +313,11 @@ def validate_run(a):
 
 
 def verify(sources,runs,calibration,destination,authority):
-    check_sources(sources,'CAL_B',16);c=calibration_metadata(calibration)
+    check_sources(sources,'CAL_B',SPEC['counts']['CAL_B']);c=calibration_metadata(calibration)
     if c['authority']!=authority or any(s.reference['authority']!=authority for s in sources):raise ContractError('CAL-B authority mismatch')
     if not c['eligible'] and sources[0].series.feature=='request_starts':raise ContractError('CAL-A rejection cannot be retuned on B')
     docs=[validate_run(a) for a in runs]
-    if len(docs)!=16 or {d['source']['run_id'] for d in docs}!={s.series.run_id for s in sources} or any(d['calibration']!=calibration.reference or d['source']['partition']!='CAL_B' for d in docs):
+    if len(docs)!=SPEC['counts']['CAL_B'] or {d['source']['run_id'] for d in docs}!={s.series.run_id for s in sources} or any(d['calibration']!=calibration.reference or d['source']['partition']!='CAL_B' for d in docs):
         raise ContractError('CAL-B run/calibration binding differs')
     support={method:adherence([(d['source']['run_id'],d['methods'][method]) for d in docs]) for method in METHODS}
     accepted={method:eligible(rows,'0.02','0.05') for method,rows in support.items()}

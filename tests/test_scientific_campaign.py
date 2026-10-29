@@ -47,8 +47,9 @@ class FixtureBackend:
     def fixture(self,entry,directory):
         values=[14+2*(i%3) for i in range(390)]
         if self.bad_b and entry['partition']=='CAL_B':values=[40+2*(i%3) for i in range(390)]
-        if entry['partition']=='TEST' and entry['scenario'] in ('M8','E8'):
-            values=[v+8 if 150<=i<270 else v for i,v in enumerate(values)]
+        event_end=216 if entry['scenario']=='E16' else 270
+        if entry['partition']=='TEST' and entry['scenario'] in ('E16',):
+            values=[v+8 if 150<=i<event_end else v for i,v in enumerate(values)]
         if self.tail:values.append(0)
         helper=fixtures.DetectionFrameworkTests();helper.root=directory
         rid='fixture_'+entry['id']+'_'+directory.name
@@ -67,7 +68,7 @@ class FixtureBackend:
                  'scheduled_start_seconds','scheduled_end_seconds','actual_start_seconds','actual_end_seconds']
         with path.open('w',newline='') as stream:
             writer=csv.DictWriter(stream,fieldnames=columns);writer.writeheader()
-            if entry['scenario']!='C16':writer.writerow(dict(zip(columns,[rid,entry['id'],'continuous',1000,500,150,270,150,270])))
+            if entry['scenario']!='C16':writer.writerow(dict(zip(columns,[rid,entry['id'],'continuous',1000,500,150,270,150,event_end])))
         dm=dict(run_id=rid,run_status='metadata/run_status.json',files=[])
         for file in sorted(dataset.rglob('*')):
             if file.is_file():dm['files'].append(dict(path=str(file.relative_to(dataset)),sha256=digest(file),bytes=file.stat().st_size))
@@ -85,6 +86,7 @@ class FixtureBackend:
         return dict(entry_id=entry['id'],run_id=rid,features=str(feature.resolve()),dataset=str(dataset.resolve()),
             feature_manifest_sha256=digest(mp),dataset_manifest_sha256=digest(dataset/'dataset_manifest.json'),
             technical_valid=True,cleanup_verified=True,cleanup_epoch=0,backend='fixture',
+            operational=dict(exposure_seconds=None if entry['scenario']=='C16' else event_end-150,early_stop=None if entry['scenario']=='C16' else event_end<270,recovery_confirmed=True,scalars={'exposure_seconds':None if entry['scenario']=='C16' else event_end-150,'ACTIVE/success_fraction':1.0},phases={}),
             files={str(f.resolve()):digest(f) for folder in (feature,dataset) for f in folder.rglob('*') if f.is_file()})
 
 
@@ -106,7 +108,7 @@ class ScientificCampaignTests(unittest.TestCase):
             groups.setdefault(group,1000+len(groups));seed=groups[group];eid=f"sci_{i+1:03d}_{slot['scenario']}"
             cfg=deepcopy(TEMPLATE);cfg.update(id=eid,seed=seed)
             scenario=slot['scenario'];cfg['attack'].update(enabled=scenario!='C16',attackers=0 if scenario=='C16' else 1,
-                rate=0 if scenario=='C16' else 4 if scenario=='E4' else 8,endpoint='/medium' if scenario=='M8' else '/expensive')
+                rate=0 if scenario=='C16' else 16,endpoint='/medium' if scenario=='M16' else '/expensive')
             path=self.root/'configs'/f'{eid}.json';save(path,cfg)
             entries.append(dict(**slot,id=eid,seed=seed,config=str(path),config_sha256=digest(path)))
         from experiments.development_d1 import collect_seeds
@@ -141,15 +143,32 @@ class ScientificCampaignTests(unittest.TestCase):
         with self.assertRaises(ContractError):engine.load_calibration(cal,replay=False)
         csv_path.write_bytes(original)
         self.run_phase('TEST')
-        self.assertEqual(len(self.backend.calls),98)
-        cp=self.run_phase('TEST');self.assertEqual(len(self.backend.calls),98)
+        self.assertEqual(len(self.backend.calls),56)
+        cp=self.run_phase('TEST');self.assertEqual(len(self.backend.calls),56)
         summary=open_artifact(cp.read()['artifacts']['summary']).read('scientific-summary')
-        self.assertEqual(len(summary['results']),80)
-        self.assertIn('request_starts/E8/cusum-freeze-ewma',summary['paired'])
-        result=summary['results']['request_starts/E4/zscore']
-        self.assertEqual(result['misses'],16);self.assertIsNone(result['delay']['mean_seconds'])
+        self.assertEqual(len(summary['results']),60)
+        self.assertIn('request_starts/E16/cusum-freeze-ewma',summary['paired'])
+        result=summary['results']['request_starts/M16/zscore']
+        self.assertEqual(result['misses'],12);self.assertIsNone(result['delay']['mean_seconds'])
         self.assertGreater(result['detection']['interval'][1],0)
-        self.assertEqual(summary['results']['request_starts/E8/zscore']['detection']['n'],16)
+        self.assertEqual(summary['results']['request_starts/E16/zscore']['detection']['n'],12)
+        self.assertEqual(summary['operational']['by_scenario']['E16']['means']['exposure_seconds']['estimate'],66)
+        self.assertEqual(summary['operational']['by_scenario']['E16']['early_stop']['successes'],12)
+        # Explicit technical attrition retains other conditions and aligns by block.
+        all_evals=[open_artifact(ref) for ref in summary['evaluations']]
+        omitted=next(e for e in self.plan['entries'] if e['scenario']=='E16')
+        remaining=[a for a in all_evals if a.read()['entry']['id']!=omitted['id']]
+        failure_path=self.root/'diagnosed-failure.json';cleanup_path=self.root/'diagnosed-cleanup.json'
+        save(failure_path,dict(entry_id=omitted['id'],code='CAPTURE_LOSS',authority=self.campaign.authority))
+        save(cleanup_path,dict(verified=True))
+        attr={omitted['id']:dict(failure_path=str(failure_path),failure_sha256=digest(failure_path),cleanup_path=str(cleanup_path),cleanup_sha256=digest(cleanup_path))}
+        with self.assertRaisesRegex(ContractError,'explicit technical attrition'):
+            evaluation.aggregate(remaining,self.root/'unexplained-partial',self.campaign.authority)
+        partial=evaluation.aggregate(remaining,self.root/'partial-summary',self.campaign.authority,attr).read()
+        self.assertEqual(partial['scenario_detection_contrasts']['request_starts/zscore/E16-M16']['n'],11)
+        self.assertEqual(len(partial['operational']['paired_blocks']),11)
+        self.assertEqual(partial['results']['request_starts/M16/zscore']['n_runs'],12)
+        self.assertEqual(partial['missing_runs'],[omitted['id']])
         self.assertEqual(self.campaign.checkpoints()['TEST'],cp.reference)
         run_ref=cp.read()['artifacts']['request_starts'][1]
         doc=engine.validate_run(open_artifact(run_ref));self.assertEqual(doc['source']['partition'],'TEST')
@@ -180,7 +199,7 @@ class ScientificCampaignTests(unittest.TestCase):
         failure=self.root/'result/collection'/entry['id']/'attempt-1/failure.json'
         token=digest(failure);self.campaign.authorize_replacement(token)
         with self.assertRaises(Halt):self.campaign.authorize_replacement(token)
-        self.run_phase('BASELINE');self.assertEqual(len(self.backend.calls),7)
+        self.run_phase('BASELINE');self.assertEqual(len(self.backend.calls),5)
         claims=[read_json(path) for path in (self.root/'result/collection'/entry['id']).glob('*/attempt.json')]
         self.assertEqual(len(claims),2);self.assertEqual(claims[0]['entry'],claims[1]['entry'])
         self.assertEqual(digest(failure),token)
@@ -189,7 +208,7 @@ class ScientificCampaignTests(unittest.TestCase):
         entry=self.plan['entries'][0];self.backend.crash=entry['id']
         with self.assertRaisesRegex(RuntimeError,'controller crash'):self.run_phase('BASELINE')
         self.assertEqual(len(self.backend.calls),1)
-        self.run_phase('BASELINE');self.assertEqual(len(self.backend.calls),6)
+        self.run_phase('BASELINE');self.assertEqual(len(self.backend.calls),4)
 
     def test_no_eligible_candidate_is_persisted_and_stops_chain(self):
         self.run_phase('BASELINE')
@@ -214,13 +233,33 @@ class ScientificCampaignTests(unittest.TestCase):
         self.assertEqual(len([e for e,h in self.campaign.events() if e['kind']=='REPLACEMENT_APPROVED']),2)
         self.assertFalse((self.root/'result/collection'/entries[-1]['id']/'attempt-2').exists())
 
+    def test_diagnosed_TEST_attrition_is_explicit_and_not_a_replacement(self):
+        entry=next(e for e in self.plan['entries'] if e['partition']=='TEST')
+        self.backend.fail_once=entry['id']
+        with self.assertRaises(Halt):
+            with self.campaign.locked():self.campaign.collect_slot(entry)
+        directory=self.root/'result/collection'/entry['id']/'attempt-1'
+        failure=directory/'failure.json';h=digest(failure)
+        with self.assertRaisesRegex(Halt,'Cleanup'):self.campaign.record_attrition(h)
+        save(directory/'cleanup.json',dict(verified=True))
+        self.campaign.record_attrition(h)
+        self.assertIn(entry['id'],self.campaign.technical_attrition())
+        with self.assertRaises(Halt):self.campaign.authorize_replacement(h)
+        self.assertEqual(len(self.backend.calls),1)
+
     def test_real_backend_offline_recovery_and_export_features(self):
         from tests.test_development_d3_origins import origins_fixture
         from experiments.export_dataset import export_run
-        entry=deepcopy(self.plan['entries'][34+3])
+        entry=deepcopy(next(e for e in self.plan['entries'] if e['scenario']=='E16'))
         cfg=read_json(entry['config']);directory=self.root/'real-format-fixture';directory.mkdir()
         origins_fixture(directory/'raw',dict(effective_configuration=cfg))
         raw=directory/'raw'
+        # At16 RPS the final offensive response is still in flight at emission closure.
+        attack_journal=raw/'source_artifacts/attack_1/output/journal.jsonl'
+        attack_items=[json.loads(x) for x in attack_journal.read_text().splitlines()]
+        for item in attack_items:
+            if item['kind']=='emission_closed':item['payload'].update(status='emission_ended',drained_end_seconds=None)
+        attack_journal.write_text(''.join(json.dumps(x)+'\n' for x in attack_items))
         local=raw/'source_artifacts/normal_1/output/local_requests.csv'
         last=read_csv(local)[-1];rid=last['request_id'];end=390.02
         updated=dict(end_elapsed_seconds=end,end_timestamp=1000+end,duration_ms=(end-float(last['elapsed_seconds']))*1000)
@@ -237,6 +276,11 @@ class ScientificCampaignTests(unittest.TestCase):
         for item in items:
             if item['kind']=='request_finish' and item['payload']['request_id']==rid:item['payload'].update(updated)
         journal.write_text(''.join(json.dumps(x)+'\n' for x in items))
+        inventory=read_json(raw/'source_inventory.json')
+        tick=dict(run_id=inventory[0]['run_id'],journal_sequences={e['source_id']:0 for e in inventory},collection_samples={'v':dict(read='fixture',received_seconds=1)},actionable=True)
+        from experiments.stress_observer import Observer
+        tick.update(Observer().evaluate([],1,1))
+        (raw/'source_artifacts/stress_observer.jsonl').write_text(json.dumps(tick)+'\n')
         export_run(directory/'raw',directory/'dataset')
         save(directory/'execution.json',dict(returncode=0));save(directory/'cleanup.json',dict(verified=True,observed_epoch=0))
         backend=DockerBackend(self.plan)
@@ -252,7 +296,7 @@ class ScientificCampaignTests(unittest.TestCase):
         cal_cp=open_artifact(cps['CAL_A']).read();ver_cp=open_artifact(cps['CAL_B']).read()
         self.assertFalse(open_artifact(ver_cp['artifacts']['mean_duration_ms']).read()['approved'])
         self.assertTrue(open_artifact(ver_cp['artifacts']['request_starts']).read()['approved'])
-        entry=self.plan['entries'][36];directory=self.root/'secondary-test-fixture';directory.mkdir()
+        entry=self.plan['entries'][20];directory=self.root/'secondary-test-fixture';directory.mkdir()
         receipt=self.backend.fixture(entry,directory)
         source=data.load_source(entry,receipt,'service','mean_duration_ms',authority=self.campaign.authority,test_release=cps['CAL_B'])
         run=engine.process(source,open_artifact(baseline_cp['artifacts']['mean_duration_ms']),
@@ -287,7 +331,7 @@ class ScientificCampaignTests(unittest.TestCase):
         with self.assertRaises(ContractError):Campaign(path,digest(path),self.backend)
 
     def plan_order(self):
-        return [[e['scenario'] for e in self.plan['entries'] if e['partition']=='TEST' and e['block']==i] for i in range(1,17)]
+        return [[e['scenario'] for e in self.plan['entries'] if e['partition']=='TEST' and e['block']==i] for i in range(1,13)]
 
     def test_closed_numerical_edges_balanced_order_and_CI_reproducibility(self):
         from collections import Counter
@@ -301,8 +345,8 @@ class ScientificCampaignTests(unittest.TestCase):
         bad=[dict(fpr='0',available_fraction='1') for i in range(16)];bad[0]['fpr']='0.050001'
         self.assertFalse(engine.eligible(bad,'0.02','0.05'))
         pairs=Counter(pair for row in p.TEST_ORDER for pair in zip(row,row[1:]))
-        self.assertEqual(len(pairs),12);self.assertEqual(set(pairs.values()),{4})
-        for position in range(4):self.assertEqual(set(Counter(row[position] for row in p.TEST_ORDER).values()),{4})
+        self.assertEqual(len(pairs),6);self.assertEqual(set(pairs.values()),{4})
+        for position in range(3):self.assertEqual(set(Counter(row[position] for row in p.TEST_ORDER).values()),{4})
         values=[i/16 for i in range(16)]
         self.assertEqual(statistics.mean_ci(values),statistics.mean_ci(values))
         self.assertAlmostEqual(statistics.proportion_ci(16,16)['interval'][0],.7940927857921772)
@@ -328,6 +372,12 @@ class ScientificCampaignTests(unittest.TestCase):
         self.assertEqual(late['tp'],1)  # window TP can coexist with an event deadline miss
         rows[0]['available_at_seconds']='269.9'
         with self.assertRaises(ContractError):evaluation.metrics(rows,truth)
+        early=dict(events=[dict(actual_start_seconds='150',actual_end_seconds='150.5')])
+        late=[dict(window_start_seconds='150',window_end_seconds='151',available_at_seconds='151',decision=True)]
+        missed=evaluation.metrics(late,early)
+        self.assertFalse(missed['event_detected']);self.assertIsNone(missed['observed_delay_seconds'])
+        self.assertEqual(missed['restricted_undetected_fraction'],1)
+        self.assertIsNone(statistics.unbounded_mean_ci([2,2,2])['interval'])
         ci=statistics.mean_ci([0]*16);self.assertEqual(ci['method'],'Hoeffding_degenerate');self.assertGreater(ci['interval'][1],0)
         self.assertIsNone(statistics.delay_summary([])['mean_seconds'])
         paired=statistics.paired_detection_ci([True]*16,[True]*16)

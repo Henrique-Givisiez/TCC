@@ -81,6 +81,11 @@ class DockerBackend:
                     if capture.poll() is None:capture.kill();capture.wait()
             diagnostic=(directory/'capture.stderr').read_text()
             if rc or 'listening on' not in diagnostic:raise CollectionFailure('PREFLIGHT_FAILED','Capture readiness failed')
+            from experiments.stress_runtime import resources
+            probe=client.containers.run(config.SOURCE_IMAGE,detach=True,entrypoint=['python','-c'],command=['import time;time.sleep(60)'],network_mode='none')
+            try: report['effective_resource_probe']=resources(probe)
+            finally:
+                probe.stop(timeout=2);probe.remove()
             report.update(ready=True,image_sources=bindings,environment=self.plan['environment'],backend='docker',probe_traffic_generated=False)
             return report
         finally:
@@ -89,8 +94,8 @@ class DockerBackend:
     def collect(self,entry,directory,timeout):
         """Only the future authorized CLI invokes this method."""
         from analysis.detection.scientific.protocol import ROOT
-        command=[str(ROOT/'.venv/bin/python'),'-B','-m','experiments.dataset_run','--config',entry['config'],
-            '--output',str(directory/'raw'),'--dataset-output',str(directory/'dataset')]
+        command=[str(ROOT/'.venv/bin/python'),'-B','-m','experiments.scientific_collection','--config',entry['config'],
+            '--output',str(directory/'raw'),'--dataset-output',str(directory/'dataset'),'--attempt',str(directory/'attempt.json')]
         started=time.time();rc=None
         with (directory/'execution.log').open('x') as stream:
             proc=subprocess.Popen(command,cwd=ROOT,stdout=stream,stderr=subprocess.STDOUT,start_new_session=True)
@@ -132,7 +137,7 @@ class DockerBackend:
         if not (directory/'raw/run_status.json').exists() or not (directory/'dataset/dataset_manifest.json').exists():
             code='MISSING_REQUIRED_ARTIFACTS' if execution['returncode']==0 else 'INDETERMINATE_ATTEMPT'
             raise CollectionFailure(code,'Execution/cleanup recorded but required collected artifacts absent')
-        from experiments import development_d3_origins_processing as processing
+        from experiments import stress_processing as processing
         from experiments import development_d3 as legacy
         from simulator.experiment_config import ExperimentConfig
         from experiments.validate_dataset import validate_dataset
@@ -147,6 +152,11 @@ class DockerBackend:
         except (OSError,ValueError,KeyError) as exc:raise CollectionFailure('IDENTITY_JOURNAL_MISMATCH',str(exc)) from exc
         if not life['controlled_closure'] or execution['returncode']!=0:
             raise CollectionFailure('DRAIN_OR_EXECUTION_UNCONFIRMED','Preserved incomplete service/exit requires diagnosis, not automatic substitution')
+        from experiments.stress_review import replay_observer
+        try:
+            observed=replay_observer(raw,life['run_id'])
+            if observed['stop'] and observed['stop']['reason']=='collection_stale':raise ValueError('Observer acquisition stale')
+        except (OSError,ValueError,KeyError) as exc:raise CollectionFailure('MONITOR_SUPPORT',str(exc)) from exc
         checks=legacy.collection_checks(raw,life['run_id'])
         if any(not x['passed'] for x in checks):
             code='CAPTURE_LOSS' if any(not x['passed'] and x['name'].startswith('capture_') for x in checks) else 'MONITOR_SUPPORT'
@@ -164,8 +174,47 @@ class DockerBackend:
             if p.is_file():
                 exported=directory/'dataset'/placement(p.relative_to(raw))[0]
                 if not exported.exists() or digest(exported)!=digest(p):raise CollectionFailure('DATASET_INVALID','Raw/export mismatch: '+str(p))
+        from analysis.detection.scientific.evaluation import impact
+        operational=impact(raw)
         files={str(p.resolve()):digest(p) for folder in (raw,directory/'dataset',feature_path) for p in folder.rglob('*') if p.is_file()}
         return dict(entry_id=entry['id'],run_id=life['run_id'],features=str(feature_path.resolve()),dataset=str((directory/'dataset').resolve()),
             feature_manifest_sha256=digest(feature_path/'feature_manifest.json'),dataset_manifest_sha256=digest(directory/'dataset/dataset_manifest.json'),
             technical_valid=True,cleanup_verified=True,cleanup_epoch=cleanup['observed_epoch'],files=files,technical_checks=checks,
-            backend='docker',original_attempt=str(directory.resolve()))
+            backend='docker',original_attempt=str(directory.resolve()),operational=operational)
+
+
+def main():
+    """Consumed scientific attempt only; opt-in reuse of validated stress protection."""
+    import argparse
+    from analysis.detection.scientific import protocol
+    parser=argparse.ArgumentParser();parser.add_argument('--config',type=Path,required=True)
+    parser.add_argument('--output',type=Path,required=True);parser.add_argument('--dataset-output',type=Path,required=True)
+    parser.add_argument('--attempt',type=Path,required=True);args=parser.parse_args()
+    claim=read_json(args.attempt);entry=claim['entry'];authority=claim['authority']
+    plan=protocol.load_plan(authority['plan_path'],authority['plan_sha256'])
+    directory=args.attempt.parent.resolve()
+    if (entry not in plan['entries'] or args.config.resolve()!=Path(entry['config']).resolve()
+        or args.output.resolve()!=directory/'raw' or args.dataset_output.resolve()!=directory/'dataset'
+        or digest(claim['preflight_path'])!=claim['preflight_sha256']):raise ContractError('Scientific invocation differs from consumed attempt')
+    save(directory/'runtime_invocation.json',dict(attempt_sha256=digest(args.attempt),started_epoch=time.time()))
+    from experiments.stress_runtime import StressManager
+    from experiments.stress_observer import SampleFreshness
+    from simulator import source_experiment,stats_collector
+    StressManager.expected_resources=read_json(claim['preflight_path'])['effective_resource_probe']
+    original=stats_collector.StatsCollector
+    class ProtectedCollector(original):
+        def __init__(self,*a,**kw):
+            super().__init__(*a,**kw);self.samples=SampleFreshness();self.fresh=self.samples.fresh;StressManager.collector=self
+        def _compute_metrics(self,c,stats):
+            value=original._compute_metrics(c,stats)
+            if value:self.samples.update(c.id,stats,time.monotonic())
+            return value
+    source_experiment.SourceManager=StressManager;stats_collector.StatsCollector=ProtectedCollector
+    from experiments.dataset_run import run_recorded
+    from experiments.export_dataset import export_run
+    from simulator.experiment_config import ExperimentConfig
+    try:run_recorded(ExperimentConfig.load(args.config),args.output)
+    finally:
+        if (args.output/'run_status.json').exists():export_run(args.output,args.dataset_output)
+
+if __name__=='__main__':main()

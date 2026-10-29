@@ -70,6 +70,9 @@ class Campaign:
                 if 'observable_path' in value and 'feature_manifest_sha256' in value:
                     from analysis.detection.scientific.data import verify_reference
                     verify_reference(value)
+                for key in ('failure','cleanup'):
+                    if key+'_path' in value and key+'_sha256' in value and digest(value[key+'_path'])!=value[key+'_sha256']:
+                        raise ContractError('Technical evidence changed')
                 if 'intent_path' in value and digest(value['intent_path'])!=value['intent_sha256']:
                     raise ContractError('Consumed attempt changed')
                 for child in value.values():walk(child)
@@ -118,9 +121,32 @@ class Campaign:
             if digest(path)!=failure_hash or doc['code'] not in p.TECHNICAL_CODES or doc['attempt_number']!=1:
                 raise Halt('Failure is not eligible for a technical replacement')
             if len(approvals)>=2 or any(x['entry']==doc['entry_id'] for x in approvals):raise Halt('Technical replacement budget exhausted or already approved')
-            if doc['entry_id'] in self.accepted():raise Halt('Accepted logical slot cannot be replaced')
+            if doc['entry_id'] in self.accepted() or doc['entry_id'] in self.technical_attrition():raise Halt('Accepted logical slot cannot be replaced')
             self.append('REPLACEMENT_APPROVED',entry=doc['entry_id'],failure_sha256=failure_hash,
                 same_partition_seed_scenario=True)
+
+    def technical_attrition(self):
+        result={}
+        for event,h in self.events():
+            if event['kind']=='TEST_TECHNICAL_ATTRITION':
+                value=event['payload']
+                if digest(value['failure_path'])!=value['failure_sha256']:raise ContractError('Attrition evidence changed')
+                result[value['entry']]=value
+        return result
+
+    def record_attrition(self,failure_hash):
+        """Explicit closure of a diagnosed failed TEST slot; never automatic."""
+        with self.locked():
+            failure=next((e['payload'] for e,h in self.events() if e['kind']=='TECHNICAL_FAILURE' and e['payload']['failure_sha256']==failure_hash),None)
+            if failure is None:raise Halt('Select recorded technical failure')
+            path=Path(failure['failure_path']);doc=read_json(path)
+            entry=next(e for e in self.plan['entries'] if e['id']==doc['entry_id'])
+            if doc['authority']!=self.authority:raise Halt('Failure authority differs')
+            if entry['partition']!='TEST' or doc['code'] not in p.TECHNICAL_CODES or digest(path)!=failure_hash or entry['id'] in self.accepted():raise Halt('Only failed technical TEST slots can close as attrition')
+            cleanup=path.parent/'cleanup.json'
+            if not cleanup.exists() or not read_json(cleanup)['verified']:raise Halt('Cleanup must be confirmed before technical attrition')
+            if entry['id'] in self.technical_attrition():raise Halt('Slot already closed')
+            self.append('TEST_TECHNICAL_ATTRITION',entry=entry['id'],failure_path=str(path),failure_sha256=failure_hash,cleanup_path=str(cleanup),cleanup_sha256=digest(cleanup))
 
     def wait_idle(self):
         receipts=[self.receipt_document(ref,verify_files=False) for ref in self.accepted().values()]
@@ -133,6 +159,9 @@ class Campaign:
 
     def collect_slot(self,entry):
         accepted=self.accepted()
+        for ref in accepted.values():
+            op=self.receipt_document(ref,False).get('operational')
+            if op and op.get('recovery_confirmed') is False:raise Halt('Service recovery unconfirmed; preserve valid run and diagnose before further collection')
         if entry['id'] in accepted:
             self.receipt_document(accepted[entry['id']]);return accepted[entry['id']]
         approvals=[e['payload'] for e,h in self.events() if e['kind']=='REPLACEMENT_APPROVED' and e['payload']['entry']==entry['id']]
@@ -162,7 +191,7 @@ class Campaign:
                 # Recovery never calls preflight/collect or creates another intent.
                 receipt=self.backend.recover(entry,directory)
             else:
-                if sum(1 for x in (self.root/'collection').glob('*/attempt-*/attempt.json'))>=100:raise Halt('Total attempt budget exhausted')
+                if sum(1 for x in (self.root/'collection').glob('*/attempt-*/attempt.json'))>=58:raise Halt('Total attempt budget exhausted')
                 self.wait_idle()
                 preflights=sorted((directory/'preflights').glob('*/preparation.json')) if (directory/'preflights').exists() else []
                 started=min([read_json(x)['started_epoch'] for x in preflights],default=time.time())
@@ -209,7 +238,8 @@ class Campaign:
             if rejected:
                 open_artifact(rejected[-1]['artifact']).read()
                 raise Halt('Partition already rejected under this frozen authority; no retuning or repeat')
-            entries=[e for e in self.plan['entries'] if e['partition']==partition]
+            attrition=self.technical_attrition() if partition=='TEST' else {}
+            entries=[e for e in self.plan['entries'] if e['partition']==partition and e['id'] not in attrition]
             refs=[self.collect_slot(entry) for entry in entries]
             receipts=[self.receipt_document(ref) for ref in refs]
             artifacts={};evals=[]
@@ -246,11 +276,11 @@ class Campaign:
                         for entry,receipt,run in zip(entries,receipts,runs):
                             evals.append(evaluation.evaluate(entry,receipt,run,feature_root/'evaluation'/entry['id'],self.authority))
                         artifacts[feature]=[a.reference for a in runs]
-            if partition=='TEST':artifacts['summary']=evaluation.aggregate(evals,self.root/'analysis/summary',self.authority).reference
+            if partition=='TEST':artifacts['summary']=evaluation.aggregate(evals,self.root/'analysis/summary',self.authority,attrition).reference
             self.wait_idle()
             checkpoint=engine.artifact(self.root/'checkpoints'/partition,'scientific-checkpoint',dict(authority=self.authority,
                 partition=partition,receipts=refs,artifacts=artifacts,previous_checkpoint=None if not index else checkpoints[p.PARTITIONS[index-1]],
-                expected_slots=len(entries),test_order=p.SPEC['test_order'],scientific_execution_of_next_partition_authorized=False))
+                expected_slots=p.SPEC['counts'][partition],technical_attrition=attrition,test_order=p.SPEC['test_order'],scientific_execution_of_next_partition_authorized=False))
             self.append('PARTITION_COMPLETE',partition=partition,artifact=checkpoint.reference)
             return checkpoint
 
@@ -263,10 +293,12 @@ def main():
     run=sub.add_parser('run');run.add_argument('--partition',choices=p.PARTITIONS,required=True)
     run.add_argument('--authorize-partition',required=True);run.add_argument('--checkpoint-sha256')
     replace=sub.add_parser('approve-technical-replacement');replace.add_argument('--failure-sha256',required=True)
+    attr=sub.add_parser('record-test-attrition');attr.add_argument('--failure-sha256',required=True)
     args=parser.parse_args();campaign=Campaign(args.plan,args.plan_sha256)
-    if args.action=='validate':out=dict(valid=True,logical_runs=98,maximum_attempts=100,docker_accessed=False)
+    if args.action=='validate':out=dict(valid=True,logical_runs=56,maximum_attempts=58,docker_accessed=False)
     elif args.action=='status':out=dict(checkpoints=campaign.checkpoints(),events=len(campaign.events()),docker_accessed=False)
     elif args.action=='approve-technical-replacement':campaign.authorize_replacement(args.failure_sha256);out=dict(replacement_approved=True,experiment_executed=False)
+    elif args.action=='record-test-attrition':campaign.record_attrition(args.failure_sha256);out=dict(attrition_recorded=True,experiment_executed=False)
     else:
         try:
             checkpoint=campaign.run_partition(args.partition,args.authorize_partition,args.checkpoint_sha256)

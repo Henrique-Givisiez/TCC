@@ -67,3 +67,19 @@ def delay_summary(values):
         median_seconds=float(np.median(a)) if a else None,
         interval=mean_ci(a,(0.,300.))['interval'] if n>=8 else None,
         reason=None if n>=8 else 'conditional_support_below_8',unit='detected_runs_only')
+
+
+def unbounded_mean_ci(values):
+    """Run summaries without invented bounds (seconds, rates, request counts)."""
+    a=np.asarray(values,dtype=float);n=len(a)
+    if not np.all(np.isfinite(a)):raise ContractError('Nonfinite impact summary')
+    result=dict(n=n,estimate=float(np.mean(a)) if n else None,interval=None,
+        method='unavailable_degenerate_or_insufficient',unit='whole_TEST_block',level=.95)
+    if n>=2 and np.ptp(a)>0:
+        with warnings.catch_warnings():
+            warnings.simplefilter('ignore')
+            ci=bootstrap((a,),np.mean,n_resamples=10000,method='BCa',confidence_level=.95,
+                random_state=np.random.RandomState(SPEC['ci']['rng_seed'])).confidence_interval
+        if np.all(np.isfinite([ci.low,ci.high])):
+            result.update(interval=[float(ci.low),float(ci.high)],method='BCa_block_mean',replicates=10000,rng_seed=SPEC['ci']['rng_seed'])
+    return result
