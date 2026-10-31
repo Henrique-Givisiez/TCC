@@ -1,0 +1,281 @@
+{
+  "scope": "Read-only checks and counts of existing frozen records; no scientific runtime imported or executed",
+  "plan_sha256": "6240452e214b0748b023a084edd6dcf4fd2fd0a43744ed70a37bdb88a4319bc4",
+  "test_sha256": "690c7d9af50204d7170fbb08ee61dd672450d2d5dd7e8c0a1de9725669601912",
+  "summary_sha256": "913c5fb44588df0ea228866ac8333576b6b8a0270daceb2e700a3eb6fab35400",
+  "runtime_hashes_match": true,
+  "evaluation_manifests_verified": 180,
+  "existing_decision_rows_checked": 281520,
+  "all_available_at_equal_window_end": true,
+  "counts": [
+    {
+      "feature": "ingress_packet_count",
+      "scenario": "C16",
+      "boundary": 0,
+      "unavailable": 0,
+      "benign_available": 4320,
+      "attack_available": 0,
+      "post_available": 0
+    },
+    {
+      "feature": "ingress_packet_count",
+      "scenario": "M16",
+      "boundary": 24,
+      "unavailable": 0,
+      "benign_available": 2868,
+      "attack_available": 1428,
+      "post_available": 1428
+    },
+    {
+      "feature": "ingress_packet_count",
+      "scenario": "E16",
+      "boundary": 24,
+      "unavailable": 0,
+      "benign_available": 3326,
+      "attack_available": 970,
+      "post_available": 1886
+    },
+    {
+      "feature": "ingress_tcp_payload_length_sum_bytes",
+      "scenario": "C16",
+      "boundary": 0,
+      "unavailable": 0,
+      "benign_available": 4320,
+      "attack_available": 0,
+      "post_available": 0
+    },
+    {
+      "feature": "ingress_tcp_payload_length_sum_bytes",
+      "scenario": "M16",
+      "boundary": 24,
+      "unavailable": 0,
+      "benign_available": 2868,
+      "attack_available": 1428,
+      "post_available": 1428
+    },
+    {
+      "feature": "ingress_tcp_payload_length_sum_bytes",
+      "scenario": "E16",
+      "boundary": 24,
+      "unavailable": 0,
+      "benign_available": 3326,
+      "attack_available": 970,
+      "post_available": 1886
+    },
+    {
+      "feature": "mean_cpu_percent",
+      "scenario": "C16",
+      "boundary": 0,
+      "unavailable": 0,
+      "benign_available": 4320,
+      "attack_available": 0,
+      "post_available": 0
+    },
+    {
+      "feature": "mean_cpu_percent",
+      "scenario": "M16",
+      "boundary": 24,
+      "unavailable": 0,
+      "benign_available": 2868,
+      "attack_available": 1428,
+      "post_available": 1428
+    },
+    {
+      "feature": "mean_cpu_percent",
+      "scenario": "E16",
+      "boundary": 24,
+      "unavailable": 0,
+      "benign_available": 3326,
+      "attack_available": 970,
+      "post_available": 1886
+    },
+    {
+      "feature": "mean_duration_ms",
+      "scenario": "C16",
+      "boundary": 0,
+      "unavailable": 0,
+      "benign_available": 4320,
+      "attack_available": 0,
+      "post_available": 0
+    },
+    {
+      "feature": "mean_duration_ms",
+      "scenario": "M16",
+      "boundary": 24,
+      "unavailable": 0,
+      "benign_available": 2868,
+      "attack_available": 1428,
+      "post_available": 1428
+    },
+    {
+      "feature": "mean_duration_ms",
+      "scenario": "E16",
+      "boundary": 24,
+      "unavailable": 0,
+      "benign_available": 3326,
+      "attack_available": 970,
+      "post_available": 1886
+    },
+    {
+      "feature": "request_starts",
+      "scenario": "C16",
+      "boundary": 0,
+      "unavailable": 0,
+      "benign_available": 4320,
+      "attack_available": 0,
+      "post_available": 0
+    },
+    {
+      "feature": "request_starts",
+      "scenario": "M16",
+      "boundary": 24,
+      "unavailable": 0,
+      "benign_available": 2868,
+      "attack_available": 1428,
+      "post_available": 1428
+    },
+    {
+      "feature": "request_starts",
+      "scenario": "E16",
+      "boundary": 24,
+      "unavailable": 0,
+      "benign_available": 3326,
+      "attack_available": 970,
+      "post_available": 1886
+    }
+  ],
+  "examples": {
+    "M16": {
+      "entry": "sci56_TEST_B01_2_M16",
+      "event": {
+        "schema_version": "1",
+        "experiment_id": "sci56_TEST_B01_2_M16",
+        "run_id": "b5e2f056c1274eec97b7bd83a6710387",
+        "experiment_start_timestamp": "1793327343.755463",
+        "experiment_start_monotonic": "13110.455465336",
+        "attack_id": "attack_001",
+        "event_id": "event_001",
+        "profile": "continuous",
+        "scheduled_start_seconds": "150",
+        "scheduled_end_seconds": "270",
+        "activation_requested_seconds": "150.00735354600147",
+        "actual_start_seconds": "150.00832267100122",
+        "stop_requested_seconds": "270.0089276730014",
+        "actual_end_seconds": "270.008932703",
+        "last_request_start_seconds": "269.9038941400013",
+        "drained_end_seconds": "269.94107557700045",
+        "status": "completed",
+        "end_reason": "scheduled_end"
+      }
+    },
+    "E16": {
+      "entry": "sci56_TEST_B01_3_E16",
+      "event": {
+        "schema_version": "1",
+        "experiment_id": "sci56_TEST_B01_3_E16",
+        "run_id": "5f14bf34f2424415856c1235478482cb",
+        "experiment_start_timestamp": "1793327819.719817",
+        "experiment_start_monotonic": "13586.419819545",
+        "attack_id": "attack_001",
+        "event_id": "event_001",
+        "profile": "continuous",
+        "scheduled_start_seconds": "150",
+        "scheduled_end_seconds": "270",
+        "activation_requested_seconds": "150.0019339749997",
+        "actual_start_seconds": "150.00330454599862",
+        "stop_requested_seconds": "240.56888352199894",
+        "actual_end_seconds": "240.568891248",
+        "last_request_start_seconds": "240.4632105669989",
+        "drained_end_seconds": "242.4664031559987",
+        "status": "completed",
+        "end_reason": "stress_service_compromise"
+      }
+    }
+  },
+  "e16_by_block": [
+    {
+      "block": 1,
+      "start": "150.00330454599862",
+      "end": "240.568891248",
+      "attack": 89,
+      "post": 149
+    },
+    {
+      "block": 2,
+      "start": "150.00343525899916",
+      "end": "270.01019201300005",
+      "attack": 119,
+      "post": 119
+    },
+    {
+      "block": 3,
+      "start": "150.00606590999996",
+      "end": "240.54427987800045",
+      "attack": 89,
+      "post": 149
+    },
+    {
+      "block": 4,
+      "start": "150.0030304819993",
+      "end": "226.92701716100055",
+      "attack": 75,
+      "post": 163
+    },
+    {
+      "block": 5,
+      "start": "150.00720844700118",
+      "end": "227.8639051300015",
+      "attack": 76,
+      "post": 162
+    },
+    {
+      "block": 6,
+      "start": "150.00341750200096",
+      "end": "254.54591123799764",
+      "attack": 103,
+      "post": 135
+    },
+    {
+      "block": 7,
+      "start": "150.006809773",
+      "end": "240.96432361999905",
+      "attack": 89,
+      "post": 149
+    },
+    {
+      "block": 8,
+      "start": "150.01039372399828",
+      "end": "200.79049559199848",
+      "attack": 49,
+      "post": 189
+    },
+    {
+      "block": 9,
+      "start": "150.00940339800218",
+      "end": "270.0034249650016",
+      "attack": 119,
+      "post": 119
+    },
+    {
+      "block": 10,
+      "start": "150.0034131939974",
+      "end": "201.12434902699897",
+      "attack": 50,
+      "post": 188
+    },
+    {
+      "block": 11,
+      "start": "150.00676644099804",
+      "end": "215.85906552199958",
+      "attack": 64,
+      "post": 174
+    },
+    {
+      "block": 12,
+      "start": "150.00151815500067",
+      "end": "199.77889847400002",
+      "attack": 48,
+      "post": 190
+    }
+  ]
+}
