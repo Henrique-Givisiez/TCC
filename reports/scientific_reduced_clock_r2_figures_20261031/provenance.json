@@ -1,0 +1,31 @@
+{
+  "selected_block": 1,
+  "selection_rule": "Lowest numbered complete TEST block, without using metric values",
+  "selected_entries": {
+    "C16": "sci56_TEST_B01_1_C16",
+    "M16": "sci56_TEST_B01_2_M16",
+    "E16": "sci56_TEST_B01_3_E16"
+  },
+  "plan": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiments/protocols/scientific_reduced_clock_r2_20261029/plan.json",
+  "checkpoint": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/scientific-reduced-clock-r2-20261029/checkpoints/TEST/manifest.json",
+  "summary": {
+    "manifest_sha256": "913c5fb44588df0ea228866ac8333576b6b8a0270daceb2e700a3eb6fab35400",
+    "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/scientific-reduced-clock-r2-20261029/analysis/summary"
+  },
+  "verified_source_files": 805,
+  "existing_evaluations": 180,
+  "proxy_runs": 36,
+  "inconsistencies": [],
+  "proxy_support": {
+    "status_failures": 119,
+    "docker_failures": 0,
+    "null_cpu_first_reads": 36
+  },
+  "matplotlib_version": "3.11.2",
+  "numpy_version": "2.5.3",
+  "no_scientific_runtime_imported": true,
+  "no_confidence_intervals_computed": true,
+  "generator_sha256": "5ef3ebfcc072b9a4064d6f9e50b09c0caddc2a5c657ffc167dd6b6da96285f4f",
+  "transformations": "See index.md. Display means and counts only; no new inferential metrics.",
+  "units": "CSV official fractions remain 0..1. Plot B/detection/timeouts multiply by 100."
+}

@@ -1,0 +1,41 @@
+# Inventário compacto e suporte do proxy
+
+Escopo: 36 execuções TEST (12 blocos C16/M16/E16). `R` significa `experiment_results/scientific-reduced-clock-r2-20261029`; o prefixo de coleta vem sempre do recibo referenciado no checkpoint TEST. Todos os arquivos usados estão registrados por caminho/hash em [sources.csv](tables/sources.csv).
+
+| Família | Saídas disponíveis | Estado de consolidação |
+|---|---|---|
+| Detecção/misses | `R/analysis/<feature>/evaluation/<entry>/manifest.json` → results por método; summary.results → detection, misses, unassessed_events. | Congelados por run e por cenário/feature/método, com IC95% publicado. C16 sem evento. |
+| FPR/recall/atraso | Mesmos manifests: contagens, disponibilidade, recall/FPR, primeira disponibilidade, atraso, censura e fração restrita. | Resumos e ICs congelados; atraso condicional, IC só com ≥8 detecções. |
+| Alarmes POST | Avaliação → post_positive, post_available, post_windows, post_fpr, post_positive_per_total; runs → métodos/decisões temporais. | Contagem/fração por run e resumo de post_fpr com IC. Não há tempo de persistência adicional definido para clock r2. |
+| Atendimento legítimo | Recibo operational.phases e scalars: inícios/conclusões/sucesso/falha, duração média 2xx/todas e timeouts; CSV de requisições com classes e tempos. | Consolidação operacional congelada por fase/cenário e contrastes pareados. Percentis individuais disponíveis em phases.duration_2xx e no relatório anterior, sem média de percentis. |
+| CPU da vítima | CSV de ticks suportados; feature infrastructure; scalars por fase. | Média de CPU congelada e contrastes; CPU mede a vítima inteira, sem separação causal por classe. |
+| Pendências | operational.phases e scalars: pending_at_start/end, aged_pending_at_end, pending_change; tempos das requisições. | Resumos de fim de fase congelados; amostras temporais de D contadas apenas para visualização. |
+| Carga/exposição/paradas | start_rps legítimo; offensive_start_rps; exposure_seconds; GT real; operational.stop (motivo, observado/disponível, comando, evidência de frescor). | Resumos, pares e ICs existentes, inclusive 10 paradas E16; carga temporal de D é agregação auxiliar. |
+| Recuperação | operational.recovery_windows e recovery_confirmed. | 12/12 nos dois cenários ofensivos e IC publicado. Regra composta de serviço/pendências, distinta de cessação de alarmes. |
+| Proxy | `dataset/evidence/proxy/` e metadados de topologia; detalhes abaixo. | Séries e logs preservados, monitor_summary por execução. Não há estimativas/ICs científicos do proxy em summary.operational. O CSV de inventário desta entrega conta suporte, não consolida efeitos do proxy. |
+
+## Proxy: completude observada
+
+As 36 execuções preservam `monitor_samples.jsonl`, `monitor_summary.json`, `proxy_identity.json`, `proxy_access.log`, `proxy_error.log`, `container_output.log`, `monitor_interfaces.txt` e `monitor_networks.json`. Também há configuração Nginx, build, readiness, inventário backend e evidência de roteamento vinculada no dataset. Os manifests de dataset não declaram artefatos ausentes. Isso significa completude dos arquivos esperados, **não** ausência de lacunas nas séries.
+
+- **14.094 amostras** de monitoramento, 391–392 por run. Docker: 14.094 leituras bem-sucedidas, sem erros registrados. CPU: 14.058 valores; há uma primeira leitura sem delta por run. Memória: 14.094 valores. Nas duas interfaces, contadores RX/TX estão presentes em todas as leituras; taxas têm uma primeira leitura nula por run. Os estados Docker são um `first_read` por run e demais `valid`.
+- Status Nginx: **13.975 sucessos e 119 falhas**, todas registradas como `ValueError: invalid stub_status response` (1–8 por run). Os contadores de erro conferem com monitor_summary. Não se recuperou corpo válido dessas leituras para reinterpretá-las; nenhum preenchimento foi feito. Em [30,390), status cobre 352–359 dos 360 bins de 1 s por run; Docker cobre 360/360. A ocupação dos bins é uma verificação de suporte, não prova de amostragem uniforme.
+- Primeiras observações: status 0,034–0,044 s; Docker 0,061–0,075 s. Últimas: status 390,034–391,044 s; Docker 390,070–391,074 s. Maior intervalo entre sucessos em [30,390), incluindo bordas: status 1,981–2,984 s por run; Docker 1,075–1,228 s. As estatísticas exatas por run estão no [CSV](tables/proxy_inventory_by_run.csv).
+- `thread_alive=False` nos 36 summaries, sem fatal_error registrado. Identidades coincidem entre recibo/dataset/summary/identity/amostras; container_id coincide entre amostras e identidade do proxy. Access logs não trazem run_id próprio: vínculo é feito pelo arquivo no dataset com hash e pelo request_id restrito ao run, sem unir IDs de execuções diferentes.
+- **277.194 linhas de access log**: 262.224 com fase vazia (requisições científicas), 14.094 `monitoring`, 840 `capture_audit`, 36 `setup`. Todos os IDs de cliente estão presentes, sem IDs extras não vazios ou duplicatas. São preservadas 876 linhas pré-origem e 69 a partir de 390 s; não devem ser agregadas silenciosamente ao horizonte científico. O inventário não iguala as linhas totais a requisições legítimas.
+- Request time está presente nas 277.194 linhas; upstream, upstream time e connect time em 263.100. As 14.094 consultas de monitoring não têm upstream e permanecem ausentes nesses campos. Tempos de log são strings em segundos e podem admitir marcadores/múltiplos upstreams; nenhuma média nova foi calculada. Error logs têm 16 linhas por run, incluindo avisos de `worker_connections` acima do limite de arquivos e mensagens de ciclo de vida; não são 16 falhas de requisição.
+
+## Proxy: unidades e suporte temporal
+
+| Dados | Unidade e suporte | Cuidados de interpretação |
+|---|---|---|
+| CPU | `%` na convenção Docker; delta entre contadores de leituras sucessivas bem-sucedidas. `docker_read`, observed_interval_seconds, delta_state preservados. | Primeira leitura nula; pode exceder 100%. Não é CPU da vítima. |
+| Memória | `memory_usage_bytes`, bytes brutos no instante da leitura. | Não é a memória de aplicação com cache removido usada na vítima. Conversão para MiB exigiria dividir por 2²⁰ e rotular. |
+| Tráfego | rx_bytes/tx_bytes cumulativos e rx/tx_bytes_per_second em B/s por interface eth0/eth1. | Não somar interfaces como tráfego HTTP único; risco de contar os dois segmentos. Mapear interface/rede com os metadados preservados. Não são os bytes TCP ingress da feature científica. |
+| Conexões | active/reading/writing/waiting: contagens no instante; accepted/handled: totais cumulativos. | Não são filas de requisições legítimas. Consultas de monitoramento contribuem para o estado observado. O script registra eventuais quedas de contadores sem convertê-las em taxas. |
+| Requisições | requests_total cumulativo de stub_status; access log por requisição concluída/logada. | Status inclui monitoring e probes; não distingue classe causal. Só associar classe com o request_id vinculado ao CSV do mesmo run. |
+| Logs upstream | `request_time`, `upstream_time`, `connect_time`: segundos; upstream IP:porta e status, HTTP status, connection e connection_requests. | `$msec` é epoch com precisão de ms na escrita/conclusão, não início do cliente. Campos sem upstream não viram zero. O log não mede CPU nem pendência no cliente. |
+
+`ProxyMonitor.sample` registra timestamp/elapsed separado para `status` e `docker`, imediatamente antes de cada coleta, e sua duração. A linha externa não deve substituir esses instantes internos. A disponibilidade da resposta não é anterior ao fim da coleta; não há regra congelada que transforme essas leituras em feature/alarme do detector. O relógio usa a âncora do experimento; logs epoch devem subtrair `metadata/run_status.json::experiment_start_timestamp`. Permanecem as limitações de alinhamento de relógio de parede descritas no schema.
+
+Fontes de definição: `simulator/proxy_monitor.py::resources, parse_status, ProxyMonitor.sample`; `experiments/dataset_schema.py::schema` (clocks e metadata_contracts); `simulator/http_proxy.py` (configuração/logs); topologia de cada dataset. Nenhuma falha de suporte foi corrigida e não há evidência de conflito com os resumos científicos de detecção/serviço, que usam outras entradas. A apresentação do proxy permanece descritiva quanto à disponibilidade.
