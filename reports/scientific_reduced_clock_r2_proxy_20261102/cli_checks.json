@@ -1,0 +1,22 @@
+[
+  {
+    "test": "wrong_checkpoint",
+    "passed": true
+  },
+  {
+    "test": "existing_output",
+    "passed": true
+  },
+  {
+    "test": "invalid_temporal_block",
+    "passed": true
+  },
+  {
+    "test": "protected_output",
+    "passed": true
+  },
+  {
+    "test": "explicit_temporal_block_B02",
+    "passed": true
+  }
+]

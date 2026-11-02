@@ -1,0 +1,67 @@
+{
+  "native_counts": {
+    "first_cpu_missing": 36,
+    "records": 14094
+  },
+  "status_errors": {
+    "ValueError: invalid stub_status response": 119
+  },
+  "access_totals": {
+    "all": 277194,
+    "aux_setup": 36,
+    "aux_capture_audit": 840,
+    "aux_monitoring": 14094,
+    "scientific_benign": 223656,
+    "scientific_attack": 38568
+  },
+  "phases_checked": 108,
+  "upstream_bins_checked": 432,
+  "run_local_ids_checked": 262224,
+  "warning_diagnostic_runs_checked": 36,
+  "observed_active_max": 92,
+  "explicit_exhaustion_messages": 0,
+  "exports": [
+    {
+      "file": "P_proxy_temporal_B01.pdf",
+      "embedded_fonts": true,
+      "raster_images": 0,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "Q_proxy_individual_runs_phases.pdf",
+      "embedded_fonts": true,
+      "raster_images": 0,
+      "text_inside_page": true,
+      "png_dpi": 300
+    }
+  ],
+  "unit_tests": "......\n----------------------------------------------------------------------\nRan 6 tests in 0.007s\n\nOK\n",
+  "generator_sha256": "b19306d8a57db79aa9ae9587c12639be005b01b38b7ab74dd53c4d3389c6d995",
+  "output_hashes_verified": true,
+  "cli_checks": [
+    {
+      "test": "wrong_checkpoint",
+      "passed": true
+    },
+    {
+      "test": "existing_output",
+      "passed": true
+    },
+    {
+      "test": "invalid_temporal_block",
+      "passed": true
+    },
+    {
+      "test": "protected_output",
+      "passed": true
+    },
+    {
+      "test": "explicit_temporal_block_B02",
+      "passed": true
+    }
+  ],
+  "visual_review_sha256": "7dde96db23d74be8143fece61d8bed7f695373393a0260d1a8e84bf4e6dc1817",
+  "verification_script_sha256": "a07c8a584036ea5f6f1a9d35ea78d5ae552d63aaffae2270639b25d032dea7b4",
+  "unit_test_script_sha256": "815e9dbf88cd361c0d26f10a5121fbf5a59fe741424762bb671b06c9b64eb78f"
+}
