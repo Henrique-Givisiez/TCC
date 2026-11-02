@@ -1,0 +1,5 @@
+entry,feature,method,windows,missing,positive,threshold,candidate_observation_binding_checked,first_detection_available_at_seconds
+sci56_TEST_B01_3_E16,mean_cpu_percent,cov,360,0,12,0.47630396497758366193134151234160175807132760720142,False,153
+sci56_TEST_B01_3_E16,mean_cpu_percent,zscore,360,0,96,2.5216858495483782033932651178999064813134306404073,False,153
+sci56_TEST_B01_3_E16,mean_cpu_percent,ewma,360,0,107,1.3501093932566738364805615359642204654611732717045,False,153
+sci56_TEST_B01_3_E16,mean_cpu_percent,cusum-freeze,360,0,92,11.466426774939642531856782455506907938976350209928,True,153

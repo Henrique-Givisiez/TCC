@@ -1,0 +1,130 @@
+{
+  "checkpoint_sha256": "690c7d9af50204d7170fbb08ee61dd672450d2d5dd7e8c0a1de9725669601912",
+  "plan_sha256": "6240452e214b0748b023a084edd6dcf4fd2fd0a43744ed70a37bdb88a4319bc4",
+  "summary": {
+    "manifest_sha256": "913c5fb44588df0ea228866ac8333576b6b8a0270daceb2e700a3eb6fab35400",
+    "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/scientific-reduced-clock-r2-20261029/analysis/summary"
+  },
+  "selected_block": 1,
+  "selection_rule": "Menor bloco TEST completo",
+  "selection": {
+    "legacy": true,
+    "features": [
+      "request_starts",
+      "mean_duration_ms"
+    ],
+    "scenarios": [
+      "M16",
+      "E16"
+    ],
+    "plots": [
+      "temporal",
+      "heatmap",
+      "delay"
+    ],
+    "requested_blocks": null,
+    "temporal_blocks": [
+      1
+    ],
+    "heatmap_blocks": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "delay_blocks": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "context": true
+  },
+  "observed_definitions": {
+    "request_starts": {
+      "name": "request_starts",
+      "type": "integer",
+      "unit": "attempts/window",
+      "role": "feature",
+      "nullable": false,
+      "description": "Count assigned by elapsed_seconds at beginning."
+    },
+    "mean_duration_ms": {
+      "name": "mean_duration_ms",
+      "type": "number",
+      "unit": "ms",
+      "role": "feature",
+      "nullable": true,
+      "description": "Arithmetic mean of duration_ms over all concluded attempts, including failures; client observed HTTP duration, NOT TCP RTT."
+    }
+  },
+  "python": "3.12.3",
+  "numpy": "2.5.3",
+  "matplotlib": "3.11.2",
+  "generator_sha256": "b1896a71225c90afd6219187094c3a9fc828506c50188f8faf3c5e9db770b58a",
+  "command": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/.venv/bin/python -B /home/henrique-givisiez/Documents/Faculdade/TCC/TCC/reports/scientific_reduced_clock_r2_temporal_20261102/generate.py --repo /home/henrique-givisiez/Documents/Faculdade/TCC/TCC --plan experiments/protocols/scientific_reduced_clock_r2_20261029/plan.json --checkpoint experiment_results/scientific-reduced-clock-r2-20261029/checkpoints/TEST/manifest.json --checkpoint-sha256 690c7d9af50204d7170fbb08ee61dd672450d2d5dd7e8c0a1de9725669601912 --output /home/henrique-givisiez/Documents/Faculdade/TCC/TCC/reports/scientific_reduced_clock_r2_temporal_cli_20261102/legacy --overwrite",
+  "source_files": 272,
+  "evaluated_series": 49,
+  "checked_method_series": 196,
+  "transformations": {
+    "temporal": "Transcrição de 1 s; floats somente na renderização; nulos como NaN/lacunas",
+    "maps": "Booleanos persistidos: -1 indisponível, 0 negativo, 1 positivo; coluna [i,i+1)",
+    "delay": "Estimativas/ICs transcritos; nenhuma inferência nova",
+    "zoom": "Somente limites de vista [-0.3h,3h], sem alterar escores; figura integral acompanha",
+    "context": "Transformações auxiliares da D original: bins de 5 s, ticks e contagem de pendências no cliente"
+  },
+  "prohibited_operations_executed": false,
+  "scientific_runtime_imported": false,
+  "decisions_scores_thresholds_or_intervals_recomputed": false,
+  "inconsistencies": [],
+  "visual_inspection": "Inspeção manual registrada separadamente; a geração não certifica revisão visual",
+  "outputs": {
+    "figures/D_context_revised.pdf": "892fbdb515eff002f74e0c4935c3e94d2ed7fecc122e097410da0d22e1c93a0d",
+    "figures/D_context_revised.png": "b29872ba5809772694f487a7bd24709716e93a684c0cadaa8ebcfa4d17248e89",
+    "figures/H_mean_duration_ms_E16.pdf": "8eb64139019318397733662f19a29caeab92cca5409aa6f9099e3051529150c3",
+    "figures/H_mean_duration_ms_E16.png": "db4d04ee10c1297740dd70d8dad93a1090e2db16da58d957347a04b868405fa9",
+    "figures/H_mean_duration_ms_M16.pdf": "127130d72ea3ece7714b1002d3b38898b5c027f98b793d315be364a83d1a4039",
+    "figures/H_mean_duration_ms_M16.png": "a922ac6e7eeeedfb35e0f7d5f4ecff04e251174d6e4e56d40cc3cd640c0de4c6",
+    "figures/H_request_starts_E16.pdf": "0b16641106ab9a99a2dbd45590563829824690ce929cadb4d3e4e4113184d510",
+    "figures/H_request_starts_E16.png": "4b67bf785b664c6280cb8b825b9cabe1746c4bb27fc2cf75d68059802dc42843",
+    "figures/H_request_starts_M16.pdf": "e994d07c200618adfba94b19a9a2d305ac99354c80db756c6348fd786e226417",
+    "figures/H_request_starts_M16.png": "f0aa3cd1ff1a2990ff7f0cb32e4c2164cb284b6bbb7bad9d1a5cade48d715072",
+    "figures/L_conditional_delay.pdf": "463465b981866c9d46d4e945093852d9d4e89aea1d0b1a0ba79490ceb11a168a",
+    "figures/L_conditional_delay.png": "fe99238584bd61900ba323a5da6013a8e55b087f97b286ac028de734a6416b54",
+    "figures/T_mean_duration_ms_E16.pdf": "7ce5b4ad47534a87f063c9a2788a144c0cc2b488e801b85c5e055acc197ebdb4",
+    "figures/T_mean_duration_ms_E16.png": "757d7f69fe04e52f5b064d1f46712f01ab05ecfe9559b34776c2d8e3810d88aa",
+    "figures/T_mean_duration_ms_E16_zoom.pdf": "f9e321bd70a5743f8959b2f35c001279054e397a0cb61072fb8849e7150d69ee",
+    "figures/T_mean_duration_ms_E16_zoom.png": "5809ff36c0022d6ca2e9f71d3cc748bc20a82a30fc80bc08548b9f281add2f8e",
+    "figures/T_mean_duration_ms_M16.pdf": "8f49d63153d218684eb6182f00436dbde29bfc70351534dcf4a060251ca058b9",
+    "figures/T_mean_duration_ms_M16.png": "1a99770f4563f57919d73ab43400ddf24aab1a0e35735fe890be2a536991c961",
+    "figures/T_mean_duration_ms_M16_zoom.pdf": "a0ef0673b5debeb0b441ebaded3201bb263e7ffda244797538c11f279ad9d5e9",
+    "figures/T_mean_duration_ms_M16_zoom.png": "c7535acb39b4451e40a0922e8e382d8ec2f62e0863143f469dcb5792affc8bff",
+    "figures/T_request_starts_E16.pdf": "0891ca038276f632df84bc2d33cd3245af3848b079bb28afe8cc323a6b832cf7",
+    "figures/T_request_starts_E16.png": "7ea77b7008236f8d65f80992532ca29edfda99fbcd406be1d3955715ab7c3b12",
+    "figures/T_request_starts_M16.pdf": "cfd2fa6ef7455fe80652032b8bf1de92220f336a778236de307ea71fe1e920f1",
+    "figures/T_request_starts_M16.png": "436943b06b6ba4e45a539f7a76f42e5d73b212587c3cf060ebb8475e198d9bb4",
+    "tables/D_context_display.csv": "1031a486757cb394df050b46e89764ce8aede667f2f7df7cc9de04e85cf04187",
+    "tables/conditional_delay_frozen.csv": "29a41272c7517057b4c568018cdd5fccbbd3ae0f35dabb3967878c49234071f9",
+    "tables/directed_checks.csv": "80df2a87280c32491aa140c5dba0d7abc2db0b4249d9b4af99339bbe34a6633e",
+    "tables/event_boundaries.csv": "45c66c508a929f2e41cea2fd9b5e61483348622c6c96e32bc7ae5ef5d14958a8",
+    "tables/sources.csv": "8958981a7e2a0c487b614e16dfbb30a7811b316cafb594d3ff59f9876d948120",
+    "tables/temporal_records.csv": "07b7dcd2665702429e58599ab21d9ae713a272fcc0adce8839a12f055a027cd0",
+    "tables/zoom_limits.csv": "6d484a8abb2e784c4d41034e01cf018bc60db5ddd5bf7b022aa200ff552d7708"
+  }
+}

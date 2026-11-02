@@ -1,5 +1,7 @@
 # Comportamento temporal dos detectores — clock r2
 
+O gerador foi ampliado com seleção pela CLI. Consulte [opções e comandos exatos](CLI.md). As figuras, tabelas e proveniência abaixo documentam a entrega original; não foram sobrescritas. A compatibilidade e as novas seleções estão em [verificações da ampliação](../scientific_reduced_clock_r2_temporal_cli_20261102/review.md).
+
 Apresentação offline do TEST congelado. PDFs vetoriais e PNGs a 300 dpi. B01 é o menor bloco completo, escolhido sem consultar os resultados. A D original permanece preservada.
 
 | Figura / arquivos | Finalidade |

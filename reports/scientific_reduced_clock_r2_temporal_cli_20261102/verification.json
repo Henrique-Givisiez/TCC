@@ -1,0 +1,929 @@
+{
+  "selections": {
+    "cpu": {
+      "selection": {
+        "legacy": false,
+        "features": [
+          "mean_cpu_percent"
+        ],
+        "scenarios": [
+          "E16"
+        ],
+        "plots": [
+          "temporal"
+        ],
+        "requested_blocks": [
+          1
+        ],
+        "temporal_blocks": [
+          1
+        ],
+        "heatmap_blocks": [],
+        "delay_blocks": [],
+        "context": false
+      },
+      "evaluated_series": 1,
+      "source_files": 25,
+      "figures": 1
+    },
+    "delay": {
+      "selection": {
+        "legacy": false,
+        "features": [
+          "request_starts",
+          "mean_duration_ms",
+          "mean_cpu_percent",
+          "ingress_packet_count",
+          "ingress_tcp_payload_length_sum_bytes"
+        ],
+        "scenarios": [
+          "C16",
+          "M16",
+          "E16"
+        ],
+        "plots": [
+          "delay"
+        ],
+        "requested_blocks": [
+          1
+        ],
+        "temporal_blocks": [],
+        "heatmap_blocks": [],
+        "delay_blocks": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "context": false
+      },
+      "evaluated_series": 0,
+      "source_files": 16,
+      "figures": 15
+    },
+    "duration": {
+      "selection": {
+        "legacy": false,
+        "features": [
+          "mean_duration_ms"
+        ],
+        "scenarios": [
+          "M16",
+          "E16"
+        ],
+        "plots": [
+          "temporal"
+        ],
+        "requested_blocks": [
+          1,
+          2
+        ],
+        "temporal_blocks": [
+          1,
+          2
+        ],
+        "heatmap_blocks": [],
+        "delay_blocks": [],
+        "context": false
+      },
+      "evaluated_series": 4,
+      "source_files": 49,
+      "figures": 8
+    },
+    "legacy": {
+      "selection": {
+        "legacy": true,
+        "features": [
+          "request_starts",
+          "mean_duration_ms"
+        ],
+        "scenarios": [
+          "M16",
+          "E16"
+        ],
+        "plots": [
+          "temporal",
+          "heatmap",
+          "delay"
+        ],
+        "requested_blocks": null,
+        "temporal_blocks": [
+          1
+        ],
+        "heatmap_blocks": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "delay_blocks": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "context": true
+      },
+      "evaluated_series": 49,
+      "source_files": 272,
+      "figures": 12
+    },
+    "maps": {
+      "selection": {
+        "legacy": false,
+        "features": [
+          "request_starts",
+          "mean_duration_ms",
+          "mean_cpu_percent",
+          "ingress_packet_count",
+          "ingress_tcp_payload_length_sum_bytes"
+        ],
+        "scenarios": [
+          "C16",
+          "M16",
+          "E16"
+        ],
+        "plots": [
+          "heatmap"
+        ],
+        "requested_blocks": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "temporal_blocks": [],
+        "heatmap_blocks": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "delay_blocks": [],
+        "context": false
+      },
+      "evaluated_series": 180,
+      "source_files": 669,
+      "figures": 15
+    },
+    "network": {
+      "selection": {
+        "legacy": false,
+        "features": [
+          "ingress_packet_count"
+        ],
+        "scenarios": [
+          "C16",
+          "E16"
+        ],
+        "plots": [
+          "temporal",
+          "heatmap"
+        ],
+        "requested_blocks": [
+          1,
+          2
+        ],
+        "temporal_blocks": [
+          1,
+          2
+        ],
+        "heatmap_blocks": [
+          1,
+          2
+        ],
+        "delay_blocks": [],
+        "context": false
+      },
+      "evaluated_series": 4,
+      "source_files": 49,
+      "figures": 6
+    },
+    "single": {
+      "selection": {
+        "legacy": false,
+        "features": [
+          "ingress_tcp_payload_length_sum_bytes"
+        ],
+        "scenarios": [
+          "C16"
+        ],
+        "plots": [
+          "temporal",
+          "heatmap"
+        ],
+        "requested_blocks": [
+          12
+        ],
+        "temporal_blocks": [
+          12
+        ],
+        "heatmap_blocks": [
+          12
+        ],
+        "delay_blocks": [],
+        "context": false
+      },
+      "evaluated_series": 1,
+      "source_files": 25,
+      "figures": 2
+    }
+  },
+  "pdf_checks": [
+    {
+      "file": "cpu/figures/T_mean_cpu_percent_E16_B01.pdf",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "delay/figures/L_ingress_packet_count_C16_B01-B12.pdf",
+      "page_points": [
+        595.44,
+        345.6
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "delay/figures/L_ingress_packet_count_E16_B01-B12.pdf",
+      "page_points": [
+        595.44,
+        345.6
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "delay/figures/L_ingress_packet_count_M16_B01-B12.pdf",
+      "page_points": [
+        595.44,
+        345.6
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "delay/figures/L_ingress_tcp_payload_length_sum_bytes_C16_B01-B12.pdf",
+      "page_points": [
+        595.44,
+        345.6
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "delay/figures/L_ingress_tcp_payload_length_sum_bytes_E16_B01-B12.pdf",
+      "page_points": [
+        595.44,
+        345.6
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "delay/figures/L_ingress_tcp_payload_length_sum_bytes_M16_B01-B12.pdf",
+      "page_points": [
+        595.44,
+        345.6
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "delay/figures/L_mean_cpu_percent_C16_B01-B12.pdf",
+      "page_points": [
+        595.44,
+        345.6
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "delay/figures/L_mean_cpu_percent_E16_B01-B12.pdf",
+      "page_points": [
+        595.44,
+        345.6
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "delay/figures/L_mean_cpu_percent_M16_B01-B12.pdf",
+      "page_points": [
+        595.44,
+        345.6
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "delay/figures/L_mean_duration_ms_C16_B01-B12.pdf",
+      "page_points": [
+        595.44,
+        345.6
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "delay/figures/L_mean_duration_ms_E16_B01-B12.pdf",
+      "page_points": [
+        595.44,
+        345.6
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "delay/figures/L_mean_duration_ms_M16_B01-B12.pdf",
+      "page_points": [
+        595.44,
+        345.6
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "delay/figures/L_request_starts_C16_B01-B12.pdf",
+      "page_points": [
+        595.44,
+        345.6
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "delay/figures/L_request_starts_E16_B01-B12.pdf",
+      "page_points": [
+        595.44,
+        345.6
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "delay/figures/L_request_starts_M16_B01-B12.pdf",
+      "page_points": [
+        595.44,
+        345.6
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "duration/figures/T_mean_duration_ms_E16_B01.pdf",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "duration/figures/T_mean_duration_ms_E16_B01_zoom.pdf",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "duration/figures/T_mean_duration_ms_E16_B02.pdf",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "duration/figures/T_mean_duration_ms_E16_B02_zoom.pdf",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "duration/figures/T_mean_duration_ms_M16_B01.pdf",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "duration/figures/T_mean_duration_ms_M16_B01_zoom.pdf",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "duration/figures/T_mean_duration_ms_M16_B02.pdf",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "duration/figures/T_mean_duration_ms_M16_B02_zoom.pdf",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "legacy/figures/D_context_revised.pdf",
+      "page_points": [
+        841.68,
+        595.44
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "legacy/figures/H_mean_duration_ms_E16.pdf",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "legacy/figures/H_mean_duration_ms_M16.pdf",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "legacy/figures/H_request_starts_E16.pdf",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "legacy/figures/H_request_starts_M16.pdf",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "legacy/figures/L_conditional_delay.pdf",
+      "page_points": [
+        841.68,
+        595.44
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "legacy/figures/T_mean_duration_ms_E16.pdf",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "legacy/figures/T_mean_duration_ms_E16_zoom.pdf",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "legacy/figures/T_mean_duration_ms_M16.pdf",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "legacy/figures/T_mean_duration_ms_M16_zoom.pdf",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "legacy/figures/T_request_starts_E16.pdf",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "legacy/figures/T_request_starts_M16.pdf",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "maps/figures/H_ingress_packet_count_C16_B01-B12.pdf",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "maps/figures/H_ingress_packet_count_E16_B01-B12.pdf",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "maps/figures/H_ingress_packet_count_M16_B01-B12.pdf",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "maps/figures/H_ingress_tcp_payload_length_sum_bytes_C16_B01-B12.pdf",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "maps/figures/H_ingress_tcp_payload_length_sum_bytes_E16_B01-B12.pdf",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "maps/figures/H_ingress_tcp_payload_length_sum_bytes_M16_B01-B12.pdf",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "maps/figures/H_mean_cpu_percent_C16_B01-B12.pdf",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "maps/figures/H_mean_cpu_percent_E16_B01-B12.pdf",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "maps/figures/H_mean_cpu_percent_M16_B01-B12.pdf",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "maps/figures/H_mean_duration_ms_C16_B01-B12.pdf",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "maps/figures/H_mean_duration_ms_E16_B01-B12.pdf",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "maps/figures/H_mean_duration_ms_M16_B01-B12.pdf",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "maps/figures/H_request_starts_C16_B01-B12.pdf",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "maps/figures/H_request_starts_E16_B01-B12.pdf",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "maps/figures/H_request_starts_M16_B01-B12.pdf",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "network/figures/H_ingress_packet_count_C16_B01-B02.pdf",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "network/figures/H_ingress_packet_count_E16_B01-B02.pdf",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "network/figures/T_ingress_packet_count_C16_B01.pdf",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "network/figures/T_ingress_packet_count_C16_B02.pdf",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "network/figures/T_ingress_packet_count_E16_B01.pdf",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "network/figures/T_ingress_packet_count_E16_B02.pdf",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "single/figures/H_ingress_tcp_payload_length_sum_bytes_C16_B12.pdf",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "single/figures/T_ingress_tcp_payload_length_sum_bytes_C16_B12.pdf",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "raster_images": 0,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    }
+  ],
+  "frozen_delay_cells": 76,
+  "directed_records": 14400,
+  "compatibility_records_identical": 70560,
+  "legacy_figure_names_identical": true,
+  "generator_sha256": "b1896a71225c90afd6219187094c3a9fc828506c50188f8faf3c5e9db770b58a",
+  "cli_tests": ".......\n----------------------------------------------------------------------\nRan 7 tests in 0.009s\n\nOK\n"
+}

@@ -1,0 +1,87 @@
+{
+  "checkpoint_sha256": "690c7d9af50204d7170fbb08ee61dd672450d2d5dd7e8c0a1de9725669601912",
+  "plan_sha256": "6240452e214b0748b023a084edd6dcf4fd2fd0a43744ed70a37bdb88a4319bc4",
+  "summary": {
+    "manifest_sha256": "913c5fb44588df0ea228866ac8333576b6b8a0270daceb2e700a3eb6fab35400",
+    "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/scientific-reduced-clock-r2-20261029/analysis/summary"
+  },
+  "selected_block": null,
+  "selection_rule": "Seleção explícita pela CLI",
+  "selection": {
+    "legacy": false,
+    "features": [
+      "mean_duration_ms"
+    ],
+    "scenarios": [
+      "M16",
+      "E16"
+    ],
+    "plots": [
+      "temporal"
+    ],
+    "requested_blocks": [
+      1,
+      2
+    ],
+    "temporal_blocks": [
+      1,
+      2
+    ],
+    "heatmap_blocks": [],
+    "delay_blocks": [],
+    "context": false
+  },
+  "observed_definitions": {
+    "mean_duration_ms": {
+      "name": "mean_duration_ms",
+      "type": "number",
+      "unit": "ms",
+      "role": "feature",
+      "nullable": true,
+      "description": "Arithmetic mean of duration_ms over all concluded attempts, including failures; client observed HTTP duration, NOT TCP RTT."
+    }
+  },
+  "python": "3.12.3",
+  "numpy": "2.5.3",
+  "matplotlib": "3.11.2",
+  "generator_sha256": "b1896a71225c90afd6219187094c3a9fc828506c50188f8faf3c5e9db770b58a",
+  "command": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/.venv/bin/python -B /home/henrique-givisiez/Documents/Faculdade/TCC/TCC/reports/scientific_reduced_clock_r2_temporal_20261102/generate.py --repo /home/henrique-givisiez/Documents/Faculdade/TCC/TCC --plan experiments/protocols/scientific_reduced_clock_r2_20261029/plan.json --checkpoint experiment_results/scientific-reduced-clock-r2-20261029/checkpoints/TEST/manifest.json --checkpoint-sha256 690c7d9af50204d7170fbb08ee61dd672450d2d5dd7e8c0a1de9725669601912 --output /home/henrique-givisiez/Documents/Faculdade/TCC/TCC/reports/scientific_reduced_clock_r2_temporal_cli_20261102/duration --features mean_duration_ms --scenarios M16 E16 --plots temporal --blocks 1 2 --overwrite",
+  "source_files": 49,
+  "evaluated_series": 4,
+  "checked_method_series": 16,
+  "transformations": {
+    "temporal": "Transcrição de 1 s; floats somente na renderização; nulos como NaN/lacunas",
+    "maps": "Booleanos persistidos: -1 indisponível, 0 negativo, 1 positivo; coluna [i,i+1)",
+    "delay": "Estimativas/ICs transcritos; nenhuma inferência nova",
+    "zoom": "Somente limites de vista [-0.3h,3h], sem alterar escores; figura integral acompanha",
+    "context": "Transformações auxiliares da D original: bins de 5 s, ticks e contagem de pendências no cliente"
+  },
+  "prohibited_operations_executed": false,
+  "scientific_runtime_imported": false,
+  "decisions_scores_thresholds_or_intervals_recomputed": false,
+  "inconsistencies": [],
+  "visual_inspection": "Inspeção manual registrada separadamente; a geração não certifica revisão visual",
+  "outputs": {
+    "figures/T_mean_duration_ms_E16_B01.pdf": "cefff0816cfffe67af8409e1e08b00e4130b41713b73ea774d31c743a8503df3",
+    "figures/T_mean_duration_ms_E16_B01.png": "757d7f69fe04e52f5b064d1f46712f01ab05ecfe9559b34776c2d8e3810d88aa",
+    "figures/T_mean_duration_ms_E16_B01_zoom.pdf": "0df165b9ed199256d59bf2402435e314bbc2212b60c2f5e65bea2b708fbcdb3f",
+    "figures/T_mean_duration_ms_E16_B01_zoom.png": "5809ff36c0022d6ca2e9f71d3cc748bc20a82a30fc80bc08548b9f281add2f8e",
+    "figures/T_mean_duration_ms_E16_B02.pdf": "af3992e3e43e907c1b1b0d13625eeccea16c9f0ba800e4ee38a54bf0569db940",
+    "figures/T_mean_duration_ms_E16_B02.png": "04e29103a04ff8b35ffc871e66c892d85b6e6119880298d904c9ef5b3fe66d58",
+    "figures/T_mean_duration_ms_E16_B02_zoom.pdf": "755d6ca46f3eb3f0749c54ffb0242dfd09c1f34f40fb9581ea80435606ac8e9c",
+    "figures/T_mean_duration_ms_E16_B02_zoom.png": "f38323d88853f6c1d643a6d1e4dd34c732e54bb4fe0ddf1d8ed280bb4b2cd42c",
+    "figures/T_mean_duration_ms_M16_B01.pdf": "ac7924d3f4784f6a63dea78d1bfec7dab443711c32b0db249b71dfaa76db707b",
+    "figures/T_mean_duration_ms_M16_B01.png": "1a99770f4563f57919d73ab43400ddf24aab1a0e35735fe890be2a536991c961",
+    "figures/T_mean_duration_ms_M16_B01_zoom.pdf": "bf23bd88e5b4fda22ab04fe99da8bc72ab240271aabd1a2c54d74afb8eda3a07",
+    "figures/T_mean_duration_ms_M16_B01_zoom.png": "c7535acb39b4451e40a0922e8e382d8ec2f62e0863143f469dcb5792affc8bff",
+    "figures/T_mean_duration_ms_M16_B02.pdf": "fd31200696159db2a4629ef8b5af37089fd3df8befdbb9460fb90e6babc16326",
+    "figures/T_mean_duration_ms_M16_B02.png": "3ba4c93e2fed5d843a1157af7277da7ff02890766f3c84d4114f55553d15c6a0",
+    "figures/T_mean_duration_ms_M16_B02_zoom.pdf": "ce88a5363e239bbabeaa1eb2497cabeb99f93aae673e37f0ccd14434ea108d9c",
+    "figures/T_mean_duration_ms_M16_B02_zoom.png": "b5ff1c18bca25d751348618ae4e6c33c6d8a4ed5bb6e4e8cd6334557a651454a",
+    "tables/directed_checks.csv": "38e56cab8f962c0c07240d88e62f00dec1e34eeb4babf3c8cc97e54a095b3fef",
+    "tables/event_boundaries.csv": "1271d3a00c7bf2c9991b202fb1d349dedf0b8c229a477e382a941a9ff394b4d9",
+    "tables/sources.csv": "077e44ff165642aa19b2a7f8f21aaea2d31da052b55788b21dca02995f7daa34",
+    "tables/temporal_records.csv": "1a8f527d1db12bfe7db80a5041eaab9c9eb6f42884f3268e4eb42340c4c3fcd8",
+    "tables/zoom_limits.csv": "9d01fae87b593227291f603a92820e240481a799ffdaa9be68c497775b5ec197"
+  }
+}

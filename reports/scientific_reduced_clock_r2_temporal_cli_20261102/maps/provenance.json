@@ -1,0 +1,157 @@
+{
+  "checkpoint_sha256": "690c7d9af50204d7170fbb08ee61dd672450d2d5dd7e8c0a1de9725669601912",
+  "plan_sha256": "6240452e214b0748b023a084edd6dcf4fd2fd0a43744ed70a37bdb88a4319bc4",
+  "summary": {
+    "manifest_sha256": "913c5fb44588df0ea228866ac8333576b6b8a0270daceb2e700a3eb6fab35400",
+    "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/scientific-reduced-clock-r2-20261029/analysis/summary"
+  },
+  "selected_block": null,
+  "selection_rule": "Seleção explícita pela CLI",
+  "selection": {
+    "legacy": false,
+    "features": [
+      "request_starts",
+      "mean_duration_ms",
+      "mean_cpu_percent",
+      "ingress_packet_count",
+      "ingress_tcp_payload_length_sum_bytes"
+    ],
+    "scenarios": [
+      "C16",
+      "M16",
+      "E16"
+    ],
+    "plots": [
+      "heatmap"
+    ],
+    "requested_blocks": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "temporal_blocks": [],
+    "heatmap_blocks": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "delay_blocks": [],
+    "context": false
+  },
+  "observed_definitions": {
+    "request_starts": {
+      "name": "request_starts",
+      "type": "integer",
+      "unit": "attempts/window",
+      "role": "feature",
+      "nullable": false,
+      "description": "Count assigned by elapsed_seconds at beginning."
+    },
+    "mean_duration_ms": {
+      "name": "mean_duration_ms",
+      "type": "number",
+      "unit": "ms",
+      "role": "feature",
+      "nullable": true,
+      "description": "Arithmetic mean of duration_ms over all concluded attempts, including failures; client observed HTTP duration, NOT TCP RTT."
+    },
+    "mean_cpu_percent": {
+      "name": "mean_cpu_percent",
+      "type": "number",
+      "unit": "percent",
+      "role": "feature",
+      "nullable": true,
+      "description": "Arithmetic mean of supported average_cpu_percent tick values, already averaged/cached by the existing collector; not time weighted or instantaneous CPU; may exceed 100."
+    },
+    "ingress_packet_count": {
+      "name": "ingress_packet_count",
+      "type": "integer",
+      "unit": "records/window",
+      "role": "feature",
+      "nullable": true,
+      "description": "Count of source→proxy CSV packet records, including zero-payload packets and observed retransmissions."
+    },
+    "ingress_tcp_payload_length_sum_bytes": {
+      "name": "ingress_tcp_payload_length_sum_bytes",
+      "type": "integer",
+      "unit": "bytes/window",
+      "role": "feature",
+      "nullable": true,
+      "description": "Sum of the existing packet_length TCP-summary field for ingress; not Ethernet/on-wire/unique HTTP bytes."
+    }
+  },
+  "python": "3.12.3",
+  "numpy": "2.5.3",
+  "matplotlib": "3.11.2",
+  "generator_sha256": "b1896a71225c90afd6219187094c3a9fc828506c50188f8faf3c5e9db770b58a",
+  "command": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/.venv/bin/python -B /home/henrique-givisiez/Documents/Faculdade/TCC/TCC/reports/scientific_reduced_clock_r2_temporal_20261102/generate.py --repo /home/henrique-givisiez/Documents/Faculdade/TCC/TCC --plan experiments/protocols/scientific_reduced_clock_r2_20261029/plan.json --checkpoint experiment_results/scientific-reduced-clock-r2-20261029/checkpoints/TEST/manifest.json --checkpoint-sha256 690c7d9af50204d7170fbb08ee61dd672450d2d5dd7e8c0a1de9725669601912 --output /home/henrique-givisiez/Documents/Faculdade/TCC/TCC/reports/scientific_reduced_clock_r2_temporal_cli_20261102/maps --features request_starts mean_duration_ms mean_cpu_percent ingress_packet_count ingress_tcp_payload_length_sum_bytes --scenarios C16 M16 E16 --plots heatmap --blocks 1 2 3 4 5 6 7 8 9 10 11 12 --overwrite",
+  "source_files": 669,
+  "evaluated_series": 180,
+  "checked_method_series": 720,
+  "transformations": {
+    "temporal": "Transcrição de 1 s; floats somente na renderização; nulos como NaN/lacunas",
+    "maps": "Booleanos persistidos: -1 indisponível, 0 negativo, 1 positivo; coluna [i,i+1)",
+    "delay": "Estimativas/ICs transcritos; nenhuma inferência nova",
+    "zoom": "Somente limites de vista [-0.3h,3h], sem alterar escores; figura integral acompanha",
+    "context": "Transformações auxiliares da D original: bins de 5 s, ticks e contagem de pendências no cliente"
+  },
+  "prohibited_operations_executed": false,
+  "scientific_runtime_imported": false,
+  "decisions_scores_thresholds_or_intervals_recomputed": false,
+  "inconsistencies": [],
+  "visual_inspection": "Inspeção manual registrada separadamente; a geração não certifica revisão visual",
+  "outputs": {
+    "figures/H_ingress_packet_count_C16_B01-B12.pdf": "b066648392baa29be2b30c05a95b927522b6361a12acbc8c29cff5fa42a94a40",
+    "figures/H_ingress_packet_count_C16_B01-B12.png": "4f3b83f101f9930e920b51bbab671794ecececfea7888363e5a9c628f60edb9c",
+    "figures/H_ingress_packet_count_E16_B01-B12.pdf": "68ac85b71fb11986f7875dcf69ec0e4a74e90b0fb239624c614c6b89409d660c",
+    "figures/H_ingress_packet_count_E16_B01-B12.png": "6502ed1f827de90b2624c0bc4eefadf2d2f73736323b6099346294f99ebecb9f",
+    "figures/H_ingress_packet_count_M16_B01-B12.pdf": "1aca47d01b6bc1a780d64a6b6697fb2f48f6bf86669df8ee120aa689d0de59ff",
+    "figures/H_ingress_packet_count_M16_B01-B12.png": "26e2d8f4b5233c927c73ba43a3473ff2973b2c3c0995ca4fdfdba5b5749e4a34",
+    "figures/H_ingress_tcp_payload_length_sum_bytes_C16_B01-B12.pdf": "b8b5b235adeedb06a763c4f67c1afacba7de568ea0f039c4e9c9d868998e406f",
+    "figures/H_ingress_tcp_payload_length_sum_bytes_C16_B01-B12.png": "b597ad2cc066a1cfc1b201dac8df879eba9937fc4cabb65c76c784a9047b9be0",
+    "figures/H_ingress_tcp_payload_length_sum_bytes_E16_B01-B12.pdf": "0f9ace41b14aa55cc91c50d19c38255f47703bd2f87ab975f4e9d20759eacd14",
+    "figures/H_ingress_tcp_payload_length_sum_bytes_E16_B01-B12.png": "8215532b80060ccb47d22a42f396bba3e1782dcd2400af82758cf41548c069c6",
+    "figures/H_ingress_tcp_payload_length_sum_bytes_M16_B01-B12.pdf": "7abbae527405052b6dc15e617c2f645fc2c318102c5b305caa261ddd848868fe",
+    "figures/H_ingress_tcp_payload_length_sum_bytes_M16_B01-B12.png": "777220a72bbafe53ee459a62d18680631eae9e4580272a44c869e465c4e7150a",
+    "figures/H_mean_cpu_percent_C16_B01-B12.pdf": "3ba3ab2b45cb9b6ecc53148b202e01cd60d376db66ddea06ef0e5648e75cf70a",
+    "figures/H_mean_cpu_percent_C16_B01-B12.png": "d6d99dabde8b6671fc1bccdb8d1e8be560ffe65e12c9ada38d84bb6864699ad3",
+    "figures/H_mean_cpu_percent_E16_B01-B12.pdf": "fa8b8b1c487c9a1819125086b1504b5b20add416e566cef7503b570835b08d22",
+    "figures/H_mean_cpu_percent_E16_B01-B12.png": "2238a5da71dbd68382073e28308160dfd559d16427825c2a3ecbd91bd2f6f4d1",
+    "figures/H_mean_cpu_percent_M16_B01-B12.pdf": "04da8569117cd4ae0652c20c2933010d3ccc72cc20a2fbe21e7b0ac4f49ed422",
+    "figures/H_mean_cpu_percent_M16_B01-B12.png": "3753d43a751541bd3831bda4ca631c27ab3471393c0124dfd53afeacb0f3fc30",
+    "figures/H_mean_duration_ms_C16_B01-B12.pdf": "edea51a0fb2304a69777ba02260486d93ef0ce4b3c2a74925993c9c1e32883ad",
+    "figures/H_mean_duration_ms_C16_B01-B12.png": "a196abeafe77dfdc3a6b4f367f39de41bf5794cbcd89269d506ff3246903205b",
+    "figures/H_mean_duration_ms_E16_B01-B12.pdf": "8e251c9a3bb552275cf57497645aab9fb8eddd7e4864700b39cb4162a27453d0",
+    "figures/H_mean_duration_ms_E16_B01-B12.png": "db4d04ee10c1297740dd70d8dad93a1090e2db16da58d957347a04b868405fa9",
+    "figures/H_mean_duration_ms_M16_B01-B12.pdf": "127130d72ea3ece7714b1002d3b38898b5c027f98b793d315be364a83d1a4039",
+    "figures/H_mean_duration_ms_M16_B01-B12.png": "a922ac6e7eeeedfb35e0f7d5f4ecff04e251174d6e4e56d40cc3cd640c0de4c6",
+    "figures/H_request_starts_C16_B01-B12.pdf": "69a1c949be637cee7036eb455ae75538e17edf78d714bd391f01f0e6e4a0a75c",
+    "figures/H_request_starts_C16_B01-B12.png": "00ca259603876eb75d76053eebc7fe32c36a2b1d01f53bdbad6457362d640aec",
+    "figures/H_request_starts_E16_B01-B12.pdf": "9152474e3c86ed04c30872d815e60d5011d864379345e8fac445c2c45bec5d4b",
+    "figures/H_request_starts_E16_B01-B12.png": "4b67bf785b664c6280cb8b825b9cabe1746c4bb27fc2cf75d68059802dc42843",
+    "figures/H_request_starts_M16_B01-B12.pdf": "3996d7943b36d0a06b3d4ac849ee59d090ce0dcd2b2fe48a88753fea3d83c943",
+    "figures/H_request_starts_M16_B01-B12.png": "f0aa3cd1ff1a2990ff7f0cb32e4c2164cb284b6bbb7bad9d1a5cade48d715072",
+    "tables/directed_checks.csv": "be76166a0a142444b1850c8fa86b318addcad9edb205dec1840d70382f56e183",
+    "tables/event_boundaries.csv": "fa16124e73f44054a3a2b6d76ea5cbe26bda4ff7817aed02181314e761baf598",
+    "tables/sources.csv": "8596ffc6e60b2f46f93c2d4e332e9405076476f5222027837d03b8879374892d",
+    "tables/temporal_records.csv": "69ab7f3e7ccc92793562fd8a223bca6072f730ffb6b1c9103bbed1f77c8aec67"
+  }
+}

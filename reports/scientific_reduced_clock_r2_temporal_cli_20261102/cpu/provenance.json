@@ -1,0 +1,69 @@
+{
+  "checkpoint_sha256": "690c7d9af50204d7170fbb08ee61dd672450d2d5dd7e8c0a1de9725669601912",
+  "plan_sha256": "6240452e214b0748b023a084edd6dcf4fd2fd0a43744ed70a37bdb88a4319bc4",
+  "summary": {
+    "manifest_sha256": "913c5fb44588df0ea228866ac8333576b6b8a0270daceb2e700a3eb6fab35400",
+    "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/scientific-reduced-clock-r2-20261029/analysis/summary"
+  },
+  "selected_block": null,
+  "selection_rule": "Seleção explícita pela CLI",
+  "selection": {
+    "legacy": false,
+    "features": [
+      "mean_cpu_percent"
+    ],
+    "scenarios": [
+      "E16"
+    ],
+    "plots": [
+      "temporal"
+    ],
+    "requested_blocks": [
+      1
+    ],
+    "temporal_blocks": [
+      1
+    ],
+    "heatmap_blocks": [],
+    "delay_blocks": [],
+    "context": false
+  },
+  "observed_definitions": {
+    "mean_cpu_percent": {
+      "name": "mean_cpu_percent",
+      "type": "number",
+      "unit": "percent",
+      "role": "feature",
+      "nullable": true,
+      "description": "Arithmetic mean of supported average_cpu_percent tick values, already averaged/cached by the existing collector; not time weighted or instantaneous CPU; may exceed 100."
+    }
+  },
+  "python": "3.12.3",
+  "numpy": "2.5.3",
+  "matplotlib": "3.11.2",
+  "generator_sha256": "b1896a71225c90afd6219187094c3a9fc828506c50188f8faf3c5e9db770b58a",
+  "command": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/.venv/bin/python -B /home/henrique-givisiez/Documents/Faculdade/TCC/TCC/reports/scientific_reduced_clock_r2_temporal_20261102/generate.py --repo /home/henrique-givisiez/Documents/Faculdade/TCC/TCC --plan experiments/protocols/scientific_reduced_clock_r2_20261029/plan.json --checkpoint experiment_results/scientific-reduced-clock-r2-20261029/checkpoints/TEST/manifest.json --checkpoint-sha256 690c7d9af50204d7170fbb08ee61dd672450d2d5dd7e8c0a1de9725669601912 --output /home/henrique-givisiez/Documents/Faculdade/TCC/TCC/reports/scientific_reduced_clock_r2_temporal_cli_20261102/cpu --features mean_cpu_percent --scenarios E16 --plots temporal --blocks 1 --overwrite",
+  "source_files": 25,
+  "evaluated_series": 1,
+  "checked_method_series": 4,
+  "transformations": {
+    "temporal": "Transcrição de 1 s; floats somente na renderização; nulos como NaN/lacunas",
+    "maps": "Booleanos persistidos: -1 indisponível, 0 negativo, 1 positivo; coluna [i,i+1)",
+    "delay": "Estimativas/ICs transcritos; nenhuma inferência nova",
+    "zoom": "Somente limites de vista [-0.3h,3h], sem alterar escores; figura integral acompanha",
+    "context": "Transformações auxiliares da D original: bins de 5 s, ticks e contagem de pendências no cliente"
+  },
+  "prohibited_operations_executed": false,
+  "scientific_runtime_imported": false,
+  "decisions_scores_thresholds_or_intervals_recomputed": false,
+  "inconsistencies": [],
+  "visual_inspection": "Inspeção manual registrada separadamente; a geração não certifica revisão visual",
+  "outputs": {
+    "figures/T_mean_cpu_percent_E16_B01.pdf": "e44719cd7e4455eeaf80e4a5b46cbe022026ce7be42602d2cdc2fb24e86d2cc2",
+    "figures/T_mean_cpu_percent_E16_B01.png": "ec6c4fac7a323a153d4a69a3d00e33ef4ef31314339d5d9f4bdf9efbc5df1476",
+    "tables/directed_checks.csv": "33e8ff5196e16c2db76ab3552594701f4230448dbb3c63622792e3003987f2ad",
+    "tables/event_boundaries.csv": "f1ba978974203ce524bd3dc2d0e4a81832dbf9924e59fb7d235e6e5bae7def6f",
+    "tables/sources.csv": "d486646f784e0e6affc3c60f0215f2dd423a6b4a2c2335f1d7e60ee4ffd98c2e",
+    "tables/temporal_records.csv": "4908502c41643aeb45150b68bf3176e0782d267d96afd94f6877863b82f26a01"
+  }
+}

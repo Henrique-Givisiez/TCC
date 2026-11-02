@@ -1,0 +1,14 @@
+[
+  {
+    "test": "wrong_checkpoint",
+    "passed": true
+  },
+  {
+    "test": "existing_output",
+    "passed": true
+  },
+  {
+    "test": "overwrite_changed_selection_removes_owned_stale_outputs",
+    "passed": true
+  }
+]
