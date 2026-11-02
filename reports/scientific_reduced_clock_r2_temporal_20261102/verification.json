@@ -1,0 +1,162 @@
+{
+  "pdf_checks": [
+    {
+      "figure": "D_context_revised",
+      "page_points": [
+        841.68,
+        595.44
+      ],
+      "text_outside_page": [],
+      "embedded_truetype": true,
+      "raster_images": 0
+    },
+    {
+      "figure": "H_mean_duration_ms_E16",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "text_outside_page": [],
+      "embedded_truetype": true,
+      "raster_images": 0
+    },
+    {
+      "figure": "H_mean_duration_ms_M16",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "text_outside_page": [],
+      "embedded_truetype": true,
+      "raster_images": 0
+    },
+    {
+      "figure": "H_request_starts_E16",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "text_outside_page": [],
+      "embedded_truetype": true,
+      "raster_images": 0
+    },
+    {
+      "figure": "H_request_starts_M16",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "text_outside_page": [],
+      "embedded_truetype": true,
+      "raster_images": 0
+    },
+    {
+      "figure": "L_conditional_delay",
+      "page_points": [
+        841.68,
+        595.44
+      ],
+      "text_outside_page": [],
+      "embedded_truetype": true,
+      "raster_images": 0
+    },
+    {
+      "figure": "T_mean_duration_ms_E16",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "text_outside_page": [],
+      "embedded_truetype": true,
+      "raster_images": 0
+    },
+    {
+      "figure": "T_mean_duration_ms_E16_zoom",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "text_outside_page": [],
+      "embedded_truetype": true,
+      "raster_images": 0
+    },
+    {
+      "figure": "T_mean_duration_ms_M16",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "text_outside_page": [],
+      "embedded_truetype": true,
+      "raster_images": 0
+    },
+    {
+      "figure": "T_mean_duration_ms_M16_zoom",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "text_outside_page": [],
+      "embedded_truetype": true,
+      "raster_images": 0
+    },
+    {
+      "figure": "T_request_starts_E16",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "text_outside_page": [],
+      "embedded_truetype": true,
+      "raster_images": 0
+    },
+    {
+      "figure": "T_request_starts_M16",
+      "page_points": [
+        595.44,
+        841.68
+      ],
+      "text_outside_page": [],
+      "embedded_truetype": true,
+      "raster_images": 0
+    }
+  ],
+  "negative_checks": [
+    {
+      "test": "checkpoint_incorreto",
+      "passed": true
+    },
+    {
+      "test": "sobrescrita_sem_opcao",
+      "passed": true
+    }
+  ],
+  "context_checks": {
+    "context_values_matching_previous": 3030,
+    "png_dpi": 300
+  },
+  "output_hashes_verified": true,
+  "generator_hash_verified": true,
+  "context_reference_sources": [
+    {
+      "path": "reports/scientific_reduced_clock_r2_figures_20261031/tables/D_visual_aggregates_5s.csv",
+      "sha256": "e2f8388f017eb649e2ad8ec12026b5713a9346e5461a20750286b94a0cf055e2"
+    },
+    {
+      "path": "reports/scientific_reduced_clock_r2_figures_20261031/tables/D_pending_C16.csv",
+      "sha256": "f44b50410d5da488b57943de7b08ca1c56ec1530f259a6a6d327e0db403e8ea4"
+    },
+    {
+      "path": "reports/scientific_reduced_clock_r2_figures_20261031/tables/D_pending_M16.csv",
+      "sha256": "1c6be44b25b3eef813df554183c3e4c76ec79448c3b9ea72604b95b06b3bc9cd"
+    },
+    {
+      "path": "reports/scientific_reduced_clock_r2_figures_20261031/tables/D_pending_E16.csv",
+      "sha256": "41bbd60a70e88005b0eefdf5ed9948aa2cc167f444236aab10ce8416101663dd"
+    }
+  ],
+  "visual_review_sha256": "92161d89f2d7b7274e853eceb368f7fe97087aeb654c0b4718a1f2c3b3ef3126",
+  "pdf_tools_version": "pdfinfo version 24.02.0\nCopyright 2005-2024 The Poppler Developers - http://poppler.freedesktop.org\nCopyright 1996-2011, 2022 Glyph & Cog, LLC",
+  "final_generator_sha256": "a60748332d24e969d6495f78b826b9abdc2ddee5b320503600021092e58ee555",
+  "final_provenance_sha256": "2c72f8eca9ac9b4f67949ba0694f9ab85b7982214c874397052865354e08a17d"
+}
