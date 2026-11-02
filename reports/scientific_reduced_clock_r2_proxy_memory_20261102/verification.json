@@ -1,0 +1,57 @@
+{
+  "checks": {
+    "native_records": 14094,
+    "estimated_negative_gaps_retained": 31,
+    "status_failures_preserved": 119,
+    "run_phases_same_as_previous_presentation": 108,
+    "association_support_records": 3024
+  },
+  "exports": [
+    {
+      "file": "A_native_memory_all_runs.pdf",
+      "vector_pdf": true,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "B_memory_ecdf_by_run_phase.pdf",
+      "vector_pdf": true,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    },
+    {
+      "file": "C_within_run_associations.pdf",
+      "vector_pdf": true,
+      "embedded_fonts": true,
+      "text_inside_page": true,
+      "png_dpi": 300
+    }
+  ],
+  "saved_proxy_memory_components": [
+    "memory_usage_bytes"
+  ],
+  "inferential_tests": false,
+  "unit_tests": ".....\n----------------------------------------------------------------------\nRan 5 tests in 0.001s\n\nOK\n",
+  "generator_sha256": "a12527031f0697ef5202a70a48ba9921fe32dd266125d3cd4234c4287463c57f",
+  "output_hashes_verified": true,
+  "previous_phase_summary_sha256": "5bea60989602b596ba89b7db8592f3d9bb346b871c085cff978ccfb4a5f24417",
+  "cli_checks": [
+    {
+      "test": "wrong_checkpoint",
+      "passed": true
+    },
+    {
+      "test": "overwrite_refused",
+      "passed": true
+    },
+    {
+      "test": "previous_report_protected",
+      "passed": true
+    }
+  ],
+  "visual_review_sha256": "1b77e9303a882811d9c75cfc4575f1e8f1984e38aa595108e89fbbbc66f637c6",
+  "verification_script_sha256": "226550bdbddc2cf175ab69b6fc58093acebaade610db76a4455d08929dfe0ce2",
+  "unit_test_script_sha256": "bb4c466265c2417a75a82d7c3c02dd3b8f78ae8f0804b79a7bc3534e33015afd"
+}

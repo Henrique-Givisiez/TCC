@@ -1,0 +1,14 @@
+[
+  {
+    "test": "wrong_checkpoint",
+    "passed": true
+  },
+  {
+    "test": "overwrite_refused",
+    "passed": true
+  },
+  {
+    "test": "previous_report_protected",
+    "passed": true
+  }
+]

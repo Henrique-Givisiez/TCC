@@ -1,0 +1,65 @@
+{
+  "checkpoint_sha256": "690c7d9af50204d7170fbb08ee61dd672450d2d5dd7e8c0a1de9725669601912",
+  "plan_sha256": "6240452e214b0748b023a084edd6dcf4fd2fd0a43744ed70a37bdb88a4319bc4",
+  "generator_sha256": "a12527031f0697ef5202a70a48ba9921fe32dd266125d3cd4234c4287463c57f",
+  "command": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/.venv/bin/python -B /home/henrique-givisiez/Documents/Faculdade/TCC/TCC/reports/scientific_reduced_clock_r2_proxy_memory_20261102/generate.py --repo /home/henrique-givisiez/Documents/Faculdade/TCC/TCC --plan experiments/protocols/scientific_reduced_clock_r2_20261029/plan.json --checkpoint experiment_results/scientific-reduced-clock-r2-20261029/checkpoints/TEST/manifest.json --checkpoint-sha256 690c7d9af50204d7170fbb08ee61dd672450d2d5dd7e8c0a1de9725669601912 --output /home/henrique-givisiez/Documents/Faculdade/TCC/TCC/reports/scientific_reduced_clock_r2_proxy_memory_20261102 --overwrite",
+  "python": "3.12.3",
+  "numpy": "2.5.3",
+  "matplotlib": "3.11.2",
+  "rules": {
+    "status_max_distance_seconds": 0.5,
+    "log_window_seconds": 1.0,
+    "monitor_log_tolerance_seconds": 0.005,
+    "consecutive_max_distance_seconds": 1.5,
+    "min_correlation_pairs": 8,
+    "visual_bin_seconds": 1.0,
+    "time_window_seconds": 30.0,
+    "page_quantum_bytes": 4096
+  },
+  "monitor_log_matching": {
+    "skipped_slots": 0,
+    "monitor_log_unique": 14094
+  },
+  "ledger_classes": {
+    "setup": 36,
+    "capture_audit": 840,
+    "monitoring": 14094,
+    "benign": 223656,
+    "attack": 38568
+  },
+  "scientific_runtime_imported": false,
+  "inferential_tests": false,
+  "new_collection": false,
+  "source_files": 588,
+  "composition": "Somente total bruto do cgroup; componentes não persistidos",
+  "transformations": [
+    "bytes/2**20",
+    "diferenças consecutivas com dt<=1.5s e mesma fase",
+    "quantis lineares descritivos por execução/fase e janelas fixas de 30 s",
+    "Spearman com empates por posto médio, sem p, IC ou hipótese nula; n>=8 pares variáveis",
+    "logs científicos na janela passada [t-1,t), sem preenchimento; status do mesmo ciclo a até 0.5s",
+    "monitor logs únicos no intervalo status±5ms; HTTP log não é término de processo",
+    "ECDFs e quantis de cada run separados; sem pooling inferencial ou corte alto/baixo"
+  ],
+  "outputs": {
+    "diagnosis.md": "29b0632f04461305adbe49d73052c2700ce9fc9c9dbfbf4068febb8a7aeb92b7",
+    "figures/A_native_memory_all_runs.pdf": "82ff739a6b9b6d9092ad8c3ac647b759f6409cc8cbb2fde3805fe46802bb84fa",
+    "figures/A_native_memory_all_runs.png": "35c8506d76dcc2e2e571501babbe58d3a5e9449cb364e90455ac902f81d68b5c",
+    "figures/B_memory_ecdf_by_run_phase.pdf": "9b5cdd5e1bec118ff7db261c5c9f2a722d7252f2f7ec082f218f0a4e013e998b",
+    "figures/B_memory_ecdf_by_run_phase.png": "77fd36502cc27056218079478a20220bed5403d0e1aecc656b8332678307c2fb",
+    "figures/C_within_run_associations.pdf": "24451d0ff48c8dc5cef12cf14edee426f520ff5a9a86621bf7037650a6ddad75",
+    "figures/C_within_run_associations.png": "0435f3df3e9e51a541541ee366ff68a3c6308599691b84333890c62a6d9fc0f1",
+    "methodology.md": "6c9c81cd1af0106131c4a51e1cd09c63790c2cb30e07f4f3c33d6bb1b2efbbdf",
+    "tables/composition_inventory.csv": "35c68c72a0f1f81a56d1fe239248ee99c720f36a6676636afad02c1a0d24a248",
+    "tables/fixed_windows_30s.csv": "71d2171e2c502bf0859f78b5ffe2b8784960b7f8a403b61bdc0c8594a5d63086",
+    "tables/metadata_field_inventory.csv": "694e9aa6dd58dde26cd4ffcc74fa04c58b05bb5afacee9c8401dde307a72f332",
+    "tables/native_memory_alignment.csv": "945e43dbe5a0b195f2af64d9472802a263ef51a7b32d04435353e4a3ce052706",
+    "tables/paired_quantile_differences.csv": "af2f8555bfb6cb64d6e4734da7c6582c191220a6dcb69f4fddbbf98dfa8709a1",
+    "tables/run_phase_distributions.csv": "7aa06f5c9193807c08d382782884a36e917dd80e080492975988ba029234bd4c",
+    "tables/run_support.csv": "4704d351bfb1a67ccb7666ebc5900f9907f7f79fc41f1981e303f2a80e5fe70e",
+    "tables/saved_docker_fields.csv": "f6d91e0edf06207faf71dc72dc7283438e53c60310bec8c1e4e4cc41087fce6c",
+    "tables/sources.csv": "27b557ad7025edb014aa7b62f046f5357be14640ac11b56d3e4cc292e72a17ed",
+    "tables/status_success_conditions.csv": "4808fb5245209b81745404d839f56592de6994d25f27bc234079d96109572dfe",
+    "tables/within_run_associations.csv": "13463654f9f9934e8eb11d100288c61b16aa520918e5d64c356588edef920f95"
+  }
+}
