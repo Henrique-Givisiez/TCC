@@ -1,0 +1,16 @@
+----------------------------------------------------------------------
+Ran 88 tests in 2.198s
+
+OK
+[Autoscaler] Initialized.
+[Autoscaler] Decision: SCALE_UP. Avg CPU: 90.00% > 60.0%. Current instances: 1, Max: 4
+Attempting to start container target_instance_1: container:80 to host:8080
+Container <MagicMock name='client.containers.run().short_id' id='128808075222080'> (target_instance_1) started. Accessible on host port 8080.
+[Autoscaler] Initialized.
+Attempting to start container target_instance_1: container:80 to host:8080
+Container <MagicMock name='client.containers.run().short_id' id='128808084093792'> (target_instance_1) started. Accessible on host port 8080.
+[LoadBalancer:Normal] Alvos atualizados: ['http://localhost:8080']
+[LoadBalancer:Attack] Alvos atualizados: ['http://localhost:8080']
+[Normal_Injector] rps_per_worker=0 ou num_clients=4 <= 0 -- tráfego normal desligado de propósito, não iniciado.
+[Injector] Signaling HTTP flood workers to stop...
+[Injector] Stop signal sent (non-blocking).

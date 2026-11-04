@@ -59,6 +59,14 @@ def main():
     module.configure(settings, manifest['seed'], gt, logger, manifest['service_endpoint'],
                      duration_observer=lambda duration, elapsed: journal("latency_sample",
                          dict(generator="attack" if is_attack else "normal", duration_ms=duration, elapsed_seconds=elapsed)))
+    diagnostic_writer = None
+    if manifest.get('diagnostics',{}).get('enabled'):
+        from simulator.diagnostics import DiagnosticWriter, DiagnosticExecutor
+        diagnostic_writer = DiagnosticWriter(root/'diagnostics/events.jsonl',
+            manifest['diagnostics']['queue_capacity'],
+            context=dict(run_id=start['run_id'],source_id=manifest['source_id'],component='source'))
+        module._send_pool = DiagnosticExecutor(module._send_pool, diagnostic_writer)
+        logger.diagnostics = module._send_pool
     journal('configured', dict(worker_index=manifest['worker_index'], worker_budget=settings.max_concurrent_sends,
                               service_endpoint=manifest['service_endpoint']))
     started = False
@@ -109,6 +117,10 @@ def main():
                                       elapsed_seconds=clock.elapsed()))
         atomic_json(root / 'final_status.json', dict(source_id=manifest['source_id'], run_id=start['run_id'],
                     drained=drained, logger_complete=logger_complete, reason=reason))
+        if diagnostic_writer:
+            diagnostic_writer.emit('source_closed',at=time.monotonic(),
+                counts=module._send_pool.counts.copy(),drained=drained,logger_complete=logger_complete)
+            diagnostic_writer.close()
         if not drained or not logger_complete:
             os._exit(2)  # executor shutdown cannot keep an incomplete source alive indefinitely
 

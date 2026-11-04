@@ -1,0 +1,720 @@
+{
+  "topology": "direct",
+  "run_id": "2a9c874542774cbb9e535428ef3de10a",
+  "checks": [
+    {
+      "name": "essential_artifacts",
+      "status": "passed",
+      "evidence": {
+        "missing": []
+      }
+    },
+    {
+      "name": "completed_and_drained",
+      "status": "passed",
+      "evidence": {
+        "schema_version": 1,
+        "experiment_id": "moderate_disabled_r2",
+        "run_id": "2a9c874542774cbb9e535428ef3de10a",
+        "status": "completed",
+        "end_reason": "simulation_end",
+        "experiment_start_timestamp": 1793818964.8507812,
+        "experiment_start_monotonic": 27155.809909591,
+        "producers_drained": true,
+        "errors": [],
+        "capture_results": {
+          "pcap": {
+            "schema_version": 1,
+            "capture": "pcap",
+            "command_argv": [
+              "tcpdump",
+              "--immediate-mode",
+              "-U",
+              "-i",
+              "br-7e2468afd861",
+              "-n",
+              "-w",
+              "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/moderate_disabled_r2/raw/source_artifacts/traffic_capture.pcap",
+              "tcp and ((dst host 172.20.0.2 and dst port 80) or (src host 172.20.0.2 and src port 80))"
+            ],
+            "interface": "br-7e2468afd861",
+            "bpf_filter": "tcp and ((dst host 172.20.0.2 and dst port 80) or (src host 172.20.0.2 and src port 80))",
+            "output_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/moderate_disabled_r2/raw/source_artifacts/traffic_capture.pcap",
+            "stderr_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/moderate_disabled_r2/raw/source_artifacts/traffic_capture.pcap.stderr",
+            "timestamps": {
+              "process_spawn_returned": {
+                "utc": "2026-11-04T19:02:44.874211+00:00",
+                "monotonic_seconds": 27155.833338865,
+                "basis": "host observation sampled after/before the named process event; not tcpdump packet time"
+              },
+              "tcpdump_listening_message_observed": {
+                "utc": "2026-11-04T19:02:44.894540+00:00",
+                "monotonic_seconds": 27155.853666497,
+                "basis": "host observation sampled after/before the named process event; not tcpdump packet time"
+              },
+              "process_exit_observed": {
+                "utc": "2026-11-04T19:03:01.090073+00:00",
+                "monotonic_seconds": 27172.049201473,
+                "basis": "host observation sampled after/before the named process event; not tcpdump packet time"
+              }
+            },
+            "termination_signals": [
+              {
+                "signal": "SIGTERM",
+                "requested": {
+                  "utc": "2026-11-04T19:03:01.074367+00:00",
+                  "monotonic_seconds": 27172.033494487,
+                  "basis": "host observation sampled after/before the named process event; not tcpdump packet time"
+                }
+              }
+            ],
+            "returncode": 0,
+            "launch_error": null,
+            "capture_counters": {
+              "packets_captured": 2173,
+              "packets_received_by_filter": 2173,
+              "packets_dropped_by_kernel": 0,
+              "statistics_complete": true,
+              "statistics_occurrences": {
+                "packets_captured": 1,
+                "packets_received_by_filter": 1,
+                "packets_dropped_by_kernel": 1
+              }
+            },
+            "capture_diagnostic_sha256": "a8e066ccda6e851bf5d838e08cdcc052bf6b61ef2f13b4218b7255ee75de05b8",
+            "accepted_returncodes": [
+              0,
+              -15
+            ],
+            "accepted": true,
+            "time_interpretation": "process_spawn_returned is the host observation after Popen; tcpdump_listening_message_observed is when readiness text was read, not the exact first-packet timestamp; stop requested and process exit are host observations. Packet timestamps remain in capture artifacts."
+          },
+          "csv": {
+            "schema_version": 1,
+            "capture": "csv",
+            "command_argv": [
+              "tcpdump",
+              "--immediate-mode",
+              "-B",
+              "4096",
+              "-i",
+              "br-7e2468afd861",
+              "-l",
+              "-n",
+              "-tt",
+              "-q",
+              "tcp and ((dst host 172.20.0.2 and dst port 80) or (src host 172.20.0.2 and src port 80))"
+            ],
+            "interface": "br-7e2468afd861",
+            "bpf_filter": "tcp and ((dst host 172.20.0.2 and dst port 80) or (src host 172.20.0.2 and src port 80))",
+            "output_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/moderate_disabled_r2/raw/traffic_capture.csv",
+            "stderr_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/moderate_disabled_r2/raw/traffic_capture.stderr",
+            "timestamps": {
+              "process_spawn_returned": {
+                "utc": "2026-11-04T19:02:44.852696+00:00",
+                "monotonic_seconds": 27155.811821649,
+                "basis": "host observation sampled after/before the named process event; not tcpdump packet time"
+              },
+              "tcpdump_listening_message_observed": {
+                "utc": "2026-11-04T19:02:44.873066+00:00",
+                "monotonic_seconds": 27155.832193177,
+                "basis": "host observation sampled after/before the named process event; not tcpdump packet time"
+              },
+              "process_exit_observed": {
+                "utc": "2026-11-04T19:03:01.122314+00:00",
+                "monotonic_seconds": 27172.081442568,
+                "basis": "host observation sampled after/before the named process event; not tcpdump packet time"
+              }
+            },
+            "termination_signals": [
+              {
+                "signal": "SIGTERM",
+                "requested": {
+                  "utc": "2026-11-04T19:03:01.090260+00:00",
+                  "monotonic_seconds": 27172.049389176,
+                  "basis": "host observation sampled after/before the named process event; not tcpdump packet time"
+                }
+              }
+            ],
+            "returncode": 0,
+            "launch_error": null,
+            "capture_counters": {
+              "packets_captured": 2173,
+              "packets_received_by_filter": 2173,
+              "packets_dropped_by_kernel": 0,
+              "statistics_complete": true,
+              "statistics_occurrences": {
+                "packets_captured": 1,
+                "packets_received_by_filter": 1,
+                "packets_dropped_by_kernel": 1
+              }
+            },
+            "capture_diagnostic_sha256": "4cde40b058f871b3ce8d17b3afe40ebfa80e8ddc39e49e124ee0a1286994026c",
+            "accepted_returncodes": [
+              0,
+              -15
+            ],
+            "accepted": true,
+            "time_interpretation": "process_spawn_returned is the host observation after Popen; tcpdump_listening_message_observed is when readiness text was read, not the exact first-packet timestamp; stop requested and process exit are host observations. Packet timestamps remain in capture artifacts."
+          }
+        },
+        "topology": "direct",
+        "proxy_integrity": null,
+        "target_integrity": {
+          "id": "51eeb4848ba8348d29115816a6776dbc78bda89fb4d6a18a336071e19286729e",
+          "name": "target_instance_1",
+          "hostname": "51eeb4848ba8",
+          "mode": "direct",
+          "source_ip": "172.20.0.2",
+          "source_network": "edos_sources",
+          "service_port": 80,
+          "service_endpoint": "http://edos_service:80",
+          "run_id": "2a9c874542774cbb9e535428ef3de10a"
+        },
+        "source_inventory": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/moderate_disabled_r2/raw/source_inventory.json"
+      }
+    },
+    {
+      "name": "capture_csv",
+      "status": "passed",
+      "evidence": {
+        "schema_version": 1,
+        "capture": "csv",
+        "command_argv": [
+          "tcpdump",
+          "--immediate-mode",
+          "-B",
+          "4096",
+          "-i",
+          "br-7e2468afd861",
+          "-l",
+          "-n",
+          "-tt",
+          "-q",
+          "tcp and ((dst host 172.20.0.2 and dst port 80) or (src host 172.20.0.2 and src port 80))"
+        ],
+        "interface": "br-7e2468afd861",
+        "bpf_filter": "tcp and ((dst host 172.20.0.2 and dst port 80) or (src host 172.20.0.2 and src port 80))",
+        "output_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/moderate_disabled_r2/raw/traffic_capture.csv",
+        "stderr_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/moderate_disabled_r2/raw/traffic_capture.stderr",
+        "timestamps": {
+          "process_spawn_returned": {
+            "utc": "2026-11-04T19:02:44.852696+00:00",
+            "monotonic_seconds": 27155.811821649,
+            "basis": "host observation sampled after/before the named process event; not tcpdump packet time"
+          },
+          "tcpdump_listening_message_observed": {
+            "utc": "2026-11-04T19:02:44.873066+00:00",
+            "monotonic_seconds": 27155.832193177,
+            "basis": "host observation sampled after/before the named process event; not tcpdump packet time"
+          },
+          "process_exit_observed": {
+            "utc": "2026-11-04T19:03:01.122314+00:00",
+            "monotonic_seconds": 27172.081442568,
+            "basis": "host observation sampled after/before the named process event; not tcpdump packet time"
+          }
+        },
+        "termination_signals": [
+          {
+            "signal": "SIGTERM",
+            "requested": {
+              "utc": "2026-11-04T19:03:01.090260+00:00",
+              "monotonic_seconds": 27172.049389176,
+              "basis": "host observation sampled after/before the named process event; not tcpdump packet time"
+            }
+          }
+        ],
+        "returncode": 0,
+        "launch_error": null,
+        "capture_counters": {
+          "packets_captured": 2173,
+          "packets_received_by_filter": 2173,
+          "packets_dropped_by_kernel": 0,
+          "statistics_complete": true,
+          "statistics_occurrences": {
+            "packets_captured": 1,
+            "packets_received_by_filter": 1,
+            "packets_dropped_by_kernel": 1
+          }
+        },
+        "capture_diagnostic_sha256": "4cde40b058f871b3ce8d17b3afe40ebfa80e8ddc39e49e124ee0a1286994026c",
+        "accepted_returncodes": [
+          0,
+          -15
+        ],
+        "accepted": true,
+        "time_interpretation": "process_spawn_returned is the host observation after Popen; tcpdump_listening_message_observed is when readiness text was read, not the exact first-packet timestamp; stop requested and process exit are host observations. Packet timestamps remain in capture artifacts."
+      }
+    },
+    {
+      "name": "capture_pcap",
+      "status": "passed",
+      "evidence": {
+        "schema_version": 1,
+        "capture": "pcap",
+        "command_argv": [
+          "tcpdump",
+          "--immediate-mode",
+          "-U",
+          "-i",
+          "br-7e2468afd861",
+          "-n",
+          "-w",
+          "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/moderate_disabled_r2/raw/source_artifacts/traffic_capture.pcap",
+          "tcp and ((dst host 172.20.0.2 and dst port 80) or (src host 172.20.0.2 and src port 80))"
+        ],
+        "interface": "br-7e2468afd861",
+        "bpf_filter": "tcp and ((dst host 172.20.0.2 and dst port 80) or (src host 172.20.0.2 and src port 80))",
+        "output_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/moderate_disabled_r2/raw/source_artifacts/traffic_capture.pcap",
+        "stderr_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/moderate_disabled_r2/raw/source_artifacts/traffic_capture.pcap.stderr",
+        "timestamps": {
+          "process_spawn_returned": {
+            "utc": "2026-11-04T19:02:44.874211+00:00",
+            "monotonic_seconds": 27155.833338865,
+            "basis": "host observation sampled after/before the named process event; not tcpdump packet time"
+          },
+          "tcpdump_listening_message_observed": {
+            "utc": "2026-11-04T19:02:44.894540+00:00",
+            "monotonic_seconds": 27155.853666497,
+            "basis": "host observation sampled after/before the named process event; not tcpdump packet time"
+          },
+          "process_exit_observed": {
+            "utc": "2026-11-04T19:03:01.090073+00:00",
+            "monotonic_seconds": 27172.049201473,
+            "basis": "host observation sampled after/before the named process event; not tcpdump packet time"
+          }
+        },
+        "termination_signals": [
+          {
+            "signal": "SIGTERM",
+            "requested": {
+              "utc": "2026-11-04T19:03:01.074367+00:00",
+              "monotonic_seconds": 27172.033494487,
+              "basis": "host observation sampled after/before the named process event; not tcpdump packet time"
+            }
+          }
+        ],
+        "returncode": 0,
+        "launch_error": null,
+        "capture_counters": {
+          "packets_captured": 2173,
+          "packets_received_by_filter": 2173,
+          "packets_dropped_by_kernel": 0,
+          "statistics_complete": true,
+          "statistics_occurrences": {
+            "packets_captured": 1,
+            "packets_received_by_filter": 1,
+            "packets_dropped_by_kernel": 1
+          }
+        },
+        "capture_diagnostic_sha256": "a8e066ccda6e851bf5d838e08cdcc052bf6b61ef2f13b4218b7255ee75de05b8",
+        "accepted_returncodes": [
+          0,
+          -15
+        ],
+        "accepted": true,
+        "time_interpretation": "process_spawn_returned is the host observation after Popen; tcpdump_listening_message_observed is when readiness text was read, not the exact first-packet timestamp; stop requested and process exit are host observations. Packet timestamps remain in capture artifacts."
+      }
+    },
+    {
+      "name": "source_artifacts",
+      "status": "passed",
+      "evidence": {
+        "missing": []
+      }
+    },
+    {
+      "name": "benign_sources_only",
+      "status": "passed",
+      "evidence": [
+        {
+          "source_id": "normal_1",
+          "source_type": "normal",
+          "traffic_class": "benign",
+          "container_id": "70308f3b478cae619005020e59ccb5a961c922e392f9afcc871198fe9987818e",
+          "container_name": "edos_source_normal_1_75c0127f74",
+          "hostname": "normal_1",
+          "ip": "172.20.0.3",
+          "image": "edos_sources:diagnostics-20261104",
+          "tag": "diagnostics-20261104",
+          "image_id": "sha256:b8e3996d9b73a155efc59fef7a33510d33187acf6e4eca488600ed28f26d453c",
+          "digest": "sha256:b8e3996d9b73a155efc59fef7a33510d33187acf6e4eca488600ed28f26d453c",
+          "digest_kind": "local_image_config",
+          "repo_digests": [],
+          "base_image": "python:3.12.10-slim-bookworm",
+          "base_digest": "sha256:fd95fa221297a88e1cf49c55ec1828edd7c5a428187e67b5d1805692d11588db",
+          "run_id": "2a9c874542774cbb9e535428ef3de10a",
+          "service_endpoint": "http://edos_service:80",
+          "network": "edos_sources",
+          "worker_index": 0,
+          "send_workers": 2,
+          "aggregate_worker_budget": 4,
+          "status_final": {
+            "state": "exited",
+            "exit_code": 0,
+            "forced": false,
+            "source_id": "normal_1",
+            "run_id": "2a9c874542774cbb9e535428ef3de10a",
+            "drained": true,
+            "logger_complete": true,
+            "reason": "simulation_end"
+          }
+        },
+        {
+          "source_id": "normal_2",
+          "source_type": "normal",
+          "traffic_class": "benign",
+          "container_id": "58b06df592fd016009c6e1601e53f9dedd6d6e5668c77c572e3345898aac6a3b",
+          "container_name": "edos_source_normal_2_e54f1aa093",
+          "hostname": "normal_2",
+          "ip": "172.20.0.4",
+          "image": "edos_sources:diagnostics-20261104",
+          "tag": "diagnostics-20261104",
+          "image_id": "sha256:b8e3996d9b73a155efc59fef7a33510d33187acf6e4eca488600ed28f26d453c",
+          "digest": "sha256:b8e3996d9b73a155efc59fef7a33510d33187acf6e4eca488600ed28f26d453c",
+          "digest_kind": "local_image_config",
+          "repo_digests": [],
+          "base_image": "python:3.12.10-slim-bookworm",
+          "base_digest": "sha256:fd95fa221297a88e1cf49c55ec1828edd7c5a428187e67b5d1805692d11588db",
+          "run_id": "2a9c874542774cbb9e535428ef3de10a",
+          "service_endpoint": "http://edos_service:80",
+          "network": "edos_sources",
+          "worker_index": 1,
+          "send_workers": 2,
+          "aggregate_worker_budget": 4,
+          "status_final": {
+            "state": "exited",
+            "exit_code": 0,
+            "forced": false,
+            "source_id": "normal_2",
+            "run_id": "2a9c874542774cbb9e535428ef3de10a",
+            "drained": true,
+            "logger_complete": true,
+            "reason": "simulation_end"
+          }
+        }
+      ]
+    },
+    {
+      "name": "no_offensive_events",
+      "status": "passed",
+      "evidence": null
+    },
+    {
+      "name": "http_records",
+      "status": "passed",
+      "evidence": null
+    },
+    {
+      "name": "source_aggregation",
+      "status": "passed",
+      "evidence": null
+    },
+    {
+      "name": "source_clocks",
+      "status": "passed",
+      "evidence": null
+    },
+    {
+      "name": "network_audit",
+      "status": "passed",
+      "evidence": {
+        "topology": "direct",
+        "target_id": "51eeb4848ba8348d29115816a6776dbc78bda89fb4d6a18a336071e19286729e",
+        "proxy_ip": "172.20.0.2",
+        "service_port": 80,
+        "bpf": "tcp and ((dst host 172.20.0.2 and dst port 80) or (src host 172.20.0.2 and src port 80))",
+        "candidates": [
+          {
+            "interface": "lo",
+            "packets": 0,
+            "source_ips": [],
+            "response_ips": [],
+            "outside_segment": 0,
+            "repeated_descriptions": 0
+          },
+          {
+            "interface": "br-7e2468afd861",
+            "packets": 64,
+            "source_ips": [
+              "172.20.0.3",
+              "172.20.0.4"
+            ],
+            "response_ips": [
+              "172.20.0.3",
+              "172.20.0.4"
+            ],
+            "outside_segment": 0,
+            "repeated_descriptions": 0
+          },
+          {
+            "interface": "veth0308280",
+            "packets": 64,
+            "source_ips": [
+              "172.20.0.3",
+              "172.20.0.4"
+            ],
+            "response_ips": [
+              "172.20.0.3",
+              "172.20.0.4"
+            ],
+            "outside_segment": 0,
+            "repeated_descriptions": 0
+          },
+          {
+            "interface": "any",
+            "packets": 172,
+            "source_ips": [
+              "172.20.0.3",
+              "172.20.0.4"
+            ],
+            "response_ips": [
+              "172.20.0.3",
+              "172.20.0.4"
+            ],
+            "outside_segment": 0,
+            "repeated_descriptions": 111
+          }
+        ],
+        "selected_interface": "br-7e2468afd861",
+        "replies": [
+          {
+            "source_id": "normal_1",
+            "resolved_ips": [
+              "172.20.0.2"
+            ],
+            "responses": [
+              "host=51eeb4848ba8 work=0 sleep=0.0000s elapsed=0.0038s\n",
+              "host=51eeb4848ba8 work=0 sleep=0.0000s elapsed=0.0007s\n",
+              "host=51eeb4848ba8 work=0 sleep=0.0000s elapsed=0.0007s\n",
+              "host=51eeb4848ba8 work=0 sleep=0.0000s elapsed=0.0006s\n",
+              "host=51eeb4848ba8 work=0 sleep=0.0000s elapsed=0.0007s\n"
+            ]
+          },
+          {
+            "source_id": "normal_2",
+            "resolved_ips": [
+              "172.20.0.2"
+            ],
+            "responses": [
+              "host=51eeb4848ba8 work=0 sleep=0.0000s elapsed=0.0004s\n",
+              "host=51eeb4848ba8 work=0 sleep=0.0000s elapsed=0.0004s\n",
+              "host=51eeb4848ba8 work=0 sleep=0.0000s elapsed=0.0007s\n",
+              "host=51eeb4848ba8 work=0 sleep=0.0000s elapsed=0.0005s\n",
+              "host=51eeb4848ba8 work=0 sleep=0.0000s elapsed=0.0007s\n"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "network_isolation",
+      "status": "passed",
+      "evidence": {
+        "probes": [
+          {
+            "source_id": "normal_1",
+            "probes": {
+              "victim_name": "CONNECTED",
+              "victim_ip": "TimeoutError"
+            },
+            "networks": [
+              "edos_sources"
+            ]
+          },
+          {
+            "source_id": "normal_2",
+            "probes": {
+              "victim_name": "CONNECTED",
+              "victim_ip": "TimeoutError"
+            },
+            "networks": [
+              "edos_sources"
+            ]
+          }
+        ],
+        "note": "Technical exec probes receive a victim address; generator manifests never do."
+      }
+    },
+    {
+      "name": "victim_metrics",
+      "status": "passed",
+      "evidence": null
+    },
+    {
+      "name": "proxy_artifacts",
+      "status": "not_applicable",
+      "evidence": "No proxy exists in direct topology"
+    },
+    {
+      "name": "no_proxy_artifact_directory",
+      "status": "passed",
+      "evidence": null
+    },
+    {
+      "name": "victim_target_identity",
+      "status": "passed",
+      "evidence": {
+        "id": "51eeb4848ba8348d29115816a6776dbc78bda89fb4d6a18a336071e19286729e",
+        "name": "target_instance_1",
+        "hostname": "51eeb4848ba8",
+        "mode": "direct",
+        "source_ip": "172.20.0.2",
+        "source_network": "edos_sources",
+        "service_port": 80,
+        "service_endpoint": "http://edos_service:80",
+        "run_id": "2a9c874542774cbb9e535428ef3de10a"
+      }
+    },
+    {
+      "name": "pcap_csv_independent_reconciliation",
+      "status": "passed",
+      "evidence": {
+        "pcap_ingress": {
+          "0": 93,
+          "1": 80,
+          "2": 93,
+          "3": 72,
+          "4": 74,
+          "5": 83,
+          "6": 73,
+          "7": 80,
+          "8": 77,
+          "9": 81,
+          "10": 89,
+          "11": 65,
+          "12": 67,
+          "13": 103,
+          "14": 87,
+          "15": 71,
+          "16": 15
+        },
+        "csv_ingress": {
+          "0": 93,
+          "1": 80,
+          "2": 93,
+          "3": 72,
+          "4": 74,
+          "5": 83,
+          "6": 73,
+          "7": 80,
+          "8": 77,
+          "9": 81,
+          "10": 89,
+          "11": 65,
+          "12": 67,
+          "13": 103,
+          "14": 87,
+          "15": 71,
+          "16": 15
+        },
+        "pcap_payload": {
+          "0": 5684,
+          "1": 5292,
+          "2": 5880,
+          "3": 4704,
+          "4": 4900,
+          "5": 5488,
+          "6": 4900,
+          "7": 5096,
+          "8": 4900,
+          "9": 5292,
+          "10": 6076,
+          "11": 4116,
+          "12": 4508,
+          "13": 6468,
+          "14": 5684,
+          "15": 4900,
+          "16": 196
+        },
+        "csv_payload": {
+          "0": 5684,
+          "1": 5292,
+          "2": 5880,
+          "3": 4704,
+          "4": 4900,
+          "5": 5488,
+          "6": 4900,
+          "7": 5096,
+          "8": 4900,
+          "9": 5292,
+          "10": 6076,
+          "11": 4116,
+          "12": 4508,
+          "13": 6468,
+          "14": 5684,
+          "15": 4900,
+          "16": 196
+        },
+        "zero_payload_packets": 874,
+        "exact_timestamp_duplicate_records": 0,
+        "covered_sources": [
+          "172.20.0.3",
+          "172.20.0.4"
+        ]
+      }
+    },
+    {
+      "name": "raw_cpu_identity_scale",
+      "status": "passed",
+      "evidence": {
+        "samples": 9,
+        "container_id": "51eeb4848ba8348d29115816a6776dbc78bda89fb4d6a18a336071e19286729e",
+        "accounting": "Docker cgroup total_usage includes all container processes; online_cpus * delta/container system delta * 100"
+      }
+    }
+  ],
+  "features": [
+    {
+      "column": "ingress_packet_count",
+      "windows": 17,
+      "valid": 17,
+      "null": 0,
+      "minimum": "15",
+      "maximum": "103",
+      "status": "passed",
+      "mismatches": []
+    },
+    {
+      "column": "ingress_tcp_payload_length_sum_bytes",
+      "windows": 17,
+      "valid": 17,
+      "null": 0,
+      "minimum": "196",
+      "maximum": "6468",
+      "status": "passed",
+      "mismatches": []
+    },
+    {
+      "column": "request_starts",
+      "windows": 17,
+      "valid": 17,
+      "null": 0,
+      "minimum": "1",
+      "maximum": "33",
+      "status": "passed",
+      "mismatches": []
+    },
+    {
+      "column": "mean_duration_ms",
+      "windows": 17,
+      "valid": 17,
+      "null": 0,
+      "minimum": "25.152510217752854304347826086956521739130434782609",
+      "maximum": "38.410165171392561542857142857142857142857142857143",
+      "status": "passed",
+      "mismatches": []
+    },
+    {
+      "column": "mean_cpu_percent",
+      "windows": 17,
+      "valid": 14,
+      "null": 3,
+      "minimum": "31.57",
+      "maximum": "42.91",
+      "status": "passed",
+      "mismatches": []
+    }
+  ],
+  "accepted": true
+}

@@ -1,0 +1,749 @@
+{
+  "schema_version": 1,
+  "run_id": "964425ab2cfa416cb1688486692db18b",
+  "configuration": {
+    "id": "low_enabled_r2",
+    "duration_seconds": 16,
+    "seed": 2310042,
+    "normal_traffic": {
+      "clients": 2,
+      "rate": 1,
+      "endpoint": "/medium",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 4,
+      "request_timeout_seconds": 2
+    },
+    "attack": {
+      "enabled": false,
+      "profile": "continuous",
+      "attackers": 0,
+      "rate": 0,
+      "start_seconds": 20,
+      "duration_seconds": 140,
+      "endpoint": "/",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 0.25,
+      "history_seconds": 5
+    },
+    "load_balancer": {
+      "enabled": false
+    },
+    "traffic_sources": {
+      "execution": "containers"
+    },
+    "topology": {
+      "mode": "direct"
+    },
+    "diagnostics": {
+      "enabled": true,
+      "queue_capacity": 4096
+    }
+  },
+  "collection_status": {
+    "status": "completed",
+    "producers_drained": true,
+    "errors": []
+  },
+  "observation": "Descriptive finite-run diagnostics; no statistical approval test",
+  "diagnostic_enabled": true,
+  "sources": [
+    {
+      "source_id": "normal_1",
+      "writer": {
+        "schema_version": 1,
+        "context": {
+          "run_id": "964425ab2cfa416cb1688486692db18b",
+          "source_id": "normal_1",
+          "component": "source"
+        },
+        "clock": {
+          "kind": "CLOCK_MONOTONIC",
+          "unit": "seconds",
+          "resolution_seconds": 1e-09,
+          "implementation": "clock_gettime(CLOCK_MONOTONIC)",
+          "time_namespace": "time:[4026533571]",
+          "pid": 1
+        },
+        "capacity": 4096,
+        "offered": 115,
+        "enqueued": 115,
+        "written": 115,
+        "dropped": 0,
+        "write_errors": 0,
+        "queue_remaining": 0,
+        "complete": true
+      },
+      "counts": {
+        "submitted": 19,
+        "task_started": 19,
+        "http_started": 19,
+        "http_finished": 19,
+        "task_finished": 19,
+        "planned": 19,
+        "source_closed": 1
+      },
+      "counters": {
+        "submitted": 19,
+        "task_started": 19,
+        "task_finished": 19,
+        "cancelled": 0,
+        "rejected": 0
+      },
+      "closure": {
+        "run_id": "964425ab2cfa416cb1688486692db18b",
+        "source_id": "normal_1",
+        "component": "source",
+        "kind": "source_closed",
+        "at": 27250.826164821,
+        "counts": {
+          "submitted": 19,
+          "task_started": 19,
+          "task_finished": 19,
+          "cancelled": 0,
+          "rejected": 0
+        },
+        "drained": true,
+        "logger_complete": true
+      },
+      "nominal_rps": 1,
+      "theoretical_exponential_mean_seconds": 1.0,
+      "planned_within_plan": 18,
+      "planned_after_plan": 1,
+      "planned_not_submitted_in_plan": 0,
+      "submitted_not_started": 0,
+      "unresolved_tasks": 0,
+      "task_failures": 0,
+      "cancelled": 0,
+      "http_active_at_end": 0,
+      "http_peak": 1,
+      "submitted_not_task_started_peak": 1,
+      "delays_seconds": {
+        "submit_to_task": {
+          "n": 19,
+          "mean": 0.00023128784194245542,
+          "minimum": 0.0001480920000176411,
+          "maximum": 0.0003083379997406155,
+          "p50": 0.0002293799989274703,
+          "p95": 0.0003083379997406155
+        },
+        "submit_to_http": {
+          "n": 19,
+          "mean": 0.00024842915770836713,
+          "minimum": 0.0001639160000195261,
+          "maximum": 0.00032040099904406816,
+          "p50": 0.00024730999939492904,
+          "p95": 0.00032040099904406816
+        },
+        "plan_to_submit": {
+          "n": 18,
+          "mean": 0.00031033321223124705,
+          "minimum": 0.00012033957318635657,
+          "maximum": 0.0003994472608610522,
+          "p50": 0.00033325423100905027,
+          "p95": 0.0003994472608610522
+        },
+        "plan_to_http": {
+          "n": 18,
+          "mean": 0.0005594555453474944,
+          "minimum": 0.00036750057188328356,
+          "maximum": 0.0006242338167794514,
+          "p50": 0.0005833882150909631,
+          "p95": 0.0006242338167794514
+        }
+      },
+      "sampled_intervals_seconds": {
+        "n": 19,
+        "mean": 0.8376130284681391,
+        "minimum": 0.051400621696573334,
+        "maximum": 2.743158224087392,
+        "p50": 0.4656941121062052,
+        "p95": 2.743158224087392
+      },
+      "empirical_intervals_seconds": [
+        0.3352804541666497,
+        2.481408373552043,
+        0.9218709978688123,
+        0.34352552202859143,
+        0.4656941121062052,
+        0.4230690031821003,
+        0.5212913914506218,
+        2.2600743185067405,
+        0.051400621696573334,
+        0.3827821327351814,
+        0.1495012212581665,
+        1.705910088871223,
+        2.743158224087392,
+        0.9888542205116339,
+        0.07121743992042104,
+        0.6565188186224662,
+        0.4381655724297872,
+        0.15972984118146402,
+        0.8151951867185714
+      ],
+      "counts_per_second": {
+        "planned": {
+          "counts": [
+            1,
+            0,
+            1,
+            1,
+            2,
+            2,
+            0,
+            2,
+            2,
+            0,
+            1,
+            0,
+            1,
+            2,
+            1,
+            2
+          ],
+          "mean": 1.125,
+          "sample_variance": 0.65,
+          "variance_to_mean": 0.5777777777777778,
+          "partial_final_bin": false
+        },
+        "submitted": {
+          "counts": [
+            2,
+            0,
+            1,
+            1,
+            2,
+            2,
+            0,
+            2,
+            2,
+            0,
+            1,
+            0,
+            1,
+            2,
+            1,
+            2
+          ],
+          "mean": 1.1875,
+          "sample_variance": 0.6958333333333333,
+          "variance_to_mean": 0.5859649122807017,
+          "partial_final_bin": false
+        },
+        "http_started": {
+          "counts": [
+            2,
+            0,
+            1,
+            1,
+            2,
+            2,
+            0,
+            2,
+            2,
+            0,
+            1,
+            0,
+            1,
+            2,
+            1,
+            2
+          ],
+          "mean": 1.1875,
+          "sample_variance": 0.6958333333333333,
+          "variance_to_mean": 0.5859649122807017,
+          "partial_final_bin": false
+        }
+      },
+      "first_dispatch_unplanned": 1
+    },
+    {
+      "source_id": "normal_2",
+      "writer": {
+        "schema_version": 1,
+        "context": {
+          "run_id": "964425ab2cfa416cb1688486692db18b",
+          "source_id": "normal_2",
+          "component": "source"
+        },
+        "clock": {
+          "kind": "CLOCK_MONOTONIC",
+          "unit": "seconds",
+          "resolution_seconds": 1e-09,
+          "implementation": "clock_gettime(CLOCK_MONOTONIC)",
+          "time_namespace": "time:[4026533634]",
+          "pid": 1
+        },
+        "capacity": 4096,
+        "offered": 139,
+        "enqueued": 139,
+        "written": 139,
+        "dropped": 0,
+        "write_errors": 0,
+        "queue_remaining": 0,
+        "complete": true
+      },
+      "counts": {
+        "submitted": 23,
+        "task_started": 23,
+        "http_started": 23,
+        "http_finished": 23,
+        "task_finished": 23,
+        "planned": 23,
+        "source_closed": 1
+      },
+      "counters": {
+        "submitted": 23,
+        "task_started": 23,
+        "task_finished": 23,
+        "cancelled": 0,
+        "rejected": 0
+      },
+      "closure": {
+        "run_id": "964425ab2cfa416cb1688486692db18b",
+        "source_id": "normal_2",
+        "component": "source",
+        "kind": "source_closed",
+        "at": 27250.826159508,
+        "counts": {
+          "submitted": 23,
+          "task_started": 23,
+          "task_finished": 23,
+          "cancelled": 0,
+          "rejected": 0
+        },
+        "drained": true,
+        "logger_complete": true
+      },
+      "nominal_rps": 1,
+      "theoretical_exponential_mean_seconds": 1.0,
+      "planned_within_plan": 22,
+      "planned_after_plan": 1,
+      "planned_not_submitted_in_plan": 0,
+      "submitted_not_started": 0,
+      "unresolved_tasks": 0,
+      "task_failures": 0,
+      "cancelled": 0,
+      "http_active_at_end": 0,
+      "http_peak": 2,
+      "submitted_not_task_started_peak": 1,
+      "delays_seconds": {
+        "submit_to_task": {
+          "n": 23,
+          "mean": 0.00018168199992784218,
+          "minimum": 6.911799937370233e-05,
+          "maximum": 0.0004311459997552447,
+          "p50": 0.00018024599921773188,
+          "p95": 0.0003672700004244689
+        },
+        "submit_to_http": {
+          "n": 23,
+          "mean": 0.00020517569583202914,
+          "minimum": 8.211200110963546e-05,
+          "maximum": 0.00045130500075174496,
+          "p50": 0.00019877600061590783,
+          "p95": 0.0003999250002379995
+        },
+        "plan_to_submit": {
+          "n": 22,
+          "mean": 0.0002524647747618887,
+          "minimum": 0.00010750569344963878,
+          "maximum": 0.0003779766775551252,
+          "p50": 0.00025610209740989376,
+          "p95": 0.00037711390177719295
+        },
+        "plan_to_http": {
+          "n": 22,
+          "mean": 0.00045852845687477384,
+          "minimum": 0.00021708746498916298,
+          "maximum": 0.0007057432449073531,
+          "p50": 0.00041603333920647856,
+          "p95": 0.0006948728587303776
+        }
+      },
+      "sampled_intervals_seconds": {
+        "n": 23,
+        "mean": 0.7170384278084395,
+        "minimum": 0.008408554114830415,
+        "maximum": 2.3813309654443,
+        "p50": 0.4404511112586668,
+        "p95": 1.6202810960306058
+      },
+      "empirical_intervals_seconds": [
+        2.3813309654443,
+        0.8373415732895086,
+        0.245280384385709,
+        0.22715986968589924,
+        0.3929948509545633,
+        0.5755058957295196,
+        1.5736339473082561,
+        1.1587826456937196,
+        0.03118516339709618,
+        0.008408554114830415,
+        0.4386959115323604,
+        1.3808146740966396,
+        0.22127439897781687,
+        0.10304472338945625,
+        0.4404511112586668,
+        1.3166185614460566,
+        0.17177702714274048,
+        1.6202810960306058,
+        0.12172507799783777,
+        0.30622078832372385,
+        1.234766165753383,
+        0.8349108640003163,
+        0.869679589641104
+      ],
+      "counts_per_second": {
+        "planned": {
+          "counts": [
+            0,
+            0,
+            1,
+            3,
+            2,
+            0,
+            1,
+            3,
+            1,
+            3,
+            1,
+            2,
+            0,
+            3,
+            1,
+            1
+          ],
+          "mean": 1.375,
+          "sample_variance": 1.3166666666666667,
+          "variance_to_mean": 0.9575757575757575,
+          "partial_final_bin": false
+        },
+        "submitted": {
+          "counts": [
+            1,
+            0,
+            1,
+            3,
+            2,
+            0,
+            1,
+            3,
+            1,
+            3,
+            1,
+            2,
+            0,
+            3,
+            1,
+            1
+          ],
+          "mean": 1.4375,
+          "sample_variance": 1.1958333333333333,
+          "variance_to_mean": 0.8318840579710145,
+          "partial_final_bin": false
+        },
+        "http_started": {
+          "counts": [
+            1,
+            0,
+            1,
+            3,
+            2,
+            0,
+            1,
+            3,
+            1,
+            3,
+            1,
+            2,
+            0,
+            3,
+            1,
+            1
+          ],
+          "mean": 1.4375,
+          "sample_variance": 1.1958333333333333,
+          "variance_to_mean": 0.8318840579710145,
+          "partial_final_bin": false
+        }
+      },
+      "first_dispatch_unplanned": 1
+    }
+  ],
+  "victim": {
+    "writer": {
+      "schema_version": 1,
+      "context": {
+        "component": "victim"
+      },
+      "clock": {
+        "kind": "CLOCK_MONOTONIC",
+        "unit": "seconds",
+        "resolution_seconds": 1e-09,
+        "implementation": "clock_gettime(CLOCK_MONOTONIC)",
+        "time_namespace": "time:[4026532867]",
+        "pid": 1
+      },
+      "capacity": 4096,
+      "offered": 104,
+      "enqueued": 104,
+      "written": 104,
+      "dropped": 0,
+      "write_errors": 0,
+      "queue_remaining": 0,
+      "complete": true
+    },
+    "handler_starts": 42,
+    "handler_finishes": 42,
+    "handler_errors": 0,
+    "matched_request_ids": 42,
+    "client_attempts_without_completed_handler": [],
+    "unattributed_setup_handlers": 10,
+    "peak_handlers": 2,
+    "durations_seconds": {
+      "handler_to_submit": {
+        "n": 42,
+        "mean": 5.1710594821737944e-05,
+        "minimum": 2.6890000299317762e-05,
+        "maximum": 6.988000313867815e-05,
+        "p50": 5.260699981590733e-05,
+        "p95": 6.821599890827201e-05
+      },
+      "work_wait": {
+        "n": 42,
+        "mean": 0.0004829326906127833,
+        "minimum": 0.0003739640014828183,
+        "maximum": 0.0007356310015893541,
+        "p50": 0.0004712670015578624,
+        "p95": 0.0005812630006403197
+      },
+      "work_wall": {
+        "n": 42,
+        "mean": 0.012276184714123485,
+        "minimum": 0.008846422999340575,
+        "maximum": 0.015504532002523774,
+        "p50": 0.01205912250043184,
+        "p95": 0.01548236199960229
+      },
+      "work_result_transport": {
+        "n": 42,
+        "mean": 0.00041933685696719856,
+        "minimum": 0.00027367000075173564,
+        "maximum": 0.0006139209981483873,
+        "p50": 0.00042442199992365204,
+        "p95": 0.0005811609989905264
+      },
+      "post_work_handler": {
+        "n": 42,
+        "mean": 0.0006007029763471413,
+        "minimum": 0.0004093200004717801,
+        "maximum": 0.0008845910015224945,
+        "p50": 0.0005929535000177566,
+        "p95": 0.0008299549990624655
+      },
+      "handler_wall": {
+        "n": 42,
+        "mean": 0.013411530975905148,
+        "minimum": 0.00981946399770095,
+        "maximum": 0.016581856998527655,
+        "p50": 0.013432001498586033,
+        "p95": 0.01653732900012983
+      },
+      "work_process_cpu": {
+        "n": 42,
+        "mean": 0.01226352492857143,
+        "minimum": 0.008843855000000012,
+        "maximum": 0.015498647,
+        "p50": 0.012048041500000002,
+        "p95": 0.015477285999999979
+      }
+    },
+    "handler_start_windows": {
+      "counts": [
+        3,
+        0,
+        2,
+        4,
+        4,
+        2,
+        1,
+        5,
+        3,
+        3,
+        2,
+        2,
+        1,
+        5,
+        2,
+        3
+      ],
+      "mean": 2.625,
+      "sample_variance": 1.9833333333333334,
+      "variance_to_mean": 0.7555555555555555,
+      "partial_final_bin": false
+    },
+    "incomplete_handlers_observed": 0
+  },
+  "scientific_observations": {
+    "starts": 42,
+    "starts_in_plan": 42,
+    "completions": 42,
+    "failures": 0,
+    "duration_ms": {
+      "n": 42,
+      "mean": 16.78014888117711,
+      "minimum": 11.171027003001655,
+      "maximum": 58.37108400010038,
+      "p50": 14.804517000811757,
+      "p95": 18.869147999794222
+    },
+    "cpu_docker_percent": {
+      "n": 14,
+      "mean": 3.057142857142857,
+      "minimum": 1.59,
+      "maximum": 5.67,
+      "p50": 2.86,
+      "p95": 5.67
+    }
+  },
+  "reliability_errors": [],
+  "metadata": {
+    "schema_version": 1,
+    "run_id": "964425ab2cfa416cb1688486692db18b",
+    "origin_monotonic": 27234.816759822,
+    "origin_epoch": 1793819043.8576322,
+    "host_clock": {
+      "kind": "CLOCK_MONOTONIC",
+      "unit": "seconds",
+      "resolution_seconds": 1e-09,
+      "implementation": "clock_gettime(CLOCK_MONOTONIC)",
+      "time_namespace": "time:[4026531834]",
+      "pid": 78128
+    },
+    "source_sha256": {
+      "simulator/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "simulator/app/simple_server.py": "0d8fa3dc7265232565e0e9f346d25a6501f2e4eb0bdea423c817ee9283aed0ce",
+      "simulator/attack_patterns.py": "cae81bf8be017ca1a2af794847bcba778e5cfbe6d9879925bb3e8021d6ad0276",
+      "simulator/attack_summary_logger.py": "65ac7260ce40a066593f3de4a322d0a5f47638beefa11182484ec7f5ba7e4a43",
+      "simulator/autoscaler_logic.py": "d2ae0a98d8c7329e7beea16a62bdd0007ceb9260cfb5a7c39f1c65fec853e0a7",
+      "simulator/capture_evidence.py": "a78a5a65141c7ebf683655b120ddbf6fb78d8dc42f34164ee12da2d5277d208a",
+      "simulator/capture_lifecycle.py": "6f35fafc833ec06aa9c1e83b53d5771e8aaab7cf61a92ec64fb4861fb1df0387",
+      "simulator/config.py": "c15f8181ced5053d00dc36504d71488884851b21980e2ad14dec8dd1672c8970",
+      "simulator/cost_calculator.py": "92bff0a3bc8feaf0a356d79f1a77b87337243daa6134ecd9fa6695c3521606a5",
+      "simulator/diagnostics.py": "25342c09129ba61b4b5a5e1db94c17e81875f5f77a458a9ea485e3927981f278",
+      "simulator/direct_target.py": "f3be3fd841331562200a8a33a77ffa2cc7980d6a5af9541e46ffb34579bf3e4e",
+      "simulator/docker_manager.py": "32baf26845b0bec4547d96dc017a7016db10562632b6df9744174096b8627d6b",
+      "simulator/experiment_config.py": "23e4a3f7cc0cb7c459020ff5b849c1b4ef378a6e1c075fcd6ccc89a69027030f",
+      "simulator/ground_truth.py": "1e7edd1ee446cbca1a961a42435385d5a199eb121cdbf7caa22a8f1dd2b8aee9",
+      "simulator/host_stats.py": "05e29e6c92726330dba4019038f76139aa8c949b2b32e0a766b1bdde0e03282d",
+      "simulator/http_proxy.py": "82c8ab54ccc01194040f59b7b6b7714191788c9cdc8e075d6beb61a86c25e1d6",
+      "simulator/load_balancer.py": "b67d1b8b405e1c0cede01542d3bf5d6e57c18d7207ba799ac665f43e9f936942",
+      "simulator/main_orchestrator.py": "a89e95f029e5174e86d6b65eec263813b6d8e56f0a59a07aa4a7d37cbf61b25b",
+      "simulator/normal_traffic.py": "41e6fd5c69e3e07f3a7c695804cd426c3a282a5c1ba1953bffe68d4e4f8647a5",
+      "simulator/normal_traffic_summary_logger.py": "95fe6ffd0e28f814ccb6b4905c685d620a2c31920c18d8bdc35b29045a542bb2",
+      "simulator/proxy_monitor.py": "1fc29ba053b13d11855372f95b40a8c133df0063739b6d5789b8bed0514aeb5e",
+      "simulator/request_logger.py": "8c9824e14a24fb83a5cc4de722054748ddd2f27549b567291daf85102ea3d3c3",
+      "simulator/service_destination.py": "026b1e991ae57d0b64faacd39bfea23eea7279c04e89917cbe8f405050c7b3a4",
+      "simulator/source_aggregate.py": "2b2fbc1e5a2f61538d526f3c330dd14df37d8c751a39f071d3b93a0d203d2268",
+      "simulator/source_experiment.py": "c98dee30055b61065ac08fa4156127e233e279bef07de35349b808d6b5fa569f",
+      "simulator/source_journal.py": "b342e3d438805aa00f1ee717f053531c43c5e1fff0e3426418b1d16737f6e2d8",
+      "simulator/source_manager.py": "3bc23f12a83529136a6f2d8b1ea6901a49fb56f717b1a537d0c7ce44fcb4f73e",
+      "simulator/source_runner.py": "34f80cc8da43e79d64a995c13c0c9fdd2160e2a60d25ff05030fc3ef83b55989",
+      "simulator/stats_collector.py": "c8665fb8b7a6a5082170bf94fe6e15c63545dfb386e7f5878b212fe867881a45",
+      "simulator/tcpdump_sniffer.py": "266781c5e8b3d419e0083281103f3bf77979f95a45d17a07b2ec87ae90c8c1cc",
+      "simulator/traffic_injectorV0.py": "50c03355418ad82c49bd03fb30e022c6b00d9f64a0ff6b2cb08f372840fe28fc"
+    },
+    "configuration": {
+      "id": "low_enabled_r2",
+      "duration_seconds": 16,
+      "seed": 2310042,
+      "normal_traffic": {
+        "clients": 2,
+        "rate": 1,
+        "endpoint": "/medium",
+        "work_units": 10,
+        "sleep_seconds": 0.0,
+        "max_concurrent_sends": 4,
+        "request_timeout_seconds": 2
+      },
+      "attack": {
+        "enabled": false,
+        "profile": "continuous",
+        "attackers": 0,
+        "rate": 0,
+        "start_seconds": 20,
+        "duration_seconds": 140,
+        "endpoint": "/",
+        "work_units": 5000,
+        "sleep_seconds": 0.0,
+        "max_concurrent_sends": 64,
+        "request_timeout_seconds": 2.0,
+        "burst": null
+      },
+      "infrastructure": {
+        "initial_instances": 1,
+        "min_instances": 1,
+        "max_instances": 1,
+        "cost_per_instance_per_hour": 0.02
+      },
+      "autoscaler": {
+        "enabled": false,
+        "scale_up_threshold": 60.0,
+        "scale_down_threshold": 25.0,
+        "cooldown_seconds": 20
+      },
+      "server": {
+        "process_pool_workers": 2,
+        "default_work_units": 1000000,
+        "default_sleep_seconds": 0.0
+      },
+      "monitoring": {
+        "interval_seconds": 1,
+        "stats_poll_interval_seconds": 0.25,
+        "history_seconds": 5
+      },
+      "load_balancer": {
+        "enabled": false
+      },
+      "traffic_sources": {
+        "execution": "containers"
+      },
+      "topology": {
+        "mode": "direct"
+      },
+      "diagnostics": {
+        "enabled": true,
+        "queue_capacity": 4096
+      }
+    },
+    "victim_image_id": "sha256:3f0a418c93db324644b86f06f99b604f6aa0c833faf27abea8a3d484234f3c09",
+    "source_image": "edos_sources:diagnostics-20261104",
+    "correlation": "Existing X-Edos-Request-Id; no added HTTP headers",
+    "victim_run_id": "Bound by containing run directory; setup handlers have no request_id"
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "run_id": "bab71d451b184ab9be7c31b0359a0b89",
+  "origin_monotonic": 27077.247430747,
+  "origin_epoch": 1793818886.2883027,
+  "host_clock": {
+    "kind": "CLOCK_MONOTONIC",
+    "unit": "seconds",
+    "resolution_seconds": 1e-09,
+    "implementation": "clock_gettime(CLOCK_MONOTONIC)",
+    "time_namespace": "time:[4026531834]",
+    "pid": 70123
+  },
+  "source_sha256": {
+    "simulator/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "simulator/app/simple_server.py": "0d8fa3dc7265232565e0e9f346d25a6501f2e4eb0bdea423c817ee9283aed0ce",
+    "simulator/attack_patterns.py": "cae81bf8be017ca1a2af794847bcba778e5cfbe6d9879925bb3e8021d6ad0276",
+    "simulator/attack_summary_logger.py": "65ac7260ce40a066593f3de4a322d0a5f47638beefa11182484ec7f5ba7e4a43",
+    "simulator/autoscaler_logic.py": "d2ae0a98d8c7329e7beea16a62bdd0007ceb9260cfb5a7c39f1c65fec853e0a7",
+    "simulator/capture_evidence.py": "a78a5a65141c7ebf683655b120ddbf6fb78d8dc42f34164ee12da2d5277d208a",
+    "simulator/capture_lifecycle.py": "6f35fafc833ec06aa9c1e83b53d5771e8aaab7cf61a92ec64fb4861fb1df0387",
+    "simulator/config.py": "c15f8181ced5053d00dc36504d71488884851b21980e2ad14dec8dd1672c8970",
+    "simulator/cost_calculator.py": "92bff0a3bc8feaf0a356d79f1a77b87337243daa6134ecd9fa6695c3521606a5",
+    "simulator/diagnostics.py": "25342c09129ba61b4b5a5e1db94c17e81875f5f77a458a9ea485e3927981f278",
+    "simulator/direct_target.py": "f3be3fd841331562200a8a33a77ffa2cc7980d6a5af9541e46ffb34579bf3e4e",
+    "simulator/docker_manager.py": "32baf26845b0bec4547d96dc017a7016db10562632b6df9744174096b8627d6b",
+    "simulator/experiment_config.py": "23e4a3f7cc0cb7c459020ff5b849c1b4ef378a6e1c075fcd6ccc89a69027030f",
+    "simulator/ground_truth.py": "1e7edd1ee446cbca1a961a42435385d5a199eb121cdbf7caa22a8f1dd2b8aee9",
+    "simulator/host_stats.py": "05e29e6c92726330dba4019038f76139aa8c949b2b32e0a766b1bdde0e03282d",
+    "simulator/http_proxy.py": "82c8ab54ccc01194040f59b7b6b7714191788c9cdc8e075d6beb61a86c25e1d6",
+    "simulator/load_balancer.py": "b67d1b8b405e1c0cede01542d3bf5d6e57c18d7207ba799ac665f43e9f936942",
+    "simulator/main_orchestrator.py": "a89e95f029e5174e86d6b65eec263813b6d8e56f0a59a07aa4a7d37cbf61b25b",
+    "simulator/normal_traffic.py": "41e6fd5c69e3e07f3a7c695804cd426c3a282a5c1ba1953bffe68d4e4f8647a5",
+    "simulator/normal_traffic_summary_logger.py": "95fe6ffd0e28f814ccb6b4905c685d620a2c31920c18d8bdc35b29045a542bb2",
+    "simulator/proxy_monitor.py": "1fc29ba053b13d11855372f95b40a8c133df0063739b6d5789b8bed0514aeb5e",
+    "simulator/request_logger.py": "8c9824e14a24fb83a5cc4de722054748ddd2f27549b567291daf85102ea3d3c3",
+    "simulator/service_destination.py": "026b1e991ae57d0b64faacd39bfea23eea7279c04e89917cbe8f405050c7b3a4",
+    "simulator/source_aggregate.py": "2b2fbc1e5a2f61538d526f3c330dd14df37d8c751a39f071d3b93a0d203d2268",
+    "simulator/source_experiment.py": "c98dee30055b61065ac08fa4156127e233e279bef07de35349b808d6b5fa569f",
+    "simulator/source_journal.py": "b342e3d438805aa00f1ee717f053531c43c5e1fff0e3426418b1d16737f6e2d8",
+    "simulator/source_manager.py": "3bc23f12a83529136a6f2d8b1ea6901a49fb56f717b1a537d0c7ce44fcb4f73e",
+    "simulator/source_runner.py": "34f80cc8da43e79d64a995c13c0c9fdd2160e2a60d25ff05030fc3ef83b55989",
+    "simulator/stats_collector.py": "c8665fb8b7a6a5082170bf94fe6e15c63545dfb386e7f5878b212fe867881a45",
+    "simulator/tcpdump_sniffer.py": "266781c5e8b3d419e0083281103f3bf77979f95a45d17a07b2ec87ae90c8c1cc",
+    "simulator/traffic_injectorV0.py": "50c03355418ad82c49bd03fb30e022c6b00d9f64a0ff6b2cb08f372840fe28fc"
+  },
+  "configuration": {
+    "id": "moderate_enabled_r1",
+    "duration_seconds": 16,
+    "seed": 2310041,
+    "normal_traffic": {
+      "clients": 2,
+      "rate": 12,
+      "endpoint": "/medium",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 4,
+      "request_timeout_seconds": 2
+    },
+    "attack": {
+      "enabled": false,
+      "profile": "continuous",
+      "attackers": 0,
+      "rate": 0,
+      "start_seconds": 20,
+      "duration_seconds": 140,
+      "endpoint": "/",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 0.25,
+      "history_seconds": 5
+    },
+    "load_balancer": {
+      "enabled": false
+    },
+    "traffic_sources": {
+      "execution": "containers"
+    },
+    "topology": {
+      "mode": "direct"
+    },
+    "diagnostics": {
+      "enabled": true,
+      "queue_capacity": 4096
+    }
+  },
+  "victim_image_id": "sha256:3f0a418c93db324644b86f06f99b604f6aa0c833faf27abea8a3d484234f3c09",
+  "source_image": "edos_sources:diagnostics-20261104",
+  "correlation": "Existing X-Edos-Request-Id; no added HTTP headers",
+  "victim_run_id": "Bound by containing run directory; setup handlers have no request_id"
+}

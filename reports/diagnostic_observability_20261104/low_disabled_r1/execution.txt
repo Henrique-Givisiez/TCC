@@ -1,0 +1,10 @@
+Attempting to build Docker image: edos_target_app:diagnostics-20261104...
+Image edos_target_app:diagnostics-20261104 already exists. Skipping build.
+Docker network 'edos_network' already exists.
+Attempting to start container target_instance_1: network only, no host publication
+Container 62ea04e6736e (target_instance_1) started. Docker network only; no published port.
+[Sniffer] Realtime tcpdump started on br-7e2468afd861
+[Sniffer] Realtime tcpdump stopped.
+Attempting to stop and remove container 62ea04e6736efcc3a1b89790bb0b88fdf0aef6a26dd60cfac1817c2193aa2612...
+Container 62ea04e6736efcc3a1b89790bb0b88fdf0aef6a26dd60cfac1817c2193aa2612 stopped and removed.
+[Sources] Total fictional victim cost: $0.0001

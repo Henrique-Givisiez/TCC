@@ -1,0 +1,634 @@
+{
+  "schema_version": 1,
+  "run_id": "5fd2e207adb94cae9df485eaa9184ff8",
+  "status": "completed",
+  "configuration": "metadata/effective_config.json",
+  "run_status": "metadata/run_status.json",
+  "schema": "schema.json",
+  "execution_provenance": {
+    "status": "recorded",
+    "path": "metadata/run_provenance.json"
+  },
+  "export_provenance": "metadata/export_provenance.json",
+  "source_inventory": "metadata/source_inventory.json",
+  "groups": [
+    "attacks",
+    "evidence",
+    "infrastructure",
+    "metadata",
+    "service",
+    "traffic"
+  ],
+  "files": [
+    {
+      "path": "raw/attacks/attack_events.csv",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/attack_events.csv",
+      "group": "attacks",
+      "role": "observed",
+      "sha256": "60ab7844339e419ae620d6b60cbe32eb46f3f03619ae2d5d97f28e73ab663e34",
+      "bytes": 321,
+      "schema_ref": "schema.json#/tables/attacks",
+      "schema_recognized": true
+    },
+    {
+      "path": "evidence/other/attack_summary_log.csv",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/attack_summary_log.csv",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "4cd2b0342ef77be3c331156562e9886d52b3664a2a672eacf65f3c76ca31e4f5",
+      "bytes": 106,
+      "schema_ref": "schema.json#/tables/attack_summary",
+      "schema_recognized": true
+    },
+    {
+      "path": "evidence/other/diagnostics/metadata.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/diagnostics/metadata.json",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "1f84b21d98240754e93db96012489cd256162f0d7465a8a60e0e484f2dc5ff04",
+      "bytes": 5398
+    },
+    {
+      "path": "evidence/other/diagnostics/victim/events.jsonl",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/diagnostics/victim/events.jsonl",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "b3fd1817119c9cf0452b7a01cc61f9ce19facf8527d1a985e0363b2e8e4cc164",
+      "bytes": 41808
+    },
+    {
+      "path": "evidence/other/diagnostics/victim/events.summary.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/diagnostics/victim/events.summary.json",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "5c3930f860651201c0c584f0db9ea2750bdc9e4e4dd6b822fdbe6d7ea8ae2889",
+      "bytes": 442
+    },
+    {
+      "path": "evidence/other/diagnostics/victim/stop",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/diagnostics/victim/stop",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "evidence/other/diagnostics/victim_clock_validation.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/diagnostics/victim_clock_validation.json",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "4bb94793e4a933bbbe38a462aaa13ed82ffd0f624dd714a3a6bf66f2ae97f1a5",
+      "bytes": 6719
+    },
+    {
+      "path": "metadata/topology/direct/backend_inventory.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/direct_artifacts/backend_inventory.json",
+      "group": "metadata",
+      "role": "topology",
+      "sha256": "b0b076dfc389dc7190d60b861154194842d7a16534b960694533ac2b124c4258",
+      "bytes": 343
+    },
+    {
+      "path": "metadata/topology/direct/capture_metadata.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/direct_artifacts/capture_metadata.json",
+      "group": "metadata",
+      "role": "topology",
+      "sha256": "89e8c5317be6a9e81c5bcf871f0cb47be88e9f10dc651271484af405f7260cb1",
+      "bytes": 508
+    },
+    {
+      "path": "raw/service/routing_evidence.jsonl",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/direct_artifacts/routing_evidence.jsonl",
+      "group": "service",
+      "role": "operational_evidence",
+      "sha256": "b3de9ad3eb5fae8c99b58c4393582ea510b6e509fe5e413f4cbad7b4c98bf31e",
+      "bytes": 6562
+    },
+    {
+      "path": "metadata/topology/direct/target_identity.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/direct_artifacts/target_identity.json",
+      "group": "metadata",
+      "role": "topology",
+      "sha256": "8c9d7c51961fc7c89d1c09c4f654a01bbe6adedb8741895358e56603d42513b2",
+      "bytes": 343
+    },
+    {
+      "path": "metadata/effective_config.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/effective_config.json",
+      "group": "metadata",
+      "role": "canonical",
+      "sha256": "222a1159af4b2f74dad6ed872e4376252c0b815187fe446d338035a2424730a0",
+      "bytes": 1322
+    },
+    {
+      "path": "evidence/other/normal_traffic_summary_log.csv",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/normal_traffic_summary_log.csv",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "c4874ae01bdfc57537feb0855de514fc9e16e0229452a523a8b0dd76ccaf2e57",
+      "bytes": 167,
+      "schema_ref": "schema.json#/tables/normal_summary",
+      "schema_recognized": true
+    },
+    {
+      "path": "raw/service/request_log.csv",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/request_log.csv",
+      "group": "service",
+      "role": "observed",
+      "sha256": "f87695bbc3c6fbc15bb50f09b0c74bd9d493038538dc923220b8b92aa5785e96",
+      "bytes": 7747,
+      "schema_ref": "schema.json#/tables/requests",
+      "schema_recognized": true
+    },
+    {
+      "path": "raw/service/rtt_log.csv",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/rtt_log.csv",
+      "group": "service",
+      "role": "observed",
+      "sha256": "ba7a1684b3176806fecf92695db8a7780e96c3529145fa8c71050d3afe11c20c",
+      "bytes": 4284,
+      "schema_ref": "schema.json#/tables/rtt",
+      "schema_recognized": true
+    },
+    {
+      "path": "metadata/run_provenance.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/run_provenance.json",
+      "group": "metadata",
+      "role": "canonical",
+      "sha256": "11ee3f23999557e0efd778dbc2f0a405067d8d4d941a23a469da51f68eeb283d",
+      "bytes": 21303
+    },
+    {
+      "path": "metadata/run_status.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/run_status.json",
+      "group": "metadata",
+      "role": "canonical",
+      "sha256": "4def2267783cd121f9d1a96d0fd2d679ac26601a1d0fbb89e839eef076b44f87",
+      "bytes": 6944
+    },
+    {
+      "path": "raw/infrastructure/simulation_metrics.csv",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/simulation_metrics.csv",
+      "group": "infrastructure",
+      "role": "observed",
+      "sha256": "26db249323fef61ad75b20498da6ff7654ffb9024085bb0999ef90b355f4ec09",
+      "bytes": 2256,
+      "schema_ref": "schema.json#/tables/metrics",
+      "schema_recognized": true
+    },
+    {
+      "path": "evidence/sources/Dockerfile.sources",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/source_artifacts/Dockerfile.sources",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "c3febcbf583ecf4b479e11c2824bdb2cbe667d726e74e58fe598813d8374d7ae",
+      "bytes": 794
+    },
+    {
+      "path": "evidence/sources/aggregation_audit.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/source_artifacts/aggregation_audit.json",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "fd611c03387c47652378240a80d1f0fdb459daab50c08a3db7f582b758e8c9c8",
+      "bytes": 432
+    },
+    {
+      "path": "metadata/topology/sources/clock_validation.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/source_artifacts/clock_validation.json",
+      "group": "metadata",
+      "role": "topology",
+      "sha256": "9279f4d7e85749c5f09d6b5cb486e673742e5ea244ea2f11da51b881aad06600",
+      "bytes": 12999
+    },
+    {
+      "path": "metadata/topology/sources/image_identity.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/source_artifacts/image_identity.json",
+      "group": "metadata",
+      "role": "topology",
+      "sha256": "8a08c821c7f5491cbee297e3980caac38baa29dbaaa8fd2ecff4cae420cefe13",
+      "bytes": 428
+    },
+    {
+      "path": "evidence/sources/network_audit/any.pcap",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/source_artifacts/network_audit/any.pcap",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "1468e7c7b3c0a8c512aada4682c3f71bbe87de8d019c7720ab40ece7e8fa6e83",
+      "bytes": 26986
+    },
+    {
+      "path": "evidence/sources/network_audit/any.stderr",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/source_artifacts/network_audit/any.stderr",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "fc7ea29d3b988870760c3626009274cc489428577ad5bc105ac2ddb16c5cbd04",
+      "bytes": 212
+    },
+    {
+      "path": "evidence/sources/network_audit/any.txt",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/source_artifacts/network_audit/any.txt",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "a3be4709d7f8aa188d27e899f0245692f0e5322d7bb5f7dd9e67a23978e0134f",
+      "bytes": 34805
+    },
+    {
+      "path": "evidence/sources/network_audit/br-7e2468afd861.pcap",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/source_artifacts/network_audit/br-7e2468afd861.pcap",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "58a7cef99961c452e40f450dfce8162853acd1f8a32eb999a4ff3f916f195817",
+      "bytes": 9104
+    },
+    {
+      "path": "evidence/sources/network_audit/br-7e2468afd861.stderr",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/source_artifacts/network_audit/br-7e2468afd861.stderr",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "8f99ff4ef625d60609a6f956debd6b351969e35cb2504c366bd450a1c0bdc37c",
+      "bytes": 175
+    },
+    {
+      "path": "evidence/sources/network_audit/br-7e2468afd861.txt",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/source_artifacts/network_audit/br-7e2468afd861.txt",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "0c3848a3a4b2a9c0240ea9c407f8f84730c527a33c1a70f1019558536ed2a2c5",
+      "bytes": 11366
+    },
+    {
+      "path": "evidence/sources/network_audit/comparison.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/source_artifacts/network_audit/comparison.json",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "3bb5a620dee12fac3c711ca5ed240412b186afd2b21a6f550e5978cdb7bab80a",
+      "bytes": 2282
+    },
+    {
+      "path": "evidence/sources/network_audit/isolation.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/source_artifacts/network_audit/isolation.json",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "85495fea9069adc19a6d5b19e360fadf7d9308c7d2855684006a5bb5596ddb17",
+      "bytes": 500
+    },
+    {
+      "path": "evidence/sources/network_audit/lo.pcap",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/source_artifacts/network_audit/lo.pcap",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "704e5e5b3234433c01fcfd1b20a306e77e985038120492dc53965c3edd38a4ea",
+      "bytes": 24
+    },
+    {
+      "path": "evidence/sources/network_audit/lo.stderr",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/source_artifacts/network_audit/lo.stderr",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "5e03f32d98faa326e72cbd0b7583f79e21b54f32f95199d99746cd426f57f885",
+      "bytes": 160
+    },
+    {
+      "path": "evidence/sources/network_audit/lo.txt",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/source_artifacts/network_audit/lo.txt",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "evidence/sources/network_audit/veth2833990.pcap",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/source_artifacts/network_audit/veth2833990.pcap",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "9c9c5180d262a0c8670782b24c372165c2ec478668769d8c0ec234c01a754879",
+      "bytes": 9104
+    },
+    {
+      "path": "evidence/sources/network_audit/veth2833990.stderr",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/source_artifacts/network_audit/veth2833990.stderr",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "9ecc073c504661a5ab9866f80fa87f4d5c508ccadc67166319be9729494c0125",
+      "bytes": 171
+    },
+    {
+      "path": "evidence/sources/network_audit/veth2833990.txt",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/source_artifacts/network_audit/veth2833990.txt",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "4d9353385519706f8ae36dc962b2a1a9d95f36d854ee88f4d66a8aeb2166343d",
+      "bytes": 11366
+    },
+    {
+      "path": "evidence/sources/normal_1/control/command.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/source_artifacts/normal_1/control/command.json",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "66047035347bf2c1f8d7d1e1dc2876a5744a79c2b2e55d8a7d1b32970af48867",
+      "bytes": 223
+    },
+    {
+      "path": "evidence/sources/normal_1/manifest.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/source_artifacts/normal_1/manifest.json",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "3ecc1d07c2b0307e7dc042f5408ad2d919cd1631014492533258f99f2e7a85ff",
+      "bytes": 471
+    },
+    {
+      "path": "evidence/sources/normal_1/output/container_output.log",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/source_artifacts/normal_1/output/container_output.log",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "a15d2c8dd4241c8f65143fbf32cd3a47e66c65457e7a9b2237f5cb8723ec8d0d",
+      "bytes": 276
+    },
+    {
+      "path": "evidence/sources/normal_1/output/diagnostics/events.jsonl",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/source_artifacts/normal_1/output/diagnostics/events.jsonl",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "86951316cb103a3c1271d8007240bf65d0010faf3da739f967cec93e60261038",
+      "bytes": 25973
+    },
+    {
+      "path": "evidence/sources/normal_1/output/diagnostics/events.summary.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/source_artifacts/normal_1/output/diagnostics/events.summary.json",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "ba9a99bbc0ee9debcad7b3d15600be37f8a17757951eb24a3b982329aa2925a8",
+      "bytes": 521
+    },
+    {
+      "path": "evidence/sources/normal_1/output/final_status.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/source_artifacts/normal_1/output/final_status.json",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "1d1bfbcfb3f0acdd74b92eb42910a110c9a1496e19348b53592fd37f7e75c2e5",
+      "bytes": 142
+    },
+    {
+      "path": "evidence/sources/normal_1/output/journal.jsonl",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/source_artifacts/normal_1/output/journal.jsonl",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "4ea779059f4c43a570c71501c88c5600af582e8a678a3c4ebb50e565fa086885",
+      "bytes": 21555
+    },
+    {
+      "path": "evidence/sources/normal_1/output/local_events.csv",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/source_artifacts/normal_1/output/local_events.csv",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "60ab7844339e419ae620d6b60cbe32eb46f3f03619ae2d5d97f28e73ab663e34",
+      "bytes": 321
+    },
+    {
+      "path": "evidence/sources/normal_1/output/local_requests.csv",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/source_artifacts/normal_1/output/local_requests.csv",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "98c1eff8e01c1a0d55f99526bf936b231e7d9fc515b36dfc69d2c5d25ef954bf",
+      "bytes": 3539
+    },
+    {
+      "path": "evidence/sources/normal_1/output/local_rtt.csv",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/source_artifacts/normal_1/output/local_rtt.csv",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "31e1818194655bb2757e7f3e5a0b4a3c2b3561e0cddf2ccb81f8b38cba0f1715",
+      "bytes": 1925
+    },
+    {
+      "path": "evidence/sources/normal_1/output/local_summary.csv",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/source_artifacts/normal_1/output/local_summary.csv",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "a637320c57ed30679cd26551f947dbc8e8dfbdf7caec65084bc1ef438ac89bdd",
+      "bytes": 141
+    },
+    {
+      "path": "evidence/sources/normal_1/output/ready.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/source_artifacts/normal_1/output/ready.json",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "f0e6c5413fa2aeb9e68cfa0dead2280812e32ca906173de5b9765e8baa7a6ebd",
+      "bytes": 123
+    },
+    {
+      "path": "evidence/sources/normal_1/output/routing_evidence.jsonl",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/source_artifacts/normal_1/output/routing_evidence.jsonl",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "449e1b42a697eeb3bfd87d6640c9a48b1e4ad3fa93d95de7f56cd90a6858c802",
+      "bytes": 2895
+    },
+    {
+      "path": "evidence/sources/normal_2/control/command.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/source_artifacts/normal_2/control/command.json",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "66047035347bf2c1f8d7d1e1dc2876a5744a79c2b2e55d8a7d1b32970af48867",
+      "bytes": 223
+    },
+    {
+      "path": "evidence/sources/normal_2/manifest.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/source_artifacts/normal_2/manifest.json",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "9274790b98c3c5cfa83c128cee738e94e7877473519af577827f705bb856ea44",
+      "bytes": 471
+    },
+    {
+      "path": "evidence/sources/normal_2/output/container_output.log",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/source_artifacts/normal_2/output/container_output.log",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "fe9cfd07bed1a8ffe59c6a8bc5fe9dc548b3182aaeb4a5c8ec31d86311498770",
+      "bytes": 276
+    },
+    {
+      "path": "evidence/sources/normal_2/output/diagnostics/events.jsonl",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/source_artifacts/normal_2/output/diagnostics/events.jsonl",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "1856563604b1e8a4fbefd960c0066bc620718037e1996bdd1f126752ec5168e7",
+      "bytes": 32867
+    },
+    {
+      "path": "evidence/sources/normal_2/output/diagnostics/events.summary.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/source_artifacts/normal_2/output/diagnostics/events.summary.json",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "53a23b0e30b9a7a2bda4ec368ee19d0e8b3ac20b1f54de59b02d37591f28c035",
+      "bytes": 524
+    },
+    {
+      "path": "evidence/sources/normal_2/output/final_status.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/source_artifacts/normal_2/output/final_status.json",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "fd1798cb8cd6d077433d70b9b30bec4c3efb0681e1856d1485dbdd3cc12d0fcd",
+      "bytes": 142
+    },
+    {
+      "path": "evidence/sources/normal_2/output/journal.jsonl",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/source_artifacts/normal_2/output/journal.jsonl",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "5c2de61e57c6ddfb3434e87b5dd614642fd38c37dde74a4fe03f9252734f2d85",
+      "bytes": 27139
+    },
+    {
+      "path": "evidence/sources/normal_2/output/local_events.csv",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/source_artifacts/normal_2/output/local_events.csv",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "60ab7844339e419ae620d6b60cbe32eb46f3f03619ae2d5d97f28e73ab663e34",
+      "bytes": 321
+    },
+    {
+      "path": "evidence/sources/normal_2/output/local_requests.csv",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/source_artifacts/normal_2/output/local_requests.csv",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "b361f469b35e422e2bed60c271bac91f81346b038fe8a0a4d6c9622e3f09abe5",
+      "bytes": 4425
+    },
+    {
+      "path": "evidence/sources/normal_2/output/local_rtt.csv",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/source_artifacts/normal_2/output/local_rtt.csv",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "3978f281478bb48a0534c7f0aae158d945e9d0d3c46b06b4d660b41d9d5ea9ef",
+      "bytes": 2422
+    },
+    {
+      "path": "evidence/sources/normal_2/output/local_summary.csv",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/source_artifacts/normal_2/output/local_summary.csv",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "0541fef5a9d28bfea19189504b2e59d539e94db2a290e276ef5f3ab1111cf7ac",
+      "bytes": 141
+    },
+    {
+      "path": "evidence/sources/normal_2/output/ready.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/source_artifacts/normal_2/output/ready.json",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "c9f7c7c88d8e6f6c2fd13d9805acc130c8af9b4663791a0c27159182b8a04221",
+      "bytes": 124
+    },
+    {
+      "path": "evidence/sources/normal_2/output/routing_evidence.jsonl",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/source_artifacts/normal_2/output/routing_evidence.jsonl",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "2dc45b9b6fb3f5e1559f8d6669fc71679bed1b90d6838b2673990b5a48f30ba4",
+      "bytes": 3667
+    },
+    {
+      "path": "evidence/sources/requirements.sources.txt",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/source_artifacts/requirements.sources.txt",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "58275698cb78292d1f38df0ea697e2be10ad7f56d197bed7e0629e6af0fd0c50",
+      "bytes": 88
+    },
+    {
+      "path": "metadata/topology/sources/source_plan.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/source_artifacts/source_plan.json",
+      "group": "metadata",
+      "role": "topology",
+      "sha256": "cd20e0d05ce76cbe675ee15b16f9f3b84c6ed6311d71eca753cbf4c9d976c9f5",
+      "bytes": 1035
+    },
+    {
+      "path": "raw/traffic/traffic_capture.pcap",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/source_artifacts/traffic_capture.pcap",
+      "group": "traffic",
+      "role": "observed",
+      "sha256": "6139c248a513f7f6921e69f8adbc3fd79d90ffa9c494d566adadf632279f97f4",
+      "bytes": 29130
+    },
+    {
+      "path": "evidence/sources/traffic_capture.pcap.capture.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/source_artifacts/traffic_capture.pcap.capture.json",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "02ddea3e67952563f9d4133a7f562893d0b6357fe59635d3127754d3a78ff3bf",
+      "bytes": 2807
+    },
+    {
+      "path": "evidence/sources/traffic_capture.pcap.stderr",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/source_artifacts/traffic_capture.pcap.stderr",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "e8c2bb82596bd4ae97a2d5ad08bc6456c403f9c562d8892aa8492e5ef153bcf3",
+      "bytes": 177
+    },
+    {
+      "path": "metadata/source_inventory.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/source_inventory.json",
+      "group": "metadata",
+      "role": "canonical",
+      "sha256": "fce5f4dc026503c063e67f35f45aa029e4383d826ef7f67b8de42d7d6902caf8",
+      "bytes": 2499
+    },
+    {
+      "path": "raw/traffic/traffic_capture.csv",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/traffic_capture.csv",
+      "group": "traffic",
+      "role": "observed",
+      "sha256": "c14f1d0e172697d29b7a104cd6bc71ea676daa283ca901ea77422def9ceaf82d",
+      "bytes": 22535,
+      "schema_ref": "schema.json#/tables/packets",
+      "schema_recognized": true
+    },
+    {
+      "path": "evidence/other/traffic_capture.csv.capture.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/traffic_capture.csv.capture.json",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "96845850db7cc2b973c5b7a974cfc6b9b8ec632d28e50665efe82a54a9c01ae9",
+      "bytes": 2633
+    },
+    {
+      "path": "evidence/other/traffic_capture.stderr",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/traffic_capture.stderr",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "ab66631c70a796b4e9f63387cc33b900bf448c3989faee64e0a040a1f3c5dcec",
+      "bytes": 242
+    },
+    {
+      "path": "evidence/other/victim_stats.jsonl",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_enabled_r1/raw/victim_stats.jsonl",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "67d2d7af667330ac61bcc0e324a4b70c926b4226fd5c2a917425f65a673db998",
+      "bytes": 8080
+    },
+    {
+      "path": "schema.json",
+      "origin_path": null,
+      "group": "metadata",
+      "role": "generated",
+      "sha256": "2dce3d86577028b548a9920a10d2fa6c1aad1dc4de1dc14ef1406b8d8bcb3ace",
+      "bytes": 33702
+    },
+    {
+      "path": "metadata/export_provenance.json",
+      "origin_path": null,
+      "group": "metadata",
+      "role": "generated",
+      "sha256": "2d75de11390967bc1f8e7bc483914defc0d6e66995409772ffe569807742e61c",
+      "bytes": 19153
+    }
+  ],
+  "missing_artifacts": [],
+  "warnings": [],
+  "structural_status": "complete",
+  "validity": "not_evaluated; Stage 9 responsibility"
+}

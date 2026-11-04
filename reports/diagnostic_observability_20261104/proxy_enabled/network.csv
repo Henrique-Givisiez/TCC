@@ -1,0 +1,10 @@
+run_id,window_index,window_start_seconds,window_end_seconds,ingress_packet_count,egress_packet_count,ingress_tcp_payload_length_sum_bytes,egress_tcp_payload_length_sum_bytes,unique_client_src_ips
+6a78d78490e94ac58079b07fe54b5a86,0,0,1,9,7,392,416,2
+6a78d78490e94ac58079b07fe54b5a86,1,1,2,13,9,980,1040,2
+6a78d78490e94ac58079b07fe54b5a86,2,2,3,4,2,392,416,2
+6a78d78490e94ac58079b07fe54b5a86,3,3,4,2,1,196,208,1
+6a78d78490e94ac58079b07fe54b5a86,4,4,5,4,2,392,416,2
+6a78d78490e94ac58079b07fe54b5a86,5,5,6,4,2,392,416,2
+6a78d78490e94ac58079b07fe54b5a86,6,6,7,2,1,196,208,1
+6a78d78490e94ac58079b07fe54b5a86,7,7,8,0,0,0,0,0
+6a78d78490e94ac58079b07fe54b5a86,8,8,9,6,3,0,0,2

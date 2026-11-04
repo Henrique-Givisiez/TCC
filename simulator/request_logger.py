@@ -26,6 +26,7 @@ class RequestLogger:
         self._rtts = []
         self._closed = False
         self.routing_log = routing_log
+        self.diagnostics = None
         if routing_log is not None:
             open(routing_log, 'w').close()
         with open(output_csv, 'w', newline='') as f:
@@ -56,6 +57,8 @@ class RequestLogger:
             self._pending[row['request_id']] = row
             if self.journal:
                 self.journal("request_begin", row)
+            if self.diagnostics:
+                self.diagnostics.http_event('http_started', row, self.ground_truth.clock.monotonic_initial)
             return row.copy()
 
     def finish(self, attempt, response=None, error=None, end_sample=None):
@@ -71,6 +74,8 @@ class RequestLogger:
                        outcome=('transport_error' if isinstance(error, RequestException) else 'client_error') if error else
                                'http_error' if getattr(response, 'status_code', 0) >= 400 else 'response',
                        error_type=type(error).__name__ if error else None)
+            if self.diagnostics:
+                self.diagnostics.http_event('http_finished', row, self.ground_truth.clock.monotonic_initial)
             if self.journal:
                 self.journal("request_finish", row)
             self._append(row)

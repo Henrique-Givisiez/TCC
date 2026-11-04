@@ -193,10 +193,14 @@ def normal_http_request_worker(rps_per_worker, worker_index=0):
         # tempo de despacho — o despacho na _send_pool é rápido o bastante para não
         # distorcer a taxa alvo.
         sleep_duration = rng.expovariate(rps_per_worker)
+        diagnostic = getattr(_send_pool, 'diagnostics', None)
+        wait_started = time.monotonic() if diagnostic else None
         if _ground_truth is None:
             time.sleep(sleep_duration)
         else:
             _stop_event.wait(sleep_duration)
+        if diagnostic:
+            diagnostic.plan_wait(wait_started, sleep_duration)
 
     # Esperar as requisições ainda em voo terminarem antes de contabilizar o resumo final.
     for f in pending_futures:

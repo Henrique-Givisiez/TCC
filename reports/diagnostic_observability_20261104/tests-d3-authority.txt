@@ -1,0 +1,15 @@
+======================================================================
+ERROR: test_real_authority_configs_and_exclusive_seed_reservations (tests.test_development_d3.D3Tests.test_real_authority_configs_and_exclusive_seed_reservations)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/tests/test_development_d3.py", line 156, in test_real_authority_configs_and_exclusive_seed_reservations
+    result=d3.validate_plan()
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiments/development_d3.py", line 77, in validate_plan
+    raise ValueError('Bound source changed: ' + name)
+ValueError: Bound source changed: Dockerfile
+
+----------------------------------------------------------------------
+Ran 1 test in 0.604s
+
+FAILED (errors=1)

@@ -1,0 +1,46 @@
+{
+  "id": "moderate_enabled_r1",
+  "duration_seconds": 16,
+  "seed": 2310041,
+  "topology": {
+    "mode": "direct"
+  },
+  "traffic_sources": {
+    "execution": "containers"
+  },
+  "load_balancer": {
+    "enabled": false
+  },
+  "infrastructure": {
+    "initial_instances": 1,
+    "min_instances": 1,
+    "max_instances": 1
+  },
+  "autoscaler": {
+    "enabled": false
+  },
+  "normal_traffic": {
+    "clients": 2,
+    "rate": 12,
+    "endpoint": "/medium",
+    "max_concurrent_sends": 4,
+    "request_timeout_seconds": 2
+  },
+  "attack": {
+    "enabled": false,
+    "attackers": 0,
+    "rate": 0
+  },
+  "server": {
+    "process_pool_workers": 2
+  },
+  "monitoring": {
+    "interval_seconds": 1,
+    "stats_poll_interval_seconds": 0.25,
+    "history_seconds": 5
+  },
+  "diagnostics": {
+    "enabled": true,
+    "queue_capacity": 4096
+  }
+}

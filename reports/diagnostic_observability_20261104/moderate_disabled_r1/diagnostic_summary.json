@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "run_id": "b8c8c0ce1612474a97a049ba4465b5e7",
+  "configuration": {
+    "id": "moderate_disabled_r1",
+    "duration_seconds": 16,
+    "seed": 2310041,
+    "normal_traffic": {
+      "clients": 2,
+      "rate": 12,
+      "endpoint": "/medium",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 4,
+      "request_timeout_seconds": 2
+    },
+    "attack": {
+      "enabled": false,
+      "profile": "continuous",
+      "attackers": 0,
+      "rate": 0,
+      "start_seconds": 20,
+      "duration_seconds": 140,
+      "endpoint": "/",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 1,
+      "stats_poll_interval_seconds": 0.25,
+      "history_seconds": 5
+    },
+    "load_balancer": {
+      "enabled": false
+    },
+    "traffic_sources": {
+      "execution": "containers"
+    },
+    "topology": {
+      "mode": "direct"
+    }
+  },
+  "collection_status": {
+    "status": "completed",
+    "producers_drained": true,
+    "errors": []
+  },
+  "observation": "Descriptive finite-run diagnostics; no statistical approval test",
+  "diagnostic_enabled": false,
+  "sources": [],
+  "victim": null,
+  "scientific_observations": {
+    "starts": 381,
+    "starts_in_plan": 381,
+    "completions": 381,
+    "failures": 0,
+    "duration_ms": {
+      "n": 381,
+      "mean": 29.97109647511029,
+      "minimum": 10.780870998132741,
+      "maximum": 59.50539200057392,
+      "p50": 17.197836001287214,
+      "p95": 58.61276300129248
+    },
+    "cpu_docker_percent": {
+      "n": 14,
+      "mean": 35.47571428571429,
+      "minimum": 28.42,
+      "maximum": 44.81,
+      "p50": 34.09,
+      "p95": 44.81
+    }
+  },
+  "reliability_errors": []
+}

@@ -37,6 +37,9 @@ def run(experiment):
     status = dict(schema_version=1, experiment_id=experiment.id, run_id=uuid.uuid4().hex,
                   status='incomplete', end_reason='setup_error')
     Path(config.RUN_STATUS_FILE).parent.mkdir(parents=True, exist_ok=True)
+    diagnostic_root = Path(config.RUN_STATUS_FILE).parent/'diagnostics'
+    if experiment.diagnostics.enabled:
+        (diagnostic_root/'victim').mkdir(parents=True,exist_ok=False)
     write_json(Path(config.RUN_STATUS_FILE).parent/'effective_config.json', json.loads(experiment.to_json()))
     try:
         try:
@@ -59,7 +62,9 @@ def run(experiment):
             owned_networks.append(config.SOURCE_NETWORK_NAME)
         require_empty_network(network)
         for index in range(experiment.infrastructure.initial_instances):
-            victim = docker_manager.start_instance(index+1, experiment.server, publish_ports=False)
+            diagnostic_options = (dict(diagnostic_directory=diagnostic_root/'victim',
+                diagnostic_capacity=experiment.diagnostics.queue_capacity) if experiment.diagnostics.enabled else {})
+            victim = docker_manager.start_instance(index+1, experiment.server, publish_ports=False, **diagnostic_options)
             if victim is None:
                 raise RuntimeError('victim start failed')
             victims.append(victim)
@@ -73,8 +78,26 @@ def run(experiment):
         manager.start()  # rejects incomparable clocks before any timeline is used
         inventory = json.loads((proxy.directory/'backend_inventory.json').read_text())
         capture = audit(manager,proxy,inventory,manager.directory/'network_audit')
+        if experiment.diagnostics.enabled:
+            from simulator.source_manager import validate_clocks
+            validate_clocks(victims,diagnostic_root/'victim_clock_validation.json')
         gt = GroundTruth(experiment.id,config.ATTACK_EVENTS_LOG_FILE)
         active_ground_truth = gt
+        if experiment.diagnostics.enabled:
+            from simulator.diagnostics import clock_metadata
+            import hashlib
+            repository = Path(__file__).resolve().parents[1]
+            hashes = {str(p.relative_to(repository)):hashlib.sha256(p.read_bytes()).hexdigest()
+                for p in sorted((repository/'simulator').rglob('*.py'))}
+            write_json(diagnostic_root/'metadata.json',dict(schema_version=1,run_id=gt.run_id,
+                origin_monotonic=gt.clock.monotonic_initial,origin_epoch=gt.clock.epoch_initial,
+                host_clock=clock_metadata(),source_sha256=hashes,configuration=json.loads(experiment.to_json()),
+                victim_image_id=victims[0].image.id,source_image=config.SOURCE_IMAGE,
+                container_limits={c.id:{k:c.attrs['HostConfig'].get(k) for k in
+                    ('Memory','NanoCpus','CpuQuota','CpuPeriod','CpusetCpus','PidsLimit','Ulimits')}
+                    for c in victims+manager.containers},
+                correlation='Existing X-Edos-Request-Id; no added HTTP headers',
+                victim_run_id='Bound by containing run directory; setup handlers have no request_id'))
         status.update(run_id=gt.run_id,experiment_start_timestamp=gt.clock.epoch_initial,
                       experiment_start_monotonic=gt.clock.monotonic_initial)
         if experiment.attack.enabled:
@@ -206,6 +229,11 @@ def run(experiment):
             except Exception as exc:
                 errors.append('proxy cleanup: '+str(exc))
                 complete = False
+        if experiment.diagnostics.enabled:
+            (diagnostic_root/'victim/stop').touch()
+            deadline = time.monotonic()+3
+            while not (diagnostic_root/'victim/events.summary.json').exists() and time.monotonic()<deadline:
+                time.sleep(.02)
         for victim in victims:
             if not docker_manager.stop_instance(victim.id):
                 errors.append('victim cleanup failed: '+victim.id)

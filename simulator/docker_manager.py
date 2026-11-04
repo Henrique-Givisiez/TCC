@@ -60,7 +60,7 @@ def ensure_docker_network():
     return True
 
 
-def start_instance(instance_numeric_id, server=None, *, publish_ports=True):
+def start_instance(instance_numeric_id, server=None, *, publish_ports=True, diagnostic_directory=None, diagnostic_capacity=4096):
     """
     Starts a new container instance.
     instance_numeric_id: An integer (e.g., 1, 2, 3) to make container name and port unique.
@@ -87,6 +87,9 @@ def start_instance(instance_numeric_id, server=None, *, publish_ports=True):
         except docker.errors.NotFound:
             pass # Good, no existing container with that name
 
+        diagnostic_options = {}
+        if diagnostic_directory is not None:
+            diagnostic_options['volumes'] = {str(Path(diagnostic_directory).resolve()):{'bind':'/diagnostics','mode':'rw'}}
         container = client.containers.run(
             config.DOCKER_IMAGE_NAME,
             detach=True,
@@ -98,8 +101,12 @@ def start_instance(instance_numeric_id, server=None, *, publish_ports=True):
                 "INSTANCE_MAX_CONCURRENT_REQUESTS": str(server.process_pool_workers),
                 "WORK_UNITS": str(server.default_work_units),
                 "PROCESSING_TIME": str(server.default_sleep_seconds),
-                "APP_PORT": str(config.APP_CONTAINER_PORT)
+                "APP_PORT": str(config.APP_CONTAINER_PORT),
+                **({'EDOS_DIAGNOSTIC_PATH':'/diagnostics/events.jsonl',
+                    'EDOS_DIAGNOSTIC_STOP':'/diagnostics/stop',
+                    'EDOS_DIAGNOSTIC_CAPACITY':str(diagnostic_capacity)} if diagnostic_directory is not None else {})
             },
+            **diagnostic_options,
         )
         print(f"Container {container.short_id} ({container_name}) started. " +
               (f"Accessible on host port {host_port}." if publish_ports else "Docker network only; no published port."))

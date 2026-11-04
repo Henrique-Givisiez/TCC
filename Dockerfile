@@ -4,6 +4,7 @@ FROM python:3.9-slim
 WORKDIR /app
 
 COPY ./simulator/app /app
+COPY ./simulator/diagnostics.py /app/diagnostics.py
 
 # Se sua simulator/app/simple_server.py tivesse dependências externas (ex: Flask), você as instalaria aqui:
 # RUN pip install --no-cache-dir -r requirements_app.txt

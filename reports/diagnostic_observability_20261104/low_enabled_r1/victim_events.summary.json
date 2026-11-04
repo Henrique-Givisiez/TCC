@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "context": {
+    "component": "victim"
+  },
+  "clock": {
+    "kind": "CLOCK_MONOTONIC",
+    "unit": "seconds",
+    "resolution_seconds": 1e-09,
+    "implementation": "clock_gettime(CLOCK_MONOTONIC)",
+    "time_namespace": "time:[4026532868]",
+    "pid": 1
+  },
+  "capacity": 4096,
+  "offered": 88,
+  "enqueued": 88,
+  "written": 88,
+  "dropped": 0,
+  "write_errors": 0,
+  "queue_remaining": 0,
+  "complete": true
+}

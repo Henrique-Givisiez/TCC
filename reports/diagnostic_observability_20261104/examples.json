@@ -1,0 +1,76 @@
+[
+  {
+    "run": "moderate_enabled_r1",
+    "case": "tail_http_start",
+    "source": "normal_2",
+    "request_id": "request_normal_2_000000196",
+    "elapsed": 16.003047431000596
+  },
+  {
+    "case": "largest_submission_to_http_delay",
+    "run": "moderate_enabled_r1",
+    "source": "normal_2",
+    "attempt_id": "77",
+    "request_id": "request_normal_2_000000077",
+    "planned_elapsed": 6.141924065221247,
+    "submitted_elapsed": 6.1420406969991745,
+    "task_started_elapsed": 6.224309028999414,
+    "http_started_elapsed": 6.224318388998654,
+    "submission_to_http_ms": 82.27769199947943,
+    "client_duration_ms": 53.68494300273596,
+    "handler_wall_ms": 11.829035000118893,
+    "work_wait_ms": 0.47527399874525145
+  },
+  {
+    "case": "planned_and_http_start_in_different_windows",
+    "run": "moderate_enabled_r1",
+    "source": "normal_1",
+    "attempt_id": "132",
+    "request_id": "request_normal_1_000000132",
+    "planned_elapsed": 10.960341562251415,
+    "submitted_elapsed": 10.960527328999888,
+    "task_started_elapsed": 11.024391964001552,
+    "http_started_elapsed": 11.024401709000813,
+    "submission_to_http_ms": 63.87438000092516,
+    "client_duration_ms": 53.473937998205656,
+    "handler_wall_ms": 12.17705700037186,
+    "work_wait_ms": 0.4462649994820822
+  },
+  {
+    "run": "moderate_enabled_r2",
+    "case": "tail_http_start",
+    "source": "normal_1",
+    "request_id": "request_normal_1_000000212",
+    "elapsed": 16.001510492998932
+  },
+  {
+    "case": "largest_submission_to_http_delay",
+    "run": "moderate_enabled_r2",
+    "source": "normal_1",
+    "attempt_id": "169",
+    "request_id": "request_normal_1_000000169",
+    "planned_elapsed": 12.904792286622978,
+    "submitted_elapsed": 12.904986531000759,
+    "task_started_elapsed": 12.984112934002042,
+    "http_started_elapsed": 12.984122695001133,
+    "submission_to_http_ms": 79.13616400037427,
+    "client_duration_ms": 53.53930999990553,
+    "handler_wall_ms": 12.118956998165231,
+    "work_wait_ms": 0.4388650013424922
+  },
+  {
+    "case": "planned_and_http_start_in_different_windows",
+    "run": "moderate_enabled_r2",
+    "source": "normal_1",
+    "attempt_id": "170",
+    "request_id": "request_normal_1_000000170",
+    "planned_elapsed": 12.934039818930614,
+    "submitted_elapsed": 12.934271868001815,
+    "task_started_elapsed": 13.012061960998835,
+    "http_started_elapsed": 13.012072677000106,
+    "submission_to_http_ms": 77.80080899829045,
+    "client_duration_ms": 51.5933419992507,
+    "handler_wall_ms": 9.740303001308348,
+    "work_wait_ms": 0.39149199801613577
+  }
+]

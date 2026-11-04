@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "context": {
+    "run_id": "bab71d451b184ab9be7c31b0359a0b89",
+    "source_id": "normal_2",
+    "component": "source"
+  },
+  "clock": {
+    "kind": "CLOCK_MONOTONIC",
+    "unit": "seconds",
+    "resolution_seconds": 1e-09,
+    "implementation": "clock_gettime(CLOCK_MONOTONIC)",
+    "time_namespace": "time:[4026533634]",
+    "pid": 1
+  },
+  "capacity": 4096,
+  "offered": 1177,
+  "enqueued": 1177,
+  "written": 1177,
+  "dropped": 0,
+  "write_errors": 0,
+  "queue_remaining": 0,
+  "complete": true
+}

@@ -1,0 +1,46 @@
+{
+  "victim": {
+    "image_id": "sha256:3f0a418c93db324644b86f06f99b604f6aa0c833faf27abea8a3d484234f3c09",
+    "runtime": {
+      "python": "3.9.23 (main, Sep  8 2025, 21:40:14) \n[GCC 14.2.0]",
+      "backlog": 5,
+      "daemon_threads": true,
+      "start_method": "fork",
+      "monotonic": "clock_gettime(CLOCK_MONOTONIC)",
+      "thread_executor": "    def __init__(self, max_workers=None, thread_name_prefix='',\n                 initializer=None, initargs=()):\n        \"\"\"Initializes a new ThreadPoolExecutor instance.\n\n        Args:\n            max_workers: The maximum number of threads that can be used to\n                execute the given calls.\n            thread_name_prefix: An optional name prefix to give our threads.\n            initializer: A callable used to initialize worker threads.\n            initargs: A tuple of arguments to pass to the initializer.\n        \"\"\"\n        if max_workers is None:\n            # ThreadPoolExecutor is often used to:\n            # * CPU bound task which releases GIL\n            # * I/O bound task (which releases GIL, of course)\n            #\n            # We use cpu_count + 4 for both types of tasks.\n            # But we limit it to 32 to avoid consuming surprisingly large resource\n            # on many core machine.\n            max_workers = min(32, (os.cpu_count() or 1) + 4)\n        if max_workers <= 0:\n            raise ValueError(\"max_workers must be greater than 0\")\n\n        if initializer is not None and not callable(initializer):\n            raise TypeError(\"initializer must be a callable\")\n\n        self._max_workers = max_workers\n        self._work_queue = queue.SimpleQueue()\n        self._idle_semaphore = threading.Semaphore(0)\n        self._threads = set()\n        self._broken = False\n        self._shutdown = False\n        self._shutdown_lock = threading.Lock()\n        self._thread_name_prefix = (thread_name_prefix or\n                                    (\"ThreadPoolExecutor-%d\" % self._counter()))\n        self._initializer = initializer\n        self._initargs = initargs\n",
+      "process_executor_submit": "    def submit(self, fn, /, *args, **kwargs):\n        with self._shutdown_lock:\n            if self._broken:\n                raise BrokenProcessPool(self._broken)\n            if self._shutdown_thread:\n                raise RuntimeError('cannot schedule new futures after shutdown')\n            if _global_shutdown:\n                raise RuntimeError('cannot schedule new futures after '\n                                   'interpreter shutdown')\n\n            f = _base.Future()\n            w = _WorkItem(f, fn, args, kwargs)\n\n            self._pending_work_items[self._queue_count] = w\n            self._work_ids.put(self._queue_count)\n            self._queue_count += 1\n            # Wake up queue management thread\n            self._executor_manager_thread_wakeup.wakeup()\n\n            if self._safe_to_dynamically_spawn_children:\n                self._adjust_process_count()\n            self._start_executor_manager_thread()\n            return f\n",
+      "process_call_queue_extra": 1
+    },
+    "limits": {
+      "Memory": 0,
+      "NanoCpus": 0,
+      "CpuQuota": 0,
+      "CpuPeriod": 0,
+      "CpusetCpus": "",
+      "PidsLimit": null,
+      "Ulimits": null
+    }
+  },
+  "source": {
+    "image_id": "sha256:b8e3996d9b73a155efc59fef7a33510d33187acf6e4eca488600ed28f26d453c",
+    "runtime": {
+      "python": "3.12.10 (main, May 21 2025, 23:34:56) [GCC 12.2.0]",
+      "backlog": 5,
+      "daemon_threads": true,
+      "start_method": "fork",
+      "monotonic": "clock_gettime(CLOCK_MONOTONIC)",
+      "thread_executor": "    def __init__(self, max_workers=None, thread_name_prefix='',\n                 initializer=None, initargs=()):\n        \"\"\"Initializes a new ThreadPoolExecutor instance.\n\n        Args:\n            max_workers: The maximum number of threads that can be used to\n                execute the given calls.\n            thread_name_prefix: An optional name prefix to give our threads.\n            initializer: A callable used to initialize worker threads.\n            initargs: A tuple of arguments to pass to the initializer.\n        \"\"\"\n        if max_workers is None:\n            # ThreadPoolExecutor is often used to:\n            # * CPU bound task which releases GIL\n            # * I/O bound task (which releases GIL, of course)\n            #\n            # We use cpu_count + 4 for both types of tasks.\n            # But we limit it to 32 to avoid consuming surprisingly large resource\n            # on many core machine.\n            max_workers = min(32, (os.cpu_count() or 1) + 4)\n        if max_workers <= 0:\n            raise ValueError(\"max_workers must be greater than 0\")\n\n        if initializer is not None and not callable(initializer):\n            raise TypeError(\"initializer must be a callable\")\n\n        self._max_workers = max_workers\n        self._work_queue = queue.SimpleQueue()\n        self._idle_semaphore = threading.Semaphore(0)\n        self._threads = set()\n        self._broken = False\n        self._shutdown = False\n        self._shutdown_lock = threading.Lock()\n        self._thread_name_prefix = (thread_name_prefix or\n                                    (\"ThreadPoolExecutor-%d\" % self._counter()))\n        self._initializer = initializer\n        self._initargs = initargs\n",
+      "process_executor_submit": "    def submit(self, fn, /, *args, **kwargs):\n        with self._shutdown_lock:\n            if self._broken:\n                raise BrokenProcessPool(self._broken)\n            if self._shutdown_thread:\n                raise RuntimeError('cannot schedule new futures after shutdown')\n            if _global_shutdown:\n                raise RuntimeError('cannot schedule new futures after '\n                                   'interpreter shutdown')\n\n            f = _base.Future()\n            w = _WorkItem(f, fn, args, kwargs)\n\n            self._pending_work_items[self._queue_count] = w\n            self._work_ids.put(self._queue_count)\n            self._queue_count += 1\n            # Wake up queue management thread\n            self._executor_manager_thread_wakeup.wakeup()\n\n            if self._safe_to_dynamically_spawn_children:\n                self._adjust_process_count()\n            self._start_executor_manager_thread()\n            return f\n",
+      "process_call_queue_extra": 1
+    },
+    "limits": {
+      "Memory": 0,
+      "NanoCpus": 0,
+      "CpuQuota": 0,
+      "CpuPeriod": 0,
+      "CpusetCpus": "",
+      "PidsLimit": null,
+      "Ulimits": null
+    }
+  }
+}

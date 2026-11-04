@@ -115,6 +115,12 @@ class TopologyConfig:
 
 
 @dataclass(frozen=True)
+class DiagnosticsConfig:
+    enabled: bool = False
+    queue_capacity: int = 4096
+
+
+@dataclass(frozen=True)
 class ExperimentConfig:
     id: str = "default"
     duration_seconds: float = 180
@@ -129,9 +135,16 @@ class ExperimentConfig:
 
     traffic_sources: TrafficSourcesConfig = field(default_factory=TrafficSourcesConfig)
     topology: TopologyConfig = field(default_factory=TopologyConfig)
+    diagnostics: DiagnosticsConfig = field(default_factory=DiagnosticsConfig)
 
     def validate(self):
         _validate_types(self, "experiment")
+        if self.diagnostics.queue_capacity <= 0:
+            raise ValueError('diagnostics.queue_capacity must be positive')
+        if self.diagnostics.enabled and self.traffic_sources.execution != 'containers':
+            raise ValueError('diagnostics require container sources')
+        if self.diagnostics.enabled and (self.autoscaler.enabled or self.infrastructure.initial_instances != 1):
+            raise ValueError('diagnostics require one fixed victim and autoscaler disabled')
         if not self.id.strip():
             raise ValueError("id must not be empty")
         _number("duration_seconds", self.duration_seconds, positive=True)
@@ -201,6 +214,8 @@ class ExperimentConfig:
         # The effective segment and topology are also recorded in run metadata.
         if self.topology.mode == 'proxy':
             data.pop('topology')
+        if self.diagnostics == DiagnosticsConfig():
+            data.pop('diagnostics')
         return json.dumps(data, indent=2, allow_nan=False) + "\n"
 
     @classmethod

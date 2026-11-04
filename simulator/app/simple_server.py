@@ -4,6 +4,11 @@ from concurrent.futures import ProcessPoolExecutor
 import time
 import os
 import math
+import threading
+try:
+    from simulator.diagnostics import DiagnosticWriter, clock_metadata
+except ModuleNotFoundError:
+    from diagnostics import DiagnosticWriter, clock_metadata
 
 from urllib.parse import urlparse, parse_qs
 
@@ -44,6 +49,23 @@ def _burn_cpu(work_units):
 # (ver bloco __main__). Isso dá paralelismo real entre núcleos para o trabalho
 # de CPU, sem pagar o custo de criar um processo novo a cada requisição.
 _pool = None
+_diagnostics = None
+_handlers_lock = threading.Lock()
+_active_handlers = 0
+_worker_clock = None
+
+
+def _timed_burn_cpu(work_units):
+    # Return only fixed-size metadata; workers never write or share writer locks.
+    global _worker_clock
+    if _worker_clock is None:
+        _worker_clock = clock_metadata()
+    started = time.monotonic()
+    cpu = time.process_time()
+    _burn_cpu(work_units)
+    cpu_end = time.process_time()
+    return dict(work_started_at=started,work_finished_at=time.monotonic(),
+                work_cpu_seconds=cpu_end-cpu,worker_clock=_worker_clock)
 
 
 class SimpleAppHandler(BaseHTTPRequestHandler):
@@ -54,11 +76,39 @@ class SimpleAppHandler(BaseHTTPRequestHandler):
     protocol_version = "HTTP/1.1"
 
     def do_GET(self):
+        global _active_handlers
+        if _diagnostics is None:
+            return self._serve()
+        timeline = dict(handler_started_at=time.monotonic(),request_id=self.headers.get('X-Edos-Request-Id'),
+            phase=self.headers.get('X-Edos-Phase'),endpoint=self.path.split('?',1)[0],
+            run_id=None,http_status=None,error_type=None)
+        with _handlers_lock:
+            _active_handlers += 1
+            timeline['active_handlers_at_start'] = _active_handlers
+        _diagnostics.emit('handler_started',at=timeline['handler_started_at'],**timeline)
+        try:
+            return self._serve(timeline)
+        except BaseException as exc:
+            timeline['error_type'] = type(exc).__name__
+            raise
+        finally:
+            timeline['handler_finished_at'] = time.monotonic()
+            with _handlers_lock:
+                _active_handlers -= 1
+                timeline['active_handlers_at_finish'] = _active_handlers
+            _diagnostics.emit('handler_finished',at=timeline['handler_finished_at'],**timeline)
+
+    def _serve(self, timeline=None):
         work_units, processing_time = request_workload(self.path)
 
         t0 = time.perf_counter()
 
-        _pool.submit(_burn_cpu, work_units).result()
+        if timeline is None:
+            _pool.submit(_burn_cpu, work_units).result()
+        else:
+            timeline['work_submitted_at'] = time.monotonic()
+            timeline.update(_pool.submit(_timed_burn_cpu, work_units).result())
+            timeline['work_result_observed_at'] = time.monotonic()
         if processing_time > 0:
             time.sleep(processing_time)
         t1 = time.perf_counter()
@@ -70,6 +120,8 @@ class SimpleAppHandler(BaseHTTPRequestHandler):
         # cliente não tem como saber onde a resposta termina numa conexão
         # que continua aberta para a próxima requisição.
         self.send_response(200)
+        if timeline is not None:
+            timeline['http_status'] = 200
         self.send_header('Content-type', 'text/plain')
         self.send_header('Content-Length', str(len(body)))
         self.end_headers()
@@ -79,6 +131,11 @@ if __name__ == '__main__':
     # Dentro do container, mantenha 80; no host você mapeia pra 8080
     server_port = int(os.getenv("APP_PORT", "80"))
     pool_size = int(os.getenv("INSTANCE_MAX_CONCURRENT_REQUESTS", "2"))
+    diagnostic_path = os.getenv('EDOS_DIAGNOSTIC_PATH')
+    if diagnostic_path:
+        _diagnostics = DiagnosticWriter(diagnostic_path,
+            capacity=int(os.getenv('EDOS_DIAGNOSTIC_CAPACITY','4096')),
+            context=dict(component='victim'),stop_path=os.getenv('EDOS_DIAGNOSTIC_STOP'))
     _pool = ProcessPoolExecutor(max_workers=pool_size)
 
     httpd = ThreadingHTTPServer(('', server_port), SimpleAppHandler)

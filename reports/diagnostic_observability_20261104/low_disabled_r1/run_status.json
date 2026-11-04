@@ -1,0 +1,161 @@
+{
+  "schema_version": 1,
+  "experiment_id": "low_disabled_r1",
+  "run_id": "f78645f3f0a745099ea6b7e59311ee36",
+  "status": "completed",
+  "end_reason": "simulation_end",
+  "experiment_start_timestamp": 1793818912.6073132,
+  "experiment_start_monotonic": 27103.566441679,
+  "producers_drained": true,
+  "errors": [],
+  "capture_results": {
+    "pcap": {
+      "schema_version": 1,
+      "capture": "pcap",
+      "command_argv": [
+        "tcpdump",
+        "--immediate-mode",
+        "-U",
+        "-i",
+        "br-7e2468afd861",
+        "-n",
+        "-w",
+        "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_disabled_r1/raw/source_artifacts/traffic_capture.pcap",
+        "tcp and ((dst host 172.20.0.2 and dst port 80) or (src host 172.20.0.2 and src port 80))"
+      ],
+      "interface": "br-7e2468afd861",
+      "bpf_filter": "tcp and ((dst host 172.20.0.2 and dst port 80) or (src host 172.20.0.2 and src port 80))",
+      "output_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_disabled_r1/raw/source_artifacts/traffic_capture.pcap",
+      "stderr_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_disabled_r1/raw/source_artifacts/traffic_capture.pcap.stderr",
+      "timestamps": {
+        "process_spawn_returned": {
+          "utc": "2026-11-04T19:01:52.631098+00:00",
+          "monotonic_seconds": 27103.590226174,
+          "basis": "host observation sampled after/before the named process event; not tcpdump packet time"
+        },
+        "tcpdump_listening_message_observed": {
+          "utc": "2026-11-04T19:01:52.651332+00:00",
+          "monotonic_seconds": 27103.610459554,
+          "basis": "host observation sampled after/before the named process event; not tcpdump packet time"
+        },
+        "process_exit_observed": {
+          "utc": "2026-11-04T19:02:08.808579+00:00",
+          "monotonic_seconds": 27119.767707049,
+          "basis": "host observation sampled after/before the named process event; not tcpdump packet time"
+        }
+      },
+      "termination_signals": [
+        {
+          "signal": "SIGTERM",
+          "requested": {
+            "utc": "2026-11-04T19:02:08.793019+00:00",
+            "monotonic_seconds": 27119.752147205,
+            "basis": "host observation sampled after/before the named process event; not tcpdump packet time"
+          }
+        }
+      ],
+      "returncode": 0,
+      "launch_error": null,
+      "capture_counters": {
+        "packets_captured": 191,
+        "packets_received_by_filter": 191,
+        "packets_dropped_by_kernel": 0,
+        "statistics_complete": true,
+        "statistics_occurrences": {
+          "packets_captured": 1,
+          "packets_received_by_filter": 1,
+          "packets_dropped_by_kernel": 1
+        }
+      },
+      "capture_diagnostic_sha256": "e8c2bb82596bd4ae97a2d5ad08bc6456c403f9c562d8892aa8492e5ef153bcf3",
+      "accepted_returncodes": [
+        0,
+        -15
+      ],
+      "accepted": true,
+      "time_interpretation": "process_spawn_returned is the host observation after Popen; tcpdump_listening_message_observed is when readiness text was read, not the exact first-packet timestamp; stop requested and process exit are host observations. Packet timestamps remain in capture artifacts."
+    },
+    "csv": {
+      "schema_version": 1,
+      "capture": "csv",
+      "command_argv": [
+        "tcpdump",
+        "--immediate-mode",
+        "-B",
+        "4096",
+        "-i",
+        "br-7e2468afd861",
+        "-l",
+        "-n",
+        "-tt",
+        "-q",
+        "tcp and ((dst host 172.20.0.2 and dst port 80) or (src host 172.20.0.2 and src port 80))"
+      ],
+      "interface": "br-7e2468afd861",
+      "bpf_filter": "tcp and ((dst host 172.20.0.2 and dst port 80) or (src host 172.20.0.2 and src port 80))",
+      "output_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_disabled_r1/raw/traffic_capture.csv",
+      "stderr_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_disabled_r1/raw/traffic_capture.stderr",
+      "timestamps": {
+        "process_spawn_returned": {
+          "utc": "2026-11-04T19:01:52.609403+00:00",
+          "monotonic_seconds": 27103.568530793,
+          "basis": "host observation sampled after/before the named process event; not tcpdump packet time"
+        },
+        "tcpdump_listening_message_observed": {
+          "utc": "2026-11-04T19:01:52.629925+00:00",
+          "monotonic_seconds": 27103.589051034,
+          "basis": "host observation sampled after/before the named process event; not tcpdump packet time"
+        },
+        "process_exit_observed": {
+          "utc": "2026-11-04T19:02:08.840580+00:00",
+          "monotonic_seconds": 27119.799708032,
+          "basis": "host observation sampled after/before the named process event; not tcpdump packet time"
+        }
+      },
+      "termination_signals": [
+        {
+          "signal": "SIGTERM",
+          "requested": {
+            "utc": "2026-11-04T19:02:08.808807+00:00",
+            "monotonic_seconds": 27119.767936282,
+            "basis": "host observation sampled after/before the named process event; not tcpdump packet time"
+          }
+        }
+      ],
+      "returncode": 0,
+      "launch_error": null,
+      "capture_counters": {
+        "packets_captured": 191,
+        "packets_received_by_filter": 191,
+        "packets_dropped_by_kernel": 0,
+        "statistics_complete": true,
+        "statistics_occurrences": {
+          "packets_captured": 1,
+          "packets_received_by_filter": 1,
+          "packets_dropped_by_kernel": 1
+        }
+      },
+      "capture_diagnostic_sha256": "ab66631c70a796b4e9f63387cc33b900bf448c3989faee64e0a040a1f3c5dcec",
+      "accepted_returncodes": [
+        0,
+        -15
+      ],
+      "accepted": true,
+      "time_interpretation": "process_spawn_returned is the host observation after Popen; tcpdump_listening_message_observed is when readiness text was read, not the exact first-packet timestamp; stop requested and process exit are host observations. Packet timestamps remain in capture artifacts."
+    }
+  },
+  "topology": "direct",
+  "proxy_integrity": null,
+  "target_integrity": {
+    "id": "62ea04e6736efcc3a1b89790bb0b88fdf0aef6a26dd60cfac1817c2193aa2612",
+    "name": "target_instance_1",
+    "hostname": "62ea04e6736e",
+    "mode": "direct",
+    "source_ip": "172.20.0.2",
+    "source_network": "edos_sources",
+    "service_port": 80,
+    "service_endpoint": "http://edos_service:80",
+    "run_id": "f78645f3f0a745099ea6b7e59311ee36"
+  },
+  "source_inventory": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/diagnostic-observability-20261104/low_disabled_r1/raw/source_inventory.json"
+}

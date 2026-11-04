@@ -1,0 +1,30 @@
+----------------------------------------------------------------------
+Ran 265 tests in 5.784s
+
+OK
+[Autoscaler] Initialized.
+[Autoscaler] Decision: SCALE_UP. Avg CPU: 90.00% > 60.0%. Current instances: 1, Max: 4
+Attempting to start container target_instance_1: container:80 to host:8080
+Container <MagicMock name='client.containers.run().short_id' id='140013769773888'> (target_instance_1) started. Accessible on host port 8080.
+[Autoscaler] Initialized.
+Attempting to start container target_instance_1: container:80 to host:8080
+Container <MagicMock name='client.containers.run().short_id' id='140013798236256'> (target_instance_1) started. Accessible on host port 8080.
+[LoadBalancer:Normal] Alvos atualizados: ['http://localhost:8080']
+[LoadBalancer:Attack] Alvos atualizados: ['http://localhost:8080']
+[Normal_Injector] rps_per_worker=0 ou num_clients=4 <= 0 -- tráfego normal desligado de propósito, não iniciado.
+[Sniffer] Realtime tcpdump started on br-test
+[Sniffer] Realtime tcpdump stopped.
+[Sniffer] Realtime tcpdump started on br-test
+[Sniffer] Realtime tcpdump started on br-test
+[Sniffer] Realtime tcpdump started on br-test
+[Orchestrator] Incomplete run: drain/capture failures recorded in run_status.json.
+Attempting to start container target_instance_1: network only, no host publication
+Container <MagicMock name='client.containers.run().short_id' id='140013796206368'> (target_instance_1) started. Docker network only; no published port.
+[Autoscaler] Initialized.
+[Autoscaler] Initialized.
+[Autoscaler] Decision: SCALE_UP. Avg CPU: 60.00% > 60%. Current instances: 1, Max: 2
+[Autoscaler] Initialized.
+[Autoscaler] Decision: NO_ACTION. Avg CPU: 60.00% is within thresholds (25.0% - 60%).
+[host_stats] Não foi possível ler /proc/stat: no proc
+[Injector] Signaling HTTP flood workers to stop...
+[Injector] Stop signal sent (non-blocking).

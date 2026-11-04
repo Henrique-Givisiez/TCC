@@ -125,6 +125,8 @@ class SourceManager:
                 manifest = dict(source_id=source_id, source_type=component, traffic_class='benign' if component=='normal' else 'attack',
                     worker_index=index, seed=self.experiment.seed, service_endpoint=config.SOURCE_SERVICE_ENDPOINT,
                     settings=values, aggregate_worker_budget=settings.max_concurrent_sends)
+                if self.experiment.diagnostics.enabled:
+                    manifest['diagnostics'] = asdict(self.experiment.diagnostics)
                 write_json(root / 'manifest.json', manifest)
                 self.plan.append(manifest)
                 container = self.client.containers.run(image.id, detach=True,
