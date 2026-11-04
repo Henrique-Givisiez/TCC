@@ -1,0 +1,157 @@
+{
+  "runs_included": [
+    "C1_ON_r1",
+    "C1_ON_r2",
+    "C2_OFF_r1",
+    "C2_OFF_r2",
+    "C2_ON_r1",
+    "C2_ON_r2",
+    "C3_OFF_r1",
+    "C3_ON_r1",
+    "C4_ON_r1",
+    "C4_ON_r2",
+    "C5_ON_r1",
+    "P1_8rps",
+    "P2_32rps",
+    "P3_64rps",
+    "P4_96rps",
+    "P5_128rps"
+  ],
+  "runs_incomplete_or_unexecuted": {
+    "name": "C5_ON_r1",
+    "reason": "progression_guard",
+    "completed": [
+      {
+        "name": "C1_ON_r1",
+        "run_id": "12ab1445913d4e37abc13a5fa13a4260",
+        "nominal_rps": 8.0,
+        "started_rps": 8.7,
+        "failures": 0,
+        "http_mean_ms": 18.45684620672529,
+        "http_p95_ms": 52.22902400419116,
+        "cpu_mean": 12.183333333333334,
+        "progression": {
+          "allowed": true,
+          "reasons": [],
+          "role": "exploratory operational guard, not scientific detector criterion"
+        },
+        "worker_wait_p95_ms": 0.6743019985151477
+      },
+      {
+        "name": "C2_ON_r1",
+        "run_id": "fc2d1c2df1c04f18b0fc2e77dfde8af5",
+        "nominal_rps": 64.0,
+        "started_rps": 63.8,
+        "failures": 0,
+        "http_mean_ms": 37.52889289755907,
+        "http_p95_ms": 59.56153100123629,
+        "cpu_mean": 85.89777777777778,
+        "progression": {
+          "allowed": true,
+          "reasons": [],
+          "role": "exploratory operational guard, not scientific detector criterion"
+        },
+        "worker_wait_p95_ms": 9.781369000847917
+      },
+      {
+        "name": "C2_OFF_r1",
+        "run_id": "1bd11700298540d3bbeec3ee82b07ab0",
+        "nominal_rps": 64.0,
+        "started_rps": 63.95,
+        "failures": 0,
+        "http_mean_ms": 36.74699236011065,
+        "http_p95_ms": 59.339719999115914,
+        "cpu_mean": 82.26222222222222,
+        "progression": {
+          "allowed": true,
+          "reasons": [],
+          "role": "exploratory operational guard, not scientific detector criterion"
+        },
+        "worker_wait_p95_ms": null
+      },
+      {
+        "name": "C4_ON_r1",
+        "run_id": "520145f0858f4cb1b2617bd29b7a99a8",
+        "nominal_rps": 64.0,
+        "started_rps": 65.85,
+        "failures": 0,
+        "http_mean_ms": 32.41397393397031,
+        "http_p95_ms": 60.441375004302245,
+        "cpu_mean": 95.3488888888889,
+        "progression": {
+          "allowed": true,
+          "reasons": [],
+          "role": "exploratory operational guard, not scientific detector criterion"
+        },
+        "worker_wait_p95_ms": 11.24856699607335
+      },
+      {
+        "name": "C3_ON_r1",
+        "run_id": "383f827ba63d4bbc9fec2544479553ec",
+        "nominal_rps": 128.0,
+        "started_rps": 128.1,
+        "failures": 0,
+        "http_mean_ms": 46.50748650043549,
+        "http_p95_ms": 71.4441100062686,
+        "cpu_mean": 161.95000000000002,
+        "progression": {
+          "allowed": true,
+          "reasons": [],
+          "role": "exploratory operational guard, not scientific detector criterion"
+        },
+        "worker_wait_p95_ms": 23.27575299568707
+      },
+      {
+        "name": "C3_OFF_r1",
+        "run_id": "bf535b3a3fc945868f6f554bf997f125",
+        "nominal_rps": 128.0,
+        "started_rps": 128.15,
+        "failures": 0,
+        "http_mean_ms": 78.6199860517719,
+        "http_p95_ms": 227.07153700321214,
+        "cpu_mean": 189.00222222222223,
+        "progression": {
+          "allowed": true,
+          "reasons": [],
+          "role": "exploratory operational guard, not scientific detector criterion"
+        },
+        "worker_wait_p95_ms": null
+      },
+      {
+        "name": "C5_ON_r1",
+        "run_id": "dca9817ca23e4a27a28f3470e74c1d72",
+        "nominal_rps": 128.0,
+        "started_rps": 128.65,
+        "failures": 0,
+        "http_mean_ms": 206.5471301887894,
+        "http_p95_ms": 488.47326100076316,
+        "cpu_mean": 205.9888888888889,
+        "progression": {
+          "allowed": false,
+          "reasons": [
+            "worker_wait_p95_above_100ms"
+          ],
+          "role": "exploratory operational guard, not scientific detector criterion"
+        },
+        "worker_wait_p95_ms": 433.4339950000867
+      }
+    ]
+  },
+  "planned_matrix_entries_not_run": [
+    "C3_OFF_r2",
+    "C3_ON_r2",
+    "C5_ON_r2"
+  ],
+  "reason_not_run": "Progression guard stopped after C5_ON_r1 worker_wait_p95_ms exceeded 100 ms; higher-load repetitions were not resumed.",
+  "instrumentation_pairs_available": [
+    "C2_r1",
+    "C2_r2",
+    "C3_r1"
+  ],
+  "plots": [
+    "capacity_overview.png",
+    "capacity_time_series.png"
+  ],
+  "generator_timing_note": "Exponential theoretical interval mean is 1/rate for each source; empirical interval/count summaries are descriptive finite-window statistics, not a goodness-of-fit test.",
+  "interpretation": "Descriptive exploratory results only; absent rows are not imputed and repeated-run conditions stopped by the operational guard remain inconclusive."
+}

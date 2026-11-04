@@ -1,0 +1,39 @@
+{
+  "name": "C2_OFF_r2",
+  "nominal": 64.0,
+  "phases": {
+    "starts_in_plan": 1228,
+    "starts_tail": 1,
+    "completions_in_plan": 1226,
+    "completions_tail": 3,
+    "cohort_completed": 1228,
+    "cohort_completed_after_plan": 2,
+    "unfinished": 0,
+    "started_rps": 61.4,
+    "completed_rps_in_plan": 61.3
+  },
+  "http_ms": {
+    "n": 1229,
+    "mean": 35.63913779976857,
+    "minimum": 10.66436499968404,
+    "maximum": 74.79430099920137,
+    "p50": 51.35533599968767,
+    "p95": 57.93584899947746,
+    "sample_sd": 20.010089457617415
+  },
+  "cpu": {
+    "n": 18,
+    "mean": 78.27666666666667,
+    "minimum": 63.72,
+    "maximum": 87.86,
+    "p50": 77.05,
+    "p95": 87.86,
+    "sample_sd": 8.084499329690413
+  },
+  "victim": null,
+  "progression": {
+    "allowed": true,
+    "reasons": [],
+    "role": "exploratory operational guard, not scientific detector criterion"
+  }
+}

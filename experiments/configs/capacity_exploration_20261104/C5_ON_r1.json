@@ -1,0 +1,46 @@
+{
+  "id": "C5_ON_r1",
+  "duration_seconds": 20,
+  "seed": 44112101,
+  "topology": {
+    "mode": "direct"
+  },
+  "traffic_sources": {
+    "execution": "containers"
+  },
+  "load_balancer": {
+    "enabled": false
+  },
+  "infrastructure": {
+    "initial_instances": 1,
+    "min_instances": 1,
+    "max_instances": 1
+  },
+  "autoscaler": {
+    "enabled": false
+  },
+  "normal_traffic": {
+    "clients": 4,
+    "rate": 32.0,
+    "endpoint": "/medium",
+    "max_concurrent_sends": 64,
+    "request_timeout_seconds": 2
+  },
+  "attack": {
+    "enabled": false,
+    "attackers": 0,
+    "rate": 0
+  },
+  "server": {
+    "process_pool_workers": 2
+  },
+  "monitoring": {
+    "interval_seconds": 1,
+    "stats_poll_interval_seconds": 0.25,
+    "history_seconds": 5
+  },
+  "diagnostics": {
+    "enabled": true,
+    "queue_capacity": 4096
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "name": "P2_32rps",
+  "nominal": 32,
+  "phases": {
+    "starts_in_plan": 401,
+    "starts_tail": 0,
+    "completions_in_plan": 399,
+    "completions_tail": 2,
+    "cohort_completed": 401,
+    "cohort_completed_after_plan": 2,
+    "unfinished": 0,
+    "started_rps": 33.416666666666664,
+    "completed_rps_in_plan": 33.25
+  },
+  "http_ms": {
+    "n": 401,
+    "mean": 30.457812561099782,
+    "minimum": 10.737504999269731,
+    "maximum": 62.01284100097837,
+    "p50": 17.133414003183134,
+    "p95": 57.13189300149679,
+    "sample_sd": 19.75296374358945
+  },
+  "cpu": {
+    "n": 10,
+    "mean": 46.468,
+    "minimum": 42.04,
+    "maximum": 50.1,
+    "p50": 45.85,
+    "p95": 50.1,
+    "sample_sd": 2.9540285111089317
+  },
+  "victim": {
+    "handler_starts": 401,
+    "handler_finishes": 401,
+    "handler_errors": 0,
+    "handler_peak": 4,
+    "unmatched_client_ids": [],
+    "work_wait_ms": {
+      "n": 401,
+      "mean": 0.7096894414984549,
+      "minimum": 0.2428029984002933,
+      "maximum": 10.807401995407417,
+      "p50": 0.4356560020823963,
+      "p95": 1.3500799977919087,
+      "sample_sd": 1.2695588420661374
+    },
+    "work_wall_ms": {
+      "n": 401,
+      "mean": 11.705607620821691,
+      "minimum": 8.704277999640908,
+      "maximum": 16.129877003550064,
+      "p50": 11.454081002739258,
+      "p95": 15.319325000746176,
+      "sample_sd": 2.089082742715161
+    },
+    "work_cpu_ms": {
+      "n": 401,
+      "mean": 11.687575897755618,
+      "minimum": 8.70236499999999,
+      "maximum": 16.121001999999997,
+      "p50": 11.412158000000005,
+      "p95": 15.275857999999864,
+      "sample_sd": 2.0788952776810907
+    },
+    "work_concurrency": {
+      "peak": 2,
+      "mean_occupancy": 0.39021503399574914,
+      "observed_interval_count": 401
+    },
+    "work_complete_intervals": 401,
+    "handler_wall_seconds": {
+      "n": 401,
+      "mean": 0.012959684598471702,
+      "minimum": 0.009611242996470537,
+      "maximum": 0.021350245995563455,
+      "p50": 0.012753757000609767,
+      "p95": 0.01637693099473836
+    }
+  },
+  "progression": {
+    "allowed": true,
+    "reasons": [],
+    "role": "exploratory operational guard, not scientific detector criterion"
+  }
+}
