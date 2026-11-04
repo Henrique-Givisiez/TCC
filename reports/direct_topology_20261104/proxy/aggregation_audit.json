@@ -1,0 +1,22 @@
+{
+  "run_id": "fbf5c0f5e8d7445b9363bcc4bbf904da",
+  "sources": [
+    {
+      "source_id": "normal_1",
+      "admitted": 0,
+      "abandoned": 0,
+      "started": 14,
+      "finished": 14,
+      "emission_counts_consistent": true
+    },
+    {
+      "source_id": "normal_2",
+      "admitted": 0,
+      "abandoned": 0,
+      "started": 11,
+      "finished": 11,
+      "emission_counts_consistent": true
+    }
+  ],
+  "complete": true
+}

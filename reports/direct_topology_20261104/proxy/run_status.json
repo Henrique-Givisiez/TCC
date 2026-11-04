@@ -1,0 +1,193 @@
+{
+  "schema_version": 1,
+  "experiment_id": "proxy_validation_benign",
+  "run_id": "fbf5c0f5e8d7445b9363bcc4bbf904da",
+  "status": "completed",
+  "end_reason": "simulation_end",
+  "experiment_start_timestamp": 1793814716.5737228,
+  "experiment_start_monotonic": 22907.53285137,
+  "producers_drained": true,
+  "errors": [],
+  "capture_results": {
+    "pcap": {
+      "schema_version": 1,
+      "capture": "pcap",
+      "command_argv": [
+        "tcpdump",
+        "--immediate-mode",
+        "-U",
+        "-i",
+        "br-7e2468afd861",
+        "-n",
+        "-w",
+        "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/source_artifacts/traffic_capture.pcap",
+        "tcp and ((dst host 172.20.0.2 and dst port 80) or (src host 172.20.0.2 and src port 80))"
+      ],
+      "interface": "br-7e2468afd861",
+      "bpf_filter": "tcp and ((dst host 172.20.0.2 and dst port 80) or (src host 172.20.0.2 and src port 80))",
+      "output_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/source_artifacts/traffic_capture.pcap",
+      "stderr_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/source_artifacts/traffic_capture.pcap.stderr",
+      "timestamps": {
+        "process_spawn_returned": {
+          "utc": "2026-11-04T17:51:56.626280+00:00",
+          "monotonic_seconds": 22907.585408244,
+          "basis": "host observation sampled after/before the named process event; not tcpdump packet time"
+        },
+        "tcpdump_listening_message_observed": {
+          "utc": "2026-11-04T17:51:56.646477+00:00",
+          "monotonic_seconds": 22907.60560515,
+          "basis": "host observation sampled after/before the named process event; not tcpdump packet time"
+        },
+        "process_exit_observed": {
+          "utc": "2026-11-04T17:52:08.771793+00:00",
+          "monotonic_seconds": 22919.73092157,
+          "basis": "host observation sampled after/before the named process event; not tcpdump packet time"
+        }
+      },
+      "termination_signals": [
+        {
+          "signal": "SIGTERM",
+          "requested": {
+            "utc": "2026-11-04T17:52:08.756067+00:00",
+            "monotonic_seconds": 22919.715194219,
+            "basis": "host observation sampled after/before the named process event; not tcpdump packet time"
+          }
+        }
+      ],
+      "returncode": 0,
+      "launch_error": null,
+      "capture_counters": {
+        "packets_captured": 103,
+        "packets_received_by_filter": 103,
+        "packets_dropped_by_kernel": 0,
+        "statistics_complete": true,
+        "statistics_occurrences": {
+          "packets_captured": 1,
+          "packets_received_by_filter": 1,
+          "packets_dropped_by_kernel": 1
+        }
+      },
+      "capture_diagnostic_sha256": "7b4c4a5b948e84836c908f79292d36d369228a8247b012af3298edeee85588bb",
+      "accepted_returncodes": [
+        0,
+        -15
+      ],
+      "accepted": true,
+      "time_interpretation": "process_spawn_returned is the host observation after Popen; tcpdump_listening_message_observed is when readiness text was read, not the exact first-packet timestamp; stop requested and process exit are host observations. Packet timestamps remain in capture artifacts."
+    },
+    "csv": {
+      "schema_version": 1,
+      "capture": "csv",
+      "command_argv": [
+        "tcpdump",
+        "--immediate-mode",
+        "-B",
+        "4096",
+        "-i",
+        "br-7e2468afd861",
+        "-l",
+        "-n",
+        "-tt",
+        "-q",
+        "tcp and ((dst host 172.20.0.2 and dst port 80) or (src host 172.20.0.2 and src port 80))"
+      ],
+      "interface": "br-7e2468afd861",
+      "bpf_filter": "tcp and ((dst host 172.20.0.2 and dst port 80) or (src host 172.20.0.2 and src port 80))",
+      "output_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/traffic_capture.csv",
+      "stderr_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/traffic_capture.stderr",
+      "timestamps": {
+        "process_spawn_returned": {
+          "utc": "2026-11-04T17:51:56.605211+00:00",
+          "monotonic_seconds": 22907.564338482,
+          "basis": "host observation sampled after/before the named process event; not tcpdump packet time"
+        },
+        "tcpdump_listening_message_observed": {
+          "utc": "2026-11-04T17:51:56.625526+00:00",
+          "monotonic_seconds": 22907.584653119,
+          "basis": "host observation sampled after/before the named process event; not tcpdump packet time"
+        },
+        "process_exit_observed": {
+          "utc": "2026-11-04T17:52:08.787387+00:00",
+          "monotonic_seconds": 22919.746516388,
+          "basis": "host observation sampled after/before the named process event; not tcpdump packet time"
+        }
+      },
+      "termination_signals": [
+        {
+          "signal": "SIGTERM",
+          "requested": {
+            "utc": "2026-11-04T17:52:08.771968+00:00",
+            "monotonic_seconds": 22919.731097617,
+            "basis": "host observation sampled after/before the named process event; not tcpdump packet time"
+          }
+        }
+      ],
+      "returncode": 0,
+      "launch_error": null,
+      "capture_counters": {
+        "packets_captured": 103,
+        "packets_received_by_filter": 103,
+        "packets_dropped_by_kernel": 0,
+        "statistics_complete": true,
+        "statistics_occurrences": {
+          "packets_captured": 1,
+          "packets_received_by_filter": 1,
+          "packets_dropped_by_kernel": 1
+        }
+      },
+      "capture_diagnostic_sha256": "5f1e7de614996d30dbd39fec1bd1737df28ad3c7556ee7feba948b112d34de96",
+      "accepted_returncodes": [
+        0,
+        -15
+      ],
+      "accepted": true,
+      "time_interpretation": "process_spawn_returned is the host observation after Popen; tcpdump_listening_message_observed is when readiness text was read, not the exact first-packet timestamp; stop requested and process exit are host observations. Packet timestamps remain in capture artifacts."
+    }
+  },
+  "topology": "proxy",
+  "proxy_integrity": {
+    "image": "nginx:1.28.0-alpine",
+    "tag": "1.28.0-alpine",
+    "digest": "sha256:30f1c0d78e0ad60901648be663a710bdadf19e4c10ac6782c235200619158284",
+    "image_id": "sha256:c318e336065b17ff460aeac6d14bce5d0b13e35f25d5cb1843b635359fc00c9a",
+    "repo_digests": [
+      "nginx@sha256:30f1c0d78e0ad60901648be663a710bdadf19e4c10ac6782c235200619158284"
+    ],
+    "daemon_id": "177c5506-8b67-45e1-ab1c-acd019f2994e",
+    "daemon_os": "Ubuntu 24.04.5 LTS",
+    "daemon_kernel": "7.0.0-42-generic",
+    "service_endpoint": "http://127.0.0.1:8080",
+    "network": "edos_network",
+    "source_network": "edos_sources",
+    "internal_service_endpoint": "http://edos_service:80",
+    "source_ip": "172.20.0.2",
+    "id": "d4afcf458624b4e84ceddb438a809534e4282ec1e05aea74cd7f4eb6a621d48e",
+    "name": "edos_http_proxy_3b9cfa12af9e",
+    "run_id": "fbf5c0f5e8d7445b9363bcc4bbf904da",
+    "checks": 16,
+    "final_state": "exited"
+  },
+  "target_integrity": {
+    "image": "nginx:1.28.0-alpine",
+    "tag": "1.28.0-alpine",
+    "digest": "sha256:30f1c0d78e0ad60901648be663a710bdadf19e4c10ac6782c235200619158284",
+    "image_id": "sha256:c318e336065b17ff460aeac6d14bce5d0b13e35f25d5cb1843b635359fc00c9a",
+    "repo_digests": [
+      "nginx@sha256:30f1c0d78e0ad60901648be663a710bdadf19e4c10ac6782c235200619158284"
+    ],
+    "daemon_id": "177c5506-8b67-45e1-ab1c-acd019f2994e",
+    "daemon_os": "Ubuntu 24.04.5 LTS",
+    "daemon_kernel": "7.0.0-42-generic",
+    "service_endpoint": "http://127.0.0.1:8080",
+    "network": "edos_network",
+    "source_network": "edos_sources",
+    "internal_service_endpoint": "http://edos_service:80",
+    "source_ip": "172.20.0.2",
+    "id": "d4afcf458624b4e84ceddb438a809534e4282ec1e05aea74cd7f4eb6a621d48e",
+    "name": "edos_http_proxy_3b9cfa12af9e",
+    "run_id": "fbf5c0f5e8d7445b9363bcc4bbf904da",
+    "checks": 16,
+    "final_state": "exited"
+  },
+  "source_inventory": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/source_inventory.json"
+}

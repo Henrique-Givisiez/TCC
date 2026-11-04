@@ -148,6 +148,37 @@ class FeatureExtractionTests(unittest.TestCase):
         self.assertEqual(r['ingress_tcp_payload_length_sum_bytes'],'200');self.assertEqual(r['egress_tcp_payload_length_sum_bytes'],'150')
         self.assertEqual(r['unique_client_src_ips'],'1')
 
+    def test_direct_segment_preserves_packets_payload_and_repeated_records(self):
+        self.fixture.json_change('metadata/effective_config.json',lambda c:c.update(topology={'mode':'direct'},load_balancer={'enabled':False}))
+        old=self.dataset/'metadata/topology/proxy'
+        new=old.with_name('direct');old.rename(new)
+        path=new/'capture_metadata.json'
+        self.fixture.put_json(path,dict(run_id='run1',segment='source_victim',topology='direct',
+            victim_ip='172.20.0.2',target_ip='172.20.0.2',target_id='victim',target_port=80))
+        manifest_path=self.dataset/'dataset_manifest.json'
+        manifest=json.loads(manifest_path.read_text())
+        for entry in manifest['files']:
+            if entry['path'].startswith('metadata/topology/proxy/'):
+                entry['path']=entry['path'].replace('/proxy/','/direct/')
+                p=self.dataset/entry['path'];entry.update(sha256=sha256_file(p),bytes=p.stat().st_size)
+        self.fixture.put_json(manifest_path,manifest)
+        def packets(rows):
+            rows[1]['packet_length']='12';rows.append(rows[1].copy())
+            rows.sort(key=lambda p:float(p['elapsed_seconds']))
+        self.fixture.csv_change('raw/traffic/traffic_capture.csv','packets',packets)
+        self.report();m=self.extract()
+        self.assertEqual(m['network_direction']['segment'],'source_victim')
+        self.assertEqual(self.rows('network')[0]['ingress_packet_count'],'1')
+        self.assertEqual(self.rows('network')[0]['ingress_tcp_payload_length_sum_bytes'],'0')
+        self.assertEqual(self.rows('network')[2]['ingress_packet_count'],'2')
+        self.assertEqual(self.rows('network')[2]['ingress_tcp_payload_length_sum_bytes'],'24')
+
+    def test_unknown_capture_segment_rejected_by_validator(self):
+        self.fixture.json_change('metadata/topology/proxy/capture_metadata.json',lambda c:c.update(segment='unknown'))
+        report=validate_dataset(self.dataset)
+        self.assertFalse(report['dataset_valid'])
+        self.assertTrue(any(c['check_id']=='CAPTURE_TOPOLOGY_VALID' and not c['passed'] for c in report['checks']))
+
     def test_source_causal_class_not_used_by_network(self):
         self.extract();network=(self.output/'timeseries/network.csv').read_bytes()
         # Stage 9 is the eligibility authority. Change only irrelevant inventory class

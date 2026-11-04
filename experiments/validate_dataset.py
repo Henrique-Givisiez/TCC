@@ -587,18 +587,29 @@ class DatasetValidator:
                             'Capture elapsed uses its exact documented epoch subtraction, not request monotonic timestamps')
         backwards = [r['request_id'] for r in requests if r['end_timestamp'] is not None and r['end_timestamp'] < r['timestamp']]
         self.violations('REQUEST_WALL_CLOCK_ORDER', backwards, 'Backward epoch timestamps may indicate clock adjustment; monotonic duration remains authoritative', severity='WARNING', stage='quality')
-        metadata_path = 'metadata/topology/proxy/capture_metadata.json'
+        mode = config.get('topology', {}).get('mode', 'proxy')
+        metadata_path = f'metadata/topology/{mode}/capture_metadata.json'
+        self.check('CAPTURE_TOPOLOGY_UNAMBIGUOUS', not all(f'metadata/topology/{m}/capture_metadata.json' in self.entries for m in ('proxy','direct')),
+                   'A run declares at most one capture topology')
         capture = self.json_artifact(metadata_path, dict, required=False) if metadata_path in self.entries else None
         if inventory is not None and packets:
             observed = {p[k] for p in packets for k in ('src_ip','dst_ip')}
             missing = [s['source_id'] for s in inventory if s['ip'] not in observed]
             self.violations('SOURCE_IP_OBSERVED', missing, 'Missing inventoried IPs are a coverage warning, not absence of source identity', severity='WARNING', stage='quality')
-            if capture and capture.get('segment') == 'source_proxy' and capture.get('proxy_ip'):
-                proxy = capture['proxy_ip']
+            if capture:
+                from experiments.capture_topology import capture_destination
+                try:
+                    proxy, port = capture_destination(capture, config)
+                except ValueError as exc:
+                    self.check('CAPTURE_TOPOLOGY_VALID', False, str(exc))
+                    return
                 allowed = {s['ip'] for s in inventory}
-                outside = [i+2 for i,p in enumerate(packets) if not ((p['src_ip']==proxy and p['src_port']==80 and p['dst_ip'] in allowed) or (p['dst_ip']==proxy and p['dst_port']==80 and p['src_ip'] in allowed))]
-                self.violations('CAPTURE_SEGMENT_CONSISTENT', outside, 'Declared source_proxy capture contains source/proxy TCP observations')
-        backends = self.json_artifact('metadata/topology/proxy/backend_inventory.json', list, required=False) if 'metadata/topology/proxy/backend_inventory.json' in self.entries else None
+                outside = [i+2 for i,p in enumerate(packets) if not ((p['src_ip']==proxy and p['src_port']==port and p['dst_ip'] in allowed) or (p['dst_ip']==proxy and p['dst_port']==port and p['src_ip'] in allowed))]
+                self.violations('CAPTURE_SEGMENT_CONSISTENT', outside, 'Declared '+capture['segment']+' capture contains only source/target TCP observations')
+        if mode == 'direct':
+            self.check('DIRECT_CAPTURE_METADATA_PRESENT', capture is not None, 'Direct collection requires declared source_victim metadata')
+        backend_path = f'metadata/topology/{mode}/backend_inventory.json'
+        backends = self.json_artifact(backend_path, list, required=False) if backend_path in self.entries else None
         if backends is not None and all(isinstance(b,dict) and isinstance(b.get('name'),str) for b in backends):
             expected = {b['name'] for b in backends}
             named = {name for r in metrics for name in (r['active_containers_names'] or '').split(',') if name}

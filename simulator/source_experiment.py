@@ -11,6 +11,7 @@ from simulator.http_proxy import HttpProxy, write_json
 from simulator.source_manager import SourceManager
 from simulator.source_aggregate import records, reconcile, aggregate, write_csv
 from simulator.tcpdump_sniffer import TcpdumpSniffer
+from simulator.direct_target import DirectTarget, require_empty_network
 
 # Exposed only to host integration fault injection, never to source manifests.
 active_proxy = None
@@ -29,6 +30,7 @@ def run(experiment):
     cost_intervals = []
     manager = proxy = gt = sniffer = collector = None
     raw_capture = None
+    owned_networks = []
     complete = True
     drained = False
     reason = 'simulation_end'
@@ -37,22 +39,34 @@ def run(experiment):
     Path(config.RUN_STATUS_FILE).parent.mkdir(parents=True, exist_ok=True)
     write_json(Path(config.RUN_STATUS_FILE).parent/'effective_config.json', json.loads(experiment.to_json()))
     try:
+        try:
+            client.networks.get(config.DOCKER_NETWORK_NAME)
+        except Exception as exc:
+            if getattr(exc, 'status_code', None) != 404:
+                raise
+            owned_networks.append(config.DOCKER_NETWORK_NAME)
         if not docker_manager.build_docker_image() or not docker_manager.ensure_docker_network():
             raise RuntimeError('victim infrastructure setup failed')
-        docker_manager.cleanup_all_simulation_instances()
+        # Refuse existing resources rather than removing a different run's victims.
+        if client.containers.list(all=True, filters={'name': config.BASE_CONTAINER_NAME}):
+            raise RuntimeError('victim resources already exist; refusing to overwrite')
         try:
             network = client.networks.get(config.SOURCE_NETWORK_NAME)
         except Exception as exc:
             if getattr(exc,'status_code',None)!=404:
                 raise
             network = client.networks.create(config.SOURCE_NETWORK_NAME, driver='bridge')
+            owned_networks.append(config.SOURCE_NETWORK_NAME)
+        require_empty_network(network)
         for index in range(experiment.infrastructure.initial_instances):
             victim = docker_manager.start_instance(index+1, experiment.server, publish_ports=False)
             if victim is None:
                 raise RuntimeError('victim start failed')
             victims.append(victim)
-        proxy = HttpProxy(client,config.PROXY_ARTIFACT_DIR)
-        active_proxy = proxy
+        direct = experiment.topology.mode == 'direct'
+        proxy = (DirectTarget(client, Path(config.RUN_STATUS_FILE).parent/'direct_artifacts') if direct
+                 else HttpProxy(client,config.PROXY_ARTIFACT_DIR))
+        active_proxy = None if direct else proxy
         proxy.start(victims, source_network=network)
         manager = SourceManager(client,network,config.SOURCE_ARTIFACT_DIR,config.SOURCE_INVENTORY_FILE,experiment)
         active_manager = manager
@@ -67,8 +81,12 @@ def run(experiment):
             gt.plan_event('attack_001','event_001',experiment.attack.profile,experiment.attack.start_seconds,experiment.attack.end_seconds)
         proxy.bind_run(gt.run_id)
         proxy.start_monitoring(gt.clock)
-        write_json(proxy.directory/'capture_metadata.json',dict(run_id=gt.run_id,segment='source_proxy',
-                   interface=capture['selected_interface'],bpf=capture['bpf'],proxy_ip=capture['proxy_ip'],
+        write_json(proxy.directory/'capture_metadata.json',dict(run_id=gt.run_id,
+                   topology=experiment.topology.mode,segment='source_victim' if direct else 'source_proxy',
+                   target_id=proxy.expected_id, target_ip=capture['proxy_ip'],target_port=config.APP_CONTAINER_PORT,
+                   capture_point='host_network_interface',
+                   interface=capture['selected_interface'],bpf=capture['bpf'],
+                   **({'victim_ip':capture['proxy_ip']} if direct else {'proxy_ip':capture['proxy_ip']}),
                    audit='source_artifacts/network_audit/comparison.json'))
         sniffer = TcpdumpSniffer(capture['selected_interface'],config.TCPDUMP_OUTPUT_CSV,gt,bpf_filter=capture['bpf'])
         sniffer.start()
@@ -76,6 +94,7 @@ def run(experiment):
         from simulator.capture_evidence import RawCapture
         raw_capture = RawCapture(capture['selected_interface'],capture['bpf'],manager.directory/'traffic_capture.pcap')
         collector = StatsCollector(client,experiment.monitoring.stats_poll_interval_seconds,experiment.monitoring.history_seconds)
+        collector.evidence_path = Path(config.RUN_STATUS_FILE).parent/'victim_stats.jsonl'
         collector.update_containers(victims)
         collector.start()
         write_csv(config.METRICS_LOG_FILE,main_orchestrator.METRICS_FIELDS,[])
@@ -191,6 +210,12 @@ def run(experiment):
             if not docker_manager.stop_instance(victim.id):
                 errors.append('victim cleanup failed: '+victim.id)
                 complete = False
+        for name in reversed(owned_networks):
+            try:
+                client.networks.get(name).remove()
+            except Exception as exc:
+                errors.append('network cleanup: '+str(exc))
+                complete = False
         capture_results = {}
         for name, component in [('pcap',raw_capture),('csv',sniffer)]:
             lifecycle = getattr(component,'lifecycle',None) if component else None
@@ -198,7 +223,9 @@ def run(experiment):
         status.update(status='completed' if complete and reason=='simulation_end' else 'incomplete',
                       end_reason=reason,producers_drained=drained,errors=errors,
                       capture_results=capture_results,
-                      proxy_integrity=proxy.identity if proxy else None,
+                      topology=experiment.topology.mode,
+                      proxy_integrity=proxy.identity if proxy and experiment.topology.mode=='proxy' else None,
+                      target_integrity=proxy.identity if proxy else None,
                       source_inventory=config.SOURCE_INVENTORY_FILE)
         write_json(config.RUN_STATUS_FILE,status)
     if complete and reason=='simulation_end':

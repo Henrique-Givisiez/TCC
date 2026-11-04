@@ -1,0 +1,13 @@
+{
+  "run_id": "fbf5c0f5e8d7445b9363bcc4bbf904da",
+  "topology": "proxy",
+  "segment": "source_proxy",
+  "target_id": "d4afcf458624b4e84ceddb438a809534e4282ec1e05aea74cd7f4eb6a621d48e",
+  "target_ip": "172.20.0.2",
+  "target_port": 80,
+  "capture_point": "host_network_interface",
+  "interface": "br-7e2468afd861",
+  "bpf": "tcp and ((dst host 172.20.0.2 and dst port 80) or (src host 172.20.0.2 and src port 80))",
+  "proxy_ip": "172.20.0.2",
+  "audit": "source_artifacts/network_audit/comparison.json"
+}

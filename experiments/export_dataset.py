@@ -29,8 +29,10 @@ def placement(relative):
         return f'metadata/{name}', 'metadata', 'canonical', None
     if name == 'source_artifacts/traffic_capture.pcap':
         return 'raw/traffic/traffic_capture.pcap', 'traffic', 'observed', None
-    if name == 'proxy_artifacts/routing_evidence.jsonl':
+    if name in ('proxy_artifacts/routing_evidence.jsonl', 'direct_artifacts/routing_evidence.jsonl'):
         return 'raw/service/routing_evidence.jsonl', 'service', 'operational_evidence', None
+    if relative.parts[0] == 'direct_artifacts':
+        return 'metadata/topology/direct/' + '/'.join(relative.parts[1:]), 'metadata', 'topology', None
     if relative.parts[0] == 'proxy_artifacts':
         if relative.name in ('identity.json', 'backend_inventory.json', 'capture_metadata.json', 'proxy_config.conf'):
             return f'metadata/topology/proxy/{relative.name}', 'metadata', 'topology', None

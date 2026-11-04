@@ -1,0 +1,19 @@
+----------------------------------------------------------------------
+Ran 125 tests in 3.200s
+
+OK
+[Autoscaler] Initialized.
+[Autoscaler] Decision: SCALE_UP. Avg CPU: 90.00% > 60.0%. Current instances: 1, Max: 4
+Attempting to start container target_instance_1: container:80 to host:8080
+Container <MagicMock name='client.containers.run().short_id' id='125795997287680'> (target_instance_1) started. Accessible on host port 8080.
+[Autoscaler] Initialized.
+Attempting to start container target_instance_1: container:80 to host:8080
+Container <MagicMock name='client.containers.run().short_id' id='125795997350080'> (target_instance_1) started. Accessible on host port 8080.
+[LoadBalancer:Normal] Alvos atualizados: ['http://localhost:8080']
+[LoadBalancer:Attack] Alvos atualizados: ['http://localhost:8080']
+[Normal_Injector] rps_per_worker=0 ou num_clients=4 <= 0 -- tráfego normal desligado de propósito, não iniciado.
+[Sniffer] Realtime tcpdump started on br-test
+[Sniffer] Realtime tcpdump stopped.
+[Sniffer] Realtime tcpdump started on br-test
+[Sniffer] Realtime tcpdump started on br-test
+[Sniffer] Realtime tcpdump started on br-test

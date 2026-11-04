@@ -1,0 +1,49 @@
+======================================================================
+ERROR: test_real_authority_configs_and_exclusive_seed_reservations (tests.test_development_d3.D3Tests.test_real_authority_configs_and_exclusive_seed_reservations)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/tests/test_development_d3.py", line 156, in test_real_authority_configs_and_exclusive_seed_reservations
+    result=d3.validate_plan()
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiments/development_d3.py", line 77, in validate_plan
+    raise ValueError('Bound source changed: ' + name)
+ValueError: Bound source changed: experiments/export_dataset.py
+
+======================================================================
+FAIL: test_end_to_end_export_processing_review_and_no_overwrite (tests.test_development_d3.D3Tests.test_end_to_end_export_processing_review_and_no_overwrite)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/tests/test_development_d3.py", line 331, in test_end_to_end_export_processing_review_and_no_overwrite
+    self.assertTrue(reports[0]['classification']['control_accepted'])
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 265 tests in 15.999s
+
+FAILED (failures=1, errors=1)
+[Autoscaler] Initialized.
+[Autoscaler] Decision: SCALE_UP. Avg CPU: 90.00% > 60.0%. Current instances: 1, Max: 4
+Attempting to start container target_instance_1: container:80 to host:8080
+Container <MagicMock name='client.containers.run().short_id' id='140651510626496'> (target_instance_1) started. Accessible on host port 8080.
+[Autoscaler] Initialized.
+Attempting to start container target_instance_1: container:80 to host:8080
+Container <MagicMock name='client.containers.run().short_id' id='140651507551936'> (target_instance_1) started. Accessible on host port 8080.
+[LoadBalancer:Normal] Alvos atualizados: ['http://localhost:8080']
+[LoadBalancer:Attack] Alvos atualizados: ['http://localhost:8080']
+[Normal_Injector] rps_per_worker=0 ou num_clients=4 <= 0 -- tráfego normal desligado de propósito, não iniciado.
+[Sniffer] Realtime tcpdump started on br-test
+[Sniffer] Realtime tcpdump stopped.
+[Sniffer] Realtime tcpdump started on br-test
+[Sniffer] Realtime tcpdump started on br-test
+[Sniffer] Realtime tcpdump started on br-test
+[Orchestrator] Incomplete run: drain/capture failures recorded in run_status.json.
+Attempting to start container target_instance_1: network only, no host publication
+Container <MagicMock name='client.containers.run().short_id' id='140651511208064'> (target_instance_1) started. Docker network only; no published port.
+[Autoscaler] Initialized.
+[Autoscaler] Initialized.
+[Autoscaler] Decision: SCALE_UP. Avg CPU: 60.00% > 60%. Current instances: 1, Max: 2
+[Autoscaler] Initialized.
+[Autoscaler] Decision: NO_ACTION. Avg CPU: 60.00% is within thresholds (25.0% - 60%).
+[host_stats] Não foi possível ler /proc/stat: no proc
+[Injector] Signaling HTTP flood workers to stop...
+[Injector] Stop signal sent (non-blocking).

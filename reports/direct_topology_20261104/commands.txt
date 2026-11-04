@@ -1,0 +1,27 @@
+# Comandos executados; escolher diretórios novos para repetir, pois não há sobrescrita.
+git branch --show-current
+git rev-parse HEAD
+git status --short
+docker ps --no-trunc
+docker images
+docker network inspect edos_sources edos_network --format '{{.Name}} {{json .Containers}}'
+.venv/bin/python -V
+getcap /usr/bin/tcpdump
+
+.venv/bin/python -B -m unittest tests.test_experiment_config tests.test_feature_extraction tests.test_dataset_validation tests.test_source_containers tests.test_capture_lifecycle -q
+.venv/bin/python -B -m unittest tests.test_direct_topology tests.test_experiment_config tests.test_feature_extraction tests.test_dataset_validation tests.test_source_containers tests.test_capture_lifecycle -q
+.venv/bin/python -B -m unittest tests.test_direct_topology tests.test_topology_integrity tests.test_experiment_config tests.test_feature_extraction tests.test_dataset_validation tests.test_source_containers tests.test_capture_lifecycle tests.test_dataset_export tests.test_http_proxy tests.test_proxy_monitor tests.test_single_victim tests.test_cpu_accounting_audit tests.test_http_timing_audit tests.test_application_operations -q
+.venv/bin/python -B -m unittest tests.test_development_d3.D3Tests.test_end_to_end_export_processing_review_and_no_overwrite -q
+.venv/bin/python -B -m unittest tests.test_direct_topology tests.test_topology_integrity tests.test_experiment_config tests.test_feature_extraction tests.test_dataset_validation tests.test_source_containers tests.test_capture_lifecycle tests.test_dataset_export tests.test_http_proxy tests.test_proxy_monitor tests.test_single_victim tests.test_cpu_accounting_audit tests.test_http_timing_audit tests.test_application_operations tests.test_development_d3 -q
+
+.venv/bin/python -B -m experiments.dataset_run --config experiments/configs/direct_validation_benign.json --output experiment_results/direct-topology-20261104/direct-raw --dataset-output experiment_results/direct-topology-20261104/direct-dataset
+.venv/bin/python -B -m experiments.dataset_run --config experiments/configs/proxy_validation_benign.json --output experiment_results/direct-topology-20261104/proxy-raw --dataset-output experiment_results/direct-topology-20261104/proxy-dataset
+
+.venv/bin/python -B -m experiments.export_dataset experiment_results/direct-topology-20261104/direct-raw experiment_results/direct-topology-20261104/direct-dataset-final
+.venv/bin/python -B -m experiments.validate_topology_run --raw experiment_results/direct-topology-20261104/direct-raw --dataset experiment_results/direct-topology-20261104/direct-dataset-final --output experiment_results/direct-topology-20261104/direct-review
+.venv/bin/python -B -m experiments.export_dataset experiment_results/direct-topology-20261104/proxy-raw experiment_results/direct-topology-20261104/proxy-dataset-final
+.venv/bin/python -B -m experiments.validate_topology_run --raw experiment_results/direct-topology-20261104/proxy-raw --dataset experiment_results/direct-topology-20261104/proxy-dataset-final --output experiment_results/direct-topology-20261104/proxy-review
+
+git diff --check
+docker ps --no-trunc
+docker network inspect edos_sources edos_network --format '{{.Name}} {{json .Containers}}'

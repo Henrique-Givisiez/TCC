@@ -1,0 +1,14 @@
+run_id,window_index,window_start_seconds,window_end_seconds,mean_cpu_percent,mean_memory_mib
+fbf5c0f5e8d7445b9363bcc4bbf904da,0,0,1,,
+fbf5c0f5e8d7445b9363bcc4bbf904da,1,1,2,,
+fbf5c0f5e8d7445b9363bcc4bbf904da,2,2,3,0.54,22.7
+fbf5c0f5e8d7445b9363bcc4bbf904da,3,3,4,0.54,22.7
+fbf5c0f5e8d7445b9363bcc4bbf904da,4,4,5,0.21,22.38
+fbf5c0f5e8d7445b9363bcc4bbf904da,5,5,6,0.21,22.38
+fbf5c0f5e8d7445b9363bcc4bbf904da,6,6,7,0.24,22.37
+fbf5c0f5e8d7445b9363bcc4bbf904da,7,7,8,0.24,22.37
+fbf5c0f5e8d7445b9363bcc4bbf904da,8,8,9,0.02,21.63
+fbf5c0f5e8d7445b9363bcc4bbf904da,9,9,10,0.02,21.63
+fbf5c0f5e8d7445b9363bcc4bbf904da,10,10,11,0.19,22.12
+fbf5c0f5e8d7445b9363bcc4bbf904da,11,11,12,0.19,22.12
+fbf5c0f5e8d7445b9363bcc4bbf904da,12,12,13,,

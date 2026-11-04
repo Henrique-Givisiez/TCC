@@ -1,0 +1,14 @@
+{
+  "id": "proxy_validation_benign",
+  "duration_seconds": 12,
+  "seed": 42,
+  "topology": {"mode": "proxy"},
+  "traffic_sources": {"execution": "containers"},
+  "load_balancer": {"enabled": true},
+  "infrastructure": {"initial_instances": 1, "min_instances": 1, "max_instances": 1},
+  "autoscaler": {"enabled": false},
+  "normal_traffic": {"clients": 2, "rate": 1, "endpoint": "/", "work_units": 0,
+    "max_concurrent_sends": 2, "request_timeout_seconds": 2},
+  "attack": {"enabled": false, "attackers": 0, "rate": 0},
+  "monitoring": {"interval_seconds": 1, "stats_poll_interval_seconds": 0.25, "history_seconds": 5}
+}

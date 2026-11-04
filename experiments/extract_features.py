@@ -166,19 +166,30 @@ def extract_features(dataset, validation_report, destination, window_size_second
         raise ValueError('Canonical status does not describe the eligible completed run')
     # Use inventory topology only, NEVER source causal class, to identify network clients.
     clients=None;proxy=None;service_port=None;warnings=[]
-    cap_path='metadata/topology/proxy/capture_metadata.json'
+    mode=config.get('topology',{}).get('mode','proxy')
+    cap_path=f'metadata/topology/{mode}/capture_metadata.json'
+    if all(f'metadata/topology/{m}/capture_metadata.json' in inputs.index for m in ('proxy','direct')):
+        raise ValueError('Ambiguous capture topology metadata')
+    segment=None
     inv_path=inputs.manifest.get('source_inventory')
     if inv_path and cap_path in inputs.index:
         inventory=inputs.json(inv_path);capture=inputs.json(cap_path)
-        if capture.get('segment')=='source_proxy' and capture.get('proxy_ip'):
+        from experiments.capture_topology import capture_destination
+        proxy,declared_port=capture_destination(capture,config)
+        segment=capture['segment']
+        if proxy:
             from urllib.parse import urlsplit
             endpoints={urlsplit(s['service_endpoint']).port or 80 for s in inventory}
             if len(endpoints)!=1:
                 raise ValueError('Source service ports are ambiguous')
-            clients={s['ip'] for s in inventory};proxy=capture['proxy_ip'];service_port=endpoints.pop()
+            clients={s['ip'] for s in inventory};service_port=endpoints.pop()
+            if service_port != declared_port:
+                raise ValueError('Capture port contradicts source endpoint')
+    if mode=='direct' and clients is None:
+        raise ValueError('Direct capture metadata/source inventory missing')
     network_supported=clients is not None
     if not network_supported:
-        warnings.append(dict(code='NETWORK_DIRECTION_UNAVAILABLE',message='No supported source_proxy inventory/metadata. Network features are null; packet observations still define horizon and coverage metadata.'))
+        warnings.append(dict(code='NETWORK_DIRECTION_UNAVAILABLE',message='No supported capture inventory/metadata. Network features are null; packet observations still define horizon and coverage metadata.'))
     times={
         'network':[decimal(p['elapsed_seconds']) for p in packets],
         'service_starts':[decimal(r['elapsed_seconds']) for r in requests],
@@ -216,7 +227,7 @@ def extract_features(dataset, validation_report, destination, window_size_second
             elif p['src_ip']==proxy and int(p['src_port'])==service_port and p['dst_ip'] in clients:
                 direction='egress'
             else:
-                raise ValueError('Packet cannot be assigned to the declared source_proxy directions')
+                raise ValueError('Packet cannot be assigned to the declared '+segment+' directions')
             network[i][direction+'_packet_count']+=1
             network[i][direction+'_tcp_payload_length_sum_bytes']+=int(p['packet_length'])
         for i in range(windows):
@@ -303,8 +314,9 @@ def extract_features(dataset, validation_report, destination, window_size_second
                 observed_coverage={**{k:observed_span(v) for k,v in times.items()},
                     'service':observed_span(times['service_starts']+times['service_completions']),
                     'infrastructure':observed_span(times['infrastructure_supported'])},
-                network_direction=dict(supported=network_supported,segment='source_proxy' if network_supported else None,
-                    proxy_ip=proxy,service_port=service_port,client_ips=sorted(clients) if clients is not None else None,
+                network_direction=dict(supported=network_supported,segment=segment if network_supported else None,
+                    proxy_ip=proxy if segment=='source_proxy' else None,target_ip=proxy,
+                    service_port=service_port,client_ips=sorted(clients) if clients is not None else None,
                     uses_source_causal_class=False,duplicates_removed=False),
                 diagnostics=dict(infrastructure_without_support=unsupported,unfinished_request_ids=unfinished),
                 detector_columns=FEATURES,labels_path='timeseries/labels.csv',warnings=warnings,

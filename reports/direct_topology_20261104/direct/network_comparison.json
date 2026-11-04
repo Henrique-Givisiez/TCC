@@ -1,0 +1,82 @@
+{
+  "topology": "direct",
+  "target_id": "423361e4b6a6b977efa2bdb29bbced022d34adc00968e16ae26c0469fb6458f1",
+  "proxy_ip": "172.20.0.2",
+  "service_port": 80,
+  "bpf": "tcp and ((dst host 172.20.0.2 and dst port 80) or (src host 172.20.0.2 and src port 80))",
+  "candidates": [
+    {
+      "interface": "lo",
+      "packets": 0,
+      "source_ips": [],
+      "response_ips": [],
+      "outside_segment": 0,
+      "repeated_descriptions": 0
+    },
+    {
+      "interface": "br-7e2468afd861",
+      "packets": 64,
+      "source_ips": [
+        "172.20.0.3",
+        "172.20.0.4"
+      ],
+      "response_ips": [
+        "172.20.0.3",
+        "172.20.0.4"
+      ],
+      "outside_segment": 0,
+      "repeated_descriptions": 0
+    },
+    {
+      "interface": "veth430a43c",
+      "packets": 64,
+      "source_ips": [
+        "172.20.0.3",
+        "172.20.0.4"
+      ],
+      "response_ips": [
+        "172.20.0.3",
+        "172.20.0.4"
+      ],
+      "outside_segment": 0,
+      "repeated_descriptions": 0
+    },
+    {
+      "interface": "any",
+      "packets": 178,
+      "source_ips": [
+        "172.20.0.3",
+        "172.20.0.4"
+      ],
+      "response_ips": [
+        "172.20.0.3",
+        "172.20.0.4"
+      ],
+      "outside_segment": 0,
+      "repeated_descriptions": 115
+    }
+  ],
+  "selected_interface": "br-7e2468afd861",
+  "replies": [
+    {
+      "source_id": "normal_1",
+      "responses": [
+        "host=423361e4b6a6 work=0 sleep=0.0000s elapsed=0.0045s\n",
+        "host=423361e4b6a6 work=0 sleep=0.0000s elapsed=0.0006s\n",
+        "host=423361e4b6a6 work=0 sleep=0.0000s elapsed=0.0008s\n",
+        "host=423361e4b6a6 work=0 sleep=0.0000s elapsed=0.0005s\n",
+        "host=423361e4b6a6 work=0 sleep=0.0000s elapsed=0.0005s\n"
+      ]
+    },
+    {
+      "source_id": "normal_2",
+      "responses": [
+        "host=423361e4b6a6 work=0 sleep=0.0000s elapsed=0.0007s\n",
+        "host=423361e4b6a6 work=0 sleep=0.0000s elapsed=0.0006s\n",
+        "host=423361e4b6a6 work=0 sleep=0.0000s elapsed=0.0007s\n",
+        "host=423361e4b6a6 work=0 sleep=0.0000s elapsed=0.0007s\n",
+        "host=423361e4b6a6 work=0 sleep=0.0000s elapsed=0.0007s\n"
+      ]
+    }
+  ]
+}

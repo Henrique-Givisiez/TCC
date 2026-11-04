@@ -1,0 +1,642 @@
+{
+  "schema_version": 1,
+  "run_id": "fbf5c0f5e8d7445b9363bcc4bbf904da",
+  "status": "completed",
+  "configuration": "metadata/effective_config.json",
+  "run_status": "metadata/run_status.json",
+  "schema": "schema.json",
+  "execution_provenance": {
+    "status": "recorded",
+    "path": "metadata/run_provenance.json"
+  },
+  "export_provenance": "metadata/export_provenance.json",
+  "source_inventory": "metadata/source_inventory.json",
+  "groups": [
+    "attacks",
+    "evidence",
+    "infrastructure",
+    "metadata",
+    "service",
+    "traffic"
+  ],
+  "files": [
+    {
+      "path": "raw/attacks/attack_events.csv",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/attack_events.csv",
+      "group": "attacks",
+      "role": "observed",
+      "sha256": "60ab7844339e419ae620d6b60cbe32eb46f3f03619ae2d5d97f28e73ab663e34",
+      "bytes": 321,
+      "schema_ref": "schema.json#/tables/attacks",
+      "schema_recognized": true
+    },
+    {
+      "path": "evidence/other/attack_summary_log.csv",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/attack_summary_log.csv",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "4cd2b0342ef77be3c331156562e9886d52b3664a2a672eacf65f3c76ca31e4f5",
+      "bytes": 106,
+      "schema_ref": "schema.json#/tables/attack_summary",
+      "schema_recognized": true
+    },
+    {
+      "path": "metadata/effective_config.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/effective_config.json",
+      "group": "metadata",
+      "role": "canonical",
+      "sha256": "3dab94329dba4598bb8ed0d1e9bf0354d6f3552d858b4ee15269d5de10e92d49",
+      "bytes": 1245
+    },
+    {
+      "path": "evidence/other/normal_traffic_summary_log.csv",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/normal_traffic_summary_log.csv",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "bd360b0b7b9259c17e01b967d6cb19033337f2b3eef6142d3666a2a6e68ce541",
+      "bytes": 167,
+      "schema_ref": "schema.json#/tables/normal_summary",
+      "schema_recognized": true
+    },
+    {
+      "path": "metadata/topology/proxy/backend_inventory.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/proxy_artifacts/backend_inventory.json",
+      "group": "metadata",
+      "role": "topology",
+      "sha256": "5a9e248baf927ff89121bde0d321eb77b1ef488769f4f0373a9ff9b9a9eca28d",
+      "bytes": 294
+    },
+    {
+      "path": "metadata/topology/proxy/capture_metadata.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/proxy_artifacts/capture_metadata.json",
+      "group": "metadata",
+      "role": "topology",
+      "sha256": "182f3e5cbabc6ffbbd5883ea2f45c76f84fd3a7e07109840add0539317c6555b",
+      "bytes": 505
+    },
+    {
+      "path": "evidence/proxy/container_output.log",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/proxy_artifacts/container_output.log",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "ee124ea88b68add4d803add90223486309ed57fc6abb94ddd8dd8e4a934f2a9d",
+      "bytes": 298
+    },
+    {
+      "path": "evidence/proxy/monitor_interfaces.txt",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/proxy_artifacts/monitor_interfaces.txt",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "e108614e20f5115cd25edb1ef8e6a473e4cc25fd3f4d8dbfe724f5356641c007",
+      "bytes": 397
+    },
+    {
+      "path": "evidence/proxy/monitor_networks.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/proxy_artifacts/monitor_networks.json",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "b5b62dac1d4a3c96e8626184d9c6cb40f4ccedb03c64760a2c65756cdc3eb117",
+      "bytes": 1473
+    },
+    {
+      "path": "evidence/proxy/monitor_samples.jsonl",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/proxy_artifacts/monitor_samples.jsonl",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "1c531a7443281b84f6237a0ece35adb009555401963279df18ba0c40e870b105",
+      "bytes": 19966
+    },
+    {
+      "path": "evidence/proxy/monitor_summary.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/proxy_artifacts/monitor_summary.json",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "5a981a7886d728d4f327a98cb567d71bca92be86bd17a3b01046723fe89b2314",
+      "bytes": 282
+    },
+    {
+      "path": "evidence/proxy/nginx_build.txt",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/proxy_artifacts/nginx_build.txt",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "e02223c01ed50d5dff5731e7b910a91b5c02577de28aba6de1b67528f68e20b6",
+      "bytes": 1558
+    },
+    {
+      "path": "evidence/proxy/proxy_access.log",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/proxy_artifacts/proxy_access.log",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "563438740e23a45078e5ed9c9a3825d812bf973a92db57525db1ad57e05dcdf5",
+      "bytes": 15774
+    },
+    {
+      "path": "metadata/topology/proxy/proxy_config.conf",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/proxy_artifacts/proxy_config.conf",
+      "group": "metadata",
+      "role": "topology",
+      "sha256": "3ac151a878b4964c6a3c6c8da5fe134a4ed098594c85e462342deb01b6499c53",
+      "bytes": 1528
+    },
+    {
+      "path": "evidence/proxy/proxy_error.log",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/proxy_artifacts/proxy_error.log",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "21ecd888b642b86b3565e48c5d0af5f9811ca1cde1202b67baf21a66c862e454",
+      "bytes": 1023
+    },
+    {
+      "path": "evidence/proxy/proxy_identity.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/proxy_artifacts/proxy_identity.json",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "d33ad1cf3b39d4d8f381d079c42f5a74c2ee293cd7b2e3a0e76a91c6adca5d03",
+      "bytes": 886
+    },
+    {
+      "path": "evidence/proxy/readiness.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/proxy_artifacts/readiness.json",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "f17a82f80524b41f378511f1f0a4dde7d4b84446679fb6f7d40b1db1d6926d6c",
+      "bytes": 64
+    },
+    {
+      "path": "raw/service/routing_evidence.jsonl",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/proxy_artifacts/routing_evidence.jsonl",
+      "group": "service",
+      "role": "operational_evidence",
+      "sha256": "564135df5dffaba181db31ddd6a4745027a7e17f2420cfcc6f496e1073c9c13c",
+      "bytes": 4700
+    },
+    {
+      "path": "raw/service/request_log.csv",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/request_log.csv",
+      "group": "service",
+      "role": "observed",
+      "sha256": "a3cd39aa04ebdeaee077713974a7ccc00343fb1b689755cc2697bdbeaf96235b",
+      "bytes": 6017,
+      "schema_ref": "schema.json#/tables/requests",
+      "schema_recognized": true
+    },
+    {
+      "path": "raw/service/rtt_log.csv",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/rtt_log.csv",
+      "group": "service",
+      "role": "observed",
+      "sha256": "99f261e0d717cf1e06233d967f7c2244eb7c086c651ed313bbf2198a75ce2fdf",
+      "bytes": 3160,
+      "schema_ref": "schema.json#/tables/rtt",
+      "schema_recognized": true
+    },
+    {
+      "path": "metadata/run_provenance.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/run_provenance.json",
+      "group": "metadata",
+      "role": "canonical",
+      "sha256": "d90cc35a33a73032c025ae69d696fe739cb6d8b9023ef4f73c655d4340067024",
+      "bytes": 20016
+    },
+    {
+      "path": "metadata/run_status.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/run_status.json",
+      "group": "metadata",
+      "role": "canonical",
+      "sha256": "5e0135b05f86df4413c37b24d7bf45f3c56805acf0408074d089592a17419de8",
+      "bytes": 8332
+    },
+    {
+      "path": "raw/infrastructure/simulation_metrics.csv",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/simulation_metrics.csv",
+      "group": "infrastructure",
+      "role": "observed",
+      "sha256": "5fb44213920cc23388a60c1af2c56e72b80f6d9ae48e9e5c6ea1b966be10f3b8",
+      "bytes": 1722,
+      "schema_ref": "schema.json#/tables/metrics",
+      "schema_recognized": true
+    },
+    {
+      "path": "evidence/sources/Dockerfile.sources",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/source_artifacts/Dockerfile.sources",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "b538b709ee0bec7cbcc9c63e97338651fdd9abe6b917928fc4d46d1dc6056a0d",
+      "bytes": 748
+    },
+    {
+      "path": "evidence/sources/aggregation_audit.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/source_artifacts/aggregation_audit.json",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "b5c9a32472e7a2104a2f6aab023c9369b13a01c99cfa29d0448c27f0639e38a2",
+      "bytes": 432
+    },
+    {
+      "path": "metadata/topology/sources/clock_validation.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/source_artifacts/clock_validation.json",
+      "group": "metadata",
+      "role": "topology",
+      "sha256": "dab7ad253c4e6d81dad8a24b92857e2ebf6f4427942b2f28a055a3dc9e8e61f1",
+      "bytes": 12995
+    },
+    {
+      "path": "metadata/topology/sources/image_identity.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/source_artifacts/image_identity.json",
+      "group": "metadata",
+      "role": "topology",
+      "sha256": "0f4ff3f80b3d9517570a4f47e3b75af47dd204b3f8c78a768a5a002a9504b9ae",
+      "bytes": 414
+    },
+    {
+      "path": "evidence/sources/network_audit/any.pcap",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/source_artifacts/network_audit/any.pcap",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "d741244511f26660cfb5a1bed8cde5e5125e83bf0d72c7af438618f2db710226",
+      "bytes": 24789
+    },
+    {
+      "path": "evidence/sources/network_audit/any.stderr",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/source_artifacts/network_audit/any.stderr",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "2ddcca53d9fef1cb21cc5cde273c2805e5bcb7acc5fd5ec855c4bb5e97b3af35",
+      "bytes": 212
+    },
+    {
+      "path": "evidence/sources/network_audit/any.txt",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/source_artifacts/network_audit/any.txt",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "078fc357179aafa5712ff9b80da947a1a0182e3bd14738da823a4207bca19359",
+      "bytes": 31247
+    },
+    {
+      "path": "evidence/sources/network_audit/br-7e2468afd861.pcap",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/source_artifacts/network_audit/br-7e2468afd861.pcap",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "9928a0bc178af16d173f10b42cd28a598867cf7a3a5dbd7d0f7475a528bc8368",
+      "bytes": 8630
+    },
+    {
+      "path": "evidence/sources/network_audit/br-7e2468afd861.stderr",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/source_artifacts/network_audit/br-7e2468afd861.stderr",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "15773eacb939e99f6d918e11444efbd3fba84506dde8e6cc5e9c9ec8d135c7c6",
+      "bytes": 175
+    },
+    {
+      "path": "evidence/sources/network_audit/br-7e2468afd861.txt",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/source_artifacts/network_audit/br-7e2468afd861.txt",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "5428d0e1d2b30df621df10d80f4e5f3bfdac383a09180e70496b011037fc3e79",
+      "bytes": 10271
+    },
+    {
+      "path": "evidence/sources/network_audit/comparison.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/source_artifacts/network_audit/comparison.json",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "0f7c30d45d5bf7c47893029c8c62eff0ff0053d24e348623a8aacf9fb9ba3c6e",
+      "bytes": 2173
+    },
+    {
+      "path": "evidence/sources/network_audit/isolation.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/source_artifacts/network_audit/isolation.json",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "4696c0ca480d2dbb1fdf1b21d139f11158ab4d6ab2e223ecac03a5dbfb1703d7",
+      "bytes": 498
+    },
+    {
+      "path": "evidence/sources/network_audit/lo.pcap",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/source_artifacts/network_audit/lo.pcap",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "704e5e5b3234433c01fcfd1b20a306e77e985038120492dc53965c3edd38a4ea",
+      "bytes": 24
+    },
+    {
+      "path": "evidence/sources/network_audit/lo.stderr",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/source_artifacts/network_audit/lo.stderr",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "5e03f32d98faa326e72cbd0b7583f79e21b54f32f95199d99746cd426f57f885",
+      "bytes": 160
+    },
+    {
+      "path": "evidence/sources/network_audit/lo.txt",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/source_artifacts/network_audit/lo.txt",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "evidence/sources/network_audit/veth1bfb330.pcap",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/source_artifacts/network_audit/veth1bfb330.pcap",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "1346f6d7045552e5f19d4bb2a25481a09bdf4cc75df1620e7063c22f33e731db",
+      "bytes": 8630
+    },
+    {
+      "path": "evidence/sources/network_audit/veth1bfb330.stderr",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/source_artifacts/network_audit/veth1bfb330.stderr",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "ce1be3b12b1038f775661ef8638c20802383211b47da46a96327b1938e8a033f",
+      "bytes": 171
+    },
+    {
+      "path": "evidence/sources/network_audit/veth1bfb330.txt",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/source_artifacts/network_audit/veth1bfb330.txt",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "9a618e9c671a339ed5992ee12c632ccaf6713de253d507c21a5292aefc66490e",
+      "bytes": 10271
+    },
+    {
+      "path": "evidence/sources/normal_1/control/command.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/source_artifacts/normal_1/control/command.json",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "0b4790f8114cd964314c001ed760e9fb6cd4b9918db0506e6a4a6994e4bdb0d0",
+      "bytes": 231
+    },
+    {
+      "path": "evidence/sources/normal_1/manifest.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/source_artifacts/normal_1/manifest.json",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "7e483b5b90790648f3963b43d8a29aeb92690e71f4f11473f91efaf830574adf",
+      "bytes": 387
+    },
+    {
+      "path": "evidence/sources/normal_1/output/container_output.log",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/source_artifacts/normal_1/output/container_output.log",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "42addb362f3a4b6a4f0e3bc657e5ee43884a12879b7a3b1a03c07402dbad268a",
+      "bytes": 276
+    },
+    {
+      "path": "evidence/sources/normal_1/output/final_status.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/source_artifacts/normal_1/output/final_status.json",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "e2379f9aef0273caa808db669060e2342cd825f2131099dbbefaa97e0a7ed95f",
+      "bytes": 142
+    },
+    {
+      "path": "evidence/sources/normal_1/output/journal.jsonl",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/source_artifacts/normal_1/output/journal.jsonl",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "a190dd185d998ef5198f2c0f58f5ed6c67781327e03994f41fca308ed6d1913a",
+      "bytes": 20446
+    },
+    {
+      "path": "evidence/sources/normal_1/output/local_events.csv",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/source_artifacts/normal_1/output/local_events.csv",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "60ab7844339e419ae620d6b60cbe32eb46f3f03619ae2d5d97f28e73ab663e34",
+      "bytes": 321
+    },
+    {
+      "path": "evidence/sources/normal_1/output/local_requests.csv",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/source_artifacts/normal_1/output/local_requests.csv",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "b1570ba24dad15951a1cfb969bff3a93faebe51a5926dc21fdc4f2ecd2b1c21f",
+      "bytes": 3464
+    },
+    {
+      "path": "evidence/sources/normal_1/output/local_rtt.csv",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/source_artifacts/normal_1/output/local_rtt.csv",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "5c52273a1abbf00919ce1f91363a340d9753e0a0c5e751f37bbb5adc7c4fa059",
+      "bytes": 1798
+    },
+    {
+      "path": "evidence/sources/normal_1/output/local_summary.csv",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/source_artifacts/normal_1/output/local_summary.csv",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "ffcee466b1ff232c652edb182c5b60236579f824fa415b44b3987ec40ef1c4af",
+      "bytes": 141
+    },
+    {
+      "path": "evidence/sources/normal_1/output/ready.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/source_artifacts/normal_1/output/ready.json",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "fee545ade230eb6ba334b8d55c65975098c22dad4974f1c9be4d53f177f58789",
+      "bytes": 124
+    },
+    {
+      "path": "evidence/sources/normal_1/output/routing_evidence.jsonl",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/source_artifacts/normal_1/output/routing_evidence.jsonl",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "66cf1873b944e8b53c5ea719837052b48371dc6506f4d42ba5a4e6fb17c1054a",
+      "bytes": 2632
+    },
+    {
+      "path": "evidence/sources/normal_2/control/command.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/source_artifacts/normal_2/control/command.json",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "0b4790f8114cd964314c001ed760e9fb6cd4b9918db0506e6a4a6994e4bdb0d0",
+      "bytes": 231
+    },
+    {
+      "path": "evidence/sources/normal_2/manifest.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/source_artifacts/normal_2/manifest.json",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "ea4a3b03cb307d0ba12185a29f674701e62a2158e499b1d49180f892222429cf",
+      "bytes": 387
+    },
+    {
+      "path": "evidence/sources/normal_2/output/container_output.log",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/source_artifacts/normal_2/output/container_output.log",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "c08e86367b2f32799eb8e18062a4314e034ffcc54108cf5cf7ee45be7b533179",
+      "bytes": 276
+    },
+    {
+      "path": "evidence/sources/normal_2/output/final_status.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/source_artifacts/normal_2/output/final_status.json",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "4f58637e6a7f24c284d59bdaae7822b5bf0dfc5b6949d12d5e4b82f3b3b575d5",
+      "bytes": 142
+    },
+    {
+      "path": "evidence/sources/normal_2/output/journal.jsonl",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/source_artifacts/normal_2/output/journal.jsonl",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "f4a4f9b8b943bbcc072a5cae4188ec2f638a58deca5541062e4401b17ad8668a",
+      "bytes": 16192
+    },
+    {
+      "path": "evidence/sources/normal_2/output/local_events.csv",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/source_artifacts/normal_2/output/local_events.csv",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "60ab7844339e419ae620d6b60cbe32eb46f3f03619ae2d5d97f28e73ab663e34",
+      "bytes": 321
+    },
+    {
+      "path": "evidence/sources/normal_2/output/local_requests.csv",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/source_artifacts/normal_2/output/local_requests.csv",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "c2e8c4fe0ff503d2b137892b193ef618c71102ef133d30cc017859b5b35574e2",
+      "bytes": 2770
+    },
+    {
+      "path": "evidence/sources/normal_2/output/local_rtt.csv",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/source_artifacts/normal_2/output/local_rtt.csv",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "a4489e935fc8f19d38bcc9e222ace12ef79e55a3f2777cdfae34ada13c54c802",
+      "bytes": 1425
+    },
+    {
+      "path": "evidence/sources/normal_2/output/local_summary.csv",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/source_artifacts/normal_2/output/local_summary.csv",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "aec4ae194a6bf96bf6bedc3dad0eb672b2a1e6059c0f258e7224a45e478b1ca1",
+      "bytes": 141
+    },
+    {
+      "path": "evidence/sources/normal_2/output/ready.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/source_artifacts/normal_2/output/ready.json",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "c9266b8917f75d3172d445631f60e175612d6bace8e8c365e92047e7a63e1b45",
+      "bytes": 123
+    },
+    {
+      "path": "evidence/sources/normal_2/output/routing_evidence.jsonl",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/source_artifacts/normal_2/output/routing_evidence.jsonl",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "4461d8b8aa29c3ad1c3d42408066f421dcb7d6f72051b608465f4878f4780c49",
+      "bytes": 2068
+    },
+    {
+      "path": "evidence/sources/requirements.sources.txt",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/source_artifacts/requirements.sources.txt",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "58275698cb78292d1f38df0ea697e2be10ad7f56d197bed7e0629e6af0fd0c50",
+      "bytes": 88
+    },
+    {
+      "path": "metadata/topology/sources/source_plan.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/source_artifacts/source_plan.json",
+      "group": "metadata",
+      "role": "topology",
+      "sha256": "342cc4ea2aa0defb9fbf672e03a5474f1253c58fab35cedc38b190244e750348",
+      "bytes": 851
+    },
+    {
+      "path": "raw/traffic/traffic_capture.pcap",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/source_artifacts/traffic_capture.pcap",
+      "group": "traffic",
+      "role": "observed",
+      "sha256": "762b68b42bd33cfc0a68ec437375ae6dd3b8eb9ef77ed0803b87d5aeab65d9c5",
+      "bytes": 18752
+    },
+    {
+      "path": "evidence/sources/traffic_capture.pcap.capture.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/source_artifacts/traffic_capture.pcap.capture.json",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "6b8837d65cd4c1c0be65277848edafc8c5f566d73426d9a6f68f06def91bf41e",
+      "bytes": 2754
+    },
+    {
+      "path": "evidence/sources/traffic_capture.pcap.stderr",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/source_artifacts/traffic_capture.pcap.stderr",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "7b4c4a5b948e84836c908f79292d36d369228a8247b012af3298edeee85588bb",
+      "bytes": 177
+    },
+    {
+      "path": "metadata/source_inventory.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/source_inventory.json",
+      "group": "metadata",
+      "role": "canonical",
+      "sha256": "f4f2411ee90f81ec5907b1bd3a5b40535d6111910beda06f6e416fe3d58a8e69",
+      "bytes": 2443
+    },
+    {
+      "path": "raw/traffic/traffic_capture.csv",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/traffic_capture.csv",
+      "group": "traffic",
+      "role": "observed",
+      "sha256": "4fdcdf7a32c1075a56c66aa7cfd9ff67414730223d0c8ff649ad03ea57a9aecb",
+      "bytes": 12224,
+      "schema_ref": "schema.json#/tables/packets",
+      "schema_recognized": true
+    },
+    {
+      "path": "evidence/other/traffic_capture.csv.capture.json",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/traffic_capture.csv.capture.json",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "e9e7bf13141ae437255afbfb862855aa5f1f154d2388b5eef620b8bc7da48fba",
+      "bytes": 2597
+    },
+    {
+      "path": "evidence/other/traffic_capture.stderr",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/traffic_capture.stderr",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "5f1e7de614996d30dbd39fec1bd1737df28ad3c7556ee7feba948b112d34de96",
+      "bytes": 242
+    },
+    {
+      "path": "evidence/other/victim_stats.jsonl",
+      "origin_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/direct-topology-20261104/proxy-raw/victim_stats.jsonl",
+      "group": "evidence",
+      "role": "operational",
+      "sha256": "99acfb36bbbb5f050144c5d9a8452bb12bcd0ffe7c70d35eacab1268d980c2d4",
+      "bytes": 6276
+    },
+    {
+      "path": "schema.json",
+      "origin_path": null,
+      "group": "metadata",
+      "role": "generated",
+      "sha256": "2dce3d86577028b548a9920a10d2fa6c1aad1dc4de1dc14ef1406b8d8bcb3ace",
+      "bytes": 33702
+    },
+    {
+      "path": "metadata/export_provenance.json",
+      "origin_path": null,
+      "group": "metadata",
+      "role": "generated",
+      "sha256": "30c4e3b2d881f5cef7403d55e32ea4539d2403297451488dd4499fbf05950b7e",
+      "bytes": 17966
+    }
+  ],
+  "missing_artifacts": [],
+  "warnings": [],
+  "structural_status": "complete",
+  "validity": "not_evaluated; Stage 9 responsibility"
+}

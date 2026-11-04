@@ -1,0 +1,257 @@
+{
+  "host_time_namespace": "time:[4026531834]",
+  "host": {
+    "namespace": "time:[4026531834]",
+    "kernel": "7.0.0-42-generic",
+    "clock_source": "clock_gettime(CLOCK_MONOTONIC)",
+    "thread_namespace": "time:[4026531834]",
+    "children_namespace": "time:[4026531834]",
+    "timens_offsets": "monotonic           0         0\nboottime            0         0\n"
+  },
+  "host_pid": 48883,
+  "sources": [
+    {
+      "container_id": "54381006b5f588f839858788f83cdee68ccbfd57aa2a41cea5c89cdd2e1d13d2",
+      "samples": [
+        {
+          "index": 1,
+          "host_before": 22905.395345899,
+          "host_after": 22905.442009471,
+          "host_epoch_after": 1793814714.4828806,
+          "exit_code": 0,
+          "raw_output": "{\"monotonic\": 22905.437934283, \"epoch\": 1793814714.4788058, \"namespace\": \"time:[4026533576]\", \"pid\": 7, \"kernel\": \"7.0.0-42-generic\", \"clock_source\": \"clock_gettime(CLOCK_MONOTONIC)\", \"thread_namespace\": \"time:[4026533576]\", \"children_namespace\": \"time:[4026533576]\", \"init_namespace\": \"time:[4026533576]\", \"timens_offsets\": \"monotonic           0         0\\nboottime            0         0\\n\"}\n",
+          "monotonic": 22905.437934283,
+          "epoch": 1793814714.4788058,
+          "namespace": "time:[4026533576]",
+          "pid": 7,
+          "kernel": "7.0.0-42-generic",
+          "clock_source": "clock_gettime(CLOCK_MONOTONIC)",
+          "thread_namespace": "time:[4026533576]",
+          "children_namespace": "time:[4026533576]",
+          "init_namespace": "time:[4026533576]",
+          "timens_offsets": "monotonic           0         0\nboottime            0         0\n",
+          "checks": {
+            "namespace_equal": false,
+            "zero_offsets_native_process_proof": true,
+            "remote_within_host_bracket": true,
+            "comparable": true
+          },
+          "bracket_width_seconds": 0.046663572000397835,
+          "offset_interval_seconds": [
+            -0.004075188000570051,
+            0.042588383999827784
+          ]
+        },
+        {
+          "index": 2,
+          "host_before": 22905.4424011,
+          "host_after": 22905.490865579,
+          "host_epoch_after": 1793814714.5317369,
+          "exit_code": 0,
+          "raw_output": "{\"monotonic\": 22905.486719438, \"epoch\": 1793814714.5275908, \"namespace\": \"time:[4026533576]\", \"pid\": 13, \"kernel\": \"7.0.0-42-generic\", \"clock_source\": \"clock_gettime(CLOCK_MONOTONIC)\", \"thread_namespace\": \"time:[4026533576]\", \"children_namespace\": \"time:[4026533576]\", \"init_namespace\": \"time:[4026533576]\", \"timens_offsets\": \"monotonic           0         0\\nboottime            0         0\\n\"}\n",
+          "monotonic": 22905.486719438,
+          "epoch": 1793814714.5275908,
+          "namespace": "time:[4026533576]",
+          "pid": 13,
+          "kernel": "7.0.0-42-generic",
+          "clock_source": "clock_gettime(CLOCK_MONOTONIC)",
+          "thread_namespace": "time:[4026533576]",
+          "children_namespace": "time:[4026533576]",
+          "init_namespace": "time:[4026533576]",
+          "timens_offsets": "monotonic           0         0\nboottime            0         0\n",
+          "checks": {
+            "namespace_equal": false,
+            "zero_offsets_native_process_proof": true,
+            "remote_within_host_bracket": true,
+            "comparable": true
+          },
+          "bracket_width_seconds": 0.04846447899763007,
+          "offset_interval_seconds": [
+            -0.00414614100009203,
+            0.04431833799753804
+          ]
+        },
+        {
+          "index": 3,
+          "host_before": 22905.491195097,
+          "host_after": 22905.538965873,
+          "host_epoch_after": 1793814714.5798368,
+          "exit_code": 0,
+          "raw_output": "{\"monotonic\": 22905.534812803, \"epoch\": 1793814714.575684, \"namespace\": \"time:[4026533576]\", \"pid\": 19, \"kernel\": \"7.0.0-42-generic\", \"clock_source\": \"clock_gettime(CLOCK_MONOTONIC)\", \"thread_namespace\": \"time:[4026533576]\", \"children_namespace\": \"time:[4026533576]\", \"init_namespace\": \"time:[4026533576]\", \"timens_offsets\": \"monotonic           0         0\\nboottime            0         0\\n\"}\n",
+          "monotonic": 22905.534812803,
+          "epoch": 1793814714.575684,
+          "namespace": "time:[4026533576]",
+          "pid": 19,
+          "kernel": "7.0.0-42-generic",
+          "clock_source": "clock_gettime(CLOCK_MONOTONIC)",
+          "thread_namespace": "time:[4026533576]",
+          "children_namespace": "time:[4026533576]",
+          "init_namespace": "time:[4026533576]",
+          "timens_offsets": "monotonic           0         0\nboottime            0         0\n",
+          "checks": {
+            "namespace_equal": false,
+            "zero_offsets_native_process_proof": true,
+            "remote_within_host_bracket": true,
+            "comparable": true
+          },
+          "bracket_width_seconds": 0.04777077599646873,
+          "offset_interval_seconds": [
+            -0.004153070000029402,
+            0.04361770599643933
+          ]
+        },
+        {
+          "index": 4,
+          "host_before": 22905.539325943,
+          "host_after": 22905.585747225,
+          "host_epoch_after": 1793814714.6266181,
+          "exit_code": 0,
+          "raw_output": "{\"monotonic\": 22905.581615468, \"epoch\": 1793814714.6224868, \"namespace\": \"time:[4026533576]\", \"pid\": 25, \"kernel\": \"7.0.0-42-generic\", \"clock_source\": \"clock_gettime(CLOCK_MONOTONIC)\", \"thread_namespace\": \"time:[4026533576]\", \"children_namespace\": \"time:[4026533576]\", \"init_namespace\": \"time:[4026533576]\", \"timens_offsets\": \"monotonic           0         0\\nboottime            0         0\\n\"}\n",
+          "monotonic": 22905.581615468,
+          "epoch": 1793814714.6224868,
+          "namespace": "time:[4026533576]",
+          "pid": 25,
+          "kernel": "7.0.0-42-generic",
+          "clock_source": "clock_gettime(CLOCK_MONOTONIC)",
+          "thread_namespace": "time:[4026533576]",
+          "children_namespace": "time:[4026533576]",
+          "init_namespace": "time:[4026533576]",
+          "timens_offsets": "monotonic           0         0\nboottime            0         0\n",
+          "checks": {
+            "namespace_equal": false,
+            "zero_offsets_native_process_proof": true,
+            "remote_within_host_bracket": true,
+            "comparable": true
+          },
+          "bracket_width_seconds": 0.04642128200066509,
+          "offset_interval_seconds": [
+            -0.004131756999413483,
+            0.042289525001251604
+          ]
+        }
+      ]
+    },
+    {
+      "container_id": "9c5a840284f0590e08b8a13efcae9df8bb7b66287101f5066e268676aaa4dfb0",
+      "samples": [
+        {
+          "index": 1,
+          "host_before": 22905.586339459,
+          "host_after": 22905.62987399,
+          "host_epoch_after": 1793814714.6707451,
+          "exit_code": 0,
+          "raw_output": "{\"monotonic\": 22905.625824038, \"epoch\": 1793814714.6666954, \"namespace\": \"time:[4026533639]\", \"pid\": 7, \"kernel\": \"7.0.0-42-generic\", \"clock_source\": \"clock_gettime(CLOCK_MONOTONIC)\", \"thread_namespace\": \"time:[4026533639]\", \"children_namespace\": \"time:[4026533639]\", \"init_namespace\": \"time:[4026533639]\", \"timens_offsets\": \"monotonic           0         0\\nboottime            0         0\\n\"}\n",
+          "monotonic": 22905.625824038,
+          "epoch": 1793814714.6666954,
+          "namespace": "time:[4026533639]",
+          "pid": 7,
+          "kernel": "7.0.0-42-generic",
+          "clock_source": "clock_gettime(CLOCK_MONOTONIC)",
+          "thread_namespace": "time:[4026533639]",
+          "children_namespace": "time:[4026533639]",
+          "init_namespace": "time:[4026533639]",
+          "timens_offsets": "monotonic           0         0\nboottime            0         0\n",
+          "checks": {
+            "namespace_equal": false,
+            "zero_offsets_native_process_proof": true,
+            "remote_within_host_bracket": true,
+            "comparable": true
+          },
+          "bracket_width_seconds": 0.04353453099975013,
+          "offset_interval_seconds": [
+            -0.00404995200005942,
+            0.03948457899969071
+          ]
+        },
+        {
+          "index": 2,
+          "host_before": 22905.630170505,
+          "host_after": 22905.676644632,
+          "host_epoch_after": 1793814714.7175155,
+          "exit_code": 0,
+          "raw_output": "{\"monotonic\": 22905.672514378, \"epoch\": 1793814714.7133858, \"namespace\": \"time:[4026533639]\", \"pid\": 13, \"kernel\": \"7.0.0-42-generic\", \"clock_source\": \"clock_gettime(CLOCK_MONOTONIC)\", \"thread_namespace\": \"time:[4026533639]\", \"children_namespace\": \"time:[4026533639]\", \"init_namespace\": \"time:[4026533639]\", \"timens_offsets\": \"monotonic           0         0\\nboottime            0         0\\n\"}\n",
+          "monotonic": 22905.672514378,
+          "epoch": 1793814714.7133858,
+          "namespace": "time:[4026533639]",
+          "pid": 13,
+          "kernel": "7.0.0-42-generic",
+          "clock_source": "clock_gettime(CLOCK_MONOTONIC)",
+          "thread_namespace": "time:[4026533639]",
+          "children_namespace": "time:[4026533639]",
+          "init_namespace": "time:[4026533639]",
+          "timens_offsets": "monotonic           0         0\nboottime            0         0\n",
+          "checks": {
+            "namespace_equal": false,
+            "zero_offsets_native_process_proof": true,
+            "remote_within_host_bracket": true,
+            "comparable": true
+          },
+          "bracket_width_seconds": 0.04647412700069253,
+          "offset_interval_seconds": [
+            -0.004130254001211142,
+            0.04234387299948139
+          ]
+        },
+        {
+          "index": 3,
+          "host_before": 22905.67695265,
+          "host_after": 22905.72463011,
+          "host_epoch_after": 1793814714.7655013,
+          "exit_code": 0,
+          "raw_output": "{\"monotonic\": 22905.720309445, \"epoch\": 1793814714.7611806, \"namespace\": \"time:[4026533639]\", \"pid\": 19, \"kernel\": \"7.0.0-42-generic\", \"clock_source\": \"clock_gettime(CLOCK_MONOTONIC)\", \"thread_namespace\": \"time:[4026533639]\", \"children_namespace\": \"time:[4026533639]\", \"init_namespace\": \"time:[4026533639]\", \"timens_offsets\": \"monotonic           0         0\\nboottime            0         0\\n\"}\n",
+          "monotonic": 22905.720309445,
+          "epoch": 1793814714.7611806,
+          "namespace": "time:[4026533639]",
+          "pid": 19,
+          "kernel": "7.0.0-42-generic",
+          "clock_source": "clock_gettime(CLOCK_MONOTONIC)",
+          "thread_namespace": "time:[4026533639]",
+          "children_namespace": "time:[4026533639]",
+          "init_namespace": "time:[4026533639]",
+          "timens_offsets": "monotonic           0         0\nboottime            0         0\n",
+          "checks": {
+            "namespace_equal": false,
+            "zero_offsets_native_process_proof": true,
+            "remote_within_host_bracket": true,
+            "comparable": true
+          },
+          "bracket_width_seconds": 0.04767745999924955,
+          "offset_interval_seconds": [
+            -0.00432066499706707,
+            0.04335679500218248
+          ]
+        },
+        {
+          "index": 4,
+          "host_before": 22905.725085931,
+          "host_after": 22905.778989593,
+          "host_epoch_after": 1793814714.8198607,
+          "exit_code": 0,
+          "raw_output": "{\"monotonic\": 22905.774800176, \"epoch\": 1793814714.8156714, \"namespace\": \"time:[4026533639]\", \"pid\": 25, \"kernel\": \"7.0.0-42-generic\", \"clock_source\": \"clock_gettime(CLOCK_MONOTONIC)\", \"thread_namespace\": \"time:[4026533639]\", \"children_namespace\": \"time:[4026533639]\", \"init_namespace\": \"time:[4026533639]\", \"timens_offsets\": \"monotonic           0         0\\nboottime            0         0\\n\"}\n",
+          "monotonic": 22905.774800176,
+          "epoch": 1793814714.8156714,
+          "namespace": "time:[4026533639]",
+          "pid": 25,
+          "kernel": "7.0.0-42-generic",
+          "clock_source": "clock_gettime(CLOCK_MONOTONIC)",
+          "thread_namespace": "time:[4026533639]",
+          "children_namespace": "time:[4026533639]",
+          "init_namespace": "time:[4026533639]",
+          "timens_offsets": "monotonic           0         0\nboottime            0         0\n",
+          "checks": {
+            "namespace_equal": false,
+            "zero_offsets_native_process_proof": true,
+            "remote_within_host_bracket": true,
+            "comparable": true
+          },
+          "bracket_width_seconds": 0.0539036619993567,
+          "offset_interval_seconds": [
+            -0.004189416998997331,
+            0.04971424500035937
+          ]
+        }
+      ]
+    }
+  ],
+  "comparable": true
+}

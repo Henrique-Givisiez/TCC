@@ -110,6 +110,11 @@ class TrafficSourcesConfig:
 
 
 @dataclass(frozen=True)
+class TopologyConfig:
+    mode: str = "proxy"
+
+
+@dataclass(frozen=True)
 class ExperimentConfig:
     id: str = "default"
     duration_seconds: float = 180
@@ -123,6 +128,7 @@ class ExperimentConfig:
     load_balancer: LoadBalancerConfig = field(default_factory=LoadBalancerConfig)
 
     traffic_sources: TrafficSourcesConfig = field(default_factory=TrafficSourcesConfig)
+    topology: TopologyConfig = field(default_factory=TopologyConfig)
 
     def validate(self):
         _validate_types(self, "experiment")
@@ -141,8 +147,15 @@ class ExperimentConfig:
                 raise ValueError(name + ".endpoint must be a path starting with / without query or fragment")
         if self.traffic_sources.execution not in ("host", "containers"):
             raise ValueError("traffic_sources.execution must be host or containers")
+        if self.topology.mode not in ("proxy", "direct"):
+            raise ValueError("topology.mode must be proxy or direct")
+        if self.topology.mode == "direct":
+            if self.traffic_sources.execution != "containers" or self.load_balancer.enabled or self.autoscaler.enabled:
+                raise ValueError("direct requires container sources, load_balancer.enabled=false and autoscaler.enabled=false")
+            if self.infrastructure.initial_instances != 1 or self.infrastructure.min_instances != 1 or self.infrastructure.max_instances != 1:
+                raise ValueError("direct requires exactly one fixed victim")
         if self.traffic_sources.execution == "containers":
-            if not self.load_balancer.enabled or self.autoscaler.enabled:
+            if (self.topology.mode == "proxy" and not self.load_balancer.enabled) or self.autoscaler.enabled:
                 raise ValueError("container sources require proxy enabled and autoscaler disabled")
             for name, count in (("normal_traffic", self.normal_traffic.clients), ("attack", self.attack.attackers)):
                 if count > getattr(self, name).max_concurrent_sends:
@@ -183,7 +196,12 @@ class ExperimentConfig:
 
     def to_json(self):
         self.validate()
-        return json.dumps(asdict(self), indent=2, allow_nan=False) + "\n"
+        data = asdict(self)
+        # Keep the canonical bytes of historical proxy/default configurations.
+        # The effective segment and topology are also recorded in run metadata.
+        if self.topology.mode == 'proxy':
+            data.pop('topology')
+        return json.dumps(data, indent=2, allow_nan=False) + "\n"
 
     @classmethod
     def from_dict(cls, data):

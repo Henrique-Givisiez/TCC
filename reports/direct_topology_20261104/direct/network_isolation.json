@@ -1,0 +1,25 @@
+{
+  "probes": [
+    {
+      "source_id": "normal_1",
+      "probes": {
+        "victim_name": "CONNECTED",
+        "victim_ip": "TimeoutError"
+      },
+      "networks": [
+        "edos_sources"
+      ]
+    },
+    {
+      "source_id": "normal_2",
+      "probes": {
+        "victim_name": "CONNECTED",
+        "victim_ip": "TimeoutError"
+      },
+      "networks": [
+        "edos_sources"
+      ]
+    }
+  ],
+  "note": "Technical exec probes receive a victim address; generator manifests never do."
+}

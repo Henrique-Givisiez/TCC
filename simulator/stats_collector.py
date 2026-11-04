@@ -1,5 +1,6 @@
 import time
 import threading
+import json
 from collections import deque
 from typing import Dict, List, Optional, Tuple
 import docker
@@ -23,6 +24,7 @@ class StatsCollector:
         self._history: Dict[str, deque] = {}  # id -> deque de (timestamp, cpu_percent, mem_app_mb, name)
         self._lock = threading.Lock()
         self._stop_evt = threading.Event()
+        self.evidence_path = None
 
         self._t = threading.Thread(target=self._run, name="DockerStatsCollector", daemon=True)
 
@@ -115,6 +117,11 @@ class StatsCollector:
                     metrics = self._compute_metrics(c, stats)
                     if metrics:
                         now = time.monotonic()
+                        if self.evidence_path is not None:
+                            with open(self.evidence_path, 'a') as evidence:
+                                evidence.write(json.dumps(dict(monotonic=now, container_id=c.id,
+                                    metrics=metrics, cpu_stats=stats.get('cpu_stats'),
+                                    precpu_stats=stats.get('precpu_stats'))) + '\n')
                         with self._lock:
                             self._cache[cid] = metrics
                             hist = self._history.setdefault(cid, deque())

@@ -1,0 +1,14 @@
+run_id,window_index,window_start_seconds,window_end_seconds,ingress_packet_count,egress_packet_count,ingress_tcp_payload_length_sum_bytes,egress_tcp_payload_length_sum_bytes,unique_client_src_ips
+fbf5c0f5e8d7445b9363bcc4bbf904da,0,0,1,16,11,1035,1015,2
+fbf5c0f5e8d7445b9363bcc4bbf904da,1,1,2,4,2,414,406,1
+fbf5c0f5e8d7445b9363bcc4bbf904da,2,2,3,2,1,207,203,1
+fbf5c0f5e8d7445b9363bcc4bbf904da,3,3,4,4,2,414,406,1
+fbf5c0f5e8d7445b9363bcc4bbf904da,4,4,5,2,1,207,203,1
+fbf5c0f5e8d7445b9363bcc4bbf904da,5,5,6,9,5,828,812,2
+fbf5c0f5e8d7445b9363bcc4bbf904da,6,6,7,2,1,207,203,1
+fbf5c0f5e8d7445b9363bcc4bbf904da,7,7,8,5,3,414,406,1
+fbf5c0f5e8d7445b9363bcc4bbf904da,8,8,9,5,3,414,406,1
+fbf5c0f5e8d7445b9363bcc4bbf904da,9,9,10,5,3,414,406,1
+fbf5c0f5e8d7445b9363bcc4bbf904da,10,10,11,5,3,414,406,2
+fbf5c0f5e8d7445b9363bcc4bbf904da,11,11,12,2,1,207,203,1
+fbf5c0f5e8d7445b9363bcc4bbf904da,12,12,13,4,2,0,0,2

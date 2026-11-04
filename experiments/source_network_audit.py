@@ -4,28 +4,55 @@ from pathlib import Path
 import re
 import subprocess
 import time
+from simulator import config
 from simulator.http_proxy import write_json
 
 
 TUPLE = re.compile(r'IP (\d+\.\d+\.\d+\.\d+)\.(\d+) > (\d+\.\d+\.\d+\.\d+)\.(\d+):')
 
 
+def validate_isolation(probes, mode):
+    if mode == 'proxy':
+        if 'CONNECTED' in probes.values():
+            raise RuntimeError('direct source→victim route exists in proxy topology')
+    elif mode == 'direct':
+        if probes.get('victim_name') != 'CONNECTED':
+            raise RuntimeError('direct victim name is unreachable')
+        if probes.get('victim_ip') == 'CONNECTED':
+            raise RuntimeError('source bypasses source network isolation through backend address')
+    else:
+        raise ValueError('unknown topology')
+
+
 def audit(manager, proxy, backend_inventory, directory):
     root = Path(directory)
     root.mkdir(parents=True, exist_ok=False)
     ip = proxy.identity['source_ip']
-    bpf = f'tcp and ((dst host {ip} and dst port 80) or (src host {ip} and src port 80))'
+    direct = manager.experiment.topology.mode == 'direct'
+    port = config.APP_CONTAINER_PORT if direct else 80
+    proxy.verify()
+    network_members = {c.id for c in manager.containers} | {proxy.expected_id}
     network = manager.network
+    network.reload()
+    if set(network.attrs.get('Containers', {})) != network_members:
+        raise RuntimeError('unexpected source network members')
+    bpf = f'tcp and ((dst host {ip} and dst port {port}) or (src host {ip} and src port {port}))'
     network.reload()
     bridge = network.attrs.get('Options', {}).get('com.docker.network.bridge.name', 'br-'+network.id[:12])
     # Proxy is created on backend network and then attached to source network.
     iface = proxy.container.exec_run(['sh','-c', 'for n in /sys/class/net/*; do echo "${n##*/} $(cat "$n/iflink")"; done'])
-    addresses = proxy.container.exec_run(['ip','-4','addr']).output.decode()
-    blocks = re.split(r'(?m)^\d+: ', addresses)
-    block = next((b for b in blocks if re.search(r'inet '+re.escape(ip)+r'/', b)), None)
-    if block is None:
-        raise RuntimeError('cannot identify proxy frontend interface: '+addresses)
-    interface = block.split(':',1)[0].split('@',1)[0]
+    if direct:
+        probe = proxy.container.exec_run(['python','-c',
+            'import socket,fcntl,struct,json; s=socket.socket(); print(json.dumps({n:socket.inet_ntoa(fcntl.ioctl(s,0x8915,struct.pack("256s",n.encode()))[20:24]) for _,n in socket.if_nameindex()}))'])
+        addresses = json.loads(probe.output)
+        interface = next(n for n, address in addresses.items() if address == ip)
+    else:
+        addresses = proxy.container.exec_run(['ip','-4','addr']).output.decode()
+        blocks = re.split(r'(?m)^\d+: ', addresses)
+        block = next((b for b in blocks if re.search(r'inet '+re.escape(ip)+r'/', b)), None)
+        if block is None:
+            raise RuntimeError('cannot identify proxy frontend interface: '+addresses)
+        interface = block.split(':',1)[0].split('@',1)[0]
     peers = dict(line.split() for line in iface.output.decode().splitlines())
     index = int(peers[interface])
     veth = next(p.name for p in Path('/sys/class/net').iterdir() if int((p/'ifindex').read_text())==index)
@@ -44,11 +71,17 @@ def audit(manager, proxy, backend_inventory, directory):
             time.sleep(.02)
         replies = []
         for entry, container in zip(manager.entries, manager.containers):
+            resolved = container.exec_run(['python','-c', 'import socket,json; print(json.dumps(sorted({r[4][0] for r in socket.getaddrinfo("edos_service",80,socket.AF_INET,socket.SOCK_STREAM)})))'])
+            if resolved.exit_code or json.loads(resolved.output) != [ip]:
+                raise RuntimeError('edos_service does not resolve uniquely to declared target')
             code = 'import requests,json; s=requests.Session(); s.trust_env=False; r=[s.get("http://edos_service:80/?work=0&sleep=0",headers={"X-Edos-Phase":"capture_audit"},timeout=2).text for _ in range(5)]; print(json.dumps(r))'
             response = container.exec_run(['python','-c',code])
             if response.exit_code:
                 raise RuntimeError('source cannot reach proxy: '+response.output.decode())
-            replies.append(dict(source_id=entry['source_id'], responses=json.loads(response.output)))
+            replies.append(dict(source_id=entry['source_id'], resolved_ips=json.loads(resolved.output),
+                                responses=json.loads(response.output)))
+            if direct and any(not r.startswith('host='+proxy.identity['hostname']+' ') for r in json.loads(response.output)):
+                raise RuntimeError('direct readiness response has wrong victim identity')
         time.sleep(.2)
     finally:
         for _,process,_ in captures:
@@ -87,7 +120,8 @@ def audit(manager, proxy, backend_inventory, directory):
     # The real fault test showed proxy veth disappearance; the validated bridge
     # survives proxy shutdown and preserves the same frontend tuple coverage.
     selected = next((s for s in valid if s['interface']==bridge), valid[0])
-    evidence = dict(proxy_ip=ip,bpf=bpf,candidates=summaries, selected_interface=selected['interface'],replies=replies)
+    evidence = dict(topology=manager.experiment.topology.mode,target_id=proxy.expected_id,
+                    proxy_ip=ip,service_port=port,bpf=bpf,candidates=summaries, selected_interface=selected['interface'],replies=replies)
     write_json(root/'comparison.json', evidence)
     isolation = []
     for entry, container in zip(manager.entries,manager.containers):
@@ -104,8 +138,7 @@ print(json.dumps(result))
         if response.exit_code:
             raise RuntimeError('isolation probe failed')
         probes = json.loads(response.output)
-        if 'CONNECTED' in probes.values():
-            raise RuntimeError('direct source→victim route exists: '+entry['source_id'])
+        validate_isolation(probes, manager.experiment.topology.mode)
         container.reload()
         if set(container.attrs['NetworkSettings']['Networks'])!={manager.network.name}:
             raise RuntimeError('source connected to unexpected network')
