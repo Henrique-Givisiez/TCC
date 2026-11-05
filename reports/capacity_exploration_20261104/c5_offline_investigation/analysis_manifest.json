@@ -1,0 +1,520 @@
+{
+  "analysis": "offline descriptive reconstruction; no experiment, container, or traffic execution",
+  "repository_branch": "refactor/project-organization",
+  "repository_head": "0e8928c71159bedab14c4987e109f5040c28d570",
+  "runs": [
+    {
+      "run": "C3_ON_r1",
+      "run_id": "383f827ba63d4bbc9fec2544479553ec",
+      "diagnostics_enabled": true,
+      "input_origin_monotonic": 33977.115408187,
+      "generation_seconds": 20.0,
+      "source_closed_elapsed_max": 20.064171876001637,
+      "capture_drops_csv": 0,
+      "capture_drops_pcap": 0,
+      "verification_accepted": true,
+      "diagnostic_joined_http_count": 2562
+    },
+    {
+      "run": "C3_OFF_r1",
+      "run_id": "bf535b3a3fc945868f6f554bf997f125",
+      "diagnostics_enabled": false,
+      "input_origin_monotonic": 34011.926307638,
+      "generation_seconds": 20.0,
+      "source_closed_elapsed_max": null,
+      "capture_drops_csv": 0,
+      "capture_drops_pcap": 0,
+      "verification_accepted": true,
+      "diagnostic_joined_http_count": null
+    },
+    {
+      "run": "C5_ON_r1",
+      "run_id": "dca9817ca23e4a27a28f3470e74c1d72",
+      "diagnostics_enabled": true,
+      "input_origin_monotonic": 34048.727446485,
+      "generation_seconds": 20.0,
+      "source_closed_elapsed_max": 20.211798361000547,
+      "capture_drops_csv": 0,
+      "capture_drops_pcap": 0,
+      "verification_accepted": true,
+      "diagnostic_joined_http_count": 2574
+    },
+    {
+      "run": "P5_128rps",
+      "run_id": "2db8ec8d31e04634ba2ccc90304bd5a8",
+      "diagnostics_enabled": true,
+      "input_origin_monotonic": 33706.217713906,
+      "generation_seconds": 12.0,
+      "source_closed_elapsed_max": 12.064683716002037,
+      "capture_drops_csv": 0,
+      "capture_drops_pcap": 0,
+      "verification_accepted": true,
+      "diagnostic_joined_http_count": 1530
+    }
+  ],
+  "input_files_sha256": [
+    {
+      "run": "C3_ON_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C3_ON_r1/raw/effective_config.json",
+      "size_bytes": 1321,
+      "sha256": "d6215e566ba32c0587800cd13bc33f7d0dc6efeec0fa71e1e7374f6dc987ab68"
+    },
+    {
+      "run": "C3_ON_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C3_ON_r1/raw/run_status.json",
+      "size_bytes": 6888,
+      "sha256": "08143daab5fb922d235d8f1cfa1a5ac099d27f3f54347e361ee2d87e29a38826"
+    },
+    {
+      "run": "C3_ON_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C3_ON_r1/raw/request_log.csv",
+      "size_bytes": 565868,
+      "sha256": "afe62237f07fcabe597b7b9eea00f44a70a36b608959c27e04dbcb9e81106ec5"
+    },
+    {
+      "run": "C3_ON_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C3_ON_r1/raw/simulation_metrics.csv",
+      "size_bytes": 2865,
+      "sha256": "334c3ee1cd3d729e7634c99699ba113e841c628c80b6c4dae0648cf4e8f05bcf"
+    },
+    {
+      "run": "C3_ON_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C3_ON_r1/raw/victim_stats.jsonl",
+      "size_bytes": 9952,
+      "sha256": "dc132039abc5d1792319f0b70c75460fc8211d11aaea43095aa21f8c8351c36d"
+    },
+    {
+      "run": "C3_ON_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C3_ON_r1/raw/traffic_capture.csv",
+      "size_bytes": 1532230,
+      "sha256": "7118dd7cf2eda53f8f2ac329f05e932a5d59ce364a72ad4e2bb7432aa928f990"
+    },
+    {
+      "run": "C3_ON_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C3_ON_r1/raw/traffic_capture.csv.capture.json",
+      "size_bytes": 2616,
+      "sha256": "2502f388765453ec18339e6fb69308dbce964fbb23845c9ae6d64dfe5b67c16b"
+    },
+    {
+      "run": "C3_ON_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C3_ON_r1/raw/source_artifacts/traffic_capture.pcap",
+      "size_bytes": 2080298,
+      "sha256": "e3615e217a41f3588c18bb06fdc8dd527edc026d4ca127816a08ad06cd28401b"
+    },
+    {
+      "run": "C3_ON_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C3_ON_r1/raw/source_artifacts/traffic_capture.pcap.capture.json",
+      "size_bytes": 2784,
+      "sha256": "afd49d5402d140e53a3047d5edb5d615a66b36da0b83e86491e7e100dd3a662c"
+    },
+    {
+      "run": "C3_ON_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C3_ON_r1/verification/verification.json",
+      "size_bytes": 26226,
+      "sha256": "7b4d44dec2e00ca0c4c34a1e195c07dd191647bd34e730d8793cb440bf4d931a"
+    },
+    {
+      "run": "C3_ON_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C3_ON_r1/capacity_summary.json",
+      "size_bytes": 28760,
+      "sha256": "7197262a2b499d9b386e4a4a556e29837fd522e8ca93a6fac832337c32bfa4dd"
+    },
+    {
+      "run": "C3_ON_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C3_ON_r1/diagnostic_summary.json",
+      "size_bytes": 98707,
+      "sha256": "0d9a8f12ec3b95a29d6942e7964a7deb32cf9aff4b0a17d036ace143afb4f9d1"
+    },
+    {
+      "run": "C3_ON_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C3_ON_r1/watchdog.jsonl",
+      "size_bytes": 28211,
+      "sha256": "7463305f30d514c3fdbcd215b6e2b26c1888e12dad217e4667141db5d2860fad"
+    },
+    {
+      "run": "C3_ON_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C3_ON_r1/raw/diagnostics/victim/events.jsonl",
+      "size_bytes": 2467976,
+      "sha256": "712345849040f6451375f0a098abf5161a81a168c89859545bc3f1dfdc4f246a"
+    },
+    {
+      "run": "C3_ON_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C3_ON_r1/raw/diagnostics/victim/events.summary.json",
+      "size_bytes": 448,
+      "sha256": "d8e548b23ba7359245e930d5b59d43901904533e05865465925e6662eaf1dc6f"
+    },
+    {
+      "run": "C3_ON_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C3_ON_r1/raw/source_artifacts/normal_1/output/diagnostics/events.jsonl",
+      "size_bytes": 2215433,
+      "sha256": "af2b944e4f808d6c105e259474e15f87b637ad571e8463bdc32173672b850cfb"
+    },
+    {
+      "run": "C3_ON_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C3_ON_r1/raw/source_artifacts/normal_2/output/diagnostics/events.jsonl",
+      "size_bytes": 2246874,
+      "sha256": "e4cfd1ffa18ce08891b255ad4b704f93371f51eb8c17ec29d71402dd904fa3a9"
+    },
+    {
+      "run": "C3_ON_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C3_ON_r1/raw/source_artifacts/normal_1/output/diagnostics/events.summary.json",
+      "size_bytes": 527,
+      "sha256": "04d4e825a4b2540781f3fe00452e624e69aaa610ff80ecd921090234afd0ca54"
+    },
+    {
+      "run": "C3_ON_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C3_ON_r1/raw/source_artifacts/normal_2/output/diagnostics/events.summary.json",
+      "size_bytes": 527,
+      "sha256": "588e6e0816c6b8e643fc55c88ab62dfe96fa634d0798716c8c6ca0281a32bd82"
+    },
+    {
+      "run": "C3_OFF_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C3_OFF_r1/raw/effective_config.json",
+      "size_bytes": 1250,
+      "sha256": "e346bd63de00a358183752d8e6091ac10207ba12cbd1697363a9c4946a5856e2"
+    },
+    {
+      "run": "C3_OFF_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C3_OFF_r1/raw/run_status.json",
+      "size_bytes": 6896,
+      "sha256": "29a2656d998a7fa535f9a244df20ea44b3e5c1dff1d33d21088b71f6a2757f33"
+    },
+    {
+      "run": "C3_OFF_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C3_OFF_r1/raw/request_log.csv",
+      "size_bytes": 566144,
+      "sha256": "43cdd0b4474df1d9266dcd2e4e962933939c83231c70642cebc18d0666319d62"
+    },
+    {
+      "run": "C3_OFF_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C3_OFF_r1/raw/simulation_metrics.csv",
+      "size_bytes": 2869,
+      "sha256": "48857a05926506c9070936dfcc77a89c290030c9b971ff1e060ce517d18c3941"
+    },
+    {
+      "run": "C3_OFF_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C3_OFF_r1/raw/victim_stats.jsonl",
+      "size_bytes": 9945,
+      "sha256": "0d95c1eb4939601921acca81120c103cf11702ba59db5408b9e9fb0ae968d3d4"
+    },
+    {
+      "run": "C3_OFF_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C3_OFF_r1/raw/traffic_capture.csv",
+      "size_bytes": 1680870,
+      "sha256": "86f588c34cbb87ef140ed6c55e4e7de24589fa13d69066771c4f91703c322592"
+    },
+    {
+      "run": "C3_OFF_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C3_OFF_r1/raw/traffic_capture.csv.capture.json",
+      "size_bytes": 2619,
+      "sha256": "16400daa9a9ff606140711728b86ed52b5ce83b5b2e81403a9e62c6201139600"
+    },
+    {
+      "run": "C3_OFF_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C3_OFF_r1/raw/source_artifacts/traffic_capture.pcap",
+      "size_bytes": 2186552,
+      "sha256": "e2364931a889c52637e0d6fda4afe3e320749b8255f57d98fb73dc8a41d4cbfd"
+    },
+    {
+      "run": "C3_OFF_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C3_OFF_r1/raw/source_artifacts/traffic_capture.pcap.capture.json",
+      "size_bytes": 2787,
+      "sha256": "7b34569fd8bdffe710bd8ed8a56df9c999fbf7e87576bbfec4208f461026d568"
+    },
+    {
+      "run": "C3_OFF_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C3_OFF_r1/verification/verification.json",
+      "size_bytes": 26251,
+      "sha256": "7dae0e6fc10e87388e62677178b711df9e4f0774ff2f9b43a30334ef32729ea8"
+    },
+    {
+      "run": "C3_OFF_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C3_OFF_r1/capacity_summary.json",
+      "size_bytes": 22281,
+      "sha256": "c4f6d3220c7473479f691d66ab7261ee5d2be740d6bf2dd56d7bbe6d43195039"
+    },
+    {
+      "run": "C3_OFF_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C3_OFF_r1/diagnostic_summary.json",
+      "size_bytes": 2260,
+      "sha256": "da57a7ceea7ee0e170f1cdc4170482656025b597bb6bfddeb98c36f01c90491a"
+    },
+    {
+      "run": "C3_OFF_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C3_OFF_r1/watchdog.jsonl",
+      "size_bytes": 27499,
+      "sha256": "d9384c9400b35470046333e81db888f9166b1b7a5920d238633be13af3bfa42f"
+    },
+    {
+      "run": "C5_ON_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C5_ON_r1/raw/effective_config.json",
+      "size_bytes": 1321,
+      "sha256": "40e3efde30c4c5d8a8bf54bd221f55543ca4c9bf2fcfaf44531da7376de50c38"
+    },
+    {
+      "run": "C5_ON_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C5_ON_r1/raw/run_status.json",
+      "size_bytes": 6886,
+      "sha256": "fed3de2a4b336d8b0d221cd8f924f6f2ed6ff6797231f91c08d679599e7f2715"
+    },
+    {
+      "run": "C5_ON_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C5_ON_r1/raw/request_log.csv",
+      "size_bytes": 568437,
+      "sha256": "812590dd3b539c0a6a5420d1c4873966c6baae25ca902b6ae16ebc4f365dadf7"
+    },
+    {
+      "run": "C5_ON_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C5_ON_r1/raw/simulation_metrics.csv",
+      "size_bytes": 2867,
+      "sha256": "9a10fccb172b1c82862ae33121060861f9713fc6699f3be45d641e71c8e004a8"
+    },
+    {
+      "run": "C5_ON_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C5_ON_r1/raw/victim_stats.jsonl",
+      "size_bytes": 9959,
+      "sha256": "def1c04b4e0a05b150d4179450ebeaa5b56522fece6b92af1278408807609d78"
+    },
+    {
+      "run": "C5_ON_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C5_ON_r1/raw/traffic_capture.csv",
+      "size_bytes": 1789361,
+      "sha256": "ee2ef6bf4bf6547c5ed66e963c8cc315d9510998c576a6ed905d4803205dfcb5"
+    },
+    {
+      "run": "C5_ON_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C5_ON_r1/raw/traffic_capture.csv.capture.json",
+      "size_bytes": 2616,
+      "sha256": "b894227bbb18eadb45f16c26a0791e755fb27dbcee07b86831d048da7daab93a"
+    },
+    {
+      "run": "C5_ON_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C5_ON_r1/raw/source_artifacts/traffic_capture.pcap",
+      "size_bytes": 2266914,
+      "sha256": "b6c9289ea86b05e3df7041a788084301af503dc2f64ad1a0f1ef6222e2de646e"
+    },
+    {
+      "run": "C5_ON_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C5_ON_r1/raw/source_artifacts/traffic_capture.pcap.capture.json",
+      "size_bytes": 2783,
+      "sha256": "a7f1a309d97c81743b41764d803449da0c262cd2c5d2792bf91d9a09658e4df8"
+    },
+    {
+      "run": "C5_ON_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C5_ON_r1/verification/verification.json",
+      "size_bytes": 31143,
+      "sha256": "521eedc6d4575f381f8e7e654d00ac69a4c9782731fc0e5ebcaee710ac9eca16"
+    },
+    {
+      "run": "C5_ON_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C5_ON_r1/capacity_summary.json",
+      "size_bytes": 29548,
+      "sha256": "89a1d1c4b07657ec1249fbfac402808ec3aa28b8ebc4629db76c71548a84e50d"
+    },
+    {
+      "run": "C5_ON_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C5_ON_r1/diagnostic_summary.json",
+      "size_bytes": 108832,
+      "sha256": "9a232c226743d72bf744c37b111a6a274679b17050dd2bdac068a1c1c23c0e99"
+    },
+    {
+      "run": "C5_ON_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C5_ON_r1/watchdog.jsonl",
+      "size_bytes": 40261,
+      "sha256": "b33db412fb81645992b704c9d9897b3163d28173706914065c8fa6254b26fe97"
+    },
+    {
+      "run": "C5_ON_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C5_ON_r1/raw/diagnostics/victim/events.jsonl",
+      "size_bytes": 2493395,
+      "sha256": "52e7635b1027c9f539ebc5bdf4d846c486025aff01b77d3888d57c99c85080cb"
+    },
+    {
+      "run": "C5_ON_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C5_ON_r1/raw/diagnostics/victim/events.summary.json",
+      "size_bytes": 448,
+      "sha256": "e19849f74cfa951b4429ae363a48a2024f8ce92874259fec6927ed2ee9c84a18"
+    },
+    {
+      "run": "C5_ON_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C5_ON_r1/raw/source_artifacts/normal_1/output/diagnostics/events.jsonl",
+      "size_bytes": 1071738,
+      "sha256": "2bfbb0ae716030b0c990e51dc8a613f782323a39eb55b46cbbae2a469b5db5ec"
+    },
+    {
+      "run": "C5_ON_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C5_ON_r1/raw/source_artifacts/normal_2/output/diagnostics/events.jsonl",
+      "size_bytes": 1146531,
+      "sha256": "0ee437fbdccf7fcb58770caf1a95c48dc6707e44276a9de45feb96b6fa6f42ad"
+    },
+    {
+      "run": "C5_ON_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C5_ON_r1/raw/source_artifacts/normal_3/output/diagnostics/events.jsonl",
+      "size_bytes": 1111744,
+      "sha256": "802cf11d9e0d93abffa51521262d6a8c081e57ccaf01bf92741c7bcee34295c9"
+    },
+    {
+      "run": "C5_ON_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C5_ON_r1/raw/source_artifacts/normal_4/output/diagnostics/events.jsonl",
+      "size_bytes": 1141254,
+      "sha256": "2134ff013d0a112b9121fb99ea9794eccc88bfd24d579b6d454cb03101ac3a92"
+    },
+    {
+      "run": "C5_ON_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C5_ON_r1/raw/source_artifacts/normal_1/output/diagnostics/events.summary.json",
+      "size_bytes": 527,
+      "sha256": "ba8b018d7c0e7c3fb109c8f5f0c9ddd99936d217d55db3d46c4e42752ff29ba9"
+    },
+    {
+      "run": "C5_ON_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C5_ON_r1/raw/source_artifacts/normal_2/output/diagnostics/events.summary.json",
+      "size_bytes": 527,
+      "sha256": "27281620c54ce5fda0d25a987b7d8648fae96028fc534989b74f2883a705fa3b"
+    },
+    {
+      "run": "C5_ON_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C5_ON_r1/raw/source_artifacts/normal_3/output/diagnostics/events.summary.json",
+      "size_bytes": 527,
+      "sha256": "c5de27b57e020849f5b073d0604a94603ae817889219e1d50da3d6f2d1ff9d14"
+    },
+    {
+      "run": "C5_ON_r1",
+      "path": "experiment_results/capacity-exploration-20261104/C5_ON_r1/raw/source_artifacts/normal_4/output/diagnostics/events.summary.json",
+      "size_bytes": 527,
+      "sha256": "106f92fb18d55ca27f21af66ce7464e88092282b9a4b812a4754d98f5940edee"
+    },
+    {
+      "run": "P5_128rps",
+      "path": "experiment_results/capacity-exploration-20261104/P5_128rps/raw/effective_config.json",
+      "size_bytes": 1320,
+      "sha256": "7412208abd01d0f3b6d4c9e6656fc79d91c2acef541da9878548b933283379a5"
+    },
+    {
+      "run": "P5_128rps",
+      "path": "experiment_results/capacity-exploration-20261104/P5_128rps/raw/run_status.json",
+      "size_bytes": 6891,
+      "sha256": "926851d028e4124105d6f973cf6f10c190d3f820d9bf1a421d0619b8d2839536"
+    },
+    {
+      "run": "P5_128rps",
+      "path": "experiment_results/capacity-exploration-20261104/P5_128rps/raw/request_log.csv",
+      "size_bytes": 337497,
+      "sha256": "0f93f1822254076537459dd54da48a74d625be10d8ec8c81b74ae41219283f34"
+    },
+    {
+      "run": "P5_128rps",
+      "path": "experiment_results/capacity-exploration-20261104/P5_128rps/raw/simulation_metrics.csv",
+      "size_bytes": 1764,
+      "sha256": "2c3f0e27222e0bcb52381815b7a28c15603d494165dac3760d7b047af5aaea27"
+    },
+    {
+      "run": "P5_128rps",
+      "path": "experiment_results/capacity-exploration-20261104/P5_128rps/raw/victim_stats.jsonl",
+      "size_bytes": 6325,
+      "sha256": "9156303215d4ddb4d23cac5d0662c2fb3d87ddd272ccd239e415da1628176315"
+    },
+    {
+      "run": "P5_128rps",
+      "path": "experiment_results/capacity-exploration-20261104/P5_128rps/raw/traffic_capture.csv",
+      "size_bytes": 916234,
+      "sha256": "7d327d4bb2c0537f5bd72b3d75f25b1f7ea3f86c9ff13ec26bbace5f772e6db2"
+    },
+    {
+      "run": "P5_128rps",
+      "path": "experiment_results/capacity-exploration-20261104/P5_128rps/raw/traffic_capture.csv.capture.json",
+      "size_bytes": 2616,
+      "sha256": "6eee41aeba0c20c33e815f7a9762c32c9f1ac06fa044b9e1d538f8bca098117d"
+    },
+    {
+      "run": "P5_128rps",
+      "path": "experiment_results/capacity-exploration-20261104/P5_128rps/raw/source_artifacts/traffic_capture.pcap",
+      "size_bytes": 1243962,
+      "sha256": "261511b00496e2c9dcd46e51b7bdfb4942267a52b383d729dc978e1650899810"
+    },
+    {
+      "run": "P5_128rps",
+      "path": "experiment_results/capacity-exploration-20261104/P5_128rps/raw/source_artifacts/traffic_capture.pcap.capture.json",
+      "size_bytes": 2785,
+      "sha256": "11ce95aed85bf4ad0a4b64da575ae8fd62eb38b1cad935cc7e0019e43e79dcbc"
+    },
+    {
+      "run": "P5_128rps",
+      "path": "experiment_results/capacity-exploration-20261104/P5_128rps/verification/verification.json",
+      "size_bytes": 25558,
+      "sha256": "789439df1ee80a883cd9cf5b38538808f820c0998c6f7c3c74c0ad9d21b57985"
+    },
+    {
+      "run": "P5_128rps",
+      "path": "experiment_results/capacity-exploration-20261104/P5_128rps/capacity_summary.json",
+      "size_bytes": 19657,
+      "sha256": "e53b35c5ddc3237f08b03616ec61850b9cbf9a12f8715f1a2924bc160f9a820f"
+    },
+    {
+      "run": "P5_128rps",
+      "path": "experiment_results/capacity-exploration-20261104/P5_128rps/diagnostic_summary.json",
+      "size_bytes": 66955,
+      "sha256": "258896f84a1c29b2f8a72c4505fa72c0877669b51f66b19bfcd0dc852a0d7044"
+    },
+    {
+      "run": "P5_128rps",
+      "path": "experiment_results/capacity-exploration-20261104/P5_128rps/watchdog.jsonl",
+      "size_bytes": 20360,
+      "sha256": "bcc3d3d19578c66ddf02eaf14be7fa03472758691f53c02169df5063e5097aed"
+    },
+    {
+      "run": "P5_128rps",
+      "path": "experiment_results/capacity-exploration-20261104/P5_128rps/raw/diagnostics/victim/events.jsonl",
+      "size_bytes": 1477577,
+      "sha256": "fa6612f3e55fc63a7522d6b630203d1fa2ab0b19ed7b4e3e11b06e76414ca305"
+    },
+    {
+      "run": "P5_128rps",
+      "path": "experiment_results/capacity-exploration-20261104/P5_128rps/raw/diagnostics/victim/events.summary.json",
+      "size_bytes": 448,
+      "sha256": "81ab2bc771490f25be05e9e7a88356582c2251cc192e61c1cb7d0d9062608794"
+    },
+    {
+      "run": "P5_128rps",
+      "path": "experiment_results/capacity-exploration-20261104/P5_128rps/raw/source_artifacts/normal_1/output/diagnostics/events.jsonl",
+      "size_bytes": 1374399,
+      "sha256": "048189e1e8eed507587ad45f9ea114dcf54db51f3cd32a666a2551a752dbe741"
+    },
+    {
+      "run": "P5_128rps",
+      "path": "experiment_results/capacity-exploration-20261104/P5_128rps/raw/source_artifacts/normal_2/output/diagnostics/events.jsonl",
+      "size_bytes": 1283863,
+      "sha256": "c5bbafdcaca43b829b29fe315268c3db64997899deec357703f647f92b0f5fd6"
+    },
+    {
+      "run": "P5_128rps",
+      "path": "experiment_results/capacity-exploration-20261104/P5_128rps/raw/source_artifacts/normal_1/output/diagnostics/events.summary.json",
+      "size_bytes": 527,
+      "sha256": "f8dbfc4fb8daf9d53d0a40063f7c6732c449cb3a1b0eccbba5ec23ddadf84b7e"
+    },
+    {
+      "run": "P5_128rps",
+      "path": "experiment_results/capacity-exploration-20261104/P5_128rps/raw/source_artifacts/normal_2/output/diagnostics/events.summary.json",
+      "size_bytes": 527,
+      "sha256": "6e6df0ccccae5708d1b42f01ef656d391890f12e5d8e009c36b9c83381adca24"
+    }
+  ],
+  "alignment": {
+    "origin": "run_status.json experiment_start_monotonic, host CLOCK_MONOTONIC",
+    "basis": "source_artifacts/clock_validation.json and diagnostics/victim_clock_validation.json both comparable; same host kernel, zero timens offsets; worker_clock namespace must match victim writer namespace",
+    "source_vs_victim_comparison": "same host monotonic domain as validated; 100/250 ms binned coincidence remains descriptive and sensitive to bin boundaries",
+    "durations": "source attempt stages within each source clock; handler/work stages within validated victim/worker monotonic clock; HTTP duration from the client record within its own clock"
+  },
+  "count_windows": "half-open bins [k*w,(k+1)*w) relative to experiment origin; request starts assigned by actual client http_started event",
+  "worker_wait": "work_started_at - work_submitted_at from completed handler records; includes scheduler/IPC/queue effects and is not private executor queue time",
+  "worker_occupancy": "interval overlap of work_started_at to work_finished_at, clipped to time bins; at most two workers expected",
+  "victim_pending": "overlap of work_submitted_at to work_started_at; derived submitted-not-started work, not direct queue-depth telemetry",
+  "source_pending": "overlap of source submitted.at to task_started.at; derived ThreadPoolExecutor submitted-not-started work, not a private queue API",
+  "drain": "generation horizon read from each run's effective configuration (P5 is 12 s; C3/C5 are 20 s); starts and completions after that horizon are separate, and tail completions do not count as generated rate",
+  "limitations": [
+    "one C5 ON repetition",
+    "C3 OFF lacks diagnostic stage events",
+    "no source-container CPU samples",
+    "100/250 ms time-bin results depend on boundary alignment",
+    "host CPU/memory stats are aggregate and cannot exclude local scheduler/frequency effects"
+  ]
+}
