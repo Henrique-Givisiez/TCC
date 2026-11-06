@@ -186,3 +186,86 @@ class AnalysisTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as t:
             root=Path(t);specs=[fixture(root/r,role=r,cpu=None) for r in ['M_A','E_A','E_B','M_B']]
             runs=[analyze_run(s,'a2') for s in specs];self.assertIsNone(a2_ratios(runs)['global_ratio'])
+
+    def test_a2_ratios_require_distinct_run_ids_standalone(self):
+        from experiments.exploratory_analysis import a2_ratios
+        runs=[dict(role=role,run_id=role,eligible=True,cpu_seconds={'mean':1})
+              for role in ['M_A','E_A','E_B','M_B']]
+        self.assertEqual(a2_ratios(runs)['global_ratio'],1)
+        runs[3]['run_id']=runs[0]['run_id']
+        self.assertFalse(a2_ratios(runs)['defined'])
+        runs[3].pop('run_id')
+        self.assertFalse(a2_ratios(runs)['defined'])
+
+    def test_a1_missing_stages_are_not_automatically_corruption(self):
+        from simulator.request_logger import REQUEST_FIELDS
+        for outcome in ['transport_error','incomplete']:
+            with self.subTest(outcome=outcome),tempfile.TemporaryDirectory() as t:
+                root=Path(t);spec=fixture(root,mode='a1');rows=csv_rows(root/'request_log.csv')
+                rows[2].update(outcome=outcome,http_status='',error_type='ReadTimeout')
+                if outcome=='incomplete':rows[2]['end_elapsed_seconds']=''
+                csvfile(root/'request_log.csv',rows,REQUEST_FIELDS)
+                # Keep the independent client journal consistent with the outcome.
+                for p in root.glob('source_artifacts/*/output/journal.jsonl'):
+                    items=[json.loads(x) for x in p.read_text().splitlines()]
+                    items=[x for x in items if not (x['kind']=='request_finish' and x['payload'].get('request_id')=='request2' and outcome=='incomplete')]
+                    for i,x in enumerate(items,1):
+                        x['sequence']=i
+                        if x['payload'].get('request_id')=='request2':x['payload']=rows[2]
+                    p.write_text(''.join(json.dumps(x)+'\n' for x in items))
+                mutate_events(root,lambda events:events.__setitem__(slice(None),[e for e in events if e.get('request_id')!='request2']))
+                r=analyze_run(spec,'a1');self.assertTrue(r['eligible'],r)
+                main=r['phases'][1];self.assertEqual(main['starts'],2)
+                self.assertEqual(main['unfinished'],int(outcome=='incomplete'))
+                self.assertIsNone(main['pending_peak_reconstructed'])
+                self.assertIsNone(main['submitted'])
+                self.assertEqual(main['worker_wait_seconds']['n'],1)
+                self.assertTrue(r['warnings']);self.assertFalse(r['operations'][2]['integrity_reasons'])
+                # An incomplete HTTP operation can still have a valid CPU record.
+                if outcome=='incomplete':
+                    def restore(events):
+                        events.extend([dict(kind='handler_started',request_id='request2',endpoint='/medium'),
+                                       dict(kind='handler_finished',request_id='request2',endpoint='/medium',work_cpu_seconds=.01,
+                                            work_submitted_at=130,work_started_at=130.001,work_finished_at=130.01,
+                                            worker_clock={'time_namespace':'ns','pid':1})])
+                    mutate_events(root,restore)
+                    r=analyze_run(spec,'a1');self.assertTrue(r['eligible'],r)
+                    self.assertEqual(r['cpu_seconds']['n'],5)
+
+    def test_a1_keeps_strict_integrity_for_obligatory_or_corrupt_records(self):
+        mutations=[lambda events:events[1].pop('work_cpu_seconds'),
+                   lambda events:events.append(dict(events[1])),
+                   lambda events:events.pop(0),
+                   lambda events:events[1].update(work_cpu_seconds=-1),
+                   lambda events:events[1].update(work_started_at=99),
+                   lambda events:events[1].pop('work_started_at'),
+                   lambda events:events[1].update(worker_clock={})]
+        for mutation in mutations:
+            with self.subTest(mutation=mutation),tempfile.TemporaryDirectory() as t:
+                root=Path(t);spec=fixture(root,mode='a1');mutate_events(root,mutation)
+                self.assertFalse(analyze_run(spec,'a1')['eligible'])
+
+    def test_a1_cpu_coverage_gaps_and_report(self):
+        with tempfile.TemporaryDirectory() as t:
+            root=Path(t);spec=fixture(root/'raw',mode='a1')
+            out=analyze('a1',[spec],root/'out');main=out['runs'][0]['phases'][1]
+            c=main['cpu_coverage'];self.assertEqual(c['samples'],2)
+            self.assertEqual(c['first'],30);self.assertEqual(c['last'],149.9)
+            self.assertAlmostEqual(c['max_gap_seconds'],119.9)
+            self.assertEqual(c['empty_10_second_intervals'],[[x,x+10] for x in range(40,140,10)])
+            report=(root/'out/report.md').read_text()
+            self.assertIn('Maior intervalo consecutivo',report)
+            self.assertIn('não sustentam conclusões',report)
+
+    def test_a1_absent_cpu_is_unavailable_not_run_corruption(self):
+        with tempfile.TemporaryDirectory() as t:
+            root=Path(t);spec=fixture(root,mode='a1')
+            # A row with no monitored container is not a supported CPU sample.
+            csvfile(root/'simulation_metrics.csv',[dict(run_id='M_A',elapsed_seconds=30,average_cpu_percent=0,active_containers_names='')],
+                    ['run_id','elapsed_seconds','average_cpu_percent','active_containers_names'])
+            r=analyze_run(spec,'a1');self.assertTrue(r['eligible'],r)
+            c=r['phases'][1]['cpu_coverage'];self.assertEqual(c['samples'],0)
+            self.assertIsNone(c['first']);self.assertIsNone(c['last']);self.assertIsNone(c['max_gap_seconds'])
+            self.assertEqual(len(c['empty_10_second_intervals']),12)
+            self.assertIsNone(r['phases'][1]['cpu_docker_percent']['mean'])
+            self.assertTrue(r['warnings'])

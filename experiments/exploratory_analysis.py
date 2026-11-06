@@ -11,7 +11,7 @@ from urllib.parse import urlsplit
 from experiments.export_dataset import placement
 from experiments.summarize_diagnostics import stats
 
-VERSION = 'I2-v1'
+VERSION = 'I2.1-v1'
 A1 = {(2, 8): 'L2', (4, 4): 'L6', (2, 16): 'L3', (4, 8): 'L7'}
 ROLES = ['M_A', 'E_A', 'E_B', 'M_B']
 
@@ -209,7 +209,8 @@ def _analyze(read, out, spec, mode):
         if not completed: reasons.append('request_unfinished')
         if len(ends[key])==0: reasons.append('measurement_missing')
         if len(ends[key])>1: reasons.append('measurement_duplicate')
-        if starts[key]!=1: reasons.append('handler_begin_missing_or_duplicate')
+        if starts[key]==0: reasons.append('handler_begin_missing')
+        if starts[key]>1: reasons.append('handler_begin_duplicate')
         op=dict(run_id=rid,request_id=key,source_id=sources.get(key),endpoint=n['endpoint'],
                 http_status=r.get('http_status'),outcome=r.get('outcome'),cpu_seconds=None,
                 work_start_seconds=None,work_end_seconds=None,submitted_seconds=None,worker_pid=None)
@@ -236,14 +237,35 @@ def _analyze(read, out, spec, mode):
             except (KeyError,ValueError,TypeError): reasons.append('work_timeline_missing_or_invalid')
         else:
             reasons.append('work_clock_unverified')
-        op['valid']=not reasons;op['reasons']=';'.join(sorted(set(reasons)))
+        # A missing stage is not itself proof of corrupt records in A1. In
+        # particular, a transport failure need not have reached the handler.
+        unavailable={'request_unfinished','measurement_missing','cpu_missing',
+                     'work_clock_unverified','work_timeline_missing_or_invalid',
+                     'handler_begin_missing'}
+        integrity=set(reasons)-unavailable
+        successful=completed and r.get('outcome')=='response' and bool(r.get('http_status')) and 200<=int(r['http_status'])<300
+        if successful and not e.get('error_type'):
+            integrity.update(set(reasons)&{'measurement_missing','cpu_missing','handler_begin_missing',
+                                           'work_clock_unverified','work_timeline_missing_or_invalid'})
+        if e and starts[key]==0: integrity.add('handler_begin_missing')
+        # Present but malformed/reversed timestamps are contradictory evidence.
+        try:
+            present=[number(e[k])-origin for k in ('work_submitted_at','work_started_at','work_finished_at') if k in e and e[k] is not None]
+            if any(t<0 for t in present) or present!=sorted(present): raise ValueError('invalid work timeline')
+        except (ValueError,TypeError): integrity.add('work_timeline_missing_or_invalid')
+        op['integrity_reasons']=sorted(integrity)
+        op['unavailable_reasons']=sorted(set(reasons)-integrity)
+        if mode=='a1' and op['unavailable_reasons']:
+            out['warnings'].append(key+': incomplete observations; missing stages may reflect operational failure or ambiguous absence: '+','.join(op['unavailable_reasons']))
+        op['valid']=not (set(reasons)-({'request_unfinished'} if mode=='a1' else set()))
+        op['reasons']=';'.join(sorted(set(reasons)))
         counts.update(set(reasons));out['operations'].append(op)
     counts['requests_observed']=len(requests);counts['operations_valid']=sum(o['valid'] for o in out['operations'])
     counts['operations_invalid']=len(out['operations'])-counts['operations_valid']
     out['counts']=dict(counts)
-    if counts['operations_invalid'] or counts['cpu_without_request'] or counts['unidentified_events']:
+    if (counts['operations_invalid'] if mode=='a2' else any(o['integrity_reasons'] for o in out['operations'])) or counts['cpu_without_request'] or counts['unidentified_events']:
         issues.append('operation integrity anomalies; valid subset is diagnostic only')
-    if counts['operations_valid']==0: issues.append('no valid CPU operations')
+    if counts['operations_valid']==0: (issues if mode=='a2' else out['warnings']).append('no valid CPU operations')
     out['cpu_seconds']=describe(o['cpu_seconds'] for o in out['operations'] if o['valid'])
     out['valid_fraction']=ratio(counts['operations_valid'],len(requests))
     out['temporal']=[dict(run_id=rid,start_seconds=a,end_seconds=a+10,
@@ -251,16 +273,23 @@ def _analyze(read, out, spec, mode):
         for a in range(0,duration,10)]
     out['tail_work_operations']=sum(o['valid'] and o['work_start_seconds']>=duration for o in out['operations'])
     metrics=read.csv('simulation_metrics.csv')
-    if not metrics: issues.append('CPU telemetry absent')
+    if not metrics: (issues if mode=='a2' else out['warnings']).append('CPU telemetry absent')
     for m in metrics:
         if m['run_id']!=rid: issues.append('foreign CPU metric run')
-    out['cpu_coverage'] = dict(samples=len(metrics), first=min((number(m['elapsed_seconds']) for m in metrics),default=None),
-        last=max((number(m['elapsed_seconds']) for m in metrics),default=None))
+    out['cpu_coverage'] = cpu_coverage(metrics,0,duration)
     out['phases']=[phase(out,requests,sources,metrics,a,b) for a,b in ((0,30),(30,150))] if mode=='a1' else []
     if mode=='a1':
-        if out['phases'][1]['cpu_docker_percent']['n']==0: issues.append('main interval CPU telemetry absent')
+        if out['phases'][1]['cpu_docker_percent']['n']==0: out['warnings'].append('main interval CPU telemetry absent; CPU stability unavailable')
         for a in range(0,150,10):
             out.setdefault('temporal_metrics',[]).append(phase(out,requests,sources,metrics,a,a+10))
+
+
+def cpu_coverage(metrics, a, b):
+    times=sorted(number(m['elapsed_seconds']) for m in metrics
+                 if m.get('active_containers_names') and a<=number(m['elapsed_seconds'])<b)
+    return dict(samples=len(times),first=times[0] if times else None,last=times[-1] if times else None,
+        max_gap_seconds=max((y-x for x,y in zip(times,times[1:])),default=None),
+        empty_10_second_intervals=[[t,min(t+10,b)] for t in range(a,b,10) if not any(t<=x<min(t+10,b) for x in times)])
 
 
 def phase(out, requests, sources, metrics, a, b):
@@ -273,6 +302,7 @@ def phase(out, requests, sources, metrics, a, b):
     waits=[o['work_start_seconds']-o['submitted_seconds'] for o in ops if a<=o['http_start_seconds']<b]
     # Reconstructed intervals only: unfinished handlers may lack all submission metadata.
     intervals=[(o['submitted_seconds'],o['work_start_seconds']) for o in ops]
+    timeline_complete=len(ops)==len(out['operations'])
     times=sorted({a,b,*[t for pair in intervals for t in pair if a<=t<b]})
     pending=lambda t:sum(x<=t<y for x,y in intervals)
     n=out['configuration']['normal_traffic']; nominal=n['clients']*n['rate']
@@ -283,14 +313,15 @@ def phase(out, requests, sources, metrics, a, b):
         nominal_rps=nominal,started_rps=len(own)/(b-a),relative_rate_error=(len(own)/(b-a)-nominal)/nominal,
         per_source_rps=per_source,completed=len(finished),unfinished=len(own)-len(finished),
         completions_after_boundary=sum(number(r['end_elapsed_seconds'])>=b for r in finished),
-        http_seconds=describe(duration),cpu_docker_percent=describe(cpu),worker_wait_seconds=describe(waits),
+        http_seconds=describe(duration),cpu_docker_percent=describe(cpu),cpu_coverage=cpu_coverage(metrics,a,b),worker_wait_seconds=describe(waits),
+        worker_wait_basis='available returned timelines; missing stages excluded, not zero',computational_timeline_complete=timeline_complete,
         successes_2xx=successes,success_fraction_per_started=ratio(successes,len(own)),
         http_errors=outcomes['http_error'],transport_errors=outcomes['transport_error'],
         connection_errors=sum('Connection' in r.get('error_type','') for r in own),client_errors=outcomes['client_error'],timeouts=sum('Timeout' in r.get('error_type','') for r in own),
-        submitted=sum(a<=x<b for x,y in intervals),work_started=sum(a<=o['work_start_seconds']<b for o in ops),
-        work_finished=sum(a<=o['work_end_seconds']<b for o in ops),
-        pending_peak_reconstructed=max((pending(t) for t in times if t<b),default=0) if intervals else None,
-        pending_at_end_reconstructed=pending(b) if intervals else None,
+        submitted=sum(a<=x<b for x,y in intervals) if timeline_complete else None,work_started=sum(a<=o['work_start_seconds']<b for o in ops) if timeline_complete else None,
+        work_finished=sum(a<=o['work_end_seconds']<b for o in ops) if timeline_complete else None,
+        pending_peak_reconstructed=max((pending(t) for t in times if t<b),default=0) if intervals and timeline_complete else None,
+        pending_at_end_reconstructed=pending(b) if intervals and timeline_complete else None,
         pending_basis='submitted-to-worker-start intervals of returned worker metadata; not private queue depth',
         outcomes=dict(outcomes))
 
@@ -301,6 +332,8 @@ def a2_ratios(runs):
     means={r.get('role'):r.get('cpu_seconds',{}).get('mean') if r['eligible'] else None for r in runs}
     if len(runs)!=4 or Counter(r.get('role') for r in runs)!=Counter(ROLES):
         return dict(defined=False,reason='require exactly four explicit roles M_A E_A E_B M_B')
+    if any(not r.get('run_id') for r in runs) or len({r['run_id'] for r in runs})!=4:
+        return dict(defined=False,reason='require four distinct run_id values')
     m=[means.get('M_A'),means.get('M_B')];e=[means.get('E_A'),means.get('E_B')]
     return dict(E_A_over_M_A=ratio(e[0],m[0]),E_B_over_M_B=ratio(e[1],m[1]),
         global_ratio=ratio(statistics.mean(e),statistics.mean(m)) if None not in e+m else None,
@@ -364,6 +397,17 @@ def analyze(mode, specs, output):
             for p in r['phases']:
                 if p['start_seconds']==30:
                     text.append('| {} | {} | {} | {} | {} | {} | {} |'.format(r.get('configuration_code'),r.get('run_id'),p['started_rps'],p['http_seconds']['mean'],p['cpu_docker_percent']['mean'],p['worker_wait_seconds']['mean'],p['success_fraction_per_started']))
+        text+=['','Cobertura CPU em [30,150), em segundos relativos ao início efetivo:', '',
+               '| Run | Amostras | Primeira | Última | Maior intervalo consecutivo (s) | Intervalos de 10 s vazios |',
+               '|---|---:|---:|---:|---:|---|']
+        for r in runs:
+            if len(r['phases'])<2: continue
+            c=r['phases'][1]['cpu_coverage']
+            text.append('| {} | {} | {} | {} | {} | {} |'.format(r.get('run_id'),c['samples'],c['first'],c['last'],c['max_gap_seconds'],c['empty_10_second_intervals']))
+        for r in runs:
+            for warning in r.get('warnings',[]): text+=['',str(r.get('run_id'))+': '+warning]
+        text+=['','Amostras pontuais não comprovam estabilidade contínua. Intervalos vazios e trechos antes da primeira/depois da última amostra não sustentam conclusões de estabilidade durante todo [30,150). Não há limiar automático de cobertura.',
+                   'Espera por worker descreve apenas timelines disponíveis; contadores computacionais e trabalho pendente ficam indisponíveis quando faltam timelines. Ausências ambíguas não comprovam falha operacional nem corrupção.']
         text+=['','Contrastes planejados: L2/L6 e L3/L7 (mesma taxa); L2/L3 e L6/L7 (mesmas fontes). Uma execução por célula não demonstra causalidade. Linhas excluídas da comparação principal continuam disponíveis acima para diagnóstico.']
     if mode=='a2':text+=['','Razões descritivas:','', '```json',json.dumps(ratios,indent=2,allow_nan=False),'```']
     text+=['','Configurações com problemas permanecem diagnósticas e são excluídas das comparações principais. Contagens sem observações são zero; estatísticas sem suporte são nulas. Consulte integrity.json para hashes e detalhes.']

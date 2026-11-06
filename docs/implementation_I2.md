@@ -104,3 +104,13 @@ Arquivos: experiments/exploratory_analysis.py; tests/test_exploratory_analysis.p
 ## N. Próximo passo
 
 Revisar processamento/limites, aprovar valores e autorizar validação integrada controlada. Somente depois autorizar coleta A2, mantendo ordem e imagens aprovadas. Não escolher carga ou endpoint automaticamente.
+
+## Correções I2.1
+
+Em A1, `integrity_reasons` separa contradições de `unavailable_reasons` por operação. Duplicações, valores corrompidos, identidades inconsistentes e ausência de eventos/metadados obrigatórios em respostas bem-sucedidas continuam bloqueando a comparação principal. Falhas de transporte e requisições incompletas podem não alcançar todas as etapas na vítima; ausências não contraditórias geram avisos explícitos, sem assumir sua causa nem invalidar automaticamente as métricas HTTP disponíveis. Os requisitos de status, certificação, journals e persistência continuam aplicados.
+
+Estatísticas de CPU/op usam somente operações com suporte válido; em A1, a ausência de conclusão HTTP não exclui uma medição computacional íntegra. As contagens `operations_invalid` indicam operações sem suporte completo para essa análise, não necessariamente registros corrompidos. Espera por worker descreve o subconjunto com timeline disponível. Contadores computacionais e trabalho pendente ficam nulos quando não é possível reconstruí-los para todas as operações. Telemetria CPU vazia fica indisponível em A1, com aviso, sem invalidar por si só as demais métricas; arquivos ausentes/corrompidos continuam sujeitos às verificações de integridade. A2 mantém a validação rigorosa anterior.
+
+Cada recorte A1 registra `cpu_coverage`: primeira/última amostra, quantidade, maior intervalo consecutivo e intervalos semiabertos de dez segundos sem amostras. Só entram amostras com contêiner monitorado, usando a mesma seleção da estatística de CPU. Menos de duas amostras não define intervalo consecutivo. O relatório destaca a cobertura de `[30,150)`; lacunas e trechos não observados não permitem afirmar estabilidade contínua. Nenhum limiar novo de cobertura foi criado.
+
+`a2_ratios()` exige quatro `run_id` distintos e presentes, além dos quatro papéis, mesmo em chamada isolada. Os testes adicionais usam apenas fixtures sintéticas; nenhuma coleta ou execução real foi iniciada.
