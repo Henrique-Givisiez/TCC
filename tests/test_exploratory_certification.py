@@ -187,3 +187,10 @@ class CertificationTests(unittest.TestCase):
             op.certify(d,[]);verify_previous(t)
             (Path(t)/'run_status.json').write_text('{}')
             with self.assertRaises(RuntimeError):verify_previous(t)
+
+    def test_completed_with_unexpected_end_reason_is_blocked(self):
+        with tempfile.TemporaryDirectory() as t:
+            op,d=self.fixture(Path(t));(d/'dataset_manifest.json').write_text('{"run_id":"r"}')
+            p=Path(t)/'run_status.json';status=json.loads(p.read_text());status['end_reason']='interrupted';p.write_text(json.dumps(status))
+            op.certify(d,[])
+            self.assertFalse(op.report['progression_allowed'])

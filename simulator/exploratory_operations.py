@@ -274,7 +274,8 @@ class Operations:
             if self.report['export'] != 'pending': raise RuntimeError('export did not complete cleanly')
             self.report['export'] = dict(status='completed', manifest=str(manifest),
                 sha256=hashlib.sha256(manifest.read_bytes()).hexdigest())
-            ok = (status['status']=='completed' and status.get('producers_drained') is True
+            ok = (status['status']=='completed' and status.get('end_reason')=='simulation_end'
+                  and status.get('producers_drained') is True
                   and not status.get('errors') and not self.report['failures']
                   and self.report.get('cleanup_verified') is True
                   and self.report.get('post_cleanup_readiness', {}).get('verified') is True)
