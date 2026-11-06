@@ -78,7 +78,7 @@ class OperationsTests(unittest.TestCase):
             op=Operations(policy(),{},t);op.owned={'one':'source','two':'victim'};client=MagicMock()
             client.containers.get.side_effect=[RuntimeError('cannot inspect'),MagicMock()];errors=[]
             op.finish(client,errors)
-            self.assertEqual(client.containers.get.call_count,2);self.assertTrue(errors)
+            self.assertEqual(client.containers.get.call_count,4);self.assertTrue(errors)
             self.assertFalse(op.report['cleanup_verified'])
 
     def test_policy_persisted_and_timer(self):

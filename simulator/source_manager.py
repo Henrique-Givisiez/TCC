@@ -138,6 +138,7 @@ class SourceManager:
                              str(root / 'control'):{'bind':'/control','mode':'ro'},
                              str(root / 'output'):{'bind':'/output','mode':'rw'}})
                 self.containers.append(container)
+                if getattr(self, 'on_created', None): self.on_created(container)
                 container.reload()
                 entry = dict(source_id=source_id, source_type=component, traffic_class=manifest['traffic_class'],
                     container_id=container.id, container_name=container.name, hostname=container.attrs['Config']['Hostname'],

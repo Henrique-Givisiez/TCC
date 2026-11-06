@@ -27,11 +27,9 @@ def main():
     if args.operational_policy:
         import json
         from simulator import docker_manager
-        from simulator.exploratory_operations import Policy, Operations, resolve_images
+        from simulator.exploratory_operations import Policy, Operations, resolve_images, verify_previous
         if args.previous_run:
-            prior = json.loads((args.previous_run/'operational_policy.json').read_text())
-            if prior.get('progression_allowed') is not True:
-                raise RuntimeError('previous essential failure unresolved; progression blocked')
+            verify_previous(args.previous_run)
         policy = Policy(**json.loads(args.operational_policy.read_text()))
         policy.validate(experiment)
         identities = resolve_images(docker_manager.client, args.victim_image, args.source_image)
@@ -39,11 +37,38 @@ def main():
         operational = Operations(policy, identities, args.output)
         operational.nominal_seconds = experiment.duration_seconds
     try:
-        run_recorded(experiment,args.output, operational=operational)
+        complete_procedure(lambda: run_recorded(experiment,args.output, operational=operational),
+                           lambda: export_run(args.output,args.dataset_output), operational,
+                           args.output, args.dataset_output)
     finally:
         config.DOCKER_IMAGE_NAME, config.SOURCE_IMAGE = previous_images
-        if (args.output/'run_status.json').exists():
-            export_run(args.output,args.dataset_output)
+
+
+def complete_procedure(run, export, operational, output, destination):
+    """Always retain the original failure and attempt export/certification separately."""
+    failure = None
+    failures = []
+    try:
+        run()
+    except BaseException as exc:
+        failure = exc
+        failures.append('execution: '+repr(exc))
+    try:
+        if (Path(output)/'run_status.json').exists():
+            export()
+        elif operational:
+            raise RuntimeError('run_status absent; export not performed')
+    except BaseException as exc:
+        failures.append('export: '+repr(exc))
+        if operational: operational.report['export'] = dict(status='failed', error=repr(exc))
+        if failure is None: failure = exc
+    if operational:
+        try: operational.certify(destination, failures)
+        except BaseException as exc:
+            if failure is None: failure = exc
+        if failure is None and not operational.report['progression_allowed']:
+            failure = RuntimeError('operational certification blocked')
+    if failure is not None: raise failure
 
 
 if __name__=='__main__':main()

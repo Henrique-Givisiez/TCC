@@ -63,3 +63,13 @@ Mecanismos implementados e verificados em unidades; liberação operacional PEND
 ## L–M. Estado final e próxima etapa
 
 Commit informado na resposta da implementação; sem push. Próximo escopo: processamento A2 por request_id (CPU ausente/duplicada/finita/positiva, razões por repetição), recortes A1 [0,30)/[30,150), e validação ponta a ponta autorizada. Kernel, geradores, detectores, features, autoridades e dados históricos preservados.
+
+## Revisão I1.1 — substitui a certificação original
+
+`cleanup_verified` descreve apenas verificações físicas de recursos próprios e threads/capturas. `run_status.json` continua sendo a fonte do estado do simulador. Durante finalização, `certification=pending` e `progression_allowed=false`; `finish()` nunca autoriza continuidade.
+
+O entrypoint tenta exportação mesmo após falha do runtime, preserva a exceção original e registra falhas secundárias. Somente após essa tentativa `certify()` verifica os registros essenciais, o status canônico, o manifest exportado e a prontidão pós-limpeza. Uma execução incompleta pode ter limpeza confirmada, mas não constitui procedimento aceito. Falhas essenciais exigem diagnóstico antes de continuidade. `--previous-run` agora exige certificado final e hash do status inalterado; relatórios I1 antigos sem esse certificado não são aceitos automaticamente.
+
+O export preserva um snapshot operacional ainda pendente. O relatório operacional final fica no raw e vincula por hash o status canônico e o manifest exportado. Não se reescreve o dataset para fingir que sua certificação posterior já existia no snapshot. A certificação não equivale à reconciliação A1/A2, não aprova CPU/op e não altera os estados científicos.
+
+O timer é armado dentro do bloco protegido. Alterações parciais de handler/timer são registradas; o desarme tenta cancelar e restaurar independentemente. Falhas são retidas sem impedir as demais tentativas de cleanup. Restauração do timeout Docker também é independente. Fontes são registradas imediatamente depois da criação, antes de reload/inventário/readiness. Veja o relatório `implementation_I1_1.md` para limites, testes e pendências.

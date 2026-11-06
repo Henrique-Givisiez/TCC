@@ -37,17 +37,19 @@ def run(experiment, operational=None):
     reason = 'simulation_end'
     status = dict(schema_version=1, experiment_id=experiment.id, run_id=uuid.uuid4().hex,
                   status='incomplete', end_reason='setup_error')
-    Path(config.RUN_STATUS_FILE).parent.mkdir(parents=True, exist_ok=True)
     diagnostic_root = Path(config.RUN_STATUS_FILE).parent/'diagnostics'
-    if experiment.diagnostics.enabled:
-        (diagnostic_root/'victim').mkdir(parents=True,exist_ok=False)
-    write_json(Path(config.RUN_STATUS_FILE).parent/'effective_config.json', json.loads(experiment.to_json()))
-    if operational:
-        operational.policy.validate(experiment)
-        operational.arm()
-        previous_api_timeout = client.api.timeout
-        client.api.timeout = operational.policy.docker_timeout_seconds
+    api_timeout_saved = False
     try:
+        Path(config.RUN_STATUS_FILE).parent.mkdir(parents=True, exist_ok=True)
+        if experiment.diagnostics.enabled:
+            (diagnostic_root/'victim').mkdir(parents=True,exist_ok=False)
+        write_json(Path(config.RUN_STATUS_FILE).parent/'effective_config.json', json.loads(experiment.to_json()))
+        if operational:
+            operational.policy.validate(experiment)
+            previous_api_timeout = client.api.timeout
+            api_timeout_saved = True
+            client.api.timeout = operational.policy.docker_timeout_seconds
+            operational.arm()
         if operational:
             operational.ready(client)
         try:
@@ -84,6 +86,8 @@ def run(experiment, operational=None):
         proxy.start(victims, source_network=network)
         manager = SourceManager(client,network,config.SOURCE_ARTIFACT_DIR,config.SOURCE_INVENTORY_FILE,experiment)
         active_manager = manager
+        if operational:
+            manager.on_created = lambda c: operational.own(c, 'source')
         manager.start()  # rejects incomparable clocks before any timeline is used
         if operational:
             for c in manager.containers: operational.own(c, "source")
@@ -172,9 +176,15 @@ def run(experiment, operational=None):
     except BaseException as exc:
         reason = 'interrupted' if isinstance(exc,KeyboardInterrupt) else 'error'
         errors.append(str(exc))
+        if operational:
+            operational.report['actions'].append(dict(reasons=['runtime_exception'], condition=repr(exc), action='stop_all', at=time.monotonic()))
         complete = False
     finally:
-        if operational: operational.disarm()
+        if operational:
+            try: operational.disarm()
+            except Exception as exc:
+                errors.append('timer finalization: '+repr(exc))
+                complete = False
         if operational and manager:
             for c in manager.containers:
                 operational.owned.setdefault(c.id, "source")
@@ -260,8 +270,12 @@ def run(experiment, operational=None):
                 errors.append('diagnostic close: '+str(exc))
                 complete = False
             deadline = time.monotonic()+3
-            while not (diagnostic_root/'victim/events.summary.json').exists() and time.monotonic()<deadline:
-                time.sleep(.02)
+            try:
+                while not (diagnostic_root/'victim/events.summary.json').exists() and time.monotonic()<deadline:
+                    time.sleep(.02)
+            except Exception as exc:
+                errors.append('diagnostic wait: '+repr(exc))
+                complete = False
         for victim in victims:
             try:
                 if not docker_manager.stop_instance(victim.id):
@@ -281,12 +295,13 @@ def run(experiment, operational=None):
             operational.report['shutdown_steps'] = shutdown_steps
             operational.report['temporary_networks'] = owned_networks
             operational.report['nominal_seconds'] = experiment.duration_seconds
+            if api_timeout_saved:
+                try: client.api.timeout = previous_api_timeout
+                except Exception as exc: errors.append('Docker timeout restoration: '+repr(exc))
             try:
                 operational.finish(client, errors)
             except Exception as exc:
                 errors.append('operational evidence: '+str(exc))
-            finally:
-                client.api.timeout = previous_api_timeout
             complete = complete and not errors
         capture_results = {}
         for name, component in [('pcap',raw_capture),('csv',sniffer)]:
@@ -299,7 +314,14 @@ def run(experiment, operational=None):
                       proxy_integrity=proxy.identity if proxy and experiment.topology.mode=='proxy' else None,
                       target_integrity=proxy.identity if proxy else None,
                       source_inventory=config.SOURCE_INVENTORY_FILE)
-        write_json(config.RUN_STATUS_FILE,status)
+        try:
+            write_json(config.RUN_STATUS_FILE,status)
+        except Exception as exc:
+            if operational:
+                operational.report['failures'].append('run_status persistence: '+repr(exc))
+                operational.report['progression_allowed'] = False
+                operational.persist()
+            raise
     if complete and reason=='simulation_end':
         from simulator.cost_calculator import calculate_total_cost_from_intervals
         cost = calculate_total_cost_from_intervals(cost_intervals,experiment.infrastructure.cost_per_instance_per_hour)
