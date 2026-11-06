@@ -15,7 +15,7 @@ ARTIFACTS = {
 }
 
 
-def run_recorded(experiment, output):
+def run_recorded(experiment, output, operational=None):
     from simulator import config, main_orchestrator
     experiment = experiment.resolve_seed()
     output = Path(output).resolve()
@@ -32,7 +32,7 @@ def run_recorded(experiment, output):
     try:
         for key, value in settings.items():
             setattr(config, key, value)
-        return main_orchestrator.main(experiment)
+        return main_orchestrator.main(experiment, operational=operational) if operational else main_orchestrator.main(experiment)
     finally:
         for key, value in previous.items():
             setattr(config, key, value)

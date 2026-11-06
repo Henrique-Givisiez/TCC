@@ -19,7 +19,7 @@ active_manager = None
 active_ground_truth = None
 
 
-def run(experiment):
+def run(experiment, operational=None):
     global active_proxy, active_manager, active_ground_truth
     from simulator import docker_manager, main_orchestrator
     from simulator.stats_collector import StatsCollector
@@ -33,6 +33,7 @@ def run(experiment):
     owned_networks = []
     complete = True
     drained = False
+    shutdown_steps = []
     reason = 'simulation_end'
     status = dict(schema_version=1, experiment_id=experiment.id, run_id=uuid.uuid4().hex,
                   status='incomplete', end_reason='setup_error')
@@ -41,14 +42,21 @@ def run(experiment):
     if experiment.diagnostics.enabled:
         (diagnostic_root/'victim').mkdir(parents=True,exist_ok=False)
     write_json(Path(config.RUN_STATUS_FILE).parent/'effective_config.json', json.loads(experiment.to_json()))
+    if operational:
+        operational.policy.validate(experiment)
+        operational.arm()
+        previous_api_timeout = client.api.timeout
+        client.api.timeout = operational.policy.docker_timeout_seconds
     try:
+        if operational:
+            operational.ready(client)
         try:
             client.networks.get(config.DOCKER_NETWORK_NAME)
         except Exception as exc:
             if getattr(exc, 'status_code', None) != 404:
                 raise
             owned_networks.append(config.DOCKER_NETWORK_NAME)
-        if not docker_manager.build_docker_image() or not docker_manager.ensure_docker_network():
+        if not (True if operational else docker_manager.build_docker_image()) or not docker_manager.ensure_docker_network():
             raise RuntimeError('victim infrastructure setup failed')
         # Refuse existing resources rather than removing a different run's victims.
         if client.containers.list(all=True, filters={'name': config.BASE_CONTAINER_NAME}):
@@ -68,6 +76,7 @@ def run(experiment):
             if victim is None:
                 raise RuntimeError('victim start failed')
             victims.append(victim)
+            if operational: operational.own(victim, "victim")
         direct = experiment.topology.mode == 'direct'
         proxy = (DirectTarget(client, Path(config.RUN_STATUS_FILE).parent/'direct_artifacts') if direct
                  else HttpProxy(client,config.PROXY_ARTIFACT_DIR))
@@ -76,6 +85,8 @@ def run(experiment):
         manager = SourceManager(client,network,config.SOURCE_ARTIFACT_DIR,config.SOURCE_INVENTORY_FILE,experiment)
         active_manager = manager
         manager.start()  # rejects incomparable clocks before any timeline is used
+        if operational:
+            for c in manager.containers: operational.own(c, "source")
         inventory = json.loads((proxy.directory/'backend_inventory.json').read_text())
         capture = audit(manager,proxy,inventory,manager.directory/'network_audit')
         if experiment.diagnostics.enabled:
@@ -120,11 +131,13 @@ def run(experiment):
         collector.evidence_path = Path(config.RUN_STATUS_FILE).parent/'victim_stats.jsonl'
         collector.update_containers(victims)
         collector.start()
+        if operational: operational.collection_started = time.monotonic()
         write_csv(config.METRICS_LOG_FILE,main_orchestrator.METRICS_FIELDS,[])
         manager.release(gt)
         consumed = set()
         next_tick = gt.clock.monotonic_initial
         while gt.clock.elapsed()<experiment.duration_seconds:
+            if operational: operational.observe(client, collector)
             proxy.verify()
             manager.verify()
             sniffer.check_running()
@@ -161,13 +174,19 @@ def run(experiment):
         errors.append(str(exc))
         complete = False
     finally:
+        if operational: operational.disarm()
+        if operational and manager:
+            for c in manager.containers:
+                operational.owned.setdefault(c.id, "source")
         if manager:
             try:
                 drained = manager.stop(reason)
+                shutdown_steps.append(dict(component="sources", complete=drained))
                 complete = drained and complete
                 if not drained:
                     errors.append('source drain incomplete')
             except Exception as exc:
+                shutdown_steps.append(dict(component='sources', error=str(exc)))
                 errors.append('source stop: '+str(exc))
                 complete = False
         if proxy:
@@ -214,12 +233,17 @@ def run(experiment):
             if component:
                 try:
                     component.stop()
+                    if operational and name == "stats" and component._t.is_alive():
+                        raise RuntimeError("stats collector did not close")
+                    shutdown_steps.append(dict(component=name, complete=True))
                 except Exception as exc:
+                    shutdown_steps.append(dict(component=name, error=str(exc)))
                     errors.append(name+': '+str(exc))
                     complete = False
         if manager:
             try:
                 manager.remove()
+                shutdown_steps.append(dict(component="source_removal", complete=True))
             except Exception as exc:
                 errors.append(str(exc))
                 complete = False
@@ -230,13 +254,22 @@ def run(experiment):
                 errors.append('proxy cleanup: '+str(exc))
                 complete = False
         if experiment.diagnostics.enabled:
-            (diagnostic_root/'victim/stop').touch()
+            try:
+                (diagnostic_root/'victim/stop').touch()
+            except Exception as exc:
+                errors.append('diagnostic close: '+str(exc))
+                complete = False
             deadline = time.monotonic()+3
             while not (diagnostic_root/'victim/events.summary.json').exists() and time.monotonic()<deadline:
                 time.sleep(.02)
         for victim in victims:
-            if not docker_manager.stop_instance(victim.id):
-                errors.append('victim cleanup failed: '+victim.id)
+            try:
+                if not docker_manager.stop_instance(victim.id):
+                    raise RuntimeError('stop/remove returned false')
+                shutdown_steps.append(dict(component='victim', id=victim.id, complete=True))
+            except Exception as exc:
+                shutdown_steps.append(dict(component='victim', id=victim.id, error=str(exc)))
+                errors.append('victim cleanup failed: '+victim.id+': '+str(exc))
                 complete = False
         for name in reversed(owned_networks):
             try:
@@ -244,6 +277,17 @@ def run(experiment):
             except Exception as exc:
                 errors.append('network cleanup: '+str(exc))
                 complete = False
+        if operational:
+            operational.report['shutdown_steps'] = shutdown_steps
+            operational.report['temporary_networks'] = owned_networks
+            operational.report['nominal_seconds'] = experiment.duration_seconds
+            try:
+                operational.finish(client, errors)
+            except Exception as exc:
+                errors.append('operational evidence: '+str(exc))
+            finally:
+                client.api.timeout = previous_api_timeout
+            complete = complete and not errors
         capture_results = {}
         for name, component in [('pcap',raw_capture),('csv',sniffer)]:
             lifecycle = getattr(component,'lifecycle',None) if component else None
