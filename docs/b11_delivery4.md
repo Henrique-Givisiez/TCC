@@ -135,3 +135,28 @@ sem alterar automaticamente a elegibilidade operacional do dataset.
 
 Não houve novo experimento, alteração da coleta, seleção automática de intensidade,
 ranking, detector, calibração, commit ou push nesta entrega.
+
+## Revisão v2 — semântica, identidade, fronteiras e escala
+
+A revisão em reports/b11_delivery4_review_20261107/report.md documenta cinco pontos.
+Novos campos HTTP: attempts_started, attempts_ended_known, responses_received,
+http_error_responses, attempts_without_observed_end, duration_observations,
+known_end_duration_ms e response_duration_ms. completions/last_completion e
+http_completions permanecem aliases históricos de tentativas encerradas, não de
+respostas; status_codes e responses_received distinguem recebimento HTTP. Estatísticas
+possuem n próprio; nenhuma duração é imputada a tentativas censuradas.
+
+Classificação computacional usa evidências de todos os eventos da operação, sem
+depender da ordem. Divergência de run/request/event/classe ou associação a requisição
+inexistente é conflito; classe/identidade insuficiente permanece unknown. Uma única
+requisição associada a múltiplas operações é apontada. Requisição sem submissão
+observada pode não ter chegado; ciclos sem conclusão no horizonte não são erro por si.
+Os campos conflicts, insufficient_evidence e partial_lifecycles são distintos.
+
+state_before usa comparação estrita; state_at é inclusivo por padrão. state_at_E
+continua alias do estado anterior a E, agora também denominado state_before_E;
+state_after_events_at_E inclui eventos em E. final_state inclui eventos no corte.
+O redutor compartilhado não mudou. A série aplica varredura incremental apenas
+após validação das transições, com testes de paridade e contadores por segundo.
+Benchmark reproduzível: tests/benchmark_offensive_analysis.py; comparações e saídas
+finais do piloto preservadas no diretório da revisão. Nenhuma mudança na coleta.

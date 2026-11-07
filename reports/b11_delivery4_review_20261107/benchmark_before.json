@@ -1,0 +1,9 @@
+{
+  "requests": 8000,
+  "events": 40001,
+  "journal_records": 56000,
+  "seconds": 22.897700900999553,
+  "peak_rss_mib": 638.2265625,
+  "starts": 8000,
+  "rows": 450
+}

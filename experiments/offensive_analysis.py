@@ -14,7 +14,7 @@ from experiments.validate_dataset import validate_dataset
 from simulator.diagnostics import computational_state
 from simulator.source_aggregate import identified_admission_errors
 
-VERSION = 'offensive-characterization-v1'
+VERSION = 'offensive-characterization-v2'
 
 
 def describe(values):
@@ -31,7 +31,15 @@ def phase(t, start, end):
 def http_metrics(requests, start, end, nominal):
     starts = [r for r in requests if start <= float(r['elapsed_seconds']) < end]
     completed = [r for r in requests if r.get('end_elapsed_seconds') not in ('', None)]
-    return dict(starts_total=len(requests), starts_in_window=len(starts), completions=len(completed),
+    responses=[r for r in completed if r.get('http_status') not in ('',None)]
+    durations=[float(r['duration_ms']) for r in completed if r.get('duration_ms') not in ('',None)]
+    return dict(attempts_started=len(requests), attempts_ended_known=len(completed),
+        responses_received=len(responses), http_error_responses=sum(int(r['http_status'])>=400 for r in responses),
+        attempts_without_observed_end=len(requests)-len(completed), duration_observations=len(durations),
+        response_duration_ms=describe(float(r['duration_ms']) for r in responses if r.get('duration_ms') not in ('',None)),
+        known_end_duration_ms=describe(durations),
+        legacy_completions_semantics='known-ended attempts, including transport/client errors; not responses',
+        starts_total=len(requests), starts_in_window=len(starts), completions=len(completed),
         incomplete=len(requests)-len(completed), nominal_rps=nominal, denominator_seconds=end-start,
         realized_start_rps=len(starts)/(end-start), realized_minus_nominal=len(starts)/(end-start)-nominal,
         status_codes=dict(Counter(str(r['http_status']) for r in completed if r.get('http_status'))),
@@ -45,11 +53,78 @@ def http_metrics(requests, start, end, nominal):
         last_completion=max((float(r['end_elapsed_seconds']) for r in completed),default=None))
 
 
-def state_before(events, at, complete):
-    state = computational_state(events, math.nextafter(at, -math.inf), observation_complete=complete)
+def state_at(events, at, complete, *, inclusive=True):
+    # Shared reducer is inclusive. Explicit filtering avoids float-adjacency tricks.
+    prefix=[e for e in events if e['at'] <= at] if inclusive else [e for e in events if e['at'] < at]
+    state=computational_state(prefix, at, observation_complete=complete)
     if not complete or state['errors']:
         return dict(status='unknown', counts=None, errors=state['errors'])
     return dict(status='observed', counts=state['counts'], errors=[])
+
+
+def state_before(events, at, complete):
+    return state_at(events,at,complete,inclusive=False)
+
+
+def classify_operations(events, requests):
+    """Order-independent declared identity; conflicts are never silently classified."""
+    grouped={}; http={}; conflicts=[]; insufficient=[]
+    for r in requests: http.setdefault(r['request_id'],[]).append(r)
+    for e in events:
+        if e.get('operation_id'): grouped.setdefault(e['operation_id'],[]).append(e)
+        elif e['kind'].startswith('work_'):
+            insufficient.append(dict(reason='missing_operation_id',kind=e['kind']))
+    claims={}
+    for oid, own in grouped.items():
+        for rid in {e.get('request_id') for e in own if e.get('request_id')}:
+            claims.setdefault(rid,set()).add(oid)
+    normalized=[]; matched=set(); classes={}
+    for oid,own in grouped.items():
+        bad=[]; missing=[]
+        identity={}
+        for key in ('run_id','event_id','request_id','traffic_class'):
+            values={e.get(key) for e in own if e.get(key) not in (None,'','unknown')}
+            if len(values)>1: bad.append('conflicting_'+key)
+            identity[key]=next(iter(values)) if len(values)==1 else None
+        rid=identity['request_id']; cls=identity['traffic_class']
+        request=http.get(rid,[])
+        if rid and not request: bad.append('request_not_found')
+        if len(request)>1: bad.append('duplicate_http_request_id')
+        if rid and len(claims[rid])>1: bad.append('multiple_operations_for_request')
+        if not rid or not identity['run_id'] or cls not in ('benign','attack') or (cls=='attack' and not identity['event_id']):
+            missing.append('insufficient_declared_identity')
+        if len(request)==1:
+            for key in ('run_id','event_id','traffic_class'):
+                if identity[key] is not None and identity[key]!=request[0].get(key):bad.append('http_'+key+'_mismatch')
+        if bad: conflicts.append(dict(operation_id=oid,request_id=rid,reasons=sorted(set(bad))))
+        if missing: insufficient.append(dict(operation_id=oid,reasons=missing))
+        classes[oid]=cls if not bad and not missing else 'unknown'
+        if rid and request and not bad and not missing and any(e['kind']=='work_submitted' for e in own): matched.add(rid)
+        normalized.extend(dict(e,traffic_class=classes[oid]) for e in own)
+    normalized.extend(e for e in events if not e.get('operation_id') and not e['kind'].startswith('work_'))
+    return normalized,classes,dict(conflicts=conflicts,insufficient_evidence=insufficient,
+        correlated_requests=len(matched),correlation_mismatches=conflicts,
+        requests_without_observed_submission=sorted(set(http)-matched))
+
+
+def states_before_boundaries(events, boundaries, complete):
+    """One sorted sweep after validation by the shared reducer."""
+    valid={'work_submitted':('waiting',None),'work_started':('running','waiting'),
+           'work_completed':('completed','running'),'work_failed':('failed','running')}
+    ordered=iter(sorted((e for e in events if e['kind'] in valid),key=lambda e:(e['at'],e.get('sequence',0))))
+    current=next(ordered,None)
+    counts={cls:dict(waiting=0,running=0,completed=0,failed=0) for cls in ('benign','attack','unknown')}
+    result={}
+    for boundary in sorted(set(boundaries)):
+        while current is not None and current['at']<boundary:
+            cls=current.get('traffic_class','unknown'); group=counts.get(cls,counts['unknown'])
+            new,old=valid[current['kind']]
+            if old: group[old]-=1
+            group[new]+=1
+            current=next(ordered,None)
+        snapshot={cls:dict(c,pending=c['waiting']+c['running'],submitted=sum(c.values()),started=c['running']+c['completed']+c['failed']) for cls,c in counts.items()}
+        result[boundary]=dict(status='observed',counts=snapshot) if complete else dict(status='unknown',counts=None)
+    return result
 
 
 def cadence(samples, phases):
@@ -72,6 +147,9 @@ def characterize(config, requests, journal, events, metrics, raw_cpu, origin, cl
     sequence_ok=[e.get('sequence') for e in events]==list(range(1,len(events)+1))
     complete=bool(writer and writer.get('complete') and writer.get('observation_complete') and
         writer.get('written')==len(events) and len(closures)==1 and closures[0].get('observation_complete') and not duplicates and sequence_ok)
+    events,operation_classes,correlation=classify_operations(events,requests)
+    if any(e.get('reason')=='missing_operation_id' for e in correlation['insufficient_evidence']):
+        complete=False
     if not complete: limits.append('Computational observation incomplete; absence of residual work cannot be established.')
     if closures and computational_state(events, closures[0]['at'], observation_complete=complete)['errors']:
         complete=False
@@ -95,46 +173,51 @@ def characterize(config, requests, journal, events, metrics, raw_cpu, origin, cl
     opmap={}
     for e in events:
         if e.get('operation_id'): opmap.setdefault(e['operation_id'],{})[e['kind']]=e
-    request_map={r['request_id']:r for r in requests}
-    mismatches=[]; matched=set()
-    for op in opmap.values():
-        submitted=op.get('work_submitted')
-        if not submitted or not submitted.get('request_id'): continue
-        rid=submitted['request_id']; request=request_map.get(rid)
-        if request is None or any(submitted.get(k)!=request.get(k) for k in ('run_id','event_id','traffic_class')):
-            mismatches.append(rid)
-        else: matched.add(rid)
-    final_state=state_before(events,math.nextafter(closures[0]['at'],math.inf),complete) if closures else dict(status='unknown',counts=None)
+    partial_lifecycles={oid:('incomplete_lifecycle' if 'work_submitted' not in op or ('work_completed' in op or 'work_failed' in op) and 'work_started' not in op else 'running_at_horizon' if 'work_started' in op else 'submitted_not_started')
+        for oid,op in opmap.items() if 'work_submission_failed' not in op and ('work_completed' not in op and 'work_failed' not in op or 'work_started' not in op or 'work_submitted' not in op)}
+    correlation['partial_lifecycles']=partial_lifecycles
+    correlation['identity_consistent']=not correlation['conflicts']
+    final_state=state_at(events,closures[0]['at'],complete) if closures else dict(status='unknown',counts=None)
     at_E=state_before(events,origin+E,complete) if clock_ok else dict(status='unknown',counts=None)
+    after_E=state_at(events,origin+E,complete) if clock_ok else dict(status='unknown',counts=None)
     last=max((e['work_finished_at']-origin for e in work),default=None) if clock_ok else None
-    residual=dict(state_at_E=at_E, final_state=final_state,
+    residual=dict(state_at_E=at_E, state_before_E=at_E, state_after_events_at_E=after_E, final_state=final_state,
         completions_after_E=sum(e['work_finished_at']>=origin+E for e in work) if clock_ok else None,
         last_observed_completion=last, last_completion_minus_E=last-E if last is not None else None,
         drainage='not_established: absence of later ingress requires external proof')
     computational={}
     for cls in ('benign','attack','unknown'):
-        own=[op for op in opmap.values() if next(iter(op.values())).get('traffic_class','unknown')==cls]
+        own=[op for op in opmap.values() if operation_classes[next(iter(op.values()))['operation_id']]==cls]
         computational[cls]=dict(events=dict(Counter(e['kind'] for op in own for e in op.values())),
             wait_ms=describe((op['work_started']['at']-op['work_submitted']['at'])*1000 for op in own if 'work_started' in op and 'work_submitted' in op),
             cpu_operation_ms=describe(op['work_completed']['work_cpu_seconds']*1000 for op in own if 'work_completed' in op),
             wall_ms=describe((op['work_completed']['work_finished_at']-op['work_completed']['work_started_at'])*1000 for op in own if 'work_completed' in op))
-    series=[]
+    series=[]; bins=Counter()
+    def add(t,cls,key):
+        if 0<=t<T: bins[(math.floor(t),cls,key)]+=1
+    for r in requests:
+        cls='attack' if r['generator']=='attack' else 'benign'
+        add(float(r['elapsed_seconds']),cls,'http_starts')
+        if r.get('end_elapsed_seconds') not in ('',None):add(float(r['end_elapsed_seconds']),cls,'http_completions')
+    for e in journal:
+        cls='attack' if e['source_id'].startswith('attack_') else 'benign' if e['source_id'].startswith('normal_') else 'unknown'
+        kind=e['kind']
+        if kind=='task_resolution' and e['payload'].get('decision')=='expired_before_http':kind='expired_before_http'
+        if kind in ('admission','submitted','task_started','expired_before_http'):
+            add(e['payload'].get('elapsed_seconds',-1),cls,'admissions' if kind=='admission' else kind)
+    work_kinds=('work_submitted','work_started','work_completed','work_failed')
+    if clock_ok:
+        for e in events:
+            if e['kind'] in work_kinds:add(e['at']-origin,e.get('traffic_class','unknown'),e['kind'])
+    boundaries=[origin+min(i+1,T) for i in range(math.ceil(T))]
+    snapshots=states_before_boundaries(events,boundaries,complete) if clock_ok and complete else {}
     for i in range(math.ceil(T)):
         b=min(i+1,T)
-        state=state_before(events,origin+b,complete) if clock_ok and closures and origin+b<=closures[0]['at'] else dict(status='unknown',counts=None)
-        for cls,generator in [('benign','normal'),('attack','attack'),('unknown',None)]:
-            own=[r for r in requests if r['generator']==generator]
-            source_ids={e['source_id'] for e in journal if (e['source_id'].startswith('attack_') if cls=='attack' else e['source_id'].startswith('normal_') if cls=='benign' else False)}
-            row=dict(start=i,end=b,phase=phase(i,S,E),traffic_class=cls,
-                admissions=sum(e['kind']=='admission' and e['source_id'] in source_ids and i<=e['payload'].get('elapsed_seconds',-1)<b for e in journal),
-                http_starts=sum(i<=float(r['elapsed_seconds'])<b for r in own),
-                http_completions=sum(r.get('end_elapsed_seconds') not in ('',None) and i<=float(r['end_elapsed_seconds'])<b for r in own),
-                computation_state=state['status'])
-            for kind in ('submitted','task_started'):
-                row[kind]=sum(e['kind']==kind and e['source_id'] in source_ids and i<=e['payload'].get('elapsed_seconds',-1)<b for e in journal)
-            row['expired_before_http']=sum(e['kind']=='task_resolution' and e['payload'].get('decision')=='expired_before_http' and e['source_id'] in source_ids and i<=e['payload'].get('elapsed_seconds',-1)<b for e in journal)
-            for kind in ('work_submitted','work_started','work_completed','work_failed'):
-                row[kind]=sum(e['kind']==kind and e.get('traffic_class','unknown')==cls and origin+i<=e['at']<origin+b for e in events) if clock_ok else None
+        state=snapshots.get(origin+b,dict(status='unknown',counts=None)) if closures and origin+b<=closures[0]['at'] else dict(status='unknown',counts=None)
+        for cls in ('benign','attack','unknown'):
+            row=dict(start=i,end=b,phase=phase(i,S,E),traffic_class=cls,computation_state=state['status'])
+            for key in ('admissions','http_starts','http_completions','submitted','task_started','expired_before_http')+work_kinds:
+                row[key]=bins[(i,cls,key)] if key not in work_kinds or clock_ok else None
             for key in ('waiting','running','pending','completed'):
                 row[key+'_at_end_left']=state['counts'][cls][key] if state['counts'] else None
             series.append(row)
@@ -143,8 +226,7 @@ def characterize(config, requests, journal, events, metrics, raw_cpu, origin, cl
     return dict(phases=phases,groups=groups,emission=emission,per_source=per_source,
         computation=computational,residual=residual,
         integrity=dict(computation_complete=complete,duplicates=duplicates,writer_sequence_valid=sequence_ok,
-            correlated_requests=len(matched),correlation_mismatches=mismatches,
-            requests_without_observed_submission=sorted(set(request_map)-matched)),
+            **correlation),
         cpu=dict(ticks=cadence([float(m['elapsed_seconds']) for m in metrics],phases),
                  raw=cadence([m['monotonic']-origin for m in raw_cpu],phases) if clock_ok else None,
                  tick_cpu_percent=describe(float(m['average_cpu_percent']) for m in metrics if m.get('active_containers_names')),
@@ -201,7 +283,7 @@ def analyze(run, output):
         writer=csv.DictWriter(stream,fieldnames=list(series[0]));writer.writeheader();writer.writerows(series)
     report=['# Caracterização ofensiva offline', '', 'Run: '+status['run_id'],
         'Dataset: '+str(dataset), '',
-        '| Grupo | Inícios | Conclusões | RPS nominal | RPS iniciado | HTTP médio ms |',
+        '| Grupo | Inícios | Tentativas encerradas | RPS nominal | RPS iniciado | HTTP médio ms |',
         '|---|---:|---:|---:|---:|---:|']
     for cls,g in summary['groups'].items():
         report.append(f"| {cls} | {g['starts_total']} | {g['completions']} | {g['nominal_rps']} | {g['realized_start_rps']:.6f} | {g['duration_ms'].get('mean')} |")

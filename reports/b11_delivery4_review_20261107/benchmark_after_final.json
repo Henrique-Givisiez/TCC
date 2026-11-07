@@ -1,0 +1,11 @@
+{
+  "requests": 8000,
+  "events": 40001,
+  "journal_records": 56000,
+  "seconds": 0.6975729480000155,
+  "peak_rss_mib": 113.32421875,
+  "starts": 8000,
+  "rows": 450,
+  "rss_before": "VmRSS:\t   87112 kB",
+  "rss_after": "VmRSS:\t   93844 kB"
+}
