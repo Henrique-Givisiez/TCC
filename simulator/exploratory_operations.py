@@ -25,13 +25,41 @@ class Policy:
         for key, value in asdict(self).items():
             if key != 'version' and (type(value) not in (int, float) or not math.isfinite(value) or value <= 0):
                 raise ValueError('mandatory operational limit pending: ' + key)
-        if self.version != 'exploratory-I1-v1':
+        if self.version not in ('exploratory-I1-v1', 'exploratory-offensive-v1'):
             raise ValueError('unsupported operational policy')
         if self.global_timeout_seconds <= experiment.duration_seconds + 35:
             raise ValueError('global timeout must reserve setup and source drain (>35s)')
+        if self.version == 'exploratory-offensive-v1':
+            validate_composition(experiment)
+            return
         if (experiment.topology.mode != 'direct' or experiment.attack.enabled or experiment.attack.attackers
                 or not experiment.diagnostics.enabled or experiment.traffic_sources.execution != 'containers'):
             raise ValueError('I1 requires direct diagnostic benign container sources')
+
+
+def validate_composition(experiment, expected=None):
+    experiment.validate()
+    if (experiment.topology.mode != 'direct' or not experiment.diagnostics.enabled
+            or experiment.traffic_sources.execution != 'containers' or experiment.server.process_pool_workers != 2):
+        raise ValueError('protected compositions require direct diagnostic containers and two workers')
+    normal, attack = experiment.normal_traffic, experiment.attack
+    if normal.clients and normal.rate <= 0:
+        raise ValueError('configured legitimate sources require positive rate')
+    if attack.enabled:
+        if not attack.attackers or attack.rate <= 0 or not attack.mechanism or attack.duration_seconds <= 0:
+            raise ValueError('offensive configuration requires sources, rate, mechanism and duration')
+        if attack.profile != 'continuous':
+            raise ValueError('protected offensive profile must be continuous')
+        if normal.clients and normal.endpoint != '/medium':
+            raise ValueError('combined legitimate endpoint must be /medium')
+    elif attack.attackers:
+        raise ValueError('disabled attack must have zero sources')
+    if not normal.clients and not attack.enabled:
+        raise ValueError('at least one active source required')
+    composition = 'combined' if normal.clients and attack.enabled else 'offensive' if attack.enabled else 'legitimate'
+    if expected is not None and expected != composition:
+        raise ValueError('declared composition differs from configured sources')
+    return composition
 
 
 def resolve_images(client, victim, source):
@@ -96,6 +124,7 @@ class Operations:
             active = {c.id for c in client.containers.list()}
             residual = client.containers.list(all=True, filters={'label': 'edos.role=source'})
             residual += client.containers.list(all=True, filters={'name': 'target_instance'})
+            residual += client.containers.list(all=True, filters={'label':'edos.role=image_inspection'})
             result['residual'] = sorted({c.id for c in residual})
             result['active_external'] = sorted(active-set(result['residual']))
             if result['processes']: result['reasons'].append('known_processes')
@@ -164,7 +193,11 @@ class Operations:
         self.handler_changed = True
         signal.signal(signal.SIGALRM, timeout)
         self.timer_changed = True
-        signal.setitimer(signal.ITIMER_REAL, self.policy.global_timeout_seconds)
+        elapsed = self.started - self.report.get('attempt', {}).get('started_monotonic', self.started)
+        remaining = self.policy.global_timeout_seconds - elapsed
+        if remaining <= 0:
+            raise TimeoutError('exploratory global timeout exhausted in preflight')
+        signal.setitimer(signal.ITIMER_REAL, remaining)
 
     def disarm(self):
         failures = []
@@ -267,6 +300,34 @@ class Operations:
             if config.get('diagnostics', {}).get('enabled'):
                 summary = json.loads((self.directory/'diagnostics/victim/events.summary.json').read_text())
                 if summary.get('complete') is not True: raise RuntimeError('victim diagnostics incomplete')
+            if self.policy.version == 'exploratory-offensive-v1':
+                from simulator.experiment_config import ExperimentConfig
+                self.policy.validate(ExperimentConfig.from_dict(config))
+                from experiments.validate_dataset import validate_dataset, write_report
+                validation = validate_dataset(export_path)
+                write_report(validation, self.directory/'dataset_validation.json', export_path)
+                self.report['dataset_validation'] = dict(dataset_valid=validation['dataset_valid'],
+                                                         analysis_eligible=validation['analysis_eligible'])
+                if not validation['dataset_valid'] or not validation['analysis_eligible']:
+                    raise RuntimeError('dataset validation failed')
+                import csv
+                with (self.directory/'request_log.csv').open(newline='') as stream:
+                    requests = list(csv.DictReader(stream))
+                rates = {}
+                for group in ('normal','attack'):
+                    settings = config['normal_traffic'] if group == 'normal' else config['attack']
+                    start = settings['start_seconds'] if group == 'attack' else 0
+                    end = start + settings['duration_seconds'] if group == 'attack' else config['duration_seconds']
+                    own = [r for r in requests if r['generator'] == group]
+                    count = settings['clients'] if group == 'normal' else settings['attackers'] if settings['enabled'] else 0
+                    width = end-start
+                    rates[group] = dict(nominal_rps=count*settings['rate'], interval=[start,end],
+                        http_starts_total=len(own), http_starts_in_window=sum(start<=float(r['elapsed_seconds'])<end for r in own),
+                        http_completions_total=sum(bool(r['end_elapsed_seconds']) for r in own))
+                    rates[group]['realized_start_rps'] = rates[group]['http_starts_in_window']/width if width else None
+                self.report['traffic_rates'] = rates
+                self.report['http_degradation_observed'] = any(r['outcome'] in ('http_error','transport_error') for r in requests)
+                self.report['scientific_certification'] = 'dataset_checks_only; no recovery or detector claims'
             self.report['records'] = 'persisted_basic_checks'
             manifest = Path(export_path)/'dataset_manifest.json'
             data = json.loads(manifest.read_text())
@@ -279,12 +340,17 @@ class Operations:
                   and not status.get('errors') and not self.report['failures']
                   and self.report.get('cleanup_verified') is True
                   and self.report.get('post_cleanup_readiness', {}).get('verified') is True)
+            self.report['outcome'] = ('completed_with_http_degradation' if self.report.get('http_degradation_observed') else 'completed_integral') if ok else 'technical_failure'
             self.report['procedure_completed'] = ok
             self.report['progression_allowed'] = ok
             self.report['certification'] = 'completed' if ok else 'blocked'
         except Exception as exc:
             self.report['failures'].append('certification: '+repr(exc))
             self.report['certification'] = 'blocked'
+            protected = {'host_memory','disk_space','artifact_budget','global_timeout'}
+            self.report['outcome'] = 'operational_interruption' if any(
+                any(r in protected or r.startswith(('container_memory:', 'oom_or_restart:')) for r in a.get('reasons', []))
+                for a in self.report['actions']) else 'technical_failure'
             self.report['procedure_completed'] = False
         try:
             self.persist()

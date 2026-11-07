@@ -28,6 +28,7 @@ class BurstConfig:
 
 @dataclass(frozen=True)
 class AttackConfig:
+    mechanism: str = ""  # Explicit in protected offensive runs; absent in historical configs.
     enabled: bool = True
     profile: str = "continuous"
     attackers: int = 4
@@ -47,6 +48,10 @@ class AttackConfig:
         return self.start_seconds + self.duration_seconds
 
     def validate_pattern(self):
+        if self.mechanism:
+            endpoints = {'computational_asymmetry':'/expensive', 'http_request_flooding':'/medium'}
+            if self.mechanism not in endpoints or self.endpoint != endpoints[self.mechanism] or self.profile != 'continuous':
+                raise ValueError('attack mechanism requires its matching endpoint and continuous profile')
         if self.profile not in ('continuous', 'periodic_burst'):
             raise ValueError('attack.profile must be continuous or periodic_burst')
         if self.burst is not None:
@@ -210,6 +215,8 @@ class ExperimentConfig:
     def to_json(self):
         self.validate()
         data = asdict(self)
+        if not self.attack.mechanism:
+            data["attack"].pop("mechanism")
         # Keep the canonical bytes of historical proxy/default configurations.
         # The effective segment and topology are also recorded in run metadata.
         if self.topology.mode == 'proxy':

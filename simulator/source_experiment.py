@@ -278,6 +278,10 @@ def run(experiment, operational=None):
                     time.sleep(.02)
                 if not (diagnostic_root/'victim/events.summary.json').exists():
                     raise RuntimeError('victim observation closure missing')
+                observation = json.loads((diagnostic_root/'victim/events.summary.json').read_text())
+                status['victim_observation_complete'] = observation.get('observation_complete', observation.get('complete'))
+                if observation.get('complete') is not True:
+                    raise RuntimeError('victim observation technically incomplete')
             except Exception as exc:
                 errors.append('diagnostic wait: '+repr(exc))
                 complete = False

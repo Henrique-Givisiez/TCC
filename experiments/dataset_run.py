@@ -18,6 +18,13 @@ ARTIFACTS = {
 def run_recorded(experiment, output, operational=None):
     from simulator import config, main_orchestrator
     experiment = experiment.resolve_seed()
+    if operational and operational.policy.version == 'exploratory-offensive-v1' and not operational.report.get('attempt'):
+        raise RuntimeError('protected offensive execution requires prepared attempt')
+    if operational and operational.report.get('attempt'):
+        from experiments.image_code_evidence import expected_files
+        for role, evidence in operational.report['attempt']['image_code'].items():
+            if expected_files(role) != evidence['files']:
+                raise RuntimeError('checkout changed after image verification')
     output = Path(output).resolve()
     output.mkdir(parents=True, exist_ok=False)
     settings = {key: str(output / name) for key, name in ARTIFACTS.items()}
@@ -25,6 +32,9 @@ def run_recorded(experiment, output, operational=None):
                     SOURCE_ARTIFACT_DIR=str(output / 'source_artifacts'),
                     SOURCE_INVENTORY_FILE=str(output / 'source_inventory.json'))
     previous = {key: getattr(config, key) for key in settings}
+    if operational and operational.report.get('attempt'):
+        (output/'preflight.json').write_text(json.dumps(operational.report['attempt']['preflight'],indent=2)+'\n')
+        (output/'attempt.json').write_text(json.dumps(operational.report['attempt'],indent=2)+'\n')
     (output / 'effective_config.json').write_text(experiment.to_json())
     provenance = capture_provenance('execution_before_invocation', docker_endpoint=config.DOCKER_ENGINE_SOCKET)
     provenance['configuration'] = 'effective_config.json'

@@ -141,7 +141,7 @@ class CertificationTests(unittest.TestCase):
     def test_external_containers_categorized_never_removed(self):
         with tempfile.TemporaryDirectory() as t:
             op=Operations(policy(),{},t);client=MagicMock()
-            client.containers.list.side_effect=[[MagicMock(id='external')],[],[]]
+            client.containers.list.side_effect=[[MagicMock(id='external')],[],[],[]]
             client.networks.get.return_value.attrs={'Containers':{}}
             with patch('experiments.development_d1_ops.process_rows',return_value=[]),patch.object(op,'observe'):
                 with self.assertRaises(RuntimeError):op.ready(client)
