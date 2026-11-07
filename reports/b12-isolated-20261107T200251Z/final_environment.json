@@ -1,0 +1,89 @@
+{
+  "containers": "CONTAINER ID                                                       IMAGE                       COMMAND           CREATED         STATUS                       PORTS     NAMES\nd82a98728c014f39972bd269d11953fe6fa95f75309d2f0c9d638b2459e1a812   acgpiano/sqli-labs          \"/run.sh\"         16 months ago   Created                                nice_noether\nd150248b2db3ad4743d18c29ac816fde4b5808ecd9929ea321544d812ec77126   acgpiano/sqli-labs          \"/run.sh\"         16 months ago   Created                                cool_montalcini\n448f465d63393de71c90b3f7092ae962d23f0dbe69cf7b39bec8fcc2930b297c   acgpiano/sqli-labs:latest   \"/run.sh\"         16 months ago   Exited (137) 16 months ago             sqli-labs\nedaefe76e363e49949c450b947f3c03efa9a351fca3206d9aaca0d65c9dc77a3   aprendendodocker-web        \"python app.py\"   17 months ago   Exited (137) 17 months ago             aprendendodocker-web-1\n",
+  "networks": [
+    {
+      "Name": "edos_sources",
+      "Id": "7e2468afd861c60736f9caa950327154847bfdefe2695f8ed819110852a814a3",
+      "Created": "2026-10-01T21:30:05.327951295-03:00",
+      "Scope": "local",
+      "Driver": "bridge",
+      "EnableIPv4": true,
+      "EnableIPv6": false,
+      "IPAM": {
+        "Driver": "default",
+        "Options": null,
+        "Config": [
+          {
+            "Subnet": "172.20.0.0/16",
+            "Gateway": "172.20.0.1"
+          }
+        ]
+      },
+      "Internal": false,
+      "Attachable": false,
+      "Ingress": false,
+      "ConfigFrom": {
+        "Network": ""
+      },
+      "ConfigOnly": false,
+      "Options": {},
+      "Labels": {},
+      "Containers": {},
+      "Status": {
+        "IPAM": {
+          "Subnets": {
+            "172.20.0.0/16": {
+              "IPsInUse": 3,
+              "DynamicIPsAvailable": 65533
+            }
+          }
+        }
+      }
+    },
+    {
+      "Name": "edos_network",
+      "Id": "b442ef916fc79aea2ba44858ef76933830281fc0a12f83dfb1f1989d8ddac973",
+      "Created": "2025-09-11T16:33:48.207733593-03:00",
+      "Scope": "local",
+      "Driver": "bridge",
+      "EnableIPv4": true,
+      "EnableIPv6": false,
+      "IPAM": {
+        "Driver": "default",
+        "Options": null,
+        "Config": [
+          {
+            "Subnet": "172.19.0.0/16",
+            "Gateway": "172.19.0.1"
+          }
+        ]
+      },
+      "Internal": false,
+      "Attachable": false,
+      "Ingress": false,
+      "ConfigFrom": {
+        "Network": ""
+      },
+      "ConfigOnly": false,
+      "Options": {},
+      "Labels": {},
+      "Containers": {},
+      "Status": {
+        "IPAM": {
+          "Subnets": {
+            "172.19.0.0/16": {
+              "IPsInUse": 3,
+              "DynamicIPsAvailable": 65533
+            }
+          }
+        }
+      }
+    }
+  ],
+  "disk": {
+    "total": 102610575360,
+    "used": 63529873408,
+    "free": 33821044736
+  },
+  "git_status": "?? reports/b12-isolated-20261107T200251Z/\n"
+}

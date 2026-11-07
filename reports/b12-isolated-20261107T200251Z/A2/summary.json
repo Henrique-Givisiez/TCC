@@ -1,0 +1,1681 @@
+{
+  "phases": {
+    "pre": [
+      0,
+      30
+    ],
+    "attack": [
+      30,
+      60
+    ],
+    "post": [
+      60,
+      150
+    ]
+  },
+  "groups": {
+    "benign": {
+      "attempts_started": 0,
+      "attempts_ended_known": 0,
+      "responses_received": 0,
+      "http_error_responses": 0,
+      "attempts_without_observed_end": 0,
+      "duration_observations": 0,
+      "response_duration_ms": {
+        "n": 0,
+        "mean": null,
+        "minimum": null,
+        "maximum": null,
+        "p50": null,
+        "p95": null,
+        "sample_sd": null,
+        "sum": null,
+        "p99": null,
+        "median": null,
+        "max": null
+      },
+      "known_end_duration_ms": {
+        "n": 0,
+        "mean": null,
+        "minimum": null,
+        "maximum": null,
+        "p50": null,
+        "p95": null,
+        "sample_sd": null,
+        "sum": null,
+        "p99": null,
+        "median": null,
+        "max": null
+      },
+      "legacy_completions_semantics": "known-ended attempts, including transport/client errors; not responses",
+      "starts_total": 0,
+      "starts_in_window": 0,
+      "completions": 0,
+      "incomplete": 0,
+      "nominal_rps": 0,
+      "denominator_seconds": 150,
+      "realized_start_rps": 0.0,
+      "realized_minus_nominal": 0.0,
+      "status_codes": {},
+      "outcomes": {},
+      "timeouts": 0,
+      "connection_errors": 0,
+      "duration_ms": {
+        "n": 0,
+        "mean": null,
+        "minimum": null,
+        "maximum": null,
+        "p50": null,
+        "p95": null,
+        "sample_sd": null,
+        "sum": null,
+        "p99": null,
+        "median": null,
+        "max": null
+      },
+      "duration_basis": "known completions only; not imputed for censored attempts",
+      "completions_after_end": 0,
+      "last_start": null,
+      "last_completion": null,
+      "phases": {
+        "pre": {
+          "attempts_started": 0,
+          "attempts_ended_known": 0,
+          "responses_received": 0,
+          "http_error_responses": 0,
+          "attempts_without_observed_end": 0,
+          "duration_observations": 0,
+          "response_duration_ms": {
+            "n": 0,
+            "mean": null,
+            "minimum": null,
+            "maximum": null,
+            "p50": null,
+            "p95": null,
+            "sample_sd": null,
+            "sum": null,
+            "p99": null,
+            "median": null,
+            "max": null
+          },
+          "known_end_duration_ms": {
+            "n": 0,
+            "mean": null,
+            "minimum": null,
+            "maximum": null,
+            "p50": null,
+            "p95": null,
+            "sample_sd": null,
+            "sum": null,
+            "p99": null,
+            "median": null,
+            "max": null
+          },
+          "legacy_completions_semantics": "known-ended attempts, including transport/client errors; not responses",
+          "starts_total": 0,
+          "starts_in_window": 0,
+          "completions": 0,
+          "incomplete": 0,
+          "nominal_rps": 0,
+          "denominator_seconds": 30,
+          "realized_start_rps": 0.0,
+          "realized_minus_nominal": 0.0,
+          "status_codes": {},
+          "outcomes": {},
+          "timeouts": 0,
+          "connection_errors": 0,
+          "duration_ms": {
+            "n": 0,
+            "mean": null,
+            "minimum": null,
+            "maximum": null,
+            "p50": null,
+            "p95": null,
+            "sample_sd": null,
+            "sum": null,
+            "p99": null,
+            "median": null,
+            "max": null
+          },
+          "duration_basis": "known completions only; not imputed for censored attempts",
+          "completions_after_end": 0,
+          "last_start": null,
+          "last_completion": null
+        },
+        "attack": {
+          "attempts_started": 0,
+          "attempts_ended_known": 0,
+          "responses_received": 0,
+          "http_error_responses": 0,
+          "attempts_without_observed_end": 0,
+          "duration_observations": 0,
+          "response_duration_ms": {
+            "n": 0,
+            "mean": null,
+            "minimum": null,
+            "maximum": null,
+            "p50": null,
+            "p95": null,
+            "sample_sd": null,
+            "sum": null,
+            "p99": null,
+            "median": null,
+            "max": null
+          },
+          "known_end_duration_ms": {
+            "n": 0,
+            "mean": null,
+            "minimum": null,
+            "maximum": null,
+            "p50": null,
+            "p95": null,
+            "sample_sd": null,
+            "sum": null,
+            "p99": null,
+            "median": null,
+            "max": null
+          },
+          "legacy_completions_semantics": "known-ended attempts, including transport/client errors; not responses",
+          "starts_total": 0,
+          "starts_in_window": 0,
+          "completions": 0,
+          "incomplete": 0,
+          "nominal_rps": 0,
+          "denominator_seconds": 30,
+          "realized_start_rps": 0.0,
+          "realized_minus_nominal": 0.0,
+          "status_codes": {},
+          "outcomes": {},
+          "timeouts": 0,
+          "connection_errors": 0,
+          "duration_ms": {
+            "n": 0,
+            "mean": null,
+            "minimum": null,
+            "maximum": null,
+            "p50": null,
+            "p95": null,
+            "sample_sd": null,
+            "sum": null,
+            "p99": null,
+            "median": null,
+            "max": null
+          },
+          "duration_basis": "known completions only; not imputed for censored attempts",
+          "completions_after_end": 0,
+          "last_start": null,
+          "last_completion": null
+        },
+        "post": {
+          "attempts_started": 0,
+          "attempts_ended_known": 0,
+          "responses_received": 0,
+          "http_error_responses": 0,
+          "attempts_without_observed_end": 0,
+          "duration_observations": 0,
+          "response_duration_ms": {
+            "n": 0,
+            "mean": null,
+            "minimum": null,
+            "maximum": null,
+            "p50": null,
+            "p95": null,
+            "sample_sd": null,
+            "sum": null,
+            "p99": null,
+            "median": null,
+            "max": null
+          },
+          "known_end_duration_ms": {
+            "n": 0,
+            "mean": null,
+            "minimum": null,
+            "maximum": null,
+            "p50": null,
+            "p95": null,
+            "sample_sd": null,
+            "sum": null,
+            "p99": null,
+            "median": null,
+            "max": null
+          },
+          "legacy_completions_semantics": "known-ended attempts, including transport/client errors; not responses",
+          "starts_total": 0,
+          "starts_in_window": 0,
+          "completions": 0,
+          "incomplete": 0,
+          "nominal_rps": 0,
+          "denominator_seconds": 90,
+          "realized_start_rps": 0.0,
+          "realized_minus_nominal": 0.0,
+          "status_codes": {},
+          "outcomes": {},
+          "timeouts": 0,
+          "connection_errors": 0,
+          "duration_ms": {
+            "n": 0,
+            "mean": null,
+            "minimum": null,
+            "maximum": null,
+            "p50": null,
+            "p95": null,
+            "sample_sd": null,
+            "sum": null,
+            "p99": null,
+            "median": null,
+            "max": null
+          },
+          "duration_basis": "known completions only; not imputed for censored attempts",
+          "completions_after_end": 0,
+          "last_start": null,
+          "last_completion": null
+        }
+      }
+    },
+    "attack": {
+      "attempts_started": 115,
+      "attempts_ended_known": 115,
+      "responses_received": 115,
+      "http_error_responses": 0,
+      "attempts_without_observed_end": 0,
+      "duration_observations": 115,
+      "response_duration_ms": {
+        "n": 115,
+        "mean": 286.2502462000007,
+        "minimum": 205.04663799965783,
+        "maximum": 527.903943999263,
+        "p50": 262.6422939993063,
+        "p95": 439.11263999871153,
+        "sample_sd": 68.62039076127941,
+        "sum": 32918.778313000075,
+        "p99": 520.188356998915,
+        "median": 262.6422939993063,
+        "max": 527.903943999263
+      },
+      "known_end_duration_ms": {
+        "n": 115,
+        "mean": 286.2502462000007,
+        "minimum": 205.04663799965783,
+        "maximum": 527.903943999263,
+        "p50": 262.6422939993063,
+        "p95": 439.11263999871153,
+        "sample_sd": 68.62039076127941,
+        "sum": 32918.778313000075,
+        "p99": 520.188356998915,
+        "median": 262.6422939993063,
+        "max": 527.903943999263
+      },
+      "legacy_completions_semantics": "known-ended attempts, including transport/client errors; not responses",
+      "starts_total": 115,
+      "starts_in_window": 115,
+      "completions": 115,
+      "incomplete": 0,
+      "nominal_rps": 4,
+      "denominator_seconds": 30,
+      "realized_start_rps": 3.8333333333333335,
+      "realized_minus_nominal": -0.16666666666666652,
+      "status_codes": {
+        "200": 115
+      },
+      "outcomes": {
+        "response": 115
+      },
+      "timeouts": 0,
+      "connection_errors": 0,
+      "duration_ms": {
+        "n": 115,
+        "mean": 286.2502462000007,
+        "minimum": 205.04663799965783,
+        "maximum": 527.903943999263,
+        "p50": 262.6422939993063,
+        "p95": 439.11263999871153,
+        "sample_sd": 68.62039076127941,
+        "sum": 32918.778313000075,
+        "p99": 520.188356998915,
+        "median": 262.6422939993063,
+        "max": 527.903943999263
+      },
+      "duration_basis": "known completions only; not imputed for censored attempts",
+      "completions_after_end": 1,
+      "last_start": 59.88604979700085,
+      "last_completion": 60.16629781500069,
+      "phases": {
+        "pre": {
+          "attempts_started": 0,
+          "attempts_ended_known": 0,
+          "responses_received": 0,
+          "http_error_responses": 0,
+          "attempts_without_observed_end": 0,
+          "duration_observations": 0,
+          "response_duration_ms": {
+            "n": 0,
+            "mean": null,
+            "minimum": null,
+            "maximum": null,
+            "p50": null,
+            "p95": null,
+            "sample_sd": null,
+            "sum": null,
+            "p99": null,
+            "median": null,
+            "max": null
+          },
+          "known_end_duration_ms": {
+            "n": 0,
+            "mean": null,
+            "minimum": null,
+            "maximum": null,
+            "p50": null,
+            "p95": null,
+            "sample_sd": null,
+            "sum": null,
+            "p99": null,
+            "median": null,
+            "max": null
+          },
+          "legacy_completions_semantics": "known-ended attempts, including transport/client errors; not responses",
+          "starts_total": 0,
+          "starts_in_window": 0,
+          "completions": 0,
+          "incomplete": 0,
+          "nominal_rps": 0,
+          "denominator_seconds": 30,
+          "realized_start_rps": 0.0,
+          "realized_minus_nominal": 0.0,
+          "status_codes": {},
+          "outcomes": {},
+          "timeouts": 0,
+          "connection_errors": 0,
+          "duration_ms": {
+            "n": 0,
+            "mean": null,
+            "minimum": null,
+            "maximum": null,
+            "p50": null,
+            "p95": null,
+            "sample_sd": null,
+            "sum": null,
+            "p99": null,
+            "median": null,
+            "max": null
+          },
+          "duration_basis": "known completions only; not imputed for censored attempts",
+          "completions_after_end": 0,
+          "last_start": null,
+          "last_completion": null
+        },
+        "attack": {
+          "attempts_started": 115,
+          "attempts_ended_known": 115,
+          "responses_received": 115,
+          "http_error_responses": 0,
+          "attempts_without_observed_end": 0,
+          "duration_observations": 115,
+          "response_duration_ms": {
+            "n": 115,
+            "mean": 286.2502462000007,
+            "minimum": 205.04663799965783,
+            "maximum": 527.903943999263,
+            "p50": 262.6422939993063,
+            "p95": 439.11263999871153,
+            "sample_sd": 68.62039076127941,
+            "sum": 32918.778313000075,
+            "p99": 520.188356998915,
+            "median": 262.6422939993063,
+            "max": 527.903943999263
+          },
+          "known_end_duration_ms": {
+            "n": 115,
+            "mean": 286.2502462000007,
+            "minimum": 205.04663799965783,
+            "maximum": 527.903943999263,
+            "p50": 262.6422939993063,
+            "p95": 439.11263999871153,
+            "sample_sd": 68.62039076127941,
+            "sum": 32918.778313000075,
+            "p99": 520.188356998915,
+            "median": 262.6422939993063,
+            "max": 527.903943999263
+          },
+          "legacy_completions_semantics": "known-ended attempts, including transport/client errors; not responses",
+          "starts_total": 115,
+          "starts_in_window": 115,
+          "completions": 115,
+          "incomplete": 0,
+          "nominal_rps": 4,
+          "denominator_seconds": 30,
+          "realized_start_rps": 3.8333333333333335,
+          "realized_minus_nominal": -0.16666666666666652,
+          "status_codes": {
+            "200": 115
+          },
+          "outcomes": {
+            "response": 115
+          },
+          "timeouts": 0,
+          "connection_errors": 0,
+          "duration_ms": {
+            "n": 115,
+            "mean": 286.2502462000007,
+            "minimum": 205.04663799965783,
+            "maximum": 527.903943999263,
+            "p50": 262.6422939993063,
+            "p95": 439.11263999871153,
+            "sample_sd": 68.62039076127941,
+            "sum": 32918.778313000075,
+            "p99": 520.188356998915,
+            "median": 262.6422939993063,
+            "max": 527.903943999263
+          },
+          "duration_basis": "known completions only; not imputed for censored attempts",
+          "completions_after_end": 1,
+          "last_start": 59.88604979700085,
+          "last_completion": 60.16629781500069
+        },
+        "post": {
+          "attempts_started": 0,
+          "attempts_ended_known": 0,
+          "responses_received": 0,
+          "http_error_responses": 0,
+          "attempts_without_observed_end": 0,
+          "duration_observations": 0,
+          "response_duration_ms": {
+            "n": 0,
+            "mean": null,
+            "minimum": null,
+            "maximum": null,
+            "p50": null,
+            "p95": null,
+            "sample_sd": null,
+            "sum": null,
+            "p99": null,
+            "median": null,
+            "max": null
+          },
+          "known_end_duration_ms": {
+            "n": 0,
+            "mean": null,
+            "minimum": null,
+            "maximum": null,
+            "p50": null,
+            "p95": null,
+            "sample_sd": null,
+            "sum": null,
+            "p99": null,
+            "median": null,
+            "max": null
+          },
+          "legacy_completions_semantics": "known-ended attempts, including transport/client errors; not responses",
+          "starts_total": 0,
+          "starts_in_window": 0,
+          "completions": 0,
+          "incomplete": 0,
+          "nominal_rps": 0,
+          "denominator_seconds": 90,
+          "realized_start_rps": 0.0,
+          "realized_minus_nominal": 0.0,
+          "status_codes": {},
+          "outcomes": {},
+          "timeouts": 0,
+          "connection_errors": 0,
+          "duration_ms": {
+            "n": 0,
+            "mean": null,
+            "minimum": null,
+            "maximum": null,
+            "p50": null,
+            "p95": null,
+            "sample_sd": null,
+            "sum": null,
+            "p99": null,
+            "median": null,
+            "max": null
+          },
+          "duration_basis": "known completions only; not imputed for censored attempts",
+          "completions_after_end": 0,
+          "last_start": null,
+          "last_completion": null
+        }
+      }
+    }
+  },
+  "emission": {
+    "events": {
+      "run_binding": 2,
+      "event_snapshot": 242,
+      "configured": 2,
+      "admission": 115,
+      "task_started": 115,
+      "task_resolution": 115,
+      "submitted": 115,
+      "request_begin": 115,
+      "request_finish": 115,
+      "latency_sample": 115,
+      "task_finished": 115,
+      "emission_closed": 2,
+      "source_closed": 2
+    },
+    "resolutions": {
+      "started": 115
+    },
+    "reconciliation_errors": [],
+    "outside_window": []
+  },
+  "per_source": {
+    "attack_1": {
+      "run_binding": 1,
+      "event_snapshot": 114,
+      "configured": 1,
+      "admission": 54,
+      "task_started": 54,
+      "task_resolution": 54,
+      "submitted": 54,
+      "request_begin": 54,
+      "request_finish": 54,
+      "latency_sample": 54,
+      "task_finished": 54,
+      "emission_closed": 1,
+      "source_closed": 1
+    },
+    "attack_2": {
+      "run_binding": 1,
+      "event_snapshot": 128,
+      "configured": 1,
+      "admission": 61,
+      "task_started": 61,
+      "task_resolution": 61,
+      "submitted": 61,
+      "request_begin": 61,
+      "request_finish": 61,
+      "latency_sample": 61,
+      "task_finished": 61,
+      "emission_closed": 1,
+      "source_closed": 1
+    }
+  },
+  "computation": {
+    "benign": {
+      "events": {},
+      "wait_ms": {
+        "n": 0,
+        "mean": null,
+        "minimum": null,
+        "maximum": null,
+        "p50": null,
+        "p95": null,
+        "sample_sd": null,
+        "sum": null,
+        "p99": null,
+        "median": null,
+        "max": null
+      },
+      "cpu_operation_ms": {
+        "n": 0,
+        "mean": null,
+        "minimum": null,
+        "maximum": null,
+        "p50": null,
+        "p95": null,
+        "sample_sd": null,
+        "sum": null,
+        "p99": null,
+        "median": null,
+        "max": null
+      },
+      "wall_ms": {
+        "n": 0,
+        "mean": null,
+        "minimum": null,
+        "maximum": null,
+        "p50": null,
+        "p95": null,
+        "sample_sd": null,
+        "sum": null,
+        "p99": null,
+        "median": null,
+        "max": null
+      }
+    },
+    "attack": {
+      "events": {
+        "handler_started": 115,
+        "work_submitted": 115,
+        "work_started": 115,
+        "work_completed": 115,
+        "handler_finished": 115
+      },
+      "wait_ms": {
+        "n": 115,
+        "mean": 37.45412845220689,
+        "minimum": 0.47101700056373375,
+        "maximum": 268.0624690001423,
+        "p50": 1.3166660000933916,
+        "p95": 178.83051700118813,
+        "sample_sd": 64.5613029751753,
+        "sum": 4307.224772003792,
+        "p99": 266.48115199895983,
+        "median": 1.3166660000933916,
+        "max": 268.0624690001423
+      },
+      "cpu_operation_ms": {
+        "n": 115,
+        "mean": 241.36126559130435,
+        "minimum": 191.69466900000032,
+        "maximum": 288.0950210000002,
+        "p50": 243.62741599999893,
+        "p95": 273.648725,
+        "sample_sd": 20.786888576365868,
+        "sum": 27756.545543,
+        "p99": 279.7421670000002,
+        "median": 243.62741599999893,
+        "max": 288.0950210000002
+      },
+      "wall_ms": {
+        "n": 115,
+        "mean": 241.405673982579,
+        "minimum": 191.7308400006732,
+        "maximum": 288.3175180013495,
+        "p50": 243.63445100061654,
+        "p95": 273.57762299925525,
+        "sample_sd": 20.817606330461793,
+        "sum": 27761.652507996587,
+        "p99": 279.7306340016803,
+        "median": 243.63445100061654,
+        "max": 288.3175180013495
+      }
+    },
+    "unknown": {
+      "events": {
+        "handler_started": 10,
+        "work_submitted": 10,
+        "work_started": 10,
+        "work_completed": 10,
+        "handler_finished": 10
+      },
+      "wait_ms": {
+        "n": 10,
+        "mean": 1.9863937998707115,
+        "minimum": 0.7768969999233377,
+        "maximum": 8.864155000082974,
+        "p50": 1.3003154999751132,
+        "p95": 8.864155000082974,
+        "sample_sd": 2.4431049027790976,
+        "sum": 19.863937998707115,
+        "p99": null,
+        "median": 1.3003154999751132,
+        "max": 8.864155000082974
+      },
+      "cpu_operation_ms": {
+        "n": 10,
+        "mean": 0.015199499999999939,
+        "minimum": 0.005847000000000664,
+        "maximum": 0.04002999999999993,
+        "p50": 0.009513499999999793,
+        "p95": 0.04002999999999993,
+        "sample_sd": 0.01197235016611197,
+        "sum": 0.15199499999999938,
+        "p99": null,
+        "median": 0.009513499999999793,
+        "max": 0.04002999999999993
+      },
+      "wall_ms": {
+        "n": 10,
+        "mean": 0.01756109986672527,
+        "minimum": 0.009663999662734568,
+        "maximum": 0.04028799958177842,
+        "p50": 0.013778999800706515,
+        "p95": 0.04028799958177842,
+        "sample_sd": 0.009774665263114555,
+        "sum": 0.17561099866725272,
+        "p99": null,
+        "median": 0.013778999800706515,
+        "max": 0.04028799958177842
+      }
+    }
+  },
+  "residual": {
+    "state_at_E": {
+      "status": "observed",
+      "counts": {
+        "benign": {
+          "waiting": 0,
+          "running": 0,
+          "completed": 0,
+          "failed": 0,
+          "pending": 0,
+          "submitted": 0,
+          "started": 0
+        },
+        "attack": {
+          "waiting": 0,
+          "running": 1,
+          "completed": 114,
+          "failed": 0,
+          "pending": 1,
+          "submitted": 115,
+          "started": 115
+        },
+        "unknown": {
+          "waiting": 0,
+          "running": 0,
+          "completed": 10,
+          "failed": 0,
+          "pending": 0,
+          "submitted": 10,
+          "started": 10
+        }
+      },
+      "errors": []
+    },
+    "state_before_E": {
+      "status": "observed",
+      "counts": {
+        "benign": {
+          "waiting": 0,
+          "running": 0,
+          "completed": 0,
+          "failed": 0,
+          "pending": 0,
+          "submitted": 0,
+          "started": 0
+        },
+        "attack": {
+          "waiting": 0,
+          "running": 1,
+          "completed": 114,
+          "failed": 0,
+          "pending": 1,
+          "submitted": 115,
+          "started": 115
+        },
+        "unknown": {
+          "waiting": 0,
+          "running": 0,
+          "completed": 10,
+          "failed": 0,
+          "pending": 0,
+          "submitted": 10,
+          "started": 10
+        }
+      },
+      "errors": []
+    },
+    "state_after_events_at_E": {
+      "status": "observed",
+      "counts": {
+        "benign": {
+          "waiting": 0,
+          "running": 0,
+          "completed": 0,
+          "failed": 0,
+          "pending": 0,
+          "submitted": 0,
+          "started": 0
+        },
+        "attack": {
+          "waiting": 0,
+          "running": 1,
+          "completed": 114,
+          "failed": 0,
+          "pending": 1,
+          "submitted": 115,
+          "started": 115
+        },
+        "unknown": {
+          "waiting": 0,
+          "running": 0,
+          "completed": 10,
+          "failed": 0,
+          "pending": 0,
+          "submitted": 10,
+          "started": 10
+        }
+      },
+      "errors": []
+    },
+    "final_state": {
+      "status": "observed",
+      "counts": {
+        "benign": {
+          "waiting": 0,
+          "running": 0,
+          "completed": 0,
+          "failed": 0,
+          "pending": 0,
+          "submitted": 0,
+          "started": 0
+        },
+        "attack": {
+          "waiting": 0,
+          "running": 0,
+          "completed": 115,
+          "failed": 0,
+          "pending": 0,
+          "submitted": 115,
+          "started": 115
+        },
+        "unknown": {
+          "waiting": 0,
+          "running": 0,
+          "completed": 10,
+          "failed": 0,
+          "pending": 0,
+          "submitted": 10,
+          "started": 10
+        }
+      },
+      "errors": []
+    },
+    "completions_after_E": 1,
+    "last_observed_completion": 60.16314890299964,
+    "last_completion_minus_E": 0.16314890299963736,
+    "drainage": "not_established: absence of later ingress requires external proof"
+  },
+  "integrity": {
+    "computation_complete": true,
+    "duplicates": [],
+    "writer_sequence_valid": true,
+    "conflicts": [],
+    "insufficient_evidence": [
+      {
+        "operation_id": "e0b5a54d02844ef59ba72b3ebad4778a",
+        "reasons": [
+          "insufficient_declared_identity"
+        ]
+      },
+      {
+        "operation_id": "2ceb3e91bf0546748e96c209b46f1456",
+        "reasons": [
+          "insufficient_declared_identity"
+        ]
+      },
+      {
+        "operation_id": "e31acf093d2c478db1820cdc41310597",
+        "reasons": [
+          "insufficient_declared_identity"
+        ]
+      },
+      {
+        "operation_id": "efd0dbc821904dcfb6754ebfa29d079c",
+        "reasons": [
+          "insufficient_declared_identity"
+        ]
+      },
+      {
+        "operation_id": "87b5451bd4c4427e8d1e9a679621933c",
+        "reasons": [
+          "insufficient_declared_identity"
+        ]
+      },
+      {
+        "operation_id": "42b46827f93146f7a92f235a890b3b43",
+        "reasons": [
+          "insufficient_declared_identity"
+        ]
+      },
+      {
+        "operation_id": "e22c913e3bb14b258ee86ba60d3a9248",
+        "reasons": [
+          "insufficient_declared_identity"
+        ]
+      },
+      {
+        "operation_id": "c5f5ebc2cf8d4f5bb2ee7549176dc621",
+        "reasons": [
+          "insufficient_declared_identity"
+        ]
+      },
+      {
+        "operation_id": "87aba2d31e5a45b38fcbe3d76aa95667",
+        "reasons": [
+          "insufficient_declared_identity"
+        ]
+      },
+      {
+        "operation_id": "3f6377795f794335b4c8ff3ff5b21bc7",
+        "reasons": [
+          "insufficient_declared_identity"
+        ]
+      }
+    ],
+    "correlated_requests": 115,
+    "correlation_mismatches": [],
+    "requests_without_observed_submission": [],
+    "partial_lifecycles": {},
+    "identity_consistent": true
+  },
+  "cpu": {
+    "ticks": {
+      "samples": 30,
+      "intervals_seconds": {
+        "n": 29,
+        "mean": 4.8575617621724225,
+        "minimum": 1.9976939619991754,
+        "maximum": 6.051404943999842,
+        "p50": 5.034608076999575,
+        "p95": 6.042944855000314,
+        "sample_sd": 1.3185789892932096,
+        "sum": 140.86929110300025,
+        "p99": null,
+        "median": 5.034608076999575,
+        "max": 6.051404943999842
+      },
+      "gaps_over_1s": [
+        {
+          "start": 6.125381185000151,
+          "end": 12.16764317199977,
+          "seconds": 6.04226198699962
+        },
+        {
+          "start": 12.16764317199977,
+          "end": 18.219048115999612,
+          "seconds": 6.051404943999842
+        },
+        {
+          "start": 18.219048115999612,
+          "end": 24.261992970999927,
+          "seconds": 6.042944855000314
+        },
+        {
+          "start": 24.261992970999927,
+          "end": 30.27145634200042,
+          "seconds": 6.009463371000493
+        },
+        {
+          "start": 30.27145634200042,
+          "end": 36.304870992999895,
+          "seconds": 6.033414650999475
+        },
+        {
+          "start": 36.304870992999895,
+          "end": 42.339964526000585,
+          "seconds": 6.0350935330006905
+        },
+        {
+          "start": 42.339964526000585,
+          "end": 48.371542493999186,
+          "seconds": 6.031577967998601
+        },
+        {
+          "start": 48.371542493999186,
+          "end": 54.39846433200091,
+          "seconds": 6.026921838001726
+        },
+        {
+          "start": 54.39846433200091,
+          "end": 60.4355138990004,
+          "seconds": 6.037049566999485
+        },
+        {
+          "start": 60.4355138990004,
+          "end": 62.45227833300032,
+          "seconds": 2.016764433999924
+        },
+        {
+          "start": 62.45227833300032,
+          "end": 64.46673379600088,
+          "seconds": 2.0144554630005587
+        },
+        {
+          "start": 64.46673379600088,
+          "end": 66.46442775800006,
+          "seconds": 1.9976939619991754
+        },
+        {
+          "start": 66.46442775800006,
+          "end": 68.47512018100042,
+          "seconds": 2.010692423000364
+        },
+        {
+          "start": 68.47512018100042,
+          "end": 71.5109101120006,
+          "seconds": 3.0357899310001812
+        },
+        {
+          "start": 71.5109101120006,
+          "end": 76.54551818900018,
+          "seconds": 5.034608076999575
+        },
+        {
+          "start": 76.54551818900018,
+          "end": 81.57878074900054,
+          "seconds": 5.033262560000367
+        },
+        {
+          "start": 81.57878074900054,
+          "end": 86.59386059000008,
+          "seconds": 5.015079840999533
+        },
+        {
+          "start": 86.59386059000008,
+          "end": 91.62672905499949,
+          "seconds": 5.03286846499941
+        },
+        {
+          "start": 91.62672905499949,
+          "end": 96.65583457999946,
+          "seconds": 5.029105524999977
+        },
+        {
+          "start": 96.65583457999946,
+          "end": 101.68682410599922,
+          "seconds": 5.0309895259997575
+        },
+        {
+          "start": 101.68682410599922,
+          "end": 106.73884666200047,
+          "seconds": 5.052022556001248
+        },
+        {
+          "start": 106.73884666200047,
+          "end": 111.7679910350007,
+          "seconds": 5.029144373000236
+        },
+        {
+          "start": 111.7679910350007,
+          "end": 116.81424778999917,
+          "seconds": 5.046256754998467
+        },
+        {
+          "start": 116.81424778999917,
+          "end": 121.84201193100034,
+          "seconds": 5.027764141001171
+        },
+        {
+          "start": 121.84201193100034,
+          "end": 126.8790448610007,
+          "seconds": 5.0370329300003505
+        },
+        {
+          "start": 126.8790448610007,
+          "end": 131.90779278100035,
+          "seconds": 5.02874791999966
+        },
+        {
+          "start": 131.90779278100035,
+          "end": 136.95211141100026,
+          "seconds": 5.044318629999907
+        },
+        {
+          "start": 136.95211141100026,
+          "end": 141.95807333299945,
+          "seconds": 5.005961921999187
+        },
+        {
+          "start": 141.95807333299945,
+          "end": 146.9946722880004,
+          "seconds": 5.0365989550009544
+        }
+      ],
+      "phase_samples": {
+        "pre": 4,
+        "attack": 5,
+        "post": 21
+      },
+      "interpolation": false
+    },
+    "raw": {
+      "samples": 56,
+      "intervals_seconds": {
+        "n": 55,
+        "mean": 2.725628791745476,
+        "minimum": 2.013027990999035,
+        "maximum": 3.0220705949996045,
+        "p50": 3.014994455001215,
+        "p95": 3.0205440159998034,
+        "sample_sd": 0.4579683874921577,
+        "sum": 149.90958354600116,
+        "p99": null,
+        "median": 3.014994455001215,
+        "max": 3.0220705949996045
+      },
+      "gaps_over_1s": [
+        {
+          "start": 1.076584155999626,
+          "end": 4.096556124000017,
+          "seconds": 3.019971968000391
+        },
+        {
+          "start": 4.096556124000017,
+          "end": 7.117676673999995,
+          "seconds": 3.021120549999978
+        },
+        {
+          "start": 7.117676673999995,
+          "end": 10.1397472689996,
+          "seconds": 3.0220705949996045
+        },
+        {
+          "start": 10.1397472689996,
+          "end": 13.158341901999847,
+          "seconds": 3.018594633000248
+        },
+        {
+          "start": 13.158341901999847,
+          "end": 16.17888591799965,
+          "seconds": 3.0205440159998034
+        },
+        {
+          "start": 16.17888591799965,
+          "end": 19.196856786999888,
+          "seconds": 3.017970869000237
+        },
+        {
+          "start": 19.196856786999888,
+          "end": 22.216524995000327,
+          "seconds": 3.0196682080004393
+        },
+        {
+          "start": 22.216524995000327,
+          "end": 25.236616606999632,
+          "seconds": 3.0200916119993053
+        },
+        {
+          "start": 25.236616606999632,
+          "end": 28.249970982000377,
+          "seconds": 3.0133543750007448
+        },
+        {
+          "start": 28.249970982000377,
+          "end": 31.26718189100029,
+          "seconds": 3.017210908999914
+        },
+        {
+          "start": 31.26718189100029,
+          "end": 34.2795033350003,
+          "seconds": 3.0123214440000083
+        },
+        {
+          "start": 34.2795033350003,
+          "end": 37.29464179600018,
+          "seconds": 3.0151384609998786
+        },
+        {
+          "start": 37.29464179600018,
+          "end": 40.30390147200069,
+          "seconds": 3.009259676000511
+        },
+        {
+          "start": 40.30390147200069,
+          "end": 43.320681619000425,
+          "seconds": 3.0167801469997357
+        },
+        {
+          "start": 43.320681619000425,
+          "end": 46.33318129000054,
+          "seconds": 3.012499671000114
+        },
+        {
+          "start": 46.33318129000054,
+          "end": 49.35070207499939,
+          "seconds": 3.017520784998851
+        },
+        {
+          "start": 49.35070207499939,
+          "end": 52.36115331900055,
+          "seconds": 3.0104512440011604
+        },
+        {
+          "start": 52.36115331900055,
+          "end": 55.37962249300017,
+          "seconds": 3.0184691739996197
+        },
+        {
+          "start": 55.37962249300017,
+          "end": 58.39514709999912,
+          "seconds": 3.0155246069989516
+        },
+        {
+          "start": 58.39514709999912,
+          "end": 61.40922329099976,
+          "seconds": 3.0140761910006404
+        },
+        {
+          "start": 61.40922329099976,
+          "end": 64.42697545099963,
+          "seconds": 3.0177521599998727
+        },
+        {
+          "start": 64.42697545099963,
+          "end": 67.43731831800051,
+          "seconds": 3.0103428670008725
+        },
+        {
+          "start": 67.43731831800051,
+          "end": 70.4515499729996,
+          "seconds": 3.0142316549990937
+        },
+        {
+          "start": 70.4515499729996,
+          "end": 73.46586368500084,
+          "seconds": 3.0143137120012398
+        },
+        {
+          "start": 73.46586368500084,
+          "end": 75.48313912200047,
+          "seconds": 2.0172754369996255
+        },
+        {
+          "start": 75.48313912200047,
+          "end": 78.49835499299934,
+          "seconds": 3.0152158709988726
+        },
+        {
+          "start": 78.49835499299934,
+          "end": 80.51685821500087,
+          "seconds": 2.0185032220015273
+        },
+        {
+          "start": 80.51685821500087,
+          "end": 83.53312372500022,
+          "seconds": 3.016265509999357
+        },
+        {
+          "start": 83.53312372500022,
+          "end": 85.54907083700073,
+          "seconds": 2.0159471120005037
+        },
+        {
+          "start": 85.54907083700073,
+          "end": 88.56384184199942,
+          "seconds": 3.0147710049986927
+        },
+        {
+          "start": 88.56384184199942,
+          "end": 90.57984430300075,
+          "seconds": 2.016002461001335
+        },
+        {
+          "start": 90.57984430300075,
+          "end": 93.59434387300007,
+          "seconds": 3.014499569999316
+        },
+        {
+          "start": 93.59434387300007,
+          "end": 95.61011012799918,
+          "seconds": 2.0157662549991073
+        },
+        {
+          "start": 95.61011012799918,
+          "end": 98.6260060020004,
+          "seconds": 3.0158958740012167
+        },
+        {
+          "start": 98.6260060020004,
+          "end": 100.63903399299943,
+          "seconds": 2.013027990999035
+        },
+        {
+          "start": 100.63903399299943,
+          "end": 103.65402844800064,
+          "seconds": 3.014994455001215
+        },
+        {
+          "start": 103.65402844800064,
+          "end": 105.67109191500003,
+          "seconds": 2.0170634669993888
+        },
+        {
+          "start": 105.67109191500003,
+          "end": 108.6880631110007,
+          "seconds": 3.016971196000668
+        },
+        {
+          "start": 108.6880631110007,
+          "end": 110.70722727299926,
+          "seconds": 2.0191641619985603
+        },
+        {
+          "start": 110.70722727299926,
+          "end": 113.72531519600034,
+          "seconds": 3.018087923001076
+        },
+        {
+          "start": 113.72531519600034,
+          "end": 115.7435635819993,
+          "seconds": 2.018248385998959
+        },
+        {
+          "start": 115.7435635819993,
+          "end": 118.76169064199985,
+          "seconds": 3.018127060000552
+        },
+        {
+          "start": 118.76169064199985,
+          "end": 120.77831003700067,
+          "seconds": 2.0166193950008164
+        },
+        {
+          "start": 120.77831003700067,
+          "end": 123.79511248799918,
+          "seconds": 3.0168024509985116
+        },
+        {
+          "start": 123.79511248799918,
+          "end": 125.81161788000009,
+          "seconds": 2.0165053920009086
+        },
+        {
+          "start": 125.81161788000009,
+          "end": 128.8268680629999,
+          "seconds": 3.0152501829998073
+        },
+        {
+          "start": 128.8268680629999,
+          "end": 130.84452462299942,
+          "seconds": 2.017656559999523
+        },
+        {
+          "start": 130.84452462299942,
+          "end": 133.8616767329995,
+          "seconds": 3.0171521100000973
+        },
+        {
+          "start": 133.8616767329995,
+          "end": 135.88001998500022,
+          "seconds": 2.0183432520007045
+        },
+        {
+          "start": 135.88001998500022,
+          "end": 138.89640580600008,
+          "seconds": 3.016385820999858
+        },
+        {
+          "start": 138.89640580600008,
+          "end": 140.91635625300023,
+          "seconds": 2.0199504470001557
+        },
+        {
+          "start": 140.91635625300023,
+          "end": 143.9348574229998,
+          "seconds": 3.018501169999581
+        },
+        {
+          "start": 143.9348574229998,
+          "end": 145.95041319699976,
+          "seconds": 2.0155557739999495
+        },
+        {
+          "start": 145.95041319699976,
+          "end": 148.967119164,
+          "seconds": 3.0167059670002345
+        },
+        {
+          "start": 148.967119164,
+          "end": 150.98616770200078,
+          "seconds": 2.0190485380007885
+        }
+      ],
+      "phase_samples": {
+        "pre": 10,
+        "attack": 10,
+        "post": 35
+      },
+      "interpolation": false
+    },
+    "tick_cpu_percent": {
+      "n": 30,
+      "mean": 21.710666666666665,
+      "minimum": 1.88,
+      "maximum": 182.41,
+      "p50": 2.2249999999999996,
+      "p95": 139.95,
+      "sample_sd": 45.63706493730676,
+      "sum": 651.32,
+      "p99": null,
+      "median": 2.2249999999999996,
+      "max": 182.41
+    },
+    "tick_memory_mib": {
+      "n": 30,
+      "mean": 29.087666666666667,
+      "minimum": 27.82,
+      "maximum": 31.5,
+      "p50": 28.92,
+      "p95": 31.12,
+      "sample_sd": 0.9330620090024444,
+      "sum": 872.63,
+      "p99": null,
+      "median": 28.92,
+      "max": 31.5
+    }
+  },
+  "limitations": [
+    "CPU tick series is sparse; 1-second event bins are not 1-second CPU observations."
+  ],
+  "version": "offensive-characterization-v2",
+  "analyzer_commit": "adf3d42ef341449a1ed8e069a11024811339434c",
+  "analyzer_sha256": "7dde4e63b53d40fc490e0071661c33ad456c182a8905404cac09d76eaf55c61b",
+  "dataset": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/b12-isolated-20261107T200251Z/A2/dataset",
+  "run_id": "2611cd8d55604596aab2d6b68ead4c9b",
+  "configuration": {
+    "id": "B12-A2-b12-isolated-20261107T200251Z",
+    "duration_seconds": 150,
+    "seed": 20261107,
+    "normal_traffic": {
+      "clients": 0,
+      "rate": 8,
+      "endpoint": "/medium",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "mechanism": "computational_asymmetry",
+      "enabled": true,
+      "profile": "continuous",
+      "attackers": 2,
+      "rate": 2,
+      "start_seconds": 30,
+      "duration_seconds": 30,
+      "endpoint": "/expensive",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 5,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "load_balancer": {
+      "enabled": false
+    },
+    "traffic_sources": {
+      "execution": "containers"
+    },
+    "topology": {
+      "mode": "direct"
+    },
+    "diagnostics": {
+      "enabled": true,
+      "queue_capacity": 4096
+    }
+  },
+  "mechanism": "computational_asymmetry",
+  "validation": {
+    "dataset_valid": true,
+    "analysis_eligible": true,
+    "failed_checks": []
+  },
+  "capture": {
+    "pcap": {
+      "schema_version": 1,
+      "capture": "pcap",
+      "command_argv": [
+        "tcpdump",
+        "--immediate-mode",
+        "-U",
+        "-i",
+        "br-7e2468afd861",
+        "-n",
+        "-w",
+        "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/b12-isolated-20261107T200251Z/A2/raw/source_artifacts/traffic_capture.pcap",
+        "tcp and ((dst host 172.20.0.2 and dst port 80) or (src host 172.20.0.2 and src port 80))"
+      ],
+      "interface": "br-7e2468afd861",
+      "bpf_filter": "tcp and ((dst host 172.20.0.2 and dst port 80) or (src host 172.20.0.2 and src port 80))",
+      "output_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/b12-isolated-20261107T200251Z/A2/raw/source_artifacts/traffic_capture.pcap",
+      "stderr_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/b12-isolated-20261107T200251Z/A2/raw/source_artifacts/traffic_capture.pcap.stderr",
+      "timestamps": {
+        "process_spawn_returned": {
+          "utc": "2026-11-07T20:02:57.558423+00:00",
+          "monotonic_seconds": 8152.905690566,
+          "basis": "host observation sampled after/before the named process event; not tcpdump packet time"
+        },
+        "tcpdump_listening_message_observed": {
+          "utc": "2026-11-07T20:02:57.578870+00:00",
+          "monotonic_seconds": 8152.926135421,
+          "basis": "host observation sampled after/before the named process event; not tcpdump packet time"
+        },
+        "process_exit_observed": {
+          "utc": "2026-11-07T20:05:27.608664+00:00",
+          "monotonic_seconds": 8302.955933058,
+          "basis": "host observation sampled after/before the named process event; not tcpdump packet time"
+        }
+      },
+      "termination_signals": [
+        {
+          "signal": "SIGTERM",
+          "requested": {
+            "utc": "2026-11-07T20:05:27.576790+00:00",
+            "monotonic_seconds": 8302.92406011,
+            "basis": "host observation sampled after/before the named process event; not tcpdump packet time"
+          }
+        }
+      ],
+      "returncode": 0,
+      "launch_error": null,
+      "capture_counters": {
+        "packets_captured": 744,
+        "packets_received_by_filter": 744,
+        "packets_dropped_by_kernel": 0,
+        "statistics_complete": true,
+        "statistics_occurrences": {
+          "packets_captured": 1,
+          "packets_received_by_filter": 1,
+          "packets_dropped_by_kernel": 1
+        }
+      },
+      "capture_diagnostic_sha256": "704f03dc43ec2dd70cb6bf81659dbeb5b8efcc94daf1b606ef72875673fc7485",
+      "accepted_returncodes": [
+        0,
+        -15
+      ],
+      "accepted": true,
+      "time_interpretation": "process_spawn_returned is the host observation after Popen; tcpdump_listening_message_observed is when readiness text was read, not the exact first-packet timestamp; stop requested and process exit are host observations. Packet timestamps remain in capture artifacts."
+    },
+    "csv": {
+      "schema_version": 1,
+      "capture": "csv",
+      "command_argv": [
+        "tcpdump",
+        "--immediate-mode",
+        "-B",
+        "4096",
+        "-i",
+        "br-7e2468afd861",
+        "-l",
+        "-n",
+        "-tt",
+        "-q",
+        "tcp and ((dst host 172.20.0.2 and dst port 80) or (src host 172.20.0.2 and src port 80))"
+      ],
+      "interface": "br-7e2468afd861",
+      "bpf_filter": "tcp and ((dst host 172.20.0.2 and dst port 80) or (src host 172.20.0.2 and src port 80))",
+      "output_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/b12-isolated-20261107T200251Z/A2/raw/traffic_capture.csv",
+      "stderr_path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/b12-isolated-20261107T200251Z/A2/raw/traffic_capture.stderr",
+      "timestamps": {
+        "process_spawn_returned": {
+          "utc": "2026-11-07T20:02:57.534616+00:00",
+          "monotonic_seconds": 8152.88188611,
+          "basis": "host observation sampled after/before the named process event; not tcpdump packet time"
+        },
+        "tcpdump_listening_message_observed": {
+          "utc": "2026-11-07T20:02:57.555484+00:00",
+          "monotonic_seconds": 8152.902748104,
+          "basis": "host observation sampled after/before the named process event; not tcpdump packet time"
+        },
+        "process_exit_observed": {
+          "utc": "2026-11-07T20:05:27.625584+00:00",
+          "monotonic_seconds": 8302.972852438,
+          "basis": "host observation sampled after/before the named process event; not tcpdump packet time"
+        }
+      },
+      "termination_signals": [
+        {
+          "signal": "SIGTERM",
+          "requested": {
+            "utc": "2026-11-07T20:05:27.609265+00:00",
+            "monotonic_seconds": 8302.95653601,
+            "basis": "host observation sampled after/before the named process event; not tcpdump packet time"
+          }
+        }
+      ],
+      "returncode": 0,
+      "launch_error": null,
+      "capture_counters": {
+        "packets_captured": 744,
+        "packets_received_by_filter": 744,
+        "packets_dropped_by_kernel": 0,
+        "statistics_complete": true,
+        "statistics_occurrences": {
+          "packets_captured": 1,
+          "packets_received_by_filter": 1,
+          "packets_dropped_by_kernel": 1
+        }
+      },
+      "capture_diagnostic_sha256": "5a6760f1c0b1b34aaa59917330470194e6717a49b413f1aaf44f30c64829f93f",
+      "accepted_returncodes": [
+        0,
+        -15
+      ],
+      "accepted": true,
+      "time_interpretation": "process_spawn_returned is the host observation after Popen; tcpdump_listening_message_observed is when readiness text was read, not the exact first-packet timestamp; stop requested and process exit are host observations. Packet timestamps remain in capture artifacts."
+    }
+  },
+  "missing_inputs": [],
+  "inputs": {
+    "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/b12-isolated-20261107T200251Z/A2/dataset/dataset_manifest.json": "ffff8eb6a1ff0ea8751c135f390f25ef106267fff3e5a7f6277acec670d0b7ce",
+    "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/b12-isolated-20261107T200251Z/A2/dataset/metadata/effective_config.json": "4f95e75aab452a57529ee4c7d0b6ac758877d1bb6b541392be9d094603a2b879",
+    "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/b12-isolated-20261107T200251Z/A2/dataset/metadata/run_status.json": "3bc0ff1be408cc13e78da1805e638682421c90e0277ea6fdfdd42bb68e4b6b5f",
+    "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/b12-isolated-20261107T200251Z/A2/dataset/metadata/source_inventory.json": "ad3dc6b369b2dee14f1932c6541e6f669b99245237a22665778b9620d1ba6f2c",
+    "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/b12-isolated-20261107T200251Z/A2/dataset/evidence/sources/attack_1/output/journal.jsonl": "168ffd2c90a1cfa55da620e5644f2ad24047987a7938220e64f47a61fbfe45ba",
+    "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/b12-isolated-20261107T200251Z/A2/dataset/evidence/sources/attack_2/output/journal.jsonl": "d35f6de7e377168b4acdc927f8956c34385c042ba2a679bad7496fdd4ff6a617",
+    "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/b12-isolated-20261107T200251Z/A2/dataset/evidence/other/diagnostics/metadata.json": "fe696b61e77c4871a8e6a354f89aba93253d819c870bc6bca3570dc5291f0663",
+    "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/b12-isolated-20261107T200251Z/A2/dataset/evidence/other/diagnostics/victim_clock_validation.json": "ba71fc2cdf1d15a26589abd183499d58324778c66b3112806b6b8952bc2e2e48",
+    "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/b12-isolated-20261107T200251Z/A2/dataset/raw/service/request_log.csv": "12999793c09044dc086d853cfbee28469af7f6b99aac2878039bcf6462177165",
+    "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/b12-isolated-20261107T200251Z/A2/dataset/evidence/other/diagnostics/victim/events.jsonl": "1cd9c966a56007b8c1530790e85759d139256d80242592ae0f9d0f078b19f7af",
+    "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/b12-isolated-20261107T200251Z/A2/dataset/raw/infrastructure/simulation_metrics.csv": "1611dc1686b4e3b97907a6a09f6f9316393f6badafdd858d00977a4fea3901a8",
+    "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/b12-isolated-20261107T200251Z/A2/dataset/evidence/other/victim_stats.jsonl": "2b546ccab5ac9221be1d3db70d01cbd2d569e73298e90482e9b46ab708b77151",
+    "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/b12-isolated-20261107T200251Z/A2/dataset/evidence/other/diagnostics/victim/events.summary.json": "0d7e693473549b72200abcea9e43297bdeda80e0bc41042d70a0d11a7f45657e"
+  },
+  "manifest_sha256": "ffff8eb6a1ff0ea8751c135f390f25ef106267fff3e5a7f6277acec670d0b7ce",
+  "operational_certificate": {
+    "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/b12-isolated-20261107T200251Z/A2/raw/operational_policy.json",
+    "sha256": "60f3126a01b38bb94cf139fcd05d33ab99208886dafdcdcd051be76701b8a445",
+    "bound_to_manifest": true,
+    "certification": "completed",
+    "cleanup_verified": true
+  }
+}
