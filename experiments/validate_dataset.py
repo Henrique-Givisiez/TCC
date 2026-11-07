@@ -392,6 +392,10 @@ class DatasetValidator:
                             keys += ('end_elapsed_seconds','duration_ms','outcome')
                         if any(payload.get(k) != request[k] for k in keys) or request['generator'] != source['source_type'] or request['worker_id'] != source['worker_index']:
                             reference.append(dict(source_id=source['source_id'], request_id=payload.get('request_id')))
+            from simulator.source_aggregate import identified_admission_errors
+            lifecycle_errors = identified_admission_errors(records)
+            self.violations('IDENTIFIED_ADMISSIONS_RESOLVED', lifecycle_errors,
+                            'Identified admissions have one terminal resolution and matching HTTP starts')
             if source['source_type']=='attack' and config['attack']['profile']=='periodic_burst':
                 own_admissions = [r['payload'] for r in records if r['kind']=='admission']
                 own_begins = [r['payload'] for r in records if r['kind']=='request_begin' and r['payload'].get('generator')=='attack']

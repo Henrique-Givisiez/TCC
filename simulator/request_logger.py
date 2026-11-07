@@ -32,14 +32,16 @@ class RequestLogger:
         with open(output_csv, 'w', newline='') as f:
             csv.DictWriter(f, fieldnames=REQUEST_FIELDS).writeheader()
 
-    def begin(self, generator, worker_id, target_url, event_id=None, admit_if=None):
+    def begin(self, generator, worker_id, target_url, event_id=None, admit_if=None, admission_id=None):
         traffic_class = {'normal': 'benign', 'attack': 'attack'}[generator]
         if (generator == 'attack') != (event_id is not None):
             raise ValueError('only attack attempts must identify their originating event')
         with self._lock:
             if self._closed:
                 raise RuntimeError('request log finalized')
-            if admit_if is None:
+            if admission_id is not None:
+                beginning = self.ground_truth.begin_request(event_id, admission_id=admission_id)
+            elif admit_if is None:
                 beginning = self.ground_truth.begin_request(event_id)
             else:
                 beginning = self.ground_truth.begin_request(event_id, admit_if=admit_if)
@@ -56,7 +58,7 @@ class RequestLogger:
                 row['attack_id'] = self.ground_truth.event(event_id)['attack_id']
             self._pending[row['request_id']] = row
             if self.journal:
-                self.journal("request_begin", row)
+                self.journal("request_begin", dict(row, **({"admission_id": admission_id} if admission_id else {})))
             if self.diagnostics:
                 self.diagnostics.http_event('http_started', row, self.ground_truth.clock.monotonic_initial)
             return row.copy()

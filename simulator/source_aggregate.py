@@ -76,6 +76,36 @@ def write_csv(path, fields, rows):
         writer.writerows(rows)
 
 
+def identified_admission_errors(journal):
+    """Additional lifecycle checks; old journals without identified admissions remain valid."""
+    errors = []
+    admissions, resolutions, begins = {}, {}, {}
+    for item in journal:
+        row = item['payload']; token = row.get('admission_id')
+        if not token:
+            continue
+        key = (item['source_id'], token)
+        table = {'admission': admissions, 'task_resolution': resolutions,
+                 'request_begin': begins}.get(item['kind'])
+        if table is not None:
+            if key in table: errors.append('duplicate:' + str(key))
+            table[key] = row
+    for key, admission in admissions.items():
+        result = resolutions.get(key)
+        if result is None:
+            errors.append('unresolved:' + str(key)); continue
+        if result.get('event_id') != admission.get('event_id'):
+            errors.append('event mismatch:' + str(key))
+        if result.get('decision') == 'started':
+            if key not in begins or begins[key]['elapsed_seconds'] != result['elapsed_seconds']:
+                errors.append('start mismatch:' + str(key))
+        elif result.get('decision') not in ('expired_before_http', 'before_window', 'stopped_before_http', 'rejected_before_http') or key in begins:
+            errors.append('invalid discard:' + str(key))
+    if (set(resolutions) | set(begins)) - set(admissions):
+        errors.append('resolution without admission')
+    return errors
+
+
 def aggregate(ground_truth, entries, directory, request_file, rtt_file, routing_file, metrics_file):
     journal = records(directory, entries)
     reconcile(ground_truth, entries, journal, final=True)
@@ -103,8 +133,9 @@ def aggregate(ground_truth, entries, directory, request_file, rtt_file, routing_
                              request_id=request_id, traffic_class=row['traffic_class'], elapsed_seconds=row['end_elapsed_seconds']))
     requests.sort(key=lambda r:(r['elapsed_seconds'],r['request_id']))
     rtts.sort(key=lambda r:(r['elapsed_seconds'],r['request_id']))
+    lifecycle_errors = identified_admission_errors(journal)
     admission_audit = []
-    admission_complete = True
+    admission_complete = not lifecycle_errors
     for entry in entries:
         source = entry['source_id']
         own = [item for item in journal if item['source_id']==source]
@@ -117,7 +148,7 @@ def aggregate(ground_truth, entries, directory, request_file, rtt_file, routing_
         admission_audit.append(dict(source_id=source, admitted=admitted, abandoned=abandoned,
                                     started=started, finished=finished, emission_counts_consistent=certified))
     (Path(directory)/'aggregation_audit.json').write_text(json.dumps(dict(run_id=ground_truth.run_id,
-        sources=admission_audit, complete=admission_complete and len(begins)==len(finishes)),indent=2)+'\n')
+        sources=admission_audit, lifecycle_errors=lifecycle_errors, complete=admission_complete and len(begins)==len(finishes)),indent=2)+'\n')
     write_csv(request_file, REQUEST_FIELDS, requests)
     write_csv(rtt_file, RTT_FIELDS, rtts)
     with open(routing_file, 'w') as destination:

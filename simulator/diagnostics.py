@@ -124,7 +124,7 @@ class DiagnosticExecutor:
     def submit(self, fn, *args, **kwargs):
         plan = getattr(self.local,'plan',None)
         self.local.plan = None
-        attempt_id = plan['attempt_id'] if plan else self._id()
+        attempt_id = kwargs.get('admission_id') or (plan['attempt_id'] if plan else self._id())
         submitted = time.monotonic()
         self._event('submitted',attempt_id,at=submitted,
                     planned_at=plan['planned_at'] if plan else None,

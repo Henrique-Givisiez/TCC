@@ -72,11 +72,13 @@ def configure(settings, seed, ground_truth=None, request_logger=None, service_en
 
 
 
-def _send_one(session, target_url, counters, counters_lock, worker_id=0, event_id=None, attempt=None):
+def _send_one(session, target_url, counters, counters_lock, worker_id=0, event_id=None, attempt=None, admission_id=None):
     """HTTP call begins here, never at executor submission."""
     if attempt is None:
-        attempt = (_request_logger.begin('attack', worker_id, target_url, event_id)
+        attempt = (_request_logger.begin('attack', worker_id, target_url, event_id, admission_id=admission_id)
                    if _request_logger else None)
+    if admission_id is not None and attempt is None:
+        return
     start_time = time.monotonic()
     response, error = None, None
     try:
@@ -109,6 +111,19 @@ def _send_one(session, target_url, counters, counters_lock, worker_id=0, event_i
             with rtt_lock:
                 rtt_measurements.append(duration_ms)
 
+
+
+def _send_continuous(session, target_url, counters, counters_lock, worker_id, event_id, admission_id=None):
+    if admission_id is None:
+        return _send_one(session, target_url, counters, counters_lock, worker_id, event_id)
+    _ground_truth._task_record('task_started', admission_id=admission_id,
+                              elapsed_seconds=_ground_truth.clock.elapsed())
+    try:
+        return _send_one(session, target_url, counters, counters_lock, worker_id, event_id,
+                         admission_id=admission_id)
+    finally:
+        _ground_truth._task_record('task_finished', admission_id=admission_id,
+                                  elapsed_seconds=_ground_truth.clock.elapsed())
 
 
 def _track_future(future):
@@ -186,13 +201,29 @@ def http_request_worker(rps_per_worker, worker_index=0):
             continue
         target_url = request_url(base_url, _settings)
 
-        if _ground_truth is not None and not _ground_truth.admit(_event_id):
-            break
+        admission_id = None
+        if _ground_truth is not None:
+            elapsed = _ground_truth.clock.elapsed()
+            event = _ground_truth.event(_event_id)
+            if elapsed < event['scheduled_start_seconds']:
+                _stop_event.wait(event['scheduled_start_seconds'] - elapsed)
+                continue
+            if elapsed >= event['scheduled_end_seconds']:
+                _ground_truth.stop(_event_id, 'scheduled_end')
+                break
+            admission_id = _ground_truth.admit_continuous(_event_id)
+            if admission_id is None:
+                break
+        submitted_at = _ground_truth.clock.elapsed() if admission_id is not None else None
         try:
-            future = _send_pool.submit(_send_one, session, target_url, counters, counters_lock, worker_index, _event_id)
+            future = _send_pool.submit(_send_continuous, session, target_url, counters, counters_lock,
+                                       worker_index, _event_id, admission_id=admission_id)
+            if admission_id is not None:
+                _ground_truth._task_record('submitted', admission_id=admission_id,
+                                          elapsed_seconds=submitted_at)
         except RuntimeError:
             if _ground_truth is not None:
-                _ground_truth.abandon_admission(_event_id)
+                _ground_truth.resolve_admission(_event_id, admission_id, 'rejected_before_http')
             # _send_pool já foi finalizada (ex.: encerramento do interpretador) — encerra o worker.
             break
         _track_future(future)

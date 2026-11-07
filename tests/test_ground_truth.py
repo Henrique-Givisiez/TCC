@@ -298,7 +298,7 @@ class GroundTruthTests(unittest.TestCase):
                 module.configure(settings,42,gt,None)
                 module.update_targets(['http://localhost:8080'])
                 done=Future(); done.set_result(None)
-                def submit(*args):
+                def submit(*args, **kwargs):
                     setattr(module,flag,False)
                     return done
                 setattr(module,flag,True)

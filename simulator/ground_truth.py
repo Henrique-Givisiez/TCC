@@ -49,7 +49,43 @@ class GroundTruth:
         self.output_csv = output_csv
         self._events = {}
         self._lock = threading.RLock()
+        self._admissions = {}
+        self._admission_sequence = 0
         self._persist()
+
+    def _task_record(self, kind, **payload):
+        journal = getattr(self, 'journal', None)
+        if journal:
+            journal(kind, payload)
+
+    def admit_continuous(self, event_id):
+        """Identified admission on the absolute clock, without backpressure."""
+        with self._lock:
+            event = self._events[event_id]
+            elapsed = self.clock.elapsed()
+            if not event.accepting or not (event.row['scheduled_start_seconds'] <= elapsed < event.row['scheduled_end_seconds']):
+                return None
+            self._admission_sequence += 1
+            token = 'admission_' + str(self._admission_sequence)
+            self._admissions[token] = dict(event_id=event_id, state='pending')
+            event.pending += 1
+            self._task_record('admission', event_id=event_id, admission_id=token, elapsed_seconds=elapsed)
+            return token
+
+    def resolve_admission(self, event_id, admission_id, reason, elapsed=None):
+        with self._lock:
+            item = self._admissions[admission_id]
+            if item['event_id'] != event_id or item['state'] != 'pending':
+                raise RuntimeError('admission already resolved or event mismatch')
+            elapsed = self.clock.elapsed() if elapsed is None else elapsed
+            item['state'] = reason
+            self._events[event_id].pending -= 1
+            self._task_record('task_resolution', event_id=event_id, admission_id=admission_id,
+                              decision=reason, elapsed_seconds=elapsed)
+            self._task_record('abandoned_admission', event_id=event_id, admission_id=admission_id,
+                              reason=reason, elapsed_seconds=elapsed)
+            self._close_emission(self._events[event_id])
+            self._persist()
 
     def plan_event(self, attack_id, event_id, profile, scheduled_start, scheduled_end):
         with self._lock:
@@ -93,11 +129,26 @@ class GroundTruth:
     def _record_admission(self, event_id, elapsed):
         """Optional source journal hook; no change to scientific schemas."""
 
-    def begin_request(self, event_id=None, admit_if=None):
+    def begin_request(self, event_id=None, admit_if=None, admission_id=None):
         with self._lock:
             timestamp, elapsed = self.clock.sample()
             if event_id is not None:
                 event = self._events[event_id]
+                if admission_id is not None:
+                    if admit_if is not None:
+                        raise ValueError('identified admission cannot admit twice')
+                    item = self._admissions[admission_id]
+                    if item['event_id'] != event_id or item['state'] != 'pending':
+                        raise RuntimeError('admission already resolved or event mismatch')
+                    start, end = event.row['scheduled_start_seconds'], event.row['scheduled_end_seconds']
+                    reason = ('before_window' if elapsed < start else 'expired_before_http' if elapsed >= end
+                              else 'stopped_before_http' if not event.accepting else None)
+                    if reason:
+                        self.resolve_admission(event_id, admission_id, reason, elapsed)
+                        return None
+                    item['state'] = 'started'
+                    self._task_record('task_resolution', event_id=event_id, admission_id=admission_id,
+                                      decision='started', elapsed_seconds=elapsed)
                 if admit_if is not None:
                     # Admission and observed beginning use the SAME clock sample
                     # and event lock. Expired opportunities never become attempts.

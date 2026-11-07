@@ -50,9 +50,9 @@ class JournalGroundTruth(GroundTruth):
             super().abandon_admission(event_id)
             self.journal('abandoned_admission', dict(event_id=event_id, elapsed_seconds=self.clock.elapsed()))
 
-    def begin_request(self, event_id=None, admit_if=None):
+    def begin_request(self, event_id=None, admit_if=None, admission_id=None):
         with self._lock:
-            result = super().begin_request(event_id, admit_if=admit_if)
+            result = super().begin_request(event_id, admit_if=admit_if, admission_id=admission_id)
             if event_id is not None and result is not None:
                 self.journal('event_snapshot', self.event(event_id))
             return result
