@@ -1,0 +1,518 @@
+{
+  "boundaries": {
+    "30": {
+      "before": {
+        "status": "observed",
+        "counts": {
+          "benign": {
+            "waiting": 0,
+            "running": 1,
+            "completed": 455,
+            "failed": 0,
+            "pending": 1,
+            "submitted": 456,
+            "started": 456
+          },
+          "attack": {
+            "waiting": 0,
+            "running": 0,
+            "completed": 0,
+            "failed": 0,
+            "pending": 0,
+            "submitted": 0,
+            "started": 0
+          },
+          "unknown": {
+            "waiting": 0,
+            "running": 0,
+            "completed": 20,
+            "failed": 0,
+            "pending": 0,
+            "submitted": 20,
+            "started": 20
+          }
+        },
+        "errors": []
+      },
+      "after_events_at_boundary": {
+        "status": "observed",
+        "counts": {
+          "benign": {
+            "waiting": 0,
+            "running": 1,
+            "completed": 455,
+            "failed": 0,
+            "pending": 1,
+            "submitted": 456,
+            "started": 456
+          },
+          "attack": {
+            "waiting": 0,
+            "running": 0,
+            "completed": 0,
+            "failed": 0,
+            "pending": 0,
+            "submitted": 0,
+            "started": 0
+          },
+          "unknown": {
+            "waiting": 0,
+            "running": 0,
+            "completed": 20,
+            "failed": 0,
+            "pending": 0,
+            "submitted": 20,
+            "started": 20
+          }
+        },
+        "errors": []
+      }
+    },
+    "60": {
+      "before": {
+        "status": "observed",
+        "counts": {
+          "benign": {
+            "waiting": 220,
+            "running": 0,
+            "completed": 750,
+            "failed": 0,
+            "pending": 220,
+            "submitted": 970,
+            "started": 750
+          },
+          "attack": {
+            "waiting": 101,
+            "running": 2,
+            "completed": 135,
+            "failed": 0,
+            "pending": 103,
+            "submitted": 238,
+            "started": 137
+          },
+          "unknown": {
+            "waiting": 0,
+            "running": 0,
+            "completed": 20,
+            "failed": 0,
+            "pending": 0,
+            "submitted": 20,
+            "started": 20
+          }
+        },
+        "errors": []
+      },
+      "after_events_at_boundary": {
+        "status": "observed",
+        "counts": {
+          "benign": {
+            "waiting": 220,
+            "running": 0,
+            "completed": 750,
+            "failed": 0,
+            "pending": 220,
+            "submitted": 970,
+            "started": 750
+          },
+          "attack": {
+            "waiting": 101,
+            "running": 2,
+            "completed": 135,
+            "failed": 0,
+            "pending": 103,
+            "submitted": 238,
+            "started": 137
+          },
+          "unknown": {
+            "waiting": 0,
+            "running": 0,
+            "completed": 20,
+            "failed": 0,
+            "pending": 0,
+            "submitted": 20,
+            "started": 20
+          }
+        },
+        "errors": []
+      }
+    },
+    "70": {
+      "before": {
+        "status": "observed",
+        "counts": {
+          "benign": {
+            "waiting": 290,
+            "running": 0,
+            "completed": 831,
+            "failed": 0,
+            "pending": 290,
+            "submitted": 1121,
+            "started": 831
+          },
+          "attack": {
+            "waiting": 59,
+            "running": 2,
+            "completed": 177,
+            "failed": 0,
+            "pending": 61,
+            "submitted": 238,
+            "started": 179
+          },
+          "unknown": {
+            "waiting": 0,
+            "running": 0,
+            "completed": 20,
+            "failed": 0,
+            "pending": 0,
+            "submitted": 20,
+            "started": 20
+          }
+        },
+        "errors": []
+      },
+      "after_events_at_boundary": {
+        "status": "observed",
+        "counts": {
+          "benign": {
+            "waiting": 290,
+            "running": 0,
+            "completed": 831,
+            "failed": 0,
+            "pending": 290,
+            "submitted": 1121,
+            "started": 831
+          },
+          "attack": {
+            "waiting": 59,
+            "running": 2,
+            "completed": 177,
+            "failed": 0,
+            "pending": 61,
+            "submitted": 238,
+            "started": 179
+          },
+          "unknown": {
+            "waiting": 0,
+            "running": 0,
+            "completed": 20,
+            "failed": 0,
+            "pending": 0,
+            "submitted": 20,
+            "started": 20
+          }
+        },
+        "errors": []
+      }
+    },
+    "80": {
+      "before": {
+        "status": "observed",
+        "counts": {
+          "benign": {
+            "waiting": 333,
+            "running": 0,
+            "completed": 928,
+            "failed": 0,
+            "pending": 333,
+            "submitted": 1261,
+            "started": 928
+          },
+          "attack": {
+            "waiting": 14,
+            "running": 2,
+            "completed": 222,
+            "failed": 0,
+            "pending": 16,
+            "submitted": 238,
+            "started": 224
+          },
+          "unknown": {
+            "waiting": 0,
+            "running": 0,
+            "completed": 20,
+            "failed": 0,
+            "pending": 0,
+            "submitted": 20,
+            "started": 20
+          }
+        },
+        "errors": []
+      },
+      "after_events_at_boundary": {
+        "status": "observed",
+        "counts": {
+          "benign": {
+            "waiting": 333,
+            "running": 0,
+            "completed": 928,
+            "failed": 0,
+            "pending": 333,
+            "submitted": 1261,
+            "started": 928
+          },
+          "attack": {
+            "waiting": 14,
+            "running": 2,
+            "completed": 222,
+            "failed": 0,
+            "pending": 16,
+            "submitted": 238,
+            "started": 224
+          },
+          "unknown": {
+            "waiting": 0,
+            "running": 0,
+            "completed": 20,
+            "failed": 0,
+            "pending": 0,
+            "submitted": 20,
+            "started": 20
+          }
+        },
+        "errors": []
+      }
+    },
+    "90": {
+      "before": {
+        "status": "observed",
+        "counts": {
+          "benign": {
+            "waiting": 133,
+            "running": 2,
+            "completed": 1303,
+            "failed": 0,
+            "pending": 135,
+            "submitted": 1438,
+            "started": 1305
+          },
+          "attack": {
+            "waiting": 0,
+            "running": 0,
+            "completed": 238,
+            "failed": 0,
+            "pending": 0,
+            "submitted": 238,
+            "started": 238
+          },
+          "unknown": {
+            "waiting": 0,
+            "running": 0,
+            "completed": 20,
+            "failed": 0,
+            "pending": 0,
+            "submitted": 20,
+            "started": 20
+          }
+        },
+        "errors": []
+      },
+      "after_events_at_boundary": {
+        "status": "observed",
+        "counts": {
+          "benign": {
+            "waiting": 133,
+            "running": 2,
+            "completed": 1303,
+            "failed": 0,
+            "pending": 135,
+            "submitted": 1438,
+            "started": 1305
+          },
+          "attack": {
+            "waiting": 0,
+            "running": 0,
+            "completed": 238,
+            "failed": 0,
+            "pending": 0,
+            "submitted": 238,
+            "started": 238
+          },
+          "unknown": {
+            "waiting": 0,
+            "running": 0,
+            "completed": 20,
+            "failed": 0,
+            "pending": 0,
+            "submitted": 20,
+            "started": 20
+          }
+        },
+        "errors": []
+      }
+    },
+    "120": {
+      "before": {
+        "status": "observed",
+        "counts": {
+          "benign": {
+            "waiting": 0,
+            "running": 0,
+            "completed": 1893,
+            "failed": 0,
+            "pending": 0,
+            "submitted": 1893,
+            "started": 1893
+          },
+          "attack": {
+            "waiting": 0,
+            "running": 0,
+            "completed": 238,
+            "failed": 0,
+            "pending": 0,
+            "submitted": 238,
+            "started": 238
+          },
+          "unknown": {
+            "waiting": 0,
+            "running": 0,
+            "completed": 20,
+            "failed": 0,
+            "pending": 0,
+            "submitted": 20,
+            "started": 20
+          }
+        },
+        "errors": []
+      },
+      "after_events_at_boundary": {
+        "status": "observed",
+        "counts": {
+          "benign": {
+            "waiting": 0,
+            "running": 0,
+            "completed": 1893,
+            "failed": 0,
+            "pending": 0,
+            "submitted": 1893,
+            "started": 1893
+          },
+          "attack": {
+            "waiting": 0,
+            "running": 0,
+            "completed": 238,
+            "failed": 0,
+            "pending": 0,
+            "submitted": 238,
+            "started": 238
+          },
+          "unknown": {
+            "waiting": 0,
+            "running": 0,
+            "completed": 20,
+            "failed": 0,
+            "pending": 0,
+            "submitted": 20,
+            "started": 20
+          }
+        },
+        "errors": []
+      }
+    },
+    "150": {
+      "before": {
+        "status": "observed",
+        "counts": {
+          "benign": {
+            "waiting": 0,
+            "running": 2,
+            "completed": 2383,
+            "failed": 0,
+            "pending": 2,
+            "submitted": 2385,
+            "started": 2385
+          },
+          "attack": {
+            "waiting": 0,
+            "running": 0,
+            "completed": 238,
+            "failed": 0,
+            "pending": 0,
+            "submitted": 238,
+            "started": 238
+          },
+          "unknown": {
+            "waiting": 0,
+            "running": 0,
+            "completed": 20,
+            "failed": 0,
+            "pending": 0,
+            "submitted": 20,
+            "started": 20
+          }
+        },
+        "errors": []
+      },
+      "after_events_at_boundary": {
+        "status": "observed",
+        "counts": {
+          "benign": {
+            "waiting": 0,
+            "running": 2,
+            "completed": 2383,
+            "failed": 0,
+            "pending": 2,
+            "submitted": 2385,
+            "started": 2385
+          },
+          "attack": {
+            "waiting": 0,
+            "running": 0,
+            "completed": 238,
+            "failed": 0,
+            "pending": 0,
+            "submitted": 238,
+            "started": 238
+          },
+          "unknown": {
+            "waiting": 0,
+            "running": 0,
+            "completed": 20,
+            "failed": 0,
+            "pending": 0,
+            "submitted": 20,
+            "started": 20
+          }
+        },
+        "errors": []
+      }
+    }
+  },
+  "last_offensive_completion": 83.48226949499985,
+  "seconds_after_60": 23.482269494999855,
+  "offensive_completions_at_or_after_60": 103,
+  "offensive_submissions_at_or_after_60": [],
+  "final_observed_state": {
+    "status": "observed",
+    "counts": {
+      "benign": {
+        "waiting": 0,
+        "running": 0,
+        "completed": 2385,
+        "failed": 0,
+        "pending": 0,
+        "submitted": 2385,
+        "started": 2385
+      },
+      "attack": {
+        "waiting": 0,
+        "running": 0,
+        "completed": 238,
+        "failed": 0,
+        "pending": 0,
+        "submitted": 238,
+        "started": 238
+      },
+      "unknown": {
+        "waiting": 0,
+        "running": 0,
+        "completed": 20,
+        "failed": 0,
+        "pending": 0,
+        "submitted": 20,
+        "started": 20
+      }
+    },
+    "errors": []
+  },
+  "scope": "Observed complete lifecycles of identified operations; not universal proof against unobserved future ingress"
+}

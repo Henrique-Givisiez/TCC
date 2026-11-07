@@ -1,0 +1,13 @@
+period,traffic_class,waiting,running,pending
+Total,benign,350,2,351
+Total,attack,104,2,106
+Total,total,359,2,361
+P1,benign,3,2,5
+P1,attack,0,0,0
+P1,total,3,2,5
+P2,benign,220,2,220
+P2,attack,104,2,106
+P2,total,322,2,324
+P3,benign,350,2,351
+P3,attack,101,2,103
+P3,total,359,2,361

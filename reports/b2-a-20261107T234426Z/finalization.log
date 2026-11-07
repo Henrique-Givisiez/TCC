@@ -1,0 +1,44 @@
+{
+  "report": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/reports/b2-a-20261107T234426Z/report.md",
+  "recovery": {
+    "last_offensive_completion_seconds": 83.48226949499985,
+    "first_total_pending_zero_after_60": 93.56752560299992,
+    "last_legitimate_timeout_start": 90.56233182599999,
+    "last_legitimate_timeout_end": 92.56742523699995,
+    "late_P3_100_150": {
+      "interval": [
+        100,
+        150
+      ],
+      "starts": 785,
+      "rps": 15.7,
+      "success": 785,
+      "timeouts": 0,
+      "http_ms": {
+        "n": 785,
+        "mean": 52.652521403821765,
+        "minimum": 27.959715999713808,
+        "maximum": 143.70915799963768,
+        "p50": 44.8772579998149,
+        "p95": 87.77347300019755,
+        "sample_sd": 19.989361024723443,
+        "sum": 41332.22930200009,
+        "p99": 108.05515799984278
+      },
+      "wait_ms": {
+        "n": 785,
+        "mean": 3.2287513350372143,
+        "minimum": 0.5270520000522083,
+        "maximum": 63.80603200022961,
+        "p50": 1.1206600001969491,
+        "p95": 18.933374999960506,
+        "sample_sd": 7.144083109365528,
+        "sum": 2534.569798004213,
+        "p99": 35.115844999836554
+      },
+      "cpu_mean_ms": 34.78157889808939
+    }
+  },
+  "cleanup": "verified",
+  "raw_export_unchanged": true
+}

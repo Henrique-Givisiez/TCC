@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "run_id": "18565197554746caa01170805ff5ea5a",
+  "manifest_binding": true,
+  "artifact_hashes": true,
+  "http_cohorts_reconciled": true,
+  "computational_counts_and_workers": true,
+  "capture_integrity": true,
+  "audit_operations": 20,
+  "legitimate_starts_after_150": 0,
+  "raw_data_unchanged": true,
+  "cleanup_verified": true
+}

@@ -1,0 +1,154 @@
+[
+  {
+    "source_id": "normal_1",
+    "traffic_class": "benign",
+    "events": 7015,
+    "journal_events": 3039,
+    "summary": {
+      "schema_version": 1,
+      "context": {
+        "run_id": "18565197554746caa01170805ff5ea5a",
+        "source_id": "normal_1",
+        "component": "source"
+      },
+      "clock": {
+        "kind": "CLOCK_MONOTONIC",
+        "unit": "seconds",
+        "resolution_seconds": 1e-09,
+        "implementation": "clock_gettime(CLOCK_MONOTONIC)",
+        "time_namespace": "time:[4026533511]",
+        "pid": 1
+      },
+      "capacity": 4096,
+      "offered": 7015,
+      "enqueued": 7015,
+      "written": 7015,
+      "dropped": 0,
+      "write_errors": 0,
+      "queue_remaining": 0,
+      "observation_complete": true,
+      "complete": true
+    },
+    "final_status": {
+      "source_id": "normal_1",
+      "run_id": "18565197554746caa01170805ff5ea5a",
+      "drained": true,
+      "logger_complete": true,
+      "reason": "simulation_end"
+    }
+  },
+  {
+    "source_id": "normal_2",
+    "traffic_class": "benign",
+    "events": 7297,
+    "journal_events": 3175,
+    "summary": {
+      "schema_version": 1,
+      "context": {
+        "run_id": "18565197554746caa01170805ff5ea5a",
+        "source_id": "normal_2",
+        "component": "source"
+      },
+      "clock": {
+        "kind": "CLOCK_MONOTONIC",
+        "unit": "seconds",
+        "resolution_seconds": 1e-09,
+        "implementation": "clock_gettime(CLOCK_MONOTONIC)",
+        "time_namespace": "time:[4026533631]",
+        "pid": 1
+      },
+      "capacity": 4096,
+      "offered": 7297,
+      "enqueued": 7297,
+      "written": 7297,
+      "dropped": 0,
+      "write_errors": 0,
+      "queue_remaining": 0,
+      "observation_complete": true,
+      "complete": true
+    },
+    "final_status": {
+      "source_id": "normal_2",
+      "run_id": "18565197554746caa01170805ff5ea5a",
+      "drained": true,
+      "logger_complete": true,
+      "reason": "simulation_end"
+    }
+  },
+  {
+    "source_id": "attack_1",
+    "traffic_class": "attack",
+    "events": 551,
+    "journal_events": 1004,
+    "summary": {
+      "schema_version": 1,
+      "context": {
+        "run_id": "18565197554746caa01170805ff5ea5a",
+        "source_id": "attack_1",
+        "component": "source"
+      },
+      "clock": {
+        "kind": "CLOCK_MONOTONIC",
+        "unit": "seconds",
+        "resolution_seconds": 1e-09,
+        "implementation": "clock_gettime(CLOCK_MONOTONIC)",
+        "time_namespace": "time:[4026533694]",
+        "pid": 1
+      },
+      "capacity": 4096,
+      "offered": 551,
+      "enqueued": 551,
+      "written": 551,
+      "dropped": 0,
+      "write_errors": 0,
+      "queue_remaining": 0,
+      "observation_complete": true,
+      "complete": true
+    },
+    "final_status": {
+      "source_id": "attack_1",
+      "run_id": "18565197554746caa01170805ff5ea5a",
+      "drained": true,
+      "logger_complete": true,
+      "reason": "simulation_end"
+    }
+  },
+  {
+    "source_id": "attack_2",
+    "traffic_class": "attack",
+    "events": 641,
+    "journal_events": 1174,
+    "summary": {
+      "schema_version": 1,
+      "context": {
+        "run_id": "18565197554746caa01170805ff5ea5a",
+        "source_id": "attack_2",
+        "component": "source"
+      },
+      "clock": {
+        "kind": "CLOCK_MONOTONIC",
+        "unit": "seconds",
+        "resolution_seconds": 1e-09,
+        "implementation": "clock_gettime(CLOCK_MONOTONIC)",
+        "time_namespace": "time:[4026533757]",
+        "pid": 1
+      },
+      "capacity": 4096,
+      "offered": 641,
+      "enqueued": 641,
+      "written": 641,
+      "dropped": 0,
+      "write_errors": 0,
+      "queue_remaining": 0,
+      "observation_complete": true,
+      "complete": true
+    },
+    "final_status": {
+      "source_id": "attack_2",
+      "run_id": "18565197554746caa01170805ff5ea5a",
+      "drained": true,
+      "logger_complete": true,
+      "reason": "simulation_end"
+    }
+  }
+]

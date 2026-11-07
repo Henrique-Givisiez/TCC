@@ -1,0 +1,78 @@
+{
+  "lifecycles_reconciled": true,
+  "per_source": {
+    "normal_1": {
+      "submitted": 1169,
+      "task_started": 1169,
+      "http_started": 1169,
+      "http_finished": 1169,
+      "task_finished": 1169,
+      "planned": 1169,
+      "source_closed": 1
+    },
+    "normal_2": {
+      "submitted": 1216,
+      "task_started": 1216,
+      "http_started": 1216,
+      "http_finished": 1216,
+      "task_finished": 1216,
+      "planned": 1216,
+      "source_closed": 1
+    },
+    "attack_1": {
+      "submitted": 110,
+      "task_started": 110,
+      "http_started": 110,
+      "http_finished": 110,
+      "task_finished": 110,
+      "source_closed": 1
+    },
+    "attack_2": {
+      "submitted": 128,
+      "task_started": 128,
+      "http_started": 128,
+      "http_finished": 128,
+      "task_finished": 128,
+      "source_closed": 1
+    }
+  },
+  "planned_only": [
+    {
+      "source_id": "normal_1",
+      "attempt_id": "1170",
+      "events": {
+        "planned": 1
+      }
+    },
+    {
+      "source_id": "normal_2",
+      "attempt_id": "1217",
+      "events": {
+        "planned": 1
+      }
+    }
+  ],
+  "submitted_without_http": [],
+  "journal_lifecycle": {
+    "events": {
+      "run_binding": 4,
+      "configured": 4,
+      "request_begin": 2623,
+      "request_finish": 2623,
+      "latency_sample": 1454,
+      "source_closed": 4,
+      "event_snapshot": 488,
+      "admission": 238,
+      "task_started": 238,
+      "task_resolution": 238,
+      "submitted": 238,
+      "task_finished": 238,
+      "emission_closed": 2
+    },
+    "resolutions": {
+      "started": 238
+    },
+    "reconciliation_errors": [],
+    "outside_window": []
+  }
+}
