@@ -79,16 +79,16 @@ def write_csv(path, fields, rows):
 def identified_admission_errors(journal):
     """Additional lifecycle checks; old journals without identified admissions remain valid."""
     errors = []
-    admissions, resolutions, begins = {}, {}, {}
+    admissions, resolutions, begins, abandons = {}, {}, {}, {}
     for item in journal:
         row = item['payload']; token = row.get('admission_id')
         if not token:
             continue
         key = (item['source_id'], token)
         table = {'admission': admissions, 'task_resolution': resolutions,
-                 'request_begin': begins}.get(item['kind'])
+                 'request_begin': begins, 'abandoned_admission': abandons}.get(item['kind'])
         if table is not None:
-            if key in table: errors.append('duplicate:' + str(key))
+            if key in table: errors.append('duplicate ' + item['kind'] + ':' + str(key))
             table[key] = row
     for key, admission in admissions.items():
         result = resolutions.get(key)
@@ -96,11 +96,24 @@ def identified_admission_errors(journal):
             errors.append('unresolved:' + str(key)); continue
         if result.get('event_id') != admission.get('event_id'):
             errors.append('event mismatch:' + str(key))
+        for label, related in (('request_begin', begins.get(key)), ('abandoned_admission', abandons.get(key))):
+            if related is not None and related.get('event_id') != admission.get('event_id'):
+                errors.append(label + ' event mismatch:' + str(key))
         if result.get('decision') == 'started':
+            if key in abandons:
+                errors.append('started admission abandoned:' + str(key))
             if key not in begins or begins[key]['elapsed_seconds'] != result['elapsed_seconds']:
                 errors.append('start mismatch:' + str(key))
         elif result.get('decision') not in ('expired_before_http', 'before_window', 'stopped_before_http', 'rejected_before_http') or key in begins:
             errors.append('invalid discard:' + str(key))
+        else:
+            abandoned = abandons.get(key)
+            if abandoned is None:
+                errors.append('discard without abandoned_admission:' + str(key))
+            elif abandoned.get('reason') != result['decision']:
+                errors.append('abandonment reason mismatch:' + str(key))
+    for key in set(abandons) - set(admissions):
+        errors.append('abandonment without admission:' + str(key))
     if (set(resolutions) | set(begins)) - set(admissions):
         errors.append('resolution without admission')
     return errors

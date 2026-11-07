@@ -300,10 +300,30 @@ class DatasetValidator:
                    'Configured source counts match inventory', dict(expected=expected, observed=dict(counts)), severity='ERROR' if status['status'] == 'completed' else 'WARNING')
         return inventory
 
-    def requests(self, config, inventory, events):
+    def scheduled_offensive_starts(self, rows, config, events):
+        """Certify observed logical starts, independently of effective emission closure."""
+        event_map = {e['event_id']: e for e in events or []}
+        bad = []
+        for row in rows:
+            if row['generator'] != 'attack':
+                continue
+            event = event_map.get(row['event_id'])
+            if event is None or not (event['scheduled_start_seconds'] <= row['elapsed_seconds'] < event['scheduled_end_seconds']):
+                bad.append(dict(request_id=row['request_id'], event_id=row['event_id'],
+                                elapsed_seconds=row['elapsed_seconds']))
+        self.violations('CONTINUOUS_SCHEDULED_START_WINDOW', bad,
+                        'Contract v1 logical HTTP starts must belong to scheduled [S,E), regardless of actual_end_seconds')
+
+    def requests(self, config, inventory, events, status=None):
         rows = self.tables.get('requests')
         if rows is None:
             return
+        if status is not None:
+            self.check('OFFENSIVE_START_CONTRACT_SUPPORTED',
+                       'offensive_start_contract' not in status or status['offensive_start_contract'] == 'scheduled-half-open-v1',
+                       'Explicit offensive start contract must be supported')
+        if config['attack']['profile'] == 'continuous' and (status or {}).get('offensive_start_contract') == 'scheduled-half-open-v1':
+            self.scheduled_offensive_starts(rows, config, events)
         self.violations('REQUEST_ID_UNIQUE', [v for v, n in Counter(r['request_id'] for r in rows).items() if n > 1], 'Request IDs are unique within run')
         source_map = {(s['source_type'], s['worker_index']): s for s in inventory or []}
         event_map = {e['event_id']: e for e in events or []}
@@ -392,6 +412,11 @@ class DatasetValidator:
                             keys += ('end_elapsed_seconds','duration_ms','outcome')
                         if any(payload.get(k) != request[k] for k in keys) or request['generator'] != source['source_type'] or request['worker_id'] != source['worker_index']:
                             reference.append(dict(source_id=source['source_id'], request_id=payload.get('request_id')))
+            if source['source_type'] == 'attack' and config['attack']['profile'] == 'continuous' and any(
+                    r['kind'] == 'admission' and r['payload'].get('admission_id') for r in records):
+                self.scheduled_offensive_starts(
+                    [r for r in root_requests.values() if r['generator'] == 'attack' and r['worker_id'] == source['worker_index']],
+                    config, self.tables.get('attacks'))
             from simulator.source_aggregate import identified_admission_errors
             lifecycle_errors = identified_admission_errors(records)
             self.violations('IDENTIFIED_ADMISSIONS_RESOLVED', lifecycle_errors,
@@ -636,7 +661,7 @@ class DatasetValidator:
                 inconsistent = [dict(table=k, line=i+2, run_id=r['run_id']) for k,rows in self.tables.items() for i,r in enumerate(rows or []) if r['run_id'] != self.manifest['run_id']]
                 self.violations('RUN_ID_CONSISTENT', inconsistent, 'Scientific observations belong to the manifest run')
                 inventory = self.sources(config, status)
-                self.requests(config, inventory, self.tables.get('attacks'))
+                self.requests(config, inventory, self.tables.get('attacks'), status)
                 self.events(config, status)
                 self.labels_and_rtt()
                 self.journals(config, status, inventory)
@@ -650,7 +675,7 @@ class DatasetValidator:
         return dict(validation_schema_version=1, validator_rules_version=1,
                     validator_sha256=sha256_file(__file__),
                     validator_dependencies_sha256={str(p.relative_to(Path(__file__).resolve().parents[1])):sha256_file(p) for p in
-                        [Path(__file__).with_name('dataset_schema.py'), Path(__file__).with_name('dataset_provenance.py'), Path(__file__).resolve().parents[1]/'simulator/experiment_config.py']},
+                        [Path(__file__).with_name('dataset_schema.py'), Path(__file__).with_name('dataset_provenance.py'), Path(__file__).resolve().parents[1]/'simulator/experiment_config.py', Path(__file__).resolve().parents[1]/'simulator/source_aggregate.py']},
                     dataset_manifest_sha256=self.manifest_sha256,
                     run_id=self.manifest.get('run_id') if self.manifest else None,
                     dataset_schema_version=self.manifest.get('schema_version') if self.manifest else None,

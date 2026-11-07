@@ -37,6 +37,8 @@ def run(experiment, operational=None):
     reason = 'simulation_end'
     status = dict(schema_version=1, experiment_id=experiment.id, run_id=uuid.uuid4().hex,
                   status='incomplete', end_reason='setup_error')
+    if experiment.attack.profile == 'continuous':
+        status['offensive_start_contract'] = 'scheduled-half-open-v1'
     diagnostic_root = Path(config.RUN_STATUS_FILE).parent/'diagnostics'
     api_timeout_saved = False
     try:
