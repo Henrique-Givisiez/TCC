@@ -1,0 +1,372 @@
+[
+  {
+    "raw_path": "victim_stats.jsonl",
+    "exported_path": "evidence/other/victim_stats.jsonl",
+    "unchanged": true
+  },
+  {
+    "raw_path": "attack_summary_log.csv",
+    "exported_path": "evidence/other/attack_summary_log.csv",
+    "unchanged": true
+  },
+  {
+    "raw_path": "run_provenance.json",
+    "exported_path": "metadata/run_provenance.json",
+    "unchanged": true
+  },
+  {
+    "raw_path": "normal_traffic_summary_log.csv",
+    "exported_path": "evidence/other/normal_traffic_summary_log.csv",
+    "unchanged": true
+  },
+  {
+    "raw_path": "source_inventory.json",
+    "exported_path": "metadata/source_inventory.json",
+    "unchanged": true
+  },
+  {
+    "raw_path": "preflight.json",
+    "exported_path": "evidence/other/preflight.json",
+    "unchanged": true
+  },
+  {
+    "raw_path": "traffic_capture.csv.capture.json",
+    "exported_path": "evidence/other/traffic_capture.csv.capture.json",
+    "unchanged": true
+  },
+  {
+    "raw_path": "traffic_capture.stderr",
+    "exported_path": "evidence/other/traffic_capture.stderr",
+    "unchanged": true
+  },
+  {
+    "raw_path": "rtt_log.csv",
+    "exported_path": "raw/service/rtt_log.csv",
+    "unchanged": true
+  },
+  {
+    "raw_path": "request_log.csv",
+    "exported_path": "raw/service/request_log.csv",
+    "unchanged": true
+  },
+  {
+    "raw_path": "effective_config.json",
+    "exported_path": "metadata/effective_config.json",
+    "unchanged": true
+  },
+  {
+    "raw_path": "run_status.json",
+    "exported_path": "metadata/run_status.json",
+    "unchanged": true
+  },
+  {
+    "raw_path": "simulation_metrics.csv",
+    "exported_path": "raw/infrastructure/simulation_metrics.csv",
+    "unchanged": true
+  },
+  {
+    "raw_path": "attempt.json",
+    "exported_path": "evidence/other/attempt.json",
+    "unchanged": true
+  },
+  {
+    "raw_path": "traffic_capture.csv",
+    "exported_path": "raw/traffic/traffic_capture.csv",
+    "unchanged": true
+  },
+  {
+    "raw_path": "attack_events.csv",
+    "exported_path": "raw/attacks/attack_events.csv",
+    "unchanged": true
+  },
+  {
+    "raw_path": "diagnostics/metadata.json",
+    "exported_path": "evidence/other/diagnostics/metadata.json",
+    "unchanged": true
+  },
+  {
+    "raw_path": "diagnostics/victim_clock_validation.json",
+    "exported_path": "evidence/other/diagnostics/victim_clock_validation.json",
+    "unchanged": true
+  },
+  {
+    "raw_path": "source_artifacts/clock_validation.json",
+    "exported_path": "metadata/topology/sources/clock_validation.json",
+    "unchanged": true
+  },
+  {
+    "raw_path": "source_artifacts/traffic_capture.pcap.capture.json",
+    "exported_path": "evidence/sources/traffic_capture.pcap.capture.json",
+    "unchanged": true
+  },
+  {
+    "raw_path": "source_artifacts/traffic_capture.pcap.stderr",
+    "exported_path": "evidence/sources/traffic_capture.pcap.stderr",
+    "unchanged": true
+  },
+  {
+    "raw_path": "source_artifacts/image_identity.json",
+    "exported_path": "metadata/topology/sources/image_identity.json",
+    "unchanged": true
+  },
+  {
+    "raw_path": "source_artifacts/aggregation_audit.json",
+    "exported_path": "evidence/sources/aggregation_audit.json",
+    "unchanged": true
+  },
+  {
+    "raw_path": "source_artifacts/traffic_capture.pcap",
+    "exported_path": "raw/traffic/traffic_capture.pcap",
+    "unchanged": true
+  },
+  {
+    "raw_path": "source_artifacts/Dockerfile.sources",
+    "exported_path": "evidence/sources/Dockerfile.sources",
+    "unchanged": true
+  },
+  {
+    "raw_path": "source_artifacts/requirements.sources.txt",
+    "exported_path": "evidence/sources/requirements.sources.txt",
+    "unchanged": true
+  },
+  {
+    "raw_path": "source_artifacts/source_plan.json",
+    "exported_path": "metadata/topology/sources/source_plan.json",
+    "unchanged": true
+  },
+  {
+    "raw_path": "direct_artifacts/backend_inventory.json",
+    "exported_path": "metadata/topology/direct/backend_inventory.json",
+    "unchanged": true
+  },
+  {
+    "raw_path": "direct_artifacts/routing_evidence.jsonl",
+    "exported_path": "raw/service/routing_evidence.jsonl",
+    "unchanged": true
+  },
+  {
+    "raw_path": "direct_artifacts/capture_metadata.json",
+    "exported_path": "metadata/topology/direct/capture_metadata.json",
+    "unchanged": true
+  },
+  {
+    "raw_path": "direct_artifacts/target_identity.json",
+    "exported_path": "metadata/topology/direct/target_identity.json",
+    "unchanged": true
+  },
+  {
+    "raw_path": "diagnostics/victim/events.summary.json",
+    "exported_path": "evidence/other/diagnostics/victim/events.summary.json",
+    "unchanged": true
+  },
+  {
+    "raw_path": "diagnostics/victim/stop",
+    "exported_path": "evidence/other/diagnostics/victim/stop",
+    "unchanged": true
+  },
+  {
+    "raw_path": "diagnostics/victim/events.jsonl",
+    "exported_path": "evidence/other/diagnostics/victim/events.jsonl",
+    "unchanged": true
+  },
+  {
+    "raw_path": "source_artifacts/normal_1/manifest.json",
+    "exported_path": "evidence/sources/normal_1/manifest.json",
+    "unchanged": true
+  },
+  {
+    "raw_path": "source_artifacts/normal_2/manifest.json",
+    "exported_path": "evidence/sources/normal_2/manifest.json",
+    "unchanged": true
+  },
+  {
+    "raw_path": "source_artifacts/network_audit/veth0859155.stderr",
+    "exported_path": "evidence/sources/network_audit/veth0859155.stderr",
+    "unchanged": true
+  },
+  {
+    "raw_path": "source_artifacts/network_audit/veth0859155.txt",
+    "exported_path": "evidence/sources/network_audit/veth0859155.txt",
+    "unchanged": true
+  },
+  {
+    "raw_path": "source_artifacts/network_audit/any.pcap",
+    "exported_path": "evidence/sources/network_audit/any.pcap",
+    "unchanged": true
+  },
+  {
+    "raw_path": "source_artifacts/network_audit/br-7e2468afd861.txt",
+    "exported_path": "evidence/sources/network_audit/br-7e2468afd861.txt",
+    "unchanged": true
+  },
+  {
+    "raw_path": "source_artifacts/network_audit/lo.pcap",
+    "exported_path": "evidence/sources/network_audit/lo.pcap",
+    "unchanged": true
+  },
+  {
+    "raw_path": "source_artifacts/network_audit/lo.stderr",
+    "exported_path": "evidence/sources/network_audit/lo.stderr",
+    "unchanged": true
+  },
+  {
+    "raw_path": "source_artifacts/network_audit/veth0859155.pcap",
+    "exported_path": "evidence/sources/network_audit/veth0859155.pcap",
+    "unchanged": true
+  },
+  {
+    "raw_path": "source_artifacts/network_audit/any.txt",
+    "exported_path": "evidence/sources/network_audit/any.txt",
+    "unchanged": true
+  },
+  {
+    "raw_path": "source_artifacts/network_audit/comparison.json",
+    "exported_path": "evidence/sources/network_audit/comparison.json",
+    "unchanged": true
+  },
+  {
+    "raw_path": "source_artifacts/network_audit/any.stderr",
+    "exported_path": "evidence/sources/network_audit/any.stderr",
+    "unchanged": true
+  },
+  {
+    "raw_path": "source_artifacts/network_audit/lo.txt",
+    "exported_path": "evidence/sources/network_audit/lo.txt",
+    "unchanged": true
+  },
+  {
+    "raw_path": "source_artifacts/network_audit/br-7e2468afd861.pcap",
+    "exported_path": "evidence/sources/network_audit/br-7e2468afd861.pcap",
+    "unchanged": true
+  },
+  {
+    "raw_path": "source_artifacts/network_audit/br-7e2468afd861.stderr",
+    "exported_path": "evidence/sources/network_audit/br-7e2468afd861.stderr",
+    "unchanged": true
+  },
+  {
+    "raw_path": "source_artifacts/network_audit/isolation.json",
+    "exported_path": "evidence/sources/network_audit/isolation.json",
+    "unchanged": true
+  },
+  {
+    "raw_path": "source_artifacts/normal_1/output/final_status.json",
+    "exported_path": "evidence/sources/normal_1/output/final_status.json",
+    "unchanged": true
+  },
+  {
+    "raw_path": "source_artifacts/normal_1/output/routing_evidence.jsonl",
+    "exported_path": "evidence/sources/normal_1/output/routing_evidence.jsonl",
+    "unchanged": true
+  },
+  {
+    "raw_path": "source_artifacts/normal_1/output/local_events.csv",
+    "exported_path": "evidence/sources/normal_1/output/local_events.csv",
+    "unchanged": true
+  },
+  {
+    "raw_path": "source_artifacts/normal_1/output/journal.jsonl",
+    "exported_path": "evidence/sources/normal_1/output/journal.jsonl",
+    "unchanged": true
+  },
+  {
+    "raw_path": "source_artifacts/normal_1/output/local_summary.csv",
+    "exported_path": "evidence/sources/normal_1/output/local_summary.csv",
+    "unchanged": true
+  },
+  {
+    "raw_path": "source_artifacts/normal_1/output/ready.json",
+    "exported_path": "evidence/sources/normal_1/output/ready.json",
+    "unchanged": true
+  },
+  {
+    "raw_path": "source_artifacts/normal_1/output/container_output.log",
+    "exported_path": "evidence/sources/normal_1/output/container_output.log",
+    "unchanged": true
+  },
+  {
+    "raw_path": "source_artifacts/normal_1/output/local_rtt.csv",
+    "exported_path": "evidence/sources/normal_1/output/local_rtt.csv",
+    "unchanged": true
+  },
+  {
+    "raw_path": "source_artifacts/normal_1/output/local_requests.csv",
+    "exported_path": "evidence/sources/normal_1/output/local_requests.csv",
+    "unchanged": true
+  },
+  {
+    "raw_path": "source_artifacts/normal_1/control/command.json",
+    "exported_path": "evidence/sources/normal_1/control/command.json",
+    "unchanged": true
+  },
+  {
+    "raw_path": "source_artifacts/normal_1/output/diagnostics/events.summary.json",
+    "exported_path": "evidence/sources/normal_1/output/diagnostics/events.summary.json",
+    "unchanged": true
+  },
+  {
+    "raw_path": "source_artifacts/normal_1/output/diagnostics/events.jsonl",
+    "exported_path": "evidence/sources/normal_1/output/diagnostics/events.jsonl",
+    "unchanged": true
+  },
+  {
+    "raw_path": "source_artifacts/normal_2/output/final_status.json",
+    "exported_path": "evidence/sources/normal_2/output/final_status.json",
+    "unchanged": true
+  },
+  {
+    "raw_path": "source_artifacts/normal_2/output/routing_evidence.jsonl",
+    "exported_path": "evidence/sources/normal_2/output/routing_evidence.jsonl",
+    "unchanged": true
+  },
+  {
+    "raw_path": "source_artifacts/normal_2/output/local_events.csv",
+    "exported_path": "evidence/sources/normal_2/output/local_events.csv",
+    "unchanged": true
+  },
+  {
+    "raw_path": "source_artifacts/normal_2/output/journal.jsonl",
+    "exported_path": "evidence/sources/normal_2/output/journal.jsonl",
+    "unchanged": true
+  },
+  {
+    "raw_path": "source_artifacts/normal_2/output/local_summary.csv",
+    "exported_path": "evidence/sources/normal_2/output/local_summary.csv",
+    "unchanged": true
+  },
+  {
+    "raw_path": "source_artifacts/normal_2/output/ready.json",
+    "exported_path": "evidence/sources/normal_2/output/ready.json",
+    "unchanged": true
+  },
+  {
+    "raw_path": "source_artifacts/normal_2/output/container_output.log",
+    "exported_path": "evidence/sources/normal_2/output/container_output.log",
+    "unchanged": true
+  },
+  {
+    "raw_path": "source_artifacts/normal_2/output/local_rtt.csv",
+    "exported_path": "evidence/sources/normal_2/output/local_rtt.csv",
+    "unchanged": true
+  },
+  {
+    "raw_path": "source_artifacts/normal_2/output/local_requests.csv",
+    "exported_path": "evidence/sources/normal_2/output/local_requests.csv",
+    "unchanged": true
+  },
+  {
+    "raw_path": "source_artifacts/normal_2/control/command.json",
+    "exported_path": "evidence/sources/normal_2/control/command.json",
+    "unchanged": true
+  },
+  {
+    "raw_path": "source_artifacts/normal_2/output/diagnostics/events.summary.json",
+    "exported_path": "evidence/sources/normal_2/output/diagnostics/events.summary.json",
+    "unchanged": true
+  },
+  {
+    "raw_path": "source_artifacts/normal_2/output/diagnostics/events.jsonl",
+    "exported_path": "evidence/sources/normal_2/output/diagnostics/events.jsonl",
+    "unchanged": true
+  }
+]

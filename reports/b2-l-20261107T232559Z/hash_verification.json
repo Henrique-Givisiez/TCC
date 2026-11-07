@@ -1,0 +1,310 @@
+[
+  {
+    "path": "raw/attacks/attack_events.csv",
+    "valid": true
+  },
+  {
+    "path": "evidence/other/attack_summary_log.csv",
+    "valid": true
+  },
+  {
+    "path": "evidence/other/attempt.json",
+    "valid": true
+  },
+  {
+    "path": "evidence/other/diagnostics/metadata.json",
+    "valid": true
+  },
+  {
+    "path": "evidence/other/diagnostics/victim/events.jsonl",
+    "valid": true
+  },
+  {
+    "path": "evidence/other/diagnostics/victim/events.summary.json",
+    "valid": true
+  },
+  {
+    "path": "evidence/other/diagnostics/victim/stop",
+    "valid": true
+  },
+  {
+    "path": "evidence/other/diagnostics/victim_clock_validation.json",
+    "valid": true
+  },
+  {
+    "path": "metadata/topology/direct/backend_inventory.json",
+    "valid": true
+  },
+  {
+    "path": "metadata/topology/direct/capture_metadata.json",
+    "valid": true
+  },
+  {
+    "path": "raw/service/routing_evidence.jsonl",
+    "valid": true
+  },
+  {
+    "path": "metadata/topology/direct/target_identity.json",
+    "valid": true
+  },
+  {
+    "path": "metadata/effective_config.json",
+    "valid": true
+  },
+  {
+    "path": "evidence/other/normal_traffic_summary_log.csv",
+    "valid": true
+  },
+  {
+    "path": "evidence/other/operational_policy.json",
+    "valid": true
+  },
+  {
+    "path": "evidence/other/preflight.json",
+    "valid": true
+  },
+  {
+    "path": "raw/service/request_log.csv",
+    "valid": true
+  },
+  {
+    "path": "raw/service/rtt_log.csv",
+    "valid": true
+  },
+  {
+    "path": "metadata/run_provenance.json",
+    "valid": true
+  },
+  {
+    "path": "metadata/run_status.json",
+    "valid": true
+  },
+  {
+    "path": "raw/infrastructure/simulation_metrics.csv",
+    "valid": true
+  },
+  {
+    "path": "evidence/sources/Dockerfile.sources",
+    "valid": true
+  },
+  {
+    "path": "evidence/sources/aggregation_audit.json",
+    "valid": true
+  },
+  {
+    "path": "metadata/topology/sources/clock_validation.json",
+    "valid": true
+  },
+  {
+    "path": "metadata/topology/sources/image_identity.json",
+    "valid": true
+  },
+  {
+    "path": "evidence/sources/network_audit/any.pcap",
+    "valid": true
+  },
+  {
+    "path": "evidence/sources/network_audit/any.stderr",
+    "valid": true
+  },
+  {
+    "path": "evidence/sources/network_audit/any.txt",
+    "valid": true
+  },
+  {
+    "path": "evidence/sources/network_audit/br-7e2468afd861.pcap",
+    "valid": true
+  },
+  {
+    "path": "evidence/sources/network_audit/br-7e2468afd861.stderr",
+    "valid": true
+  },
+  {
+    "path": "evidence/sources/network_audit/br-7e2468afd861.txt",
+    "valid": true
+  },
+  {
+    "path": "evidence/sources/network_audit/comparison.json",
+    "valid": true
+  },
+  {
+    "path": "evidence/sources/network_audit/isolation.json",
+    "valid": true
+  },
+  {
+    "path": "evidence/sources/network_audit/lo.pcap",
+    "valid": true
+  },
+  {
+    "path": "evidence/sources/network_audit/lo.stderr",
+    "valid": true
+  },
+  {
+    "path": "evidence/sources/network_audit/lo.txt",
+    "valid": true
+  },
+  {
+    "path": "evidence/sources/network_audit/veth0859155.pcap",
+    "valid": true
+  },
+  {
+    "path": "evidence/sources/network_audit/veth0859155.stderr",
+    "valid": true
+  },
+  {
+    "path": "evidence/sources/network_audit/veth0859155.txt",
+    "valid": true
+  },
+  {
+    "path": "evidence/sources/normal_1/control/command.json",
+    "valid": true
+  },
+  {
+    "path": "evidence/sources/normal_1/manifest.json",
+    "valid": true
+  },
+  {
+    "path": "evidence/sources/normal_1/output/container_output.log",
+    "valid": true
+  },
+  {
+    "path": "evidence/sources/normal_1/output/diagnostics/events.jsonl",
+    "valid": true
+  },
+  {
+    "path": "evidence/sources/normal_1/output/diagnostics/events.summary.json",
+    "valid": true
+  },
+  {
+    "path": "evidence/sources/normal_1/output/final_status.json",
+    "valid": true
+  },
+  {
+    "path": "evidence/sources/normal_1/output/journal.jsonl",
+    "valid": true
+  },
+  {
+    "path": "evidence/sources/normal_1/output/local_events.csv",
+    "valid": true
+  },
+  {
+    "path": "evidence/sources/normal_1/output/local_requests.csv",
+    "valid": true
+  },
+  {
+    "path": "evidence/sources/normal_1/output/local_rtt.csv",
+    "valid": true
+  },
+  {
+    "path": "evidence/sources/normal_1/output/local_summary.csv",
+    "valid": true
+  },
+  {
+    "path": "evidence/sources/normal_1/output/ready.json",
+    "valid": true
+  },
+  {
+    "path": "evidence/sources/normal_1/output/routing_evidence.jsonl",
+    "valid": true
+  },
+  {
+    "path": "evidence/sources/normal_2/control/command.json",
+    "valid": true
+  },
+  {
+    "path": "evidence/sources/normal_2/manifest.json",
+    "valid": true
+  },
+  {
+    "path": "evidence/sources/normal_2/output/container_output.log",
+    "valid": true
+  },
+  {
+    "path": "evidence/sources/normal_2/output/diagnostics/events.jsonl",
+    "valid": true
+  },
+  {
+    "path": "evidence/sources/normal_2/output/diagnostics/events.summary.json",
+    "valid": true
+  },
+  {
+    "path": "evidence/sources/normal_2/output/final_status.json",
+    "valid": true
+  },
+  {
+    "path": "evidence/sources/normal_2/output/journal.jsonl",
+    "valid": true
+  },
+  {
+    "path": "evidence/sources/normal_2/output/local_events.csv",
+    "valid": true
+  },
+  {
+    "path": "evidence/sources/normal_2/output/local_requests.csv",
+    "valid": true
+  },
+  {
+    "path": "evidence/sources/normal_2/output/local_rtt.csv",
+    "valid": true
+  },
+  {
+    "path": "evidence/sources/normal_2/output/local_summary.csv",
+    "valid": true
+  },
+  {
+    "path": "evidence/sources/normal_2/output/ready.json",
+    "valid": true
+  },
+  {
+    "path": "evidence/sources/normal_2/output/routing_evidence.jsonl",
+    "valid": true
+  },
+  {
+    "path": "evidence/sources/requirements.sources.txt",
+    "valid": true
+  },
+  {
+    "path": "metadata/topology/sources/source_plan.json",
+    "valid": true
+  },
+  {
+    "path": "raw/traffic/traffic_capture.pcap",
+    "valid": true
+  },
+  {
+    "path": "evidence/sources/traffic_capture.pcap.capture.json",
+    "valid": true
+  },
+  {
+    "path": "evidence/sources/traffic_capture.pcap.stderr",
+    "valid": true
+  },
+  {
+    "path": "metadata/source_inventory.json",
+    "valid": true
+  },
+  {
+    "path": "raw/traffic/traffic_capture.csv",
+    "valid": true
+  },
+  {
+    "path": "evidence/other/traffic_capture.csv.capture.json",
+    "valid": true
+  },
+  {
+    "path": "evidence/other/traffic_capture.stderr",
+    "valid": true
+  },
+  {
+    "path": "evidence/other/victim_stats.jsonl",
+    "valid": true
+  },
+  {
+    "path": "schema.json",
+    "valid": true
+  },
+  {
+    "path": "metadata/export_provenance.json",
+    "valid": true
+  }
+]

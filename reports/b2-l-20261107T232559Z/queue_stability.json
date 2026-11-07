@@ -1,0 +1,30 @@
+[
+  {
+    "period": "Total",
+    "time_mean_waiting": 0.04268804866001119,
+    "time_mean_pending": 0.5192498451333297,
+    "longest_observed_continuous_pending_seconds": 0.24259362599991618,
+    "returns_to_zero": 1435
+  },
+  {
+    "period": "P1",
+    "time_mean_waiting": 0.03716005756665102,
+    "time_mean_pending": 0.49022210483324974,
+    "longest_observed_continuous_pending_seconds": 0.14984437799989792,
+    "returns_to_zero": 275
+  },
+  {
+    "period": "P2",
+    "time_mean_waiting": 0.04482948056669708,
+    "time_mean_pending": 0.5493625598000562,
+    "longest_observed_continuous_pending_seconds": 0.1629609920000803,
+    "returns_to_zero": 308
+  },
+  {
+    "period": "P3",
+    "time_mean_waiting": 0.04381690172223595,
+    "time_mean_pending": 0.5188881870111143,
+    "longest_observed_continuous_pending_seconds": 0.24259362599991618,
+    "returns_to_zero": 852
+  }
+]

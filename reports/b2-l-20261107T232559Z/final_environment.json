@@ -1,0 +1,46 @@
+{
+  "containers": {
+    "args": [
+      "docker",
+      "ps",
+      "-a",
+      "--no-trunc",
+      "--format",
+      "{{json .}}"
+    ],
+    "returncode": 0,
+    "stdout": "{\"Command\":\"\\\"/run.sh\\\"\",\"CreatedAt\":\"2025-07-14 15:15:29 -0300 -03\",\"HealthStatus\":\"none\",\"ID\":\"d82a98728c014f39972bd269d11953fe6fa95f75309d2f0c9d638b2459e1a812\",\"Image\":\"acgpiano/sqli-labs\",\"Labels\":\"\",\"LocalVolumes\":\"2\",\"Mounts\":\"25bdf55c57f36c659c17261549381f5f859370bf116478262fb042a1bfb66967,8343bed1a2bd62d44ba6809f208262af63231080fe5dbe59d09934fab5fb5b0b\",\"Names\":\"nice_noether\",\"Networks\":\"bridge\",\"Platform\":null,\"Ports\":\"\",\"RunningFor\":\"16 months ago\",\"Size\":\"0B (virtual 434MB)\",\"State\":\"created\",\"Status\":\"Created\"}\n{\"Command\":\"\\\"/run.sh\\\"\",\"CreatedAt\":\"2025-07-14 15:14:41 -0300 -03\",\"HealthStatus\":\"none\",\"ID\":\"d150248b2db3ad4743d18c29ac816fde4b5808ecd9929ea321544d812ec77126\",\"Image\":\"acgpiano/sqli-labs\",\"Labels\":\"\",\"LocalVolumes\":\"2\",\"Mounts\":\"940b8601023cd7b3acbf27e86dbe89a031e868a1485915b78d15cfb7846e5d2a,ddfbab72f91ca9fe7a4a7479f6b41de62abe89c210dd823dea0d8e59cf8466ed\",\"Names\":\"cool_montalcini\",\"Networks\":\"bridge\",\"Platform\":null,\"Ports\":\"\",\"RunningFor\":\"16 months ago\",\"Size\":\"0B (virtual 434MB)\",\"State\":\"created\",\"Status\":\"Created\"}\n{\"Command\":\"\\\"/run.sh\\\"\",\"CreatedAt\":\"2025-07-01 16:52:32 -0300 -03\",\"HealthStatus\":\"none\",\"ID\":\"448f465d63393de71c90b3f7092ae962d23f0dbe69cf7b39bec8fcc2930b297c\",\"Image\":\"acgpiano/sqli-labs:latest\",\"Labels\":\"\",\"LocalVolumes\":\"2\",\"Mounts\":\"0d4af9007f9cb8e2947a5540b6eec9a46de249bd091890dc1914b589f2cdb3c5,9503f85a3f43818db0602e24238dae023ef8631bfdb236d2b47e9c066e6b242c\",\"Names\":\"sqli-labs\",\"Networks\":\"bridge\",\"Platform\":null,\"Ports\":\"\",\"RunningFor\":\"16 months ago\",\"Size\":\"186kB (virtual 434MB)\",\"State\":\"exited\",\"Status\":\"Exited (137) 16 months ago\"}\n{\"Command\":\"\\\"python app.py\\\"\",\"CreatedAt\":\"2025-05-19 16:22:49 -0300 -03\",\"HealthStatus\":\"none\",\"ID\":\"edaefe76e363e49949c450b947f3c03efa9a351fca3206d9aaca0d65c9dc77a3\",\"Image\":\"aprendendodocker-web\",\"Labels\":\"com.docker.compose.config-hash=3e4a2d5c92b2086ddde3b47e2a5cd01a7cb86d40273e976422c618ca515e3a34,com.docker.compose.container-number=1,com.docker.compose.depends_on=,com.docker.compose.image=sha256:21c29ccae9857cc9ac5fd53a097b36e2a1a94255222627a84544a0c2b0aeb7dc,com.docker.compose.oneoff=False,com.docker.compose.project.config_files=/home/henrique-givisiez/Documents/Pessoal/Aprendendo Docker/docker-compose.yml,com.docker.compose.project.working_dir=/home/henrique-givisiez/Documents/Pessoal/Aprendendo Docker,com.docker.compose.project=aprendendodocker,com.docker.compose.replace=1b815508e7458e81f210a229bc73094ad0539d50ad95febe333c50b5130a5a70,com.docker.compose.service=web,com.docker.compose.version=2.31.0\",\"LocalVolumes\":\"0\",\"Mounts\":\"/home/henrique-givisiez/Documents/Pessoal/Aprendendo Docker/app\",\"Names\":\"aprendendodocker-web-1\",\"Networks\":\"aprendendodocker_default\",\"Platform\":null,\"Ports\":\"\",\"RunningFor\":\"17 months ago\",\"Size\":\"145kB (virtual 145MB)\",\"State\":\"exited\",\"Status\":\"Exited (137) 17 months ago\"}\n",
+    "stderr": ""
+  },
+  "networks": {
+    "args": [
+      "docker",
+      "network",
+      "inspect",
+      "edos_sources",
+      "edos_network"
+    ],
+    "returncode": 0,
+    "stdout": "[\n    {\n        \"Name\": \"edos_sources\",\n        \"Id\": \"7e2468afd861c60736f9caa950327154847bfdefe2695f8ed819110852a814a3\",\n        \"Created\": \"2026-10-01T21:30:05.327951295-03:00\",\n        \"Scope\": \"local\",\n        \"Driver\": \"bridge\",\n        \"EnableIPv4\": true,\n        \"EnableIPv6\": false,\n        \"IPAM\": {\n            \"Driver\": \"default\",\n            \"Options\": null,\n            \"Config\": [\n                {\n                    \"Subnet\": \"172.20.0.0/16\",\n                    \"Gateway\": \"172.20.0.1\"\n                }\n            ]\n        },\n        \"Internal\": false,\n        \"Attachable\": false,\n        \"Ingress\": false,\n        \"ConfigFrom\": {\n            \"Network\": \"\"\n        },\n        \"ConfigOnly\": false,\n        \"Options\": {},\n        \"Labels\": {},\n        \"Containers\": {},\n        \"Status\": {\n            \"IPAM\": {\n                \"Subnets\": {\n                    \"172.20.0.0/16\": {\n                        \"IPsInUse\": 3,\n                        \"DynamicIPsAvailable\": 65533\n                    }\n                }\n            }\n        }\n    },\n    {\n        \"Name\": \"edos_network\",\n        \"Id\": \"b442ef916fc79aea2ba44858ef76933830281fc0a12f83dfb1f1989d8ddac973\",\n        \"Created\": \"2025-09-11T16:33:48.207733593-03:00\",\n        \"Scope\": \"local\",\n        \"Driver\": \"bridge\",\n        \"EnableIPv4\": true,\n        \"EnableIPv6\": false,\n        \"IPAM\": {\n            \"Driver\": \"default\",\n            \"Options\": null,\n            \"Config\": [\n                {\n                    \"Subnet\": \"172.19.0.0/16\",\n                    \"Gateway\": \"172.19.0.1\"\n                }\n            ]\n        },\n        \"Internal\": false,\n        \"Attachable\": false,\n        \"Ingress\": false,\n        \"ConfigFrom\": {\n            \"Network\": \"\"\n        },\n        \"ConfigOnly\": false,\n        \"Options\": {},\n        \"Labels\": {},\n        \"Containers\": {},\n        \"Status\": {\n            \"IPAM\": {\n                \"Subnets\": {\n                    \"172.19.0.0/16\": {\n                        \"IPsInUse\": 3,\n                        \"DynamicIPsAvailable\": 65533\n                    }\n                }\n            }\n        }\n    }\n]\n",
+    "stderr": ""
+  },
+  "resources": {
+    "args": [
+      "free",
+      "-b"
+    ],
+    "returncode": 0,
+    "stdout": "               total        used        free      shared  buff/cache   available\nMem:     16475332608  4417269760  7153643520   665153536  5327974400 12058062848\nSwap:     4294963200           0  4294963200\n",
+    "stderr": ""
+  },
+  "disk": {
+    "args": [
+      "df",
+      "-B1",
+      "."
+    ],
+    "returncode": 0,
+    "stdout": "Filesystem        1B-blocks        Used   Available Use% Mounted on\n/dev/nvme0n1p5 102610575360 59864313856 37486604288  62% /\n",
+    "stderr": ""
+  }
+}

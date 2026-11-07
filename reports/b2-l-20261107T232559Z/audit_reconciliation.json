@@ -1,0 +1,142 @@
+[
+  {
+    "operation_id": "15884f1b8a8748e79ed38641c4426af9",
+    "kinds": {
+      "handler_started": 1,
+      "work_submitted": 1,
+      "work_started": 1,
+      "handler_finished": 1,
+      "work_completed": 1
+    },
+    "start_seconds": -1.7102763269999741,
+    "end_seconds": -1.7066137589999926,
+    "classification": "unknown / capture_audit",
+    "included_in_legitimate": false
+  },
+  {
+    "operation_id": "1641386daa2641e0a3b1a32f037ee9ab",
+    "kinds": {
+      "handler_started": 1,
+      "work_submitted": 1,
+      "work_started": 1,
+      "work_completed": 1,
+      "handler_finished": 1
+    },
+    "start_seconds": -1.8499617889999627,
+    "end_seconds": -1.846549352000011,
+    "classification": "unknown / capture_audit",
+    "included_in_legitimate": false
+  },
+  {
+    "operation_id": "296890d9b7414669b7c069bb4487b1b0",
+    "kinds": {
+      "handler_started": 1,
+      "work_submitted": 1,
+      "work_started": 1,
+      "work_completed": 1,
+      "handler_finished": 1
+    },
+    "start_seconds": -2.482827774000043,
+    "end_seconds": -2.46925411899997,
+    "classification": "unknown / capture_audit",
+    "included_in_legitimate": false
+  },
+  {
+    "operation_id": "534e1841f21c47b19bbafa313c524471",
+    "kinds": {
+      "handler_started": 1,
+      "work_submitted": 1,
+      "work_started": 1,
+      "work_completed": 1,
+      "handler_finished": 1
+    },
+    "start_seconds": -1.7574840600000243,
+    "end_seconds": -1.7539722770000026,
+    "classification": "unknown / capture_audit",
+    "included_in_legitimate": false
+  },
+  {
+    "operation_id": "67e5e6a54353405da09b6ad3c6d46bd3",
+    "kinds": {
+      "handler_started": 1,
+      "work_submitted": 1,
+      "work_started": 1,
+      "work_completed": 1,
+      "handler_finished": 1
+    },
+    "start_seconds": -1.855299561000038,
+    "end_seconds": -1.8525412730000426,
+    "classification": "unknown / capture_audit",
+    "included_in_legitimate": false
+  },
+  {
+    "operation_id": "7ee9cec0e529428595001861264ff1a2",
+    "kinds": {
+      "handler_started": 1,
+      "work_submitted": 1,
+      "work_started": 1,
+      "work_completed": 1,
+      "handler_finished": 1
+    },
+    "start_seconds": -2.4663056379999944,
+    "end_seconds": -2.4623158700001113,
+    "classification": "unknown / capture_audit",
+    "included_in_legitimate": false
+  },
+  {
+    "operation_id": "c00bf520d12745ac84777f1542786f4c",
+    "kinds": {
+      "handler_started": 1,
+      "work_submitted": 1,
+      "work_started": 1,
+      "work_completed": 1,
+      "handler_finished": 1
+    },
+    "start_seconds": -1.8037988720000158,
+    "end_seconds": -1.800257345000091,
+    "classification": "unknown / capture_audit",
+    "included_in_legitimate": false
+  },
+  {
+    "operation_id": "c4d63b32bf744f0584bc0c2c0b224825",
+    "kinds": {
+      "handler_started": 1,
+      "work_submitted": 1,
+      "work_started": 1,
+      "work_completed": 1,
+      "handler_finished": 1
+    },
+    "start_seconds": -2.369191588999911,
+    "end_seconds": -2.365300063999939,
+    "classification": "unknown / capture_audit",
+    "included_in_legitimate": false
+  },
+  {
+    "operation_id": "eb00d088a86f4cf8b1da1c8af3d2ddfb",
+    "kinds": {
+      "handler_started": 1,
+      "work_submitted": 1,
+      "work_started": 1,
+      "work_completed": 1,
+      "handler_finished": 1
+    },
+    "start_seconds": -2.3217838049999955,
+    "end_seconds": -2.318431267000051,
+    "classification": "unknown / capture_audit",
+    "included_in_legitimate": false
+  },
+  {
+    "operation_id": "f29760da477347d78eee9464b822201a",
+    "kinds": {
+      "handler_started": 1,
+      "work_submitted": 1,
+      "work_started": 1,
+      "work_completed": 1,
+      "handler_finished": 1
+    },
+    "start_seconds": -2.4175561090000883,
+    "end_seconds": -2.412473987000112,
+    "classification": "unknown / capture_audit",
+    "included_in_legitimate": false
+  }
+]

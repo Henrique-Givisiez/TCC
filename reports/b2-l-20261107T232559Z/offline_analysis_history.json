@@ -1,0 +1,9 @@
+{
+  "experiment_repeated": false,
+  "previous_failure": "AssertionError at attempt lifecycle reconciliation: planned-only attempt IDs were included as submitted attempts.",
+  "correction": "Restrict lifecycle reconciliation to IDs with submitted events; preserve two planned-only IDs separately. Existing generator creates the first submission without a planned event.",
+  "interruption": "User accidentally interrupted before launching the corrected final analysis; analyze.py correction was already persisted.",
+  "final_analysis": "analysis_final.log: completed, exit code 0",
+  "raw_data_modified": false,
+  "legacy_alert": "existing_analyzer remains ineligible due to 31 unidentified events. Ten capture audit operations account for 30 work events; one observation closure accounts for the remaining event. No override of legacy output."
+}

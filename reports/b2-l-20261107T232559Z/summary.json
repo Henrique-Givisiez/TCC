@@ -1,0 +1,4720 @@
+{
+  "phases": {
+    "pre": [
+      0,
+      30
+    ],
+    "attack": [
+      30,
+      60
+    ],
+    "post": [
+      60,
+      150
+    ]
+  },
+  "groups": {
+    "benign": {
+      "attempts_started": 2386,
+      "attempts_ended_known": 2386,
+      "responses_received": 2386,
+      "http_error_responses": 0,
+      "attempts_without_observed_end": 0,
+      "duration_observations": 2386,
+      "response_duration_ms": {
+        "n": 2386,
+        "mean": 46.88392792539616,
+        "minimum": 24.104061000116417,
+        "maximum": 130.86068300003717,
+        "p50": 38.32454200005486,
+        "p95": 79.70671800012497,
+        "sample_sd": 18.047846079067668,
+        "sum": 111865.05202999525,
+        "p99": 91.54822200002855,
+        "median": 38.32454200005486,
+        "max": 130.86068300003717
+      },
+      "known_end_duration_ms": {
+        "n": 2386,
+        "mean": 46.88392792539616,
+        "minimum": 24.104061000116417,
+        "maximum": 130.86068300003717,
+        "p50": 38.32454200005486,
+        "p95": 79.70671800012497,
+        "sample_sd": 18.047846079067668,
+        "sum": 111865.05202999525,
+        "p99": 91.54822200002855,
+        "median": 38.32454200005486,
+        "max": 130.86068300003717
+      },
+      "legacy_completions_semantics": "known-ended attempts, including transport/client errors; not responses",
+      "starts_total": 2386,
+      "starts_in_window": 2385,
+      "completions": 2386,
+      "incomplete": 0,
+      "nominal_rps": 16,
+      "denominator_seconds": 150,
+      "realized_start_rps": 15.9,
+      "realized_minus_nominal": -0.09999999999999964,
+      "status_codes": {
+        "200": 2386
+      },
+      "outcomes": {
+        "response": 2386
+      },
+      "timeouts": 0,
+      "connection_errors": 0,
+      "duration_ms": {
+        "n": 2386,
+        "mean": 46.88392792539616,
+        "minimum": 24.104061000116417,
+        "maximum": 130.86068300003717,
+        "p50": 38.32454200005486,
+        "p95": 79.70671800012497,
+        "sample_sd": 18.047846079067668,
+        "sum": 111865.05202999525,
+        "p99": 91.54822200002855,
+        "median": 38.32454200005486,
+        "max": 130.86068300003717
+      },
+      "duration_basis": "known completions only; not imputed for censored attempts",
+      "completions_after_end": 2,
+      "last_start": 150.00227827699996,
+      "last_completion": 150.078272235,
+      "phases": {
+        "pre": {
+          "attempts_started": 456,
+          "attempts_ended_known": 456,
+          "responses_received": 456,
+          "http_error_responses": 0,
+          "attempts_without_observed_end": 0,
+          "duration_observations": 456,
+          "response_duration_ms": {
+            "n": 456,
+            "mean": 46.686451714917034,
+            "minimum": 25.834488999862515,
+            "maximum": 118.85276700013492,
+            "p50": 38.85355200009144,
+            "p95": 78.66591299989523,
+            "sample_sd": 17.57022752608376,
+            "sum": 21289.021982002167,
+            "p99": 92.63878499996281,
+            "median": 38.85355200009144,
+            "max": 118.85276700013492
+          },
+          "known_end_duration_ms": {
+            "n": 456,
+            "mean": 46.686451714917034,
+            "minimum": 25.834488999862515,
+            "maximum": 118.85276700013492,
+            "p50": 38.85355200009144,
+            "p95": 78.66591299989523,
+            "sample_sd": 17.57022752608376,
+            "sum": 21289.021982002167,
+            "p99": 92.63878499996281,
+            "median": 38.85355200009144,
+            "max": 118.85276700013492
+          },
+          "legacy_completions_semantics": "known-ended attempts, including transport/client errors; not responses",
+          "starts_total": 456,
+          "starts_in_window": 456,
+          "completions": 456,
+          "incomplete": 0,
+          "nominal_rps": 16,
+          "denominator_seconds": 30,
+          "realized_start_rps": 15.2,
+          "realized_minus_nominal": -0.8000000000000007,
+          "status_codes": {
+            "200": 456
+          },
+          "outcomes": {
+            "response": 456
+          },
+          "timeouts": 0,
+          "connection_errors": 0,
+          "duration_ms": {
+            "n": 456,
+            "mean": 46.686451714917034,
+            "minimum": 25.834488999862515,
+            "maximum": 118.85276700013492,
+            "p50": 38.85355200009144,
+            "p95": 78.66591299989523,
+            "sample_sd": 17.57022752608376,
+            "sum": 21289.021982002167,
+            "p99": 92.63878499996281,
+            "median": 38.85355200009144,
+            "max": 118.85276700013492
+          },
+          "duration_basis": "known completions only; not imputed for censored attempts",
+          "completions_after_end": 0,
+          "last_start": 29.92095557399989,
+          "last_completion": 29.949383800000078
+        },
+        "attack": {
+          "attempts_started": 515,
+          "attempts_ended_known": 515,
+          "responses_received": 515,
+          "http_error_responses": 0,
+          "attempts_without_observed_end": 0,
+          "duration_observations": 515,
+          "response_duration_ms": {
+            "n": 515,
+            "mean": 46.642283677671195,
+            "minimum": 25.353890000133106,
+            "maximum": 103.22988300003999,
+            "p50": 37.669847999950434,
+            "p95": 78.73518199994578,
+            "sample_sd": 17.947626631729587,
+            "sum": 24020.776094000666,
+            "p99": 87.30096199997206,
+            "median": 37.669847999950434,
+            "max": 103.22988300003999
+          },
+          "known_end_duration_ms": {
+            "n": 515,
+            "mean": 46.642283677671195,
+            "minimum": 25.353890000133106,
+            "maximum": 103.22988300003999,
+            "p50": 37.669847999950434,
+            "p95": 78.73518199994578,
+            "sample_sd": 17.947626631729587,
+            "sum": 24020.776094000666,
+            "p99": 87.30096199997206,
+            "median": 37.669847999950434,
+            "max": 103.22988300003999
+          },
+          "legacy_completions_semantics": "known-ended attempts, including transport/client errors; not responses",
+          "starts_total": 515,
+          "starts_in_window": 515,
+          "completions": 515,
+          "incomplete": 0,
+          "nominal_rps": 16,
+          "denominator_seconds": 30,
+          "realized_start_rps": 17.166666666666668,
+          "realized_minus_nominal": 1.1666666666666679,
+          "status_codes": {
+            "200": 515
+          },
+          "outcomes": {
+            "response": 515
+          },
+          "timeouts": 0,
+          "connection_errors": 0,
+          "duration_ms": {
+            "n": 515,
+            "mean": 46.642283677671195,
+            "minimum": 25.353890000133106,
+            "maximum": 103.22988300003999,
+            "p50": 37.669847999950434,
+            "p95": 78.73518199994578,
+            "sample_sd": 17.947626631729587,
+            "sum": 24020.776094000666,
+            "p99": 87.30096199997206,
+            "median": 37.669847999950434,
+            "max": 103.22988300003999
+          },
+          "duration_basis": "known completions only; not imputed for censored attempts",
+          "completions_after_end": 1,
+          "last_start": 59.99858655899993,
+          "last_completion": 60.030558015
+        },
+        "post": {
+          "attempts_started": 1414,
+          "attempts_ended_known": 1414,
+          "responses_received": 1414,
+          "http_error_responses": 0,
+          "attempts_without_observed_end": 0,
+          "duration_observations": 1414,
+          "response_duration_ms": {
+            "n": 1414,
+            "mean": 47.01503535784468,
+            "minimum": 24.104061000116417,
+            "maximum": 130.86068300003717,
+            "p50": 38.41822749996027,
+            "p95": 80.72062700011884,
+            "sample_sd": 18.23611183774123,
+            "sum": 66479.25999599238,
+            "p99": 92.30441300019265,
+            "median": 38.41822749996027,
+            "max": 130.86068300003717
+          },
+          "known_end_duration_ms": {
+            "n": 1414,
+            "mean": 47.01503535784468,
+            "minimum": 24.104061000116417,
+            "maximum": 130.86068300003717,
+            "p50": 38.41822749996027,
+            "p95": 80.72062700011884,
+            "sample_sd": 18.23611183774123,
+            "sum": 66479.25999599238,
+            "p99": 92.30441300019265,
+            "median": 38.41822749996027,
+            "max": 130.86068300003717
+          },
+          "legacy_completions_semantics": "known-ended attempts, including transport/client errors; not responses",
+          "starts_total": 1414,
+          "starts_in_window": 1414,
+          "completions": 1414,
+          "incomplete": 0,
+          "nominal_rps": 16,
+          "denominator_seconds": 90,
+          "realized_start_rps": 15.71111111111111,
+          "realized_minus_nominal": -0.28888888888888964,
+          "status_codes": {
+            "200": 1414
+          },
+          "outcomes": {
+            "response": 1414
+          },
+          "timeouts": 0,
+          "connection_errors": 0,
+          "duration_ms": {
+            "n": 1414,
+            "mean": 47.01503535784468,
+            "minimum": 24.104061000116417,
+            "maximum": 130.86068300003717,
+            "p50": 38.41822749996027,
+            "p95": 80.72062700011884,
+            "sample_sd": 18.23611183774123,
+            "sum": 66479.25999599238,
+            "p99": 92.30441300019265,
+            "median": 38.41822749996027,
+            "max": 130.86068300003717
+          },
+          "duration_basis": "known completions only; not imputed for censored attempts",
+          "completions_after_end": 1,
+          "last_start": 149.9650435829999,
+          "last_completion": 150.00026398399996
+        }
+      }
+    },
+    "attack": {
+      "attempts_started": 0,
+      "attempts_ended_known": 0,
+      "responses_received": 0,
+      "http_error_responses": 0,
+      "attempts_without_observed_end": 0,
+      "duration_observations": 0,
+      "response_duration_ms": {
+        "n": 0,
+        "mean": null,
+        "minimum": null,
+        "maximum": null,
+        "p50": null,
+        "p95": null,
+        "sample_sd": null,
+        "sum": null,
+        "p99": null,
+        "median": null,
+        "max": null
+      },
+      "known_end_duration_ms": {
+        "n": 0,
+        "mean": null,
+        "minimum": null,
+        "maximum": null,
+        "p50": null,
+        "p95": null,
+        "sample_sd": null,
+        "sum": null,
+        "p99": null,
+        "median": null,
+        "max": null
+      },
+      "legacy_completions_semantics": "known-ended attempts, including transport/client errors; not responses",
+      "starts_total": 0,
+      "starts_in_window": 0,
+      "completions": 0,
+      "incomplete": 0,
+      "nominal_rps": 0,
+      "denominator_seconds": 30,
+      "realized_start_rps": 0.0,
+      "realized_minus_nominal": 0.0,
+      "status_codes": {},
+      "outcomes": {},
+      "timeouts": 0,
+      "connection_errors": 0,
+      "duration_ms": {
+        "n": 0,
+        "mean": null,
+        "minimum": null,
+        "maximum": null,
+        "p50": null,
+        "p95": null,
+        "sample_sd": null,
+        "sum": null,
+        "p99": null,
+        "median": null,
+        "max": null
+      },
+      "duration_basis": "known completions only; not imputed for censored attempts",
+      "completions_after_end": 0,
+      "last_start": null,
+      "last_completion": null,
+      "phases": {
+        "pre": {
+          "attempts_started": 0,
+          "attempts_ended_known": 0,
+          "responses_received": 0,
+          "http_error_responses": 0,
+          "attempts_without_observed_end": 0,
+          "duration_observations": 0,
+          "response_duration_ms": {
+            "n": 0,
+            "mean": null,
+            "minimum": null,
+            "maximum": null,
+            "p50": null,
+            "p95": null,
+            "sample_sd": null,
+            "sum": null,
+            "p99": null,
+            "median": null,
+            "max": null
+          },
+          "known_end_duration_ms": {
+            "n": 0,
+            "mean": null,
+            "minimum": null,
+            "maximum": null,
+            "p50": null,
+            "p95": null,
+            "sample_sd": null,
+            "sum": null,
+            "p99": null,
+            "median": null,
+            "max": null
+          },
+          "legacy_completions_semantics": "known-ended attempts, including transport/client errors; not responses",
+          "starts_total": 0,
+          "starts_in_window": 0,
+          "completions": 0,
+          "incomplete": 0,
+          "nominal_rps": 0,
+          "denominator_seconds": 30,
+          "realized_start_rps": 0.0,
+          "realized_minus_nominal": 0.0,
+          "status_codes": {},
+          "outcomes": {},
+          "timeouts": 0,
+          "connection_errors": 0,
+          "duration_ms": {
+            "n": 0,
+            "mean": null,
+            "minimum": null,
+            "maximum": null,
+            "p50": null,
+            "p95": null,
+            "sample_sd": null,
+            "sum": null,
+            "p99": null,
+            "median": null,
+            "max": null
+          },
+          "duration_basis": "known completions only; not imputed for censored attempts",
+          "completions_after_end": 0,
+          "last_start": null,
+          "last_completion": null
+        },
+        "attack": {
+          "attempts_started": 0,
+          "attempts_ended_known": 0,
+          "responses_received": 0,
+          "http_error_responses": 0,
+          "attempts_without_observed_end": 0,
+          "duration_observations": 0,
+          "response_duration_ms": {
+            "n": 0,
+            "mean": null,
+            "minimum": null,
+            "maximum": null,
+            "p50": null,
+            "p95": null,
+            "sample_sd": null,
+            "sum": null,
+            "p99": null,
+            "median": null,
+            "max": null
+          },
+          "known_end_duration_ms": {
+            "n": 0,
+            "mean": null,
+            "minimum": null,
+            "maximum": null,
+            "p50": null,
+            "p95": null,
+            "sample_sd": null,
+            "sum": null,
+            "p99": null,
+            "median": null,
+            "max": null
+          },
+          "legacy_completions_semantics": "known-ended attempts, including transport/client errors; not responses",
+          "starts_total": 0,
+          "starts_in_window": 0,
+          "completions": 0,
+          "incomplete": 0,
+          "nominal_rps": 0,
+          "denominator_seconds": 30,
+          "realized_start_rps": 0.0,
+          "realized_minus_nominal": 0.0,
+          "status_codes": {},
+          "outcomes": {},
+          "timeouts": 0,
+          "connection_errors": 0,
+          "duration_ms": {
+            "n": 0,
+            "mean": null,
+            "minimum": null,
+            "maximum": null,
+            "p50": null,
+            "p95": null,
+            "sample_sd": null,
+            "sum": null,
+            "p99": null,
+            "median": null,
+            "max": null
+          },
+          "duration_basis": "known completions only; not imputed for censored attempts",
+          "completions_after_end": 0,
+          "last_start": null,
+          "last_completion": null
+        },
+        "post": {
+          "attempts_started": 0,
+          "attempts_ended_known": 0,
+          "responses_received": 0,
+          "http_error_responses": 0,
+          "attempts_without_observed_end": 0,
+          "duration_observations": 0,
+          "response_duration_ms": {
+            "n": 0,
+            "mean": null,
+            "minimum": null,
+            "maximum": null,
+            "p50": null,
+            "p95": null,
+            "sample_sd": null,
+            "sum": null,
+            "p99": null,
+            "median": null,
+            "max": null
+          },
+          "known_end_duration_ms": {
+            "n": 0,
+            "mean": null,
+            "minimum": null,
+            "maximum": null,
+            "p50": null,
+            "p95": null,
+            "sample_sd": null,
+            "sum": null,
+            "p99": null,
+            "median": null,
+            "max": null
+          },
+          "legacy_completions_semantics": "known-ended attempts, including transport/client errors; not responses",
+          "starts_total": 0,
+          "starts_in_window": 0,
+          "completions": 0,
+          "incomplete": 0,
+          "nominal_rps": 0,
+          "denominator_seconds": 90,
+          "realized_start_rps": 0.0,
+          "realized_minus_nominal": 0.0,
+          "status_codes": {},
+          "outcomes": {},
+          "timeouts": 0,
+          "connection_errors": 0,
+          "duration_ms": {
+            "n": 0,
+            "mean": null,
+            "minimum": null,
+            "maximum": null,
+            "p50": null,
+            "p95": null,
+            "sample_sd": null,
+            "sum": null,
+            "p99": null,
+            "median": null,
+            "max": null
+          },
+          "duration_basis": "known completions only; not imputed for censored attempts",
+          "completions_after_end": 0,
+          "last_start": null,
+          "last_completion": null
+        }
+      }
+    }
+  },
+  "emission": {
+    "source_diagnostic_events": {
+      "submitted": 2386,
+      "task_started": 2386,
+      "http_started": 2386,
+      "http_finished": 2386,
+      "task_finished": 2386,
+      "planned": 2386,
+      "source_closed": 2
+    },
+    "admissions": null,
+    "admissions_note": "Not independently instrumented for legitimate generation",
+    "submissions": 2386,
+    "expirations_before_http": 0,
+    "planned_not_submitted": {
+      "('normal_1', '1170')": {
+        "planned": 1
+      },
+      "('normal_2', '1218')": {
+        "planned": 1
+      }
+    },
+    "attempt_lifecycles_reconciled": true,
+    "source_writers": [
+      {
+        "schema_version": 1,
+        "context": {
+          "run_id": "c5e06e3441e4499c94fc62275c5d9ff4",
+          "source_id": "normal_1",
+          "component": "source"
+        },
+        "clock": {
+          "kind": "CLOCK_MONOTONIC",
+          "unit": "seconds",
+          "resolution_seconds": 1e-09,
+          "implementation": "clock_gettime(CLOCK_MONOTONIC)",
+          "time_namespace": "time:[4026533510]",
+          "pid": 1
+        },
+        "capacity": 4096,
+        "offered": 7015,
+        "enqueued": 7015,
+        "written": 7015,
+        "dropped": 0,
+        "write_errors": 0,
+        "queue_remaining": 0,
+        "observation_complete": true,
+        "complete": true
+      },
+      {
+        "schema_version": 1,
+        "context": {
+          "run_id": "c5e06e3441e4499c94fc62275c5d9ff4",
+          "source_id": "normal_2",
+          "component": "source"
+        },
+        "clock": {
+          "kind": "CLOCK_MONOTONIC",
+          "unit": "seconds",
+          "resolution_seconds": 1e-09,
+          "implementation": "clock_gettime(CLOCK_MONOTONIC)",
+          "time_namespace": "time:[4026533630]",
+          "pid": 1
+        },
+        "capacity": 4096,
+        "offered": 7303,
+        "enqueued": 7303,
+        "written": 7303,
+        "dropped": 0,
+        "write_errors": 0,
+        "queue_remaining": 0,
+        "observation_complete": true,
+        "complete": true
+      }
+    ]
+  },
+  "per_source": {
+    "normal_1": {
+      "run_binding": 1,
+      "configured": 1,
+      "request_begin": 1169,
+      "request_finish": 1169,
+      "latency_sample": 1169,
+      "source_closed": 1
+    },
+    "normal_2": {
+      "run_binding": 1,
+      "configured": 1,
+      "request_begin": 1217,
+      "request_finish": 1217,
+      "latency_sample": 1217,
+      "source_closed": 1
+    }
+  },
+  "computation": {
+    "benign": {
+      "events": {
+        "handler_started": 2386,
+        "work_submitted": 2386,
+        "work_started": 2386,
+        "work_completed": 2386,
+        "handler_finished": 2386
+      },
+      "wait_ms": {
+        "n": 2386,
+        "mean": 2.6839569308473044,
+        "minimum": 0.4075750000538392,
+        "maximum": 57.23192999994353,
+        "p50": 1.2236589999474745,
+        "p95": 14.331850999951712,
+        "sample_sd": 5.434064296248327,
+        "sum": 6403.9212370016685,
+        "p99": 29.9003080001512,
+        "median": 1.2236589999474745,
+        "max": 57.23192999994353
+      },
+      "cpu_operation_ms": {
+        "n": 2386,
+        "mean": 29.81726556328588,
+        "minimum": 20.674775000003365,
+        "maximum": 57.524941999997026,
+        "p50": 28.95307399999858,
+        "p95": 39.26447899999985,
+        "sample_sd": 4.763882026606385,
+        "sum": 71143.99563400011,
+        "p99": 46.314190000000366,
+        "median": 28.95307399999858,
+        "max": 57.524941999997026
+      },
+      "wall_ms": {
+        "n": 2386,
+        "mean": 29.875954740146277,
+        "minimum": 20.642354000074192,
+        "maximum": 60.55857299998024,
+        "p50": 29.03582850001385,
+        "p95": 39.50436600007379,
+        "sample_sd": 4.812135679222868,
+        "sum": 71284.02800998901,
+        "p99": 46.341829000084545,
+        "median": 29.03582850001385,
+        "max": 60.55857299998024
+      }
+    },
+    "attack": {
+      "events": {},
+      "wait_ms": {
+        "n": 0,
+        "mean": null,
+        "minimum": null,
+        "maximum": null,
+        "p50": null,
+        "p95": null,
+        "sample_sd": null,
+        "sum": null,
+        "p99": null,
+        "median": null,
+        "max": null
+      },
+      "cpu_operation_ms": {
+        "n": 0,
+        "mean": null,
+        "minimum": null,
+        "maximum": null,
+        "p50": null,
+        "p95": null,
+        "sample_sd": null,
+        "sum": null,
+        "p99": null,
+        "median": null,
+        "max": null
+      },
+      "wall_ms": {
+        "n": 0,
+        "mean": null,
+        "minimum": null,
+        "maximum": null,
+        "p50": null,
+        "p95": null,
+        "sample_sd": null,
+        "sum": null,
+        "p99": null,
+        "median": null,
+        "max": null
+      }
+    },
+    "unknown": {
+      "events": {
+        "handler_started": 10,
+        "work_submitted": 10,
+        "work_started": 10,
+        "work_completed": 10,
+        "handler_finished": 10
+      },
+      "wait_ms": {
+        "n": 10,
+        "mean": 2.140788299993801,
+        "minimum": 0.9606789999452303,
+        "maximum": 10.111609999967186,
+        "p50": 1.232937000054335,
+        "p95": 10.111609999967186,
+        "sample_sd": 2.8106282543875385,
+        "sum": 21.40788299993801,
+        "p99": null,
+        "median": 1.232937000054335,
+        "max": 10.111609999967186
+      },
+      "cpu_operation_ms": {
+        "n": 10,
+        "mean": 0.017674000000000075,
+        "minimum": 0.007275000000000163,
+        "maximum": 0.034715000000000266,
+        "p50": 0.020104500000000126,
+        "p95": 0.034715000000000266,
+        "sample_sd": 0.009014420977276096,
+        "sum": 0.17674000000000076,
+        "p99": null,
+        "median": 0.020104500000000126,
+        "max": 0.034715000000000266
+      },
+      "wall_ms": {
+        "n": 10,
+        "mean": 0.018432699994264112,
+        "minimum": 0.011299999869152089,
+        "maximum": 0.03518999983498361,
+        "p50": 0.014423499919757887,
+        "p95": 0.03518999983498361,
+        "sample_sd": 0.008450093714580933,
+        "sum": 0.18432699994264112,
+        "p99": null,
+        "median": 0.014423499919757887,
+        "max": 0.03518999983498361
+      }
+    }
+  },
+  "residual": {
+    "state_at_E": {
+      "status": "observed",
+      "counts": {
+        "benign": {
+          "waiting": 0,
+          "running": 0,
+          "completed": 970,
+          "failed": 0,
+          "pending": 0,
+          "submitted": 970,
+          "started": 970
+        },
+        "attack": {
+          "waiting": 0,
+          "running": 0,
+          "completed": 0,
+          "failed": 0,
+          "pending": 0,
+          "submitted": 0,
+          "started": 0
+        },
+        "unknown": {
+          "waiting": 0,
+          "running": 0,
+          "completed": 10,
+          "failed": 0,
+          "pending": 0,
+          "submitted": 10,
+          "started": 10
+        }
+      },
+      "errors": []
+    },
+    "state_before_E": {
+      "status": "observed",
+      "counts": {
+        "benign": {
+          "waiting": 0,
+          "running": 0,
+          "completed": 970,
+          "failed": 0,
+          "pending": 0,
+          "submitted": 970,
+          "started": 970
+        },
+        "attack": {
+          "waiting": 0,
+          "running": 0,
+          "completed": 0,
+          "failed": 0,
+          "pending": 0,
+          "submitted": 0,
+          "started": 0
+        },
+        "unknown": {
+          "waiting": 0,
+          "running": 0,
+          "completed": 10,
+          "failed": 0,
+          "pending": 0,
+          "submitted": 10,
+          "started": 10
+        }
+      },
+      "errors": []
+    },
+    "state_after_events_at_E": {
+      "status": "observed",
+      "counts": {
+        "benign": {
+          "waiting": 0,
+          "running": 0,
+          "completed": 970,
+          "failed": 0,
+          "pending": 0,
+          "submitted": 970,
+          "started": 970
+        },
+        "attack": {
+          "waiting": 0,
+          "running": 0,
+          "completed": 0,
+          "failed": 0,
+          "pending": 0,
+          "submitted": 0,
+          "started": 0
+        },
+        "unknown": {
+          "waiting": 0,
+          "running": 0,
+          "completed": 10,
+          "failed": 0,
+          "pending": 0,
+          "submitted": 10,
+          "started": 10
+        }
+      },
+      "errors": []
+    },
+    "final_state": {
+      "status": "observed",
+      "counts": {
+        "benign": {
+          "waiting": 0,
+          "running": 0,
+          "completed": 2386,
+          "failed": 0,
+          "pending": 0,
+          "submitted": 2386,
+          "started": 2386
+        },
+        "attack": {
+          "waiting": 0,
+          "running": 0,
+          "completed": 0,
+          "failed": 0,
+          "pending": 0,
+          "submitted": 0,
+          "started": 0
+        },
+        "unknown": {
+          "waiting": 0,
+          "running": 0,
+          "completed": 10,
+          "failed": 0,
+          "pending": 0,
+          "submitted": 10,
+          "started": 10
+        }
+      },
+      "errors": []
+    },
+    "completions_after_E": 0,
+    "last_observed_completion": null,
+    "last_completion_minus_E": null,
+    "drainage": "not_established: absence of later ingress requires external proof"
+  },
+  "integrity": {
+    "computation_complete": true,
+    "duplicates": [],
+    "writer_sequence_valid": true,
+    "conflicts": [],
+    "insufficient_evidence": [
+      {
+        "operation_id": "296890d9b7414669b7c069bb4487b1b0",
+        "reasons": [
+          "insufficient_declared_identity"
+        ]
+      },
+      {
+        "operation_id": "7ee9cec0e529428595001861264ff1a2",
+        "reasons": [
+          "insufficient_declared_identity"
+        ]
+      },
+      {
+        "operation_id": "f29760da477347d78eee9464b822201a",
+        "reasons": [
+          "insufficient_declared_identity"
+        ]
+      },
+      {
+        "operation_id": "c4d63b32bf744f0584bc0c2c0b224825",
+        "reasons": [
+          "insufficient_declared_identity"
+        ]
+      },
+      {
+        "operation_id": "eb00d088a86f4cf8b1da1c8af3d2ddfb",
+        "reasons": [
+          "insufficient_declared_identity"
+        ]
+      },
+      {
+        "operation_id": "67e5e6a54353405da09b6ad3c6d46bd3",
+        "reasons": [
+          "insufficient_declared_identity"
+        ]
+      },
+      {
+        "operation_id": "1641386daa2641e0a3b1a32f037ee9ab",
+        "reasons": [
+          "insufficient_declared_identity"
+        ]
+      },
+      {
+        "operation_id": "c00bf520d12745ac84777f1542786f4c",
+        "reasons": [
+          "insufficient_declared_identity"
+        ]
+      },
+      {
+        "operation_id": "534e1841f21c47b19bbafa313c524471",
+        "reasons": [
+          "insufficient_declared_identity"
+        ]
+      },
+      {
+        "operation_id": "15884f1b8a8748e79ed38641c4426af9",
+        "reasons": [
+          "insufficient_declared_identity"
+        ]
+      }
+    ],
+    "correlated_requests": 2386,
+    "correlation_mismatches": [],
+    "requests_without_observed_submission": [],
+    "partial_lifecycles": {},
+    "identity_consistent": true
+  },
+  "cpu": {
+    "ticks": {
+      "samples": 25,
+      "intervals_seconds": {
+        "n": 24,
+        "mean": 6.030809739666665,
+        "minimum": 5.945894821000138,
+        "maximum": 6.076231546999907,
+        "p50": 6.033179246500026,
+        "p95": 6.063195468999993,
+        "sample_sd": 0.02504674343655997,
+        "sum": 144.73943375199997,
+        "p99": null,
+        "median": 6.033179246500026,
+        "max": 6.076231546999907
+      },
+      "gaps_over_1s": [
+        {
+          "start": 6.138146541999959,
+          "end": 12.171474788000069,
+          "seconds": 6.03332824600011
+        },
+        {
+          "start": 12.171474788000069,
+          "end": 18.206938703000105,
+          "seconds": 6.035463915000037
+        },
+        {
+          "start": 18.206938703000105,
+          "end": 24.239968950000048,
+          "seconds": 6.033030246999942
+        },
+        {
+          "start": 24.239968950000048,
+          "end": 30.267440337999915,
+          "seconds": 6.027471387999867
+        },
+        {
+          "start": 30.267440337999915,
+          "end": 36.30012432600006,
+          "seconds": 6.032683988000144
+        },
+        {
+          "start": 36.30012432600006,
+          "end": 42.33362775299997,
+          "seconds": 6.033503426999914
+        },
+        {
+          "start": 42.33362775299997,
+          "end": 48.36008983900001,
+          "seconds": 6.026462086000038
+        },
+        {
+          "start": 48.36008983900001,
+          "end": 54.3961093339999,
+          "seconds": 6.036019494999891
+        },
+        {
+          "start": 54.3961093339999,
+          "end": 60.41189944400003,
+          "seconds": 6.015790110000125
+        },
+        {
+          "start": 60.41189944400003,
+          "end": 66.43615401200009,
+          "seconds": 6.02425456800006
+        },
+        {
+          "start": 66.43615401200009,
+          "end": 72.47055505000003,
+          "seconds": 6.034401037999942
+        },
+        {
+          "start": 72.47055505000003,
+          "end": 78.51124131899996,
+          "seconds": 6.040686268999934
+        },
+        {
+          "start": 78.51124131899996,
+          "end": 84.57212140699994,
+          "seconds": 6.060880087999976
+        },
+        {
+          "start": 84.57212140699994,
+          "end": 90.562798982,
+          "seconds": 5.990677575000063
+        },
+        {
+          "start": 90.562798982,
+          "end": 96.59863837300009,
+          "seconds": 6.035839391000081
+        },
+        {
+          "start": 96.59863837300009,
+          "end": 102.62416817200005,
+          "seconds": 6.025529798999969
+        },
+        {
+          "start": 102.62416817200005,
+          "end": 108.6525768219999,
+          "seconds": 6.028408649999847
+        },
+        {
+          "start": 108.6525768219999,
+          "end": 114.71076571200001,
+          "seconds": 6.05818889000011
+        },
+        {
+          "start": 114.71076571200001,
+          "end": 120.72680863200003,
+          "seconds": 6.016042920000018
+        },
+        {
+          "start": 120.72680863200003,
+          "end": 126.80304017899994,
+          "seconds": 6.076231546999907
+        },
+        {
+          "start": 126.80304017899994,
+          "end": 132.86623564799993,
+          "seconds": 6.063195468999993
+        },
+        {
+          "start": 132.86623564799993,
+          "end": 138.81213046900007,
+          "seconds": 5.945894821000138
+        },
+        {
+          "start": 138.81213046900007,
+          "end": 144.83862555099995,
+          "seconds": 6.026495081999883
+        },
+        {
+          "start": 144.83862555099995,
+          "end": 150.87758029399993,
+          "seconds": 6.038954742999977
+        }
+      ],
+      "phase_samples": {
+        "pre": 4,
+        "attack": 5,
+        "post": 15
+      },
+      "interpolation": false
+    },
+    "raw": {
+      "samples": 52,
+      "intervals_seconds": {
+        "n": 51,
+        "mean": 2.974493294411764,
+        "minimum": 2.013728836999917,
+        "maximum": 3.022752368000056,
+        "p50": 3.0138269779999973,
+        "p95": 3.0173343209999075,
+        "sample_sd": 0.19580896180839252,
+        "sum": 151.69915801499997,
+        "p99": null,
+        "median": 3.0138269779999973,
+        "max": 3.022752368000056
+      },
+      "gaps_over_1s": [
+        {
+          "start": 1.0810934060000363,
+          "end": 3.097209471000042,
+          "seconds": 2.0161160650000056
+        },
+        {
+          "start": 3.097209471000042,
+          "end": 6.119961839000098,
+          "seconds": 3.022752368000056
+        },
+        {
+          "start": 6.119961839000098,
+          "end": 9.132082208999918,
+          "seconds": 3.0121203699998205
+        },
+        {
+          "start": 9.132082208999918,
+          "end": 12.149495680999962,
+          "seconds": 3.017413472000044
+        },
+        {
+          "start": 12.149495680999962,
+          "end": 15.16353595999999,
+          "seconds": 3.014040279000028
+        },
+        {
+          "start": 15.16353595999999,
+          "end": 18.180870280999898,
+          "seconds": 3.0173343209999075
+        },
+        {
+          "start": 18.180870280999898,
+          "end": 21.193109189000097,
+          "seconds": 3.0122389080001994
+        },
+        {
+          "start": 21.193109189000097,
+          "end": 24.20877113000006,
+          "seconds": 3.015661940999962
+        },
+        {
+          "start": 24.20877113000006,
+          "end": 26.222499966999976,
+          "seconds": 2.013728836999917
+        },
+        {
+          "start": 26.222499966999976,
+          "end": 29.233776645000034,
+          "seconds": 3.0112766780000584
+        },
+        {
+          "start": 29.233776645000034,
+          "end": 32.24792027700005,
+          "seconds": 3.014143632000014
+        },
+        {
+          "start": 32.24792027700005,
+          "end": 35.263773553999954,
+          "seconds": 3.0158532769999056
+        },
+        {
+          "start": 35.263773553999954,
+          "end": 38.27728351199994,
+          "seconds": 3.013509957999986
+        },
+        {
+          "start": 38.27728351199994,
+          "end": 41.284875762999945,
+          "seconds": 3.0075922510000055
+        },
+        {
+          "start": 41.284875762999945,
+          "end": 44.29948646799994,
+          "seconds": 3.0146107049999955
+        },
+        {
+          "start": 44.29948646799994,
+          "end": 47.31223705599996,
+          "seconds": 3.012750588000017
+        },
+        {
+          "start": 47.31223705599996,
+          "end": 50.324724138999954,
+          "seconds": 3.0124870829999963
+        },
+        {
+          "start": 50.324724138999954,
+          "end": 53.34059447799996,
+          "seconds": 3.015870339000003
+        },
+        {
+          "start": 53.34059447799996,
+          "end": 56.34909106300006,
+          "seconds": 3.0084965850001026
+        },
+        {
+          "start": 56.34909106300006,
+          "end": 59.36132472899999,
+          "seconds": 3.012233665999929
+        },
+        {
+          "start": 59.36132472899999,
+          "end": 62.37228221500004,
+          "seconds": 3.010957486000052
+        },
+        {
+          "start": 62.37228221500004,
+          "end": 65.38285408599995,
+          "seconds": 3.010571870999911
+        },
+        {
+          "start": 65.38285408599995,
+          "end": 68.40003649799996,
+          "seconds": 3.017182412000011
+        },
+        {
+          "start": 68.40003649799996,
+          "end": 71.41195654600006,
+          "seconds": 3.0119200480000927
+        },
+        {
+          "start": 71.41195654600006,
+          "end": 74.42245099799993,
+          "seconds": 3.0104944519998753
+        },
+        {
+          "start": 74.42245099799993,
+          "end": 77.43642201300008,
+          "seconds": 3.013971015000152
+        },
+        {
+          "start": 77.43642201300008,
+          "end": 80.45024899100008,
+          "seconds": 3.0138269779999973
+        },
+        {
+          "start": 80.45024899100008,
+          "end": 83.46444844999996,
+          "seconds": 3.014199458999883
+        },
+        {
+          "start": 83.46444844999996,
+          "end": 86.4743707959999,
+          "seconds": 3.0099223459999394
+        },
+        {
+          "start": 86.4743707959999,
+          "end": 89.49010793599996,
+          "seconds": 3.0157371400000557
+        },
+        {
+          "start": 89.49010793599996,
+          "end": 92.50370193499998,
+          "seconds": 3.0135939990000224
+        },
+        {
+          "start": 92.50370193499998,
+          "end": 95.51628172999995,
+          "seconds": 3.012579794999965
+        },
+        {
+          "start": 95.51628172999995,
+          "end": 98.52658275099998,
+          "seconds": 3.010301021000032
+        },
+        {
+          "start": 98.52658275099998,
+          "end": 101.54169228,
+          "seconds": 3.0151095290000285
+        },
+        {
+          "start": 101.54169228,
+          "end": 104.55776553700002,
+          "seconds": 3.0160732570000164
+        },
+        {
+          "start": 104.55776553700002,
+          "end": 107.57001024500005,
+          "seconds": 3.0122447080000256
+        },
+        {
+          "start": 107.57001024500005,
+          "end": 110.58531318199994,
+          "seconds": 3.0153029369998876
+        },
+        {
+          "start": 110.58531318199994,
+          "end": 113.59738653,
+          "seconds": 3.012073348000058
+        },
+        {
+          "start": 113.59738653,
+          "end": 116.61212204999993,
+          "seconds": 3.014735519999931
+        },
+        {
+          "start": 116.61212204999993,
+          "end": 119.62697595300006,
+          "seconds": 3.0148539030001302
+        },
+        {
+          "start": 119.62697595300006,
+          "end": 122.64218499699996,
+          "seconds": 3.015209043999903
+        },
+        {
+          "start": 122.64218499699996,
+          "end": 125.65743069199993,
+          "seconds": 3.015245694999976
+        },
+        {
+          "start": 125.65743069199993,
+          "end": 128.66843729900006,
+          "seconds": 3.0110066070001267
+        },
+        {
+          "start": 128.66843729900006,
+          "end": 131.6840722249999,
+          "seconds": 3.015634925999848
+        },
+        {
+          "start": 131.6840722249999,
+          "end": 134.69930415399995,
+          "seconds": 3.015231929000038
+        },
+        {
+          "start": 134.69930415399995,
+          "end": 137.71305819999998,
+          "seconds": 3.013754046000031
+        },
+        {
+          "start": 137.71305819999998,
+          "end": 140.72707366400005,
+          "seconds": 3.0140154640000674
+        },
+        {
+          "start": 140.72707366400005,
+          "end": 143.74354723800002,
+          "seconds": 3.016473573999974
+        },
+        {
+          "start": 143.74354723800002,
+          "end": 146.75620034999997,
+          "seconds": 3.0126531119999527
+        },
+        {
+          "start": 146.75620034999997,
+          "end": 149.770445119,
+          "seconds": 3.0142447690000154
+        },
+        {
+          "start": 149.770445119,
+          "end": 152.780251421,
+          "seconds": 3.0098063020000154
+        }
+      ],
+      "phase_samples": {
+        "pre": 11,
+        "attack": 10,
+        "post": 30
+      },
+      "interpolation": false
+    },
+    "tick_cpu_percent": {
+      "n": 25,
+      "mean": 56.5824,
+      "minimum": 30.37,
+      "maximum": 80.4,
+      "p50": 59.99,
+      "p95": 73.52,
+      "sample_sd": 12.986915299639096,
+      "sum": 1414.56,
+      "p99": null,
+      "median": 59.99,
+      "max": 80.4
+    },
+    "tick_memory_mib": {
+      "n": 25,
+      "mean": 48.8344,
+      "minimum": 43.01,
+      "maximum": 53.85,
+      "p50": 49.42,
+      "p95": 53.6,
+      "sample_sd": 3.2139021972258797,
+      "sum": 1220.8600000000001,
+      "p99": null,
+      "median": 49.42,
+      "max": 53.85
+    }
+  },
+  "limitations": [
+    "CPU tick series is sparse; 1-second event bins are not 1-second CPU observations."
+  ],
+  "b2_periods": {
+    "Total": {
+      "attempts_started": 2385,
+      "attempts_ended_known": 2385,
+      "responses_received": 2385,
+      "http_error_responses": 0,
+      "attempts_without_observed_end": 0,
+      "duration_observations": 2385,
+      "response_duration_ms": {
+        "n": 2385,
+        "mean": 46.8717224620525,
+        "minimum": 24.104061000116417,
+        "maximum": 130.86068300003717,
+        "p50": 38.32404400009182,
+        "p95": 79.70671800012497,
+        "sample_sd": 18.04177868519314,
+        "sum": 111789.05807199521,
+        "p99": 91.54822200002855,
+        "median": 38.32404400009182,
+        "max": 130.86068300003717
+      },
+      "known_end_duration_ms": {
+        "n": 2385,
+        "mean": 46.8717224620525,
+        "minimum": 24.104061000116417,
+        "maximum": 130.86068300003717,
+        "p50": 38.32404400009182,
+        "p95": 79.70671800012497,
+        "sample_sd": 18.04177868519314,
+        "sum": 111789.05807199521,
+        "p99": 91.54822200002855,
+        "median": 38.32404400009182,
+        "max": 130.86068300003717
+      },
+      "legacy_completions_semantics": "known-ended attempts, including transport/client errors; not responses",
+      "starts_total": 2385,
+      "starts_in_window": 2385,
+      "completions": 2385,
+      "incomplete": 0,
+      "nominal_rps": 16,
+      "denominator_seconds": 150,
+      "realized_start_rps": 15.9,
+      "realized_minus_nominal": -0.09999999999999964,
+      "status_codes": {
+        "200": 2385
+      },
+      "outcomes": {
+        "response": 2385
+      },
+      "timeouts": 0,
+      "connection_errors": 0,
+      "duration_ms": {
+        "n": 2385,
+        "mean": 46.8717224620525,
+        "minimum": 24.104061000116417,
+        "maximum": 130.86068300003717,
+        "p50": 38.32404400009182,
+        "p95": 79.70671800012497,
+        "sample_sd": 18.04177868519314,
+        "sum": 111789.05807199521,
+        "p99": 91.54822200002855,
+        "median": 38.32404400009182,
+        "max": 130.86068300003717
+      },
+      "duration_basis": "known completions only; not imputed for censored attempts",
+      "completions_after_end": 1,
+      "last_start": 149.9650435829999,
+      "last_completion": 150.00026398399996,
+      "successful_responses": 2385,
+      "availability": 1.0,
+      "availability_numerator": 2385,
+      "availability_denominator": 2385,
+      "admissions": null,
+      "submissions": 2385,
+      "expirations_before_http": 0,
+      "admissions_note": "No distinct admission event in legitimate generator; submissions counted from source diagnostics. All submitted attempts reconciled with HTTP starts."
+    },
+    "P1": {
+      "attempts_started": 456,
+      "attempts_ended_known": 456,
+      "responses_received": 456,
+      "http_error_responses": 0,
+      "attempts_without_observed_end": 0,
+      "duration_observations": 456,
+      "response_duration_ms": {
+        "n": 456,
+        "mean": 46.686451714917034,
+        "minimum": 25.834488999862515,
+        "maximum": 118.85276700013492,
+        "p50": 38.85355200009144,
+        "p95": 78.66591299989523,
+        "sample_sd": 17.57022752608376,
+        "sum": 21289.021982002167,
+        "p99": 92.63878499996281,
+        "median": 38.85355200009144,
+        "max": 118.85276700013492
+      },
+      "known_end_duration_ms": {
+        "n": 456,
+        "mean": 46.686451714917034,
+        "minimum": 25.834488999862515,
+        "maximum": 118.85276700013492,
+        "p50": 38.85355200009144,
+        "p95": 78.66591299989523,
+        "sample_sd": 17.57022752608376,
+        "sum": 21289.021982002167,
+        "p99": 92.63878499996281,
+        "median": 38.85355200009144,
+        "max": 118.85276700013492
+      },
+      "legacy_completions_semantics": "known-ended attempts, including transport/client errors; not responses",
+      "starts_total": 456,
+      "starts_in_window": 456,
+      "completions": 456,
+      "incomplete": 0,
+      "nominal_rps": 16,
+      "denominator_seconds": 30,
+      "realized_start_rps": 15.2,
+      "realized_minus_nominal": -0.8000000000000007,
+      "status_codes": {
+        "200": 456
+      },
+      "outcomes": {
+        "response": 456
+      },
+      "timeouts": 0,
+      "connection_errors": 0,
+      "duration_ms": {
+        "n": 456,
+        "mean": 46.686451714917034,
+        "minimum": 25.834488999862515,
+        "maximum": 118.85276700013492,
+        "p50": 38.85355200009144,
+        "p95": 78.66591299989523,
+        "sample_sd": 17.57022752608376,
+        "sum": 21289.021982002167,
+        "p99": 92.63878499996281,
+        "median": 38.85355200009144,
+        "max": 118.85276700013492
+      },
+      "duration_basis": "known completions only; not imputed for censored attempts",
+      "completions_after_end": 0,
+      "last_start": 29.92095557399989,
+      "last_completion": 29.949383800000078,
+      "successful_responses": 456,
+      "availability": 1.0,
+      "availability_numerator": 456,
+      "availability_denominator": 456,
+      "admissions": null,
+      "submissions": 456,
+      "expirations_before_http": 0,
+      "admissions_note": "No distinct admission event in legitimate generator; submissions counted from source diagnostics. All submitted attempts reconciled with HTTP starts."
+    },
+    "P2": {
+      "attempts_started": 515,
+      "attempts_ended_known": 515,
+      "responses_received": 515,
+      "http_error_responses": 0,
+      "attempts_without_observed_end": 0,
+      "duration_observations": 515,
+      "response_duration_ms": {
+        "n": 515,
+        "mean": 46.642283677671195,
+        "minimum": 25.353890000133106,
+        "maximum": 103.22988300003999,
+        "p50": 37.669847999950434,
+        "p95": 78.73518199994578,
+        "sample_sd": 17.947626631729587,
+        "sum": 24020.776094000666,
+        "p99": 87.30096199997206,
+        "median": 37.669847999950434,
+        "max": 103.22988300003999
+      },
+      "known_end_duration_ms": {
+        "n": 515,
+        "mean": 46.642283677671195,
+        "minimum": 25.353890000133106,
+        "maximum": 103.22988300003999,
+        "p50": 37.669847999950434,
+        "p95": 78.73518199994578,
+        "sample_sd": 17.947626631729587,
+        "sum": 24020.776094000666,
+        "p99": 87.30096199997206,
+        "median": 37.669847999950434,
+        "max": 103.22988300003999
+      },
+      "legacy_completions_semantics": "known-ended attempts, including transport/client errors; not responses",
+      "starts_total": 515,
+      "starts_in_window": 515,
+      "completions": 515,
+      "incomplete": 0,
+      "nominal_rps": 16,
+      "denominator_seconds": 30,
+      "realized_start_rps": 17.166666666666668,
+      "realized_minus_nominal": 1.1666666666666679,
+      "status_codes": {
+        "200": 515
+      },
+      "outcomes": {
+        "response": 515
+      },
+      "timeouts": 0,
+      "connection_errors": 0,
+      "duration_ms": {
+        "n": 515,
+        "mean": 46.642283677671195,
+        "minimum": 25.353890000133106,
+        "maximum": 103.22988300003999,
+        "p50": 37.669847999950434,
+        "p95": 78.73518199994578,
+        "sample_sd": 17.947626631729587,
+        "sum": 24020.776094000666,
+        "p99": 87.30096199997206,
+        "median": 37.669847999950434,
+        "max": 103.22988300003999
+      },
+      "duration_basis": "known completions only; not imputed for censored attempts",
+      "completions_after_end": 1,
+      "last_start": 59.99858655899993,
+      "last_completion": 60.030558015,
+      "successful_responses": 515,
+      "availability": 1.0,
+      "availability_numerator": 515,
+      "availability_denominator": 515,
+      "admissions": null,
+      "submissions": 515,
+      "expirations_before_http": 0,
+      "admissions_note": "No distinct admission event in legitimate generator; submissions counted from source diagnostics. All submitted attempts reconciled with HTTP starts."
+    },
+    "P3": {
+      "attempts_started": 1414,
+      "attempts_ended_known": 1414,
+      "responses_received": 1414,
+      "http_error_responses": 0,
+      "attempts_without_observed_end": 0,
+      "duration_observations": 1414,
+      "response_duration_ms": {
+        "n": 1414,
+        "mean": 47.01503535784468,
+        "minimum": 24.104061000116417,
+        "maximum": 130.86068300003717,
+        "p50": 38.41822749996027,
+        "p95": 80.72062700011884,
+        "sample_sd": 18.23611183774123,
+        "sum": 66479.25999599238,
+        "p99": 92.30441300019265,
+        "median": 38.41822749996027,
+        "max": 130.86068300003717
+      },
+      "known_end_duration_ms": {
+        "n": 1414,
+        "mean": 47.01503535784468,
+        "minimum": 24.104061000116417,
+        "maximum": 130.86068300003717,
+        "p50": 38.41822749996027,
+        "p95": 80.72062700011884,
+        "sample_sd": 18.23611183774123,
+        "sum": 66479.25999599238,
+        "p99": 92.30441300019265,
+        "median": 38.41822749996027,
+        "max": 130.86068300003717
+      },
+      "legacy_completions_semantics": "known-ended attempts, including transport/client errors; not responses",
+      "starts_total": 1414,
+      "starts_in_window": 1414,
+      "completions": 1414,
+      "incomplete": 0,
+      "nominal_rps": 16,
+      "denominator_seconds": 90,
+      "realized_start_rps": 15.71111111111111,
+      "realized_minus_nominal": -0.28888888888888964,
+      "status_codes": {
+        "200": 1414
+      },
+      "outcomes": {
+        "response": 1414
+      },
+      "timeouts": 0,
+      "connection_errors": 0,
+      "duration_ms": {
+        "n": 1414,
+        "mean": 47.01503535784468,
+        "minimum": 24.104061000116417,
+        "maximum": 130.86068300003717,
+        "p50": 38.41822749996027,
+        "p95": 80.72062700011884,
+        "sample_sd": 18.23611183774123,
+        "sum": 66479.25999599238,
+        "p99": 92.30441300019265,
+        "median": 38.41822749996027,
+        "max": 130.86068300003717
+      },
+      "duration_basis": "known completions only; not imputed for censored attempts",
+      "completions_after_end": 1,
+      "last_start": 149.9650435829999,
+      "last_completion": 150.00026398399996,
+      "successful_responses": 1414,
+      "availability": 1.0,
+      "availability_numerator": 1414,
+      "availability_denominator": 1414,
+      "admissions": null,
+      "submissions": 1414,
+      "expirations_before_http": 0,
+      "admissions_note": "No distinct admission event in legitimate generator; submissions counted from source diagnostics. All submitted attempts reconciled with HTTP starts."
+    }
+  },
+  "tail_http": [
+    {
+      "run_id": "c5e06e3441e4499c94fc62275c5d9ff4",
+      "request_id": "request_normal_2_000001217",
+      "generator": "normal",
+      "worker_id": "1",
+      "target_url": "http://edos_service:80/medium",
+      "timestamp": "1794094117.1438808",
+      "elapsed_seconds": "150.00227827699996",
+      "end_timestamp": "1794094117.2198734",
+      "end_elapsed_seconds": "150.078272235",
+      "duration_ms": "75.9939580000264",
+      "traffic_class": "benign",
+      "attack_active": "0",
+      "attack_id": "",
+      "event_id": "",
+      "active_event_ids": "[]",
+      "http_status": "200",
+      "outcome": "response",
+      "error_type": ""
+    }
+  ],
+  "boundary_crossings": {
+    "30": [],
+    "60": [
+      "request_normal_1_000000489"
+    ],
+    "150": [
+      "request_normal_2_000001216"
+    ]
+  },
+  "legacy_analyzer_reconciliation": {
+    "unidentified_events": {
+      "handler_started": 10,
+      "work_submitted": 10,
+      "work_started": 10,
+      "work_completed": 10,
+      "handler_finished": 10,
+      "computation_observation_closed": 1
+    },
+    "explanation": "Legacy analyzer counts 30 work events without request_id plus the observation closure as unidentified; ten associated handler pairs explicitly declare capture_audit at endpoint /. Keep legacy exclusion visible; classify ten operations unknown, separate from benign operations."
+  },
+  "run_id": "c5e06e3441e4499c94fc62275c5d9ff4",
+  "checkout": "fa3936e1d9dcce6c941cf79701c3fc58dba4d9fd",
+  "configuration": {
+    "id": "pilot-legitimate",
+    "duration_seconds": 150,
+    "seed": 20261107,
+    "normal_traffic": {
+      "clients": 2,
+      "rate": 8,
+      "endpoint": "/medium",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "enabled": false,
+      "profile": "continuous",
+      "attackers": 0,
+      "rate": 0,
+      "start_seconds": 30,
+      "duration_seconds": 30,
+      "endpoint": "/medium",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 5,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "load_balancer": {
+      "enabled": false
+    },
+    "traffic_sources": {
+      "execution": "containers"
+    },
+    "topology": {
+      "mode": "direct"
+    },
+    "diagnostics": {
+      "enabled": true,
+      "queue_capacity": 4096
+    }
+  },
+  "certificate": {
+    "version": "exploratory-offensive-v1",
+    "limits": {
+      "min_available_bytes": 2147483648,
+      "min_disk_bytes": 4294967296,
+      "victim_memory_bytes": 1073741824,
+      "source_memory_bytes": 536870912,
+      "max_artifact_bytes": 536870912,
+      "collection_max_age_seconds": 5,
+      "global_timeout_seconds": 240,
+      "docker_timeout_seconds": 3,
+      "version": "exploratory-offensive-v1"
+    },
+    "images": {
+      "victim": "sha256:03a186aa90eec03b874c82a887b245e7190fa45cd7256af3c077cb64943d52b0",
+      "source": "sha256:b94212edd4d31c34998aea870caebc4ba145c1593d1b8dfdc27fe4917719fe3e"
+    },
+    "observations": [
+      {
+        "cpu_total": 2033771,
+        "cpu_idle": 1830312,
+        "available_bytes": 12003893248,
+        "loadavg": "0.65 1.47 1.29 2/1279 10164",
+        "disk_free_bytes": 37532262400,
+        "artifact_bytes": 29300,
+        "containers": []
+      },
+      {
+        "cpu_total": 2040809,
+        "cpu_idle": 1836150,
+        "available_bytes": 11901460480,
+        "loadavg": "0.70 1.46 1.29 4/1365 10811",
+        "disk_free_bytes": 37529063424,
+        "artifact_bytes": 206179,
+        "containers": [
+          {
+            "id": "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4",
+            "role": "victim",
+            "memory": 45236224,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "e872483df3cd6df82e2e920f46319e5e767823294ec7c9d11271384a2e22d4d6",
+            "role": "source",
+            "memory": 47562752,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "b8b729fa58b467d409f42e6e70d7ea36315a154691f7111476937b31efe66592",
+            "role": "source",
+            "memory": 22671360,
+            "oom": false,
+            "restarts": 0
+          }
+        ],
+        "collection_acquisitions": {
+          "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4": 1732.228292649
+        },
+        "collection_persistence_age_seconds": 3.0211679935455322
+      },
+      {
+        "cpu_total": 2047989,
+        "cpu_idle": 1842572,
+        "available_bytes": 11899576320,
+        "loadavg": "0.73 1.45 1.28 1/1379 10838",
+        "disk_free_bytes": 37528420352,
+        "artifact_bytes": 802616,
+        "containers": [
+          {
+            "id": "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4",
+            "role": "victim",
+            "memory": 45391872,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "e872483df3cd6df82e2e920f46319e5e767823294ec7c9d11271384a2e22d4d6",
+            "role": "source",
+            "memory": 47886336,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "b8b729fa58b467d409f42e6e70d7ea36315a154691f7111476937b31efe66592",
+            "role": "source",
+            "memory": 24514560,
+            "oom": false,
+            "restarts": 0
+          }
+        ],
+        "collection_acquisitions": {
+          "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4": 1738.263065349
+        },
+        "collection_persistence_age_seconds": 0.004120588302612305
+      },
+      {
+        "cpu_total": 2055125,
+        "cpu_idle": 1849011,
+        "available_bytes": 11994030080,
+        "loadavg": "0.75 1.44 1.28 1/1379 10845",
+        "disk_free_bytes": 37527511040,
+        "artifact_bytes": 1552608,
+        "containers": [
+          {
+            "id": "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4",
+            "role": "victim",
+            "memory": 46317568,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "e872483df3cd6df82e2e920f46319e5e767823294ec7c9d11271384a2e22d4d6",
+            "role": "source",
+            "memory": 47812608,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "b8b729fa58b467d409f42e6e70d7ea36315a154691f7111476937b31efe66592",
+            "role": "source",
+            "memory": 23502848,
+            "oom": false,
+            "restarts": 0
+          }
+        ],
+        "collection_acquisitions": {
+          "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4": 1744.294323159
+        },
+        "collection_persistence_age_seconds": 0.002557516098022461
+      },
+      {
+        "cpu_total": 2062271,
+        "cpu_idle": 1855494,
+        "available_bytes": 11975696384,
+        "loadavg": "0.85 1.45 1.29 1/1382 10858",
+        "disk_free_bytes": 37526749184,
+        "artifact_bytes": 2296310,
+        "containers": [
+          {
+            "id": "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4",
+            "role": "victim",
+            "memory": 46141440,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "e872483df3cd6df82e2e920f46319e5e767823294ec7c9d11271384a2e22d4d6",
+            "role": "source",
+            "memory": 47931392,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "b8b729fa58b467d409f42e6e70d7ea36315a154691f7111476937b31efe66592",
+            "role": "source",
+            "memory": 25104384,
+            "oom": false,
+            "restarts": 0
+          }
+        ],
+        "collection_acquisitions": {
+          "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4": 1750.322088452
+        },
+        "collection_persistence_age_seconds": 0.002427816390991211
+      },
+      {
+        "cpu_total": 2069404,
+        "cpu_idle": 1861909,
+        "available_bytes": 11973730304,
+        "loadavg": "0.94 1.46 1.29 2/1380 10860",
+        "disk_free_bytes": 37525917696,
+        "artifact_bytes": 3099631,
+        "containers": [
+          {
+            "id": "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4",
+            "role": "victim",
+            "memory": 47501312,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "e872483df3cd6df82e2e920f46319e5e767823294ec7c9d11271384a2e22d4d6",
+            "role": "source",
+            "memory": 48545792,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "b8b729fa58b467d409f42e6e70d7ea36315a154691f7111476937b31efe66592",
+            "role": "source",
+            "memory": 25305088,
+            "oom": false,
+            "restarts": 0
+          }
+        ],
+        "collection_acquisitions": {
+          "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4": 1756.349940612
+        },
+        "collection_persistence_age_seconds": 1.0054309368133545
+      },
+      {
+        "cpu_total": 2076532,
+        "cpu_idle": 1868341,
+        "available_bytes": 11972509696,
+        "loadavg": "1.10 1.48 1.30 2/1370 10862",
+        "disk_free_bytes": 37525114880,
+        "artifact_bytes": 3881410,
+        "containers": [
+          {
+            "id": "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4",
+            "role": "victim",
+            "memory": 47652864,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "e872483df3cd6df82e2e920f46319e5e767823294ec7c9d11271384a2e22d4d6",
+            "role": "source",
+            "memory": 48570368,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "b8b729fa58b467d409f42e6e70d7ea36315a154691f7111476937b31efe66592",
+            "role": "source",
+            "memory": 24842240,
+            "oom": false,
+            "restarts": 0
+          }
+        ],
+        "collection_acquisitions": {
+          "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4": 1762.378332245
+        },
+        "collection_persistence_age_seconds": 1.0039565563201904
+      },
+      {
+        "cpu_total": 2083674,
+        "cpu_idle": 1874745,
+        "available_bytes": 11976122368,
+        "loadavg": "1.01 1.45 1.29 1/1370 10864",
+        "disk_free_bytes": 37524258816,
+        "artifact_bytes": 4725622,
+        "containers": [
+          {
+            "id": "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4",
+            "role": "victim",
+            "memory": 48832512,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "e872483df3cd6df82e2e920f46319e5e767823294ec7c9d11271384a2e22d4d6",
+            "role": "source",
+            "memory": 49336320,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "b8b729fa58b467d409f42e6e70d7ea36315a154691f7111476937b31efe66592",
+            "role": "source",
+            "memory": 25063424,
+            "oom": false,
+            "restarts": 0
+          }
+        ],
+        "collection_acquisitions": {
+          "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4": 1768.40187668
+        },
+        "collection_persistence_age_seconds": 1.006643295288086
+      },
+      {
+        "cpu_total": 2090810,
+        "cpu_idle": 1881214,
+        "available_bytes": 11975000064,
+        "loadavg": "1.01 1.45 1.29 2/1371 10868",
+        "disk_free_bytes": 37523578880,
+        "artifact_bytes": 5395971,
+        "containers": [
+          {
+            "id": "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4",
+            "role": "victim",
+            "memory": 48902144,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "e872483df3cd6df82e2e920f46319e5e767823294ec7c9d11271384a2e22d4d6",
+            "role": "source",
+            "memory": 49053696,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "b8b729fa58b467d409f42e6e70d7ea36315a154691f7111476937b31efe66592",
+            "role": "source",
+            "memory": 24997888,
+            "oom": false,
+            "restarts": 0
+          }
+        ],
+        "collection_acquisitions": {
+          "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4": 1774.430016845
+        },
+        "collection_persistence_age_seconds": 1.0079421997070312
+      },
+      {
+        "cpu_total": 2097941,
+        "cpu_idle": 1887598,
+        "available_bytes": 11969011712,
+        "loadavg": "1.01 1.44 1.29 1/1368 10870",
+        "disk_free_bytes": 37522657280,
+        "artifact_bytes": 6297305,
+        "containers": [
+          {
+            "id": "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4",
+            "role": "victim",
+            "memory": 49369088,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "e872483df3cd6df82e2e920f46319e5e767823294ec7c9d11271384a2e22d4d6",
+            "role": "source",
+            "memory": 49319936,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "b8b729fa58b467d409f42e6e70d7ea36315a154691f7111476937b31efe66592",
+            "role": "source",
+            "memory": 26796032,
+            "oom": false,
+            "restarts": 0
+          }
+        ],
+        "collection_acquisitions": {
+          "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4": 1780.454075807
+        },
+        "collection_persistence_age_seconds": 1.0031383037567139
+      },
+      {
+        "cpu_total": 2105082,
+        "cpu_idle": 1894000,
+        "available_bytes": 11970490368,
+        "loadavg": "1.01 1.42 1.28 4/1368 10875",
+        "disk_free_bytes": 37521805312,
+        "artifact_bytes": 7120827,
+        "containers": [
+          {
+            "id": "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4",
+            "role": "victim",
+            "memory": 50569216,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "e872483df3cd6df82e2e920f46319e5e767823294ec7c9d11271384a2e22d4d6",
+            "role": "source",
+            "memory": 49799168,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "b8b729fa58b467d409f42e6e70d7ea36315a154691f7111476937b31efe66592",
+            "role": "source",
+            "memory": 25726976,
+            "oom": false,
+            "restarts": 0
+          }
+        ],
+        "collection_acquisitions": {
+          "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4": 1786.474916502
+        },
+        "collection_persistence_age_seconds": 1.0031383037567139
+      },
+      {
+        "cpu_total": 2112198,
+        "cpu_idle": 1900354,
+        "available_bytes": 11967283200,
+        "loadavg": "0.93 1.40 1.28 2/1369 10881",
+        "disk_free_bytes": 37520859136,
+        "artifact_bytes": 8052708,
+        "containers": [
+          {
+            "id": "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4",
+            "role": "victim",
+            "memory": 50216960,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "e872483df3cd6df82e2e920f46319e5e767823294ec7c9d11271384a2e22d4d6",
+            "role": "source",
+            "memory": 49324032,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "b8b729fa58b467d409f42e6e70d7ea36315a154691f7111476937b31efe66592",
+            "role": "source",
+            "memory": 26222592,
+            "oom": false,
+            "restarts": 0
+          }
+        ],
+        "collection_acquisitions": {
+          "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4": 1792.498687895
+        },
+        "collection_persistence_age_seconds": 1.0050599575042725
+      },
+      {
+        "cpu_total": 2119327,
+        "cpu_idle": 1906849,
+        "available_bytes": 11961372672,
+        "loadavg": "0.93 1.39 1.27 2/1369 10886",
+        "disk_free_bytes": 37520191488,
+        "artifact_bytes": 8707366,
+        "containers": [
+          {
+            "id": "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4",
+            "role": "victim",
+            "memory": 50577408,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "e872483df3cd6df82e2e920f46319e5e767823294ec7c9d11271384a2e22d4d6",
+            "role": "source",
+            "memory": 50601984,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "b8b729fa58b467d409f42e6e70d7ea36315a154691f7111476937b31efe66592",
+            "role": "source",
+            "memory": 27197440,
+            "oom": false,
+            "restarts": 0
+          }
+        ],
+        "collection_acquisitions": {
+          "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4": 1798.525408381
+        },
+        "collection_persistence_age_seconds": 1.0029094219207764
+      },
+      {
+        "cpu_total": 2126468,
+        "cpu_idle": 1913299,
+        "available_bytes": 11957727232,
+        "loadavg": "0.94 1.39 1.27 1/1375 10906",
+        "disk_free_bytes": 37519380480,
+        "artifact_bytes": 9466305,
+        "containers": [
+          {
+            "id": "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4",
+            "role": "victim",
+            "memory": 52019200,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "e872483df3cd6df82e2e920f46319e5e767823294ec7c9d11271384a2e22d4d6",
+            "role": "source",
+            "memory": 49770496,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "b8b729fa58b467d409f42e6e70d7ea36315a154691f7111476937b31efe66592",
+            "role": "source",
+            "memory": 26791936,
+            "oom": false,
+            "restarts": 0
+          }
+        ],
+        "collection_acquisitions": {
+          "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4": 1804.553202731
+        },
+        "collection_persistence_age_seconds": 1.0068776607513428
+      },
+      {
+        "cpu_total": 2133614,
+        "cpu_idle": 1919793,
+        "available_bytes": 11957194752,
+        "loadavg": "0.94 1.38 1.27 1/1379 10914",
+        "disk_free_bytes": 37518716928,
+        "artifact_bytes": 10111465,
+        "containers": [
+          {
+            "id": "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4",
+            "role": "victim",
+            "memory": 51875840,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "e872483df3cd6df82e2e920f46319e5e767823294ec7c9d11271384a2e22d4d6",
+            "role": "source",
+            "memory": 51400704,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "b8b729fa58b467d409f42e6e70d7ea36315a154691f7111476937b31efe66592",
+            "role": "source",
+            "memory": 27521024,
+            "oom": false,
+            "restarts": 0
+          }
+        ],
+        "collection_acquisitions": {
+          "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4": 1810.581361118
+        },
+        "collection_persistence_age_seconds": 1.007392406463623
+      },
+      {
+        "cpu_total": 2140792,
+        "cpu_idle": 1926260,
+        "available_bytes": 11941216256,
+        "loadavg": "1.03 1.38 1.27 4/1379 10922",
+        "disk_free_bytes": 37517754368,
+        "artifact_bytes": 10906716,
+        "containers": [
+          {
+            "id": "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4",
+            "role": "victim",
+            "memory": 52314112,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "e872483df3cd6df82e2e920f46319e5e767823294ec7c9d11271384a2e22d4d6",
+            "role": "source",
+            "memory": 50757632,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "b8b729fa58b467d409f42e6e70d7ea36315a154691f7111476937b31efe66592",
+            "role": "source",
+            "memory": 27504640,
+            "oom": false,
+            "restarts": 0
+          }
+        ],
+        "collection_acquisitions": {
+          "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4": 1816.608382417
+        },
+        "collection_persistence_age_seconds": 1.0083808898925781
+      },
+      {
+        "cpu_total": 2147882,
+        "cpu_idle": 1932616,
+        "available_bytes": 11943682048,
+        "loadavg": "1.02 1.38 1.27 1/1379 10924",
+        "disk_free_bytes": 37516828672,
+        "artifact_bytes": 11799596,
+        "containers": [
+          {
+            "id": "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4",
+            "role": "victim",
+            "memory": 52822016,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "e872483df3cd6df82e2e920f46319e5e767823294ec7c9d11271384a2e22d4d6",
+            "role": "source",
+            "memory": 50974720,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "b8b729fa58b467d409f42e6e70d7ea36315a154691f7111476937b31efe66592",
+            "role": "source",
+            "memory": 26988544,
+            "oom": false,
+            "restarts": 0
+          }
+        ],
+        "collection_acquisitions": {
+          "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4": 1822.632915861
+        },
+        "collection_persistence_age_seconds": 1.0060861110687256
+      },
+      {
+        "cpu_total": 2155031,
+        "cpu_idle": 1939009,
+        "available_bytes": 11942531072,
+        "loadavg": "1.18 1.40 1.28 1/1374 10927",
+        "disk_free_bytes": 37515968512,
+        "artifact_bytes": 12638598,
+        "containers": [
+          {
+            "id": "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4",
+            "role": "victim",
+            "memory": 53522432,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "e872483df3cd6df82e2e920f46319e5e767823294ec7c9d11271384a2e22d4d6",
+            "role": "source",
+            "memory": 51195904,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "b8b729fa58b467d409f42e6e70d7ea36315a154691f7111476937b31efe66592",
+            "role": "source",
+            "memory": 27193344,
+            "oom": false,
+            "restarts": 0
+          }
+        ],
+        "collection_acquisitions": {
+          "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4": 1828.659448206
+        },
+        "collection_persistence_age_seconds": 1.0067341327667236
+      },
+      {
+        "cpu_total": 2162164,
+        "cpu_idle": 1945485,
+        "available_bytes": 11940020224,
+        "loadavg": "1.33 1.43 1.29 1/1375 10929",
+        "disk_free_bytes": 37515239424,
+        "artifact_bytes": 13359119,
+        "containers": [
+          {
+            "id": "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4",
+            "role": "victim",
+            "memory": 52850688,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "e872483df3cd6df82e2e920f46319e5e767823294ec7c9d11271384a2e22d4d6",
+            "role": "source",
+            "memory": 50479104,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "b8b729fa58b467d409f42e6e70d7ea36315a154691f7111476937b31efe66592",
+            "role": "source",
+            "memory": 27930624,
+            "oom": false,
+            "restarts": 0
+          }
+        ],
+        "collection_acquisitions": {
+          "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4": 1834.687655544
+        },
+        "collection_persistence_age_seconds": 1.0071189403533936
+      },
+      {
+        "cpu_total": 2169302,
+        "cpu_idle": 1952030,
+        "available_bytes": 11944030208,
+        "loadavg": "1.30 1.42 1.29 2/1371 10944",
+        "disk_free_bytes": 37514686464,
+        "artifact_bytes": 13877674,
+        "containers": [
+          {
+            "id": "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4",
+            "role": "victim",
+            "memory": 53604352,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "e872483df3cd6df82e2e920f46319e5e767823294ec7c9d11271384a2e22d4d6",
+            "role": "source",
+            "memory": 50016256,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "b8b729fa58b467d409f42e6e70d7ea36315a154691f7111476937b31efe66592",
+            "role": "source",
+            "memory": 26861568,
+            "oom": false,
+            "restarts": 0
+          }
+        ],
+        "collection_acquisitions": {
+          "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4": 1840.714192023
+        },
+        "collection_persistence_age_seconds": 1.006798505783081
+      },
+      {
+        "cpu_total": 2176475,
+        "cpu_idle": 1958353,
+        "available_bytes": 11893202944,
+        "loadavg": "1.10 1.38 1.27 2/1378 10954",
+        "disk_free_bytes": 37513793536,
+        "artifact_bytes": 14706763,
+        "containers": [
+          {
+            "id": "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4",
+            "role": "victim",
+            "memory": 53129216,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "e872483df3cd6df82e2e920f46319e5e767823294ec7c9d11271384a2e22d4d6",
+            "role": "source",
+            "memory": 51773440,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "b8b729fa58b467d409f42e6e70d7ea36315a154691f7111476937b31efe66592",
+            "role": "source",
+            "memory": 27742208,
+            "oom": false,
+            "restarts": 0
+          }
+        ],
+        "collection_acquisitions": {
+          "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4": 1846.742784523
+        },
+        "collection_persistence_age_seconds": 1.0055220127105713
+      },
+      {
+        "cpu_total": 2183587,
+        "cpu_idle": 1964751,
+        "available_bytes": 11916402688,
+        "loadavg": "1.17 1.39 1.28 2/1379 10959",
+        "disk_free_bytes": 37512572928,
+        "artifact_bytes": 15451850,
+        "containers": [
+          {
+            "id": "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4",
+            "role": "victim",
+            "memory": 54861824,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "e872483df3cd6df82e2e920f46319e5e767823294ec7c9d11271384a2e22d4d6",
+            "role": "source",
+            "memory": 52236288,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "b8b729fa58b467d409f42e6e70d7ea36315a154691f7111476937b31efe66592",
+            "role": "source",
+            "memory": 27836416,
+            "oom": false,
+            "restarts": 0
+          }
+        ],
+        "collection_acquisitions": {
+          "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4": 1852.772483898
+        },
+        "collection_persistence_age_seconds": 1.0054099559783936
+      },
+      {
+        "cpu_total": 2190769,
+        "cpu_idle": 1970834,
+        "available_bytes": 11873767424,
+        "loadavg": "1.08 1.36 1.27 3/1395 11020",
+        "disk_free_bytes": 37510447104,
+        "artifact_bytes": 16367332,
+        "containers": [
+          {
+            "id": "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4",
+            "role": "victim",
+            "memory": 54546432,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "e872483df3cd6df82e2e920f46319e5e767823294ec7c9d11271384a2e22d4d6",
+            "role": "source",
+            "memory": 52510720,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "b8b729fa58b467d409f42e6e70d7ea36315a154691f7111476937b31efe66592",
+            "role": "source",
+            "memory": 29122560,
+            "oom": false,
+            "restarts": 0
+          }
+        ],
+        "collection_acquisitions": {
+          "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4": 1858.801247751
+        },
+        "collection_persistence_age_seconds": 1.0073158740997314
+      },
+      {
+        "cpu_total": 2197924,
+        "cpu_idle": 1976650,
+        "available_bytes": 11844599808,
+        "loadavg": "0.99 1.34 1.26 3/1394 11036",
+        "disk_free_bytes": 37509541888,
+        "artifact_bytes": 17209072,
+        "containers": [
+          {
+            "id": "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4",
+            "role": "victim",
+            "memory": 55443456,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "e872483df3cd6df82e2e920f46319e5e767823294ec7c9d11271384a2e22d4d6",
+            "role": "source",
+            "memory": 52498432,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "b8b729fa58b467d409f42e6e70d7ea36315a154691f7111476937b31efe66592",
+            "role": "source",
+            "memory": 28590080,
+            "oom": false,
+            "restarts": 0
+          }
+        ],
+        "collection_acquisitions": {
+          "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4": 1864.829447368
+        },
+        "collection_persistence_age_seconds": 1.005678653717041
+      },
+      {
+        "cpu_total": 2204951,
+        "cpu_idle": 1982627,
+        "available_bytes": 11913383936,
+        "loadavg": "0.99 1.33 1.26 1/1392 11043",
+        "disk_free_bytes": 37508706304,
+        "artifact_bytes": 18040587,
+        "containers": [
+          {
+            "id": "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4",
+            "role": "victim",
+            "memory": 56324096,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "e872483df3cd6df82e2e920f46319e5e767823294ec7c9d11271384a2e22d4d6",
+            "role": "source",
+            "memory": 53149696,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "b8b729fa58b467d409f42e6e70d7ea36315a154691f7111476937b31efe66592",
+            "role": "source",
+            "memory": 29708288,
+            "oom": false,
+            "restarts": 0
+          }
+        ],
+        "collection_acquisitions": {
+          "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4": 1870.860294123
+        },
+        "collection_persistence_age_seconds": 1.0057179927825928
+      },
+      {
+        "cpu_total": 2212083,
+        "cpu_idle": 1989052,
+        "available_bytes": 11906121728,
+        "loadavg": "1.07 1.34 1.26 1/1393 11052",
+        "disk_free_bytes": 37507493888,
+        "artifact_bytes": 18749954,
+        "containers": [
+          {
+            "id": "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4",
+            "role": "victim",
+            "memory": 56758272,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "e872483df3cd6df82e2e920f46319e5e767823294ec7c9d11271384a2e22d4d6",
+            "role": "source",
+            "memory": 52314112,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "b8b729fa58b467d409f42e6e70d7ea36315a154691f7111476937b31efe66592",
+            "role": "source",
+            "memory": 0,
+            "oom": false,
+            "restarts": 0
+          }
+        ],
+        "collection_acquisitions": {
+          "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4": 1876.882064178
+        },
+        "collection_persistence_age_seconds": 1.002549648284912
+      },
+      {
+        "cpu_total": 2227916,
+        "cpu_idle": 2003527,
+        "available_bytes": 12006297600,
+        "loadavg": "1.12 1.34 1.27 2/1325 11163",
+        "disk_free_bytes": 37508050944,
+        "artifact_bytes": 20979280,
+        "containers": []
+      }
+    ],
+    "actions": [],
+    "cleanup": [
+      {
+        "container": "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4",
+        "absent": true
+      },
+      {
+        "container": "e872483df3cd6df82e2e920f46319e5e767823294ec7c9d11271384a2e22d4d6",
+        "absent": true
+      },
+      {
+        "container": "b8b729fa58b467d409f42e6e70d7ea36315a154691f7111476937b31efe66592",
+        "absent": true
+      }
+    ],
+    "readiness": {
+      "verified": true,
+      "reasons": [],
+      "active_external": [],
+      "residual": [],
+      "processes": [],
+      "networks": {
+        "edos_sources": [],
+        "edos_network": []
+      }
+    },
+    "cleanup_verified": true,
+    "progression_allowed": true,
+    "certification": "completed",
+    "execution": {
+      "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/b2-l-20261107T232559Z/raw/run_status.json",
+      "status": "completed",
+      "end_reason": "simulation_end",
+      "run_id": "c5e06e3441e4499c94fc62275c5d9ff4",
+      "sha256": "ed7a08bf48cf4477ecc016f0072a09988c4c57792faf909179b3547f315243a1"
+    },
+    "records": "persisted_basic_checks",
+    "export": {
+      "status": "completed",
+      "manifest": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/b2-l-20261107T232559Z/dataset/dataset_manifest.json",
+      "sha256": "3122825e0cd0ea0025e94844e9f12aa4467dad7d6e012e082f707c9177ea6cea"
+    },
+    "failures": [],
+    "limitations": [
+      "Process readiness uses the existing known-process filter; not universal.",
+      "No proof of host/kernel quiescence or completed victim computation."
+    ],
+    "attempt": {
+      "schema_version": 1,
+      "composition": "legitimate",
+      "status": "ready",
+      "started_monotonic": 1719.697277042,
+      "configuration": {
+        "id": "pilot-legitimate",
+        "duration_seconds": 150,
+        "seed": 20261107,
+        "normal_traffic": {
+          "clients": 2,
+          "rate": 8,
+          "endpoint": "/medium",
+          "work_units": 10,
+          "sleep_seconds": 0.0,
+          "max_concurrent_sends": 64,
+          "request_timeout_seconds": 2.0
+        },
+        "attack": {
+          "enabled": false,
+          "profile": "continuous",
+          "attackers": 0,
+          "rate": 0,
+          "start_seconds": 30,
+          "duration_seconds": 30,
+          "endpoint": "/medium",
+          "work_units": 5000,
+          "sleep_seconds": 0.0,
+          "max_concurrent_sends": 64,
+          "request_timeout_seconds": 2.0,
+          "burst": null
+        },
+        "infrastructure": {
+          "initial_instances": 1,
+          "min_instances": 1,
+          "max_instances": 1,
+          "cost_per_instance_per_hour": 0.02
+        },
+        "autoscaler": {
+          "enabled": false,
+          "scale_up_threshold": 60.0,
+          "scale_down_threshold": 25.0,
+          "cooldown_seconds": 20
+        },
+        "server": {
+          "process_pool_workers": 2,
+          "default_work_units": 1000000,
+          "default_sleep_seconds": 0.0
+        },
+        "monitoring": {
+          "interval_seconds": 5,
+          "stats_poll_interval_seconds": 1.0,
+          "history_seconds": 30.0
+        },
+        "load_balancer": {
+          "enabled": false
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        },
+        "topology": {
+          "mode": "direct"
+        },
+        "diagnostics": {
+          "enabled": true,
+          "queue_capacity": 4096
+        }
+      },
+      "policy": {
+        "min_available_bytes": 2147483648,
+        "min_disk_bytes": 4294967296,
+        "victim_memory_bytes": 1073741824,
+        "source_memory_bytes": 536870912,
+        "max_artifact_bytes": 536870912,
+        "collection_max_age_seconds": 5,
+        "global_timeout_seconds": 240,
+        "docker_timeout_seconds": 3,
+        "version": "exploratory-offensive-v1"
+      },
+      "images": {
+        "victim": "sha256:03a186aa90eec03b874c82a887b245e7190fa45cd7256af3c077cb64943d52b0",
+        "source": "sha256:b94212edd4d31c34998aea870caebc4ba145c1593d1b8dfdc27fe4917719fe3e"
+      },
+      "configuration_sha256": "3a835576a07351191b8ffe05ce3f1c37f284a81cdcffe8d3221117516d50f5cc",
+      "phases": {
+        "legitimate": [
+          0,
+          150
+        ]
+      },
+      "image_code": {
+        "victim": {
+          "image_id": "sha256:03a186aa90eec03b874c82a887b245e7190fa45cd7256af3c077cb64943d52b0",
+          "files": {
+            "/app/diagnostics.py": "5899c2ba3bf906266ff7fd521142ca601351604baa74892bebcf0d183f14f158",
+            "/app/simple_server.py": "3274c0d01cd1805604c8a88fafd26f74d11a6a3f0f01502dcf25b33b156c97a0"
+          },
+          "verified": true
+        },
+        "source": {
+          "image_id": "sha256:b94212edd4d31c34998aea870caebc4ba145c1593d1b8dfdc27fe4917719fe3e",
+          "files": {
+            "/app/requirements.txt": "58275698cb78292d1f38df0ea697e2be10ad7f56d197bed7e0629e6af0fd0c50",
+            "/app/simulator/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "/app/simulator/attack_patterns.py": "cae81bf8be017ca1a2af794847bcba778e5cfbe6d9879925bb3e8021d6ad0276",
+            "/app/simulator/attack_summary_logger.py": "65ac7260ce40a066593f3de4a322d0a5f47638beefa11182484ec7f5ba7e4a43",
+            "/app/simulator/diagnostics.py": "5899c2ba3bf906266ff7fd521142ca601351604baa74892bebcf0d183f14f158",
+            "/app/simulator/experiment_config.py": "7bb7d6020dfd1fe83ecfdf5ee2fef15478b6b0250c1ebc07faab14302f9dffee",
+            "/app/simulator/ground_truth.py": "4765ad8e46fcf15e37f4162643dc7d59db06c0f6ced7c2ce41ad6a15f293d51b",
+            "/app/simulator/normal_traffic.py": "7e2f994c8d4160ad554c4e3dcf3258f5dafb53dc1716694cb37c911d3e8bfc88",
+            "/app/simulator/normal_traffic_summary_logger.py": "95fe6ffd0e28f814ccb6b4905c685d620a2c31920c18d8bdc35b29045a542bb2",
+            "/app/simulator/request_logger.py": "0d3dc7247e48f025a728116f95ca5809727e39ef8bed0d7b44df8ba7804aae38",
+            "/app/simulator/service_destination.py": "026b1e991ae57d0b64faacd39bfea23eea7279c04e89917cbe8f405050c7b3a4",
+            "/app/simulator/source_journal.py": "46c04d8c1e8215b4027f4bf2dc9583d4cf37408717a4a947a9c709365db49ba4",
+            "/app/simulator/source_runner.py": "34f80cc8da43e79d64a995c13c0c9fdd2160e2a60d25ff05030fc3ef83b55989",
+            "/app/simulator/traffic_injectorV0.py": "1e8f9328c5a439ade61ce997350e7cd9a064555714d538c04bfc8ad702c18b00"
+          },
+          "verified": true
+        }
+      },
+      "preflight_sha256": "dbb73094ac2a12e910be14bd45789da05d64b4c47af16b7ae6a24f1e28bdfd64",
+      "preflight": {
+        "version": "exploratory-offensive-v1",
+        "limits": {
+          "min_available_bytes": 2147483648,
+          "min_disk_bytes": 4294967296,
+          "victim_memory_bytes": 1073741824,
+          "source_memory_bytes": 536870912,
+          "max_artifact_bytes": 536870912,
+          "collection_max_age_seconds": 5,
+          "global_timeout_seconds": 240,
+          "docker_timeout_seconds": 3,
+          "version": "exploratory-offensive-v1"
+        },
+        "images": {
+          "victim": "sha256:03a186aa90eec03b874c82a887b245e7190fa45cd7256af3c077cb64943d52b0",
+          "source": "sha256:b94212edd4d31c34998aea870caebc4ba145c1593d1b8dfdc27fe4917719fe3e"
+        },
+        "observations": [
+          {
+            "cpu_total": 2033253,
+            "cpu_idle": 1829893,
+            "available_bytes": 12019781632,
+            "loadavg": "0.65 1.47 1.29 1/1281 10127",
+            "disk_free_bytes": 37532319744,
+            "artifact_bytes": 2316,
+            "containers": []
+          }
+        ],
+        "actions": [],
+        "cleanup": [],
+        "readiness": {
+          "verified": true,
+          "reasons": [],
+          "active_external": [],
+          "residual": [],
+          "processes": [],
+          "networks": {
+            "edos_sources": [],
+            "edos_network": []
+          }
+        },
+        "cleanup_verified": null,
+        "progression_allowed": false,
+        "certification": "pending",
+        "execution": null,
+        "records": "pending",
+        "export": "pending",
+        "failures": [],
+        "limitations": [
+          "Process readiness uses the existing known-process filter; not universal.",
+          "No proof of host/kernel quiescence or completed victim computation."
+        ],
+        "readiness_history": [
+          {
+            "verified": true,
+            "reasons": [],
+            "active_external": [],
+            "residual": [],
+            "processes": [],
+            "networks": {
+              "edos_sources": [],
+              "edos_network": []
+            }
+          }
+        ]
+      }
+    },
+    "readiness_history": [
+      {
+        "verified": true,
+        "reasons": [],
+        "active_external": [],
+        "residual": [],
+        "processes": [],
+        "networks": {
+          "edos_sources": [],
+          "edos_network": []
+        }
+      },
+      {
+        "verified": true,
+        "reasons": [],
+        "active_external": [],
+        "residual": [],
+        "processes": [],
+        "networks": {
+          "edos_sources": [],
+          "edos_network": []
+        }
+      }
+    ],
+    "elapsed_before_cleanup_seconds": 156.8518946019999,
+    "shutdown_steps": [
+      {
+        "component": "sources",
+        "complete": true
+      },
+      {
+        "component": "raw_capture",
+        "complete": true
+      },
+      {
+        "component": "capture",
+        "complete": true
+      },
+      {
+        "component": "stats",
+        "complete": true
+      },
+      {
+        "component": "source_removal",
+        "complete": true
+      },
+      {
+        "component": "victim",
+        "id": "6a6f7458d6e5ab3f483d3ef9b53bcc763f6e798e7afe59ed7de1e00157878cf4",
+        "complete": true
+      }
+    ],
+    "temporary_networks": [],
+    "nominal_seconds": 150,
+    "cleanup_checks": [],
+    "errors": [],
+    "post_cleanup_readiness": {
+      "verified": true,
+      "reasons": [],
+      "active_external": [],
+      "residual": [],
+      "processes": [],
+      "networks": {
+        "edos_sources": [],
+        "edos_network": []
+      }
+    },
+    "dataset_validation": {
+      "dataset_valid": true,
+      "analysis_eligible": true
+    },
+    "traffic_rates": {
+      "normal": {
+        "nominal_rps": 16,
+        "interval": [
+          0,
+          150
+        ],
+        "http_starts_total": 2386,
+        "http_starts_in_window": 2385,
+        "http_completions_total": 2386,
+        "realized_start_rps": 15.9
+      },
+      "attack": {
+        "nominal_rps": 0,
+        "interval": [
+          30,
+          60
+        ],
+        "http_starts_total": 0,
+        "http_starts_in_window": 0,
+        "http_completions_total": 0,
+        "realized_start_rps": 0.0
+      }
+    },
+    "http_degradation_observed": false,
+    "scientific_certification": "dataset_checks_only; no recovery or detector claims",
+    "outcome": "completed_integral",
+    "procedure_completed": true
+  },
+  "dataset_validation": {
+    "validation_schema_version": 1,
+    "validator_rules_version": 1,
+    "validator_sha256": "441af5c0db31fa8918c82c8bbf00ed550ab3551a9a27d149abc41f5b98f3ae5c",
+    "validator_dependencies_sha256": {
+      "experiments/dataset_schema.py": "0b9a23145636318b9bdfd42b0a33a4d6a50de246a341068ddc71573d30e3275d",
+      "experiments/dataset_provenance.py": "ba6613472c95cc58adb9fc71a457f5a407b60889c14ae40c8efb0485716306d1",
+      "simulator/experiment_config.py": "7bb7d6020dfd1fe83ecfdf5ee2fef15478b6b0250c1ebc07faab14302f9dffee",
+      "simulator/source_aggregate.py": "9a2b24ba26744c9c0bd1c25c492998c98c1cb1eac90666997f6f84f014194b7f"
+    },
+    "dataset_manifest_sha256": "3122825e0cd0ea0025e94844e9f12aa4467dad7d6e012e082f707c9177ea6cea",
+    "run_id": "c5e06e3441e4499c94fc62275c5d9ff4",
+    "dataset_schema_version": 1,
+    "dataset_valid": true,
+    "analysis_eligible": true,
+    "structural_valid": true,
+    "summary": {
+      "errors": 0,
+      "warnings": 1,
+      "info": 8,
+      "eligibility_blockers": []
+    },
+    "checks": [
+      {
+        "check_id": "JSON_PARSEABLE",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "JSON artifact is parseable",
+        "evidence": {
+          "path": "dataset_manifest.json"
+        }
+      },
+      {
+        "check_id": "MANIFEST_SCHEMA_SUPPORTED",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Only dataset schema version 1 is supported",
+        "evidence": {
+          "version": 1
+        }
+      },
+      {
+        "check_id": "MANIFEST_FIELDS_VALID",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Manifest must identify a run, status and file index",
+        "evidence": {}
+      },
+      {
+        "check_id": "DATASET_PATH_SAFE",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Indexed paths must stay inside dataset and not traverse symlinks",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "FILE_INDEX_UNIQUE",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Exported file paths must be unique",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "FILE_INDEX_FIELDS_VALID",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Every indexed file needs a SHA256 and nonnegative byte size",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "FILE_HASH_MATCH",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Present indexed files must match their SHA256",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "FILE_SIZE_MATCH",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Present indexed files must match their byte sizes",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "INDEXED_FILE_PRESENT",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Indexed canonical/scientific files must exist",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "OPTIONAL_EVIDENCE_PRESENT",
+        "stage": "structural",
+        "severity": "WARNING",
+        "passed": true,
+        "affects": [],
+        "message": "Missing optional evidence limits auditability",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "CANONICAL_REFERENCE_VALID",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Canonical references must be indexed paths of the supported layout",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "JSON_PARSEABLE",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "JSON artifact is parseable",
+        "evidence": {
+          "path": "schema.json"
+        }
+      },
+      {
+        "check_id": "TABLE_SCHEMA_SUPPORTED",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Scientific field definitions must match version 1; prose may differ",
+        "evidence": {}
+      },
+      {
+        "check_id": "JSON_PARSEABLE",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "JSON artifact is parseable",
+        "evidence": {
+          "path": "metadata/run_status.json"
+        }
+      },
+      {
+        "check_id": "JSON_PARSEABLE",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "JSON artifact is parseable",
+        "evidence": {
+          "path": "metadata/effective_config.json"
+        }
+      },
+      {
+        "check_id": "RUN_STATUS_CONSISTENT",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Manifest and canonical run status must agree",
+        "evidence": {
+          "manifest_status": "completed",
+          "status": "completed",
+          "run_id": "c5e06e3441e4499c94fc62275c5d9ff4"
+        }
+      },
+      {
+        "check_id": "EXPERIMENT_ID_CONSISTENT",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Configuration and status identify the same experiment",
+        "evidence": {}
+      },
+      {
+        "check_id": "RUN_STATUS_FIELDS_VALID",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Run errors, drain certification and available clock anchors have documented types",
+        "evidence": {}
+      },
+      {
+        "check_id": "CONFIGURATION_VALID",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Effective configuration satisfies the existing configuration contract",
+        "evidence": {
+          "reason": null
+        }
+      },
+      {
+        "check_id": "SCIENTIFIC_ARTIFACT_PRESENT",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Scientific CSV must be indexed and present, or explicitly absent in an incomplete run",
+        "evidence": {
+          "table": "requests",
+          "path": "raw/service/request_log.csv"
+        }
+      },
+      {
+        "check_id": "CSV_PARSEABLE",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "CSV header and record widths are recognized",
+        "evidence": {
+          "path": "raw/service/request_log.csv",
+          "rows": 2386
+        }
+      },
+      {
+        "check_id": "CSV_FIELD_VALID",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Scientific types, nullability and domains are respected",
+        "evidence": {
+          "table": "requests",
+          "path": "raw/service/request_log.csv",
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "SCIENTIFIC_ARTIFACT_PRESENT",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Scientific CSV must be indexed and present, or explicitly absent in an incomplete run",
+        "evidence": {
+          "table": "rtt",
+          "path": "raw/service/rtt_log.csv"
+        }
+      },
+      {
+        "check_id": "CSV_PARSEABLE",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "CSV header and record widths are recognized",
+        "evidence": {
+          "path": "raw/service/rtt_log.csv",
+          "rows": 2386
+        }
+      },
+      {
+        "check_id": "CSV_FIELD_VALID",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Scientific types, nullability and domains are respected",
+        "evidence": {
+          "table": "rtt",
+          "path": "raw/service/rtt_log.csv",
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "SCIENTIFIC_ARTIFACT_PRESENT",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Scientific CSV must be indexed and present, or explicitly absent in an incomplete run",
+        "evidence": {
+          "table": "packets",
+          "path": "raw/traffic/traffic_capture.csv"
+        }
+      },
+      {
+        "check_id": "CSV_PARSEABLE",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "CSV header and record widths are recognized",
+        "evidence": {
+          "path": "raw/traffic/traffic_capture.csv",
+          "rows": 12594
+        }
+      },
+      {
+        "check_id": "CSV_FIELD_VALID",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Scientific types, nullability and domains are respected",
+        "evidence": {
+          "table": "packets",
+          "path": "raw/traffic/traffic_capture.csv",
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "SCIENTIFIC_ARTIFACT_PRESENT",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Scientific CSV must be indexed and present, or explicitly absent in an incomplete run",
+        "evidence": {
+          "table": "metrics",
+          "path": "raw/infrastructure/simulation_metrics.csv"
+        }
+      },
+      {
+        "check_id": "CSV_PARSEABLE",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "CSV header and record widths are recognized",
+        "evidence": {
+          "path": "raw/infrastructure/simulation_metrics.csv",
+          "rows": 25
+        }
+      },
+      {
+        "check_id": "CSV_FIELD_VALID",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Scientific types, nullability and domains are respected",
+        "evidence": {
+          "table": "metrics",
+          "path": "raw/infrastructure/simulation_metrics.csv",
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "SCIENTIFIC_ARTIFACT_PRESENT",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Scientific CSV must be indexed and present, or explicitly absent in an incomplete run",
+        "evidence": {
+          "table": "attacks",
+          "path": "raw/attacks/attack_events.csv"
+        }
+      },
+      {
+        "check_id": "CSV_PARSEABLE",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "CSV header and record widths are recognized",
+        "evidence": {
+          "path": "raw/attacks/attack_events.csv",
+          "rows": 0
+        }
+      },
+      {
+        "check_id": "CSV_FIELD_VALID",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Scientific types, nullability and domains are respected",
+        "evidence": {
+          "table": "attacks",
+          "path": "raw/attacks/attack_events.csv",
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "RUN_ID_CONSISTENT",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Scientific observations belong to the manifest run",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "SOURCE_INVENTORY_REFERENCE_VALID",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Container source inventory must be a canonical indexed reference",
+        "evidence": {}
+      },
+      {
+        "check_id": "JSON_PARSEABLE",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "JSON artifact is parseable",
+        "evidence": {
+          "path": "metadata/source_inventory.json"
+        }
+      },
+      {
+        "check_id": "SOURCE_FIELDS_VALID",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Source identity, class, worker index and run IP are explicit",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "SOURCE_IDENTITY_UNIQUE",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Scientific IDs and source topology associations are unique within run",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "SOURCE_RUN_ID_CONSISTENT",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Sources belong to this run; incomplete setup without observations may remain unbound",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "SOURCE_COUNT_CONFIG_CONSISTENT",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Configured source counts match inventory",
+        "evidence": {
+          "expected": {
+            "normal": 2,
+            "attack": 0
+          },
+          "observed": {
+            "normal": 2
+          }
+        }
+      },
+      {
+        "check_id": "OFFENSIVE_START_CONTRACT_SUPPORTED",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Explicit offensive start contract must be supported",
+        "evidence": {}
+      },
+      {
+        "check_id": "CONTINUOUS_SCHEDULED_START_WINDOW",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Contract v1 logical HTTP starts must belong to scheduled [S,E), regardless of actual_end_seconds",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "REQUEST_ID_UNIQUE",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Request IDs are unique within run",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "REQUEST_TEMPORAL_ORDER",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Elapsed order and duration arithmetic must agree; epoch drift is not assumed absent",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "SOURCE_REFERENCE_VALID",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Requests reference configured and, when available, inventoried workers",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "REQUEST_CAUSAL_CLASS_VALID",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Generator determines causal class, independently of attack_active",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "EVENT_REFERENCE_VALID",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Attack requests identify an existing event and its attack_id",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "REQUEST_OPERATION_VALID",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Observed operation and logical service destination agree with configuration",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "REQUEST_OUTCOME_VALID",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "HTTP/transport outcomes and nullable fields agree",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "REQUEST_FAILURES_OBSERVED",
+        "stage": "quality",
+        "severity": "WARNING",
+        "passed": true,
+        "affects": [],
+        "message": "Request failures are preserved observations, not automatic dataset corruption",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "EVENT_ID_UNIQUE",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Event IDs are unique",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "ATTACK_ID_UNIQUE",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Attack IDs are unique for the current one-event contract",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "EVENT_CONFIG_PRESENCE",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Enabled attack plans one global event even when rate or source count is zero",
+        "evidence": {
+          "expected": 0,
+          "observed": 0
+        }
+      },
+      {
+        "check_id": "EVENT_TEMPORAL_ORDER",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Start precedes end and drain independently; no end <= drain requirement",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "EVENT_REQUEST_MILESTONES_MATCH",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Recorded event first/last starts and last completion match the observed requests exactly in their shared monotonic domain",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "EVENT_CONFIGURATION_CONSISTENT",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Profile, planned global interval, experiment and anchors agree",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "ATTACK_START_WINDOW_VALID",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Periodic starts require active burst/global window; continuous queued starts may extend through effective actual_end",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "GLOBAL_ATTACK_CONTEXT_CONSISTENT",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Labels follow the global event, including silence; packet labels are checked in their recorded elapsed domain, not matched to request clocks",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "HTTP_DURATION_REFERENCE_VALID",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "RTT table is exactly the response subset at client completion; it is not TCP RTT",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "IDENTIFIED_ADMISSIONS_RESOLVED",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Identified admissions have one terminal resolution and matching HTTP starts",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "IDENTIFIED_ADMISSIONS_RESOLVED",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Identified admissions have one terminal resolution and matching HTTP starts",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "SOURCE_JOURNAL_AVAILABLE",
+        "stage": "quality",
+        "severity": "WARNING",
+        "passed": true,
+        "affects": [],
+        "message": "Missing journals limit admission/backlog evidence; primary observations remain authoritative",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "SOURCE_JOURNAL_PARSEABLE",
+        "stage": "quality",
+        "severity": "WARNING",
+        "passed": true,
+        "affects": [],
+        "message": "Malformed optional journals limit auditability",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "SOURCE_JOURNAL_IDENTITY_VALID",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Parseable source journals preserve identity and sequence",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "SOURCE_JOURNAL_REQUEST_REFERENCE",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Observed journal requests agree with root requests except locally reconciled temporal labels",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "SOURCE_JOURNAL_REQUEST_PRESENT",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Journal requests are present in the primary table; incomplete aggregation may lack observations",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "PERIODIC_ADMISSION_NO_BACKLOG",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "When journals are available, periodic admission and beginning share the same observed sample and remain inside allowed windows",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "JSON_PARSEABLE",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "JSON artifact is parseable",
+        "evidence": {
+          "path": "metadata/export_provenance.json"
+        }
+      },
+      {
+        "check_id": "EXPORT_PROVENANCE_SCOPE_VALID",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Export provenance describes export time, not execution time",
+        "evidence": {}
+      },
+      {
+        "check_id": "JSON_PARSEABLE",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "JSON artifact is parseable",
+        "evidence": {
+          "path": "metadata/run_provenance.json"
+        }
+      },
+      {
+        "check_id": "EXECUTION_PROVENANCE_CONSISTENT",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Execution binding, Git fields and fingerprint are internally coherent; historical file contents are not reconstructed",
+        "evidence": {}
+      },
+      {
+        "check_id": "EXECUTION_CODE_RECORDED",
+        "stage": "quality",
+        "severity": "WARNING",
+        "passed": true,
+        "affects": [],
+        "message": "Git unavailable limits reproducibility, without inventing SHA",
+        "evidence": {}
+      },
+      {
+        "check_id": "EXECUTION_WORKTREE_CLEAN",
+        "stage": "quality",
+        "severity": "WARNING",
+        "passed": false,
+        "affects": [],
+        "message": "Dirty or unavailable working tree cannot be reconstructed from hashes alone",
+        "evidence": {}
+      },
+      {
+        "check_id": "RUN_COMPLETED",
+        "stage": "quality",
+        "severity": "INFO",
+        "passed": true,
+        "affects": [
+          "analysis_eligible"
+        ],
+        "message": "Technical incomplete runs are not eligible even when their dataset is intact",
+        "evidence": {
+          "status": "completed",
+          "errors": []
+        }
+      },
+      {
+        "check_id": "RUN_DRAIN_CERTIFIED",
+        "stage": "quality",
+        "severity": "INFO",
+        "passed": true,
+        "affects": [
+          "analysis_eligible"
+        ],
+        "message": "Eligibility requires the existing producers_drained certification",
+        "evidence": {}
+      },
+      {
+        "check_id": "RUN_WITHOUT_OPERATIONAL_FAILURE",
+        "stage": "quality",
+        "severity": "INFO",
+        "passed": true,
+        "affects": [
+          "analysis_eligible"
+        ],
+        "message": "Operational failures block eligibility; observed request failures alone do not",
+        "evidence": {}
+      },
+      {
+        "check_id": "SCIENTIFIC_OBSERVATIONS_USABLE",
+        "stage": "quality",
+        "severity": "INFO",
+        "passed": true,
+        "affects": [
+          "analysis_eligible"
+        ],
+        "message": "Requests, capture and metrics need observations; event/RTT tables may legitimately be empty",
+        "evidence": {}
+      },
+      {
+        "check_id": "EXPECTED_TRAFFIC_OBSERVED",
+        "stage": "quality",
+        "severity": "INFO",
+        "passed": true,
+        "affects": [
+          "analysis_eligible"
+        ],
+        "message": "Expected causal traffic exists; no rate \u00d7 duration request count is required",
+        "evidence": {
+          "expected": {
+            "attack": false,
+            "benign": true
+          },
+          "observed": {
+            "benign": 2386
+          }
+        }
+      },
+      {
+        "check_id": "EXPECTED_EVENT_EXECUTED",
+        "stage": "quality",
+        "severity": "INFO",
+        "passed": true,
+        "affects": [
+          "analysis_eligible"
+        ],
+        "message": "Expected event has an observed beginning, effective end and drain",
+        "evidence": {}
+      },
+      {
+        "check_id": "RANDOM_SEED_RECORDED",
+        "stage": "quality",
+        "severity": "WARNING",
+        "passed": true,
+        "affects": [],
+        "message": "Missing resolved seed limits reproduction without corrupting observations",
+        "evidence": {}
+      },
+      {
+        "check_id": "CAPTURE_TEMPORAL_COVERAGE",
+        "stage": "quality",
+        "severity": "WARNING",
+        "passed": true,
+        "affects": [],
+        "message": "Observed span only; first/last observations do not prove uninterrupted coverage and no percentage threshold is used",
+        "evidence": {
+          "rows": 12594,
+          "first": 0.2871134281158447,
+          "last": 150.080881357193,
+          "observed_span": 149.79376792907715,
+          "planned_duration": 150,
+          "clock": "epoch-derived",
+          "monitoring_interval": null
+        }
+      },
+      {
+        "check_id": "SERVICE_TEMPORAL_COVERAGE",
+        "stage": "quality",
+        "severity": "WARNING",
+        "passed": true,
+        "affects": [],
+        "message": "Observed span only; first/last observations do not prove uninterrupted coverage and no percentage threshold is used",
+        "evidence": {
+          "rows": 2386,
+          "first": 0.2840758150000511,
+          "last": 150.00227827699996,
+          "observed_span": 149.7182024619999,
+          "planned_duration": 150,
+          "clock": "monotonic",
+          "monitoring_interval": null
+        }
+      },
+      {
+        "check_id": "METRICS_TEMPORAL_COVERAGE",
+        "stage": "quality",
+        "severity": "WARNING",
+        "passed": true,
+        "affects": [],
+        "message": "Observed span only; first/last observations do not prove uninterrupted coverage and no percentage threshold is used",
+        "evidence": {
+          "rows": 25,
+          "first": 6.138146541999959,
+          "last": 150.87758029399993,
+          "observed_span": 144.73943375199997,
+          "planned_duration": 150,
+          "clock": "monotonic",
+          "monitoring_interval": 5
+        }
+      },
+      {
+        "check_id": "METRIC_VALUES_PLAUSIBLE",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Counts, resource observations and durations are nonnegative; no CPU ceiling or degradation requirement",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "METRIC_MONOTONIC_ORDER",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Monitoring elapsed samples are nondecreasing",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "PACKET_EPOCH_ORDER",
+        "stage": "quality",
+        "severity": "WARNING",
+        "passed": true,
+        "affects": [],
+        "message": "Backward capture epoch observations may indicate reordering or clock adjustment",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "PACKET_FIELDS_PLAUSIBLE",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "TCP payload lengths and ports are nonnegative/in range",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "PACKET_IP_VALID",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Packet CSV IPv4 addresses are parseable run attributes",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "PACKET_EPOCH_ALIGNMENT",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Capture elapsed uses its exact documented epoch subtraction, not request monotonic timestamps",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "REQUEST_WALL_CLOCK_ORDER",
+        "stage": "quality",
+        "severity": "WARNING",
+        "passed": true,
+        "affects": [],
+        "message": "Backward epoch timestamps may indicate clock adjustment; monotonic duration remains authoritative",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "CAPTURE_TOPOLOGY_UNAMBIGUOUS",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "A run declares at most one capture topology",
+        "evidence": {}
+      },
+      {
+        "check_id": "JSON_PARSEABLE",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "JSON artifact is parseable",
+        "evidence": {
+          "path": "metadata/topology/direct/capture_metadata.json"
+        }
+      },
+      {
+        "check_id": "SOURCE_IP_OBSERVED",
+        "stage": "quality",
+        "severity": "WARNING",
+        "passed": true,
+        "affects": [],
+        "message": "Missing inventoried IPs are a coverage warning, not absence of source identity",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "CAPTURE_SEGMENT_CONSISTENT",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Declared source_victim capture contains only source/target TCP observations",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "DIRECT_CAPTURE_METADATA_PRESENT",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Direct collection requires declared source_victim metadata",
+        "evidence": {}
+      },
+      {
+        "check_id": "JSON_PARSEABLE",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "JSON artifact is parseable",
+        "evidence": {
+          "path": "metadata/topology/direct/backend_inventory.json"
+        }
+      },
+      {
+        "check_id": "METRIC_CONTAINER_REFERENCE_VALID",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Named monitored victims must exist in backend inventory",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "EXPECTED_VICTIM_METRICS_OBSERVED",
+        "stage": "quality",
+        "severity": "WARNING",
+        "passed": true,
+        "affects": [],
+        "message": "Missing named victims limit infrastructure attribution; startup cache gaps are not invalidity",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "RAW_CAPTURE_NONEMPTY",
+        "stage": "quality",
+        "severity": "WARNING",
+        "passed": true,
+        "affects": [],
+        "message": "A classic PCAP with only its 24-byte global header has no observations; this does not assert equality with CSV capture",
+        "evidence": {
+          "bytes": 2228262
+        }
+      },
+      {
+        "check_id": "COVERAGE_LIMITATIONS",
+        "stage": "quality",
+        "severity": "INFO",
+        "passed": true,
+        "affects": [],
+        "message": "No direct packet/request join, continuous clock drift proof, capture completeness guarantee, CPU/RTT degradation expectation or exact stochastic request count",
+        "evidence": {}
+      },
+      {
+        "check_id": "DATASET_VALID_FOR_ANALYSIS",
+        "stage": "quality",
+        "severity": "INFO",
+        "passed": true,
+        "affects": [
+          "analysis_eligible"
+        ],
+        "message": "Analysis eligibility requires a valid dataset independently of run status",
+        "evidence": {}
+      }
+    ]
+  },
+  "computational_periods": [
+    {
+      "period": "Total",
+      "submitted": 2385,
+      "started": 2385,
+      "completed": 2385,
+      "failed": 0,
+      "wait_mean_ms": 2.6847829345918988,
+      "wait_median_ms": 1.2239620000400464,
+      "wait_p95_ms": 14.331850999951712,
+      "cpu_mean_ms": 29.816525319077616,
+      "wall_mean_ms": 29.87526545576062,
+      "waiting_at_end": 0,
+      "running_at_end": 0,
+      "pending_at_end": 0,
+      "work_submitted_in_interval": 2385,
+      "work_started_in_interval": 2385,
+      "work_completed_in_interval": 2385,
+      "work_failed_in_interval": 0
+    },
+    {
+      "period": "P1",
+      "submitted": 456,
+      "started": 456,
+      "completed": 456,
+      "failed": 0,
+      "wait_mean_ms": 2.4447406293849356,
+      "wait_median_ms": 1.2446344999261783,
+      "wait_p95_ms": 12.066754999978002,
+      "cpu_mean_ms": 29.663759410087724,
+      "wall_mean_ms": 29.710062381567287,
+      "waiting_at_end": 0,
+      "running_at_end": 0,
+      "pending_at_end": 0,
+      "work_submitted_in_interval": 456,
+      "work_started_in_interval": 456,
+      "work_completed_in_interval": 456,
+      "work_failed_in_interval": 0
+    },
+    {
+      "period": "P2",
+      "submitted": 515,
+      "started": 515,
+      "completed": 515,
+      "failed": 0,
+      "wait_mean_ms": 2.6131571126229263,
+      "wait_median_ms": 1.1987049999788724,
+      "wait_p95_ms": 14.565532000005987,
+      "cpu_mean_ms": 29.27112600970877,
+      "wall_mean_ms": 29.345911817480317,
+      "waiting_at_end": 0,
+      "running_at_end": 0,
+      "pending_at_end": 0,
+      "work_submitted_in_interval": 514,
+      "work_started_in_interval": 514,
+      "work_completed_in_interval": 514,
+      "work_failed_in_interval": 0
+    },
+    {
+      "period": "P3",
+      "submitted": 1414,
+      "started": 1414,
+      "completed": 1414,
+      "failed": 0,
+      "wait_mean_ms": 2.7882812298453614,
+      "wait_median_ms": 1.234246500075642,
+      "wait_p95_ms": 15.04939699998431,
+      "cpu_mean_ms": 30.064433309759615,
+      "wall_mean_ms": 30.121340226302706,
+      "waiting_at_end": 0,
+      "running_at_end": 0,
+      "pending_at_end": 0,
+      "work_submitted_in_interval": 1415,
+      "work_started_in_interval": 1415,
+      "work_completed_in_interval": 1415,
+      "work_failed_in_interval": 0
+    }
+  ],
+  "resource_periods": [
+    {
+      "period": "Total",
+      "ticks": 24,
+      "cpu_mean": 57.14041666666667,
+      "cpu_max": 80.4,
+      "memory_mean_mib": 48.625416666666666,
+      "memory_max_mib": 53.6,
+      "tick_gap_median": 6.033030246999942,
+      "tick_gap_max": 6.076231546999907,
+      "raw_samples": 51,
+      "raw_gap_median": 3.0138989965000746
+    },
+    {
+      "period": "P1",
+      "ticks": 4,
+      "cpu_mean": 54.7375,
+      "cpu_max": 73.52,
+      "memory_mean_mib": 43.875,
+      "memory_max_mib": 44.68,
+      "tick_gap_median": 6.03332824600011,
+      "tick_gap_max": 6.035463915000037,
+      "raw_samples": 11,
+      "raw_gap_median": 3.0131395935001137
+    },
+    {
+      "period": "P2",
+      "ticks": 5,
+      "cpu_mean": 57.48,
+      "cpu_max": 65.58,
+      "memory_mean_mib": 46.386,
+      "memory_max_mib": 47.33,
+      "tick_gap_median": 6.033093707500029,
+      "tick_gap_max": 6.036019494999891,
+      "raw_samples": 10,
+      "raw_gap_median": 3.012750588000017
+    },
+    {
+      "period": "P3",
+      "ticks": 15,
+      "cpu_mean": 57.668,
+      "cpu_max": 80.4,
+      "memory_mean_mib": 50.638666666666666,
+      "memory_max_mib": 53.6,
+      "tick_gap_median": 6.031404843999894,
+      "tick_gap_max": 6.076231546999907,
+      "raw_samples": 30,
+      "raw_gap_median": 3.0140154640000674
+    }
+  ],
+  "worker_periods": [
+    {
+      "period": "Total",
+      "worker_pid": 25,
+      "n": 1193,
+      "mean_ms": 2.76482573931393,
+      "median_ms": 1.2181179999970482,
+      "p95_ms": 15.912615999923219
+    },
+    {
+      "period": "Total",
+      "worker_pid": 26,
+      "n": 1192,
+      "mean_ms": 2.604672979865906,
+      "median_ms": 1.2268085000641804,
+      "p95_ms": 13.641102000065075
+    },
+    {
+      "period": "P1",
+      "worker_pid": 25,
+      "n": 228,
+      "mean_ms": 2.481352627199341,
+      "median_ms": 1.27774899999622,
+      "p95_ms": 12.105087000009007
+    },
+    {
+      "period": "P1",
+      "worker_pid": 26,
+      "n": 228,
+      "mean_ms": 2.4081286315705306,
+      "median_ms": 1.1982690000422735,
+      "p95_ms": 11.457825999968918
+    },
+    {
+      "period": "P2",
+      "worker_pid": 25,
+      "n": 256,
+      "mean_ms": 2.5619414023454468,
+      "median_ms": 1.2065980000670606,
+      "p95_ms": 13.744509999924048
+    },
+    {
+      "period": "P2",
+      "worker_pid": 26,
+      "n": 259,
+      "mean_ms": 2.66377959073503,
+      "median_ms": 1.197534000084488,
+      "p95_ms": 14.837630000101854
+    },
+    {
+      "period": "P3",
+      "worker_pid": 25,
+      "n": 709,
+      "mean_ms": 2.929240774329527,
+      "median_ms": 1.206171999911021,
+      "p95_ms": 17.832702000077916
+    },
+    {
+      "period": "P3",
+      "worker_pid": 26,
+      "n": 705,
+      "mean_ms": 2.6465219148960375,
+      "median_ms": 1.24824899990017,
+      "p95_ms": 12.817361000088567
+    }
+  ],
+  "queue_peaks": [
+    {
+      "period": "Total",
+      "max_waiting": 3,
+      "max_running": 2,
+      "max_pending": 5
+    },
+    {
+      "period": "P1",
+      "max_waiting": 3,
+      "max_running": 2,
+      "max_pending": 5
+    },
+    {
+      "period": "P2",
+      "max_waiting": 3,
+      "max_running": 2,
+      "max_pending": 5
+    },
+    {
+      "period": "P3",
+      "max_waiting": 3,
+      "max_running": 2,
+      "max_pending": 5
+    }
+  ],
+  "manifest_sha256": "3122825e0cd0ea0025e94844e9f12aa4467dad7d6e012e082f707c9177ea6cea",
+  "analyzer_sha256": "26b5f94b058d32b1c5796119ab935efbd5e63143b59259b7602f2275f308dffa",
+  "cohort_basis": "HTTP start; actual completion preserved separately; P1/P2/P3 are reference intervals without attacks"
+}

@@ -1,0 +1,7 @@
+{
+  "source": "Final environment snapshot after completed execution; resume performs no infrastructure actions",
+  "external_containers_preserved": 4,
+  "experimental_containers_remaining": 0,
+  "networks_empty": true,
+  "certificate_cleanup_verified": true
+}
