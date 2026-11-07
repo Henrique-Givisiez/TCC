@@ -113,8 +113,9 @@ def run(experiment, operational=None):
                 container_limits={c.id:{k:c.attrs['HostConfig'].get(k) for k in
                     ('Memory','NanoCpus','CpuQuota','CpuPeriod','CpusetCpus','PidsLimit','Ulimits')}
                     for c in victims+manager.containers},
-                correlation='Existing X-Edos-Request-Id; no added HTTP headers',
-                victim_run_id='Bound by containing run directory; setup handlers have no request_id'))
+                correlation='Declared X-Edos run/source/request/event/class headers; computational lifecycle v1',
+                computational_lifecycle_schema=1,
+                victim_run_id='Declared by instrumentation headers; setup handlers may be unidentified'))
         status.update(run_id=gt.run_id,experiment_start_timestamp=gt.clock.epoch_initial,
                       experiment_start_monotonic=gt.clock.monotonic_initial)
         if experiment.attack.enabled:
@@ -275,6 +276,8 @@ def run(experiment, operational=None):
             try:
                 while not (diagnostic_root/'victim/events.summary.json').exists() and time.monotonic()<deadline:
                     time.sleep(.02)
+                if not (diagnostic_root/'victim/events.summary.json').exists():
+                    raise RuntimeError('victim observation closure missing')
             except Exception as exc:
                 errors.append('diagnostic wait: '+repr(exc))
                 complete = False

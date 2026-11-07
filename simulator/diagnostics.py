@@ -19,6 +19,7 @@ def clock_metadata():
 
 class DiagnosticWriter:
     def __init__(self, path, capacity=4096, context=None, stop_path=None):
+        self.before_stop = None
         self.path = Path(path)
         try:self.path.parent.mkdir(parents=True,exist_ok=True)
         except OSError:pass
@@ -37,6 +38,7 @@ class DiagnosticWriter:
         record = dict(self.context,kind=kind,at=time.monotonic() if at is None else at,**fields)
         with self.lock:
             self.counts['offered'] += 1
+            record['sequence'] = self.counts['offered']
             if self.stop.is_set():
                 self.counts['dropped'] += 1
                 return
@@ -55,6 +57,8 @@ class DiagnosticWriter:
         try:
             while not self.stop.is_set() or not self.queue.empty():
                 if self.stop_path is not None and self.stop_path.exists():
+                    if self.before_stop:
+                        self.before_stop()
                     self.stop.set()
                 try:
                     record = self.queue.get(timeout=.1)
@@ -78,7 +82,8 @@ class DiagnosticWriter:
             with self.lock:
                 summary = dict(schema_version=1,context=self.context,clock=self.clock,
                     capacity=self.capacity,**self.counts,queue_remaining=self.queue.qsize())
-            summary['complete'] = (summary['offered']==summary['written'] and not summary['write_errors']
+            summary['observation_complete'] = getattr(self, 'observation_complete', True)
+            summary['complete'] = (summary['observation_complete'] and summary['offered']==summary['written'] and not summary['write_errors']
                                    and not summary['queue_remaining'])
             try:
                 self.path.with_suffix('.summary.json').write_text(json.dumps(summary,indent=2)+'\n')
@@ -86,6 +91,8 @@ class DiagnosticWriter:
                 pass  # missing summary explicitly means unverified/incomplete diagnostics
 
     def close(self, timeout=3):
+        if self.before_stop:
+            self.before_stop()
         self.stop.set()
         self.thread.join(timeout)
         return not self.thread.is_alive()
@@ -158,3 +165,41 @@ class DiagnosticExecutor:
 
     def shutdown(self, *args, **kwargs):
         return self.executor.shutdown(*args,**kwargs)
+
+
+def computational_state(events, at, *, observation_complete, ingress_closed=False):
+    """Small lifecycle reducer, not an experimental recovery criterion.
+
+    `at` is victim-monotonic time. A caller must establish a valid clock anchor
+    before converting a global E, and prove ingress closure independently.
+    """
+    states, errors = {}, []
+    transitions = {'work_submitted': ('absent', 'waiting'),
+                   'work_started': ('waiting', 'running'),
+                   'work_completed': ('running', 'completed'),
+                   'work_failed': ('running', 'failed')}
+    for e in sorted(events, key=lambda e: (e['at'], e.get('sequence', 0))):
+        if e['at'] > at or e['kind'] not in transitions:
+            continue
+        key = e['operation_id']
+        expected, state = transitions[e['kind']]
+        previous = states.get(key, ('absent', 'unknown'))
+        if previous[0] != expected:
+            errors.append('invalid_transition:' + key)
+        cls = e.get('traffic_class', 'unknown')
+        states[key] = (state, cls)
+    counts = {cls:dict(waiting=0,running=0,completed=0,failed=0,pending=0)
+              for cls in ('benign','attack','unknown')}
+    for state, cls in states.values():
+        group = counts.get(cls, counts['unknown'])
+        group[state] += 1
+        group['pending'] += state in ('waiting','running')
+    for group in counts.values():
+        group['submitted'] = group['pending'] + group['completed'] + group['failed']
+        group['started'] = group['running'] + group['completed'] + group['failed']
+    closures = [e for e in events if e['kind'] == 'computation_observation_closed']
+    reliable = observation_complete and not errors and all(e['observation_complete'] for e in closures)
+    drainage = ('observation_incomplete' if not reliable else
+                'drained_observed' if ingress_closed and counts['attack']['pending']==0 and counts['unknown']['pending']==0 else
+                'not_observed')
+    return dict(counts=counts, errors=errors, drainage=drainage)

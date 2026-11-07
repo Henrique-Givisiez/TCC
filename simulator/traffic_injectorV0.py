@@ -86,7 +86,7 @@ def _send_one(session, target_url, counters, counters_lock, worker_id=0, event_i
             validate_request_url(target_url, _service_endpoint)
             response = session.get(target_url, timeout=_settings.request_timeout_seconds,
                                    allow_redirects=False,
-                                   headers={'X-Edos-Request-Id': attempt['request_id'] if attempt else ''})
+                                   headers=_request_logger.instrumentation_headers(attempt) if _request_logger else {'X-Edos-Request-Id': ''})
         else:
             response = session.get(target_url, timeout=_settings.request_timeout_seconds)
     except requests.exceptions.RequestException as exc:

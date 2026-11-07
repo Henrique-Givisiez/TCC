@@ -63,6 +63,19 @@ class RequestLogger:
                 self.diagnostics.http_event('http_started', row, self.ground_truth.clock.monotonic_initial)
             return row.copy()
 
+    def instrumentation_headers(self, attempt):
+        """Declared experimental identity only; never affects request admission."""
+        if not attempt:
+            return {'X-Edos-Request-Id': ''}
+        values = {k: attempt.get(k) for k in ('run_id', 'request_id', 'event_id', 'traffic_class')}
+        values['source_id'] = self.source_id
+        if values['traffic_class'] == 'attack':
+            from urllib.parse import urlsplit
+            endpoint = urlsplit(attempt.get('target_url', '')).path
+            values['attack_mechanism'] = {'/expensive':'computational_asymmetry', '/medium':'http_request_flooding'}.get(endpoint, 'unspecified')
+        return {'X-Edos-' + k.replace('_', '-').title(): str(v)
+                for k, v in values.items() if v is not None}
+
     def finish(self, attempt, response=None, error=None, end_sample=None):
         from requests.exceptions import RequestException
         end_timestamp, end_elapsed = end_sample or self.ground_truth.clock.sample()
