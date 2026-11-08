@@ -267,7 +267,7 @@ class Campaign:
                     model=open_artifact(open_artifact(checkpoints['BASELINE']).read()['artifacts'][feature])
                     calibration=engine.calibrate(sources,model,feature_root/'calibration',self.authority)
                     artifacts[feature]=calibration.reference
-                    if feature=='request_starts' and not calibration.read()['eligible']:
+                    if not engine.pair_contract() and feature=='request_starts' and not calibration.read()['eligible']:
                         self.append('ANALYSIS_REJECTED',partition=partition,artifact=calibration.reference)
                         raise Halt('CAL-A has no eligible primary thresholds; TEST remains locked')
                 else:
@@ -278,7 +278,7 @@ class Campaign:
                           for source,entry in zip(sources,entries)]
                     if partition=='CAL_B':
                         v=engine.verify(sources,runs,calibration,feature_root/'verification',self.authority);artifacts[feature]=v.reference
-                        if feature=='request_starts' and not v.read()['approved']:
+                        if not engine.pair_contract() and feature=='request_starts' and not v.read()['approved']:
                             self.append('ANALYSIS_REJECTED',partition=partition,artifact=v.reference)
                             raise Halt('CAL-B primary verification rejected; no retuning, substitution or TEST')
                     else:

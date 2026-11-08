@@ -19,6 +19,36 @@ from .protocol import SPEC,METHODS,FEATURES,runtime_hashes
 from .data import verify_reference
 
 
+def pair_contract():
+    return SPEC.get('configuration_contract') == 'complete-direct-b2-v1'
+
+
+def pair_status(thresholds, support, mean_max, prior=None, reason=None):
+    with localcontext(CONTEXT):
+        return _pair_status(thresholds,support,mean_max,prior,reason)
+
+
+def _pair_status(thresholds, support, mean_max, prior=None, reason=None):
+    result={}
+    for method in METHODS:
+        rows=support.get(method,[])
+        values=[number(r['fpr']) for r in rows if r['fpr'] is not None]
+        ok=bool(rows) and thresholds.get(method) is not None and eligible(rows,mean_max,'0.05')
+        if prior is not None:ok=ok and prior[method]['eligible']
+        result[method]=dict(threshold=thresholds.get(method),support=rows,
+            mean_fpr=sum(values)/len(values) if values else None,eligible=ok,
+            maximum_fpr=max(values) if values else None,coverage=[r['available_fraction'] for r in rows],
+            reason=None if ok else reason or ('CAL_A_INELIGIBLE' if prior is not None and not prior[method]['eligible'] else 'THRESHOLD_OR_FPR_OR_COVERAGE_REJECTED'))
+    return result
+
+
+def method_flags(calibration, verification=None):
+    if pair_contract():
+        return {m:calibration['pair_status'][m]['eligible'] and
+                (verification is None or verification['method_accepted'][m]) for m in METHODS}
+    return {m:calibration['eligible'] and (verification is None or verification['approved']) for m in METHODS}
+
+
 def exact(function):
     @wraps(function)
     def call(*args,**kwargs):
@@ -39,6 +69,11 @@ def check_authority(authority):
 
 def artifact(destination,kind,metadata):
     """Idempotent analysis resume only if the complete deterministic body matches."""
+    if pair_contract() and kind=='scientific-calibration':
+        support=dict(metadata['diagnostics'])
+        chosen=next((r for r in metadata['candidates'] if r['h']==metadata['thresholds']['cusum-freeze']),None)
+        support['cusum-freeze']=chosen['support'] if chosen else []
+        metadata={**metadata,'pair_status':pair_status(metadata['thresholds'],support,'0.01',reason=metadata['reason'] if not any(support.values()) else None)}
     if 'authority' in metadata:check_authority(metadata['authority'])
     path=Path(destination)
     if path.exists():
@@ -140,7 +175,7 @@ def fit(sources,destination,authority):
         if not support_ok:raise ContractError('Baseline support below 95%')
         parameters=ZScore().fit(tuple(series),zscore_spec().config);reason=None
     except ContractError as exc:
-        if sources[0].series.feature=='request_starts':raise
+        if sources[0].series.feature=='request_starts' and not pair_contract():raise
         parameters=None;reason=str(exc)
     return artifact(destination,'scientific-baseline',dict(authority=authority,parameters=parameters,
         feature=list((sources[0].series.family,sources[0].series.feature)),unavailable_reason=reason,sources=[s.reference for s in sources],code=runtime_hashes()))
@@ -168,6 +203,12 @@ def calibration_metadata(calibration):
         ref=candidate['trajectory']
         from ..inputs import digest
         open_artifact(ref,'scientific-h-candidate').read()
+    if pair_contract():
+        support=dict(c['diagnostics'])
+        chosen=next((r for r in c['candidates'] if r['h']==c['thresholds']['cusum-freeze']),None)
+        support['cusum-freeze']=chosen['support'] if chosen else []
+        expected=pair_status(c['thresholds'],support,'0.01',reason=c['reason'] if not any(support.values()) else None)
+        if encoded(expected)!=encoded(c['pair_status']):raise ContractError('CAL-A pair eligibility changed')
     return c
 
 
@@ -212,12 +253,12 @@ def calibrate(sources,model,destination,authority):
         decided=[(rid,[{**row,'decision':None if row['score'] is None or h is None else number(row['score'])>h} for row in rows]) for rid,rows in traces]
         diagnostics[method]=adherence(decided)
     h_ref,_=quantile('cusum-reference')
-    if h_ref is None:
+    if h_ref is None and not pair_contract():
         return artifact(destination,'scientific-calibration',dict(authority=authority,baseline=model.reference,
             sources=[s.reference for s in sources],feature=m['feature'],thresholds={method:None for method in METHODS},
             h_reference=None,candidates=[],diagnostics=diagnostics,eligible=False,reason='NO_AVAILABLE_CALIBRATION_SCORES',code=runtime_hashes()))
-    scale=h_ref if h_ref>0 else D(1)
-    for multiplier in SPEC['h_grid']:
+    scale=h_ref if h_ref is not None and h_ref>0 else D(1)
+    for multiplier in SPEC['h_grid'] if h_ref is not None else []:
         with localcontext(CONTEXT):h=scale*D(multiplier)
         traces=[(s.series.run_id,trace(s.series,'cusum-freeze',parameters,h)) for s in sources]
         support=adherence(traces);ok=eligible(support,'0.01','0.05')
@@ -244,7 +285,7 @@ def components(thresholds):
 def unavailable_traces(series):
     return {method:[dict(window_index=o.window_index,window_start_seconds=o.window_start_seconds,
         window_end_seconds=o.window_end_seconds,score=None,decision=None,
-        available_at_seconds=o.window_end_seconds,unavailable_reason='secondary_not_scientifically_calibrated')
+        available_at_seconds=o.window_end_seconds,unavailable_reason='method_not_scientifically_eligible' if pair_contract() else 'secondary_not_scientifically_calibrated')
         for o in series.observations] for method in METHODS}
 
 
@@ -259,7 +300,9 @@ def verification_metadata(verification):
         verify_reference(ref)
         if ref['partition']!='CAL_B':raise ContractError('Verification source role changed')
     if set(v['support'])!=set(METHODS) or set(v['method_accepted'])!=set(METHODS):raise ContractError('CAL-B method set differs')
-    accepted={method:eligible(rows,'0.02','0.05') for method,rows in v['support'].items()}
+    accepted={method:eligible(rows,'0.02','0.05') and (not pair_contract() or c['pair_status'][method]['eligible']) for method,rows in v['support'].items()}
+    if pair_contract() and encoded(v['pair_status'])!=encoded(pair_status(c['thresholds'],v['support'],'0.02',prior=c['pair_status'])):
+        raise ContractError('CAL-B pair status replay differs')
     if accepted!=v['method_accepted'] or all(accepted.values())!=v['approved']:raise ContractError('CAL-B gate replay differs')
     return v
 
@@ -270,22 +313,26 @@ def process(source,model,calibration,destination,authority,verification=None):
         raise ContractError('Scored feature contract differs from baseline')
     if (c['baseline']!=model.reference or c['feature']!=[source.series.family,source.series.feature]
         or m['authority']!=authority or c['authority']!=authority or source.reference['authority']!=authority):raise ContractError('Calibrated model/authority mismatch')
-    if not c['eligible'] and source.series.feature=='request_starts':raise ContractError('CAL-A rejected: no scoring release')
+    if not pair_contract() and not c['eligible'] and source.series.feature=='request_starts':raise ContractError('CAL-A rejected: no scoring release')
     if source.partition not in ('CAL_B','TEST'):raise ContractError('Scientific score requires CAL_B or TEST')
+    if source.partition=='CAL_B' and verification is not None:raise ContractError('CAL-B cannot inherit a verification artifact')
     inherited=m['sources']+c['sources']
     if source.partition=='TEST':
         if verification is None:raise ContractError('TEST locked: CAL-B acceptance required')
         v=verification_metadata(verification)
-        if v['calibration']!=calibration.reference or (not v['approved'] and source.series.feature=='request_starts'):raise ContractError('TEST locked: CAL-B rejected')
+        if v['calibration']!=calibration.reference or (not pair_contract() and not v['approved'] and source.series.feature=='request_starts'):raise ContractError('TEST locked: CAL-B rejected')
         inherited+=v['sources']
     if source.reference['run_id'] in {r['run_id'] for r in inherited} or source.reference['seed'] in {r['seed'] for r in inherited}:
         raise ContractError('Scored source overlaps training/verification')
     verify_reference(source.reference)
-    evaluated=c['eligible'] and (verification is None or v['approved'])
-    traces={method:trace(source.series,method,m['parameters'],c['thresholds'][method]) for method in METHODS} if evaluated else unavailable_traces(source.series)
+    flags=method_flags(c,v if verification is not None else None)
+    evaluated=any(flags.values()) if pair_contract() else all(flags.values())
+    unavailable=unavailable_traces(source.series)
+    traces={method:trace(source.series,method,m['parameters'],c['thresholds'][method]) if flags[method] else unavailable[method] for method in METHODS}
+    extra=dict(method_evaluated=flags,method_unavailable_reason={method:None if flags[method] else (c['pair_status'][method]['reason'] or 'CAL_B_REJECTED') for method in METHODS}) if pair_contract() else {}
     return artifact(destination,'scientific-run',dict(authority=authority,source=source.reference,baseline=model.reference,
         calibration=calibration.reference,verification=None if verification is None else verification.reference,
-        methods=traces,components=components(c['thresholds']),evaluated=evaluated,code=runtime_hashes(),availability_basis='simulated_window_closure_not_measured_compute_latency'))
+        methods=traces,components=components(c['thresholds']),evaluated=evaluated,code=runtime_hashes(),availability_basis='simulated_window_closure_not_measured_compute_latency',**extra))
 
 
 def validate_run(a):
@@ -304,32 +351,40 @@ def validate_run(a):
         dataset_manifest_sha256=ref['dataset_manifest_sha256'],run_id=ref['run_id'])
     entry=dict(id=ref['entry_id'],partition=ref['partition'],seed=ref['seed'])
     s=load_source(entry,receipt,ref['family'],ref['feature'],authority=doc['authority'],test_release=ref.get('test_release'))
+    verification=None
     evaluated=c['eligible']
     if ref['partition']=='TEST':
         verification=verification_metadata(open_artifact(doc['verification']))
         evaluated=evaluated and verification['approved']
-    if not evaluated and ref['feature']=='request_starts':raise ContractError('Primary scientific processing not released')
-    expected={method:trace(s.series,method,m['parameters'],c['thresholds'][method]) for method in METHODS} if evaluated else unavailable_traces(s.series)
+    flags=method_flags(c,verification)
+    if pair_contract():
+        evaluated=any(flags.values())
+        reasons={method:None if flags[method] else (c['pair_status'][method]['reason'] or 'CAL_B_REJECTED') for method in METHODS}
+        if doc['method_evaluated']!=flags or doc['method_unavailable_reason']!=reasons:raise ContractError('Method eligibility/reason changed')
+    if not pair_contract() and not evaluated and ref['feature']=='request_starts':raise ContractError('Primary scientific processing not released')
+    unavailable=unavailable_traces(s.series)
+    expected={method:trace(s.series,method,m['parameters'],c['thresholds'][method]) if flags[method] else unavailable[method] for method in METHODS}
     if doc['evaluated']!=evaluated:raise ContractError('Scientific eligibility changed')
     if encoded(expected)!=encoded(doc['methods']):raise ContractError('Coupled trajectory/decision/availability changed')
     if ref['partition']=='TEST':
         v=open_artifact(doc['verification'],'scientific-verification').read()
-        if v['calibration']!=doc['calibration'] or (not v['approved'] and ref['feature']=='request_starts'):raise ContractError('Run lacks valid CAL-B binding')
+        if v['calibration']!=doc['calibration'] or (not pair_contract() and not v['approved'] and ref['feature']=='request_starts'):raise ContractError('Run lacks valid CAL-B binding')
     return doc
 
 
 def verify(sources,runs,calibration,destination,authority):
     check_sources(sources,'CAL_B',SPEC['counts']['CAL_B']);c=calibration_metadata(calibration)
     if c['authority']!=authority or any(s.reference['authority']!=authority for s in sources):raise ContractError('CAL-B authority mismatch')
-    if not c['eligible'] and sources[0].series.feature=='request_starts':raise ContractError('CAL-A rejection cannot be retuned on B')
+    if not pair_contract() and not c['eligible'] and sources[0].series.feature=='request_starts':raise ContractError('CAL-A rejection cannot be retuned on B')
     docs=[validate_run(a) for a in runs]
     if len(docs)!=SPEC['counts']['CAL_B'] or {d['source']['run_id'] for d in docs}!={s.series.run_id for s in sources} or any(d['calibration']!=calibration.reference or d['source']['partition']!='CAL_B' for d in docs):
         raise ContractError('CAL-B run/calibration binding differs')
     support={method:adherence([(d['source']['run_id'],d['methods'][method]) for d in docs]) for method in METHODS}
-    accepted={method:eligible(rows,'0.02','0.05') for method,rows in support.items()}
+    statuses=pair_status(c['thresholds'],support,'0.02',prior=c['pair_status']) if pair_contract() else None
+    accepted={method:statuses[method]['eligible'] if statuses is not None else eligible(rows,'0.02','0.05') for method,rows in support.items()}
     from .statistics import mean_ci
     intervals={method:{**mean_ci([float(number(r['fpr'])) for r in rows if r['fpr'] is not None]),'unit':'CAL_B_run'} for method,rows in support.items()}
     return artifact(destination,'scientific-verification',dict(authority=authority,calibration=calibration.reference,
         sources=[s.reference for s in sources],runs=[a.reference for a in runs],support=support,
         method_accepted=accepted,approved=all(accepted.values()),fpr_intervals=intervals,
-        failure_policy=SPEC['cal_b_failure'],code=runtime_hashes()))
+        failure_policy=SPEC['cal_b_failure'],code=runtime_hashes(),**(dict(pair_status=statuses) if statuses is not None else {})))

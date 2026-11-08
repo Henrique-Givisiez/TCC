@@ -129,6 +129,18 @@ def validate_test_release(ref,authority):
     if ref is None:raise ContractError('TEST source locked until accepted CAL-B checkpoint')
     cp=open_artifact(ref,'scientific-checkpoint').read()
     if cp['partition']!='CAL_B' or cp['authority']!=authority:raise ContractError('Wrong TEST analysis release')
+    if SPEC.get('configuration_contract') == 'complete-direct-b2-v1':
+        from .engine import verification_metadata
+        cal_a=open_artifact(cp['previous_checkpoint'],'scientific-checkpoint').read()
+        if cal_a['partition']!='CAL_A' or cal_a['authority']!=authority:
+            raise ContractError('Wrong CAL-A checkpoint ancestry')
+        if set(cp['artifacts'])!={f for _,f in FEATURES}:
+            raise ContractError('Incomplete CAL-B feature inventory')
+        for _,feature in FEATURES:
+            v=verification_metadata(open_artifact(cp['artifacts'][feature],'scientific-verification'))
+            if v['authority']!=authority or v['calibration']!=cal_a['artifacts'][feature]:
+                raise ContractError('CAL-B verification/calibration ancestry differs')
+        return
     v=open_artifact(cp['artifacts']['request_starts'],'scientific-verification').read()
     from .protocol import METHODS
     if not v['approved'] or v['authority']!=authority or not all(v['method_accepted'].get(method) is True for method in METHODS):

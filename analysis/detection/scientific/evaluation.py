@@ -62,8 +62,13 @@ def evaluate(entry,receipt,run,destination,authority):
         or doc['source']['dataset_manifest_sha256']!=receipt['dataset_manifest_sha256']
         or doc['authority']!=authority):raise ContractError('Evaluation source differs')
     truth=load_truth(entry,receipt)
-    result={method:metrics(doc['methods'][method],truth) for method in METHODS}
-    if not doc['evaluated']:
+    direct=SPEC.get('configuration_contract')=='complete-direct-b2-v1'
+    if direct:
+        from .direct_metrics import metrics as direct_metrics
+        if bool(truth['events']) != (entry['scenario']!=SPEC['control_scenario']):raise ContractError('Scenario/event mismatch')
+        result={method:direct_metrics(doc['methods'][method],truth,doc['method_evaluated'][method],doc['method_unavailable_reason'][method]) for method in METHODS}
+    else:result={method:metrics(doc['methods'][method],truth) for method in METHODS}
+    if not direct and not doc['evaluated']:
         for row in result.values():
             row.update(event_detected=None,restricted_undetected_fraction=None,scientifically_evaluated=False,reason='secondary_calibration_not_accepted')
     return artifact(destination,'scientific-evaluation',dict(authority=authority,entry=entry,
@@ -90,6 +95,12 @@ def aggregate(evaluations,destination,authority,attrition=None):
         if digest(ref['failure_path'])!=ref['failure_sha256'] or digest(ref['cleanup_path'])!=ref['cleanup_sha256']:raise ContractError('Attrition reference changed')
         failure=read_json(ref['failure_path'])
         if failure['entry_id']!=eid or failure['code'] not in TECHNICAL_CODES or failure['authority']!=authority or not read_json(ref['cleanup_path'])['verified']:raise ContractError('Invalid technical attrition')
+    if SPEC.get('configuration_contract')=='complete-direct-b2-v1':
+        from .direct_summary import summarize
+        summary=summarize(docs,planned,SPEC)
+        return artifact(destination,'scientific-summary',dict(authority=authority,evaluations=[a.reference for a in evaluations],
+            **summary,ci=SPEC['ci'],missing_runs=absent,technical_attrition=attrition,
+            operational=impact_aggregate(docs),inference='paired_operational_configurations_not_isolated_causal_mechanisms',code=runtime_hashes()))
     table={}
     for family,feature in FEATURES:
         for scenario in SPEC['scenarios']:
