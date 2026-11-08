@@ -1,0 +1,24 @@
+{
+  "b2l_run_id": "c5e06e3441e4499c94fc62275c5d9ff4",
+  "images": {
+    "victim": "sha256:03a186aa90eec03b874c82a887b245e7190fa45cd7256af3c077cb64943d52b0",
+    "source": "sha256:b94212edd4d31c34998aea870caebc4ba145c1593d1b8dfdc27fe4917719fe3e"
+  },
+  "unchanged_sections": [
+    "normal_traffic",
+    "server",
+    "monitoring",
+    "diagnostics",
+    "topology",
+    "autoscaler",
+    "infrastructure",
+    "load_balancer",
+    "traffic_sources"
+  ],
+  "policy_unchanged": true,
+  "template": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiments/configs/protected_compositions/pilot-combined-http_request_flooding.json",
+  "changes": {
+    "id": "B2-F-L2-F2-20261108T000313Z",
+    "attack.rate": 32
+  }
+}

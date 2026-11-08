@@ -1,0 +1,133 @@
+{
+  "report": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/reports/b2-f-20261108T000313Z/report.md",
+  "recovery": {
+    "last_offensive_completion_seconds": 61.19930110899986,
+    "first_total_pending_zero_after_60": 61.66383350399974,
+    "last_legitimate_timeout_start": null,
+    "last_legitimate_timeout_end": null,
+    "late_P3_100_150": {
+      "interval": [
+        100,
+        150
+      ],
+      "starts": 782,
+      "rps": 15.64,
+      "success": 782,
+      "timeouts": 0,
+      "http_ms": {
+        "n": 782,
+        "mean": 45.32241754859081,
+        "minimum": 25.36181100003887,
+        "maximum": 105.0423229999069,
+        "p50": 36.55050349993871,
+        "p95": 78.31682999994882,
+        "sample_sd": 17.878765682902742,
+        "sum": 35442.13052299801,
+        "p99": 93.680991999463
+      },
+      "wait_ms": {
+        "n": 782,
+        "mean": 2.5268108439717873,
+        "minimum": 0.49457099976280006,
+        "maximum": 41.03519799991773,
+        "p50": 1.2789430002158042,
+        "p95": 11.981685999671754,
+        "sample_sd": 4.913668045681353,
+        "sum": 1975.9660799859375,
+        "p99": 29.265760999805934
+      },
+      "cpu_mean_ms": 28.605124359335292
+    }
+  },
+  "generator": [
+    {
+      "source_id": "normal_1",
+      "traffic_class": "benign",
+      "planned_records": 1169,
+      "submitted": 1169,
+      "task_started": 1169,
+      "http_started": 1169,
+      "peak_submitted_not_started": 2,
+      "dispatch_ms": {
+        "n": 1169,
+        "mean": 0.430710952946531,
+        "minimum": 0.1025130000016361,
+        "maximum": 2.8634740001507453,
+        "p50": 0.38486499988721334,
+        "p95": 0.8875389999047911,
+        "sample_sd": 0.24034963376889387,
+        "sum": 503.50110399449477,
+        "p99": 1.2424820001797343
+      },
+      "expired_before_http": 0,
+      "admissions": null
+    },
+    {
+      "source_id": "normal_2",
+      "traffic_class": "benign",
+      "planned_records": 1215,
+      "submitted": 1215,
+      "task_started": 1215,
+      "http_started": 1215,
+      "peak_submitted_not_started": 1,
+      "dispatch_ms": {
+        "n": 1215,
+        "mean": 0.42146459999918234,
+        "minimum": 0.08423400004176074,
+        "maximum": 3.2163080004465883,
+        "p50": 0.37870999994993326,
+        "p95": 0.8458040001642075,
+        "sample_sd": 0.24853165806406588,
+        "sum": 512.0794889990066,
+        "p99": 1.1681060000228172
+      },
+      "expired_before_http": 0,
+      "admissions": null
+    },
+    {
+      "source_id": "attack_1",
+      "traffic_class": "attack",
+      "planned_records": null,
+      "submitted": 895,
+      "task_started": 895,
+      "http_started": 802,
+      "peak_submitted_not_started": 98,
+      "dispatch_ms": {
+        "n": 895,
+        "mean": 1354.38045335307,
+        "minimum": 0.11358300025676726,
+        "maximum": 3099.4809700000587,
+        "p50": 1293.970636999802,
+        "p95": 2843.4729569999035,
+        "sample_sd": 1035.4121972572368,
+        "sum": 1212170.5057509975,
+        "p99": 3028.5480749998896
+      },
+      "expired_before_http": 93,
+      "admissions": 895
+    },
+    {
+      "source_id": "attack_2",
+      "traffic_class": "attack",
+      "planned_records": null,
+      "submitted": 918,
+      "task_started": 918,
+      "http_started": 820,
+      "peak_submitted_not_started": 100,
+      "dispatch_ms": {
+        "n": 918,
+        "mean": 1546.7524387429237,
+        "minimum": 0.108865000129299,
+        "maximum": 3758.797317000244,
+        "p50": 1748.37569850024,
+        "p95": 3338.007984000342,
+        "sample_sd": 1124.455540577021,
+        "sum": 1419918.738766004,
+        "p99": 3692.93271000015
+      },
+      "expired_before_http": 98,
+      "admissions": 918
+    }
+  ],
+  "cleanup": "verified"
+}

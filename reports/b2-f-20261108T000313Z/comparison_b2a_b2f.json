@@ -1,0 +1,66 @@
+[
+  {
+    "execution": "B2-A",
+    "period": "P1",
+    "legitimate_rps": 15.2,
+    "availability": 1.0,
+    "http_mean_ms": 53.272424423223505,
+    "http_p95_ms": 90.07540099992184
+  },
+  {
+    "execution": "B2-A",
+    "period": "P2",
+    "legitimate_rps": 17.133333333333333,
+    "availability": 0.08365758754863813,
+    "http_mean_ms": 1939.926086642012,
+    "http_p95_ms": 2006.4809599998625
+  },
+  {
+    "execution": "B2-A",
+    "period": "P3",
+    "legitimate_rps": 15.722222222222221,
+    "availability": 0.6636042402826855,
+    "http_mean_ms": 746.7814432890417,
+    "http_p95_ms": 2006.0186359996806
+  },
+  {
+    "execution": "B2-A",
+    "period": "Total",
+    "legitimate_rps": 15.9,
+    "availability": 0.6029350104821803,
+    "http_mean_ms": 871.3249376624647,
+    "http_p95_ms": 2006.037908000053
+  },
+  {
+    "execution": "B2-F",
+    "period": "P1",
+    "legitimate_rps": 15.2,
+    "availability": 1.0,
+    "http_mean_ms": 45.496172182017865,
+    "http_p95_ms": 77.6600750000398
+  },
+  {
+    "execution": "B2-F",
+    "period": "P2",
+    "legitimate_rps": 17.133333333333333,
+    "availability": 1.0,
+    "http_mean_ms": 1102.369784357963,
+    "http_p95_ms": 1370.2110109998102
+  },
+  {
+    "execution": "B2-F",
+    "period": "P3",
+    "legitimate_rps": 15.71111111111111,
+    "availability": 1.0,
+    "http_mean_ms": 56.54511209051963,
+    "http_p95_ms": 79.95366499972079
+  },
+  {
+    "execution": "B2-F",
+    "period": "Total",
+    "legitimate_rps": 15.893333333333333,
+    "availability": 1.0,
+    "http_mean_ms": 279.91573497105196,
+    "http_p95_ms": 1257.4545259999468
+  }
+]

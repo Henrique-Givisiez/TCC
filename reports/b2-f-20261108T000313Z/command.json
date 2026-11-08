@@ -1,0 +1,22 @@
+[
+  "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/.venv/bin/python",
+  "-B",
+  "-m",
+  "experiments.diagnostic_run",
+  "--config",
+  "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/b2-f-20261108T000313Z/config.json",
+  "--composition",
+  "combined",
+  "--operational-policy",
+  "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/b2-f-20261108T000313Z/policy.json",
+  "--previous-run",
+  "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/b2-a-20261107T234426Z/raw",
+  "--victim-image",
+  "sha256:03a186aa90eec03b874c82a887b245e7190fa45cd7256af3c077cb64943d52b0",
+  "--source-image",
+  "sha256:b94212edd4d31c34998aea870caebc4ba145c1593d1b8dfdc27fe4917719fe3e",
+  "--output",
+  "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/b2-f-20261108T000313Z/raw",
+  "--dataset-output",
+  "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/b2-f-20261108T000313Z/dataset"
+]
