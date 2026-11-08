@@ -1,0 +1,114 @@
+[
+  {
+    "execution": "B2-F",
+    "source_id": "normal_1",
+    "traffic_class": "benign",
+    "configured_positions": 32,
+    "task_occupancy": {
+      "peak_in_attack_window": 20,
+      "time_mean_in_attack_window": 9.551051035966626
+    },
+    "http_occupancy": {
+      "peak_in_attack_window": 20,
+      "time_mean_in_attack_window": 9.542974493766678
+    }
+  },
+  {
+    "execution": "B2-F",
+    "source_id": "normal_2",
+    "traffic_class": "benign",
+    "configured_positions": 32,
+    "task_occupancy": {
+      "peak_in_attack_window": 18,
+      "time_mean_in_attack_window": 8.980435238433468
+    },
+    "http_occupancy": {
+      "peak_in_attack_window": 18,
+      "time_mean_in_attack_window": 8.973190745799881
+    }
+  },
+  {
+    "execution": "B2-F",
+    "source_id": "attack_1",
+    "traffic_class": "attack",
+    "configured_positions": 32,
+    "task_occupancy": {
+      "peak_in_attack_window": 32,
+      "time_mean_in_attack_window": 28.98145286913371
+    },
+    "http_occupancy": {
+      "peak_in_attack_window": 32,
+      "time_mean_in_attack_window": 28.928458383166873
+    }
+  },
+  {
+    "execution": "B2-F",
+    "source_id": "attack_2",
+    "traffic_class": "attack",
+    "configured_positions": 32,
+    "task_occupancy": {
+      "peak_in_attack_window": 32,
+      "time_mean_in_attack_window": 29.42990141896674
+    },
+    "http_occupancy": {
+      "peak_in_attack_window": 32,
+      "time_mean_in_attack_window": 29.376006074200284
+    }
+  },
+  {
+    "execution": "B2-F96",
+    "source_id": "normal_1",
+    "traffic_class": "benign",
+    "configured_positions": 32,
+    "task_occupancy": {
+      "peak_in_attack_window": 27,
+      "time_mean_in_attack_window": 15.949171793599605
+    },
+    "http_occupancy": {
+      "peak_in_attack_window": 27,
+      "time_mean_in_attack_window": 15.941848152733382
+    }
+  },
+  {
+    "execution": "B2-F96",
+    "source_id": "normal_2",
+    "traffic_class": "benign",
+    "configured_positions": 32,
+    "task_occupancy": {
+      "peak_in_attack_window": 23,
+      "time_mean_in_attack_window": 15.154328814666284
+    },
+    "http_occupancy": {
+      "peak_in_attack_window": 23,
+      "time_mean_in_attack_window": 15.147804735432812
+    }
+  },
+  {
+    "execution": "B2-F96",
+    "source_id": "attack_1",
+    "traffic_class": "attack",
+    "configured_positions": 48,
+    "task_occupancy": {
+      "peak_in_attack_window": 48,
+      "time_mean_in_attack_window": 44.499218825266055
+    },
+    "http_occupancy": {
+      "peak_in_attack_window": 48,
+      "time_mean_in_attack_window": 44.4512057059667
+    }
+  },
+  {
+    "execution": "B2-F96",
+    "source_id": "attack_2",
+    "traffic_class": "attack",
+    "configured_positions": 48,
+    "task_occupancy": {
+      "peak_in_attack_window": 48,
+      "time_mean_in_attack_window": 44.99147542693275
+    },
+    "http_occupancy": {
+      "peak_in_attack_window": 48,
+      "time_mean_in_attack_window": 44.94127395549985
+    }
+  }
+]

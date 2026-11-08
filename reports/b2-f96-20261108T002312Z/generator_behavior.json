@@ -1,0 +1,90 @@
+[
+  {
+    "source_id": "normal_1",
+    "traffic_class": "benign",
+    "planned_records": 1169,
+    "submitted": 1169,
+    "task_started": 1169,
+    "http_started": 1169,
+    "peak_submitted_not_started": 1,
+    "dispatch_ms": {
+      "n": 1169,
+      "mean": 0.44370481523879873,
+      "minimum": 0.10005999956774758,
+      "maximum": 1.9724680005310802,
+      "p50": 0.4015949998574797,
+      "p95": 0.9447290003663511,
+      "sample_sd": 0.24720321485083277,
+      "sum": 518.6909290141557,
+      "p99": 1.3208620002842508
+    },
+    "expired_before_http": 0,
+    "admissions": null
+  },
+  {
+    "source_id": "normal_2",
+    "traffic_class": "benign",
+    "planned_records": 1216,
+    "submitted": 1216,
+    "task_started": 1216,
+    "http_started": 1216,
+    "peak_submitted_not_started": 2,
+    "dispatch_ms": {
+      "n": 1216,
+      "mean": 0.45336770970182344,
+      "minimum": 0.09828500060393708,
+      "maximum": 2.236780000202998,
+      "p50": 0.4041260003759817,
+      "p95": 0.9240409999620169,
+      "sample_sd": 0.2529001111237522,
+      "sum": 551.2951349974173,
+      "p99": 1.3543780005420558
+    },
+    "expired_before_http": 0,
+    "admissions": null
+  },
+  {
+    "source_id": "attack_1",
+    "traffic_class": "attack",
+    "planned_records": null,
+    "submitted": 892,
+    "task_started": 892,
+    "http_started": 739,
+    "peak_submitted_not_started": 153,
+    "dispatch_ms": {
+      "n": 892,
+      "mean": 2024.1241492937138,
+      "minimum": 0.12003699976048665,
+      "maximum": 5215.705335999701,
+      "p50": 1704.7754240002178,
+      "p95": 4810.084693000135,
+      "sample_sd": 1616.7282232926257,
+      "sum": 1805518.7411699926,
+      "p99": 5102.509037000345
+    },
+    "expired_before_http": 153,
+    "admissions": 892
+  },
+  {
+    "source_id": "attack_2",
+    "traffic_class": "attack",
+    "planned_records": null,
+    "submitted": 912,
+    "task_started": 912,
+    "http_started": 757,
+    "peak_submitted_not_started": 157,
+    "dispatch_ms": {
+      "n": 912,
+      "mean": 2363.006818466012,
+      "minimum": 0.12066300041624345,
+      "maximum": 5947.1008609998535,
+      "p50": 2305.154329999823,
+      "p95": 5377.843824999218,
+      "sample_sd": 1723.5408560106694,
+      "sum": 2155062.218441003,
+      "p99": 5765.076721999321
+    },
+    "expired_before_http": 155,
+    "admissions": 912
+  }
+]

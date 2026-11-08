@@ -1,0 +1,44 @@
+{
+  "benign": {
+    "waiting": {
+      "count": 74,
+      "first_seconds": 58.7279036660002
+    },
+    "running": {
+      "count": 2,
+      "first_seconds": 0.3564748509998026
+    },
+    "pending": {
+      "count": 75,
+      "first_seconds": 58.7279036660002
+    }
+  },
+  "attack": {
+    "waiting": {
+      "count": 167,
+      "first_seconds": 59.440458421000585
+    },
+    "running": {
+      "count": 2,
+      "first_seconds": 30.0163617850003
+    },
+    "pending": {
+      "count": 168,
+      "first_seconds": 59.440458421000585
+    }
+  },
+  "total": {
+    "waiting": {
+      "count": 239,
+      "first_seconds": 59.46651574800035
+    },
+    "running": {
+      "count": 2,
+      "first_seconds": 0.3564748509998026
+    },
+    "pending": {
+      "count": 241,
+      "first_seconds": 59.46651574800035
+    }
+  }
+}

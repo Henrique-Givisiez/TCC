@@ -1,0 +1,140 @@
+[
+  {
+    "indicator": "RPS ofensivo nominal",
+    "F64": 64,
+    "F96": 64,
+    "difference": 0
+  },
+  {
+    "indicator": "Posi\u00e7\u00f5es ofensivas agregadas",
+    "F64": 64,
+    "F96": 96,
+    "difference": 32
+  },
+  {
+    "indicator": "Posi\u00e7\u00f5es por fonte",
+    "F64": 32,
+    "F96": 48,
+    "difference": 16
+  },
+  {
+    "indicator": "RPS ofensivo iniciado",
+    "F64": 54.06666666666667,
+    "F96": 49.86666666666667,
+    "difference": -4.200000000000003
+  },
+  {
+    "indicator": "In\u00edcios HTTP ofensivos",
+    "F64": 1622,
+    "F96": 1496,
+    "difference": -126
+  },
+  {
+    "indicator": "Admiss\u00f5es ofensivas",
+    "F64": 1813,
+    "F96": 1804,
+    "difference": -9
+  },
+  {
+    "indicator": "Submiss\u00f5es ofensivas",
+    "F64": 1813,
+    "F96": 1804,
+    "difference": -9
+  },
+  {
+    "indicator": "Expira\u00e7\u00f5es pr\u00e9-HTTP",
+    "F64": 191,
+    "F96": 308,
+    "difference": 117
+  },
+  {
+    "indicator": "Respostas ofensivas",
+    "F64": 1622,
+    "F96": 351,
+    "difference": -1271
+  },
+  {
+    "indicator": "Timeouts ofensivos",
+    "F64": 0,
+    "F96": 1145,
+    "difference": 1145
+  },
+  {
+    "indicator": "Disponibilidade leg\u00edtima P2 %",
+    "F64": 100.0,
+    "F96": 19.06614785992218,
+    "difference": -80.93385214007782
+  },
+  {
+    "indicator": "Sucessos leg\u00edtimos P2",
+    "F64": 514,
+    "F96": 98,
+    "difference": -416
+  },
+  {
+    "indicator": "In\u00edcios leg\u00edtimos P2",
+    "F64": 514,
+    "F96": 514,
+    "difference": 0
+  },
+  {
+    "indicator": "Timeouts leg\u00edtimos P2",
+    "F64": 0,
+    "F96": 416,
+    "difference": 416
+  },
+  {
+    "indicator": "RPS leg\u00edtimo iniciado P2",
+    "F64": 17.133333333333333,
+    "F96": 17.133333333333333,
+    "difference": 0.0
+  },
+  {
+    "indicator": "HTTP leg\u00edtimo P2 m\u00e9dio ms",
+    "F64": 1102.369784357963,
+    "F96": 1882.8468159824724,
+    "difference": 780.4770316245094
+  },
+  {
+    "indicator": "HTTP leg\u00edtimo P2 p95 ms",
+    "F64": 1370.2110109998102,
+    "F96": 2005.961613999716,
+    "difference": 635.7506029999058
+  },
+  {
+    "indicator": "Espera leg\u00edtima P2 m\u00e9dia ms",
+    "F64": 1060.5056987957257,
+    "F96": 2521.7810314610538,
+    "difference": 1461.275332665328
+  },
+  {
+    "indicator": "Pico agregado de opera\u00e7\u00f5es pendentes",
+    "F64": 95,
+    "F96": 241,
+    "difference": 146
+  },
+  {
+    "indicator": "Ofensivas pendentes em 60\u2212",
+    "F64": 61,
+    "F96": 166,
+    "difference": 105
+  },
+  {
+    "indicator": "\u00daltima conclus\u00e3o ofensiva s",
+    "F64": 61.19930110899986,
+    "F96": 63.6993708480004,
+    "difference": 2.500069739000537
+  },
+  {
+    "indicator": "Residual ofensivo ap\u00f3s 60 s",
+    "F64": 1.1993011089998618,
+    "F96": 3.699370848000399,
+    "difference": 2.500069739000537
+  },
+  {
+    "indicator": "Primeiro total zero ap\u00f3s 60 s",
+    "F64": 61.66383350399974,
+    "F96": 64.65406848900057,
+    "difference": 2.990234985000825
+  }
+]

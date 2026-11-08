@@ -1,0 +1,74 @@
+[
+  {
+    "period": "P1",
+    "traffic_class": "benign",
+    "work_submitted": 456,
+    "work_started": 456,
+    "work_completed": 456,
+    "work_failed": 0
+  },
+  {
+    "period": "P1",
+    "traffic_class": "attack",
+    "work_submitted": 0,
+    "work_started": 0,
+    "work_completed": 0,
+    "work_failed": 0
+  },
+  {
+    "period": "P1",
+    "traffic_class": "unknown",
+    "work_submitted": 0,
+    "work_started": 0,
+    "work_completed": 0,
+    "work_failed": 0
+  },
+  {
+    "period": "P2",
+    "traffic_class": "benign",
+    "work_submitted": 514,
+    "work_started": 446,
+    "work_completed": 446,
+    "work_failed": 0
+  },
+  {
+    "period": "P2",
+    "traffic_class": "attack",
+    "work_submitted": 1496,
+    "work_started": 1332,
+    "work_completed": 1330,
+    "work_failed": 0
+  },
+  {
+    "period": "P2",
+    "traffic_class": "unknown",
+    "work_submitted": 0,
+    "work_started": 0,
+    "work_completed": 0,
+    "work_failed": 0
+  },
+  {
+    "period": "P3",
+    "traffic_class": "benign",
+    "work_submitted": 1413,
+    "work_started": 1481,
+    "work_completed": 1479,
+    "work_failed": 0
+  },
+  {
+    "period": "P3",
+    "traffic_class": "attack",
+    "work_submitted": 0,
+    "work_started": 164,
+    "work_completed": 166,
+    "work_failed": 0
+  },
+  {
+    "period": "P3",
+    "traffic_class": "unknown",
+    "work_submitted": 0,
+    "work_started": 0,
+    "work_completed": 0,
+    "work_failed": 0
+  }
+]

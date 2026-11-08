@@ -1,0 +1,5574 @@
+{
+  "run_id": "9aeffeec6d384eb393dd8242d7c26bc4",
+  "dataset": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/b2-f96-20261108T002312Z/dataset",
+  "configuration": {
+    "id": "B2-F96-L2-F2-20261108T002312Z",
+    "duration_seconds": 150,
+    "seed": 20261107,
+    "normal_traffic": {
+      "clients": 2,
+      "rate": 8,
+      "endpoint": "/medium",
+      "work_units": 10,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 64,
+      "request_timeout_seconds": 2.0
+    },
+    "attack": {
+      "mechanism": "http_request_flooding",
+      "enabled": true,
+      "profile": "continuous",
+      "attackers": 2,
+      "rate": 32,
+      "start_seconds": 30,
+      "duration_seconds": 30,
+      "endpoint": "/medium",
+      "work_units": 5000,
+      "sleep_seconds": 0.0,
+      "max_concurrent_sends": 96,
+      "request_timeout_seconds": 2.0,
+      "burst": null
+    },
+    "infrastructure": {
+      "initial_instances": 1,
+      "min_instances": 1,
+      "max_instances": 1,
+      "cost_per_instance_per_hour": 0.02
+    },
+    "autoscaler": {
+      "enabled": false,
+      "scale_up_threshold": 60.0,
+      "scale_down_threshold": 25.0,
+      "cooldown_seconds": 20
+    },
+    "server": {
+      "process_pool_workers": 2,
+      "default_work_units": 1000000,
+      "default_sleep_seconds": 0.0
+    },
+    "monitoring": {
+      "interval_seconds": 5,
+      "stats_poll_interval_seconds": 1.0,
+      "history_seconds": 30.0
+    },
+    "load_balancer": {
+      "enabled": false
+    },
+    "traffic_sources": {
+      "execution": "containers"
+    },
+    "topology": {
+      "mode": "direct"
+    },
+    "diagnostics": {
+      "enabled": true,
+      "queue_capacity": 4096
+    }
+  },
+  "certificate": {
+    "version": "exploratory-offensive-v1",
+    "limits": {
+      "min_available_bytes": 2147483648,
+      "min_disk_bytes": 4294967296,
+      "victim_memory_bytes": 1073741824,
+      "source_memory_bytes": 536870912,
+      "max_artifact_bytes": 536870912,
+      "collection_max_age_seconds": 5,
+      "global_timeout_seconds": 240,
+      "docker_timeout_seconds": 3,
+      "version": "exploratory-offensive-v1"
+    },
+    "images": {
+      "victim": "sha256:03a186aa90eec03b874c82a887b245e7190fa45cd7256af3c077cb64943d52b0",
+      "source": "sha256:b94212edd4d31c34998aea870caebc4ba145c1593d1b8dfdc27fe4917719fe3e"
+    },
+    "observations": [
+      {
+        "cpu_total": 6096343,
+        "cpu_idle": 5550585,
+        "available_bytes": 10382884864,
+        "loadavg": "0.63 0.85 1.06 4/1504 23285",
+        "disk_free_bytes": 37324771328,
+        "artifact_bytes": 29849,
+        "containers": []
+      },
+      {
+        "cpu_total": 6107366,
+        "cpu_idle": 5559892,
+        "available_bytes": 10224185344,
+        "loadavg": "1.87 1.12 1.14 7/1582 24265",
+        "disk_free_bytes": 37321244672,
+        "artifact_bytes": 355529,
+        "containers": [
+          {
+            "id": "776eb86c1d79e78cbcd857fcda48600b39e941a23ac98323fa21244ff6265eb6",
+            "role": "victim",
+            "memory": 27705344,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "5acfbd562431f2db87662c6d73360d9bc0ac89bf44fa1789f3edffb4fcf0becf",
+            "role": "source",
+            "memory": 23154688,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "a6d0ab49f2b295c2e7317ae31c8055b74393bd49d4b5e57ae76ab29505dd0812",
+            "role": "source",
+            "memory": 23453696,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "7bbcd30a10cb945a8c9b46055b00cf40095ea0b396ac0924108c6a8cb015fab2",
+            "role": "source",
+            "memory": 22175744,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "c1e54bfda3530ef38c2cee5b21d13b710e8b70f5a617fbcbe7b95ffe5da792c7",
+            "role": "source",
+            "memory": 22392832,
+            "oom": false,
+            "restarts": 0
+          }
+        ],
+        "collection_acquisitions": {
+          "776eb86c1d79e78cbcd857fcda48600b39e941a23ac98323fa21244ff6265eb6": 5172.544813008
+        },
+        "collection_persistence_age_seconds": 0.003935098648071289
+      },
+      {
+        "cpu_total": 6119229,
+        "cpu_idle": 5569846,
+        "available_bytes": 10201677824,
+        "loadavg": "1.97 1.16 1.16 3/1598 24294",
+        "disk_free_bytes": 37319872512,
+        "artifact_bytes": 1486771,
+        "containers": [
+          {
+            "id": "776eb86c1d79e78cbcd857fcda48600b39e941a23ac98323fa21244ff6265eb6",
+            "role": "victim",
+            "memory": 28966912,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "5acfbd562431f2db87662c6d73360d9bc0ac89bf44fa1789f3edffb4fcf0becf",
+            "role": "source",
+            "memory": 23560192,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "a6d0ab49f2b295c2e7317ae31c8055b74393bd49d4b5e57ae76ab29505dd0812",
+            "role": "source",
+            "memory": 23617536,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "7bbcd30a10cb945a8c9b46055b00cf40095ea0b396ac0924108c6a8cb015fab2",
+            "role": "source",
+            "memory": 22712320,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "c1e54bfda3530ef38c2cee5b21d13b710e8b70f5a617fbcbe7b95ffe5da792c7",
+            "role": "source",
+            "memory": 22392832,
+            "oom": false,
+            "restarts": 0
+          }
+        ],
+        "collection_acquisitions": {
+          "776eb86c1d79e78cbcd857fcda48600b39e941a23ac98323fa21244ff6265eb6": 5182.599775405
+        },
+        "collection_persistence_age_seconds": 1.005955457687378
+      },
+      {
+        "cpu_total": 6131154,
+        "cpu_idle": 5580452,
+        "available_bytes": 10211467264,
+        "loadavg": "1.82 1.16 1.16 3/1594 24296",
+        "disk_free_bytes": 37318660096,
+        "artifact_bytes": 2680684,
+        "containers": [
+          {
+            "id": "776eb86c1d79e78cbcd857fcda48600b39e941a23ac98323fa21244ff6265eb6",
+            "role": "victim",
+            "memory": 29290496,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "5acfbd562431f2db87662c6d73360d9bc0ac89bf44fa1789f3edffb4fcf0becf",
+            "role": "source",
+            "memory": 25079808,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "a6d0ab49f2b295c2e7317ae31c8055b74393bd49d4b5e57ae76ab29505dd0812",
+            "role": "source",
+            "memory": 24907776,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "7bbcd30a10cb945a8c9b46055b00cf40095ea0b396ac0924108c6a8cb015fab2",
+            "role": "source",
+            "memory": 22437888,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "c1e54bfda3530ef38c2cee5b21d13b710e8b70f5a617fbcbe7b95ffe5da792c7",
+            "role": "source",
+            "memory": 24576000,
+            "oom": false,
+            "restarts": 0
+          }
+        ],
+        "collection_acquisitions": {
+          "776eb86c1d79e78cbcd857fcda48600b39e941a23ac98323fa21244ff6265eb6": 5192.653327781
+        },
+        "collection_persistence_age_seconds": 2.0095627307891846
+      },
+      {
+        "cpu_total": 6143095,
+        "cpu_idle": 5590915,
+        "available_bytes": 10224304128,
+        "loadavg": "1.92 1.20 1.17 6/1629 24358",
+        "disk_free_bytes": 37316706304,
+        "artifact_bytes": 4129971,
+        "containers": [
+          {
+            "id": "776eb86c1d79e78cbcd857fcda48600b39e941a23ac98323fa21244ff6265eb6",
+            "role": "victim",
+            "memory": 37621760,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "5acfbd562431f2db87662c6d73360d9bc0ac89bf44fa1789f3edffb4fcf0becf",
+            "role": "source",
+            "memory": 25976832,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "a6d0ab49f2b295c2e7317ae31c8055b74393bd49d4b5e57ae76ab29505dd0812",
+            "role": "source",
+            "memory": 27095040,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "7bbcd30a10cb945a8c9b46055b00cf40095ea0b396ac0924108c6a8cb015fab2",
+            "role": "source",
+            "memory": 32083968,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "c1e54bfda3530ef38c2cee5b21d13b710e8b70f5a617fbcbe7b95ffe5da792c7",
+            "role": "source",
+            "memory": 33226752,
+            "oom": false,
+            "restarts": 0
+          }
+        ],
+        "collection_acquisitions": {
+          "776eb86c1d79e78cbcd857fcda48600b39e941a23ac98323fa21244ff6265eb6": 5202.702793721
+        },
+        "collection_persistence_age_seconds": 0.002001523971557617
+      },
+      {
+        "cpu_total": 6155033,
+        "cpu_idle": 5598899,
+        "available_bytes": 10122088448,
+        "loadavg": "2.16 1.28 1.20 3/1860 24748",
+        "disk_free_bytes": 37309620224,
+        "artifact_bytes": 10726808,
+        "containers": [
+          {
+            "id": "776eb86c1d79e78cbcd857fcda48600b39e941a23ac98323fa21244ff6265eb6",
+            "role": "victim",
+            "memory": 46891008,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "5acfbd562431f2db87662c6d73360d9bc0ac89bf44fa1789f3edffb4fcf0becf",
+            "role": "source",
+            "memory": 27537408,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "a6d0ab49f2b295c2e7317ae31c8055b74393bd49d4b5e57ae76ab29505dd0812",
+            "role": "source",
+            "memory": 27623424,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "7bbcd30a10cb945a8c9b46055b00cf40095ea0b396ac0924108c6a8cb015fab2",
+            "role": "source",
+            "memory": 34992128,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "c1e54bfda3530ef38c2cee5b21d13b710e8b70f5a617fbcbe7b95ffe5da792c7",
+            "role": "source",
+            "memory": 36413440,
+            "oom": false,
+            "restarts": 0
+          }
+        ],
+        "collection_acquisitions": {
+          "776eb86c1d79e78cbcd857fcda48600b39e941a23ac98323fa21244ff6265eb6": 5212.750750738
+        },
+        "collection_persistence_age_seconds": 1.0066514015197754
+      },
+      {
+        "cpu_total": 6166928,
+        "cpu_idle": 5607275,
+        "available_bytes": 10085707776,
+        "loadavg": "2.36 1.35 1.22 6/1904 25415",
+        "disk_free_bytes": 37301161984,
+        "artifact_bytes": 17549852,
+        "containers": [
+          {
+            "id": "776eb86c1d79e78cbcd857fcda48600b39e941a23ac98323fa21244ff6265eb6",
+            "role": "victim",
+            "memory": 55214080,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "5acfbd562431f2db87662c6d73360d9bc0ac89bf44fa1789f3edffb4fcf0becf",
+            "role": "source",
+            "memory": 28495872,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "a6d0ab49f2b295c2e7317ae31c8055b74393bd49d4b5e57ae76ab29505dd0812",
+            "role": "source",
+            "memory": 27422720,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "7bbcd30a10cb945a8c9b46055b00cf40095ea0b396ac0924108c6a8cb015fab2",
+            "role": "source",
+            "memory": 37842944,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "c1e54bfda3530ef38c2cee5b21d13b710e8b70f5a617fbcbe7b95ffe5da792c7",
+            "role": "source",
+            "memory": 38305792,
+            "oom": false,
+            "restarts": 0
+          }
+        ],
+        "collection_acquisitions": {
+          "776eb86c1d79e78cbcd857fcda48600b39e941a23ac98323fa21244ff6265eb6": 5222.794049383
+        },
+        "collection_persistence_age_seconds": 2.0067014694213867
+      },
+      {
+        "cpu_total": 6178746,
+        "cpu_idle": 5615534,
+        "available_bytes": 10044030976,
+        "loadavg": "2.54 1.42 1.25 5/1928 26052",
+        "disk_free_bytes": 37292142592,
+        "artifact_bytes": 24852619,
+        "containers": [
+          {
+            "id": "776eb86c1d79e78cbcd857fcda48600b39e941a23ac98323fa21244ff6265eb6",
+            "role": "victim",
+            "memory": 54681600,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "5acfbd562431f2db87662c6d73360d9bc0ac89bf44fa1789f3edffb4fcf0becf",
+            "role": "source",
+            "memory": 28438528,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "a6d0ab49f2b295c2e7317ae31c8055b74393bd49d4b5e57ae76ab29505dd0812",
+            "role": "source",
+            "memory": 28393472,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "7bbcd30a10cb945a8c9b46055b00cf40095ea0b396ac0924108c6a8cb015fab2",
+            "role": "source",
+            "memory": 0,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "c1e54bfda3530ef38c2cee5b21d13b710e8b70f5a617fbcbe7b95ffe5da792c7",
+            "role": "source",
+            "memory": 0,
+            "oom": false,
+            "restarts": 0
+          }
+        ],
+        "collection_acquisitions": {
+          "776eb86c1d79e78cbcd857fcda48600b39e941a23ac98323fa21244ff6265eb6": 5228.835478637
+        },
+        "collection_persistence_age_seconds": 2.021629810333252
+      },
+      {
+        "cpu_total": 6185746,
+        "cpu_idle": 5620993,
+        "available_bytes": 10090614784,
+        "loadavg": "2.66 1.47 1.26 1/1618 26160",
+        "disk_free_bytes": 37289897984,
+        "artifact_bytes": 26588904,
+        "containers": [
+          {
+            "id": "776eb86c1d79e78cbcd857fcda48600b39e941a23ac98323fa21244ff6265eb6",
+            "role": "victim",
+            "memory": 50487296,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "5acfbd562431f2db87662c6d73360d9bc0ac89bf44fa1789f3edffb4fcf0becf",
+            "role": "source",
+            "memory": 29544448,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "a6d0ab49f2b295c2e7317ae31c8055b74393bd49d4b5e57ae76ab29505dd0812",
+            "role": "source",
+            "memory": 29454336,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "7bbcd30a10cb945a8c9b46055b00cf40095ea0b396ac0924108c6a8cb015fab2",
+            "role": "source",
+            "memory": 0,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "c1e54bfda3530ef38c2cee5b21d13b710e8b70f5a617fbcbe7b95ffe5da792c7",
+            "role": "source",
+            "memory": 0,
+            "oom": false,
+            "restarts": 0
+          }
+        ],
+        "collection_acquisitions": {
+          "776eb86c1d79e78cbcd857fcda48600b39e941a23ac98323fa21244ff6265eb6": 5234.862572618
+        },
+        "collection_persistence_age_seconds": 2.0180389881134033
+      },
+      {
+        "cpu_total": 6192886,
+        "cpu_idle": 5627437,
+        "available_bytes": 10082623488,
+        "loadavg": "2.45 1.44 1.25 1/1619 26169",
+        "disk_free_bytes": 37289054208,
+        "artifact_bytes": 27411825,
+        "containers": [
+          {
+            "id": "776eb86c1d79e78cbcd857fcda48600b39e941a23ac98323fa21244ff6265eb6",
+            "role": "victim",
+            "memory": 50675712,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "5acfbd562431f2db87662c6d73360d9bc0ac89bf44fa1789f3edffb4fcf0becf",
+            "role": "source",
+            "memory": 30162944,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "a6d0ab49f2b295c2e7317ae31c8055b74393bd49d4b5e57ae76ab29505dd0812",
+            "role": "source",
+            "memory": 30253056,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "7bbcd30a10cb945a8c9b46055b00cf40095ea0b396ac0924108c6a8cb015fab2",
+            "role": "source",
+            "memory": 0,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "c1e54bfda3530ef38c2cee5b21d13b710e8b70f5a617fbcbe7b95ffe5da792c7",
+            "role": "source",
+            "memory": 0,
+            "oom": false,
+            "restarts": 0
+          }
+        ],
+        "collection_acquisitions": {
+          "776eb86c1d79e78cbcd857fcda48600b39e941a23ac98323fa21244ff6265eb6": 5240.888379027
+        },
+        "collection_persistence_age_seconds": 2.0188701152801514
+      },
+      {
+        "cpu_total": 6200047,
+        "cpu_idle": 5633861,
+        "available_bytes": 10163892224,
+        "loadavg": "2.30 1.44 1.26 2/1620 26171",
+        "disk_free_bytes": 37288349696,
+        "artifact_bytes": 28096723,
+        "containers": [
+          {
+            "id": "776eb86c1d79e78cbcd857fcda48600b39e941a23ac98323fa21244ff6265eb6",
+            "role": "victim",
+            "memory": 51691520,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "5acfbd562431f2db87662c6d73360d9bc0ac89bf44fa1789f3edffb4fcf0becf",
+            "role": "source",
+            "memory": 29978624,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "a6d0ab49f2b295c2e7317ae31c8055b74393bd49d4b5e57ae76ab29505dd0812",
+            "role": "source",
+            "memory": 30470144,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "7bbcd30a10cb945a8c9b46055b00cf40095ea0b396ac0924108c6a8cb015fab2",
+            "role": "source",
+            "memory": 0,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "c1e54bfda3530ef38c2cee5b21d13b710e8b70f5a617fbcbe7b95ffe5da792c7",
+            "role": "source",
+            "memory": 0,
+            "oom": false,
+            "restarts": 0
+          }
+        ],
+        "collection_acquisitions": {
+          "776eb86c1d79e78cbcd857fcda48600b39e941a23ac98323fa21244ff6265eb6": 5246.918301104
+        },
+        "collection_persistence_age_seconds": 2.0208475589752197
+      },
+      {
+        "cpu_total": 6207233,
+        "cpu_idle": 5640339,
+        "available_bytes": 10176262144,
+        "loadavg": "2.28 1.45 1.26 2/1616 26171",
+        "disk_free_bytes": 37287501824,
+        "artifact_bytes": 28919640,
+        "containers": [
+          {
+            "id": "776eb86c1d79e78cbcd857fcda48600b39e941a23ac98323fa21244ff6265eb6",
+            "role": "victim",
+            "memory": 51765248,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "5acfbd562431f2db87662c6d73360d9bc0ac89bf44fa1789f3edffb4fcf0becf",
+            "role": "source",
+            "memory": 31293440,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "a6d0ab49f2b295c2e7317ae31c8055b74393bd49d4b5e57ae76ab29505dd0812",
+            "role": "source",
+            "memory": 30785536,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "7bbcd30a10cb945a8c9b46055b00cf40095ea0b396ac0924108c6a8cb015fab2",
+            "role": "source",
+            "memory": 0,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "c1e54bfda3530ef38c2cee5b21d13b710e8b70f5a617fbcbe7b95ffe5da792c7",
+            "role": "source",
+            "memory": 0,
+            "oom": false,
+            "restarts": 0
+          }
+        ],
+        "collection_acquisitions": {
+          "776eb86c1d79e78cbcd857fcda48600b39e941a23ac98323fa21244ff6265eb6": 5252.951068824
+        },
+        "collection_persistence_age_seconds": 2.0226144790649414
+      },
+      {
+        "cpu_total": 6214363,
+        "cpu_idle": 5646744,
+        "available_bytes": 10172952576,
+        "loadavg": "2.10 1.43 1.26 1/1614 26173",
+        "disk_free_bytes": 37286653952,
+        "artifact_bytes": 29765655,
+        "containers": [
+          {
+            "id": "776eb86c1d79e78cbcd857fcda48600b39e941a23ac98323fa21244ff6265eb6",
+            "role": "victim",
+            "memory": 52191232,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "5acfbd562431f2db87662c6d73360d9bc0ac89bf44fa1789f3edffb4fcf0becf",
+            "role": "source",
+            "memory": 31584256,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "a6d0ab49f2b295c2e7317ae31c8055b74393bd49d4b5e57ae76ab29505dd0812",
+            "role": "source",
+            "memory": 30392320,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "7bbcd30a10cb945a8c9b46055b00cf40095ea0b396ac0924108c6a8cb015fab2",
+            "role": "source",
+            "memory": 0,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "c1e54bfda3530ef38c2cee5b21d13b710e8b70f5a617fbcbe7b95ffe5da792c7",
+            "role": "source",
+            "memory": 0,
+            "oom": false,
+            "restarts": 0
+          }
+        ],
+        "collection_acquisitions": {
+          "776eb86c1d79e78cbcd857fcda48600b39e941a23ac98323fa21244ff6265eb6": 5258.987402171
+        },
+        "collection_persistence_age_seconds": 2.024054527282715
+      },
+      {
+        "cpu_total": 6221458,
+        "cpu_idle": 5653105,
+        "available_bytes": 10166558720,
+        "loadavg": "2.01 1.42 1.25 2/1616 26177",
+        "disk_free_bytes": 37285801984,
+        "artifact_bytes": 30601887,
+        "containers": [
+          {
+            "id": "776eb86c1d79e78cbcd857fcda48600b39e941a23ac98323fa21244ff6265eb6",
+            "role": "victim",
+            "memory": 52785152,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "5acfbd562431f2db87662c6d73360d9bc0ac89bf44fa1789f3edffb4fcf0becf",
+            "role": "source",
+            "memory": 31358976,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "a6d0ab49f2b295c2e7317ae31c8055b74393bd49d4b5e57ae76ab29505dd0812",
+            "role": "source",
+            "memory": 31559680,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "7bbcd30a10cb945a8c9b46055b00cf40095ea0b396ac0924108c6a8cb015fab2",
+            "role": "source",
+            "memory": 0,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "c1e54bfda3530ef38c2cee5b21d13b710e8b70f5a617fbcbe7b95ffe5da792c7",
+            "role": "source",
+            "memory": 0,
+            "oom": false,
+            "restarts": 0
+          }
+        ],
+        "collection_acquisitions": {
+          "776eb86c1d79e78cbcd857fcda48600b39e941a23ac98323fa21244ff6265eb6": 5265.015618729
+        },
+        "collection_persistence_age_seconds": 2.0223140716552734
+      },
+      {
+        "cpu_total": 6228754,
+        "cpu_idle": 5659689,
+        "available_bytes": 10154373120,
+        "loadavg": "2.09 1.45 1.26 1/1618 26186",
+        "disk_free_bytes": 37285064704,
+        "artifact_bytes": 31328373,
+        "containers": [
+          {
+            "id": "776eb86c1d79e78cbcd857fcda48600b39e941a23ac98323fa21244ff6265eb6",
+            "role": "victim",
+            "memory": 52756480,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "5acfbd562431f2db87662c6d73360d9bc0ac89bf44fa1789f3edffb4fcf0becf",
+            "role": "source",
+            "memory": 31895552,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "a6d0ab49f2b295c2e7317ae31c8055b74393bd49d4b5e57ae76ab29505dd0812",
+            "role": "source",
+            "memory": 31383552,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "7bbcd30a10cb945a8c9b46055b00cf40095ea0b396ac0924108c6a8cb015fab2",
+            "role": "source",
+            "memory": 0,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "c1e54bfda3530ef38c2cee5b21d13b710e8b70f5a617fbcbe7b95ffe5da792c7",
+            "role": "source",
+            "memory": 0,
+            "oom": false,
+            "restarts": 0
+          }
+        ],
+        "collection_acquisitions": {
+          "776eb86c1d79e78cbcd857fcda48600b39e941a23ac98323fa21244ff6265eb6": 5271.046226918
+        },
+        "collection_persistence_age_seconds": 2.0208559036254883
+      },
+      {
+        "cpu_total": 6235795,
+        "cpu_idle": 5666044,
+        "available_bytes": 10172190720,
+        "loadavg": "1.93 1.43 1.26 3/1617 26187",
+        "disk_free_bytes": 37284532224,
+        "artifact_bytes": 31847117,
+        "containers": [
+          {
+            "id": "776eb86c1d79e78cbcd857fcda48600b39e941a23ac98323fa21244ff6265eb6",
+            "role": "victim",
+            "memory": 53211136,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "5acfbd562431f2db87662c6d73360d9bc0ac89bf44fa1789f3edffb4fcf0becf",
+            "role": "source",
+            "memory": 31567872,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "a6d0ab49f2b295c2e7317ae31c8055b74393bd49d4b5e57ae76ab29505dd0812",
+            "role": "source",
+            "memory": 30797824,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "7bbcd30a10cb945a8c9b46055b00cf40095ea0b396ac0924108c6a8cb015fab2",
+            "role": "source",
+            "memory": 0,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "c1e54bfda3530ef38c2cee5b21d13b710e8b70f5a617fbcbe7b95ffe5da792c7",
+            "role": "source",
+            "memory": 0,
+            "oom": false,
+            "restarts": 0
+          }
+        ],
+        "collection_acquisitions": {
+          "776eb86c1d79e78cbcd857fcda48600b39e941a23ac98323fa21244ff6265eb6": 5277.085673708
+        },
+        "collection_persistence_age_seconds": 2.0263731479644775
+      },
+      {
+        "cpu_total": 6243033,
+        "cpu_idle": 5672551,
+        "available_bytes": 10158567424,
+        "loadavg": "1.85 1.43 1.26 3/1615 26187",
+        "disk_free_bytes": 37283651584,
+        "artifact_bytes": 32706122,
+        "containers": [
+          {
+            "id": "776eb86c1d79e78cbcd857fcda48600b39e941a23ac98323fa21244ff6265eb6",
+            "role": "victim",
+            "memory": 53428224,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "5acfbd562431f2db87662c6d73360d9bc0ac89bf44fa1789f3edffb4fcf0becf",
+            "role": "source",
+            "memory": 31604736,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "a6d0ab49f2b295c2e7317ae31c8055b74393bd49d4b5e57ae76ab29505dd0812",
+            "role": "source",
+            "memory": 30666752,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "7bbcd30a10cb945a8c9b46055b00cf40095ea0b396ac0924108c6a8cb015fab2",
+            "role": "source",
+            "memory": 0,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "c1e54bfda3530ef38c2cee5b21d13b710e8b70f5a617fbcbe7b95ffe5da792c7",
+            "role": "source",
+            "memory": 0,
+            "oom": false,
+            "restarts": 0
+          }
+        ],
+        "collection_acquisitions": {
+          "776eb86c1d79e78cbcd857fcda48600b39e941a23ac98323fa21244ff6265eb6": 5283.112964371
+        },
+        "collection_persistence_age_seconds": 2.022707223892212
+      },
+      {
+        "cpu_total": 6250104,
+        "cpu_idle": 5678948,
+        "available_bytes": 10158268416,
+        "loadavg": "1.94 1.45 1.27 5/1613 26187",
+        "disk_free_bytes": 37282922496,
+        "artifact_bytes": 33434287,
+        "containers": [
+          {
+            "id": "776eb86c1d79e78cbcd857fcda48600b39e941a23ac98323fa21244ff6265eb6",
+            "role": "victim",
+            "memory": 53907456,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "5acfbd562431f2db87662c6d73360d9bc0ac89bf44fa1789f3edffb4fcf0becf",
+            "role": "source",
+            "memory": 32079872,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "a6d0ab49f2b295c2e7317ae31c8055b74393bd49d4b5e57ae76ab29505dd0812",
+            "role": "source",
+            "memory": 31887360,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "7bbcd30a10cb945a8c9b46055b00cf40095ea0b396ac0924108c6a8cb015fab2",
+            "role": "source",
+            "memory": 0,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "c1e54bfda3530ef38c2cee5b21d13b710e8b70f5a617fbcbe7b95ffe5da792c7",
+            "role": "source",
+            "memory": 0,
+            "oom": false,
+            "restarts": 0
+          }
+        ],
+        "collection_acquisitions": {
+          "776eb86c1d79e78cbcd857fcda48600b39e941a23ac98323fa21244ff6265eb6": 5289.138791883
+        },
+        "collection_persistence_age_seconds": 2.0225718021392822
+      },
+      {
+        "cpu_total": 6257465,
+        "cpu_idle": 5685467,
+        "available_bytes": 10156703744,
+        "loadavg": "1.87 1.44 1.27 3/1610 26189",
+        "disk_free_bytes": 37281939456,
+        "artifact_bytes": 34365389,
+        "containers": [
+          {
+            "id": "776eb86c1d79e78cbcd857fcda48600b39e941a23ac98323fa21244ff6265eb6",
+            "role": "victim",
+            "memory": 54214656,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "5acfbd562431f2db87662c6d73360d9bc0ac89bf44fa1789f3edffb4fcf0becf",
+            "role": "source",
+            "memory": 32247808,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "a6d0ab49f2b295c2e7317ae31c8055b74393bd49d4b5e57ae76ab29505dd0812",
+            "role": "source",
+            "memory": 31748096,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "7bbcd30a10cb945a8c9b46055b00cf40095ea0b396ac0924108c6a8cb015fab2",
+            "role": "source",
+            "memory": 0,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "c1e54bfda3530ef38c2cee5b21d13b710e8b70f5a617fbcbe7b95ffe5da792c7",
+            "role": "source",
+            "memory": 0,
+            "oom": false,
+            "restarts": 0
+          }
+        ],
+        "collection_acquisitions": {
+          "776eb86c1d79e78cbcd857fcda48600b39e941a23ac98323fa21244ff6265eb6": 5295.167924416
+        },
+        "collection_persistence_age_seconds": 2.021735668182373
+      },
+      {
+        "cpu_total": 6264419,
+        "cpu_idle": 5691680,
+        "available_bytes": 10158395392,
+        "loadavg": "1.88 1.45 1.27 2/1607 26190",
+        "disk_free_bytes": 37281144832,
+        "artifact_bytes": 35164717,
+        "containers": [
+          {
+            "id": "776eb86c1d79e78cbcd857fcda48600b39e941a23ac98323fa21244ff6265eb6",
+            "role": "victim",
+            "memory": 54968320,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "5acfbd562431f2db87662c6d73360d9bc0ac89bf44fa1789f3edffb4fcf0becf",
+            "role": "source",
+            "memory": 32665600,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "a6d0ab49f2b295c2e7317ae31c8055b74393bd49d4b5e57ae76ab29505dd0812",
+            "role": "source",
+            "memory": 32378880,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "7bbcd30a10cb945a8c9b46055b00cf40095ea0b396ac0924108c6a8cb015fab2",
+            "role": "source",
+            "memory": 0,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "c1e54bfda3530ef38c2cee5b21d13b710e8b70f5a617fbcbe7b95ffe5da792c7",
+            "role": "source",
+            "memory": 0,
+            "oom": false,
+            "restarts": 0
+          }
+        ],
+        "collection_acquisitions": {
+          "776eb86c1d79e78cbcd857fcda48600b39e941a23ac98323fa21244ff6265eb6": 5301.189653055
+        },
+        "collection_persistence_age_seconds": 2.01442813873291
+      },
+      {
+        "cpu_total": 6271606,
+        "cpu_idle": 5698184,
+        "available_bytes": 10168549376,
+        "loadavg": "1.82 1.45 1.27 1/1610 26203",
+        "disk_free_bytes": 37280202752,
+        "artifact_bytes": 36021479,
+        "containers": [
+          {
+            "id": "776eb86c1d79e78cbcd857fcda48600b39e941a23ac98323fa21244ff6265eb6",
+            "role": "victim",
+            "memory": 54796288,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "5acfbd562431f2db87662c6d73360d9bc0ac89bf44fa1789f3edffb4fcf0becf",
+            "role": "source",
+            "memory": 33157120,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "a6d0ab49f2b295c2e7317ae31c8055b74393bd49d4b5e57ae76ab29505dd0812",
+            "role": "source",
+            "memory": 32899072,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "7bbcd30a10cb945a8c9b46055b00cf40095ea0b396ac0924108c6a8cb015fab2",
+            "role": "source",
+            "memory": 0,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "c1e54bfda3530ef38c2cee5b21d13b710e8b70f5a617fbcbe7b95ffe5da792c7",
+            "role": "source",
+            "memory": 0,
+            "oom": false,
+            "restarts": 0
+          }
+        ],
+        "collection_acquisitions": {
+          "776eb86c1d79e78cbcd857fcda48600b39e941a23ac98323fa21244ff6265eb6": 5307.227507226
+        },
+        "collection_persistence_age_seconds": 2.0253443717956543
+      },
+      {
+        "cpu_total": 6278737,
+        "cpu_idle": 5704673,
+        "available_bytes": 10143961088,
+        "loadavg": "1.67 1.43 1.27 3/1613 26210",
+        "disk_free_bytes": 37279256576,
+        "artifact_bytes": 36696048,
+        "containers": [
+          {
+            "id": "776eb86c1d79e78cbcd857fcda48600b39e941a23ac98323fa21244ff6265eb6",
+            "role": "victim",
+            "memory": 55631872,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "5acfbd562431f2db87662c6d73360d9bc0ac89bf44fa1789f3edffb4fcf0becf",
+            "role": "source",
+            "memory": 33251328,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "a6d0ab49f2b295c2e7317ae31c8055b74393bd49d4b5e57ae76ab29505dd0812",
+            "role": "source",
+            "memory": 0,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "7bbcd30a10cb945a8c9b46055b00cf40095ea0b396ac0924108c6a8cb015fab2",
+            "role": "source",
+            "memory": 0,
+            "oom": false,
+            "restarts": 0
+          },
+          {
+            "id": "c1e54bfda3530ef38c2cee5b21d13b710e8b70f5a617fbcbe7b95ffe5da792c7",
+            "role": "source",
+            "memory": 0,
+            "oom": false,
+            "restarts": 0
+          }
+        ],
+        "collection_acquisitions": {
+          "776eb86c1d79e78cbcd857fcda48600b39e941a23ac98323fa21244ff6265eb6": 5313.258885994
+        },
+        "collection_persistence_age_seconds": 2.017773151397705
+      },
+      {
+        "cpu_total": 6293648,
+        "cpu_idle": 5718508,
+        "available_bytes": 10262605824,
+        "loadavg": "1.41 1.38 1.25 1/1513 26325",
+        "disk_free_bytes": 37283684352,
+        "artifact_bytes": 39231693,
+        "containers": []
+      }
+    ],
+    "actions": [],
+    "cleanup": [
+      {
+        "container": "776eb86c1d79e78cbcd857fcda48600b39e941a23ac98323fa21244ff6265eb6",
+        "absent": true
+      },
+      {
+        "container": "5acfbd562431f2db87662c6d73360d9bc0ac89bf44fa1789f3edffb4fcf0becf",
+        "absent": true
+      },
+      {
+        "container": "a6d0ab49f2b295c2e7317ae31c8055b74393bd49d4b5e57ae76ab29505dd0812",
+        "absent": true
+      },
+      {
+        "container": "7bbcd30a10cb945a8c9b46055b00cf40095ea0b396ac0924108c6a8cb015fab2",
+        "absent": true
+      },
+      {
+        "container": "c1e54bfda3530ef38c2cee5b21d13b710e8b70f5a617fbcbe7b95ffe5da792c7",
+        "absent": true
+      }
+    ],
+    "readiness": {
+      "verified": true,
+      "reasons": [],
+      "active_external": [],
+      "residual": [],
+      "processes": [],
+      "networks": {
+        "edos_sources": [],
+        "edos_network": []
+      }
+    },
+    "cleanup_verified": true,
+    "progression_allowed": true,
+    "certification": "completed",
+    "execution": {
+      "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/b2-f96-20261108T002312Z/raw/run_status.json",
+      "status": "completed",
+      "end_reason": "simulation_end",
+      "run_id": "9aeffeec6d384eb393dd8242d7c26bc4",
+      "sha256": "81fa9b4b53c124c6da2af91305750cbf9daa2d03772d45a52ea329e7e31f28cd"
+    },
+    "records": "persisted_basic_checks",
+    "export": {
+      "status": "completed",
+      "manifest": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/b2-f96-20261108T002312Z/dataset/dataset_manifest.json",
+      "sha256": "07f25ea0a173ec4a9ade3c3284ee7ea14944b694d2b90cc3da72e89d8770a25f"
+    },
+    "failures": [],
+    "limitations": [
+      "Process readiness uses the existing known-process filter; not universal.",
+      "No proof of host/kernel quiescence or completed victim computation."
+    ],
+    "attempt": {
+      "schema_version": 1,
+      "composition": "combined",
+      "status": "ready",
+      "started_monotonic": 5152.486956815,
+      "configuration": {
+        "id": "B2-F96-L2-F2-20261108T002312Z",
+        "duration_seconds": 150,
+        "seed": 20261107,
+        "normal_traffic": {
+          "clients": 2,
+          "rate": 8,
+          "endpoint": "/medium",
+          "work_units": 10,
+          "sleep_seconds": 0.0,
+          "max_concurrent_sends": 64,
+          "request_timeout_seconds": 2.0
+        },
+        "attack": {
+          "mechanism": "http_request_flooding",
+          "enabled": true,
+          "profile": "continuous",
+          "attackers": 2,
+          "rate": 32,
+          "start_seconds": 30,
+          "duration_seconds": 30,
+          "endpoint": "/medium",
+          "work_units": 5000,
+          "sleep_seconds": 0.0,
+          "max_concurrent_sends": 96,
+          "request_timeout_seconds": 2.0,
+          "burst": null
+        },
+        "infrastructure": {
+          "initial_instances": 1,
+          "min_instances": 1,
+          "max_instances": 1,
+          "cost_per_instance_per_hour": 0.02
+        },
+        "autoscaler": {
+          "enabled": false,
+          "scale_up_threshold": 60.0,
+          "scale_down_threshold": 25.0,
+          "cooldown_seconds": 20
+        },
+        "server": {
+          "process_pool_workers": 2,
+          "default_work_units": 1000000,
+          "default_sleep_seconds": 0.0
+        },
+        "monitoring": {
+          "interval_seconds": 5,
+          "stats_poll_interval_seconds": 1.0,
+          "history_seconds": 30.0
+        },
+        "load_balancer": {
+          "enabled": false
+        },
+        "traffic_sources": {
+          "execution": "containers"
+        },
+        "topology": {
+          "mode": "direct"
+        },
+        "diagnostics": {
+          "enabled": true,
+          "queue_capacity": 4096
+        }
+      },
+      "policy": {
+        "min_available_bytes": 2147483648,
+        "min_disk_bytes": 4294967296,
+        "victim_memory_bytes": 1073741824,
+        "source_memory_bytes": 536870912,
+        "max_artifact_bytes": 536870912,
+        "collection_max_age_seconds": 5,
+        "global_timeout_seconds": 240,
+        "docker_timeout_seconds": 3,
+        "version": "exploratory-offensive-v1"
+      },
+      "images": {
+        "victim": "sha256:03a186aa90eec03b874c82a887b245e7190fa45cd7256af3c077cb64943d52b0",
+        "source": "sha256:b94212edd4d31c34998aea870caebc4ba145c1593d1b8dfdc27fe4917719fe3e"
+      },
+      "configuration_sha256": "f979cf74db1d43bf91de88c66c17ead2464ba634a2bf1525b0e22e2e6d2faaa4",
+      "phases": {
+        "pre": [
+          0,
+          30
+        ],
+        "attack": [
+          30,
+          60
+        ],
+        "post": [
+          60,
+          150
+        ]
+      },
+      "image_code": {
+        "victim": {
+          "image_id": "sha256:03a186aa90eec03b874c82a887b245e7190fa45cd7256af3c077cb64943d52b0",
+          "files": {
+            "/app/diagnostics.py": "5899c2ba3bf906266ff7fd521142ca601351604baa74892bebcf0d183f14f158",
+            "/app/simple_server.py": "3274c0d01cd1805604c8a88fafd26f74d11a6a3f0f01502dcf25b33b156c97a0"
+          },
+          "verified": true
+        },
+        "source": {
+          "image_id": "sha256:b94212edd4d31c34998aea870caebc4ba145c1593d1b8dfdc27fe4917719fe3e",
+          "files": {
+            "/app/requirements.txt": "58275698cb78292d1f38df0ea697e2be10ad7f56d197bed7e0629e6af0fd0c50",
+            "/app/simulator/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "/app/simulator/attack_patterns.py": "cae81bf8be017ca1a2af794847bcba778e5cfbe6d9879925bb3e8021d6ad0276",
+            "/app/simulator/attack_summary_logger.py": "65ac7260ce40a066593f3de4a322d0a5f47638beefa11182484ec7f5ba7e4a43",
+            "/app/simulator/diagnostics.py": "5899c2ba3bf906266ff7fd521142ca601351604baa74892bebcf0d183f14f158",
+            "/app/simulator/experiment_config.py": "7bb7d6020dfd1fe83ecfdf5ee2fef15478b6b0250c1ebc07faab14302f9dffee",
+            "/app/simulator/ground_truth.py": "4765ad8e46fcf15e37f4162643dc7d59db06c0f6ced7c2ce41ad6a15f293d51b",
+            "/app/simulator/normal_traffic.py": "7e2f994c8d4160ad554c4e3dcf3258f5dafb53dc1716694cb37c911d3e8bfc88",
+            "/app/simulator/normal_traffic_summary_logger.py": "95fe6ffd0e28f814ccb6b4905c685d620a2c31920c18d8bdc35b29045a542bb2",
+            "/app/simulator/request_logger.py": "0d3dc7247e48f025a728116f95ca5809727e39ef8bed0d7b44df8ba7804aae38",
+            "/app/simulator/service_destination.py": "026b1e991ae57d0b64faacd39bfea23eea7279c04e89917cbe8f405050c7b3a4",
+            "/app/simulator/source_journal.py": "46c04d8c1e8215b4027f4bf2dc9583d4cf37408717a4a947a9c709365db49ba4",
+            "/app/simulator/source_runner.py": "34f80cc8da43e79d64a995c13c0c9fdd2160e2a60d25ff05030fc3ef83b55989",
+            "/app/simulator/traffic_injectorV0.py": "1e8f9328c5a439ade61ce997350e7cd9a064555714d538c04bfc8ad702c18b00"
+          },
+          "verified": true
+        }
+      },
+      "preflight_sha256": "8dc0179b4a997d19695ced26eaf9e599b9564eebf8b1222f9f205a508f2265e5",
+      "preflight": {
+        "version": "exploratory-offensive-v1",
+        "limits": {
+          "min_available_bytes": 2147483648,
+          "min_disk_bytes": 4294967296,
+          "victim_memory_bytes": 1073741824,
+          "source_memory_bytes": 536870912,
+          "max_artifact_bytes": 536870912,
+          "collection_max_age_seconds": 5,
+          "global_timeout_seconds": 240,
+          "docker_timeout_seconds": 3,
+          "version": "exploratory-offensive-v1"
+        },
+        "images": {
+          "victim": "sha256:03a186aa90eec03b874c82a887b245e7190fa45cd7256af3c077cb64943d52b0",
+          "source": "sha256:b94212edd4d31c34998aea870caebc4ba145c1593d1b8dfdc27fe4917719fe3e"
+        },
+        "observations": [
+          {
+            "cpu_total": 6095738,
+            "cpu_idle": 5550151,
+            "available_bytes": 10360573952,
+            "loadavg": "0.63 0.85 1.06 2/1506 23244",
+            "disk_free_bytes": 37324828672,
+            "artifact_bytes": 2446,
+            "containers": []
+          }
+        ],
+        "actions": [],
+        "cleanup": [],
+        "readiness": {
+          "verified": true,
+          "reasons": [],
+          "active_external": [],
+          "residual": [],
+          "processes": [],
+          "networks": {
+            "edos_sources": [],
+            "edos_network": []
+          }
+        },
+        "cleanup_verified": null,
+        "progression_allowed": false,
+        "certification": "pending",
+        "execution": null,
+        "records": "pending",
+        "export": "pending",
+        "failures": [],
+        "limitations": [
+          "Process readiness uses the existing known-process filter; not universal.",
+          "No proof of host/kernel quiescence or completed victim computation."
+        ],
+        "readiness_history": [
+          {
+            "verified": true,
+            "reasons": [],
+            "active_external": [],
+            "residual": [],
+            "processes": [],
+            "networks": {
+              "edos_sources": [],
+              "edos_network": []
+            }
+          }
+        ]
+      }
+    },
+    "readiness_history": [
+      {
+        "verified": true,
+        "reasons": [],
+        "active_external": [],
+        "residual": [],
+        "processes": [],
+        "networks": {
+          "edos_sources": [],
+          "edos_network": []
+        }
+      },
+      {
+        "verified": true,
+        "reasons": [],
+        "active_external": [],
+        "residual": [],
+        "processes": [],
+        "networks": {
+          "edos_sources": [],
+          "edos_network": []
+        }
+      }
+    ],
+    "elapsed_before_cleanup_seconds": 160.62542283099992,
+    "shutdown_steps": [
+      {
+        "component": "sources",
+        "complete": true
+      },
+      {
+        "component": "raw_capture",
+        "complete": true
+      },
+      {
+        "component": "capture",
+        "complete": true
+      },
+      {
+        "component": "stats",
+        "complete": true
+      },
+      {
+        "component": "source_removal",
+        "complete": true
+      },
+      {
+        "component": "victim",
+        "id": "776eb86c1d79e78cbcd857fcda48600b39e941a23ac98323fa21244ff6265eb6",
+        "complete": true
+      }
+    ],
+    "temporary_networks": [],
+    "nominal_seconds": 150,
+    "cleanup_checks": [],
+    "errors": [],
+    "post_cleanup_readiness": {
+      "verified": true,
+      "reasons": [],
+      "active_external": [],
+      "residual": [],
+      "processes": [],
+      "networks": {
+        "edos_sources": [],
+        "edos_network": []
+      }
+    },
+    "dataset_validation": {
+      "dataset_valid": true,
+      "analysis_eligible": true
+    },
+    "traffic_rates": {
+      "normal": {
+        "nominal_rps": 16,
+        "interval": [
+          0,
+          150
+        ],
+        "http_starts_total": 2385,
+        "http_starts_in_window": 2383,
+        "http_completions_total": 2385,
+        "realized_start_rps": 15.886666666666667
+      },
+      "attack": {
+        "nominal_rps": 64,
+        "interval": [
+          30,
+          60
+        ],
+        "http_starts_total": 1496,
+        "http_starts_in_window": 1496,
+        "http_completions_total": 1496,
+        "realized_start_rps": 49.86666666666667
+      }
+    },
+    "http_degradation_observed": true,
+    "scientific_certification": "dataset_checks_only; no recovery or detector claims",
+    "outcome": "completed_with_http_degradation",
+    "procedure_completed": true
+  },
+  "validation": {
+    "validation_schema_version": 1,
+    "validator_rules_version": 1,
+    "validator_sha256": "441af5c0db31fa8918c82c8bbf00ed550ab3551a9a27d149abc41f5b98f3ae5c",
+    "validator_dependencies_sha256": {
+      "experiments/dataset_schema.py": "0b9a23145636318b9bdfd42b0a33a4d6a50de246a341068ddc71573d30e3275d",
+      "experiments/dataset_provenance.py": "ba6613472c95cc58adb9fc71a457f5a407b60889c14ae40c8efb0485716306d1",
+      "simulator/experiment_config.py": "7bb7d6020dfd1fe83ecfdf5ee2fef15478b6b0250c1ebc07faab14302f9dffee",
+      "simulator/source_aggregate.py": "9a2b24ba26744c9c0bd1c25c492998c98c1cb1eac90666997f6f84f014194b7f"
+    },
+    "dataset_manifest_sha256": "07f25ea0a173ec4a9ade3c3284ee7ea14944b694d2b90cc3da72e89d8770a25f",
+    "run_id": "9aeffeec6d384eb393dd8242d7c26bc4",
+    "dataset_schema_version": 1,
+    "dataset_valid": true,
+    "analysis_eligible": true,
+    "structural_valid": true,
+    "summary": {
+      "errors": 0,
+      "warnings": 2,
+      "info": 8,
+      "eligibility_blockers": []
+    },
+    "checks": [
+      {
+        "check_id": "JSON_PARSEABLE",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "JSON artifact is parseable",
+        "evidence": {
+          "path": "dataset_manifest.json"
+        }
+      },
+      {
+        "check_id": "MANIFEST_SCHEMA_SUPPORTED",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Only dataset schema version 1 is supported",
+        "evidence": {
+          "version": 1
+        }
+      },
+      {
+        "check_id": "MANIFEST_FIELDS_VALID",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Manifest must identify a run, status and file index",
+        "evidence": {}
+      },
+      {
+        "check_id": "DATASET_PATH_SAFE",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Indexed paths must stay inside dataset and not traverse symlinks",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "FILE_INDEX_UNIQUE",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Exported file paths must be unique",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "FILE_INDEX_FIELDS_VALID",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Every indexed file needs a SHA256 and nonnegative byte size",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "FILE_HASH_MATCH",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Present indexed files must match their SHA256",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "FILE_SIZE_MATCH",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Present indexed files must match their byte sizes",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "INDEXED_FILE_PRESENT",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Indexed canonical/scientific files must exist",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "OPTIONAL_EVIDENCE_PRESENT",
+        "stage": "structural",
+        "severity": "WARNING",
+        "passed": true,
+        "affects": [],
+        "message": "Missing optional evidence limits auditability",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "CANONICAL_REFERENCE_VALID",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Canonical references must be indexed paths of the supported layout",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "JSON_PARSEABLE",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "JSON artifact is parseable",
+        "evidence": {
+          "path": "schema.json"
+        }
+      },
+      {
+        "check_id": "TABLE_SCHEMA_SUPPORTED",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Scientific field definitions must match version 1; prose may differ",
+        "evidence": {}
+      },
+      {
+        "check_id": "JSON_PARSEABLE",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "JSON artifact is parseable",
+        "evidence": {
+          "path": "metadata/run_status.json"
+        }
+      },
+      {
+        "check_id": "JSON_PARSEABLE",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "JSON artifact is parseable",
+        "evidence": {
+          "path": "metadata/effective_config.json"
+        }
+      },
+      {
+        "check_id": "RUN_STATUS_CONSISTENT",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Manifest and canonical run status must agree",
+        "evidence": {
+          "manifest_status": "completed",
+          "status": "completed",
+          "run_id": "9aeffeec6d384eb393dd8242d7c26bc4"
+        }
+      },
+      {
+        "check_id": "EXPERIMENT_ID_CONSISTENT",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Configuration and status identify the same experiment",
+        "evidence": {}
+      },
+      {
+        "check_id": "RUN_STATUS_FIELDS_VALID",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Run errors, drain certification and available clock anchors have documented types",
+        "evidence": {}
+      },
+      {
+        "check_id": "CONFIGURATION_VALID",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Effective configuration satisfies the existing configuration contract",
+        "evidence": {
+          "reason": null
+        }
+      },
+      {
+        "check_id": "SCIENTIFIC_ARTIFACT_PRESENT",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Scientific CSV must be indexed and present, or explicitly absent in an incomplete run",
+        "evidence": {
+          "table": "requests",
+          "path": "raw/service/request_log.csv"
+        }
+      },
+      {
+        "check_id": "CSV_PARSEABLE",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "CSV header and record widths are recognized",
+        "evidence": {
+          "path": "raw/service/request_log.csv",
+          "rows": 3881
+        }
+      },
+      {
+        "check_id": "CSV_FIELD_VALID",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Scientific types, nullability and domains are respected",
+        "evidence": {
+          "table": "requests",
+          "path": "raw/service/request_log.csv",
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "SCIENTIFIC_ARTIFACT_PRESENT",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Scientific CSV must be indexed and present, or explicitly absent in an incomplete run",
+        "evidence": {
+          "table": "rtt",
+          "path": "raw/service/rtt_log.csv"
+        }
+      },
+      {
+        "check_id": "CSV_PARSEABLE",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "CSV header and record widths are recognized",
+        "evidence": {
+          "path": "raw/service/rtt_log.csv",
+          "rows": 2292
+        }
+      },
+      {
+        "check_id": "CSV_FIELD_VALID",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Scientific types, nullability and domains are respected",
+        "evidence": {
+          "table": "rtt",
+          "path": "raw/service/rtt_log.csv",
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "SCIENTIFIC_ARTIFACT_PRESENT",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Scientific CSV must be indexed and present, or explicitly absent in an incomplete run",
+        "evidence": {
+          "table": "packets",
+          "path": "raw/traffic/traffic_capture.csv"
+        }
+      },
+      {
+        "check_id": "CSV_PARSEABLE",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "CSV header and record widths are recognized",
+        "evidence": {
+          "path": "raw/traffic/traffic_capture.csv",
+          "rows": 27327
+        }
+      },
+      {
+        "check_id": "CSV_FIELD_VALID",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Scientific types, nullability and domains are respected",
+        "evidence": {
+          "table": "packets",
+          "path": "raw/traffic/traffic_capture.csv",
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "SCIENTIFIC_ARTIFACT_PRESENT",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Scientific CSV must be indexed and present, or explicitly absent in an incomplete run",
+        "evidence": {
+          "table": "metrics",
+          "path": "raw/infrastructure/simulation_metrics.csv"
+        }
+      },
+      {
+        "check_id": "CSV_PARSEABLE",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "CSV header and record widths are recognized",
+        "evidence": {
+          "path": "raw/infrastructure/simulation_metrics.csv",
+          "rows": 21
+        }
+      },
+      {
+        "check_id": "CSV_FIELD_VALID",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Scientific types, nullability and domains are respected",
+        "evidence": {
+          "table": "metrics",
+          "path": "raw/infrastructure/simulation_metrics.csv",
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "SCIENTIFIC_ARTIFACT_PRESENT",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Scientific CSV must be indexed and present, or explicitly absent in an incomplete run",
+        "evidence": {
+          "table": "attacks",
+          "path": "raw/attacks/attack_events.csv"
+        }
+      },
+      {
+        "check_id": "CSV_PARSEABLE",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "CSV header and record widths are recognized",
+        "evidence": {
+          "path": "raw/attacks/attack_events.csv",
+          "rows": 1
+        }
+      },
+      {
+        "check_id": "CSV_FIELD_VALID",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Scientific types, nullability and domains are respected",
+        "evidence": {
+          "table": "attacks",
+          "path": "raw/attacks/attack_events.csv",
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "RUN_ID_CONSISTENT",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Scientific observations belong to the manifest run",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "SOURCE_INVENTORY_REFERENCE_VALID",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Container source inventory must be a canonical indexed reference",
+        "evidence": {}
+      },
+      {
+        "check_id": "JSON_PARSEABLE",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "JSON artifact is parseable",
+        "evidence": {
+          "path": "metadata/source_inventory.json"
+        }
+      },
+      {
+        "check_id": "SOURCE_FIELDS_VALID",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Source identity, class, worker index and run IP are explicit",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "SOURCE_IDENTITY_UNIQUE",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Scientific IDs and source topology associations are unique within run",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "SOURCE_RUN_ID_CONSISTENT",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Sources belong to this run; incomplete setup without observations may remain unbound",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "SOURCE_COUNT_CONFIG_CONSISTENT",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Configured source counts match inventory",
+        "evidence": {
+          "expected": {
+            "normal": 2,
+            "attack": 2
+          },
+          "observed": {
+            "normal": 2,
+            "attack": 2
+          }
+        }
+      },
+      {
+        "check_id": "OFFENSIVE_START_CONTRACT_SUPPORTED",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Explicit offensive start contract must be supported",
+        "evidence": {}
+      },
+      {
+        "check_id": "CONTINUOUS_SCHEDULED_START_WINDOW",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Contract v1 logical HTTP starts must belong to scheduled [S,E), regardless of actual_end_seconds",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "REQUEST_ID_UNIQUE",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Request IDs are unique within run",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "REQUEST_TEMPORAL_ORDER",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Elapsed order and duration arithmetic must agree; epoch drift is not assumed absent",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "SOURCE_REFERENCE_VALID",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Requests reference configured and, when available, inventoried workers",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "REQUEST_CAUSAL_CLASS_VALID",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Generator determines causal class, independently of attack_active",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "EVENT_REFERENCE_VALID",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Attack requests identify an existing event and its attack_id",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "REQUEST_OPERATION_VALID",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Observed operation and logical service destination agree with configuration",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "REQUEST_OUTCOME_VALID",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "HTTP/transport outcomes and nullable fields agree",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "REQUEST_FAILURES_OBSERVED",
+        "stage": "quality",
+        "severity": "WARNING",
+        "passed": false,
+        "affects": [],
+        "message": "Request failures are preserved observations, not automatic dataset corruption",
+        "evidence": {
+          "violation_count": 1589,
+          "examples": [
+            "request_attack_2_000000154",
+            "request_normal_2_000000274",
+            "request_attack_2_000000170",
+            "request_attack_2_000000171",
+            "request_normal_2_000000279",
+            "request_normal_1_000000268",
+            "request_attack_1_000000150",
+            "request_attack_1_000000151",
+            "request_attack_1_000000152",
+            "request_attack_1_000000153"
+          ]
+        }
+      },
+      {
+        "check_id": "EVENT_ID_UNIQUE",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Event IDs are unique",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "ATTACK_ID_UNIQUE",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Attack IDs are unique for the current one-event contract",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "EVENT_CONFIG_PRESENCE",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Enabled attack plans one global event even when rate or source count is zero",
+        "evidence": {
+          "expected": 1,
+          "observed": 1
+        }
+      },
+      {
+        "check_id": "EVENT_TEMPORAL_ORDER",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Start precedes end and drain independently; no end <= drain requirement",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "EVENT_REQUEST_MILESTONES_MATCH",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Recorded event first/last starts and last completion match the observed requests exactly in their shared monotonic domain",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "EVENT_CONFIGURATION_CONSISTENT",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Profile, planned global interval, experiment and anchors agree",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "ATTACK_START_WINDOW_VALID",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Periodic starts require active burst/global window; continuous queued starts may extend through effective actual_end",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "GLOBAL_ATTACK_CONTEXT_CONSISTENT",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Labels follow the global event, including silence; packet labels are checked in their recorded elapsed domain, not matched to request clocks",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "HTTP_DURATION_REFERENCE_VALID",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "RTT table is exactly the response subset at client completion; it is not TCP RTT",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "IDENTIFIED_ADMISSIONS_RESOLVED",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Identified admissions have one terminal resolution and matching HTTP starts",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "IDENTIFIED_ADMISSIONS_RESOLVED",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Identified admissions have one terminal resolution and matching HTTP starts",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "CONTINUOUS_SCHEDULED_START_WINDOW",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Contract v1 logical HTTP starts must belong to scheduled [S,E), regardless of actual_end_seconds",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "IDENTIFIED_ADMISSIONS_RESOLVED",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Identified admissions have one terminal resolution and matching HTTP starts",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "CONTINUOUS_SCHEDULED_START_WINDOW",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Contract v1 logical HTTP starts must belong to scheduled [S,E), regardless of actual_end_seconds",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "IDENTIFIED_ADMISSIONS_RESOLVED",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Identified admissions have one terminal resolution and matching HTTP starts",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "SOURCE_JOURNAL_AVAILABLE",
+        "stage": "quality",
+        "severity": "WARNING",
+        "passed": true,
+        "affects": [],
+        "message": "Missing journals limit admission/backlog evidence; primary observations remain authoritative",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "SOURCE_JOURNAL_PARSEABLE",
+        "stage": "quality",
+        "severity": "WARNING",
+        "passed": true,
+        "affects": [],
+        "message": "Malformed optional journals limit auditability",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "SOURCE_JOURNAL_IDENTITY_VALID",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Parseable source journals preserve identity and sequence",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "SOURCE_JOURNAL_REQUEST_REFERENCE",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Observed journal requests agree with root requests except locally reconciled temporal labels",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "SOURCE_JOURNAL_REQUEST_PRESENT",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Journal requests are present in the primary table; incomplete aggregation may lack observations",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "PERIODIC_ADMISSION_NO_BACKLOG",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "When journals are available, periodic admission and beginning share the same observed sample and remain inside allowed windows",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "JSON_PARSEABLE",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "JSON artifact is parseable",
+        "evidence": {
+          "path": "metadata/export_provenance.json"
+        }
+      },
+      {
+        "check_id": "EXPORT_PROVENANCE_SCOPE_VALID",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Export provenance describes export time, not execution time",
+        "evidence": {}
+      },
+      {
+        "check_id": "JSON_PARSEABLE",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "JSON artifact is parseable",
+        "evidence": {
+          "path": "metadata/run_provenance.json"
+        }
+      },
+      {
+        "check_id": "EXECUTION_PROVENANCE_CONSISTENT",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Execution binding, Git fields and fingerprint are internally coherent; historical file contents are not reconstructed",
+        "evidence": {}
+      },
+      {
+        "check_id": "EXECUTION_CODE_RECORDED",
+        "stage": "quality",
+        "severity": "WARNING",
+        "passed": true,
+        "affects": [],
+        "message": "Git unavailable limits reproducibility, without inventing SHA",
+        "evidence": {}
+      },
+      {
+        "check_id": "EXECUTION_WORKTREE_CLEAN",
+        "stage": "quality",
+        "severity": "WARNING",
+        "passed": false,
+        "affects": [],
+        "message": "Dirty or unavailable working tree cannot be reconstructed from hashes alone",
+        "evidence": {}
+      },
+      {
+        "check_id": "RUN_COMPLETED",
+        "stage": "quality",
+        "severity": "INFO",
+        "passed": true,
+        "affects": [
+          "analysis_eligible"
+        ],
+        "message": "Technical incomplete runs are not eligible even when their dataset is intact",
+        "evidence": {
+          "status": "completed",
+          "errors": []
+        }
+      },
+      {
+        "check_id": "RUN_DRAIN_CERTIFIED",
+        "stage": "quality",
+        "severity": "INFO",
+        "passed": true,
+        "affects": [
+          "analysis_eligible"
+        ],
+        "message": "Eligibility requires the existing producers_drained certification",
+        "evidence": {}
+      },
+      {
+        "check_id": "RUN_WITHOUT_OPERATIONAL_FAILURE",
+        "stage": "quality",
+        "severity": "INFO",
+        "passed": true,
+        "affects": [
+          "analysis_eligible"
+        ],
+        "message": "Operational failures block eligibility; observed request failures alone do not",
+        "evidence": {}
+      },
+      {
+        "check_id": "SCIENTIFIC_OBSERVATIONS_USABLE",
+        "stage": "quality",
+        "severity": "INFO",
+        "passed": true,
+        "affects": [
+          "analysis_eligible"
+        ],
+        "message": "Requests, capture and metrics need observations; event/RTT tables may legitimately be empty",
+        "evidence": {}
+      },
+      {
+        "check_id": "EXPECTED_TRAFFIC_OBSERVED",
+        "stage": "quality",
+        "severity": "INFO",
+        "passed": true,
+        "affects": [
+          "analysis_eligible"
+        ],
+        "message": "Expected causal traffic exists; no rate \u00d7 duration request count is required",
+        "evidence": {
+          "expected": {
+            "attack": true,
+            "benign": true
+          },
+          "observed": {
+            "benign": 2385,
+            "attack": 1496
+          }
+        }
+      },
+      {
+        "check_id": "EXPECTED_EVENT_EXECUTED",
+        "stage": "quality",
+        "severity": "INFO",
+        "passed": true,
+        "affects": [
+          "analysis_eligible"
+        ],
+        "message": "Expected event has an observed beginning, effective end and drain",
+        "evidence": {}
+      },
+      {
+        "check_id": "RANDOM_SEED_RECORDED",
+        "stage": "quality",
+        "severity": "WARNING",
+        "passed": true,
+        "affects": [],
+        "message": "Missing resolved seed limits reproduction without corrupting observations",
+        "evidence": {}
+      },
+      {
+        "check_id": "CAPTURE_TEMPORAL_COVERAGE",
+        "stage": "quality",
+        "severity": "WARNING",
+        "passed": true,
+        "affects": [],
+        "message": "Observed span only; first/last observations do not prove uninterrupted coverage and no percentage threshold is used",
+        "evidence": {
+          "rows": 27327,
+          "first": 0.30338549613952637,
+          "last": 150.09883642196655,
+          "observed_span": 149.79545092582703,
+          "planned_duration": 150,
+          "clock": "epoch-derived",
+          "monitoring_interval": null
+        }
+      },
+      {
+        "check_id": "EXPECTED_PHASE_OBSERVATIONS",
+        "stage": "quality",
+        "severity": "WARNING",
+        "passed": true,
+        "affects": [],
+        "message": "Missing phase observations limit interpretation, but may follow stochastic generation or incomplete execution",
+        "evidence": {
+          "table": "packets",
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "SERVICE_TEMPORAL_COVERAGE",
+        "stage": "quality",
+        "severity": "WARNING",
+        "passed": true,
+        "affects": [],
+        "message": "Observed span only; first/last observations do not prove uninterrupted coverage and no percentage threshold is used",
+        "evidence": {
+          "rows": 3881,
+          "first": 0.30034669500037126,
+          "last": 150.00803599899973,
+          "observed_span": 149.70768930399936,
+          "planned_duration": 150,
+          "clock": "monotonic",
+          "monitoring_interval": null
+        }
+      },
+      {
+        "check_id": "EXPECTED_PHASE_OBSERVATIONS",
+        "stage": "quality",
+        "severity": "WARNING",
+        "passed": true,
+        "affects": [],
+        "message": "Missing phase observations limit interpretation, but may follow stochastic generation or incomplete execution",
+        "evidence": {
+          "table": "requests",
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "METRICS_TEMPORAL_COVERAGE",
+        "stage": "quality",
+        "severity": "WARNING",
+        "passed": true,
+        "affects": [],
+        "message": "Observed span only; first/last observations do not prove uninterrupted coverage and no percentage threshold is used",
+        "evidence": {
+          "rows": 21,
+          "first": 10.16928630700022,
+          "last": 151.18620699799976,
+          "observed_span": 141.01692069099954,
+          "planned_duration": 150,
+          "clock": "monotonic",
+          "monitoring_interval": 5
+        }
+      },
+      {
+        "check_id": "EXPECTED_PHASE_OBSERVATIONS",
+        "stage": "quality",
+        "severity": "WARNING",
+        "passed": true,
+        "affects": [],
+        "message": "Missing phase observations limit interpretation, but may follow stochastic generation or incomplete execution",
+        "evidence": {
+          "table": "metrics",
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "METRIC_VALUES_PLAUSIBLE",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Counts, resource observations and durations are nonnegative; no CPU ceiling or degradation requirement",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "METRIC_MONOTONIC_ORDER",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Monitoring elapsed samples are nondecreasing",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "PACKET_EPOCH_ORDER",
+        "stage": "quality",
+        "severity": "WARNING",
+        "passed": true,
+        "affects": [],
+        "message": "Backward capture epoch observations may indicate reordering or clock adjustment",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "PACKET_FIELDS_PLAUSIBLE",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "TCP payload lengths and ports are nonnegative/in range",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "PACKET_IP_VALID",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Packet CSV IPv4 addresses are parseable run attributes",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "PACKET_EPOCH_ALIGNMENT",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Capture elapsed uses its exact documented epoch subtraction, not request monotonic timestamps",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "REQUEST_WALL_CLOCK_ORDER",
+        "stage": "quality",
+        "severity": "WARNING",
+        "passed": true,
+        "affects": [],
+        "message": "Backward epoch timestamps may indicate clock adjustment; monotonic duration remains authoritative",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "CAPTURE_TOPOLOGY_UNAMBIGUOUS",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "A run declares at most one capture topology",
+        "evidence": {}
+      },
+      {
+        "check_id": "JSON_PARSEABLE",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "JSON artifact is parseable",
+        "evidence": {
+          "path": "metadata/topology/direct/capture_metadata.json"
+        }
+      },
+      {
+        "check_id": "SOURCE_IP_OBSERVED",
+        "stage": "quality",
+        "severity": "WARNING",
+        "passed": true,
+        "affects": [],
+        "message": "Missing inventoried IPs are a coverage warning, not absence of source identity",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "CAPTURE_SEGMENT_CONSISTENT",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Declared source_victim capture contains only source/target TCP observations",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "DIRECT_CAPTURE_METADATA_PRESENT",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Direct collection requires declared source_victim metadata",
+        "evidence": {}
+      },
+      {
+        "check_id": "JSON_PARSEABLE",
+        "stage": "structural",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "JSON artifact is parseable",
+        "evidence": {
+          "path": "metadata/topology/direct/backend_inventory.json"
+        }
+      },
+      {
+        "check_id": "METRIC_CONTAINER_REFERENCE_VALID",
+        "stage": "semantic",
+        "severity": "ERROR",
+        "passed": true,
+        "affects": [
+          "dataset_valid"
+        ],
+        "message": "Named monitored victims must exist in backend inventory",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "EXPECTED_VICTIM_METRICS_OBSERVED",
+        "stage": "quality",
+        "severity": "WARNING",
+        "passed": true,
+        "affects": [],
+        "message": "Missing named victims limit infrastructure attribution; startup cache gaps are not invalidity",
+        "evidence": {
+          "violation_count": 0,
+          "examples": []
+        }
+      },
+      {
+        "check_id": "RAW_CAPTURE_NONEMPTY",
+        "stage": "quality",
+        "severity": "WARNING",
+        "passed": true,
+        "affects": [],
+        "message": "A classic PCAP with only its 24-byte global header has no observations; this does not assert equality with CSV capture",
+        "evidence": {
+          "bytes": 4321409
+        }
+      },
+      {
+        "check_id": "COVERAGE_LIMITATIONS",
+        "stage": "quality",
+        "severity": "INFO",
+        "passed": true,
+        "affects": [],
+        "message": "No direct packet/request join, continuous clock drift proof, capture completeness guarantee, CPU/RTT degradation expectation or exact stochastic request count",
+        "evidence": {}
+      },
+      {
+        "check_id": "DATASET_VALID_FOR_ANALYSIS",
+        "stage": "quality",
+        "severity": "INFO",
+        "passed": true,
+        "affects": [
+          "analysis_eligible"
+        ],
+        "message": "Analysis eligibility requires a valid dataset independently of run status",
+        "evidence": {}
+      }
+    ]
+  },
+  "existing_analyzer": "existing_analyzer/summary.json",
+  "integrity": {
+    "computation_complete": true,
+    "duplicates": [],
+    "writer_sequence_valid": true,
+    "conflicts": [],
+    "insufficient_evidence": [
+      {
+        "operation_id": "f69bd68c3e7147faa7dda44fef080d54",
+        "reasons": [
+          "insufficient_declared_identity"
+        ]
+      },
+      {
+        "operation_id": "fb8048cec93143d3b1d82a5fffae039f",
+        "reasons": [
+          "insufficient_declared_identity"
+        ]
+      },
+      {
+        "operation_id": "e8838b09c90c472591b0d1073d2dc120",
+        "reasons": [
+          "insufficient_declared_identity"
+        ]
+      },
+      {
+        "operation_id": "1ceaade308bb4c6daf494035ed70c62a",
+        "reasons": [
+          "insufficient_declared_identity"
+        ]
+      },
+      {
+        "operation_id": "8591a69ea78749c8a92f41cc35d52ac0",
+        "reasons": [
+          "insufficient_declared_identity"
+        ]
+      },
+      {
+        "operation_id": "ff9a346238af4ac8a965d442a5124697",
+        "reasons": [
+          "insufficient_declared_identity"
+        ]
+      },
+      {
+        "operation_id": "34ec21a1749441039906b0ad6f6486c7",
+        "reasons": [
+          "insufficient_declared_identity"
+        ]
+      },
+      {
+        "operation_id": "818dff45d0a4423c9c30a722d806f001",
+        "reasons": [
+          "insufficient_declared_identity"
+        ]
+      },
+      {
+        "operation_id": "dda08b941d50454ab856e1038ddd71ae",
+        "reasons": [
+          "insufficient_declared_identity"
+        ]
+      },
+      {
+        "operation_id": "2f240bb63be34e5bb134cb31af2f7449",
+        "reasons": [
+          "insufficient_declared_identity"
+        ]
+      },
+      {
+        "operation_id": "06aaf952956044b1b2e4d96c4d9d67d1",
+        "reasons": [
+          "insufficient_declared_identity"
+        ]
+      },
+      {
+        "operation_id": "2111a5e067eb46a184de99586fae1fc8",
+        "reasons": [
+          "insufficient_declared_identity"
+        ]
+      },
+      {
+        "operation_id": "64bde70db8724a6b9918b4c6948c415b",
+        "reasons": [
+          "insufficient_declared_identity"
+        ]
+      },
+      {
+        "operation_id": "3203c8c4476545a198bef49367940260",
+        "reasons": [
+          "insufficient_declared_identity"
+        ]
+      },
+      {
+        "operation_id": "b97552c97a764d079e51db9940fe3270",
+        "reasons": [
+          "insufficient_declared_identity"
+        ]
+      },
+      {
+        "operation_id": "5d336591437945b1bc2691d85ca26780",
+        "reasons": [
+          "insufficient_declared_identity"
+        ]
+      },
+      {
+        "operation_id": "386fe584c4684891b9998fa516cd7ed8",
+        "reasons": [
+          "insufficient_declared_identity"
+        ]
+      },
+      {
+        "operation_id": "b65718a11f7b4d689070fade67d1c79f",
+        "reasons": [
+          "insufficient_declared_identity"
+        ]
+      },
+      {
+        "operation_id": "cc3425fd36f1435aa0c7d863b017788c",
+        "reasons": [
+          "insufficient_declared_identity"
+        ]
+      },
+      {
+        "operation_id": "078de9a038a148c7ae1479ddf00d4620",
+        "reasons": [
+          "insufficient_declared_identity"
+        ]
+      }
+    ],
+    "correlated_requests": 3881,
+    "correlation_mismatches": [],
+    "requests_without_observed_submission": [],
+    "partial_lifecycles": {},
+    "identity_consistent": true
+  },
+  "audit_operations": [
+    {
+      "operation_id": "f69bd68c3e7147faa7dda44fef080d54",
+      "classification": "unknown",
+      "evidence": "handler phase capture_audit, endpoint /",
+      "start_seconds": -4.538095819999398,
+      "end_seconds": -4.527339625999957
+    },
+    {
+      "operation_id": "fb8048cec93143d3b1d82a5fffae039f",
+      "classification": "unknown",
+      "evidence": "handler phase capture_audit, endpoint /",
+      "start_seconds": -4.52499643200008,
+      "end_seconds": -4.52193257899944
+    },
+    {
+      "operation_id": "e8838b09c90c472591b0d1073d2dc120",
+      "classification": "unknown",
+      "evidence": "handler phase capture_audit, endpoint /",
+      "start_seconds": -4.479097030999583,
+      "end_seconds": -4.476515147999635
+    },
+    {
+      "operation_id": "1ceaade308bb4c6daf494035ed70c62a",
+      "classification": "unknown",
+      "evidence": "handler phase capture_audit, endpoint /",
+      "start_seconds": -4.431871218000197,
+      "end_seconds": -4.427991004999967
+    },
+    {
+      "operation_id": "8591a69ea78749c8a92f41cc35d52ac0",
+      "classification": "unknown",
+      "evidence": "handler phase capture_audit, endpoint /",
+      "start_seconds": -4.384191475999614,
+      "end_seconds": -4.380111776999911
+    },
+    {
+      "operation_id": "ff9a346238af4ac8a965d442a5124697",
+      "classification": "unknown",
+      "evidence": "handler phase capture_audit, endpoint /",
+      "start_seconds": -3.9679967459996988,
+      "end_seconds": -3.9654890659994635
+    },
+    {
+      "operation_id": "34ec21a1749441039906b0ad6f6486c7",
+      "classification": "unknown",
+      "evidence": "handler phase capture_audit, endpoint /",
+      "start_seconds": -3.9638327669999853,
+      "end_seconds": -3.9617815760002486
+    },
+    {
+      "operation_id": "818dff45d0a4423c9c30a722d806f001",
+      "classification": "unknown",
+      "evidence": "handler phase capture_audit, endpoint /",
+      "start_seconds": -3.91719592499976,
+      "end_seconds": -3.913001496999641
+    },
+    {
+      "operation_id": "dda08b941d50454ab856e1038ddd71ae",
+      "classification": "unknown",
+      "evidence": "handler phase capture_audit, endpoint /",
+      "start_seconds": -3.867601733999436,
+      "end_seconds": -3.86363469600019
+    },
+    {
+      "operation_id": "2f240bb63be34e5bb134cb31af2f7449",
+      "classification": "unknown",
+      "evidence": "handler phase capture_audit, endpoint /",
+      "start_seconds": -3.819194439999592,
+      "end_seconds": -3.8157709299994167
+    },
+    {
+      "operation_id": "06aaf952956044b1b2e4d96c4d9d67d1",
+      "classification": "unknown",
+      "evidence": "handler phase capture_audit, endpoint /",
+      "start_seconds": -3.3071806239995567,
+      "end_seconds": -3.3026752529995065
+    },
+    {
+      "operation_id": "2111a5e067eb46a184de99586fae1fc8",
+      "classification": "unknown",
+      "evidence": "handler phase capture_audit, endpoint /",
+      "start_seconds": -3.2995697259993904,
+      "end_seconds": -3.295985435000148
+    },
+    {
+      "operation_id": "64bde70db8724a6b9918b4c6948c415b",
+      "classification": "unknown",
+      "evidence": "handler phase capture_audit, endpoint /",
+      "start_seconds": -3.252192730999923,
+      "end_seconds": -3.24821337100002
+    },
+    {
+      "operation_id": "3203c8c4476545a198bef49367940260",
+      "classification": "unknown",
+      "evidence": "handler phase capture_audit, endpoint /",
+      "start_seconds": -3.203962923999825,
+      "end_seconds": -3.200623220000125
+    },
+    {
+      "operation_id": "b97552c97a764d079e51db9940fe3270",
+      "classification": "unknown",
+      "evidence": "handler phase capture_audit, endpoint /",
+      "start_seconds": -3.158119357999567,
+      "end_seconds": -3.1552386539997315
+    },
+    {
+      "operation_id": "5d336591437945b1bc2691d85ca26780",
+      "classification": "unknown",
+      "evidence": "handler phase capture_audit, endpoint /",
+      "start_seconds": -2.728348241999811,
+      "end_seconds": -2.726399078000213
+    },
+    {
+      "operation_id": "386fe584c4684891b9998fa516cd7ed8",
+      "classification": "unknown",
+      "evidence": "handler phase capture_audit, endpoint /",
+      "start_seconds": -2.7243527959999483,
+      "end_seconds": -2.722171743999752
+    },
+    {
+      "operation_id": "b65718a11f7b4d689070fade67d1c79f",
+      "classification": "unknown",
+      "evidence": "handler phase capture_audit, endpoint /",
+      "start_seconds": -2.6770860529995844,
+      "end_seconds": -2.6735390759995425
+    },
+    {
+      "operation_id": "cc3425fd36f1435aa0c7d863b017788c",
+      "classification": "unknown",
+      "evidence": "handler phase capture_audit, endpoint /",
+      "start_seconds": -2.6276681250001275,
+      "end_seconds": -2.6235720329996184
+    },
+    {
+      "operation_id": "078de9a038a148c7ae1479ddf00d4620",
+      "classification": "unknown",
+      "evidence": "handler phase capture_audit, endpoint /",
+      "start_seconds": -2.5791024869995454,
+      "end_seconds": -2.57426249800028
+    }
+  ],
+  "source_integrity": [
+    {
+      "source_id": "normal_1",
+      "traffic_class": "benign",
+      "events": 7015,
+      "journal_events": 3279,
+      "summary": {
+        "schema_version": 1,
+        "context": {
+          "run_id": "9aeffeec6d384eb393dd8242d7c26bc4",
+          "source_id": "normal_1",
+          "component": "source"
+        },
+        "clock": {
+          "kind": "CLOCK_MONOTONIC",
+          "unit": "seconds",
+          "resolution_seconds": 1e-09,
+          "implementation": "clock_gettime(CLOCK_MONOTONIC)",
+          "time_namespace": "time:[4026533514]",
+          "pid": 1
+        },
+        "capacity": 4096,
+        "offered": 7015,
+        "enqueued": 7015,
+        "written": 7015,
+        "dropped": 0,
+        "write_errors": 0,
+        "queue_remaining": 0,
+        "observation_complete": true,
+        "complete": true
+      },
+      "final_status": {
+        "source_id": "normal_1",
+        "run_id": "9aeffeec6d384eb393dd8242d7c26bc4",
+        "drained": true,
+        "logger_complete": true,
+        "reason": "simulation_end"
+      }
+    },
+    {
+      "source_id": "normal_2",
+      "traffic_class": "benign",
+      "events": 7297,
+      "journal_events": 3438,
+      "summary": {
+        "schema_version": 1,
+        "context": {
+          "run_id": "9aeffeec6d384eb393dd8242d7c26bc4",
+          "source_id": "normal_2",
+          "component": "source"
+        },
+        "clock": {
+          "kind": "CLOCK_MONOTONIC",
+          "unit": "seconds",
+          "resolution_seconds": 1e-09,
+          "implementation": "clock_gettime(CLOCK_MONOTONIC)",
+          "time_namespace": "time:[4026533577]",
+          "pid": 1
+        },
+        "capacity": 4096,
+        "offered": 7297,
+        "enqueued": 7297,
+        "written": 7297,
+        "dropped": 0,
+        "write_errors": 0,
+        "queue_remaining": 0,
+        "observation_complete": true,
+        "complete": true
+      },
+      "final_status": {
+        "source_id": "normal_2",
+        "run_id": "9aeffeec6d384eb393dd8242d7c26bc4",
+        "drained": true,
+        "logger_complete": true,
+        "reason": "simulation_end"
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "traffic_class": "attack",
+      "events": 4155,
+      "journal_events": 7897,
+      "summary": {
+        "schema_version": 1,
+        "context": {
+          "run_id": "9aeffeec6d384eb393dd8242d7c26bc4",
+          "source_id": "attack_1",
+          "component": "source"
+        },
+        "clock": {
+          "kind": "CLOCK_MONOTONIC",
+          "unit": "seconds",
+          "resolution_seconds": 1e-09,
+          "implementation": "clock_gettime(CLOCK_MONOTONIC)",
+          "time_namespace": "time:[4026533640]",
+          "pid": 1
+        },
+        "capacity": 4096,
+        "offered": 4155,
+        "enqueued": 4155,
+        "written": 4155,
+        "dropped": 0,
+        "write_errors": 0,
+        "queue_remaining": 0,
+        "observation_complete": true,
+        "complete": true
+      },
+      "final_status": {
+        "source_id": "attack_1",
+        "run_id": "9aeffeec6d384eb393dd8242d7c26bc4",
+        "drained": true,
+        "logger_complete": true,
+        "reason": "simulation_end"
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "traffic_class": "attack",
+      "events": 4251,
+      "journal_events": 8095,
+      "summary": {
+        "schema_version": 1,
+        "context": {
+          "run_id": "9aeffeec6d384eb393dd8242d7c26bc4",
+          "source_id": "attack_2",
+          "component": "source"
+        },
+        "clock": {
+          "kind": "CLOCK_MONOTONIC",
+          "unit": "seconds",
+          "resolution_seconds": 1e-09,
+          "implementation": "clock_gettime(CLOCK_MONOTONIC)",
+          "time_namespace": "time:[4026533703]",
+          "pid": 1
+        },
+        "capacity": 4096,
+        "offered": 4251,
+        "enqueued": 4251,
+        "written": 4251,
+        "dropped": 0,
+        "write_errors": 0,
+        "queue_remaining": 0,
+        "observation_complete": true,
+        "complete": true
+      },
+      "final_status": {
+        "source_id": "attack_2",
+        "run_id": "9aeffeec6d384eb393dd8242d7c26bc4",
+        "drained": true,
+        "logger_complete": true,
+        "reason": "simulation_end"
+      }
+    }
+  ],
+  "http": {
+    "benign_Total": {
+      "attempts_started": 2383,
+      "attempts_ended_known": 2383,
+      "responses_received": 1939,
+      "http_error_responses": 0,
+      "attempts_without_observed_end": 0,
+      "duration_observations": 2383,
+      "response_duration_ms": {
+        "n": 1939,
+        "mean": 134.89437605517207,
+        "minimum": 23.54754200041498,
+        "maximum": 2044.0435849995993,
+        "p50": 38.687506999849575,
+        "p95": 1025.7067639995512,
+        "sample_sd": 356.30291436428524,
+        "sum": 261560.19517097867,
+        "p99": 1960.7684870006779,
+        "median": 38.687506999849575,
+        "max": 2044.0435849995993
+      },
+      "known_end_duration_ms": {
+        "n": 2383,
+        "mean": 483.2899187679278,
+        "minimum": 23.54754200041498,
+        "maximum": 2044.0435849995993,
+        "p50": 42.760308999277186,
+        "p95": 2005.0989419996768,
+        "sample_sd": 795.9831190933536,
+        "sum": 1151679.876423972,
+        "p99": 2006.0187290000613,
+        "median": 42.760308999277186,
+        "max": 2044.0435849995993
+      },
+      "legacy_completions_semantics": "known-ended attempts, including transport/client errors; not responses",
+      "starts_total": 2383,
+      "starts_in_window": 2383,
+      "completions": 2383,
+      "incomplete": 0,
+      "nominal_rps": 16,
+      "denominator_seconds": 150,
+      "realized_start_rps": 15.886666666666667,
+      "realized_minus_nominal": -0.11333333333333329,
+      "status_codes": {
+        "200": 1939
+      },
+      "outcomes": {
+        "response": 1939,
+        "transport_error": 444
+      },
+      "timeouts": 444,
+      "connection_errors": 0,
+      "duration_ms": {
+        "n": 2383,
+        "mean": 483.2899187679278,
+        "minimum": 23.54754200041498,
+        "maximum": 2044.0435849995993,
+        "p50": 42.760308999277186,
+        "p95": 2005.0989419996768,
+        "sample_sd": 795.9831190933536,
+        "sum": 1151679.876423972,
+        "p99": 2006.0187290000613,
+        "median": 42.760308999277186,
+        "max": 2044.0435849995993
+      },
+      "duration_basis": "known completions only; not imputed for censored attempts",
+      "completions_after_end": 2,
+      "last_start": 149.97592283599988,
+      "last_completion": 150.0133752470001,
+      "success": 1939,
+      "availability": 0.8136802349979018,
+      "numerator": 1939,
+      "denominator": 2383,
+      "submissions": 2383,
+      "admissions": null,
+      "expired_before_http": 0
+    },
+    "benign_P1": {
+      "attempts_started": 456,
+      "attempts_ended_known": 456,
+      "responses_received": 456,
+      "http_error_responses": 0,
+      "attempts_without_observed_end": 0,
+      "duration_observations": 456,
+      "response_duration_ms": {
+        "n": 456,
+        "mean": 49.448408842105586,
+        "minimum": 26.57888199973968,
+        "maximum": 102.87584900015645,
+        "p50": 40.56273650030562,
+        "p95": 82.78617799987842,
+        "sample_sd": 18.431734373409917,
+        "sum": 22548.47443200015,
+        "p99": 98.21664900027827,
+        "median": 40.56273650030562,
+        "max": 102.87584900015645
+      },
+      "known_end_duration_ms": {
+        "n": 456,
+        "mean": 49.448408842105586,
+        "minimum": 26.57888199973968,
+        "maximum": 102.87584900015645,
+        "p50": 40.56273650030562,
+        "p95": 82.78617799987842,
+        "sample_sd": 18.431734373409917,
+        "sum": 22548.47443200015,
+        "p99": 98.21664900027827,
+        "median": 40.56273650030562,
+        "max": 102.87584900015645
+      },
+      "legacy_completions_semantics": "known-ended attempts, including transport/client errors; not responses",
+      "starts_total": 456,
+      "starts_in_window": 456,
+      "completions": 456,
+      "incomplete": 0,
+      "nominal_rps": 16,
+      "denominator_seconds": 30,
+      "realized_start_rps": 15.2,
+      "realized_minus_nominal": -0.8000000000000007,
+      "status_codes": {
+        "200": 456
+      },
+      "outcomes": {
+        "response": 456
+      },
+      "timeouts": 0,
+      "connection_errors": 0,
+      "duration_ms": {
+        "n": 456,
+        "mean": 49.448408842105586,
+        "minimum": 26.57888199973968,
+        "maximum": 102.87584900015645,
+        "p50": 40.56273650030562,
+        "p95": 82.78617799987842,
+        "sample_sd": 18.431734373409917,
+        "sum": 22548.47443200015,
+        "p99": 98.21664900027827,
+        "median": 40.56273650030562,
+        "max": 102.87584900015645
+      },
+      "duration_basis": "known completions only; not imputed for censored attempts",
+      "completions_after_end": 0,
+      "last_start": 29.92638089600041,
+      "last_completion": 29.957838493000054,
+      "success": 456,
+      "availability": 1.0,
+      "numerator": 456,
+      "denominator": 456,
+      "submissions": 456,
+      "admissions": null,
+      "expired_before_http": 0
+    },
+    "benign_P2": {
+      "attempts_started": 514,
+      "attempts_ended_known": 514,
+      "responses_received": 98,
+      "http_error_responses": 0,
+      "attempts_without_observed_end": 0,
+      "duration_observations": 514,
+      "response_duration_ms": {
+        "n": 98,
+        "mean": 1365.3426438979332,
+        "minimum": 41.18914899936499,
+        "maximum": 2044.0435849995993,
+        "p50": 1461.3796165003805,
+        "p95": 1998.9082350002718,
+        "sample_sd": 568.7234296300138,
+        "sum": 133803.57910199746,
+        "p99": null,
+        "median": 1461.3796165003805,
+        "max": 2044.0435849995993
+      },
+      "known_end_duration_ms": {
+        "n": 514,
+        "mean": 1882.8468159824724,
+        "minimum": 41.18914899936499,
+        "maximum": 2044.0435849995993,
+        "p50": 2004.5459589996426,
+        "p95": 2005.961613999716,
+        "sample_sd": 352.6638827526589,
+        "sum": 967783.2634149909,
+        "p99": 2006.6588919999049,
+        "median": 2004.5459589996426,
+        "max": 2044.0435849995993
+      },
+      "legacy_completions_semantics": "known-ended attempts, including transport/client errors; not responses",
+      "starts_total": 514,
+      "starts_in_window": 514,
+      "completions": 514,
+      "incomplete": 0,
+      "nominal_rps": 16,
+      "denominator_seconds": 30,
+      "realized_start_rps": 17.133333333333333,
+      "realized_minus_nominal": 1.1333333333333329,
+      "status_codes": {
+        "200": 98
+      },
+      "outcomes": {
+        "response": 98,
+        "transport_error": 416
+      },
+      "timeouts": 416,
+      "connection_errors": 0,
+      "duration_ms": {
+        "n": 514,
+        "mean": 1882.8468159824724,
+        "minimum": 41.18914899936499,
+        "maximum": 2044.0435849995993,
+        "p50": 2004.5459589996426,
+        "p95": 2005.961613999716,
+        "sample_sd": 352.6638827526589,
+        "sum": 967783.2634149909,
+        "p99": 2006.6588919999049,
+        "median": 2004.5459589996426,
+        "max": 2044.0435849995993
+      },
+      "duration_basis": "known completions only; not imputed for censored attempts",
+      "completions_after_end": 38,
+      "last_start": 59.819609958,
+      "last_completion": 61.82471292399987,
+      "success": 98,
+      "availability": 0.19066147859922178,
+      "numerator": 98,
+      "denominator": 514,
+      "submissions": 514,
+      "admissions": null,
+      "expired_before_http": 0
+    },
+    "benign_P3": {
+      "attempts_started": 1413,
+      "attempts_ended_known": 1413,
+      "responses_received": 1385,
+      "http_error_responses": 0,
+      "attempts_without_observed_end": 0,
+      "duration_observations": 1413,
+      "response_duration_ms": {
+        "n": 1385,
+        "mean": 75.96255713861449,
+        "minimum": 23.54754200041498,
+        "maximum": 1957.9755920003663,
+        "p50": 37.39551099988603,
+        "p95": 81.07021399973746,
+        "sample_sd": 204.69922547633402,
+        "sum": 105208.14163698105,
+        "p99": 1492.153129000144,
+        "median": 37.39551099988603,
+        "max": 1957.9755920003663
+      },
+      "known_end_duration_ms": {
+        "n": 1413,
+        "mean": 114.18835001909483,
+        "minimum": 23.54754200041498,
+        "maximum": 2006.813019999754,
+        "p50": 37.51131399985752,
+        "p95": 93.22790700025507,
+        "sample_sd": 336.74890663790933,
+        "sum": 161348.138576981,
+        "p99": 2004.8310719994333,
+        "median": 37.51131399985752,
+        "max": 2006.813019999754
+      },
+      "legacy_completions_semantics": "known-ended attempts, including transport/client errors; not responses",
+      "starts_total": 1413,
+      "starts_in_window": 1413,
+      "completions": 1413,
+      "incomplete": 0,
+      "nominal_rps": 16,
+      "denominator_seconds": 90,
+      "realized_start_rps": 15.7,
+      "realized_minus_nominal": -0.3000000000000007,
+      "status_codes": {
+        "200": 1385
+      },
+      "outcomes": {
+        "transport_error": 28,
+        "response": 1385
+      },
+      "timeouts": 28,
+      "connection_errors": 0,
+      "duration_ms": {
+        "n": 1413,
+        "mean": 114.18835001909483,
+        "minimum": 23.54754200041498,
+        "maximum": 2006.813019999754,
+        "p50": 37.51131399985752,
+        "p95": 93.22790700025507,
+        "sample_sd": 336.74890663790933,
+        "sum": 161348.138576981,
+        "p99": 2004.8310719994333,
+        "median": 37.51131399985752,
+        "max": 2006.813019999754
+      },
+      "duration_basis": "known completions only; not imputed for censored attempts",
+      "completions_after_end": 2,
+      "last_start": 149.97592283599988,
+      "last_completion": 150.0133752470001,
+      "success": 1385,
+      "availability": 0.9801840056617127,
+      "numerator": 1385,
+      "denominator": 1413,
+      "submissions": 1413,
+      "admissions": null,
+      "expired_before_http": 0
+    },
+    "attack_Total": {
+      "attempts_started": 1496,
+      "attempts_ended_known": 1496,
+      "responses_received": 351,
+      "http_error_responses": 0,
+      "attempts_without_observed_end": 0,
+      "duration_observations": 1496,
+      "response_duration_ms": {
+        "n": 351,
+        "mean": 1365.5604112706465,
+        "minimum": 44.82672899939644,
+        "maximum": 2043.9512379998632,
+        "p50": 1464.3126850005501,
+        "p95": 2031.0068510007113,
+        "sample_sd": 570.9779881248811,
+        "sum": 479311.70435599686,
+        "p99": 2042.5149950006016,
+        "median": 1464.3126850005501,
+        "max": 2043.9512379998632
+      },
+      "known_end_duration_ms": {
+        "n": 1496,
+        "mean": 1854.8781622660524,
+        "minimum": 44.82672899939644,
+        "maximum": 2043.9512379998632,
+        "p50": 2004.6483704995808,
+        "p95": 2006.8278460003057,
+        "sample_sd": 387.00413722419376,
+        "sum": 2774897.7307500145,
+        "p99": 2035.0657449998835,
+        "median": 2004.6483704995808,
+        "max": 2043.9512379998632
+      },
+      "legacy_completions_semantics": "known-ended attempts, including transport/client errors; not responses",
+      "starts_total": 1496,
+      "starts_in_window": 1496,
+      "completions": 1496,
+      "incomplete": 0,
+      "nominal_rps": 64,
+      "denominator_seconds": 30,
+      "realized_start_rps": 49.86666666666667,
+      "realized_minus_nominal": -14.133333333333333,
+      "status_codes": {
+        "200": 351
+      },
+      "outcomes": {
+        "response": 351,
+        "transport_error": 1145
+      },
+      "timeouts": 1145,
+      "connection_errors": 0,
+      "duration_ms": {
+        "n": 1496,
+        "mean": 1854.8781622660524,
+        "minimum": 44.82672899939644,
+        "maximum": 2043.9512379998632,
+        "p50": 2004.6483704995808,
+        "p95": 2006.8278460003057,
+        "sample_sd": 387.00413722419376,
+        "sum": 2774897.7307500145,
+        "p99": 2035.0657449998835,
+        "median": 2004.6483704995808,
+        "max": 2043.9512379998632
+      },
+      "duration_basis": "known completions only; not imputed for censored attempts",
+      "completions_after_end": 96,
+      "last_start": 59.98519124199993,
+      "last_completion": 61.98991945899979,
+      "success": 351,
+      "availability": 0.23462566844919786,
+      "numerator": 351,
+      "denominator": 1496,
+      "submissions": 1804,
+      "admissions": 1804,
+      "expired_before_http": 308
+    },
+    "attack_P1": {
+      "attempts_started": 0,
+      "attempts_ended_known": 0,
+      "responses_received": 0,
+      "http_error_responses": 0,
+      "attempts_without_observed_end": 0,
+      "duration_observations": 0,
+      "response_duration_ms": {
+        "n": 0,
+        "mean": null,
+        "minimum": null,
+        "maximum": null,
+        "p50": null,
+        "p95": null,
+        "sample_sd": null,
+        "sum": null,
+        "p99": null,
+        "median": null,
+        "max": null
+      },
+      "known_end_duration_ms": {
+        "n": 0,
+        "mean": null,
+        "minimum": null,
+        "maximum": null,
+        "p50": null,
+        "p95": null,
+        "sample_sd": null,
+        "sum": null,
+        "p99": null,
+        "median": null,
+        "max": null
+      },
+      "legacy_completions_semantics": "known-ended attempts, including transport/client errors; not responses",
+      "starts_total": 0,
+      "starts_in_window": 0,
+      "completions": 0,
+      "incomplete": 0,
+      "nominal_rps": 0,
+      "denominator_seconds": 30,
+      "realized_start_rps": 0.0,
+      "realized_minus_nominal": 0.0,
+      "status_codes": {},
+      "outcomes": {},
+      "timeouts": 0,
+      "connection_errors": 0,
+      "duration_ms": {
+        "n": 0,
+        "mean": null,
+        "minimum": null,
+        "maximum": null,
+        "p50": null,
+        "p95": null,
+        "sample_sd": null,
+        "sum": null,
+        "p99": null,
+        "median": null,
+        "max": null
+      },
+      "duration_basis": "known completions only; not imputed for censored attempts",
+      "completions_after_end": 0,
+      "last_start": null,
+      "last_completion": null,
+      "success": 0,
+      "availability": null,
+      "numerator": 0,
+      "denominator": 0,
+      "submissions": 0,
+      "admissions": 0,
+      "expired_before_http": 0
+    },
+    "attack_P2": {
+      "attempts_started": 1496,
+      "attempts_ended_known": 1496,
+      "responses_received": 351,
+      "http_error_responses": 0,
+      "attempts_without_observed_end": 0,
+      "duration_observations": 1496,
+      "response_duration_ms": {
+        "n": 351,
+        "mean": 1365.5604112706465,
+        "minimum": 44.82672899939644,
+        "maximum": 2043.9512379998632,
+        "p50": 1464.3126850005501,
+        "p95": 2031.0068510007113,
+        "sample_sd": 570.9779881248811,
+        "sum": 479311.70435599686,
+        "p99": 2042.5149950006016,
+        "median": 1464.3126850005501,
+        "max": 2043.9512379998632
+      },
+      "known_end_duration_ms": {
+        "n": 1496,
+        "mean": 1854.8781622660524,
+        "minimum": 44.82672899939644,
+        "maximum": 2043.9512379998632,
+        "p50": 2004.6483704995808,
+        "p95": 2006.8278460003057,
+        "sample_sd": 387.00413722419376,
+        "sum": 2774897.7307500145,
+        "p99": 2035.0657449998835,
+        "median": 2004.6483704995808,
+        "max": 2043.9512379998632
+      },
+      "legacy_completions_semantics": "known-ended attempts, including transport/client errors; not responses",
+      "starts_total": 1496,
+      "starts_in_window": 1496,
+      "completions": 1496,
+      "incomplete": 0,
+      "nominal_rps": 64,
+      "denominator_seconds": 30,
+      "realized_start_rps": 49.86666666666667,
+      "realized_minus_nominal": -14.133333333333333,
+      "status_codes": {
+        "200": 351
+      },
+      "outcomes": {
+        "response": 351,
+        "transport_error": 1145
+      },
+      "timeouts": 1145,
+      "connection_errors": 0,
+      "duration_ms": {
+        "n": 1496,
+        "mean": 1854.8781622660524,
+        "minimum": 44.82672899939644,
+        "maximum": 2043.9512379998632,
+        "p50": 2004.6483704995808,
+        "p95": 2006.8278460003057,
+        "sample_sd": 387.00413722419376,
+        "sum": 2774897.7307500145,
+        "p99": 2035.0657449998835,
+        "median": 2004.6483704995808,
+        "max": 2043.9512379998632
+      },
+      "duration_basis": "known completions only; not imputed for censored attempts",
+      "completions_after_end": 96,
+      "last_start": 59.98519124199993,
+      "last_completion": 61.98991945899979,
+      "success": 351,
+      "availability": 0.23462566844919786,
+      "numerator": 351,
+      "denominator": 1496,
+      "submissions": 1804,
+      "admissions": 1804,
+      "expired_before_http": 0
+    },
+    "attack_P3": {
+      "attempts_started": 0,
+      "attempts_ended_known": 0,
+      "responses_received": 0,
+      "http_error_responses": 0,
+      "attempts_without_observed_end": 0,
+      "duration_observations": 0,
+      "response_duration_ms": {
+        "n": 0,
+        "mean": null,
+        "minimum": null,
+        "maximum": null,
+        "p50": null,
+        "p95": null,
+        "sample_sd": null,
+        "sum": null,
+        "p99": null,
+        "median": null,
+        "max": null
+      },
+      "known_end_duration_ms": {
+        "n": 0,
+        "mean": null,
+        "minimum": null,
+        "maximum": null,
+        "p50": null,
+        "p95": null,
+        "sample_sd": null,
+        "sum": null,
+        "p99": null,
+        "median": null,
+        "max": null
+      },
+      "legacy_completions_semantics": "known-ended attempts, including transport/client errors; not responses",
+      "starts_total": 0,
+      "starts_in_window": 0,
+      "completions": 0,
+      "incomplete": 0,
+      "nominal_rps": 0,
+      "denominator_seconds": 90,
+      "realized_start_rps": 0.0,
+      "realized_minus_nominal": 0.0,
+      "status_codes": {},
+      "outcomes": {},
+      "timeouts": 0,
+      "connection_errors": 0,
+      "duration_ms": {
+        "n": 0,
+        "mean": null,
+        "minimum": null,
+        "maximum": null,
+        "p50": null,
+        "p95": null,
+        "sample_sd": null,
+        "sum": null,
+        "p99": null,
+        "median": null,
+        "max": null
+      },
+      "duration_basis": "known completions only; not imputed for censored attempts",
+      "completions_after_end": 0,
+      "last_start": null,
+      "last_completion": null,
+      "success": 0,
+      "availability": null,
+      "numerator": 0,
+      "denominator": 0,
+      "submissions": 0,
+      "admissions": 0,
+      "expired_before_http": 308
+    }
+  },
+  "http_rows": [
+    {
+      "traffic_class": "benign",
+      "period": "Total",
+      "nominal_rps": 16,
+      "rate_denominator_seconds": 150,
+      "realized_rps": 15.886666666666667,
+      "submissions": 2383,
+      "admissions": null,
+      "expired_before_http": 0,
+      "starts": 2383,
+      "known_ends": 2383,
+      "responses": 1939,
+      "success": 1939,
+      "http_errors": 0,
+      "timeouts": 444,
+      "connection_errors": 0,
+      "unknown_end": 0,
+      "availability": 0.8136802349979018,
+      "mean_ms": 483.2899187679278,
+      "median_ms": 42.760308999277186,
+      "p95_ms": 2005.0989419996768,
+      "min_ms": 23.54754200041498,
+      "max_ms": 2044.0435849995993,
+      "response_mean_ms": 134.89437605517207,
+      "response_median_ms": 38.687506999849575,
+      "response_p95_ms": 1025.7067639995512
+    },
+    {
+      "traffic_class": "benign",
+      "period": "P1",
+      "nominal_rps": 16,
+      "rate_denominator_seconds": 30,
+      "realized_rps": 15.2,
+      "submissions": 456,
+      "admissions": null,
+      "expired_before_http": 0,
+      "starts": 456,
+      "known_ends": 456,
+      "responses": 456,
+      "success": 456,
+      "http_errors": 0,
+      "timeouts": 0,
+      "connection_errors": 0,
+      "unknown_end": 0,
+      "availability": 1.0,
+      "mean_ms": 49.448408842105586,
+      "median_ms": 40.56273650030562,
+      "p95_ms": 82.78617799987842,
+      "min_ms": 26.57888199973968,
+      "max_ms": 102.87584900015645,
+      "response_mean_ms": 49.448408842105586,
+      "response_median_ms": 40.56273650030562,
+      "response_p95_ms": 82.78617799987842
+    },
+    {
+      "traffic_class": "benign",
+      "period": "P2",
+      "nominal_rps": 16,
+      "rate_denominator_seconds": 30,
+      "realized_rps": 17.133333333333333,
+      "submissions": 514,
+      "admissions": null,
+      "expired_before_http": 0,
+      "starts": 514,
+      "known_ends": 514,
+      "responses": 98,
+      "success": 98,
+      "http_errors": 0,
+      "timeouts": 416,
+      "connection_errors": 0,
+      "unknown_end": 0,
+      "availability": 0.19066147859922178,
+      "mean_ms": 1882.8468159824724,
+      "median_ms": 2004.5459589996426,
+      "p95_ms": 2005.961613999716,
+      "min_ms": 41.18914899936499,
+      "max_ms": 2044.0435849995993,
+      "response_mean_ms": 1365.3426438979332,
+      "response_median_ms": 1461.3796165003805,
+      "response_p95_ms": 1998.9082350002718
+    },
+    {
+      "traffic_class": "benign",
+      "period": "P3",
+      "nominal_rps": 16,
+      "rate_denominator_seconds": 90,
+      "realized_rps": 15.7,
+      "submissions": 1413,
+      "admissions": null,
+      "expired_before_http": 0,
+      "starts": 1413,
+      "known_ends": 1413,
+      "responses": 1385,
+      "success": 1385,
+      "http_errors": 0,
+      "timeouts": 28,
+      "connection_errors": 0,
+      "unknown_end": 0,
+      "availability": 0.9801840056617127,
+      "mean_ms": 114.18835001909483,
+      "median_ms": 37.51131399985752,
+      "p95_ms": 93.22790700025507,
+      "min_ms": 23.54754200041498,
+      "max_ms": 2006.813019999754,
+      "response_mean_ms": 75.96255713861449,
+      "response_median_ms": 37.39551099988603,
+      "response_p95_ms": 81.07021399973746
+    },
+    {
+      "traffic_class": "attack",
+      "period": "Total",
+      "nominal_rps": 64,
+      "rate_denominator_seconds": 30,
+      "realized_rps": 49.86666666666667,
+      "submissions": 1804,
+      "admissions": 1804,
+      "expired_before_http": 308,
+      "starts": 1496,
+      "known_ends": 1496,
+      "responses": 351,
+      "success": 351,
+      "http_errors": 0,
+      "timeouts": 1145,
+      "connection_errors": 0,
+      "unknown_end": 0,
+      "availability": 0.23462566844919786,
+      "mean_ms": 1854.8781622660524,
+      "median_ms": 2004.6483704995808,
+      "p95_ms": 2006.8278460003057,
+      "min_ms": 44.82672899939644,
+      "max_ms": 2043.9512379998632,
+      "response_mean_ms": 1365.5604112706465,
+      "response_median_ms": 1464.3126850005501,
+      "response_p95_ms": 2031.0068510007113
+    },
+    {
+      "traffic_class": "attack",
+      "period": "P1",
+      "nominal_rps": 0,
+      "rate_denominator_seconds": 30,
+      "realized_rps": 0.0,
+      "submissions": 0,
+      "admissions": 0,
+      "expired_before_http": 0,
+      "starts": 0,
+      "known_ends": 0,
+      "responses": 0,
+      "success": 0,
+      "http_errors": 0,
+      "timeouts": 0,
+      "connection_errors": 0,
+      "unknown_end": 0,
+      "availability": null,
+      "mean_ms": null,
+      "median_ms": null,
+      "p95_ms": null,
+      "min_ms": null,
+      "max_ms": null,
+      "response_mean_ms": null,
+      "response_median_ms": null,
+      "response_p95_ms": null
+    },
+    {
+      "traffic_class": "attack",
+      "period": "P2",
+      "nominal_rps": 64,
+      "rate_denominator_seconds": 30,
+      "realized_rps": 49.86666666666667,
+      "submissions": 1804,
+      "admissions": 1804,
+      "expired_before_http": 0,
+      "starts": 1496,
+      "known_ends": 1496,
+      "responses": 351,
+      "success": 351,
+      "http_errors": 0,
+      "timeouts": 1145,
+      "connection_errors": 0,
+      "unknown_end": 0,
+      "availability": 0.23462566844919786,
+      "mean_ms": 1854.8781622660524,
+      "median_ms": 2004.6483704995808,
+      "p95_ms": 2006.8278460003057,
+      "min_ms": 44.82672899939644,
+      "max_ms": 2043.9512379998632,
+      "response_mean_ms": 1365.5604112706465,
+      "response_median_ms": 1464.3126850005501,
+      "response_p95_ms": 2031.0068510007113
+    },
+    {
+      "traffic_class": "attack",
+      "period": "P3",
+      "nominal_rps": 0,
+      "rate_denominator_seconds": 90,
+      "realized_rps": 0.0,
+      "submissions": 0,
+      "admissions": 0,
+      "expired_before_http": 308,
+      "starts": 0,
+      "known_ends": 0,
+      "responses": 0,
+      "success": 0,
+      "http_errors": 0,
+      "timeouts": 0,
+      "connection_errors": 0,
+      "unknown_end": 0,
+      "availability": null,
+      "mean_ms": null,
+      "median_ms": null,
+      "p95_ms": null,
+      "min_ms": null,
+      "max_ms": null,
+      "response_mean_ms": null,
+      "response_median_ms": null,
+      "response_p95_ms": null
+    }
+  ],
+  "computation": [
+    {
+      "traffic_class": "benign",
+      "period": "Total",
+      "cohort_basis": "HTTP start",
+      "submitted": 2383,
+      "started": 2383,
+      "completed": 2383,
+      "failed": 0,
+      "wait_mean_ms": 598.229766320594,
+      "wait_median_ms": 1.4486089994534268,
+      "wait_p95_ms": 3264.2949639994185,
+      "cpu_mean_ms": 29.89961153881656,
+      "wall_mean_ms": 29.943339834674298
+    },
+    {
+      "traffic_class": "benign",
+      "period": "P1",
+      "cohort_basis": "HTTP start",
+      "submitted": 456,
+      "started": 456,
+      "completed": 456,
+      "failed": 0,
+      "wait_mean_ms": 2.664407668845071,
+      "wait_median_ms": 1.298781000514282,
+      "wait_p95_ms": 11.648256000626134,
+      "cpu_mean_ms": 32.037294153508775,
+      "wall_mean_ms": 32.10479650441525
+    },
+    {
+      "traffic_class": "benign",
+      "period": "P2",
+      "cohort_basis": "HTTP start",
+      "submitted": 514,
+      "started": 514,
+      "completed": 514,
+      "failed": 0,
+      "wait_mean_ms": 2521.7810314610538,
+      "wait_median_ms": 2592.9101894998894,
+      "wait_p95_ms": 3682.934053000281,
+      "cpu_mean_ms": 32.91815430739317,
+      "wall_mean_ms": 32.94065272180845
+    },
+    {
+      "traffic_class": "benign",
+      "period": "P3",
+      "cohort_basis": "HTTP start",
+      "submitted": 1413,
+      "started": 1413,
+      "completed": 1413,
+      "failed": 0,
+      "wait_mean_ms": 90.70850182165637,
+      "wait_median_ms": 1.288663000195811,
+      "wait_p95_ms": 34.75922600046033,
+      "cpu_mean_ms": 28.111703360934023,
+      "wall_mean_ms": 28.155482038928493
+    },
+    {
+      "traffic_class": "attack",
+      "period": "Total",
+      "cohort_basis": "HTTP start",
+      "submitted": 1496,
+      "started": 1496,
+      "completed": 1496,
+      "failed": 0,
+      "wait_mean_ms": 2433.358911439178,
+      "wait_median_ms": 2483.509446500193,
+      "wait_p95_ms": 3609.6852260006926,
+      "cpu_mean_ms": 33.084671057486574,
+      "wall_mean_ms": 33.09184636567111
+    },
+    {
+      "traffic_class": "attack",
+      "period": "P1",
+      "cohort_basis": "HTTP start",
+      "submitted": 0,
+      "started": 0,
+      "completed": 0,
+      "failed": 0,
+      "wait_mean_ms": null,
+      "wait_median_ms": null,
+      "wait_p95_ms": null,
+      "cpu_mean_ms": null,
+      "wall_mean_ms": null
+    },
+    {
+      "traffic_class": "attack",
+      "period": "P2",
+      "cohort_basis": "HTTP start",
+      "submitted": 1496,
+      "started": 1496,
+      "completed": 1496,
+      "failed": 0,
+      "wait_mean_ms": 2433.358911439178,
+      "wait_median_ms": 2483.509446500193,
+      "wait_p95_ms": 3609.6852260006926,
+      "cpu_mean_ms": 33.084671057486574,
+      "wall_mean_ms": 33.09184636567111
+    },
+    {
+      "traffic_class": "attack",
+      "period": "P3",
+      "cohort_basis": "HTTP start",
+      "submitted": 0,
+      "started": 0,
+      "completed": 0,
+      "failed": 0,
+      "wait_mean_ms": null,
+      "wait_median_ms": null,
+      "wait_p95_ms": null,
+      "cpu_mean_ms": null,
+      "wall_mean_ms": null
+    }
+  ],
+  "workers": [
+    {
+      "traffic_class": "benign",
+      "period": "Total",
+      "worker_pid": 25,
+      "operations": 1217,
+      "wait_mean_ms": 641.9502525266971,
+      "wait_median_ms": 1.4822909997747047,
+      "wait_p95_ms": 3296.942449999733
+    },
+    {
+      "traffic_class": "benign",
+      "period": "Total",
+      "worker_pid": 26,
+      "operations": 1166,
+      "wait_mean_ms": 552.596977544584,
+      "wait_median_ms": 1.4223079997464083,
+      "wait_p95_ms": 3230.2538060002917
+    },
+    {
+      "traffic_class": "benign",
+      "period": "P1",
+      "worker_pid": 25,
+      "operations": 226,
+      "wait_mean_ms": 2.636160066339898,
+      "wait_median_ms": 1.3187495005695382,
+      "wait_p95_ms": 12.000803000773885
+    },
+    {
+      "traffic_class": "benign",
+      "period": "P1",
+      "worker_pid": 26,
+      "operations": 230,
+      "wait_mean_ms": 2.6921640086979806,
+      "wait_median_ms": 1.285326000470377,
+      "wait_p95_ms": 10.800050999932864
+    },
+    {
+      "traffic_class": "benign",
+      "period": "P2",
+      "worker_pid": 25,
+      "operations": 280,
+      "wait_mean_ms": 2561.1938050999893,
+      "wait_median_ms": 2625.819431999844,
+      "wait_p95_ms": 3721.7093949993796
+    },
+    {
+      "traffic_class": "benign",
+      "period": "P2",
+      "worker_pid": 26,
+      "operations": 234,
+      "wait_mean_ms": 2474.620447619592,
+      "wait_median_ms": 2560.356022999713,
+      "wait_p95_ms": 3592.198108000048
+    },
+    {
+      "traffic_class": "benign",
+      "period": "P3",
+      "worker_pid": 25,
+      "operations": 711,
+      "wait_mean_ms": 89.34376894796154,
+      "wait_median_ms": 1.2888729997939663,
+      "wait_p95_ms": 40.61963000003743
+    },
+    {
+      "traffic_class": "benign",
+      "period": "P3",
+      "worker_pid": 26,
+      "operations": 702,
+      "wait_mean_ms": 92.090731270655,
+      "wait_median_ms": 1.288500500322698,
+      "wait_p95_ms": 32.142656999894825
+    },
+    {
+      "traffic_class": "attack",
+      "period": "Total",
+      "worker_pid": 25,
+      "operations": 730,
+      "wait_mean_ms": 2427.9051472959,
+      "wait_median_ms": 2451.3091359999635,
+      "wait_p95_ms": 3566.4119249995565
+    },
+    {
+      "traffic_class": "attack",
+      "period": "Total",
+      "worker_pid": 26,
+      "operations": 766,
+      "wait_mean_ms": 2438.556362907315,
+      "wait_median_ms": 2491.6394355000193,
+      "wait_p95_ms": 3647.7157769995756
+    },
+    {
+      "traffic_class": "attack",
+      "period": "P2",
+      "worker_pid": 25,
+      "operations": 730,
+      "wait_mean_ms": 2427.9051472959,
+      "wait_median_ms": 2451.3091359999635,
+      "wait_p95_ms": 3566.4119249995565
+    },
+    {
+      "traffic_class": "attack",
+      "period": "P2",
+      "worker_pid": 26,
+      "operations": 766,
+      "wait_mean_ms": 2438.556362907315,
+      "wait_median_ms": 2491.6394355000193,
+      "wait_p95_ms": 3647.7157769995756
+    }
+  ],
+  "queue_peaks": [
+    {
+      "period": "Total",
+      "traffic_class": "benign",
+      "waiting": 74,
+      "running": 2,
+      "pending": 75
+    },
+    {
+      "period": "Total",
+      "traffic_class": "attack",
+      "waiting": 167,
+      "running": 2,
+      "pending": 168
+    },
+    {
+      "period": "Total",
+      "traffic_class": "total",
+      "waiting": 239,
+      "running": 2,
+      "pending": 241
+    },
+    {
+      "period": "P1",
+      "traffic_class": "benign",
+      "waiting": 3,
+      "running": 2,
+      "pending": 5
+    },
+    {
+      "period": "P1",
+      "traffic_class": "attack",
+      "waiting": 0,
+      "running": 0,
+      "pending": 0
+    },
+    {
+      "period": "P1",
+      "traffic_class": "total",
+      "waiting": 3,
+      "running": 2,
+      "pending": 5
+    },
+    {
+      "period": "P2",
+      "traffic_class": "benign",
+      "waiting": 74,
+      "running": 2,
+      "pending": 75
+    },
+    {
+      "period": "P2",
+      "traffic_class": "attack",
+      "waiting": 167,
+      "running": 2,
+      "pending": 168
+    },
+    {
+      "period": "P2",
+      "traffic_class": "total",
+      "waiting": 239,
+      "running": 2,
+      "pending": 241
+    },
+    {
+      "period": "P3",
+      "traffic_class": "benign",
+      "waiting": 71,
+      "running": 2,
+      "pending": 72
+    },
+    {
+      "period": "P3",
+      "traffic_class": "attack",
+      "waiting": 164,
+      "running": 2,
+      "pending": 166
+    },
+    {
+      "period": "P3",
+      "traffic_class": "total",
+      "waiting": 232,
+      "running": 2,
+      "pending": 234
+    }
+  ],
+  "residual": {
+    "boundaries": {
+      "30": {
+        "before": {
+          "status": "observed",
+          "counts": {
+            "benign": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 456,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 456,
+              "started": 456
+            },
+            "attack": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 0,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 0,
+              "started": 0
+            },
+            "unknown": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 20,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 20,
+              "started": 20
+            }
+          },
+          "errors": []
+        },
+        "after_events_at_boundary": {
+          "status": "observed",
+          "counts": {
+            "benign": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 456,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 456,
+              "started": 456
+            },
+            "attack": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 0,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 0,
+              "started": 0
+            },
+            "unknown": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 20,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 20,
+              "started": 20
+            }
+          },
+          "errors": []
+        }
+      },
+      "60": {
+        "before": {
+          "status": "observed",
+          "counts": {
+            "benign": {
+              "waiting": 68,
+              "running": 0,
+              "completed": 902,
+              "failed": 0,
+              "pending": 68,
+              "submitted": 970,
+              "started": 902
+            },
+            "attack": {
+              "waiting": 164,
+              "running": 2,
+              "completed": 1330,
+              "failed": 0,
+              "pending": 166,
+              "submitted": 1496,
+              "started": 1332
+            },
+            "unknown": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 20,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 20,
+              "started": 20
+            }
+          },
+          "errors": []
+        },
+        "after_events_at_boundary": {
+          "status": "observed",
+          "counts": {
+            "benign": {
+              "waiting": 68,
+              "running": 0,
+              "completed": 902,
+              "failed": 0,
+              "pending": 68,
+              "submitted": 970,
+              "started": 902
+            },
+            "attack": {
+              "waiting": 164,
+              "running": 2,
+              "completed": 1330,
+              "failed": 0,
+              "pending": 166,
+              "submitted": 1496,
+              "started": 1332
+            },
+            "unknown": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 20,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 20,
+              "started": 20
+            }
+          },
+          "errors": []
+        }
+      },
+      "70": {
+        "before": {
+          "status": "observed",
+          "counts": {
+            "benign": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 1121,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 1121,
+              "started": 1121
+            },
+            "attack": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 1496,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 1496,
+              "started": 1496
+            },
+            "unknown": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 20,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 20,
+              "started": 20
+            }
+          },
+          "errors": []
+        },
+        "after_events_at_boundary": {
+          "status": "observed",
+          "counts": {
+            "benign": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 1121,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 1121,
+              "started": 1121
+            },
+            "attack": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 1496,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 1496,
+              "started": 1496
+            },
+            "unknown": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 20,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 20,
+              "started": 20
+            }
+          },
+          "errors": []
+        }
+      },
+      "80": {
+        "before": {
+          "status": "observed",
+          "counts": {
+            "benign": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 1262,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 1262,
+              "started": 1262
+            },
+            "attack": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 1496,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 1496,
+              "started": 1496
+            },
+            "unknown": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 20,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 20,
+              "started": 20
+            }
+          },
+          "errors": []
+        },
+        "after_events_at_boundary": {
+          "status": "observed",
+          "counts": {
+            "benign": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 1262,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 1262,
+              "started": 1262
+            },
+            "attack": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 1496,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 1496,
+              "started": 1496
+            },
+            "unknown": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 20,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 20,
+              "started": 20
+            }
+          },
+          "errors": []
+        }
+      },
+      "90": {
+        "before": {
+          "status": "observed",
+          "counts": {
+            "benign": {
+              "waiting": 0,
+              "running": 2,
+              "completed": 1437,
+              "failed": 0,
+              "pending": 2,
+              "submitted": 1439,
+              "started": 1439
+            },
+            "attack": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 1496,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 1496,
+              "started": 1496
+            },
+            "unknown": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 20,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 20,
+              "started": 20
+            }
+          },
+          "errors": []
+        },
+        "after_events_at_boundary": {
+          "status": "observed",
+          "counts": {
+            "benign": {
+              "waiting": 0,
+              "running": 2,
+              "completed": 1437,
+              "failed": 0,
+              "pending": 2,
+              "submitted": 1439,
+              "started": 1439
+            },
+            "attack": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 1496,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 1496,
+              "started": 1496
+            },
+            "unknown": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 20,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 20,
+              "started": 20
+            }
+          },
+          "errors": []
+        }
+      },
+      "120": {
+        "before": {
+          "status": "observed",
+          "counts": {
+            "benign": {
+              "waiting": 0,
+              "running": 1,
+              "completed": 1892,
+              "failed": 0,
+              "pending": 1,
+              "submitted": 1893,
+              "started": 1893
+            },
+            "attack": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 1496,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 1496,
+              "started": 1496
+            },
+            "unknown": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 20,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 20,
+              "started": 20
+            }
+          },
+          "errors": []
+        },
+        "after_events_at_boundary": {
+          "status": "observed",
+          "counts": {
+            "benign": {
+              "waiting": 0,
+              "running": 1,
+              "completed": 1892,
+              "failed": 0,
+              "pending": 1,
+              "submitted": 1893,
+              "started": 1893
+            },
+            "attack": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 1496,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 1496,
+              "started": 1496
+            },
+            "unknown": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 20,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 20,
+              "started": 20
+            }
+          },
+          "errors": []
+        }
+      },
+      "150": {
+        "before": {
+          "status": "observed",
+          "counts": {
+            "benign": {
+              "waiting": 0,
+              "running": 2,
+              "completed": 2381,
+              "failed": 0,
+              "pending": 2,
+              "submitted": 2383,
+              "started": 2383
+            },
+            "attack": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 1496,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 1496,
+              "started": 1496
+            },
+            "unknown": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 20,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 20,
+              "started": 20
+            }
+          },
+          "errors": []
+        },
+        "after_events_at_boundary": {
+          "status": "observed",
+          "counts": {
+            "benign": {
+              "waiting": 0,
+              "running": 2,
+              "completed": 2381,
+              "failed": 0,
+              "pending": 2,
+              "submitted": 2383,
+              "started": 2383
+            },
+            "attack": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 1496,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 1496,
+              "started": 1496
+            },
+            "unknown": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 20,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 20,
+              "started": 20
+            }
+          },
+          "errors": []
+        }
+      }
+    },
+    "last_offensive_completion": 63.6993708480004,
+    "seconds_after_60": 3.699370848000399,
+    "offensive_completions_at_or_after_60": 166,
+    "offensive_submissions_at_or_after_60": [],
+    "final_observed_state": {
+      "status": "observed",
+      "counts": {
+        "benign": {
+          "waiting": 0,
+          "running": 0,
+          "completed": 2385,
+          "failed": 0,
+          "pending": 0,
+          "submitted": 2385,
+          "started": 2385
+        },
+        "attack": {
+          "waiting": 0,
+          "running": 0,
+          "completed": 1496,
+          "failed": 0,
+          "pending": 0,
+          "submitted": 1496,
+          "started": 1496
+        },
+        "unknown": {
+          "waiting": 0,
+          "running": 0,
+          "completed": 20,
+          "failed": 0,
+          "pending": 0,
+          "submitted": 20,
+          "started": 20
+        }
+      },
+      "errors": []
+    },
+    "scope": "Observed complete lifecycles of identified operations; not universal proof against unobserved future ingress"
+  },
+  "resources": [
+    {
+      "period": "Total",
+      "samples": 20,
+      "first": 10.16928630700022,
+      "last": 145.06636845000048,
+      "cpu_mean": 88.5255,
+      "cpu_max": 242.88,
+      "mem_mean_mib": 46.8425,
+      "mem_max_mib": 56.66,
+      "gap_median": 6.052586049000638,
+      "gap_max": 10.178784675000315,
+      "raw_samples": 50
+    },
+    {
+      "period": "P1",
+      "samples": 2,
+      "first": 10.16928630700022,
+      "last": 20.228322638999998,
+      "cpu_mean": 60.535,
+      "cpu_max": 64.19,
+      "mem_mean_mib": 27.509999999999998,
+      "mem_max_mib": 27.89,
+      "gap_median": 10.059036331999778,
+      "gap_max": 10.059036331999778,
+      "raw_samples": 10
+    },
+    {
+      "period": "P2",
+      "samples": 3,
+      "first": 30.299596532000578,
+      "last": 50.625851188000524,
+      "cpu_mean": 172.51,
+      "cpu_max": 238.59,
+      "mem_mean_mib": 40.75,
+      "mem_max_mib": 48.94,
+      "gap_median": 10.163127327999973,
+      "gap_max": 10.178784675000315,
+      "raw_samples": 10
+    },
+    {
+      "period": "P3",
+      "samples": 15,
+      "first": 60.75185720399986,
+      "last": 145.06636845000048,
+      "cpu_mean": 75.46066666666667,
+      "cpu_max": 242.88,
+      "mem_mean_mib": 50.638666666666666,
+      "mem_max_mib": 56.66,
+      "gap_median": 6.017652737500157,
+      "gap_max": 6.206138362999809,
+      "raw_samples": 30
+    }
+  ],
+  "tail_http": [
+    {
+      "run_id": "9aeffeec6d384eb393dd8242d7c26bc4",
+      "request_id": "request_normal_2_000001216",
+      "generator": "normal",
+      "worker_id": "1",
+      "target_url": "http://edos_service:80/medium",
+      "timestamp": "1794097553.434929",
+      "elapsed_seconds": "150.00283239600049",
+      "end_timestamp": "1794097553.4707046",
+      "end_elapsed_seconds": "150.0386082570003",
+      "duration_ms": "35.77586099982",
+      "traffic_class": "benign",
+      "attack_active": "0",
+      "attack_id": "",
+      "event_id": "",
+      "active_event_ids": "[]",
+      "http_status": "200",
+      "outcome": "response",
+      "error_type": ""
+    },
+    {
+      "run_id": "9aeffeec6d384eb393dd8242d7c26bc4",
+      "request_id": "request_normal_1_000001169",
+      "generator": "normal",
+      "worker_id": "0",
+      "target_url": "http://edos_service:80/medium",
+      "timestamp": "1794097553.4401324",
+      "elapsed_seconds": "150.00803599899973",
+      "end_timestamp": "1794097553.512836",
+      "end_elapsed_seconds": "150.08074141999987",
+      "duration_ms": "72.705421000137",
+      "traffic_class": "benign",
+      "attack_active": "0",
+      "attack_id": "",
+      "event_id": "",
+      "active_event_ids": "[]",
+      "http_status": "200",
+      "outcome": "response",
+      "error_type": ""
+    }
+  ],
+  "boundary_crossings": {
+    "30": [],
+    "60": [
+      "request_attack_1_000000692",
+      "request_normal_2_000000463",
+      "request_attack_1_000000693",
+      "request_attack_1_000000694",
+      "request_normal_2_000000464",
+      "request_normal_2_000000465",
+      "request_normal_2_000000466",
+      "request_attack_2_000000710",
+      "request_attack_2_000000711",
+      "request_normal_1_000000471",
+      "request_attack_1_000000695",
+      "request_attack_1_000000696",
+      "request_attack_2_000000712",
+      "request_attack_1_000000697",
+      "request_attack_2_000000713",
+      "request_normal_1_000000472",
+      "request_normal_1_000000473",
+      "request_normal_2_000000467",
+      "request_attack_2_000000714",
+      "request_attack_2_000000715",
+      "request_attack_1_000000698",
+      "request_attack_2_000000716",
+      "request_attack_1_000000699",
+      "request_attack_1_000000700",
+      "request_attack_2_000000717",
+      "request_attack_1_000000701",
+      "request_attack_1_000000702",
+      "request_attack_1_000000703",
+      "request_attack_2_000000718",
+      "request_normal_2_000000468",
+      "request_normal_1_000000474",
+      "request_attack_1_000000704",
+      "request_attack_2_000000719",
+      "request_attack_1_000000705",
+      "request_attack_1_000000706",
+      "request_attack_2_000000720",
+      "request_normal_1_000000475",
+      "request_attack_1_000000707",
+      "request_attack_2_000000721",
+      "request_attack_1_000000708",
+      "request_normal_2_000000469",
+      "request_normal_2_000000470",
+      "request_attack_1_000000709",
+      "request_attack_2_000000722",
+      "request_attack_1_000000710",
+      "request_normal_2_000000471",
+      "request_attack_2_000000723",
+      "request_attack_2_000000724",
+      "request_normal_1_000000476",
+      "request_attack_1_000000711",
+      "request_attack_1_000000712",
+      "request_attack_1_000000713",
+      "request_normal_1_000000477",
+      "request_attack_2_000000725",
+      "request_normal_1_000000478",
+      "request_attack_1_000000714",
+      "request_attack_2_000000726",
+      "request_attack_2_000000727",
+      "request_normal_1_000000479",
+      "request_attack_1_000000715",
+      "request_attack_2_000000728",
+      "request_attack_1_000000716",
+      "request_attack_2_000000729",
+      "request_attack_2_000000730",
+      "request_attack_2_000000731",
+      "request_attack_1_000000717",
+      "request_normal_1_000000480",
+      "request_normal_2_000000472",
+      "request_attack_2_000000732",
+      "request_attack_2_000000733",
+      "request_normal_2_000000473",
+      "request_attack_2_000000734",
+      "request_attack_2_000000735",
+      "request_attack_1_000000718",
+      "request_attack_1_000000719",
+      "request_attack_2_000000736",
+      "request_normal_1_000000481",
+      "request_attack_2_000000737",
+      "request_normal_2_000000474",
+      "request_attack_2_000000738",
+      "request_normal_2_000000475",
+      "request_attack_1_000000720",
+      "request_attack_1_000000721",
+      "request_attack_2_000000739",
+      "request_normal_2_000000476",
+      "request_attack_2_000000740",
+      "request_attack_2_000000741",
+      "request_attack_2_000000742",
+      "request_attack_1_000000722",
+      "request_attack_2_000000743",
+      "request_normal_1_000000482",
+      "request_attack_2_000000744",
+      "request_normal_1_000000483",
+      "request_attack_1_000000723",
+      "request_normal_2_000000477",
+      "request_attack_1_000000724",
+      "request_attack_1_000000725",
+      "request_attack_2_000000745",
+      "request_attack_2_000000746",
+      "request_attack_2_000000747",
+      "request_attack_1_000000726",
+      "request_normal_2_000000478",
+      "request_attack_1_000000727",
+      "request_attack_1_000000728",
+      "request_normal_2_000000479",
+      "request_normal_2_000000480",
+      "request_attack_1_000000729",
+      "request_attack_1_000000730",
+      "request_attack_1_000000731",
+      "request_attack_1_000000732",
+      "request_attack_1_000000733",
+      "request_normal_1_000000484",
+      "request_attack_2_000000748",
+      "request_attack_2_000000749",
+      "request_normal_1_000000485",
+      "request_normal_1_000000486",
+      "request_attack_2_000000750",
+      "request_attack_2_000000751",
+      "request_attack_1_000000734",
+      "request_normal_1_000000487",
+      "request_attack_2_000000752",
+      "request_normal_2_000000481",
+      "request_attack_2_000000753",
+      "request_normal_2_000000482",
+      "request_normal_1_000000488",
+      "request_attack_1_000000735",
+      "request_attack_1_000000736",
+      "request_attack_2_000000754",
+      "request_attack_1_000000737",
+      "request_attack_1_000000738",
+      "request_attack_1_000000739",
+      "request_attack_2_000000755",
+      "request_attack_2_000000756",
+      "request_attack_2_000000757"
+    ],
+    "150": [
+      "request_normal_1_000001168",
+      "request_normal_2_000001215"
+    ]
+  },
+  "comparison_b2l": [
+    {
+      "period": "Total",
+      "rps": 15.886666666666667,
+      "rps_b2l": 15.9,
+      "availability": 0.8136802349979018,
+      "availability_b2l": 1.0,
+      "http_mean_ms": 483.2899187679278,
+      "http_mean_ratio_b2l": 10.310905880602125,
+      "http_p95_ms": 2005.0989419996768,
+      "http_p95_ratio_b2l": 25.15595915009991,
+      "worker_wait_ms": 598.229766320594,
+      "cpu_op_ms": 29.89961153881656
+    },
+    {
+      "period": "P1",
+      "rps": 15.2,
+      "rps_b2l": 15.9,
+      "availability": 1.0,
+      "availability_b2l": 1.0,
+      "http_mean_ms": 49.448408842105586,
+      "http_mean_ratio_b2l": 1.054973153208508,
+      "http_p95_ms": 82.78617799987842,
+      "http_p95_ratio_b2l": 1.0386348864564794,
+      "worker_wait_ms": 2.664407668845071,
+      "cpu_op_ms": 32.037294153508775
+    },
+    {
+      "period": "P2",
+      "rps": 17.133333333333333,
+      "rps_b2l": 15.9,
+      "availability": 0.19066147859922178,
+      "availability_b2l": 1.0,
+      "http_mean_ms": 1882.8468159824724,
+      "http_mean_ratio_b2l": 40.17020747438568,
+      "http_p95_ms": 2005.961613999716,
+      "http_p95_ratio_b2l": 25.166782227773712,
+      "worker_wait_ms": 2521.7810314610538,
+      "cpu_op_ms": 32.91815430739317
+    },
+    {
+      "period": "P3",
+      "rps": 15.7,
+      "rps_b2l": 15.9,
+      "availability": 0.9801840056617127,
+      "availability_b2l": 1.0,
+      "http_mean_ms": 114.18835001909483,
+      "http_mean_ratio_b2l": 2.4361884740110007,
+      "http_p95_ms": 93.22790700025507,
+      "http_p95_ratio_b2l": 1.169636755086427,
+      "worker_wait_ms": 90.70850182165637,
+      "cpu_op_ms": 28.111703360934023
+    }
+  ],
+  "manifest_sha256": "07f25ea0a173ec4a9ade3c3284ee7ea14944b694d2b90cc3da72e89d8770a25f",
+  "processor_sha256": "529f77a86707ec8eec144f12e39f1f4caf4fce8680ccbd628d780584e3d02750",
+  "baseline_manifest_sha256": "3122825e0cd0ea0025e94844e9f12aa4467dad7d6e012e082f707c9177ea6cea",
+  "generator_behavior": [
+    {
+      "source_id": "normal_1",
+      "traffic_class": "benign",
+      "planned_records": 1169,
+      "submitted": 1169,
+      "task_started": 1169,
+      "http_started": 1169,
+      "peak_submitted_not_started": 1,
+      "dispatch_ms": {
+        "n": 1169,
+        "mean": 0.44370481523879873,
+        "minimum": 0.10005999956774758,
+        "maximum": 1.9724680005310802,
+        "p50": 0.4015949998574797,
+        "p95": 0.9447290003663511,
+        "sample_sd": 0.24720321485083277,
+        "sum": 518.6909290141557,
+        "p99": 1.3208620002842508
+      },
+      "expired_before_http": 0,
+      "admissions": null
+    },
+    {
+      "source_id": "normal_2",
+      "traffic_class": "benign",
+      "planned_records": 1216,
+      "submitted": 1216,
+      "task_started": 1216,
+      "http_started": 1216,
+      "peak_submitted_not_started": 2,
+      "dispatch_ms": {
+        "n": 1216,
+        "mean": 0.45336770970182344,
+        "minimum": 0.09828500060393708,
+        "maximum": 2.236780000202998,
+        "p50": 0.4041260003759817,
+        "p95": 0.9240409999620169,
+        "sample_sd": 0.2529001111237522,
+        "sum": 551.2951349974173,
+        "p99": 1.3543780005420558
+      },
+      "expired_before_http": 0,
+      "admissions": null
+    },
+    {
+      "source_id": "attack_1",
+      "traffic_class": "attack",
+      "planned_records": null,
+      "submitted": 892,
+      "task_started": 892,
+      "http_started": 739,
+      "peak_submitted_not_started": 153,
+      "dispatch_ms": {
+        "n": 892,
+        "mean": 2024.1241492937138,
+        "minimum": 0.12003699976048665,
+        "maximum": 5215.705335999701,
+        "p50": 1704.7754240002178,
+        "p95": 4810.084693000135,
+        "sample_sd": 1616.7282232926257,
+        "sum": 1805518.7411699926,
+        "p99": 5102.509037000345
+      },
+      "expired_before_http": 153,
+      "admissions": 892
+    },
+    {
+      "source_id": "attack_2",
+      "traffic_class": "attack",
+      "planned_records": null,
+      "submitted": 912,
+      "task_started": 912,
+      "http_started": 757,
+      "peak_submitted_not_started": 157,
+      "dispatch_ms": {
+        "n": 912,
+        "mean": 2363.006818466012,
+        "minimum": 0.12066300041624345,
+        "maximum": 5947.1008609998535,
+        "p50": 2305.154329999823,
+        "p95": 5377.843824999218,
+        "sample_sd": 1723.5408560106694,
+        "sum": 2155062.218441003,
+        "p99": 5765.076721999321
+      },
+      "expired_before_http": 155,
+      "admissions": 912
+    }
+  ],
+  "classification_basis": "source inventory and diagnostic request IDs; endpoint is not a class discriminator",
+  "nominal_rates": {
+    "legitimate": 16,
+    "offensive": 64
+  },
+  "concurrency_observed": [
+    {
+      "execution": "B2-F",
+      "source_id": "normal_1",
+      "traffic_class": "benign",
+      "configured_positions": 32,
+      "task_occupancy": {
+        "peak_in_attack_window": 20,
+        "time_mean_in_attack_window": 9.551051035966626
+      },
+      "http_occupancy": {
+        "peak_in_attack_window": 20,
+        "time_mean_in_attack_window": 9.542974493766678
+      }
+    },
+    {
+      "execution": "B2-F",
+      "source_id": "normal_2",
+      "traffic_class": "benign",
+      "configured_positions": 32,
+      "task_occupancy": {
+        "peak_in_attack_window": 18,
+        "time_mean_in_attack_window": 8.980435238433468
+      },
+      "http_occupancy": {
+        "peak_in_attack_window": 18,
+        "time_mean_in_attack_window": 8.973190745799881
+      }
+    },
+    {
+      "execution": "B2-F",
+      "source_id": "attack_1",
+      "traffic_class": "attack",
+      "configured_positions": 32,
+      "task_occupancy": {
+        "peak_in_attack_window": 32,
+        "time_mean_in_attack_window": 28.98145286913371
+      },
+      "http_occupancy": {
+        "peak_in_attack_window": 32,
+        "time_mean_in_attack_window": 28.928458383166873
+      }
+    },
+    {
+      "execution": "B2-F",
+      "source_id": "attack_2",
+      "traffic_class": "attack",
+      "configured_positions": 32,
+      "task_occupancy": {
+        "peak_in_attack_window": 32,
+        "time_mean_in_attack_window": 29.42990141896674
+      },
+      "http_occupancy": {
+        "peak_in_attack_window": 32,
+        "time_mean_in_attack_window": 29.376006074200284
+      }
+    },
+    {
+      "execution": "B2-F96",
+      "source_id": "normal_1",
+      "traffic_class": "benign",
+      "configured_positions": 32,
+      "task_occupancy": {
+        "peak_in_attack_window": 27,
+        "time_mean_in_attack_window": 15.949171793599605
+      },
+      "http_occupancy": {
+        "peak_in_attack_window": 27,
+        "time_mean_in_attack_window": 15.941848152733382
+      }
+    },
+    {
+      "execution": "B2-F96",
+      "source_id": "normal_2",
+      "traffic_class": "benign",
+      "configured_positions": 32,
+      "task_occupancy": {
+        "peak_in_attack_window": 23,
+        "time_mean_in_attack_window": 15.154328814666284
+      },
+      "http_occupancy": {
+        "peak_in_attack_window": 23,
+        "time_mean_in_attack_window": 15.147804735432812
+      }
+    },
+    {
+      "execution": "B2-F96",
+      "source_id": "attack_1",
+      "traffic_class": "attack",
+      "configured_positions": 48,
+      "task_occupancy": {
+        "peak_in_attack_window": 48,
+        "time_mean_in_attack_window": 44.499218825266055
+      },
+      "http_occupancy": {
+        "peak_in_attack_window": 48,
+        "time_mean_in_attack_window": 44.4512057059667
+      }
+    },
+    {
+      "execution": "B2-F96",
+      "source_id": "attack_2",
+      "traffic_class": "attack",
+      "configured_positions": 48,
+      "task_occupancy": {
+        "peak_in_attack_window": 48,
+        "time_mean_in_attack_window": 44.99147542693275
+      },
+      "http_occupancy": {
+        "peak_in_attack_window": 48,
+        "time_mean_in_attack_window": 44.94127395549985
+      }
+    }
+  ],
+  "comparison_reference": {
+    "run_id": "e00439f74fb24daebb36d8905f88c37c",
+    "manifest_sha256": "460817cee7aa7a89f45827b2df7793bcb3b54b8ef75887b4a2b182ee56dd9428",
+    "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/reports/b2-f-20261108T000313Z"
+  },
+  "configuration_difference": {
+    "id": "new traceability identifier",
+    "attack.max_concurrent_sends": [
+      64,
+      96
+    ]
+  }
+}

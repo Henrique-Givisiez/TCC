@@ -1,0 +1,1496 @@
+{
+  "validation_schema_version": 1,
+  "validator_rules_version": 1,
+  "validator_sha256": "441af5c0db31fa8918c82c8bbf00ed550ab3551a9a27d149abc41f5b98f3ae5c",
+  "validator_dependencies_sha256": {
+    "experiments/dataset_schema.py": "0b9a23145636318b9bdfd42b0a33a4d6a50de246a341068ddc71573d30e3275d",
+    "experiments/dataset_provenance.py": "ba6613472c95cc58adb9fc71a457f5a407b60889c14ae40c8efb0485716306d1",
+    "simulator/experiment_config.py": "7bb7d6020dfd1fe83ecfdf5ee2fef15478b6b0250c1ebc07faab14302f9dffee",
+    "simulator/source_aggregate.py": "9a2b24ba26744c9c0bd1c25c492998c98c1cb1eac90666997f6f84f014194b7f"
+  },
+  "dataset_manifest_sha256": "07f25ea0a173ec4a9ade3c3284ee7ea14944b694d2b90cc3da72e89d8770a25f",
+  "run_id": "9aeffeec6d384eb393dd8242d7c26bc4",
+  "dataset_schema_version": 1,
+  "dataset_valid": true,
+  "analysis_eligible": true,
+  "structural_valid": true,
+  "summary": {
+    "errors": 0,
+    "warnings": 2,
+    "info": 8,
+    "eligibility_blockers": []
+  },
+  "checks": [
+    {
+      "check_id": "JSON_PARSEABLE",
+      "stage": "structural",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "JSON artifact is parseable",
+      "evidence": {
+        "path": "dataset_manifest.json"
+      }
+    },
+    {
+      "check_id": "MANIFEST_SCHEMA_SUPPORTED",
+      "stage": "structural",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Only dataset schema version 1 is supported",
+      "evidence": {
+        "version": 1
+      }
+    },
+    {
+      "check_id": "MANIFEST_FIELDS_VALID",
+      "stage": "structural",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Manifest must identify a run, status and file index",
+      "evidence": {}
+    },
+    {
+      "check_id": "DATASET_PATH_SAFE",
+      "stage": "structural",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Indexed paths must stay inside dataset and not traverse symlinks",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "FILE_INDEX_UNIQUE",
+      "stage": "structural",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Exported file paths must be unique",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "FILE_INDEX_FIELDS_VALID",
+      "stage": "structural",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Every indexed file needs a SHA256 and nonnegative byte size",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "FILE_HASH_MATCH",
+      "stage": "structural",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Present indexed files must match their SHA256",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "FILE_SIZE_MATCH",
+      "stage": "structural",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Present indexed files must match their byte sizes",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "INDEXED_FILE_PRESENT",
+      "stage": "structural",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Indexed canonical/scientific files must exist",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "OPTIONAL_EVIDENCE_PRESENT",
+      "stage": "structural",
+      "severity": "WARNING",
+      "passed": true,
+      "affects": [],
+      "message": "Missing optional evidence limits auditability",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "CANONICAL_REFERENCE_VALID",
+      "stage": "structural",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Canonical references must be indexed paths of the supported layout",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "JSON_PARSEABLE",
+      "stage": "structural",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "JSON artifact is parseable",
+      "evidence": {
+        "path": "schema.json"
+      }
+    },
+    {
+      "check_id": "TABLE_SCHEMA_SUPPORTED",
+      "stage": "structural",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Scientific field definitions must match version 1; prose may differ",
+      "evidence": {}
+    },
+    {
+      "check_id": "JSON_PARSEABLE",
+      "stage": "structural",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "JSON artifact is parseable",
+      "evidence": {
+        "path": "metadata/run_status.json"
+      }
+    },
+    {
+      "check_id": "JSON_PARSEABLE",
+      "stage": "structural",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "JSON artifact is parseable",
+      "evidence": {
+        "path": "metadata/effective_config.json"
+      }
+    },
+    {
+      "check_id": "RUN_STATUS_CONSISTENT",
+      "stage": "semantic",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Manifest and canonical run status must agree",
+      "evidence": {
+        "manifest_status": "completed",
+        "status": "completed",
+        "run_id": "9aeffeec6d384eb393dd8242d7c26bc4"
+      }
+    },
+    {
+      "check_id": "EXPERIMENT_ID_CONSISTENT",
+      "stage": "semantic",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Configuration and status identify the same experiment",
+      "evidence": {}
+    },
+    {
+      "check_id": "RUN_STATUS_FIELDS_VALID",
+      "stage": "semantic",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Run errors, drain certification and available clock anchors have documented types",
+      "evidence": {}
+    },
+    {
+      "check_id": "CONFIGURATION_VALID",
+      "stage": "semantic",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Effective configuration satisfies the existing configuration contract",
+      "evidence": {
+        "reason": null
+      }
+    },
+    {
+      "check_id": "SCIENTIFIC_ARTIFACT_PRESENT",
+      "stage": "structural",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Scientific CSV must be indexed and present, or explicitly absent in an incomplete run",
+      "evidence": {
+        "table": "requests",
+        "path": "raw/service/request_log.csv"
+      }
+    },
+    {
+      "check_id": "CSV_PARSEABLE",
+      "stage": "structural",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "CSV header and record widths are recognized",
+      "evidence": {
+        "path": "raw/service/request_log.csv",
+        "rows": 3881
+      }
+    },
+    {
+      "check_id": "CSV_FIELD_VALID",
+      "stage": "structural",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Scientific types, nullability and domains are respected",
+      "evidence": {
+        "table": "requests",
+        "path": "raw/service/request_log.csv",
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "SCIENTIFIC_ARTIFACT_PRESENT",
+      "stage": "structural",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Scientific CSV must be indexed and present, or explicitly absent in an incomplete run",
+      "evidence": {
+        "table": "rtt",
+        "path": "raw/service/rtt_log.csv"
+      }
+    },
+    {
+      "check_id": "CSV_PARSEABLE",
+      "stage": "structural",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "CSV header and record widths are recognized",
+      "evidence": {
+        "path": "raw/service/rtt_log.csv",
+        "rows": 2292
+      }
+    },
+    {
+      "check_id": "CSV_FIELD_VALID",
+      "stage": "structural",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Scientific types, nullability and domains are respected",
+      "evidence": {
+        "table": "rtt",
+        "path": "raw/service/rtt_log.csv",
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "SCIENTIFIC_ARTIFACT_PRESENT",
+      "stage": "structural",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Scientific CSV must be indexed and present, or explicitly absent in an incomplete run",
+      "evidence": {
+        "table": "packets",
+        "path": "raw/traffic/traffic_capture.csv"
+      }
+    },
+    {
+      "check_id": "CSV_PARSEABLE",
+      "stage": "structural",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "CSV header and record widths are recognized",
+      "evidence": {
+        "path": "raw/traffic/traffic_capture.csv",
+        "rows": 27327
+      }
+    },
+    {
+      "check_id": "CSV_FIELD_VALID",
+      "stage": "structural",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Scientific types, nullability and domains are respected",
+      "evidence": {
+        "table": "packets",
+        "path": "raw/traffic/traffic_capture.csv",
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "SCIENTIFIC_ARTIFACT_PRESENT",
+      "stage": "structural",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Scientific CSV must be indexed and present, or explicitly absent in an incomplete run",
+      "evidence": {
+        "table": "metrics",
+        "path": "raw/infrastructure/simulation_metrics.csv"
+      }
+    },
+    {
+      "check_id": "CSV_PARSEABLE",
+      "stage": "structural",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "CSV header and record widths are recognized",
+      "evidence": {
+        "path": "raw/infrastructure/simulation_metrics.csv",
+        "rows": 21
+      }
+    },
+    {
+      "check_id": "CSV_FIELD_VALID",
+      "stage": "structural",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Scientific types, nullability and domains are respected",
+      "evidence": {
+        "table": "metrics",
+        "path": "raw/infrastructure/simulation_metrics.csv",
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "SCIENTIFIC_ARTIFACT_PRESENT",
+      "stage": "structural",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Scientific CSV must be indexed and present, or explicitly absent in an incomplete run",
+      "evidence": {
+        "table": "attacks",
+        "path": "raw/attacks/attack_events.csv"
+      }
+    },
+    {
+      "check_id": "CSV_PARSEABLE",
+      "stage": "structural",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "CSV header and record widths are recognized",
+      "evidence": {
+        "path": "raw/attacks/attack_events.csv",
+        "rows": 1
+      }
+    },
+    {
+      "check_id": "CSV_FIELD_VALID",
+      "stage": "structural",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Scientific types, nullability and domains are respected",
+      "evidence": {
+        "table": "attacks",
+        "path": "raw/attacks/attack_events.csv",
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "RUN_ID_CONSISTENT",
+      "stage": "semantic",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Scientific observations belong to the manifest run",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "SOURCE_INVENTORY_REFERENCE_VALID",
+      "stage": "structural",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Container source inventory must be a canonical indexed reference",
+      "evidence": {}
+    },
+    {
+      "check_id": "JSON_PARSEABLE",
+      "stage": "structural",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "JSON artifact is parseable",
+      "evidence": {
+        "path": "metadata/source_inventory.json"
+      }
+    },
+    {
+      "check_id": "SOURCE_FIELDS_VALID",
+      "stage": "semantic",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Source identity, class, worker index and run IP are explicit",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "SOURCE_IDENTITY_UNIQUE",
+      "stage": "semantic",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Scientific IDs and source topology associations are unique within run",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "SOURCE_RUN_ID_CONSISTENT",
+      "stage": "semantic",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Sources belong to this run; incomplete setup without observations may remain unbound",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "SOURCE_COUNT_CONFIG_CONSISTENT",
+      "stage": "semantic",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Configured source counts match inventory",
+      "evidence": {
+        "expected": {
+          "normal": 2,
+          "attack": 2
+        },
+        "observed": {
+          "normal": 2,
+          "attack": 2
+        }
+      }
+    },
+    {
+      "check_id": "OFFENSIVE_START_CONTRACT_SUPPORTED",
+      "stage": "semantic",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Explicit offensive start contract must be supported",
+      "evidence": {}
+    },
+    {
+      "check_id": "CONTINUOUS_SCHEDULED_START_WINDOW",
+      "stage": "semantic",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Contract v1 logical HTTP starts must belong to scheduled [S,E), regardless of actual_end_seconds",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "REQUEST_ID_UNIQUE",
+      "stage": "semantic",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Request IDs are unique within run",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "REQUEST_TEMPORAL_ORDER",
+      "stage": "semantic",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Elapsed order and duration arithmetic must agree; epoch drift is not assumed absent",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "SOURCE_REFERENCE_VALID",
+      "stage": "semantic",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Requests reference configured and, when available, inventoried workers",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "REQUEST_CAUSAL_CLASS_VALID",
+      "stage": "semantic",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Generator determines causal class, independently of attack_active",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "EVENT_REFERENCE_VALID",
+      "stage": "semantic",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Attack requests identify an existing event and its attack_id",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "REQUEST_OPERATION_VALID",
+      "stage": "semantic",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Observed operation and logical service destination agree with configuration",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "REQUEST_OUTCOME_VALID",
+      "stage": "semantic",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "HTTP/transport outcomes and nullable fields agree",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "REQUEST_FAILURES_OBSERVED",
+      "stage": "quality",
+      "severity": "WARNING",
+      "passed": false,
+      "affects": [],
+      "message": "Request failures are preserved observations, not automatic dataset corruption",
+      "evidence": {
+        "violation_count": 1589,
+        "examples": [
+          "request_attack_2_000000154",
+          "request_normal_2_000000274",
+          "request_attack_2_000000170",
+          "request_attack_2_000000171",
+          "request_normal_2_000000279",
+          "request_normal_1_000000268",
+          "request_attack_1_000000150",
+          "request_attack_1_000000151",
+          "request_attack_1_000000152",
+          "request_attack_1_000000153"
+        ]
+      }
+    },
+    {
+      "check_id": "EVENT_ID_UNIQUE",
+      "stage": "semantic",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Event IDs are unique",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "ATTACK_ID_UNIQUE",
+      "stage": "semantic",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Attack IDs are unique for the current one-event contract",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "EVENT_CONFIG_PRESENCE",
+      "stage": "semantic",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Enabled attack plans one global event even when rate or source count is zero",
+      "evidence": {
+        "expected": 1,
+        "observed": 1
+      }
+    },
+    {
+      "check_id": "EVENT_TEMPORAL_ORDER",
+      "stage": "semantic",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Start precedes end and drain independently; no end <= drain requirement",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "EVENT_REQUEST_MILESTONES_MATCH",
+      "stage": "semantic",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Recorded event first/last starts and last completion match the observed requests exactly in their shared monotonic domain",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "EVENT_CONFIGURATION_CONSISTENT",
+      "stage": "semantic",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Profile, planned global interval, experiment and anchors agree",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "ATTACK_START_WINDOW_VALID",
+      "stage": "semantic",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Periodic starts require active burst/global window; continuous queued starts may extend through effective actual_end",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "GLOBAL_ATTACK_CONTEXT_CONSISTENT",
+      "stage": "semantic",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Labels follow the global event, including silence; packet labels are checked in their recorded elapsed domain, not matched to request clocks",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "HTTP_DURATION_REFERENCE_VALID",
+      "stage": "semantic",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "RTT table is exactly the response subset at client completion; it is not TCP RTT",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "IDENTIFIED_ADMISSIONS_RESOLVED",
+      "stage": "semantic",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Identified admissions have one terminal resolution and matching HTTP starts",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "IDENTIFIED_ADMISSIONS_RESOLVED",
+      "stage": "semantic",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Identified admissions have one terminal resolution and matching HTTP starts",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "CONTINUOUS_SCHEDULED_START_WINDOW",
+      "stage": "semantic",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Contract v1 logical HTTP starts must belong to scheduled [S,E), regardless of actual_end_seconds",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "IDENTIFIED_ADMISSIONS_RESOLVED",
+      "stage": "semantic",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Identified admissions have one terminal resolution and matching HTTP starts",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "CONTINUOUS_SCHEDULED_START_WINDOW",
+      "stage": "semantic",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Contract v1 logical HTTP starts must belong to scheduled [S,E), regardless of actual_end_seconds",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "IDENTIFIED_ADMISSIONS_RESOLVED",
+      "stage": "semantic",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Identified admissions have one terminal resolution and matching HTTP starts",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "SOURCE_JOURNAL_AVAILABLE",
+      "stage": "quality",
+      "severity": "WARNING",
+      "passed": true,
+      "affects": [],
+      "message": "Missing journals limit admission/backlog evidence; primary observations remain authoritative",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "SOURCE_JOURNAL_PARSEABLE",
+      "stage": "quality",
+      "severity": "WARNING",
+      "passed": true,
+      "affects": [],
+      "message": "Malformed optional journals limit auditability",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "SOURCE_JOURNAL_IDENTITY_VALID",
+      "stage": "semantic",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Parseable source journals preserve identity and sequence",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "SOURCE_JOURNAL_REQUEST_REFERENCE",
+      "stage": "semantic",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Observed journal requests agree with root requests except locally reconciled temporal labels",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "SOURCE_JOURNAL_REQUEST_PRESENT",
+      "stage": "semantic",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Journal requests are present in the primary table; incomplete aggregation may lack observations",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "PERIODIC_ADMISSION_NO_BACKLOG",
+      "stage": "semantic",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "When journals are available, periodic admission and beginning share the same observed sample and remain inside allowed windows",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "JSON_PARSEABLE",
+      "stage": "structural",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "JSON artifact is parseable",
+      "evidence": {
+        "path": "metadata/export_provenance.json"
+      }
+    },
+    {
+      "check_id": "EXPORT_PROVENANCE_SCOPE_VALID",
+      "stage": "semantic",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Export provenance describes export time, not execution time",
+      "evidence": {}
+    },
+    {
+      "check_id": "JSON_PARSEABLE",
+      "stage": "structural",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "JSON artifact is parseable",
+      "evidence": {
+        "path": "metadata/run_provenance.json"
+      }
+    },
+    {
+      "check_id": "EXECUTION_PROVENANCE_CONSISTENT",
+      "stage": "semantic",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Execution binding, Git fields and fingerprint are internally coherent; historical file contents are not reconstructed",
+      "evidence": {}
+    },
+    {
+      "check_id": "EXECUTION_CODE_RECORDED",
+      "stage": "quality",
+      "severity": "WARNING",
+      "passed": true,
+      "affects": [],
+      "message": "Git unavailable limits reproducibility, without inventing SHA",
+      "evidence": {}
+    },
+    {
+      "check_id": "EXECUTION_WORKTREE_CLEAN",
+      "stage": "quality",
+      "severity": "WARNING",
+      "passed": false,
+      "affects": [],
+      "message": "Dirty or unavailable working tree cannot be reconstructed from hashes alone",
+      "evidence": {}
+    },
+    {
+      "check_id": "RUN_COMPLETED",
+      "stage": "quality",
+      "severity": "INFO",
+      "passed": true,
+      "affects": [
+        "analysis_eligible"
+      ],
+      "message": "Technical incomplete runs are not eligible even when their dataset is intact",
+      "evidence": {
+        "status": "completed",
+        "errors": []
+      }
+    },
+    {
+      "check_id": "RUN_DRAIN_CERTIFIED",
+      "stage": "quality",
+      "severity": "INFO",
+      "passed": true,
+      "affects": [
+        "analysis_eligible"
+      ],
+      "message": "Eligibility requires the existing producers_drained certification",
+      "evidence": {}
+    },
+    {
+      "check_id": "RUN_WITHOUT_OPERATIONAL_FAILURE",
+      "stage": "quality",
+      "severity": "INFO",
+      "passed": true,
+      "affects": [
+        "analysis_eligible"
+      ],
+      "message": "Operational failures block eligibility; observed request failures alone do not",
+      "evidence": {}
+    },
+    {
+      "check_id": "SCIENTIFIC_OBSERVATIONS_USABLE",
+      "stage": "quality",
+      "severity": "INFO",
+      "passed": true,
+      "affects": [
+        "analysis_eligible"
+      ],
+      "message": "Requests, capture and metrics need observations; event/RTT tables may legitimately be empty",
+      "evidence": {}
+    },
+    {
+      "check_id": "EXPECTED_TRAFFIC_OBSERVED",
+      "stage": "quality",
+      "severity": "INFO",
+      "passed": true,
+      "affects": [
+        "analysis_eligible"
+      ],
+      "message": "Expected causal traffic exists; no rate \u00d7 duration request count is required",
+      "evidence": {
+        "expected": {
+          "attack": true,
+          "benign": true
+        },
+        "observed": {
+          "benign": 2385,
+          "attack": 1496
+        }
+      }
+    },
+    {
+      "check_id": "EXPECTED_EVENT_EXECUTED",
+      "stage": "quality",
+      "severity": "INFO",
+      "passed": true,
+      "affects": [
+        "analysis_eligible"
+      ],
+      "message": "Expected event has an observed beginning, effective end and drain",
+      "evidence": {}
+    },
+    {
+      "check_id": "RANDOM_SEED_RECORDED",
+      "stage": "quality",
+      "severity": "WARNING",
+      "passed": true,
+      "affects": [],
+      "message": "Missing resolved seed limits reproduction without corrupting observations",
+      "evidence": {}
+    },
+    {
+      "check_id": "CAPTURE_TEMPORAL_COVERAGE",
+      "stage": "quality",
+      "severity": "WARNING",
+      "passed": true,
+      "affects": [],
+      "message": "Observed span only; first/last observations do not prove uninterrupted coverage and no percentage threshold is used",
+      "evidence": {
+        "rows": 27327,
+        "first": 0.30338549613952637,
+        "last": 150.09883642196655,
+        "observed_span": 149.79545092582703,
+        "planned_duration": 150,
+        "clock": "epoch-derived",
+        "monitoring_interval": null
+      }
+    },
+    {
+      "check_id": "EXPECTED_PHASE_OBSERVATIONS",
+      "stage": "quality",
+      "severity": "WARNING",
+      "passed": true,
+      "affects": [],
+      "message": "Missing phase observations limit interpretation, but may follow stochastic generation or incomplete execution",
+      "evidence": {
+        "table": "packets",
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "SERVICE_TEMPORAL_COVERAGE",
+      "stage": "quality",
+      "severity": "WARNING",
+      "passed": true,
+      "affects": [],
+      "message": "Observed span only; first/last observations do not prove uninterrupted coverage and no percentage threshold is used",
+      "evidence": {
+        "rows": 3881,
+        "first": 0.30034669500037126,
+        "last": 150.00803599899973,
+        "observed_span": 149.70768930399936,
+        "planned_duration": 150,
+        "clock": "monotonic",
+        "monitoring_interval": null
+      }
+    },
+    {
+      "check_id": "EXPECTED_PHASE_OBSERVATIONS",
+      "stage": "quality",
+      "severity": "WARNING",
+      "passed": true,
+      "affects": [],
+      "message": "Missing phase observations limit interpretation, but may follow stochastic generation or incomplete execution",
+      "evidence": {
+        "table": "requests",
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "METRICS_TEMPORAL_COVERAGE",
+      "stage": "quality",
+      "severity": "WARNING",
+      "passed": true,
+      "affects": [],
+      "message": "Observed span only; first/last observations do not prove uninterrupted coverage and no percentage threshold is used",
+      "evidence": {
+        "rows": 21,
+        "first": 10.16928630700022,
+        "last": 151.18620699799976,
+        "observed_span": 141.01692069099954,
+        "planned_duration": 150,
+        "clock": "monotonic",
+        "monitoring_interval": 5
+      }
+    },
+    {
+      "check_id": "EXPECTED_PHASE_OBSERVATIONS",
+      "stage": "quality",
+      "severity": "WARNING",
+      "passed": true,
+      "affects": [],
+      "message": "Missing phase observations limit interpretation, but may follow stochastic generation or incomplete execution",
+      "evidence": {
+        "table": "metrics",
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "METRIC_VALUES_PLAUSIBLE",
+      "stage": "semantic",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Counts, resource observations and durations are nonnegative; no CPU ceiling or degradation requirement",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "METRIC_MONOTONIC_ORDER",
+      "stage": "semantic",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Monitoring elapsed samples are nondecreasing",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "PACKET_EPOCH_ORDER",
+      "stage": "quality",
+      "severity": "WARNING",
+      "passed": true,
+      "affects": [],
+      "message": "Backward capture epoch observations may indicate reordering or clock adjustment",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "PACKET_FIELDS_PLAUSIBLE",
+      "stage": "semantic",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "TCP payload lengths and ports are nonnegative/in range",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "PACKET_IP_VALID",
+      "stage": "semantic",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Packet CSV IPv4 addresses are parseable run attributes",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "PACKET_EPOCH_ALIGNMENT",
+      "stage": "semantic",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Capture elapsed uses its exact documented epoch subtraction, not request monotonic timestamps",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "REQUEST_WALL_CLOCK_ORDER",
+      "stage": "quality",
+      "severity": "WARNING",
+      "passed": true,
+      "affects": [],
+      "message": "Backward epoch timestamps may indicate clock adjustment; monotonic duration remains authoritative",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "CAPTURE_TOPOLOGY_UNAMBIGUOUS",
+      "stage": "semantic",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "A run declares at most one capture topology",
+      "evidence": {}
+    },
+    {
+      "check_id": "JSON_PARSEABLE",
+      "stage": "structural",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "JSON artifact is parseable",
+      "evidence": {
+        "path": "metadata/topology/direct/capture_metadata.json"
+      }
+    },
+    {
+      "check_id": "SOURCE_IP_OBSERVED",
+      "stage": "quality",
+      "severity": "WARNING",
+      "passed": true,
+      "affects": [],
+      "message": "Missing inventoried IPs are a coverage warning, not absence of source identity",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "CAPTURE_SEGMENT_CONSISTENT",
+      "stage": "semantic",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Declared source_victim capture contains only source/target TCP observations",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "DIRECT_CAPTURE_METADATA_PRESENT",
+      "stage": "semantic",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Direct collection requires declared source_victim metadata",
+      "evidence": {}
+    },
+    {
+      "check_id": "JSON_PARSEABLE",
+      "stage": "structural",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "JSON artifact is parseable",
+      "evidence": {
+        "path": "metadata/topology/direct/backend_inventory.json"
+      }
+    },
+    {
+      "check_id": "METRIC_CONTAINER_REFERENCE_VALID",
+      "stage": "semantic",
+      "severity": "ERROR",
+      "passed": true,
+      "affects": [
+        "dataset_valid"
+      ],
+      "message": "Named monitored victims must exist in backend inventory",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "EXPECTED_VICTIM_METRICS_OBSERVED",
+      "stage": "quality",
+      "severity": "WARNING",
+      "passed": true,
+      "affects": [],
+      "message": "Missing named victims limit infrastructure attribution; startup cache gaps are not invalidity",
+      "evidence": {
+        "violation_count": 0,
+        "examples": []
+      }
+    },
+    {
+      "check_id": "RAW_CAPTURE_NONEMPTY",
+      "stage": "quality",
+      "severity": "WARNING",
+      "passed": true,
+      "affects": [],
+      "message": "A classic PCAP with only its 24-byte global header has no observations; this does not assert equality with CSV capture",
+      "evidence": {
+        "bytes": 4321409
+      }
+    },
+    {
+      "check_id": "COVERAGE_LIMITATIONS",
+      "stage": "quality",
+      "severity": "INFO",
+      "passed": true,
+      "affects": [],
+      "message": "No direct packet/request join, continuous clock drift proof, capture completeness guarantee, CPU/RTT degradation expectation or exact stochastic request count",
+      "evidence": {}
+    },
+    {
+      "check_id": "DATASET_VALID_FOR_ANALYSIS",
+      "stage": "quality",
+      "severity": "INFO",
+      "passed": true,
+      "affects": [
+        "analysis_eligible"
+      ],
+      "message": "Analysis eligibility requires a valid dataset independently of run status",
+      "evidence": {}
+    }
+  ]
+}

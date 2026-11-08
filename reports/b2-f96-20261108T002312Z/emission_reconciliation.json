@@ -1,0 +1,2853 @@
+{
+  "lifecycles_reconciled": true,
+  "per_source": {
+    "normal_1": {
+      "submitted": 1169,
+      "task_started": 1169,
+      "http_started": 1169,
+      "http_finished": 1169,
+      "task_finished": 1169,
+      "planned": 1169,
+      "source_closed": 1
+    },
+    "normal_2": {
+      "submitted": 1216,
+      "task_started": 1216,
+      "http_started": 1216,
+      "http_finished": 1216,
+      "task_finished": 1216,
+      "planned": 1216,
+      "source_closed": 1
+    },
+    "attack_1": {
+      "submitted": 892,
+      "task_started": 892,
+      "http_started": 739,
+      "http_finished": 739,
+      "task_finished": 892,
+      "source_closed": 1
+    },
+    "attack_2": {
+      "submitted": 912,
+      "task_started": 912,
+      "http_started": 757,
+      "http_finished": 757,
+      "task_finished": 912,
+      "source_closed": 1
+    }
+  },
+  "planned_only": [
+    {
+      "source_id": "normal_1",
+      "attempt_id": "1170",
+      "events": {
+        "planned": 1
+      }
+    },
+    {
+      "source_id": "normal_2",
+      "attempt_id": "1217",
+      "events": {
+        "planned": 1
+      }
+    }
+  ],
+  "submitted_without_http": [
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_740",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_741",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_742",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_743",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_744",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_745",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_746",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_747",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_748",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_749",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_750",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_751",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_752",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_753",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_754",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_755",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_756",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_757",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_758",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_759",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_760",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_761",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_762",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_763",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_764",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_765",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_766",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_767",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_768",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_769",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_770",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_771",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_772",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_773",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_774",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_775",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_776",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_777",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_778",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_779",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_780",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_781",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_782",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_783",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_784",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_785",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_786",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_787",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_788",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_789",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_790",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_791",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_792",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_793",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_794",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_795",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_796",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_797",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_798",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_799",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_800",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_801",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_802",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_803",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_804",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_805",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_806",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_807",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_808",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_809",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_810",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_811",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_812",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_813",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_814",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_815",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_816",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_817",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_818",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_819",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_820",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_821",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_822",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_823",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_824",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_825",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_826",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_827",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_828",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_829",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_830",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_831",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_832",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_833",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_834",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_835",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_836",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_837",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_838",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_839",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_840",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_841",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_842",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_843",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_844",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_845",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_846",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_847",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_848",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_849",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_850",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_851",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_852",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_853",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_854",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_855",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_856",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_857",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_858",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_859",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_860",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_861",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_862",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_863",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_864",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_865",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_866",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_867",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_868",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_869",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_870",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_871",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_872",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_873",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_874",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_875",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_876",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_877",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_878",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_879",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_880",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_881",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_882",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_883",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_884",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_885",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_886",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_887",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_888",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_889",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_890",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_891",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_1",
+      "attempt_id": "admission_892",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_758",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_759",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_760",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_761",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_762",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_763",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_764",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_765",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_766",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_767",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_768",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_769",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_770",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_771",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_772",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_773",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_774",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_775",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_776",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_777",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_778",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_779",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_780",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_781",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_782",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_783",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_784",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_785",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_786",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_787",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_788",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_789",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_790",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_791",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_792",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_793",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_794",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_795",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_796",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_797",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_798",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_799",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_800",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_801",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_802",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_803",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_804",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_805",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_806",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_807",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_808",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_809",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_810",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_811",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_812",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_813",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_814",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_815",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_816",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_817",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_818",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_819",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_820",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_821",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_822",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_823",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_824",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_825",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_826",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_827",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_828",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_829",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_830",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_831",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_832",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_833",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_834",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_835",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_836",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_837",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_838",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_839",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_840",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_841",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_842",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_843",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_844",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_845",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_846",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_847",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_848",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_849",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_850",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_851",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_852",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_853",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_854",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_855",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_856",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_857",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_858",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_859",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_860",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_861",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_862",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_863",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_864",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_865",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_866",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_867",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_868",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_869",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_870",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_871",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_872",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_873",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_874",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_875",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_876",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_877",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_878",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_879",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_880",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_881",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_882",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_883",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_884",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_885",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_886",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_887",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_888",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_889",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_890",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_891",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_892",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_893",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_894",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_895",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_896",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_897",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_898",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_899",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_900",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_901",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_902",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_903",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_904",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_905",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_906",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_907",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_908",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_909",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_910",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_911",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    },
+    {
+      "source_id": "attack_2",
+      "attempt_id": "admission_912",
+      "events": {
+        "submitted": 1,
+        "task_started": 1,
+        "task_finished": 1
+      }
+    }
+  ],
+  "journal_lifecycle": {
+    "events": {
+      "run_binding": 4,
+      "configured": 4,
+      "request_begin": 3881,
+      "request_finish": 3881,
+      "latency_sample": 2292,
+      "source_closed": 4,
+      "event_snapshot": 3313,
+      "admission": 1804,
+      "task_started": 1804,
+      "task_resolution": 1804,
+      "submitted": 1804,
+      "task_finished": 1804,
+      "abandoned_admission": 308,
+      "emission_closed": 2
+    },
+    "resolutions": {
+      "started": 1496,
+      "expired_before_http": 308
+    },
+    "reconciliation_errors": [],
+    "outside_window": []
+  }
+}

@@ -1,0 +1,157 @@
+{
+  "report": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/reports/b2-f96-20261108T002312Z/report.md",
+  "recovery": {
+    "last_offensive_completion_seconds": 63.6993708480004,
+    "first_total_pending_zero_after_60": 64.65406848900057,
+    "last_legitimate_timeout_start": 62.04908174299999,
+    "last_legitimate_timeout_end": 64.05361791500036,
+    "late_P3_100_150": {
+      "interval": [
+        100,
+        150
+      ],
+      "starts": 783,
+      "rps": 15.66,
+      "success": 783,
+      "timeouts": 0,
+      "http_ms": {
+        "n": 783,
+        "mean": 44.65496673945458,
+        "minimum": 23.54754200041498,
+        "maximum": 99.24043600040022,
+        "p50": 36.86607800045749,
+        "p95": 77.76639199983038,
+        "sample_sd": 17.24547896392506,
+        "sum": 34964.838956992935,
+        "p99": 82.25981300074636
+      },
+      "wait_ms": {
+        "n": 783,
+        "mean": 2.3743123231087204,
+        "minimum": 0.5273770002531819,
+        "maximum": 45.37265299950377,
+        "p50": 1.2775900004271534,
+        "p95": 7.7492120008173515,
+        "sample_sd": 4.9573906581577285,
+        "sum": 1859.086548994128,
+        "p99": 31.742150999889418
+      },
+      "cpu_mean_ms": 28.181096464878646
+    }
+  },
+  "rps_change_percent": -7.768187422934658,
+  "concurrency": [
+    {
+      "execution": "B2-F",
+      "source_id": "normal_1",
+      "traffic_class": "benign",
+      "configured_positions": 32,
+      "task_occupancy": {
+        "peak_in_attack_window": 20,
+        "time_mean_in_attack_window": 9.551051035966626
+      },
+      "http_occupancy": {
+        "peak_in_attack_window": 20,
+        "time_mean_in_attack_window": 9.542974493766678
+      }
+    },
+    {
+      "execution": "B2-F",
+      "source_id": "normal_2",
+      "traffic_class": "benign",
+      "configured_positions": 32,
+      "task_occupancy": {
+        "peak_in_attack_window": 18,
+        "time_mean_in_attack_window": 8.980435238433468
+      },
+      "http_occupancy": {
+        "peak_in_attack_window": 18,
+        "time_mean_in_attack_window": 8.973190745799881
+      }
+    },
+    {
+      "execution": "B2-F",
+      "source_id": "attack_1",
+      "traffic_class": "attack",
+      "configured_positions": 32,
+      "task_occupancy": {
+        "peak_in_attack_window": 32,
+        "time_mean_in_attack_window": 28.98145286913371
+      },
+      "http_occupancy": {
+        "peak_in_attack_window": 32,
+        "time_mean_in_attack_window": 28.928458383166873
+      }
+    },
+    {
+      "execution": "B2-F",
+      "source_id": "attack_2",
+      "traffic_class": "attack",
+      "configured_positions": 32,
+      "task_occupancy": {
+        "peak_in_attack_window": 32,
+        "time_mean_in_attack_window": 29.42990141896674
+      },
+      "http_occupancy": {
+        "peak_in_attack_window": 32,
+        "time_mean_in_attack_window": 29.376006074200284
+      }
+    },
+    {
+      "execution": "B2-F96",
+      "source_id": "normal_1",
+      "traffic_class": "benign",
+      "configured_positions": 32,
+      "task_occupancy": {
+        "peak_in_attack_window": 27,
+        "time_mean_in_attack_window": 15.949171793599605
+      },
+      "http_occupancy": {
+        "peak_in_attack_window": 27,
+        "time_mean_in_attack_window": 15.941848152733382
+      }
+    },
+    {
+      "execution": "B2-F96",
+      "source_id": "normal_2",
+      "traffic_class": "benign",
+      "configured_positions": 32,
+      "task_occupancy": {
+        "peak_in_attack_window": 23,
+        "time_mean_in_attack_window": 15.154328814666284
+      },
+      "http_occupancy": {
+        "peak_in_attack_window": 23,
+        "time_mean_in_attack_window": 15.147804735432812
+      }
+    },
+    {
+      "execution": "B2-F96",
+      "source_id": "attack_1",
+      "traffic_class": "attack",
+      "configured_positions": 48,
+      "task_occupancy": {
+        "peak_in_attack_window": 48,
+        "time_mean_in_attack_window": 44.499218825266055
+      },
+      "http_occupancy": {
+        "peak_in_attack_window": 48,
+        "time_mean_in_attack_window": 44.4512057059667
+      }
+    },
+    {
+      "execution": "B2-F96",
+      "source_id": "attack_2",
+      "traffic_class": "attack",
+      "configured_positions": 48,
+      "task_occupancy": {
+        "peak_in_attack_window": 48,
+        "time_mean_in_attack_window": 44.99147542693275
+      },
+      "http_occupancy": {
+        "peak_in_attack_window": 48,
+        "time_mean_in_attack_window": 44.94127395549985
+      }
+    }
+  ]
+}

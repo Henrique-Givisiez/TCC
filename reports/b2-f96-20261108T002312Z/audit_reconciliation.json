@@ -1,0 +1,142 @@
+[
+  {
+    "operation_id": "f69bd68c3e7147faa7dda44fef080d54",
+    "classification": "unknown",
+    "evidence": "handler phase capture_audit, endpoint /",
+    "start_seconds": -4.538095819999398,
+    "end_seconds": -4.527339625999957
+  },
+  {
+    "operation_id": "fb8048cec93143d3b1d82a5fffae039f",
+    "classification": "unknown",
+    "evidence": "handler phase capture_audit, endpoint /",
+    "start_seconds": -4.52499643200008,
+    "end_seconds": -4.52193257899944
+  },
+  {
+    "operation_id": "e8838b09c90c472591b0d1073d2dc120",
+    "classification": "unknown",
+    "evidence": "handler phase capture_audit, endpoint /",
+    "start_seconds": -4.479097030999583,
+    "end_seconds": -4.476515147999635
+  },
+  {
+    "operation_id": "1ceaade308bb4c6daf494035ed70c62a",
+    "classification": "unknown",
+    "evidence": "handler phase capture_audit, endpoint /",
+    "start_seconds": -4.431871218000197,
+    "end_seconds": -4.427991004999967
+  },
+  {
+    "operation_id": "8591a69ea78749c8a92f41cc35d52ac0",
+    "classification": "unknown",
+    "evidence": "handler phase capture_audit, endpoint /",
+    "start_seconds": -4.384191475999614,
+    "end_seconds": -4.380111776999911
+  },
+  {
+    "operation_id": "ff9a346238af4ac8a965d442a5124697",
+    "classification": "unknown",
+    "evidence": "handler phase capture_audit, endpoint /",
+    "start_seconds": -3.9679967459996988,
+    "end_seconds": -3.9654890659994635
+  },
+  {
+    "operation_id": "34ec21a1749441039906b0ad6f6486c7",
+    "classification": "unknown",
+    "evidence": "handler phase capture_audit, endpoint /",
+    "start_seconds": -3.9638327669999853,
+    "end_seconds": -3.9617815760002486
+  },
+  {
+    "operation_id": "818dff45d0a4423c9c30a722d806f001",
+    "classification": "unknown",
+    "evidence": "handler phase capture_audit, endpoint /",
+    "start_seconds": -3.91719592499976,
+    "end_seconds": -3.913001496999641
+  },
+  {
+    "operation_id": "dda08b941d50454ab856e1038ddd71ae",
+    "classification": "unknown",
+    "evidence": "handler phase capture_audit, endpoint /",
+    "start_seconds": -3.867601733999436,
+    "end_seconds": -3.86363469600019
+  },
+  {
+    "operation_id": "2f240bb63be34e5bb134cb31af2f7449",
+    "classification": "unknown",
+    "evidence": "handler phase capture_audit, endpoint /",
+    "start_seconds": -3.819194439999592,
+    "end_seconds": -3.8157709299994167
+  },
+  {
+    "operation_id": "06aaf952956044b1b2e4d96c4d9d67d1",
+    "classification": "unknown",
+    "evidence": "handler phase capture_audit, endpoint /",
+    "start_seconds": -3.3071806239995567,
+    "end_seconds": -3.3026752529995065
+  },
+  {
+    "operation_id": "2111a5e067eb46a184de99586fae1fc8",
+    "classification": "unknown",
+    "evidence": "handler phase capture_audit, endpoint /",
+    "start_seconds": -3.2995697259993904,
+    "end_seconds": -3.295985435000148
+  },
+  {
+    "operation_id": "64bde70db8724a6b9918b4c6948c415b",
+    "classification": "unknown",
+    "evidence": "handler phase capture_audit, endpoint /",
+    "start_seconds": -3.252192730999923,
+    "end_seconds": -3.24821337100002
+  },
+  {
+    "operation_id": "3203c8c4476545a198bef49367940260",
+    "classification": "unknown",
+    "evidence": "handler phase capture_audit, endpoint /",
+    "start_seconds": -3.203962923999825,
+    "end_seconds": -3.200623220000125
+  },
+  {
+    "operation_id": "b97552c97a764d079e51db9940fe3270",
+    "classification": "unknown",
+    "evidence": "handler phase capture_audit, endpoint /",
+    "start_seconds": -3.158119357999567,
+    "end_seconds": -3.1552386539997315
+  },
+  {
+    "operation_id": "5d336591437945b1bc2691d85ca26780",
+    "classification": "unknown",
+    "evidence": "handler phase capture_audit, endpoint /",
+    "start_seconds": -2.728348241999811,
+    "end_seconds": -2.726399078000213
+  },
+  {
+    "operation_id": "386fe584c4684891b9998fa516cd7ed8",
+    "classification": "unknown",
+    "evidence": "handler phase capture_audit, endpoint /",
+    "start_seconds": -2.7243527959999483,
+    "end_seconds": -2.722171743999752
+  },
+  {
+    "operation_id": "b65718a11f7b4d689070fade67d1c79f",
+    "classification": "unknown",
+    "evidence": "handler phase capture_audit, endpoint /",
+    "start_seconds": -2.6770860529995844,
+    "end_seconds": -2.6735390759995425
+  },
+  {
+    "operation_id": "cc3425fd36f1435aa0c7d863b017788c",
+    "classification": "unknown",
+    "evidence": "handler phase capture_audit, endpoint /",
+    "start_seconds": -2.6276681250001275,
+    "end_seconds": -2.6235720329996184
+  },
+  {
+    "operation_id": "078de9a038a148c7ae1479ddf00d4620",
+    "classification": "unknown",
+    "evidence": "handler phase capture_audit, endpoint /",
+    "start_seconds": -2.5791024869995454,
+    "end_seconds": -2.57426249800028
+  }
+]

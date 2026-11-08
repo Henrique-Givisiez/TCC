@@ -1,0 +1,1035 @@
+{
+  "http": [
+    {
+      "traffic_class": "benign",
+      "period": "Total",
+      "nominal_rps": 16,
+      "rate_denominator_seconds": 150,
+      "realized_rps": 15.886666666666667,
+      "submissions": 2383,
+      "admissions": null,
+      "expired_before_http": 0,
+      "starts": 2383,
+      "known_ends": 2383,
+      "responses": 1939,
+      "success": 1939,
+      "http_errors": 0,
+      "timeouts": 444,
+      "connection_errors": 0,
+      "unknown_end": 0,
+      "availability": 0.8136802349979018,
+      "mean_ms": 483.2899187679278,
+      "median_ms": 42.760308999277186,
+      "p95_ms": 2005.0989419996768,
+      "min_ms": 23.54754200041498,
+      "max_ms": 2044.0435849995993,
+      "response_mean_ms": 134.89437605517207,
+      "response_median_ms": 38.687506999849575,
+      "response_p95_ms": 1025.7067639995512
+    },
+    {
+      "traffic_class": "benign",
+      "period": "P1",
+      "nominal_rps": 16,
+      "rate_denominator_seconds": 30,
+      "realized_rps": 15.2,
+      "submissions": 456,
+      "admissions": null,
+      "expired_before_http": 0,
+      "starts": 456,
+      "known_ends": 456,
+      "responses": 456,
+      "success": 456,
+      "http_errors": 0,
+      "timeouts": 0,
+      "connection_errors": 0,
+      "unknown_end": 0,
+      "availability": 1.0,
+      "mean_ms": 49.448408842105586,
+      "median_ms": 40.56273650030562,
+      "p95_ms": 82.78617799987842,
+      "min_ms": 26.57888199973968,
+      "max_ms": 102.87584900015645,
+      "response_mean_ms": 49.448408842105586,
+      "response_median_ms": 40.56273650030562,
+      "response_p95_ms": 82.78617799987842
+    },
+    {
+      "traffic_class": "benign",
+      "period": "P2",
+      "nominal_rps": 16,
+      "rate_denominator_seconds": 30,
+      "realized_rps": 17.133333333333333,
+      "submissions": 514,
+      "admissions": null,
+      "expired_before_http": 0,
+      "starts": 514,
+      "known_ends": 514,
+      "responses": 98,
+      "success": 98,
+      "http_errors": 0,
+      "timeouts": 416,
+      "connection_errors": 0,
+      "unknown_end": 0,
+      "availability": 0.19066147859922178,
+      "mean_ms": 1882.8468159824724,
+      "median_ms": 2004.5459589996426,
+      "p95_ms": 2005.961613999716,
+      "min_ms": 41.18914899936499,
+      "max_ms": 2044.0435849995993,
+      "response_mean_ms": 1365.3426438979332,
+      "response_median_ms": 1461.3796165003805,
+      "response_p95_ms": 1998.9082350002718
+    },
+    {
+      "traffic_class": "benign",
+      "period": "P3",
+      "nominal_rps": 16,
+      "rate_denominator_seconds": 90,
+      "realized_rps": 15.7,
+      "submissions": 1413,
+      "admissions": null,
+      "expired_before_http": 0,
+      "starts": 1413,
+      "known_ends": 1413,
+      "responses": 1385,
+      "success": 1385,
+      "http_errors": 0,
+      "timeouts": 28,
+      "connection_errors": 0,
+      "unknown_end": 0,
+      "availability": 0.9801840056617127,
+      "mean_ms": 114.18835001909483,
+      "median_ms": 37.51131399985752,
+      "p95_ms": 93.22790700025507,
+      "min_ms": 23.54754200041498,
+      "max_ms": 2006.813019999754,
+      "response_mean_ms": 75.96255713861449,
+      "response_median_ms": 37.39551099988603,
+      "response_p95_ms": 81.07021399973746
+    },
+    {
+      "traffic_class": "attack",
+      "period": "Total",
+      "nominal_rps": 64,
+      "rate_denominator_seconds": 30,
+      "realized_rps": 49.86666666666667,
+      "submissions": 1804,
+      "admissions": 1804,
+      "expired_before_http": 308,
+      "starts": 1496,
+      "known_ends": 1496,
+      "responses": 351,
+      "success": 351,
+      "http_errors": 0,
+      "timeouts": 1145,
+      "connection_errors": 0,
+      "unknown_end": 0,
+      "availability": 0.23462566844919786,
+      "mean_ms": 1854.8781622660524,
+      "median_ms": 2004.6483704995808,
+      "p95_ms": 2006.8278460003057,
+      "min_ms": 44.82672899939644,
+      "max_ms": 2043.9512379998632,
+      "response_mean_ms": 1365.5604112706465,
+      "response_median_ms": 1464.3126850005501,
+      "response_p95_ms": 2031.0068510007113
+    },
+    {
+      "traffic_class": "attack",
+      "period": "P1",
+      "nominal_rps": 0,
+      "rate_denominator_seconds": 30,
+      "realized_rps": 0.0,
+      "submissions": 0,
+      "admissions": 0,
+      "expired_before_http": 0,
+      "starts": 0,
+      "known_ends": 0,
+      "responses": 0,
+      "success": 0,
+      "http_errors": 0,
+      "timeouts": 0,
+      "connection_errors": 0,
+      "unknown_end": 0,
+      "availability": null,
+      "mean_ms": null,
+      "median_ms": null,
+      "p95_ms": null,
+      "min_ms": null,
+      "max_ms": null,
+      "response_mean_ms": null,
+      "response_median_ms": null,
+      "response_p95_ms": null
+    },
+    {
+      "traffic_class": "attack",
+      "period": "P2",
+      "nominal_rps": 64,
+      "rate_denominator_seconds": 30,
+      "realized_rps": 49.86666666666667,
+      "submissions": 1804,
+      "admissions": 1804,
+      "expired_before_http": 0,
+      "starts": 1496,
+      "known_ends": 1496,
+      "responses": 351,
+      "success": 351,
+      "http_errors": 0,
+      "timeouts": 1145,
+      "connection_errors": 0,
+      "unknown_end": 0,
+      "availability": 0.23462566844919786,
+      "mean_ms": 1854.8781622660524,
+      "median_ms": 2004.6483704995808,
+      "p95_ms": 2006.8278460003057,
+      "min_ms": 44.82672899939644,
+      "max_ms": 2043.9512379998632,
+      "response_mean_ms": 1365.5604112706465,
+      "response_median_ms": 1464.3126850005501,
+      "response_p95_ms": 2031.0068510007113
+    },
+    {
+      "traffic_class": "attack",
+      "period": "P3",
+      "nominal_rps": 0,
+      "rate_denominator_seconds": 90,
+      "realized_rps": 0.0,
+      "submissions": 0,
+      "admissions": 0,
+      "expired_before_http": 308,
+      "starts": 0,
+      "known_ends": 0,
+      "responses": 0,
+      "success": 0,
+      "http_errors": 0,
+      "timeouts": 0,
+      "connection_errors": 0,
+      "unknown_end": 0,
+      "availability": null,
+      "mean_ms": null,
+      "median_ms": null,
+      "p95_ms": null,
+      "min_ms": null,
+      "max_ms": null,
+      "response_mean_ms": null,
+      "response_median_ms": null,
+      "response_p95_ms": null
+    }
+  ],
+  "computation": [
+    {
+      "traffic_class": "benign",
+      "period": "Total",
+      "cohort_basis": "HTTP start",
+      "submitted": 2383,
+      "started": 2383,
+      "completed": 2383,
+      "failed": 0,
+      "wait_mean_ms": 598.229766320594,
+      "wait_median_ms": 1.4486089994534268,
+      "wait_p95_ms": 3264.2949639994185,
+      "cpu_mean_ms": 29.89961153881656,
+      "wall_mean_ms": 29.943339834674298
+    },
+    {
+      "traffic_class": "benign",
+      "period": "P1",
+      "cohort_basis": "HTTP start",
+      "submitted": 456,
+      "started": 456,
+      "completed": 456,
+      "failed": 0,
+      "wait_mean_ms": 2.664407668845071,
+      "wait_median_ms": 1.298781000514282,
+      "wait_p95_ms": 11.648256000626134,
+      "cpu_mean_ms": 32.037294153508775,
+      "wall_mean_ms": 32.10479650441525
+    },
+    {
+      "traffic_class": "benign",
+      "period": "P2",
+      "cohort_basis": "HTTP start",
+      "submitted": 514,
+      "started": 514,
+      "completed": 514,
+      "failed": 0,
+      "wait_mean_ms": 2521.7810314610538,
+      "wait_median_ms": 2592.9101894998894,
+      "wait_p95_ms": 3682.934053000281,
+      "cpu_mean_ms": 32.91815430739317,
+      "wall_mean_ms": 32.94065272180845
+    },
+    {
+      "traffic_class": "benign",
+      "period": "P3",
+      "cohort_basis": "HTTP start",
+      "submitted": 1413,
+      "started": 1413,
+      "completed": 1413,
+      "failed": 0,
+      "wait_mean_ms": 90.70850182165637,
+      "wait_median_ms": 1.288663000195811,
+      "wait_p95_ms": 34.75922600046033,
+      "cpu_mean_ms": 28.111703360934023,
+      "wall_mean_ms": 28.155482038928493
+    },
+    {
+      "traffic_class": "attack",
+      "period": "Total",
+      "cohort_basis": "HTTP start",
+      "submitted": 1496,
+      "started": 1496,
+      "completed": 1496,
+      "failed": 0,
+      "wait_mean_ms": 2433.358911439178,
+      "wait_median_ms": 2483.509446500193,
+      "wait_p95_ms": 3609.6852260006926,
+      "cpu_mean_ms": 33.084671057486574,
+      "wall_mean_ms": 33.09184636567111
+    },
+    {
+      "traffic_class": "attack",
+      "period": "P1",
+      "cohort_basis": "HTTP start",
+      "submitted": 0,
+      "started": 0,
+      "completed": 0,
+      "failed": 0,
+      "wait_mean_ms": null,
+      "wait_median_ms": null,
+      "wait_p95_ms": null,
+      "cpu_mean_ms": null,
+      "wall_mean_ms": null
+    },
+    {
+      "traffic_class": "attack",
+      "period": "P2",
+      "cohort_basis": "HTTP start",
+      "submitted": 1496,
+      "started": 1496,
+      "completed": 1496,
+      "failed": 0,
+      "wait_mean_ms": 2433.358911439178,
+      "wait_median_ms": 2483.509446500193,
+      "wait_p95_ms": 3609.6852260006926,
+      "cpu_mean_ms": 33.084671057486574,
+      "wall_mean_ms": 33.09184636567111
+    },
+    {
+      "traffic_class": "attack",
+      "period": "P3",
+      "cohort_basis": "HTTP start",
+      "submitted": 0,
+      "started": 0,
+      "completed": 0,
+      "failed": 0,
+      "wait_mean_ms": null,
+      "wait_median_ms": null,
+      "wait_p95_ms": null,
+      "cpu_mean_ms": null,
+      "wall_mean_ms": null
+    }
+  ],
+  "queue_peaks": [
+    {
+      "period": "Total",
+      "traffic_class": "benign",
+      "waiting": 74,
+      "running": 2,
+      "pending": 75
+    },
+    {
+      "period": "Total",
+      "traffic_class": "attack",
+      "waiting": 167,
+      "running": 2,
+      "pending": 168
+    },
+    {
+      "period": "Total",
+      "traffic_class": "total",
+      "waiting": 239,
+      "running": 2,
+      "pending": 241
+    },
+    {
+      "period": "P1",
+      "traffic_class": "benign",
+      "waiting": 3,
+      "running": 2,
+      "pending": 5
+    },
+    {
+      "period": "P1",
+      "traffic_class": "attack",
+      "waiting": 0,
+      "running": 0,
+      "pending": 0
+    },
+    {
+      "period": "P1",
+      "traffic_class": "total",
+      "waiting": 3,
+      "running": 2,
+      "pending": 5
+    },
+    {
+      "period": "P2",
+      "traffic_class": "benign",
+      "waiting": 74,
+      "running": 2,
+      "pending": 75
+    },
+    {
+      "period": "P2",
+      "traffic_class": "attack",
+      "waiting": 167,
+      "running": 2,
+      "pending": 168
+    },
+    {
+      "period": "P2",
+      "traffic_class": "total",
+      "waiting": 239,
+      "running": 2,
+      "pending": 241
+    },
+    {
+      "period": "P3",
+      "traffic_class": "benign",
+      "waiting": 71,
+      "running": 2,
+      "pending": 72
+    },
+    {
+      "period": "P3",
+      "traffic_class": "attack",
+      "waiting": 164,
+      "running": 2,
+      "pending": 166
+    },
+    {
+      "period": "P3",
+      "traffic_class": "total",
+      "waiting": 232,
+      "running": 2,
+      "pending": 234
+    }
+  ],
+  "residual": {
+    "boundaries": {
+      "30": {
+        "before": {
+          "status": "observed",
+          "counts": {
+            "benign": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 456,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 456,
+              "started": 456
+            },
+            "attack": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 0,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 0,
+              "started": 0
+            },
+            "unknown": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 20,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 20,
+              "started": 20
+            }
+          },
+          "errors": []
+        },
+        "after_events_at_boundary": {
+          "status": "observed",
+          "counts": {
+            "benign": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 456,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 456,
+              "started": 456
+            },
+            "attack": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 0,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 0,
+              "started": 0
+            },
+            "unknown": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 20,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 20,
+              "started": 20
+            }
+          },
+          "errors": []
+        }
+      },
+      "60": {
+        "before": {
+          "status": "observed",
+          "counts": {
+            "benign": {
+              "waiting": 68,
+              "running": 0,
+              "completed": 902,
+              "failed": 0,
+              "pending": 68,
+              "submitted": 970,
+              "started": 902
+            },
+            "attack": {
+              "waiting": 164,
+              "running": 2,
+              "completed": 1330,
+              "failed": 0,
+              "pending": 166,
+              "submitted": 1496,
+              "started": 1332
+            },
+            "unknown": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 20,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 20,
+              "started": 20
+            }
+          },
+          "errors": []
+        },
+        "after_events_at_boundary": {
+          "status": "observed",
+          "counts": {
+            "benign": {
+              "waiting": 68,
+              "running": 0,
+              "completed": 902,
+              "failed": 0,
+              "pending": 68,
+              "submitted": 970,
+              "started": 902
+            },
+            "attack": {
+              "waiting": 164,
+              "running": 2,
+              "completed": 1330,
+              "failed": 0,
+              "pending": 166,
+              "submitted": 1496,
+              "started": 1332
+            },
+            "unknown": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 20,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 20,
+              "started": 20
+            }
+          },
+          "errors": []
+        }
+      },
+      "70": {
+        "before": {
+          "status": "observed",
+          "counts": {
+            "benign": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 1121,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 1121,
+              "started": 1121
+            },
+            "attack": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 1496,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 1496,
+              "started": 1496
+            },
+            "unknown": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 20,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 20,
+              "started": 20
+            }
+          },
+          "errors": []
+        },
+        "after_events_at_boundary": {
+          "status": "observed",
+          "counts": {
+            "benign": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 1121,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 1121,
+              "started": 1121
+            },
+            "attack": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 1496,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 1496,
+              "started": 1496
+            },
+            "unknown": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 20,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 20,
+              "started": 20
+            }
+          },
+          "errors": []
+        }
+      },
+      "80": {
+        "before": {
+          "status": "observed",
+          "counts": {
+            "benign": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 1262,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 1262,
+              "started": 1262
+            },
+            "attack": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 1496,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 1496,
+              "started": 1496
+            },
+            "unknown": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 20,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 20,
+              "started": 20
+            }
+          },
+          "errors": []
+        },
+        "after_events_at_boundary": {
+          "status": "observed",
+          "counts": {
+            "benign": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 1262,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 1262,
+              "started": 1262
+            },
+            "attack": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 1496,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 1496,
+              "started": 1496
+            },
+            "unknown": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 20,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 20,
+              "started": 20
+            }
+          },
+          "errors": []
+        }
+      },
+      "90": {
+        "before": {
+          "status": "observed",
+          "counts": {
+            "benign": {
+              "waiting": 0,
+              "running": 2,
+              "completed": 1437,
+              "failed": 0,
+              "pending": 2,
+              "submitted": 1439,
+              "started": 1439
+            },
+            "attack": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 1496,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 1496,
+              "started": 1496
+            },
+            "unknown": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 20,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 20,
+              "started": 20
+            }
+          },
+          "errors": []
+        },
+        "after_events_at_boundary": {
+          "status": "observed",
+          "counts": {
+            "benign": {
+              "waiting": 0,
+              "running": 2,
+              "completed": 1437,
+              "failed": 0,
+              "pending": 2,
+              "submitted": 1439,
+              "started": 1439
+            },
+            "attack": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 1496,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 1496,
+              "started": 1496
+            },
+            "unknown": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 20,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 20,
+              "started": 20
+            }
+          },
+          "errors": []
+        }
+      },
+      "120": {
+        "before": {
+          "status": "observed",
+          "counts": {
+            "benign": {
+              "waiting": 0,
+              "running": 1,
+              "completed": 1892,
+              "failed": 0,
+              "pending": 1,
+              "submitted": 1893,
+              "started": 1893
+            },
+            "attack": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 1496,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 1496,
+              "started": 1496
+            },
+            "unknown": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 20,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 20,
+              "started": 20
+            }
+          },
+          "errors": []
+        },
+        "after_events_at_boundary": {
+          "status": "observed",
+          "counts": {
+            "benign": {
+              "waiting": 0,
+              "running": 1,
+              "completed": 1892,
+              "failed": 0,
+              "pending": 1,
+              "submitted": 1893,
+              "started": 1893
+            },
+            "attack": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 1496,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 1496,
+              "started": 1496
+            },
+            "unknown": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 20,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 20,
+              "started": 20
+            }
+          },
+          "errors": []
+        }
+      },
+      "150": {
+        "before": {
+          "status": "observed",
+          "counts": {
+            "benign": {
+              "waiting": 0,
+              "running": 2,
+              "completed": 2381,
+              "failed": 0,
+              "pending": 2,
+              "submitted": 2383,
+              "started": 2383
+            },
+            "attack": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 1496,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 1496,
+              "started": 1496
+            },
+            "unknown": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 20,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 20,
+              "started": 20
+            }
+          },
+          "errors": []
+        },
+        "after_events_at_boundary": {
+          "status": "observed",
+          "counts": {
+            "benign": {
+              "waiting": 0,
+              "running": 2,
+              "completed": 2381,
+              "failed": 0,
+              "pending": 2,
+              "submitted": 2383,
+              "started": 2383
+            },
+            "attack": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 1496,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 1496,
+              "started": 1496
+            },
+            "unknown": {
+              "waiting": 0,
+              "running": 0,
+              "completed": 20,
+              "failed": 0,
+              "pending": 0,
+              "submitted": 20,
+              "started": 20
+            }
+          },
+          "errors": []
+        }
+      }
+    },
+    "last_offensive_completion": 63.6993708480004,
+    "seconds_after_60": 3.699370848000399,
+    "offensive_completions_at_or_after_60": 166,
+    "offensive_submissions_at_or_after_60": [],
+    "final_observed_state": {
+      "status": "observed",
+      "counts": {
+        "benign": {
+          "waiting": 0,
+          "running": 0,
+          "completed": 2385,
+          "failed": 0,
+          "pending": 0,
+          "submitted": 2385,
+          "started": 2385
+        },
+        "attack": {
+          "waiting": 0,
+          "running": 0,
+          "completed": 1496,
+          "failed": 0,
+          "pending": 0,
+          "submitted": 1496,
+          "started": 1496
+        },
+        "unknown": {
+          "waiting": 0,
+          "running": 0,
+          "completed": 20,
+          "failed": 0,
+          "pending": 0,
+          "submitted": 20,
+          "started": 20
+        }
+      },
+      "errors": []
+    },
+    "scope": "Observed complete lifecycles of identified operations; not universal proof against unobserved future ingress"
+  },
+  "resources": [
+    {
+      "period": "Total",
+      "samples": 20,
+      "first": 10.16928630700022,
+      "last": 145.06636845000048,
+      "cpu_mean": 88.5255,
+      "cpu_max": 242.88,
+      "mem_mean_mib": 46.8425,
+      "mem_max_mib": 56.66,
+      "gap_median": 6.052586049000638,
+      "gap_max": 10.178784675000315,
+      "raw_samples": 50
+    },
+    {
+      "period": "P1",
+      "samples": 2,
+      "first": 10.16928630700022,
+      "last": 20.228322638999998,
+      "cpu_mean": 60.535,
+      "cpu_max": 64.19,
+      "mem_mean_mib": 27.509999999999998,
+      "mem_max_mib": 27.89,
+      "gap_median": 10.059036331999778,
+      "gap_max": 10.059036331999778,
+      "raw_samples": 10
+    },
+    {
+      "period": "P2",
+      "samples": 3,
+      "first": 30.299596532000578,
+      "last": 50.625851188000524,
+      "cpu_mean": 172.51,
+      "cpu_max": 238.59,
+      "mem_mean_mib": 40.75,
+      "mem_max_mib": 48.94,
+      "gap_median": 10.163127327999973,
+      "gap_max": 10.178784675000315,
+      "raw_samples": 10
+    },
+    {
+      "period": "P3",
+      "samples": 15,
+      "first": 60.75185720399986,
+      "last": 145.06636845000048,
+      "cpu_mean": 75.46066666666667,
+      "cpu_max": 242.88,
+      "mem_mean_mib": 50.638666666666666,
+      "mem_max_mib": 56.66,
+      "gap_median": 6.017652737500157,
+      "gap_max": 6.206138362999809,
+      "raw_samples": 30
+    }
+  ],
+  "tail": [
+    {
+      "run_id": "9aeffeec6d384eb393dd8242d7c26bc4",
+      "request_id": "request_normal_2_000001216",
+      "generator": "normal",
+      "worker_id": "1",
+      "target_url": "http://edos_service:80/medium",
+      "timestamp": "1794097553.434929",
+      "elapsed_seconds": "150.00283239600049",
+      "end_timestamp": "1794097553.4707046",
+      "end_elapsed_seconds": "150.0386082570003",
+      "duration_ms": "35.77586099982",
+      "traffic_class": "benign",
+      "attack_active": "0",
+      "attack_id": "",
+      "event_id": "",
+      "active_event_ids": "[]",
+      "http_status": "200",
+      "outcome": "response",
+      "error_type": ""
+    },
+    {
+      "run_id": "9aeffeec6d384eb393dd8242d7c26bc4",
+      "request_id": "request_normal_1_000001169",
+      "generator": "normal",
+      "worker_id": "0",
+      "target_url": "http://edos_service:80/medium",
+      "timestamp": "1794097553.4401324",
+      "elapsed_seconds": "150.00803599899973",
+      "end_timestamp": "1794097553.512836",
+      "end_elapsed_seconds": "150.08074141999987",
+      "duration_ms": "72.705421000137",
+      "traffic_class": "benign",
+      "attack_active": "0",
+      "attack_id": "",
+      "event_id": "",
+      "active_event_ids": "[]",
+      "http_status": "200",
+      "outcome": "response",
+      "error_type": ""
+    }
+  ],
+  "audit_operations": 20
+}

@@ -1,0 +1,8 @@
+Docker network 'edos_network' already exists.
+Attempting to start container target_instance_1: network only, no host publication
+Container 776eb86c1d79 (target_instance_1) started. Docker network only; no published port.
+[Sniffer] Realtime tcpdump started on br-7e2468afd861
+[Sniffer] Realtime tcpdump stopped.
+Attempting to stop and remove container 776eb86c1d79e78cbcd857fcda48600b39e941a23ac98323fa21244ff6265eb6...
+Container 776eb86c1d79e78cbcd857fcda48600b39e941a23ac98323fa21244ff6265eb6 stopped and removed.
+[Sources] Total fictional victim cost: $0.0006

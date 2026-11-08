@@ -1,0 +1,402 @@
+[
+  {
+    "path": "victim_stats.jsonl",
+    "unchanged": true
+  },
+  {
+    "path": "attack_summary_log.csv",
+    "unchanged": true
+  },
+  {
+    "path": "run_provenance.json",
+    "unchanged": true
+  },
+  {
+    "path": "normal_traffic_summary_log.csv",
+    "unchanged": true
+  },
+  {
+    "path": "source_inventory.json",
+    "unchanged": true
+  },
+  {
+    "path": "preflight.json",
+    "unchanged": true
+  },
+  {
+    "path": "traffic_capture.csv.capture.json",
+    "unchanged": true
+  },
+  {
+    "path": "traffic_capture.stderr",
+    "unchanged": true
+  },
+  {
+    "path": "rtt_log.csv",
+    "unchanged": true
+  },
+  {
+    "path": "request_log.csv",
+    "unchanged": true
+  },
+  {
+    "path": "effective_config.json",
+    "unchanged": true
+  },
+  {
+    "path": "run_status.json",
+    "unchanged": true
+  },
+  {
+    "path": "simulation_metrics.csv",
+    "unchanged": true
+  },
+  {
+    "path": "attempt.json",
+    "unchanged": true
+  },
+  {
+    "path": "traffic_capture.csv",
+    "unchanged": true
+  },
+  {
+    "path": "attack_events.csv",
+    "unchanged": true
+  },
+  {
+    "path": "diagnostics/metadata.json",
+    "unchanged": true
+  },
+  {
+    "path": "diagnostics/victim_clock_validation.json",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/clock_validation.json",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/traffic_capture.pcap.capture.json",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/traffic_capture.pcap.stderr",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/image_identity.json",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/aggregation_audit.json",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/traffic_capture.pcap",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/Dockerfile.sources",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/requirements.sources.txt",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/source_plan.json",
+    "unchanged": true
+  },
+  {
+    "path": "direct_artifacts/backend_inventory.json",
+    "unchanged": true
+  },
+  {
+    "path": "direct_artifacts/routing_evidence.jsonl",
+    "unchanged": true
+  },
+  {
+    "path": "direct_artifacts/capture_metadata.json",
+    "unchanged": true
+  },
+  {
+    "path": "direct_artifacts/target_identity.json",
+    "unchanged": true
+  },
+  {
+    "path": "diagnostics/victim/events.summary.json",
+    "unchanged": true
+  },
+  {
+    "path": "diagnostics/victim/stop",
+    "unchanged": true
+  },
+  {
+    "path": "diagnostics/victim/events.jsonl",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/normal_1/manifest.json",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/normal_2/manifest.json",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/attack_2/manifest.json",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/network_audit/veth1b67f33.pcap",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/network_audit/any.pcap",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/network_audit/veth1b67f33.txt",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/network_audit/br-7e2468afd861.txt",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/network_audit/lo.pcap",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/network_audit/lo.stderr",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/network_audit/veth1b67f33.stderr",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/network_audit/any.txt",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/network_audit/comparison.json",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/network_audit/any.stderr",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/network_audit/lo.txt",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/network_audit/br-7e2468afd861.pcap",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/network_audit/br-7e2468afd861.stderr",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/network_audit/isolation.json",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/attack_1/manifest.json",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/normal_1/output/final_status.json",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/normal_1/output/routing_evidence.jsonl",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/normal_1/output/local_events.csv",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/normal_1/output/journal.jsonl",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/normal_1/output/local_summary.csv",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/normal_1/output/ready.json",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/normal_1/output/container_output.log",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/normal_1/output/local_rtt.csv",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/normal_1/output/local_requests.csv",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/normal_1/control/command.json",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/normal_1/output/diagnostics/events.summary.json",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/normal_1/output/diagnostics/events.jsonl",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/normal_2/output/final_status.json",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/normal_2/output/routing_evidence.jsonl",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/normal_2/output/local_events.csv",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/normal_2/output/journal.jsonl",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/normal_2/output/local_summary.csv",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/normal_2/output/ready.json",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/normal_2/output/container_output.log",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/normal_2/output/local_rtt.csv",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/normal_2/output/local_requests.csv",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/normal_2/control/command.json",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/normal_2/output/diagnostics/events.summary.json",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/normal_2/output/diagnostics/events.jsonl",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/attack_2/output/final_status.json",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/attack_2/output/routing_evidence.jsonl",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/attack_2/output/local_events.csv",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/attack_2/output/journal.jsonl",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/attack_2/output/local_summary.csv",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/attack_2/output/ready.json",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/attack_2/output/container_output.log",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/attack_2/output/local_rtt.csv",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/attack_2/output/local_requests.csv",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/attack_2/control/command.json",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/attack_2/output/diagnostics/events.summary.json",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/attack_2/output/diagnostics/events.jsonl",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/attack_1/output/final_status.json",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/attack_1/output/routing_evidence.jsonl",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/attack_1/output/local_events.csv",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/attack_1/output/journal.jsonl",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/attack_1/output/local_summary.csv",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/attack_1/output/ready.json",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/attack_1/output/container_output.log",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/attack_1/output/local_rtt.csv",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/attack_1/output/local_requests.csv",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/attack_1/control/command.json",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/attack_1/output/diagnostics/events.summary.json",
+    "unchanged": true
+  },
+  {
+    "path": "source_artifacts/attack_1/output/diagnostics/events.jsonl",
+    "unchanged": true
+  }
+]
