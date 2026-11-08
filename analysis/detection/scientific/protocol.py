@@ -30,6 +30,8 @@ _override=os.environ.get('SCIENTIFIC_SPEC_PATH');_hash=os.environ.get('SCIENTIFI
 if bool(_override)!=bool(_hash):raise ContractError('Explicit specification requires path AND hash')
 PROTOCOL_PATH=Path(_override).resolve() if _override else DEFAULT_PROTOCOL_PATH
 SPEC=load_spec(PROTOCOL_PATH,_hash or DEFAULT_PROTOCOL_SHA256)
+# Bind all campaign, calibration and evaluation inventories to the selected version.
+FEATURES=tuple(tuple(f) for f in SPEC['features'])
 TEST_ORDER=tuple(tuple(row) for row in SPEC['test_order'])
 
 

@@ -116,6 +116,8 @@ def publish_candidate(destination,metadata,columns,rows):
 
 
 def check_sources(sources,partition,count):
+    if any((s.series.family,s.series.feature) not in FEATURES for s in sources):
+        raise ContractError("Feature excluded from selected scientific matrix")
     if len(sources)!=count or any(s.partition!=partition or s.reference['partition']!=partition or s.reference['run_id']!=s.series.run_id for s in sources):raise ContractError('Wrong scientific partition/count')
     if len({s.series.run_id for s in sources})!=count or len({s.reference['seed'] for s in sources})!=count:
         raise ContractError('Scientific sources alias runs/seeds')
@@ -130,6 +132,8 @@ def selected(rows):return [r for r in rows if number(r['window_start_seconds'])>
 
 
 def trace(series,method,parameters=None,h=None):
+    if (series.family,series.feature) not in FEATURES:
+        raise ContractError("Feature excluded from selected scientific matrix")
     if method=='cusum-freeze':
         run=process_series(series,h=h,baseline_parameters=parameters)
         return transition_rows(run)

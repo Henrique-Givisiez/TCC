@@ -26,6 +26,7 @@ def verify_receipt(receipt):
 
 
 def load_source(entry,receipt,family,feature,*,authority,test_release=None):
+    if (family,feature) not in FEATURES:raise ContractError('Unknown observable feature')
     validate_membership(entry,authority)
     if entry['partition']=='TEST':
         validate_test_release(test_release,authority)

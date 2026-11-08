@@ -40,7 +40,7 @@ def validate_image_lock(images):
 
 
 def validate_spec(spec, root):
-    if (spec['protocol_id']!='single-victim-direct-80-20261108' or spec['version']!=4
+    if (spec['protocol_id']!='single-victim-direct-80-20261108' or spec['version'] not in (4,5)
             or spec['counts']!=dict(BASELINE=4,CAL_A=8,CAL_B=8,TEST=60)
             or spec['test_blocks']!=20 or spec['scenarios']!=['L2','A3','F96']
             or spec['control_scenario']!='L2' or spec['nominal_seconds']!=390
@@ -51,6 +51,8 @@ def validate_spec(spec, root):
             or spec['environment_image_roles']!=['victim','source']
             or spec['replacements']['maximum_total_attempts']!=82):
         raise ContractError('Direct-80 numerical/identity contract differs')
+    if spec['version']==5 and (spec.get('descriptive_features') != [['infrastructure','mean_cpu_percent']] or spec.get('revision',{}).get('cpu_detection_allowed') is not False):
+        raise ContractError('C1.3.5 CPU must remain descriptive only')
     randomization=spec['test_randomization']
     if (randomization!=dict(seed=202611080133,algorithm='sha256-sort-prebalanced-indices-v1')
             or spec['test_order']!=randomized_test_order(randomization['seed'])):
@@ -62,7 +64,7 @@ def validate_spec(spec, root):
             or digest(root/policy['resource_policy']['path'])!=policy['resource_policy']['sha256']):
         raise ContractError('Operational policy binding differs')
     from .protocol import FEATURES, METHODS, PARTITIONS
-    if (spec['features'] != [list(f) for f in FEATURES] or spec['methods'] != list(METHODS)
+    if (spec['features'] != [list(f) for f in ((('network','ingress_packet_count'),('network','ingress_tcp_payload_length_sum_bytes'),('service','request_starts'),('service','mean_duration_ms'),('infrastructure','mean_cpu_percent'))[:5 if spec['version']==4 else 4])] or spec['methods'] != list(METHODS)
             or spec['checkpoints'] != list(PARTITIONS)
             or spec['phases'] != dict(WARMUP=[0,30],PRE=[30,150],ATTACK=[150,270],POST=[270,390])
             or spec['selection'] != [30,390]
