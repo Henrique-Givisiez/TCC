@@ -1,0 +1,29 @@
+{
+  "L2": {
+    "pcap_decoded_rows": 32833,
+    "sha256": {
+      "L2/raw/traffic_capture.csv": "f2c866076ea9b8c896fc651709cc3b8b091e8628767815cd410f93ab361c258c",
+      "L2/raw/source_artifacts/traffic_capture.pcap": "570b0d6af7a83a0c86b0ab98174c03069caa043f70babcbfc370e3c7515591fa",
+      "L2/raw/run_status.json": "0bb242cba7ce931231727db1f24b7605e0f72365c5f44fa21941d0cebb409a1a",
+      "L2/raw/operational_policy.json": "14727d3485fd251a9ca0a34ab46c03717f8369c185784bc529834666a8e66da5"
+    }
+  },
+  "A3": {
+    "pcap_decoded_rows": 49743,
+    "sha256": {
+      "A3/raw/traffic_capture.csv": "653ce383136b2c1a21fa86d424062681832e0d909a45c78f598255dbd1d7e532",
+      "A3/raw/source_artifacts/traffic_capture.pcap": "bf4bad43ff0991380f1df0fab2b9ba0da8b4f83e92f148a9f7c070aba478cdc2",
+      "A3/raw/run_status.json": "1248c4b6326c427029791f19030e219df1643063c496a8de13e665b8f17ce215",
+      "A3/raw/operational_policy.json": "6e4287205b91fb01d3c88ed9de423248e49a5d8f4b58edefc487912fd34a1ba0"
+    }
+  },
+  "F96": {
+    "pcap_decoded_rows": 81288,
+    "sha256": {
+      "F96/raw/traffic_capture.csv": "7ee895823558aa591ff263c087c9e50b5bee0c12b53986b67a58ace4e288f69e",
+      "F96/raw/source_artifacts/traffic_capture.pcap": "1e32fd40b8fc81398b5fcbf4a85af12990b7ca73fd150f23a4eefb3281c4e537",
+      "F96/raw/run_status.json": "51b4fa0c62ecbcf6343b64f740b6d1bd309cf3c3b513a750d337b3fa5db2f44e",
+      "F96/raw/operational_policy.json": "a1fa278ae9e252f0f867aa329b504e7bbd34b42d8e0a651c3566562b8ae03a5a"
+    }
+  }
+}

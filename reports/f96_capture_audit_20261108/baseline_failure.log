@@ -1,0 +1,24 @@
+F
+======================================================================
+FAIL: test_e_tcpdump_timestamp_unknown_and_final_timeline (tests.test_ground_truth.GroundTruthTests.test_e_tcpdump_timestamp_unknown_and_final_timeline)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/tests/test_ground_truth.py", line 135, in test_e_tcpdump_timestamp_unknown_and_final_timeline
+    self.assertEqual((packet['traffic_class'], packet['attack_active']), ('unknown', '1'))
+AssertionError: Tuples differ: ('unknown', '0') != ('unknown', '1')
+
+First differing element 1:
+'0'
+'1'
+
+- ('unknown', '0')
+?              ^
+
++ ('unknown', '1')
+?              ^
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.003s
+
+FAILED (failures=1)

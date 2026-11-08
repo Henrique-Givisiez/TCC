@@ -141,25 +141,22 @@ class TcpdumpSniffer:
             raise RuntimeError('tcpdump stopped during experiment')
 
     def _reader_loop(self):
-        while self.process and self.process.stdout:
-            line = self.process.stdout.readline()
-            if not line:
-                break
+        # The reader owns the stream: EOF drains stdout, then close flushes CSV.
+        # Include open/read/flush/close in the error boundary, not just writerow.
+        try:
+            with open(self.output_csv, 'a', newline='') as stream:
+                writer = csv.DictWriter(stream, fieldnames=PACKET_FIELDS)
+                while self.process and self.process.stdout:
+                    line = self.process.stdout.readline()
+                    if not line:
+                        break
+                    match = TCPDUMP_REGEX.search(line)
+                    if match:
+                        self._write_row(match.groupdict(), writer=writer)
+        except Exception as exc:
+            self.reader_error = exc
 
-
-            match = TCPDUMP_REGEX.search(line)
-            if not match:
-                continue
-
-            data = match.groupdict()
-            try:
-                self._write_row(data)
-            except Exception as exc:
-                self.reader_error = exc
-                break
-
-
-    def _write_row(self, data):
+    def _write_row(self, data, writer=None):
         timestamp = float(data['time'])
         elapsed = self.ground_truth.clock.from_epoch(timestamp)
         active, ids = self.ground_truth.context(elapsed)
@@ -168,8 +165,12 @@ class TcpdumpSniffer:
                    dst_ip=data['dst_ip'], dst_port=int(data['dst_port']),
                    packet_length=int(data['length']), traffic_class='unknown',
                    attack_active=active, active_event_ids=encode_event_ids(ids))
-        with open(self.output_csv, 'a', newline='') as f:
-            csv.DictWriter(f, fieldnames=PACKET_FIELDS).writerow(row)
+        if writer is not None:
+            writer.writerow(row)
+        else:
+            # Support synchronous callers outside the running reader.
+            with open(self.output_csv, 'a', newline='') as f:
+                csv.DictWriter(f, fieldnames=PACKET_FIELDS).writerow(row)
 
     def finalize_context(self):
         # A packet can be processed before an event transition is recorded.
@@ -220,13 +221,13 @@ class TcpdumpSniffer:
             stream.write(diagnostic + ('\n' if diagnostic and not diagnostic.endswith('\n') else ''))
         report = self.lifecycle.finish(returncode=self.process.returncode, stderr_text=diagnostic,
                                        launch_error=repr(wait_error) if wait_error else None)
+        if self.thread and self.thread.is_alive():
+            raise RuntimeError('tcpdump reader did not drain')
         finalize_error = None
         try:
             self.finalize_context()  # partial captures retain the authoritative final timeline too
         except Exception as exc:
             finalize_error = exc
-        if self.thread and self.thread.is_alive():
-            raise RuntimeError('tcpdump reader did not drain')
         if self.reader_error:
             raise RuntimeError('tcpdump CSV writer failed') from self.reader_error
         if finalize_error:
