@@ -36,6 +36,7 @@ class StatsCollector:
         self._references = {}
         self._sequence = 0
         self.failure = None
+        self.timing_diagnostics = None
         self._summary = dict(attempts=0, snapshots=0, missed_opportunities=0)
 
         self._t = threading.Thread(target=self._run, name="DockerStatsCollector", daemon=True)
@@ -64,6 +65,15 @@ class StatsCollector:
                       samples=self.evidence_path.name, summary=SUMMARY)
         with (self.evidence_path.parent/MARKER).open('x') as stream:
             json.dump(marker, stream, allow_nan=False); stream.flush(); os.fsync(stream.fileno())
+
+    def bind_timing_diagnostics(self, path, max_records=2048):
+        """Opt in before start/bind completion; separate, non-scientific output."""
+        if self._t.ident is not None or self.timing_diagnostics is not None:
+            raise RuntimeError('Timing diagnostics must be bound once before start')
+        if self.evidence_path is None:
+            raise RuntimeError('Bind scientific CPU evidence first')
+        from simulator.cpu_diagnostics import CPUTimingDiagnostics
+        self.timing_diagnostics = CPUTimingDiagnostics(path, max_records)
 
     def _on_acquisition(self, container, stats, received_monotonic):
         """Hook for freshness adapters; called only for genuinely advancing snapshots."""
@@ -167,8 +177,21 @@ class StatsCollector:
                     row, container, stats = self._acquire(cid, scheduled, origin)
                     row['missed_opportunities_before'] = missed_before
                     if stream:
-                        stream.write(json.dumps(row, allow_nan=False) + '\n')
-                        stream.flush(); os.fsync(stream.fileno())
+                        if self.timing_diagnostics is None:
+                            stream.write(json.dumps(row, allow_nan=False) + '\n')
+                            stream.flush(); os.fsync(stream.fileno())
+                        else:
+                            timing = self.timing_diagnostics
+                            diagnostic = timing.records[-1]
+                            timing.mark(diagnostic, 'serialization_start')
+                            encoded = json.dumps(row, allow_nan=False) + '\n'
+                            timing.mark(diagnostic, 'serialization_end')
+                            stream.write(encoded)
+                            timing.mark(diagnostic, 'write_end')
+                            stream.flush()
+                            timing.mark(diagnostic, 'flush_end')
+                            os.fsync(stream.fileno())
+                            timing.mark(diagnostic, 'fsync_end')
                     if container is not None and stats is not None:
                         metrics = self._compute_metrics(container, stats)
                         if metrics is not None:
@@ -187,6 +210,8 @@ class StatsCollector:
                 scheduled, missed = next_slot(scheduled, time.monotonic(), self.poll_interval)
                 self._summary['missed_opportunities'] += missed
                 missed_before = missed
+                if self.timing_diagnostics is not None:
+                    self.timing_diagnostics.next_schedule(scheduled)
         except Exception as exc:
             self.failure = type(exc).__name__ + ': ' + str(exc)
         finally:
@@ -196,6 +221,10 @@ class StatsCollector:
             if own_client:
                 try: own_client.close()
                 except Exception as exc: self.failure = self.failure or repr(exc)
+            if self.timing_diagnostics is not None:
+                try: self.timing_diagnostics.finish(self.run_id, self.failure)
+                except Exception as exc:
+                    self.failure = (self.failure + '; ' if self.failure else '') + 'timing diagnostics: ' + repr(exc)
             if self.evidence_path is not None:
                 try:
                     with (Path(self.evidence_path).parent/SUMMARY).open('x') as output:
@@ -217,8 +246,14 @@ class StatsCollector:
                    counters=None, error=None, delay_seconds=max(0, begin-scheduled))
         row['reference_invalidated'] = False
         container = stats = None
+        timing = self.timing_diagnostics
+        diagnostic = timing.begin(self._sequence, cid, scheduled, begin) if timing is not None else None
+        if timing is not None:
+            timing.mark(diagnostic, 'inspect_start')
         try:
             container = self.client.containers.get(cid)
+            if timing is not None:
+                timing.mark(diagnostic, 'inspect_end')
             if container.id != cid:
                 raise ValueError('container identity changed')
             state = container.attrs['State']
@@ -227,13 +262,19 @@ class StatsCollector:
             row['generation'] = dict(started_at=state['StartedAt'], restarts=container.attrs['RestartCount'])
             if not row['generation']['started_at']:
                 raise ValueError('missing StartedAt')
+            if timing is not None:
+                timing.mark(diagnostic, 'validation_end')
             stats = container.stats(stream=False, one_shot=True)
+            if timing is not None:
+                timing.mark(diagnostic, 'stats_end')
             row.update(snapshot_received=True, docker_read=stats.get('read'))
             cpu = stats.get('cpu_stats', {})
             row['counters'] = dict(total_usage=cpu.get('cpu_usage', {}).get('total_usage'),
                                    system_cpu_usage=cpu.get('system_cpu_usage'),
                                    online_cpus=cpu.get('online_cpus') or len(cpu.get('cpu_usage', {}).get('percpu_usage', [])))
         except Exception as exc:
+            if timing is not None:
+                timing.mark(diagnostic, 'acquisition_exception')
             row['error'] = type(exc).__name__ + ': ' + str(exc)
             if isinstance(exc, docker.errors.NotFound) or isinstance(exc, ValueError):
                 row['reference_invalidated'] = True
@@ -245,7 +286,13 @@ class StatsCollector:
         row['received_seconds'] = row['call_end_seconds']
         row['monotonic'] = row['received_seconds']+origin  # compatibility for raw evidence readers
         row['duration_seconds'] = row['call_end_seconds']-row['call_start_seconds']
+        if timing is not None:
+            diagnostic['stamps']['received'] = row['received_seconds'] + origin
+            diagnostic['acquisition_error'] = row['error']
+            timing.mark(diagnostic, 'delta_start')
         derived, reference = delta(row, self._references.get(cid))
+        if timing is not None:
+            timing.mark(diagnostic, 'delta_end')
         row.update(derived)
         self._references[cid] = reference
         self._summary['attempts'] += 1
