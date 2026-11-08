@@ -1,0 +1,23 @@
+{
+  "source_pilot": "F96_fix_400ca8f_20261108_144956",
+  "images": {
+    "victim": "sha256:03a186aa90eec03b874c82a887b245e7190fa45cd7256af3c077cb64943d52b0",
+    "source": "sha256:b94212edd4d31c34998aea870caebc4ba145c1593d1b8dfdc27fe4917719fe3e"
+  },
+  "campaign_slot": false,
+  "phases": {
+    "pre": [
+      0,
+      30
+    ],
+    "attack": [
+      30,
+      150
+    ],
+    "post": [
+      150,
+      240
+    ]
+  },
+  "source_configuration_sha256": "04255262ad141df183cda6141f1b7cfc22bca4b8793af92fd82656e32ee4390e"
+}

@@ -1,0 +1,11 @@
+{
+  "min_available_bytes": 2147483648,
+  "min_disk_bytes": 4294967296,
+  "victim_memory_bytes": 1073741824,
+  "source_memory_bytes": 536870912,
+  "max_artifact_bytes": 536870912,
+  "collection_max_age_seconds": 5,
+  "global_timeout_seconds": 480,
+  "docker_timeout_seconds": 3,
+  "version": "exploratory-offensive-v1"
+}

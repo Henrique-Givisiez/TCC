@@ -15,6 +15,8 @@ def main():
     parser.add_argument('--composition',choices=('legitimate','offensive','combined'), help='Required with exploratory-offensive-v1')
     parser.add_argument('--previous-run',type=Path, help='Previous I1 output: essential failures block continuation')
     parser.add_argument('--scientific-pilot-scenario',choices=('L2','A3','F96'),help='Explicit diagnostic pilot, outside campaign; install scientific observer')
+    parser.add_argument('--cpu-timing-diagnostic-dir', type=Path,
+                        help='Explicit D1 exploratory CPU timing; new directory outside raw/dataset; incompatible with scientific pilots')
     args=parser.parse_args()
     from simulator import config
     from experiments.dataset_run import run_recorded
@@ -22,6 +24,13 @@ def main():
     experiment=ExperimentConfig.load(args.config).resolve_seed()
     if (experiment.attack.enabled or experiment.attack.attackers) and not args.operational_policy:
         raise ValueError('offensive execution requires protected policy')
+    timing_request = None
+    if args.cpu_timing_diagnostic_dir is not None:
+        from experiments.cpu_timing_diagnostic import prepare_request
+        timing_request = prepare_request(experiment, args.cpu_timing_diagnostic_dir,
+            args.output, args.dataset_output, args.operational_policy,
+            dict(victim=args.victim_image, source=args.source_image),
+            args.composition, args.scientific_pilot_scenario)
     operational = None
     previous_images = (config.DOCKER_IMAGE_NAME, config.SOURCE_IMAGE)
     if args.operational_policy:
@@ -47,6 +56,9 @@ def main():
         if operational:
             config.DOCKER_IMAGE_NAME, config.SOURCE_IMAGE = identities['victim'], identities['source']
             prepare_attempt(operational, experiment, docker_manager.client, args.composition or 'legitimate')
+            if timing_request is not None:
+                operational.cpu_timing_request = timing_request
+                operational.report['attempt'].update(cpu_timing_exploratory=True, campaign_slot=False)
             if args.scientific_pilot_scenario:
                 from experiments.scientific_operations import resource_probe,install_observer
                 from experiments.stress_observer import DIRECT_POLICY

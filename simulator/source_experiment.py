@@ -138,6 +138,8 @@ def run(experiment, operational=None):
         collector.update_containers(victims)
         collector.dedicated_client = True
         collector.bind_cpu(gt.run_id, gt.clock, Path(config.RUN_STATUS_FILE).parent/'victim_stats.jsonl')
+        from experiments.cpu_timing_diagnostic import bind_collector
+        bind_collector(collector, experiment, operational)
         status['cpu_observation_contract'] = 'victim-cpu-snapshots-v1'
         collector.start()
         if operational: operational.collection_started = time.monotonic()
