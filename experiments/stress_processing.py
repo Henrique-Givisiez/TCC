@@ -28,7 +28,7 @@ def reconcile(raw, config):
     raw = Path(raw)
     status, inventory = read(raw / 'run_status.json'), read(raw / 'source_inventory.json')
     run = status['run_id']
-    expected = {f'normal_{i+1}': ('normal', 'benign', i) for i in range(4)}
+    expected = {f'normal_{i+1}': ('normal', 'benign', i) for i in range(config.normal_traffic.clients)}
     if config.attack.enabled:
         expected.update({f'attack_{i+1}': ('attack', 'attack', i) for i in range(config.attack.attackers)})
     if len(inventory) != len(expected) or {s['source_id'] for s in inventory} != set(expected):

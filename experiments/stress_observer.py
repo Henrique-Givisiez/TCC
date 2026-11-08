@@ -5,6 +5,12 @@ import time
 from pathlib import Path
 from simulator.source_aggregate import records
 
+DIRECT_POLICY = 'scientific-direct-v1'
+
+def requires_stop(reason, policy=None):
+    """HTTP degradation remains observable; acquisition/observer failures stop."""
+    return bool(reason) and (policy != DIRECT_POLICY or reason not in ('service_compromise','generator_queue'))
+
 class SampleFreshness:
     """A cache read or repeated Docker sample cannot refresh acquisition age."""
     def __init__(self): self.fresh={}; self.reads={}; self.lock=threading.Lock()
@@ -79,10 +85,11 @@ class Watcher:
                 result['collection_samples']={cid:dict(read=reads.get(cid),received_seconds=t-self.gt.clock.monotonic_initial) for cid,t in fresh.items()}
                 result['actionable']=now<270 and not any(x['kind']=='emission_closed' for x in items)
                 result['decision_available_seconds']=self.gt.clock.elapsed()
+                result['policy']=getattr(self.manager,'observer_policy',None)
                 result['run_id']=self.gt.run_id
                 result['journal_sequences']={e['source_id']:max([x['sequence'] for x in items if x['source_id']==e['source_id']] or [0]) for e in self.manager.entries}
                 with self.path.open('a') as f: f.write(json.dumps(result)+'\n')
-                if result['reason'] and result['actionable']: self.manager.stop_attack(result)
+                if requires_stop(result['reason'],result['policy']) and result['actionable']: self.manager.stop_attack(result)
             except Exception as exc:
                 self.failure=repr(exc)
                 self.manager.stop_attack(dict(reason='observer_failure',observed_seconds=self.gt.clock.elapsed(),error=self.failure))

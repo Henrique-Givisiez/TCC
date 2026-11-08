@@ -36,6 +36,7 @@ class DockerBackend:
         from simulator import config
         from analysis.detection.scientific.protocol import ROOT,runtime_hashes
         from experiments.development_d1_ops import process_rows
+        from experiments.scientific_operations import is_direct,image_bindings,readiness
         if digest(self.plan['environment']['path'])!=self.plan['environment']['sha256']:raise ContractError('Frozen environment lock changed')
         lock=read_json(self.plan['environment']['path'])
         if set(lock)!={'daemon_id','kernel','python','images','packages'}:raise ContractError('Environment lock fields incomplete')
@@ -44,22 +45,26 @@ class DockerBackend:
         if runtime_hashes()!=self.plan['runtime_hashes']:raise ContractError('Code changed before collection')
         for name,version in lock['packages'].items():
             if importlib.metadata.version(name)!=version:raise ContractError('Dependency changed: '+name)
-        client=docker.DockerClient(base_url=config.DOCKER_ENGINE_SOCKET)
+        client=docker.DockerClient(base_url=config.DOCKER_ENGINE_SOCKET,**({'timeout':3} if is_direct() else {}))
         report=dict(ready=False,started_epoch=time.time())
         try:
             info=client.info()
             if info['ID']!=lock['daemon_id'] or info['KernelVersion']!=lock['kernel']:raise ContractError('Docker environment differs from frozen lock')
             if client.containers.list() or process_rows():raise CollectionFailure('PREFLIGHT_FAILED','Competing containers/processes')
-            image_names=(config.DOCKER_IMAGE_NAME,config.SOURCE_IMAGE,config.PROXY_IMAGE+'@'+config.PROXY_IMAGE_DIGEST)
+            direct=is_direct()
+            image_names=('victim','source') if direct else (config.DOCKER_IMAGE_NAME,config.SOURCE_IMAGE,config.PROXY_IMAGE+'@'+config.PROXY_IMAGE_DIGEST)
             if set(lock['images'])!=set(image_names):raise ContractError('Image lock does not cover expected runtime images')
             for name in image_names:
-                if client.images.get(name).id!=lock['images'][name]:raise ContractError('Frozen image changed: '+name)
+                if client.images.get(lock['images'][name] if direct else name).id!=lock['images'][name]:raise ContractError('Frozen image changed: '+name)
+            if direct:
+                report['operational_readiness']=readiness(client,directory/'readiness',lock['images'])
             source_names=('__init__.py','experiment_config.py','service_destination.py','ground_truth.py','request_logger.py',
                 'normal_traffic.py','traffic_injectorV0.py','normal_traffic_summary_logger.py','attack_summary_logger.py',
                 'source_journal.py','source_runner.py','attack_patterns.py')
-            bindings=[]
-            for image,remote,mapping in ((config.SOURCE_IMAGE,'/app/simulator',{name:ROOT/'simulator'/name for name in source_names}),
-                (config.DOCKER_IMAGE_NAME,'/app/simple_server.py',{'simple_server.py':ROOT/'simulator/app/simple_server.py'})):
+            bindings=image_bindings(client,lock['images']) if direct else []
+            legacy_bindings=() if direct else ((config.SOURCE_IMAGE,'/app/simulator',{name:ROOT/'simulator'/name for name in source_names}),
+                (config.DOCKER_IMAGE_NAME,'/app/simple_server.py',{'simple_server.py':ROOT/'simulator/app/simple_server.py'}))
+            for image,remote,mapping in legacy_bindings:
                 container=client.containers.create(image)
                 try:
                     chunks,_=container.get_archive(remote)
@@ -81,11 +86,8 @@ class DockerBackend:
                     if capture.poll() is None:capture.kill();capture.wait()
             diagnostic=(directory/'capture.stderr').read_text()
             if rc or 'listening on' not in diagnostic:raise CollectionFailure('PREFLIGHT_FAILED','Capture readiness failed')
-            from experiments.stress_runtime import resources
-            probe=client.containers.run(config.SOURCE_IMAGE,detach=True,entrypoint=['python','-c'],command=['import time;time.sleep(60)'],network_mode='none')
-            try: report['effective_resource_probe']=resources(probe)
-            finally:
-                probe.stop(timeout=2);probe.remove()
+            from experiments.scientific_operations import resource_probe
+            report['effective_resource_probe']=resource_probe(client,lock['images']['source'] if direct else config.SOURCE_IMAGE)
             report.update(ready=True,image_sources=bindings,environment=self.plan['environment'],backend='docker',probe_traffic_generated=False)
             return report
         finally:
@@ -106,24 +108,34 @@ class DockerBackend:
                     try:proc.wait(timeout=35)
                     except subprocess.TimeoutExpired:os.killpg(proc.pid,signal.SIGKILL);proc.wait()
                 raise
-            finally:save(directory/'execution.json',dict(command=command,returncode=rc,started_epoch=started,finished_epoch=time.time()))
-        self.cleanup(directory)
+            finally:
+                save(directory/'execution.json',dict(command=command,returncode=rc,started_epoch=started,finished_epoch=time.time()))
+                self.cleanup(directory)
         return self.recover(entry,directory)
 
     def cleanup(self,directory):
         import docker
         from simulator import config
         from experiments.development_d1_ops import process_rows
-        client=docker.DockerClient(base_url=config.DOCKER_ENGINE_SOCKET)
+        from experiments.scientific_operations import is_direct,readiness
+        client=docker.DockerClient(base_url=config.DOCKER_ENGINE_SOCKET,**({'timeout':3} if is_direct() else {}))
         try:
             # Existing orchestrator owns normal cleanup. Leftovers stop progression;
             # this backend never deletes or stops unrelated containers.
             running=[dict(id=x.id,name=x.name) for x in client.containers.list()]
             processes=process_rows()
-            report=dict(verified=not running and not processes,running=running,processes=processes,observed_epoch=time.time())
+            ready=None;error=None
+            if is_direct():
+                try:ready=readiness(client,directory/'post-cleanup',read_json(self.plan['environment']['path'])['images'])
+                except Exception as exc:error=repr(exc)
+            report=dict(verified=not error and not running and not processes and (ready is None or ready['verified']),running=running,processes=processes,observed_epoch=time.time(),readiness=ready,error=error)
             save(directory/'cleanup.json',report)
             if not report['verified']:raise CollectionFailure('CLEANUP_UNCONFIRMED','Cleanup requires diagnosis')
         finally:client.close()
+
+    def continuation_ready(self,entry,directory):
+        """Fresh full preflight, persisted separately; no scientific attempt consumed."""
+        return self.preflight(entry,directory)
 
     def recover(self,entry,directory):
         """Read-only collection recovery plus resumable deterministic offline outputs.
@@ -165,10 +177,13 @@ class DockerBackend:
             raise CollectionFailure('DRAIN_OR_EXECUTION_UNCONFIRMED','Preserved incomplete service/exit requires diagnosis, not automatic substitution')
         from experiments.stress_review import replay_observer
         try:
-            observed=replay_observer(raw,life['run_id'])
-            if observed['stop'] and observed['stop']['reason']=='collection_stale':raise ValueError('Observer acquisition stale')
+            from experiments.scientific_operations import is_direct
+            from experiments.stress_observer import DIRECT_POLICY
+            observed=replay_observer(raw,life['run_id'],DIRECT_POLICY if is_direct() else None)
+            if observed['stop'] and (is_direct() or observed['stop']['reason']=='collection_stale'):raise ValueError('Technical observer stop: '+observed['stop']['reason'])
         except (OSError,ValueError,KeyError) as exc:raise CollectionFailure('MONITOR_SUPPORT',str(exc)) from exc
-        checks=legacy.collection_checks(raw,life['run_id'])
+        from experiments.scientific_operations import collection_checks as direct_checks
+        checks=direct_checks(raw,life['run_id']) if is_direct() else legacy.collection_checks(raw,life['run_id'])
         if any(not x['passed'] for x in checks):
             code='CAPTURE_LOSS' if any(not x['passed'] and x['name'].startswith('capture_') for x in checks) else 'MONITOR_SUPPORT'
             raise CollectionFailure(code,str([x for x in checks if not x['passed']]))
@@ -208,21 +223,22 @@ def main():
         or args.output.resolve()!=directory/'raw' or args.dataset_output.resolve()!=directory/'dataset'
         or digest(claim['preflight_path'])!=claim['preflight_sha256']):raise ContractError('Scientific invocation differs from consumed attempt')
     save(directory/'runtime_invocation.json',dict(attempt_sha256=digest(args.attempt),started_epoch=time.time()))
-    from experiments.stress_runtime import StressManager
-    from experiments.stress_observer import SampleFreshness
-    from simulator import source_experiment,stats_collector
-    StressManager.expected_resources=read_json(claim['preflight_path'])['effective_resource_probe']
-    original=stats_collector.StatsCollector
-    class ProtectedCollector(original):
-        def __init__(self,*a,**kw):
-            super().__init__(*a,**kw);self.samples=SampleFreshness();self.fresh=self.samples.fresh;StressManager.collector=self
-        def _on_acquisition(self,c,stats,received_monotonic):
-            self.samples.update(c.id,stats,received_monotonic)
-    source_experiment.SourceManager=StressManager;stats_collector.StatsCollector=ProtectedCollector
+    from experiments.scientific_operations import is_direct,policy,install_observer
+    from experiments.stress_observer import DIRECT_POLICY
+    install_observer(read_json(claim['preflight_path'])['effective_resource_probe'],DIRECT_POLICY if is_direct() else None)
     from experiments.dataset_run import run_recorded
     from experiments.export_dataset import export_run
     from simulator.experiment_config import ExperimentConfig
-    try:run_recorded(ExperimentConfig.load(args.config),args.output)
+    operational=None
+    if is_direct():
+        from simulator.exploratory_operations import Operations
+        from simulator import config
+        images=read_json(plan['environment']['path'])['images']
+        config.DOCKER_IMAGE_NAME,config.SOURCE_IMAGE=images['victim'],images['source']
+        operational=Operations(policy(),images,args.output)
+        operational.report['attempt']=dict(image_code=read_json(claim['preflight_path'])['image_sources'],
+            preflight=read_json(claim['preflight_path']),scientific_attempt_sha256=digest(args.attempt))
+    try:run_recorded(ExperimentConfig.load(args.config),args.output,operational=operational)
     finally:
         if (args.output/'run_status.json').exists():export_run(args.output,args.dataset_output)
 

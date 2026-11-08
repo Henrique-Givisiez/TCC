@@ -4,9 +4,9 @@ from pathlib import Path
 from unittest.mock import patch
 from experiments import stress_pilot as pilot, stress_processing as proc
 from experiments import development_d3_minimal as base
-from experiments.stress_observer import Observer
+from experiments.stress_observer import Observer,requires_stop
 
-def replay_observer(raw,run):
+def replay_observer(raw,run,policy=None):
     directory=Path(raw)/'source_artifacts'
     entries=base.read(Path(raw)/'source_inventory.json')
     from simulator.source_aggregate import records
@@ -14,6 +14,7 @@ def replay_observer(raw,run):
     engine=Observer(); decisions=[]; previous={}
     for line in (directory/'stress_observer.jsonl').read_text().splitlines():
         tick=json.loads(line)
+        if tick.get('policy')!=policy:raise ValueError('observer policy differs')
         if tick['run_id']!=run: raise ValueError('observer run mismatch')
         samples=tick['collection_samples']
         for cid,sample in samples.items():
@@ -27,7 +28,7 @@ def replay_observer(raw,run):
         if any(tick[k]!=v for k,v in actual.items()): raise ValueError('observer replay mismatch')
         actionable=tick['observed_seconds']<270 and not any(x['kind']=='emission_closed' for x in seen)
         if tick['actionable']!=actionable: raise ValueError('observer action window mismatch')
-        if actual['reason'] and actionable: decisions.append(actual)
+        if requires_stop(actual['reason'],policy) and actionable: decisions.append(actual)
     stop=directory/'stress_stop.json'
     if stop.exists():
         record=base.read(stop)

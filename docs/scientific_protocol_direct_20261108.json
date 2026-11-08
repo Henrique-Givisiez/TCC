@@ -7,7 +7,7 @@
   },
   "specification": {
     "protocol_id": "single-victim-direct-80-20261108",
-    "version": 3,
+    "version": 4,
     "counts": {
       "BASELINE": 4,
       "CAL_A": 8,
@@ -23,12 +23,17 @@
     "test_order": [
       [
         "L2",
-        "A3",
-        "F96"
+        "F96",
+        "A3"
       ],
       [
-        "L2",
+        "A3",
         "F96",
+        "L2"
+      ],
+      [
+        "F96",
+        "L2",
         "A3"
       ],
       [
@@ -42,9 +47,49 @@
         "L2"
       ],
       [
-        "F96",
         "L2",
+        "A3",
+        "F96"
+      ],
+      [
+        "L2",
+        "F96",
         "A3"
+      ],
+      [
+        "F96",
+        "A3",
+        "L2"
+      ],
+      [
+        "A3",
+        "F96",
+        "L2"
+      ],
+      [
+        "A3",
+        "L2",
+        "F96"
+      ],
+      [
+        "L2",
+        "F96",
+        "A3"
+      ],
+      [
+        "L2",
+        "A3",
+        "F96"
+      ],
+      [
+        "A3",
+        "F96",
+        "L2"
+      ],
+      [
+        "F96",
+        "A3",
+        "L2"
       ],
       [
         "F96",
@@ -58,18 +103,13 @@
       ],
       [
         "L2",
-        "F96",
-        "A3"
+        "A3",
+        "F96"
       ],
       [
         "A3",
         "L2",
         "F96"
-      ],
-      [
-        "A3",
-        "F96",
-        "L2"
       ],
       [
         "F96",
@@ -78,48 +118,8 @@
       ],
       [
         "F96",
-        "A3",
-        "L2"
-      ],
-      [
-        "L2",
-        "A3",
-        "F96"
-      ],
-      [
-        "L2",
-        "F96",
-        "A3"
-      ],
-      [
-        "A3",
-        "L2",
-        "F96"
-      ],
-      [
-        "A3",
-        "F96",
-        "L2"
-      ],
-      [
-        "F96",
         "L2",
         "A3"
-      ],
-      [
-        "F96",
-        "A3",
-        "L2"
-      ],
-      [
-        "L2",
-        "A3",
-        "F96"
-      ],
-      [
-        "A3",
-        "F96",
-        "L2"
       ]
     ],
     "methods": [
@@ -654,11 +654,10 @@
     "execution_release": {
       "allowed": false,
       "pending": [
-        "C1.3.2",
-        "C1.3.3",
-        "integrated_390s_validation"
+        "C1.3.4 integrated validation",
+        "definitive code/images/environment/seed/plan freeze and explicit release review"
       ],
-      "operational_policy": "pending_C1.3.3_no_implicit_service_stop_policy"
+      "operational_policy": "scientific-direct-v1 implemented; integrated validation pending"
     },
     "failure_classification": {
       "valid_scientific_run": "retain_even_if_miss_high_fpr_degradation_or_no_recovery",
@@ -666,6 +665,25 @@
       "cleanup_or_recovery_failure": "halt_for_diagnosis_not_automatic_replacement",
       "calibration_rejection": "pair_ineligible_not_collection_failure",
       "service_recovery_absent": "retain_valid_result_no_opportunistic_exclusion"
+    },
+    "test_randomization": {
+      "seed": 202611080133,
+      "algorithm": "sha256-sort-prebalanced-indices-v1"
+    },
+    "operational_policy": {
+      "observer_policy": "scientific-direct-v1",
+      "resource_policy": {
+        "path": "experiments/configs/protected_compositions/policy.json",
+        "sha256": "032c4093c08de1833d1cc3328c50b53512428ab01ff3a909813c7aab34fe0482"
+      },
+      "collection_timeout_seconds": 480,
+      "continuation": "identified_technical_failure_and_verified_cleanup_and_fresh_preflight",
+      "scientific_degradation_stops_emission": false,
+      "automatic_replacement": false,
+      "unknown_failure": "halt",
+      "checkpoint_requires_complete_partition": true,
+      "entry_reserve_seconds": 540,
+      "temporal_budget": "480 subprocess including setup/390 nominal/30 drain/closure/export; 60 idle reserved; readiness must leave 540 seconds of 1080 envelope"
     }
   }
 }

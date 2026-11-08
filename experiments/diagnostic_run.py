@@ -14,6 +14,7 @@ def main():
     parser.add_argument('--operational-policy',type=Path, help='Opt-in immutable images and I1 safeguards; JSON Policy fields')
     parser.add_argument('--composition',choices=('legitimate','offensive','combined'), help='Required with exploratory-offensive-v1')
     parser.add_argument('--previous-run',type=Path, help='Previous I1 output: essential failures block continuation')
+    parser.add_argument('--scientific-pilot-scenario',choices=('L2','A3','F96'),help='Explicit diagnostic pilot, outside campaign; install scientific observer')
     args=parser.parse_args()
     from simulator import config
     from experiments.dataset_run import run_recorded
@@ -40,9 +41,19 @@ def main():
         operational = Operations(policy, identities, args.output)
         operational.nominal_seconds = experiment.duration_seconds
     try:
+        if args.scientific_pilot_scenario:
+            from experiments.scientific_operations import validate_pilot
+            validate_pilot(experiment,args.scientific_pilot_scenario,operational)
         if operational:
             config.DOCKER_IMAGE_NAME, config.SOURCE_IMAGE = identities['victim'], identities['source']
             prepare_attempt(operational, experiment, docker_manager.client, args.composition or 'legitimate')
+            if args.scientific_pilot_scenario:
+                from experiments.scientific_operations import resource_probe,install_observer
+                from experiments.stress_observer import DIRECT_POLICY
+                evidence=resource_probe(docker_manager.client,identities['source'])
+                operational.report['attempt'].update(scientific_pilot=True,campaign_slot=False,
+                    scenario=args.scientific_pilot_scenario,effective_resource_probe=evidence)
+                install_observer(evidence,DIRECT_POLICY)
         else:
             from simulator import docker_manager
             from experiments.image_code_evidence import verify_image_code

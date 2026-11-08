@@ -55,6 +55,15 @@ class Campaign:
             event=read_json(path)
             if event['sequence']!=i or event['previous_sha256']!=previous or event['plan_sha256']!=self.plan_hash:
                 raise ContractError('Checkpoint journal chain differs')
+            payload=event['payload']
+            if engine.pair_contract() and event['kind']=='ATTEMPT_CONSUMED' and digest(payload['path'])!=payload['sha256']:
+                raise ContractError('Consumed attempt changed')
+            if engine.pair_contract() and event['kind']=='TECHNICAL_FAILURE' and digest(payload['failure_path'])!=payload['failure_sha256']:
+                raise ContractError('Technical failure evidence changed')
+            if event['kind']=='CONTINUATION_READY':
+                for key in ('failure','cleanup','preflight'):
+                    if digest(payload[key+'_path'])!=payload[key+'_sha256']:
+                        raise ContractError('Continuation evidence changed')
             previous=digest(path);result.append((event,previous))
         return result
 
@@ -155,8 +164,15 @@ class Campaign:
 
     def wait_idle(self):
         receipts=[self.receipt_document(ref,verify_files=False) for ref in self.accepted().values()]
-        if receipts:
-            remaining=60-(time.time()-max(x['cleanup_epoch'] for x in receipts))
+        epochs=[x['cleanup_epoch'] for x in receipts]
+        if engine.pair_contract():
+            for event,h in self.events():
+                if event['kind']=='TECHNICAL_FAILURE':
+                    cleanup=Path(event['payload']['failure_path']).parent/'cleanup.json'
+                    if cleanup.exists() and read_json(cleanup).get('verified') is True:
+                        epochs.append(read_json(cleanup)['observed_epoch'])
+        if epochs:
+            remaining=60-(time.time()-max(epochs))
             if remaining>61:raise Halt('Cleanup clock is ahead of host time; diagnose before continuation')
             if remaining>0:
                 self.append('IDLE_WAIT',seconds=remaining)
@@ -165,7 +181,7 @@ class Campaign:
     def collect_slot(self,entry):
         if self.handoff:p.validate_handoff(self.plan)
         accepted=self.accepted()
-        for ref in accepted.values():
+        for ref in (() if engine.pair_contract() else accepted.values()):
             op=self.receipt_document(ref,False).get('operational')
             if op and op.get('recovery_confirmed') is False:raise Halt('Service recovery unconfirmed; preserve valid run and diagnose before further collection')
         if entry['id'] in accepted:
@@ -195,6 +211,8 @@ class Campaign:
             if intent.exists():
                 claim=read_json(intent)
                 if claim['authority']!=self.authority or claim['entry']!=entry:raise ContractError('Consumed attempt identity changed')
+                if not any(e['kind']=='ATTEMPT_CONSUMED' and e['payload']['path']==str(intent) for e,h in self.events()):
+                    self.append('ATTEMPT_CONSUMED',entry=entry['id'],attempt_number=attempt_number,path=str(intent),sha256=digest(intent))
                 # Recovery never calls preflight/collect or creates another intent.
                 receipt=self.backend.recover(entry,directory)
             else:
@@ -211,12 +229,12 @@ class Campaign:
                 if digest(self.plan_path)!=self.plan_hash or self.plan['runtime_hashes']!=p.runtime_hashes() or digest(entry['config'])!=entry['config_sha256']:
                     raise ContractError('Authority changed during readiness')
                 remaining=1080-(time.time()-started)
-                if remaining<480:raise Halt('18-minute envelope lacks nominal/drain/idle reserve')
+                if remaining<540:raise Halt('18-minute envelope lacks collection (480s) and idle (60s) reserve')
                 save(intent,dict(authority=self.authority,entry=entry,attempt_number=attempt_number,
                     preflight_path=str(pf/'preflight.json'),preflight_sha256=digest(pf/'preflight.json'),
                     replacement_failure_sha256=approvals[0]['failure_sha256'] if approvals else None,started_epoch=time.time()))
                 self.append('ATTEMPT_CONSUMED',entry=entry['id'],attempt_number=attempt_number,path=str(intent),sha256=digest(intent))
-                receipt=self.backend.collect(entry,directory,min(480,remaining-60))
+                receipt=self.backend.collect(entry,directory,480)
             if receipt['entry_id']!=entry['id']:raise ContractError('Backend returned a different entry')
             if receipt['run_id'] in {self.receipt_document(ref,False)['run_id'] for ref in accepted.values()}:
                 raise ContractError('Collected run aliases another logical slot')
@@ -233,9 +251,84 @@ class Campaign:
             self.append('TECHNICAL_FAILURE',entry=entry['id'],failure_path=str(failure_path),failure_sha256=digest(failure_path))
             raise Halt('Collection stopped: '+str(failure_path)) from exc
 
+    def continue_after_failure(self,entry):
+        """Whitelist diagnosed failures; unknown/identity/uncertain cleanup halt."""
+        failures=[e['payload'] for e,h in self.events() if e['kind']=='TECHNICAL_FAILURE' and e['payload']['entry']==entry['id']]
+        if not failures:raise Halt('No diagnosed technical failure; continuation forbidden')
+        failure=failures[-1];path=Path(failure['failure_path']);doc=read_json(path)
+        if (doc['authority']!=self.authority or doc['entry_id']!=entry['id']
+                or doc['code'] not in ('CAPTURE_LOSS','DATASET_INVALID','MISSING_REQUIRED_ARTIFACTS','MONITOR_SUPPORT')):
+            raise Halt('Technical failure requires diagnosis before continuation')
+        intent=Path(doc['consumed_attempt_path'])
+        if digest(intent)!=doc['consumed_attempt_sha256'] or read_json(intent)['entry']!=entry:
+            raise ContractError('Failed attempt binding changed')
+        cleanup=path.parent/'cleanup.json'
+        if not cleanup.exists() or read_json(cleanup).get('verified') is not True:
+            raise Halt('Cleanup unconfirmed; sequence stopped')
+        self.wait_idle()
+        directories=list((path.parent/'continuation').glob('check-*'))
+        directory=path.parent/'continuation'/f'check-{len(directories)+1:04d}'
+        directory.mkdir(parents=True,exist_ok=False)
+        ready=self.backend.continuation_ready(entry,directory)
+        if ready.get('ready') is not True:raise Halt('Environment recovery unconfirmed')
+        p.load_plan(self.plan_path,self.plan_hash)
+        self.append('CONTINUATION_READY',entry=entry['id'],failure_path=str(path),failure_sha256=digest(path),
+            cleanup_path=str(cleanup),cleanup_sha256=digest(cleanup),preflight_path=str(directory/'preflight.json'),
+            preflight_sha256=digest(directory/'preflight.json'))
+
+    def status(self):
+        checkpoints=self.checkpoints();accepted=self.accepted();events=self.events()
+        failures=[e['payload'] for e,h in events if e['kind']=='TECHNICAL_FAILURE']
+        consumed=[e['payload'] for e,h in events if e['kind']=='ATTEMPT_CONSUMED']
+        recorded={x['path'] for x in consumed}
+        for intent in sorted((self.root/'collection').glob('*/attempt-*/attempt.json')):
+            if str(intent) not in recorded:
+                claim=read_json(intent)
+                if claim['authority']!=self.authority or claim['entry'] not in self.plan['entries']:
+                    raise ContractError('Unjournaled consumed attempt identity changed')
+                consumed.append(dict(entry=claim['entry']['id'],attempt_number=claim['attempt_number'],
+                    path=str(intent),journal_recovery_pending=True))
+        attrition=self.technical_attrition()
+        pending=[e['id'] for e in self.plan['entries'] if e['id'] not in accepted and e['id'] not in attrition]
+        current=next((part for part in p.PARTITIONS if part not in checkpoints),None)
+        attempted={x['entry'] for x in consumed}
+        approvals={e['payload']['entry'] for e,h in events if e['kind']=='REPLACEMENT_APPROVED'}
+        for entry in self.plan['entries']:
+            number=2 if entry['id'] in approvals else 1
+            intent=self.root/'collection'/entry['id']/f'attempt-{number}'/'attempt.json'
+            if entry['id'] in approvals and not intent.exists():attempted.discard(entry['id'])
+            if intent.exists():attempted.add(entry['id'])
+        next_entry=next((e['id'] for e in self.plan['entries'] if e['partition']==current and e['id'] in pending and e['id'] not in attempted),None)
+        cleanup=[]
+        for attempt in consumed:
+            path=Path(attempt['path']).parent/'cleanup.json'
+            cleanup.append(dict(entry=attempt['entry'],attempt_number=attempt['attempt_number'],
+                verified=read_json(path).get('verified') is True if path.exists() else False,
+                evidence=str(path),environment_readiness=read_json(path).get('readiness') if path.exists() else None))
+        return dict(total_slots=len(self.plan['entries']),accepted_slots=len(accepted),pending_slots=pending,
+            pending_count=len(pending),consumed_attempts=len(consumed)+(self.handoff['original_consumed_attempts'] if self.handoff else 0),
+            technical_failures=len(failures),pending_failures=[f for f in failures if f['entry'] in pending],
+            authorized_substitutions=sum(e['kind']=='REPLACEMENT_APPROVED' for e,h in events),
+            current_partition=current,last_checkpoint=next(reversed(checkpoints),None),checkpoints=checkpoints,
+            next_slot=next_entry,cleanup=cleanup,formal_attrition=list(attrition),events=len(events),docker_accessed=False)
+
+    def run_sequence(self,authorization):
+        if authorization!='ALL_PARTITIONS':raise Halt('Explicit ALL_PARTITIONS authorization required')
+        if p.SPEC.get('execution_release',{}).get('allowed') is False:
+            raise Halt('Structural specification only; integrated validation and release pending')
+        with self.locked():
+            self.append('SEQUENCE_AUTHORIZED',scope='ALL_PARTITIONS',automatic_replacements=False,
+                resume_consumed_attempts_without_new_collection=True)
+        for partition in p.PARTITIONS:
+            checkpoints=self.checkpoints();index=p.PARTITIONS.index(partition)
+            if partition in checkpoints:continue
+            prior=checkpoints.get(p.PARTITIONS[index-1]) if index else None
+            self.run_partition(partition,partition,prior['manifest_sha256'] if prior else None)
+        return self.status()
+
     def run_partition(self,partition,authorize_partition,checkpoint_hash=None):
         if p.SPEC.get('execution_release',{}).get('allowed') is False:
-            raise Halt('Structural specification only; C1.3.2/C1.3.3 and integrated validation pending')
+            raise Halt('Structural specification only; C1.3.4 integrated validation and definitive freeze pending')
         if partition not in p.PARTITIONS or authorize_partition!=partition:raise Halt('Explicit authorization must name the selected partition')
         with self.locked():
             checkpoints=self.checkpoints();index=p.PARTITIONS.index(partition)
@@ -249,7 +342,16 @@ class Campaign:
                 raise Halt('Partition already rejected under this frozen authority; no retuning or repeat')
             attrition=self.technical_attrition() if partition=='TEST' else {}
             entries=[e for e in self.plan['entries'] if e['partition']==partition and e['id'] not in attrition]
-            refs=[self.collect_slot(entry) for entry in entries]
+            refs=[];pending=[]
+            for entry in entries:
+                try:refs.append(self.collect_slot(entry))
+                except Halt:
+                    if not engine.pair_contract():raise
+                    self.continue_after_failure(entry)
+                    pending.append(entry['id'])
+            if pending:
+                self.append('PARTITION_PENDING',partition=partition,entries=pending,checkpoint_produced=False)
+                raise Halt('Partition has unresolved technical slots; other safe slots collected, no checkpoint: '+','.join(pending))
             receipts=[self.receipt_document(ref) for ref in refs]
             artifacts={};evals=[]
             for family,feature in p.FEATURES:
@@ -299,13 +401,18 @@ def main():
     parser.add_argument('--plan',type=Path,required=True);parser.add_argument('--plan-sha256',required=True)
     sub=parser.add_subparsers(dest='action',required=True)
     sub.add_parser('validate');sub.add_parser('status')
+    sequence=sub.add_parser('sequence',help='Start or resume; never retries a consumed attempt')
+    sequence.add_argument('--authorize-sequence',required=True,choices=['ALL_PARTITIONS'])
     run=sub.add_parser('run');run.add_argument('--partition',choices=p.PARTITIONS,required=True)
     run.add_argument('--authorize-partition',required=True);run.add_argument('--checkpoint-sha256')
     replace=sub.add_parser('approve-technical-replacement');replace.add_argument('--failure-sha256',required=True)
     attr=sub.add_parser('record-test-attrition');attr.add_argument('--failure-sha256',required=True)
     args=parser.parse_args();campaign=Campaign(args.plan,args.plan_sha256)
     if args.action=='validate':out=dict(valid=True,logical_runs=sum(p.SPEC['counts'].values()),maximum_attempts=p.SPEC['replacements']['maximum_total_attempts'],docker_accessed=False)
-    elif args.action=='status':out=dict(checkpoints=campaign.checkpoints(),events=len(campaign.events()),docker_accessed=False)
+    elif args.action=='status':out=campaign.status()
+    elif args.action=='sequence':
+        try:out=campaign.run_sequence(args.authorize_sequence)
+        except (Halt,ContractError) as exc:parser.exit(2,str(exc)+'\n')
     elif args.action=='approve-technical-replacement':campaign.authorize_replacement(args.failure_sha256);out=dict(replacement_approved=True,experiment_executed=False)
     elif args.action=='record-test-attrition':campaign.record_attrition(args.failure_sha256);out=dict(attrition_recorded=True,experiment_executed=False)
     else:

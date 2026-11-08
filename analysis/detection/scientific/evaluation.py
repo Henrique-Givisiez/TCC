@@ -167,7 +167,8 @@ def impact(raw):
     phases={};flat={}
     resource_rows=base.old.csv_rows(Path(raw)/'simulation_metrics.csv')
     for name,a,b in [('PRE',D(30),D(150)),('ACTIVE',D(150),end),('POST',end,D(390))]:
-        cpu=[number(r['average_cpu_percent']) for r in resource_rows if a<=number(r['elapsed_seconds'])<b and r['active_containers_names'].strip()]
+        cpu=[number(r['average_cpu_percent']) for r in resource_rows if a<=number(r['elapsed_seconds'])<b and r['active_containers_names'].strip()
+             and r['average_cpu_percent'] not in ('',None)]
         flat[name+'/mean_cpu_docker_percent']=base.ratio(sum(cpu),len(cpu))
         own=[r for r in rows if r['traffic_class']=='benign']
         m=base.measure(own,a,b,life['cutoff']);phases[name]=m

@@ -382,7 +382,7 @@ def recovery(summary, bins, control, ground_truth):
     return result
 
 
-def collection_checks(raw, run):
+def collection_checks(raw, run, *, capture_only=False):
     raw = Path(raw)
     results = []
     def add(name, passed, evidence):
@@ -398,6 +398,7 @@ def collection_checks(raw, run):
             and all(counters['statistics_occurrences'].get(k) == 1 for k in ('packets_captured', 'packets_received_by_filter', 'packets_dropped_by_kernel'))
             and report['capture_diagnostic_sha256'] == digest(stderr)
             and status.get('capture_results', {}).get(name) == report, report)
+    if capture_only:return results
     metrics = csv_rows(raw / 'simulation_metrics.csv')
     samples = [json.loads(x) for x in (raw / 'proxy_artifacts/monitor_samples.jsonl').read_text().splitlines()]
     monitor = read(raw / 'proxy_artifacts/monitor_summary.json')
