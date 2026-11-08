@@ -94,8 +94,17 @@ def validate_spec(spec, root):
                  boundary_tolerance_seconds='0.05',provisional=True,availability='received_by_window_closure',
                  missing='null',interpolation=False,cache_repetition=False,attack_validation_pending=True):
         raise ContractError('CPU contract changed')
-    if spec['execution_release']['allowed'] is not False:
-        raise ContractError('Direct specification cannot release collection yet')
+    release=spec['execution_release']
+    if release['allowed'] is not False:
+        base_path=root/'docs/scientific_protocol_direct_c135_20261108.json'
+        expected=dict(allowed=True,base_path=str(base_path.relative_to(root)),
+            base_sha256='a4a5eb198be5e7ac770856e616af454c566993c6b1ef69edf0948bc9b3be1734',
+            authorization='explicit_partition_or_sequence_command_required',revision='O3-20261108')
+        if release!=expected or digest(base_path)!=expected['base_sha256']:
+            raise ContractError('Unbound direct release authority')
+        original=read_json(base_path)['specification']
+        if {k:v for k,v in spec.items() if k!='execution_release'}!={k:v for k,v in original.items() if k!='execution_release'}:
+            raise ContractError('Release changes scientific rules')
 
 
 def draft_entries(spec, historical_seeds, namespace):

@@ -1,0 +1,9 @@
+{
+  "status": "PREPARED_PENDING_USER_REVIEW_AND_COMMAND_AUTHORIZATION",
+  "plan_sha256": "83774ad310ed99216859eac40660d12fdb70f798e2bfda59bcb1b9f578cb62bc",
+  "protocol": {
+    "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/docs/scientific_protocol_direct_c135_o3_20261108.json",
+    "sha256": "c97f8ece0198af720af4781409c12332508b45073cb62234a2c105864bf28018"
+  },
+  "execution_authorized": false
+}
