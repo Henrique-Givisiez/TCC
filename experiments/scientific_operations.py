@@ -31,6 +31,7 @@ def image_bindings(client, images):
 
 def readiness(client, directory, images):
     from simulator.exploratory_operations import Operations
+    Path(directory).mkdir(parents=True, exist_ok=True)
     op=Operations(policy(),images,directory)
     op.ready(client)
     return op.report['readiness']

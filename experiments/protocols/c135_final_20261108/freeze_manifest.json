@@ -1,6 +1,6 @@
 {
   "reference_commit": "ec8e94c80f51b6d1091bd02c2d8f300115e41793",
-  "plan_sha256": "83774ad310ed99216859eac40660d12fdb70f798e2bfda59bcb1b9f578cb62bc",
+  "plan_sha256": "43054ec7f430d2351510b77985bd330b00e4a621fb28a7c5b309c7bf2dc8ae42",
   "specification_sha256": "c97f8ece0198af720af4781409c12332508b45073cb62234a2c105864bf28018",
   "environment": {
     "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiments/protocols/c135_final_20261108/environment.json",
@@ -107,9 +107,9 @@
     "experiments/run_graph4_refined.py": "6894c1714d30f447522d2c1d389d596e96b2b408e3cbf0b224bbea68ba4c745e",
     "experiments/run_wedos_grid_fill_reps.py": "e0d6c87d8a7bb6e47084e115e1e996f839c1bd3fe4c87c1cad9000853529baeb",
     "experiments/run_wu400000_only.py": "365a18206260514a3e3694c02ffe876e50227cc1be909a210049f2098f15e314",
-    "experiments/scientific_campaign.py": "bb4838e5217721b240b63d3813033af9ba4632307b836b5d4ae11ddcd84ca530",
+    "experiments/scientific_campaign.py": "ae26ffa65f2ac17a9033015bbc1a0810569320cdca9966634d71fa59246dfe4f",
     "experiments/scientific_collection.py": "4c052c744fac97153db0f8d7bf72d2e210166754376c65f1d3a474cd70147420",
-    "experiments/scientific_operations.py": "4bac2bc2840ef1be3aea20ec989e82c8e8704785d148090afcc5ecd05325e117",
+    "experiments/scientific_operations.py": "2808536e73548ec7c66726eac14e4662bce3f0fc6ba23c9d12b536460bc42d45",
     "experiments/scientific_safety.py": "7d62fcdcb96b23235712855a49e1650c453e62dc22f7b2c8fd391bd09caedb77",
     "experiments/source_network_audit.py": "43623d740af7d0ab70513f2e365064caad724c3c0dff27b627c18a699b406fb9",
     "experiments/stage14_bundle.py": "d10eabeef03494067b891d62bbc87d85cf15f7cc9098775dfd1f5a362eb6ed6e",
@@ -199,5 +199,11 @@
   "protocol": {
     "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/docs/scientific_protocol_direct_c135_o3_20261108.json",
     "sha256": "c97f8ece0198af720af4781409c12332508b45073cb62234a2c105864bf28018"
+  },
+  "readiness_correction": {
+    "predecessor_plan_sha256": "83774ad310ed99216859eac40660d12fdb70f798e2bfda59bcb1b9f578cb62bc",
+    "predecessor_manifest_sha256": "b01eabf646f8fe949c971ce69779b66ad6b7792db2a0bd8c5d090824323a1247",
+    "failed_execution_commit": "a2e9f44acca5a04b3bfcf2d0c789feb442805a0a",
+    "prior_results_preserved": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/scientific-c135-final-20261108"
   }
 }

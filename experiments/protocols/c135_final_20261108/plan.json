@@ -100,9 +100,9 @@
     "experiments/run_graph4_refined.py": "6894c1714d30f447522d2c1d389d596e96b2b408e3cbf0b224bbea68ba4c745e",
     "experiments/run_wedos_grid_fill_reps.py": "e0d6c87d8a7bb6e47084e115e1e996f839c1bd3fe4c87c1cad9000853529baeb",
     "experiments/run_wu400000_only.py": "365a18206260514a3e3694c02ffe876e50227cc1be909a210049f2098f15e314",
-    "experiments/scientific_campaign.py": "bb4838e5217721b240b63d3813033af9ba4632307b836b5d4ae11ddcd84ca530",
+    "experiments/scientific_campaign.py": "ae26ffa65f2ac17a9033015bbc1a0810569320cdca9966634d71fa59246dfe4f",
     "experiments/scientific_collection.py": "4c052c744fac97153db0f8d7bf72d2e210166754376c65f1d3a474cd70147420",
-    "experiments/scientific_operations.py": "4bac2bc2840ef1be3aea20ec989e82c8e8704785d148090afcc5ecd05325e117",
+    "experiments/scientific_operations.py": "2808536e73548ec7c66726eac14e4662bce3f0fc6ba23c9d12b536460bc42d45",
     "experiments/scientific_safety.py": "7d62fcdcb96b23235712855a49e1650c453e62dc22f7b2c8fd391bd09caedb77",
     "experiments/source_network_audit.py": "43623d740af7d0ab70513f2e365064caad724c3c0dff27b627c18a699b406fb9",
     "experiments/stage14_bundle.py": "d10eabeef03494067b891d62bbc87d85cf15f7cc9098775dfd1f5a362eb6ed6e",
@@ -998,5 +998,5 @@
       "config_sha256": "99ec7c18f27eec7e27c9af7208fa5c09fed640bb9b0cb8ec412e7094d398f845"
     }
   ],
-  "results_root": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/scientific-c135-final-20261108"
+  "results_root": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/scientific-c135-readiness-fix-20261108"
 }

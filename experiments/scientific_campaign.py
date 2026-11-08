@@ -220,13 +220,16 @@ class Campaign:
             else:
                 if (self.handoff['original_consumed_attempts'] if self.handoff else 0)+sum(1 for x in (self.root/'collection').glob('*/attempt-*/attempt.json'))>=p.SPEC['replacements']['maximum_total_attempts']:raise Halt('Total attempt budget exhausted')
                 self.wait_idle()
-                preflights=sorted((directory/'preflights').glob('*/preparation.json')) if (directory/'preflights').exists() else []
-                started=min([read_json(x)['started_epoch'] for x in preflights],default=time.time())
-                if time.time()-started>600:raise Halt('Per-entry administrative allowance exhausted')
-                pf=directory/'preflights'/f'pf-{len(preflights)+1:04d}';pf.mkdir(parents=True,exist_ok=False)
+                # No intent exists: historical preparation did not consume an attempt.
+                # Give this invocation its own bounded readiness window; retain evidence.
+                started=time.time()
+                previous=list((directory/'preflights').glob('pf-*'))
+                number=max((int(x.name[3:]) for x in previous),default=0)+1
+                pf=directory/'preflights'/f'pf-{number:04d}';pf.mkdir(parents=True,exist_ok=False)
                 save(pf/'preparation.json',dict(started_epoch=time.time(),authority=self.authority,entry_id=entry['id']))
                 ready=self.backend.preflight(entry,pf)
                 if not ready['ready']:raise Halt('Preflight not ready; no attempt consumed')
+                if time.time()-started>600:raise Halt('Per-entry administrative allowance exhausted')
                 # Recheck plan/code/config immediately before the irreversible claim.
                 if digest(self.plan_path)!=self.plan_hash or self.plan['runtime_hashes']!=p.runtime_hashes() or digest(entry['config'])!=entry['config_sha256']:
                     raise ContractError('Authority changed during readiness')

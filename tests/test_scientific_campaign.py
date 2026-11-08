@@ -131,6 +131,50 @@ class ScientificCampaignTests(unittest.TestCase):
         token=None if not index else cps[p.PARTITIONS[index-1]]['manifest_sha256']
         return self.campaign.run_partition(phase,phase,token)
 
+    def test_readiness_creates_directory_before_observation(self):
+        from experiments.scientific_operations import readiness
+        from simulator.exploratory_operations import Policy
+        directory=self.root/'missing/readiness'
+        def ready(op, client):
+            import shutil
+            self.assertGreater(shutil.disk_usage(op.directory).total,0)
+            op.report['readiness']={'verified':True}
+        with patch('experiments.scientific_operations.policy',return_value=Policy()), patch('simulator.exploratory_operations.Operations.ready',ready):
+            self.assertTrue(readiness(None,directory,{})['verified'])
+
+    def test_preflight_restart_preserves_old_and_orphan_evidence(self):
+        entry=self.plan['entries'][0]
+        with self.campaign.locked():pass
+        directory=self.campaign.root/'collection'/entry['id']/'attempt-1'
+        old=directory/'preflights/pf-0001/preparation.json'
+        save(old,dict(started_epoch=time.time()-3600))
+        orphan=directory/'preflights/pf-0002';orphan.mkdir()
+        before=old.read_bytes()
+        with self.campaign.locked(), patch.object(self.backend,'preflight',return_value={'ready':False}) as preflight:
+            with self.assertRaisesRegex(Halt,'no attempt consumed'):self.campaign.collect_slot(entry)
+        self.assertEqual(preflight.call_args.args[1].name,'pf-0003')
+        self.assertEqual(old.read_bytes(),before)
+        self.assertTrue(orphan.exists())
+        self.assertFalse((directory/'attempt.json').exists())
+        self.assertEqual(self.campaign.status()['consumed_attempts'],0)
+        self.assertEqual(self.backend.calls,[])
+        with self.campaign.locked(), patch.object(self.backend,'collect',side_effect=RuntimeError('offline stop before collection')):
+            with self.assertRaisesRegex(RuntimeError,'offline stop'):self.campaign.collect_slot(entry)
+        self.assertEqual(old.read_bytes(),before)
+        self.assertEqual(self.campaign.status()['consumed_attempts'],1)
+        claim=read_json(directory/'attempt.json')
+        self.assertIn('pf-0004',claim['preflight_path'])
+
+    def test_preflight_current_window_still_bounded(self):
+        entry=self.plan['entries'][0]
+        def slow(entry,directory):
+            clock.return_value+=601
+            return {'ready':True}
+        with self.campaign.locked(), patch('experiments.scientific_campaign.time.time',return_value=1000) as clock, patch.object(self.backend,'preflight',side_effect=slow):
+            with self.assertRaisesRegex(Halt,'allowance exhausted'):self.campaign.collect_slot(entry)
+        self.assertEqual(self.backend.calls,[])
+        self.assertEqual(self.campaign.status()['consumed_attempts'],0)
+
     def test_full_partition_pipeline_replay_misses_ICs_and_idempotent_resume(self):
         self.backend.tail=True
         for phase in p.PARTITIONS[:3]:
