@@ -234,6 +234,8 @@ class Campaign:
             raise Halt('Collection stopped: '+str(failure_path)) from exc
 
     def run_partition(self,partition,authorize_partition,checkpoint_hash=None):
+        if p.SPEC.get('execution_release',{}).get('allowed') is False:
+            raise Halt('Structural specification only; C1.3.2/C1.3.3 and integrated validation pending')
         if partition not in p.PARTITIONS or authorize_partition!=partition:raise Halt('Explicit authorization must name the selected partition')
         with self.locked():
             checkpoints=self.checkpoints();index=p.PARTITIONS.index(partition)

@@ -20,6 +20,9 @@ def load_spec(path,sha256):
     if len(spec['scenario_contrasts'])!=1:raise ContractError('Exactly one operational scenario contrast supported')
     for left,right in spec['scenario_contrasts']:
         if left not in spec['scenarios'] or right not in spec['scenarios']:raise ContractError('Unknown contrast scenario')
+    if spec.get('configuration_contract') == 'complete-direct-b2-v1':
+        from .direct_contract import validate_spec
+        validate_spec(spec, ROOT)
     return spec
 
 import os
@@ -30,11 +33,12 @@ SPEC=load_spec(PROTOCOL_PATH,_hash or DEFAULT_PROTOCOL_SHA256)
 TEST_ORDER=tuple(tuple(row) for row in SPEC['test_order'])
 
 
-def expected_slots():
+def expected_slots(spec=None):
+    spec = SPEC if spec is None else spec
     slots=[]
-    for partition,count in ((part,SPEC['counts'][part]) for part in PARTITIONS if part!='TEST'):
-        slots.extend(dict(partition=partition,block=None,scenario=SPEC['control_scenario'],ordinal=i+1) for i in range(count))
-    for i,row in enumerate(TEST_ORDER,1):
+    for partition,count in ((part,spec['counts'][part]) for part in PARTITIONS if part!='TEST'):
+        slots.extend(dict(partition=partition,block=None,scenario=spec['control_scenario'],ordinal=i+1) for i in range(count))
+    for i,row in enumerate(spec['test_order'],1):
         slots.extend(dict(partition='TEST',block=i,scenario=s,ordinal=j+1) for j,s in enumerate(row))
     return slots
 
@@ -63,7 +67,11 @@ def load_plan(path,expected_hash):
     environment=read_json(p['environment']['path'])
     if set(environment)!={'daemon_id','kernel','python','images','packages'} or not environment['daemon_id'] or not environment['kernel'] or not environment['python']:
         raise ContractError('Incomplete environment lock')
-    if not {'docker','requests','numpy','pandas','scipy','matplotlib','openpyxl'}<=set(environment['packages']) or len(environment['images'])!=3:
+    image_count = len(SPEC.get('environment_image_roles', ('victim','source','proxy')))
+    if SPEC.get('configuration_contract') == 'complete-direct-b2-v1':
+        from .direct_contract import validate_image_lock
+        validate_image_lock(environment['images'])
+    if not {'docker','requests','numpy','pandas','scipy','matplotlib','openpyxl'}<=set(environment['packages']) or len(environment['images'])!=image_count:
         raise ContractError('Missing dependency/image version locks')
     import sys,importlib.metadata
     if environment['python']!=sys.version.split()[0]:raise ContractError('Analysis Python differs from frozen environment')
@@ -81,7 +89,9 @@ def load_plan(path,expected_hash):
     expected=set()
     config_paths={Path(e['config']).resolve() for e in p['entries']}
     result=Path(p['results_root']).resolve()
-    for folder in ('experiments/configs','experiments/protocols','docs/stage14a/materialized','experiment_results'):
+    seed_folders = ('experiments/configs','experiments/protocols','docs/stage14a/materialized','experiment_results')
+    if SPEC.get('configuration_contract') == 'complete-direct-b2-v1':seed_folders += ('reports',)
+    for folder in seed_folders:
         for source in (ROOT/folder).rglob('*.json'):
             if result==source.resolve() or result in source.resolve().parents:continue
             if handoff and Path(handoff['old_root']).resolve() in source.resolve().parents:continue
@@ -94,9 +104,11 @@ def load_plan(path,expected_hash):
         raise ContractError('Historical seed inventory coverage changed')
     if len(p['entries'])!=sum(SPEC['counts'].values()):raise ContractError('Specification logical slot count required')
     from simulator.experiment_config import ExperimentConfig
-    template_path=ROOT/'experiments/configs/development_d3_origins_20261029/d3_origins_A_N1.json'
-    if digest(template_path)!=SPEC['configuration_template_sha256']:raise ContractError('Locked configuration template changed')
-    template=read_json(template_path)
+    direct = SPEC.get('configuration_contract') == 'complete-direct-b2-v1'
+    if not direct:
+        template_path=ROOT/'experiments/configs/development_d3_origins_20261029/d3_origins_A_N1.json'
+        if digest(template_path)!=SPEC['configuration_template_sha256']:raise ContractError('Locked configuration template changed')
+        template=read_json(template_path)
     ids=set();seeds_by_group={};paths=set()
     for entry,slot in zip(p['entries'],expected_slots()):
         if set(entry)!={'id','partition','block','scenario','ordinal','seed','config','config_sha256'} or any(entry[k]!=v for k,v in slot.items()):
@@ -114,10 +126,14 @@ def load_plan(path,expected_hash):
         paths.add(config_path)
         if digest(config_path)!=entry['config_sha256']:raise ContractError('Configuration hash changed')
         cfg=ExperimentConfig.load(config_path);effective=read_json(config_path)
-        attack=dict(template['attack']);scenario=entry['scenario']
-        attack.update(enabled=scenario!=SPEC['control_scenario'],attackers=0 if scenario==SPEC['control_scenario'] else 1,
-            **SPEC['scenario_parameters'][scenario])
-        expected_cfg={**template,'id':entry['id'],'seed':entry['seed'],'attack':attack}
+        if direct:
+            from .direct_contract import configuration
+            expected_cfg=configuration(SPEC,entry['scenario'],entry['id'],entry['seed'])
+        else:
+            attack=dict(template['attack']);scenario=entry['scenario']
+            attack.update(enabled=scenario!=SPEC['control_scenario'],attackers=0 if scenario==SPEC['control_scenario'] else 1,
+                **SPEC['scenario_parameters'][scenario])
+            expected_cfg={**template,'id':entry['id'],'seed':entry['seed'],'attack':attack}
         if effective!=expected_cfg or read_json_text(cfg.to_json())!=expected_cfg:raise ContractError('Configuration differs from closed scientific matrix')
     if len(set(seeds_by_group.values()))!=sum(SPEC['counts'][part] for part in PARTITIONS if part!='TEST')+SPEC['test_blocks']:raise ContractError('Partition or block seeds overlap')
     validate_destination(result)
