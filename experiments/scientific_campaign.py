@@ -179,6 +179,8 @@ class Campaign:
                 time.sleep(remaining)
 
     def collect_slot(self,entry):
+        if p.SPEC.get("execution_release",{}).get("allowed") is False:
+            raise Halt("Scientific collection is not released")
         if self.handoff:p.validate_handoff(self.plan)
         accepted=self.accepted()
         for ref in (() if engine.pair_contract() else accepted.values()):
@@ -263,7 +265,8 @@ class Campaign:
         if digest(intent)!=doc['consumed_attempt_sha256'] or read_json(intent)['entry']!=entry:
             raise ContractError('Failed attempt binding changed')
         cleanup=path.parent/'cleanup.json'
-        if not cleanup.exists() or read_json(cleanup).get('verified') is not True:
+        if not cleanup.exists() or read_json(cleanup).get('verified') is not True or (
+                read_json(cleanup).get('readiness') is not None and read_json(cleanup)['readiness'].get('verified') is not True):
             raise Halt('Cleanup unconfirmed; sequence stopped')
         self.wait_idle()
         directories=list((path.parent/'continuation').glob('check-*'))

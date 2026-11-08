@@ -95,7 +95,9 @@ class DockerBackend:
 
     def collect(self,entry,directory,timeout):
         """Only the future authorized CLI invokes this method."""
-        from analysis.detection.scientific.protocol import ROOT
+        from analysis.detection.scientific.protocol import ROOT, SPEC
+        from experiments.scientific_safety import require_release
+        require_release(SPEC)
         command=[str(ROOT/'.venv/bin/python'),'-B','-m','experiments.scientific_collection','--config',entry['config'],
             '--output',str(directory/'raw'),'--dataset-output',str(directory/'dataset'),'--attempt',str(directory/'attempt.json')]
         started=time.time();rc=None
@@ -145,7 +147,8 @@ class DockerBackend:
         required=[directory/'execution.json',directory/'cleanup.json']
         if any(not p.exists() for p in required):raise CollectionFailure('INDETERMINATE_ATTEMPT','Consumed attempt lacks execution/cleanup/data evidence; never repeat automatically')
         cleanup=read_json(directory/'cleanup.json');execution=read_json(directory/'execution.json')
-        if not cleanup['verified']:raise CollectionFailure('CLEANUP_UNCONFIRMED','Unconfirmed cleanup is not a replacement authorization')
+        if (not cleanup['verified'] or (cleanup.get('readiness') is not None
+                and cleanup['readiness'].get('verified') is not True)):raise CollectionFailure('CLEANUP_UNCONFIRMED','Unconfirmed cleanup is not a replacement authorization')
         status_path=directory/'raw/run_status.json'
         inventory_path=directory/'raw/source_inventory.json'
         if status_path.exists() and inventory_path.exists():
@@ -173,6 +176,14 @@ class DockerBackend:
             life,rows,_=processing.reconcile(raw,cfg)
             processing.validate_ground_truth(raw,cfg,rows,life['run_id'])
         except (OSError,ValueError,KeyError) as exc:raise CollectionFailure('IDENTITY_JOURNAL_MISMATCH',str(exc)) from exc
+        if life['controlled_closure'] and execution['returncode'] == 1:
+            from experiments.scientific_safety import confirmed_capture_loss
+            try:
+                capture_loss = confirmed_capture_loss(raw, read_json(status_path), execution['returncode'])
+            except (OSError, ValueError, KeyError, TypeError):
+                capture_loss = False
+            if capture_loss:
+                raise CollectionFailure('CAPTURE_LOSS','Confirmed capture drops after producer/process closure')
         if not life['controlled_closure'] or execution['returncode']!=0:
             raise CollectionFailure('DRAIN_OR_EXECUTION_UNCONFIRMED','Preserved incomplete service/exit requires diagnosis, not automatic substitution')
         from experiments.stress_review import replay_observer
@@ -194,6 +205,10 @@ class DockerBackend:
             if encoded(read_json(report_path))!=encoded(validation):raise ContractError('Validation replay differs')
         else:save(report_path,validation)
         feature_path=directory/'features'
+        from experiments.scientific_safety import require_storage
+        require_storage(directory)
+        if feature_path.exists() and not (feature_path/'feature_manifest.json').is_file():
+            raise ContractError('Partial feature output preserved; diagnose before recovery')
         if not feature_path.exists():extract_features(directory/'dataset',report_path,feature_path,'1')
         from experiments.export_dataset import placement
         for p in raw.rglob('*'):
@@ -216,6 +231,8 @@ def main():
     parser=argparse.ArgumentParser();parser.add_argument('--config',type=Path,required=True)
     parser.add_argument('--output',type=Path,required=True);parser.add_argument('--dataset-output',type=Path,required=True)
     parser.add_argument('--attempt',type=Path,required=True);args=parser.parse_args()
+    from experiments.scientific_safety import require_release
+    require_release(protocol.SPEC)
     claim=read_json(args.attempt);entry=claim['entry'];authority=claim['authority']
     plan=protocol.load_plan(authority['plan_path'],authority['plan_sha256'])
     directory=args.attempt.parent.resolve()
@@ -240,6 +257,9 @@ def main():
             preflight=read_json(claim['preflight_path']),scientific_attempt_sha256=digest(args.attempt))
     try:run_recorded(ExperimentConfig.load(args.config),args.output,operational=operational)
     finally:
-        if (args.output/'run_status.json').exists():export_run(args.output,args.dataset_output)
+        if (args.output/'run_status.json').exists():
+            from experiments.scientific_safety import require_storage
+            require_storage(args.dataset_output, sum(p.stat().st_size for p in args.output.rglob('*') if p.is_file()))
+            export_run(args.output,args.dataset_output)
 
 if __name__=='__main__':main()

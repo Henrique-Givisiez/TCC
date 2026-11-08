@@ -68,6 +68,8 @@ def check_authority(authority):
 
 
 def artifact(destination,kind,metadata):
+    from experiments.scientific_safety import require_storage
+    require_storage(destination)
     """Idempotent analysis resume only if the complete deterministic body matches."""
     if pair_contract() and kind=='scientific-calibration':
         support=dict(metadata['diagnostics'])
@@ -98,6 +100,8 @@ def artifact(destination,kind,metadata):
 
 
 def publish_candidate(destination,metadata,columns,rows):
+    from experiments.scientific_safety import require_storage
+    require_storage(destination)
     check_authority(metadata['authority'])
     from ..inputs import digest
     if Path(destination).exists():
