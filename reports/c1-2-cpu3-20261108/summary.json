@@ -1,0 +1,161 @@
+{
+  "commit": "848a8aef0a6809a04995f8217264cf2d1ee20a7b",
+  "run_id": "927acd4b21b940aea034ec8182f25150",
+  "attempts": 120,
+  "snapshots": 120,
+  "fresh": 120,
+  "valid_deltas": 119,
+  "missed": 0,
+  "states": {
+    "first_read": 1,
+    "valid": 119
+  },
+  "errors": {},
+  "call_seconds": {
+    "n": 120,
+    "min": 0.006124229999841191,
+    "mean": 0.00848802121652928,
+    "median": 0.008155085999533185,
+    "p95": 0.011003385298954527,
+    "max": 0.020856459999777144
+  },
+  "calls_le_25ms": 120,
+  "interval_seconds": {
+    "n": 119,
+    "min": 0.995841578,
+    "mean": 1.0000118631092438,
+    "median": 1.000024721,
+    "p95": 1.0022157091,
+    "max": 1.005209913
+  },
+  "delay_seconds": {
+    "n": 120,
+    "min": 0.00015129799976421054,
+    "mean": 0.00025891505747495104,
+    "median": 0.0002598959990791627,
+    "p95": 0.0003816897985416289,
+    "max": 0.00044689799869956914
+  },
+  "rejections": {
+    "first_read": 1
+  },
+  "independent_alignment": {
+    "misaligned": 0,
+    "late": 0,
+    "long": 0
+  },
+  "coverage": {
+    "grid": {
+      "windows": 121,
+      "valid": 119,
+      "missing": 2,
+      "percent": 98.34710743801652,
+      "max_missing_run": 1,
+      "missing_runs": {
+        "1": 2
+      },
+      "potential": {
+        "zscore": 119,
+        "ewma": 119,
+        "cusum_freeze": 119,
+        "cov": 114
+      }
+    },
+    "nominal": {
+      "windows": 120,
+      "valid": 119,
+      "missing": 1,
+      "percent": 99.16666666666667,
+      "max_missing_run": 1,
+      "missing_runs": {
+        "1": 1
+      },
+      "potential": {
+        "zscore": 119,
+        "ewma": 119,
+        "cusum_freeze": 119,
+        "cov": 114
+      }
+    },
+    "stabilized": {
+      "windows": 90,
+      "valid": 90,
+      "missing": 0,
+      "percent": 100.0,
+      "max_missing_run": 0,
+      "missing_runs": {},
+      "potential": {
+        "zscore": 90,
+        "ewma": 90,
+        "cusum_freeze": 90,
+        "cov": 90
+      }
+    }
+  },
+  "cpu": {
+    "n": 119,
+    "min": 23.09085088458298,
+    "mean": 62.56485356161591,
+    "median": 62.54822335025381,
+    "p95": 85.8768941345845,
+    "max": 106.11881756756756
+  },
+  "above100": 2,
+  "zeros": 0,
+  "http": {
+    "starts": 1893,
+    "rps": 15.775,
+    "success": 1893,
+    "outcomes": {
+      "response": 1893
+    },
+    "duration_ms": {
+      "n": 1893,
+      "min": 28.240437000931706,
+      "mean": 51.522242699935944,
+      "median": 42.69635300079244,
+      "p95": 85.21278579937643,
+      "max": 126.79429099989648
+    }
+  },
+  "tick_gaps": {
+    "n": 23,
+    "min": 4.896414860000732,
+    "mean": 4.999447865304398,
+    "median": 5.0051233710000815,
+    "p95": 5.038730875301008,
+    "max": 5.050620798001546
+  },
+  "operational": {
+    "cleanup_verified": true,
+    "progression_allowed": true,
+    "failures": [],
+    "shutdown": [
+      {
+        "component": "sources",
+        "complete": true
+      },
+      {
+        "component": "raw_capture",
+        "complete": true
+      },
+      {
+        "component": "capture",
+        "complete": true
+      },
+      {
+        "component": "stats",
+        "complete": true
+      },
+      {
+        "component": "source_removal",
+        "complete": true
+      },
+      {
+        "component": "victim",
+        "id": "39dfead5417908322927ae0014d028cc595168713eae5f64597f7122f98341f8",
+        "complete": true
+      }
+    ]
+  }
+}
