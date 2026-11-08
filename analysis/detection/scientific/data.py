@@ -34,13 +34,49 @@ def load_source(entry,receipt,family,feature,*,authority,test_release=None):
     root=Path(receipt['features']).resolve();dataset=Path(receipt['dataset']).resolve()
     mp=safe_file(root,'feature_manifest.json');m=read_json(mp)
     if digest(mp)!=receipt['feature_manifest_sha256']:raise ContractError('Feature manifest changed')
-    if m['source_run_id']!=receipt['run_id'] or m['feature_schema_version']!=1 or m['window']['size_seconds']!='1' or not 390<=m['window']['windows']<=421:
+    version = m['feature_schema_version']
+    if m['source_run_id']!=receipt['run_id'] or type(version) is not int or version not in (1,2) or m['window']['size_seconds']!='1' or not 390<=m['window']['windows']<=421:
         raise ContractError('Scientific grid/run mismatch')
     dm=safe_file(dataset,'dataset_manifest.json')
     if digest(dm)!=m['dataset_manifest_sha256'] or digest(dm)!=receipt['dataset_manifest_sha256']:
         raise ContractError('Stage8/10 binding changed')
     schema=read_json(checked_output(root,m,'feature_schema.json'))
-    if schema!=feature_schema():raise ContractError('Unsupported feature schema')
+    if schema!=feature_schema(version):raise ContractError('Unsupported feature schema')
+    status_path = safe_file(dataset, 'metadata/run_status.json')
+    dm_doc = read_json(dm)
+    status_ref = [r for r in dm_doc['files'] if r['path']=='metadata/run_status.json']
+    if len(status_ref)!=1 or digest(status_path)!=status_ref[0]['sha256']:
+        raise ContractError('CPU declaration status binding mismatch')
+    dataset_status = read_json(status_path)
+    if dataset_status.get('cpu_observation_contract') and version != 2:
+        raise ContractError('New CPU collection cannot use historical features')
+    if version == 1:
+        from experiments.cpu_features import PATHS
+        files = {r['path'] for r in dm_doc['files']}
+        if PATHS[0] in files:
+            raise ContractError('CPU snapshot marker cannot use historical features')
+        if PATHS[1] in files:
+            import json
+            with safe_file(dataset, PATHS[1]).open() as stream:
+                first = stream.readline()
+            if first and json.loads(first).get('contract'):
+                raise ContractError('Versioned CPU evidence cannot use historical features')
+    if version == 2:
+        from experiments.extract_features import Inputs
+        from experiments.cpu_features import load_evidence, assign_cpu
+        from simulator.cpu_observations import CONTRACT
+        if m.get('cpu_observation_contract') != CONTRACT or m.get('cpu_quality_path') != 'cpu_quality.json':
+            raise ContractError('CPU feature contract missing')
+        quality = read_json(checked_output(root,m,'cpu_quality.json'))
+        inputs = Inputs(dataset, checked_output(root,m,'evidence/stage9_validation_report.json'))
+        evidence = load_evidence(inputs, dataset_status)
+        if evidence is None:raise ContractError('CPU snapshot evidence missing')
+        expected_cpu, expected_quality = assign_cpu(*evidence, dataset_status, m['window']['windows'],
+                                                  m['cpu_policy']['boundary_tolerance_seconds'])
+        if quality != expected_quality or quality['policy'] != m['cpu_policy']:
+            raise ContractError('CPU quality replay mismatch')
+        if any(item not in m['input_files'] for item in inputs.consumed.values()):
+            raise ContractError('CPU evidence provenance missing')
     report_path=checked_output(root,m,'evidence/stage9_validation_report.json');report=read_json(report_path)
     if (not report['dataset_valid'] or not report['analysis_eligible'] or report['run_id']!=receipt['run_id']
         or report['dataset_manifest_sha256']!=digest(dm)
@@ -57,6 +93,8 @@ def load_source(entry,receipt,family,feature,*,authority,test_release=None):
                 or int(row['window_index'])!=i or number(row['window_start_seconds'])!=i or number(row['window_end_seconds'])!=i+1):
                 raise ContractError('Scientific feature grid changed')
             value=None if row[feature]=='' else number(row[feature])
+            if version == 2 and feature == 'mean_cpu_percent' and value != expected_cpu[i]:
+                raise ContractError('CPU scalar differs from observation replay')
             if value is None and not field['nullable']:raise ContractError('Required observable missing')
             if value is not None and (value<0 or (field['type']=='integer' and value!=int(value))):
                 raise ContractError('Observable domain mismatch')
@@ -71,7 +109,9 @@ def load_source(entry,receipt,family,feature,*,authority,test_release=None):
         dataset_manifest_sha256=digest(dm),observable_path=str(path),observable_sha256=digest(path),
         validation_path=str(report_path),validation_sha256=digest(report_path),family=family,feature=feature,
         authority=authority,test_release=test_release)
-    return Source(entry['id'],entry['partition'],ObservedSeries(receipt['run_id'],family,feature,D(1),1,tuple(observations)),ref)
+    if version == 2:
+        ref['feature_schema_version'] = version
+    return Source(entry['id'],entry['partition'],ObservedSeries(receipt['run_id'],family,feature,D(1),version,tuple(observations)),ref)
 
 
 def validate_membership(entry,authority):

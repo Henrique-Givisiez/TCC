@@ -135,8 +135,10 @@ def run(experiment, operational=None):
         from simulator.capture_evidence import RawCapture
         raw_capture = RawCapture(capture['selected_interface'],capture['bpf'],manager.directory/'traffic_capture.pcap')
         collector = StatsCollector(client,experiment.monitoring.stats_poll_interval_seconds,experiment.monitoring.history_seconds)
-        collector.evidence_path = Path(config.RUN_STATUS_FILE).parent/'victim_stats.jsonl'
         collector.update_containers(victims)
+        collector.dedicated_client = True
+        collector.bind_cpu(gt.run_id, gt.clock, Path(config.RUN_STATUS_FILE).parent/'victim_stats.jsonl')
+        status['cpu_observation_contract'] = 'victim-cpu-snapshots-v1'
         collector.start()
         if operational: operational.collection_started = time.monotonic()
         write_csv(config.METRICS_LOG_FILE,main_orchestrator.METRICS_FIELDS,[])

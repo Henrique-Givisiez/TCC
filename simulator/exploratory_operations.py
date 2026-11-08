@@ -160,8 +160,11 @@ class Operations:
             c = client.containers.get(cid); verify_image(c, self.images[role]); state = c.attrs['State']
             if state['Status'] not in ('running', 'exited'): raise RuntimeError('unexpected container state: '+cid)
             if role == 'victim' and state['Status'] != 'running': raise RuntimeError('victim stopped')
-            stats = c.stats(stream=False) if state['Status'] == 'running' else {}
-            snapshot['containers'].append(dict(id=cid, role=role, memory=stats.get('memory_stats', {}).get('usage', 0),
+            stats = c.stats(stream=False, one_shot=True) if state['Status'] == 'running' else {}
+            memory = stats['memory_stats']['usage'] if state['Status'] == 'running' else 0
+            if type(memory) not in (int, float) or not math.isfinite(memory) or memory < 0:
+                raise RuntimeError('container memory support unavailable: '+cid)
+            snapshot['containers'].append(dict(id=cid, role=role, memory=memory,
                                                oom=state.get('OOMKilled', False), restarts=c.attrs.get('RestartCount', 0)))
         reasons = resource_reasons(snapshot, self.policy)
         if collector:
@@ -169,7 +172,7 @@ class Operations:
             for cid, sample in collector.get_snapshot().items():
                 stamp = sample.get('read_ts')
                 if stamp and stamp > self.reads.get(cid, ''):
-                    self.reads[cid] = stamp; self.acquired[cid] = now
+                    self.reads[cid] = stamp; self.acquired[cid] = sample.get('received_monotonic', now)
             for cid, role in self.owned.items():
                 if role == 'victim' and now-self.acquired.get(cid, self.collection_started) > self.policy.collection_max_age_seconds:
                     reasons.append('collection_acquisition_stale:' + cid)

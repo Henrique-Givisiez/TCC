@@ -37,7 +37,7 @@ class FreezeRun:
 def process_series(series, *, h, baseline_parameters):
     if type(series) is not ObservedSeries or (series.family, series.feature) not in FEATURES:
         raise ContractError('Expected observed scalar series on one of the five supported features')
-    if (series.feature_schema_version != 1 or not isinstance(series.observations, tuple)
+    if (type(series.feature_schema_version) is not int or series.feature_schema_version not in (1, 2) or not isinstance(series.observations, tuple)
             or type(series.window_size_seconds) is not Decimal
             or not series.window_size_seconds.is_finite() or series.window_size_seconds <= 0):
         raise ContractError('Invalid series schema/window')

@@ -110,11 +110,8 @@ def main():
     class FreshCollector(original):
         def __init__(self,*a,**kw):
             super().__init__(*a,**kw); self.samples=SampleFreshness(); self.fresh=self.samples.fresh; StressManager.collector=self
-        def _compute_metrics(self,c,stats):
-            value=original._compute_metrics(c,stats)
-            # Advancing Docker sample timestamp, not changed CPU value/cache read.
-            if value: self.samples.update(c.id,stats,time.monotonic())
-            return value
+        def _on_acquisition(self,c,stats,received_monotonic):
+            self.samples.update(c.id,stats,received_monotonic)
     source_experiment.SourceManager=StressManager
     stats_collector.StatsCollector=FreshCollector
     from experiments.dataset_run import main as run

@@ -10,7 +10,9 @@ FEATURES = {
 LABELS = ['attack_event_overlap_seconds', 'attack_event_overlap_fraction', 'attack_request_starts']
 
 
-def feature_schema():
+def feature_schema(version=1):
+    if type(version) is not int or version not in (1, 2):
+        raise ValueError('Unsupported feature schema version')
     definitions = {
         'ingress_packet_count': ('integer','records/window','Count of source→proxy CSV packet records, including zero-payload packets and observed retransmissions.'),
         'egress_packet_count': ('integer','records/window','Count of proxy→source CSV packet records.'),
@@ -41,9 +43,17 @@ def feature_schema():
             fields.append(dict(name=name,type=kind,unit=unit,role='label' if family=='labels' else 'feature',nullable=nullable,description=meaning))
         tables[family] = dict(path=f'timeseries/{family}.csv',fields=fields,
                             detector_columns=names if family!='labels' else [])
-    return dict(feature_schema_version=1,tables=tables,
+    result = dict(feature_schema_version=version,tables=tables,
                 csv_null='Empty cell; no NaN, zero replacement or imputation.',
                 zero='Zero packet/request counts and sums mean zero records in the available input, NOT proof of physical inactivity or capture coverage.',
                 infrastructure_support='active_containers_names nonempty: collector has support. Empty names/0,0 startup ticks remain in input and per-window manifest diagnostics, excluded from means. Cache freshness is not reconstructed.',
                 temporal_semantics='Regular fixed nonoverlapping [start,end) windows from elapsed origin zero; decimal assignment without epsilon.',
                 leakage='Only detector_columns are features. Keys, manifest configuration/provenance/diagnostics and labels are not detector inputs.')
+    if version == 2:
+        field = next(f for f in tables['infrastructure']['fields'] if f['name']=='mean_cpu_percent')
+        field['description'] = ('Docker CPU percent from successive verified victim snapshots on approximately aligned '
+                                'intervals; acquisition bounds and provisional tolerance in cpu_quality.json. '
+                                'Received by window closure; no interpolation, cache, or splitting. May exceed 100.')
+        result['infrastructure_support'] = ('CPU: victim-cpu-snapshots-v1 evidence, independently verified; '
+                                            'memory: unchanged historical supported ticks.')
+    return result

@@ -651,6 +651,28 @@ class DatasetValidator:
                        dict(bytes=pcap.get('bytes')), severity='WARNING', stage='quality')
         self.check('COVERAGE_LIMITATIONS', True, 'No direct packet/request join, continuous clock drift proof, capture completeness guarantee, CPU/RTT degradation expectation or exact stochastic request count', severity='INFO', stage='quality')
 
+    def cpu_evidence(self, status):
+        """New CPU evidence is required when declared; poor coverage is not invalidity."""
+        from experiments.cpu_features import load_evidence
+        validator = self
+        class EvidenceInputs:
+            index = validator.entries
+            def file(self, relative):
+                entry = self.index.get(relative)
+                path = validator.safe_path(relative)
+                if (entry is None or path is None or not path.is_file()
+                        or sha256_file(path) != entry['sha256'] or path.stat().st_size != entry['bytes']):
+                    raise ValueError('CPU evidence missing or hash/size mismatch: '+relative)
+                return path
+            def json(self, relative):
+                return read_json(self.file(relative))
+        try:
+            evidence = load_evidence(EvidenceInputs(), status)
+            if evidence is not None:
+                self.check('CPU_EVIDENCE_VALID', True, 'Versioned counters, chronology and finalization replayed; coverage is not a dataset gate')
+        except (ValueError, KeyError, TypeError, OSError, ArithmeticError) as exc:
+            self.check('CPU_EVIDENCE_VALID', False, str(exc))
+
     def run(self):
         result = self.structure()
         if result is not None:
@@ -666,6 +688,7 @@ class DatasetValidator:
                 self.labels_and_rtt()
                 self.journals(config, status, inventory)
                 self.provenance()
+                self.cpu_evidence(status)
                 self.quality(config, status, inventory)
         failures = [c for c in self.checks if c['passed'] is False]
         dataset_valid = not any(c['severity']=='ERROR' and 'dataset_valid' in c['affects'] for c in failures)
@@ -675,7 +698,7 @@ class DatasetValidator:
         return dict(validation_schema_version=1, validator_rules_version=1,
                     validator_sha256=sha256_file(__file__),
                     validator_dependencies_sha256={str(p.relative_to(Path(__file__).resolve().parents[1])):sha256_file(p) for p in
-                        [Path(__file__).with_name('dataset_schema.py'), Path(__file__).with_name('dataset_provenance.py'), Path(__file__).resolve().parents[1]/'simulator/experiment_config.py', Path(__file__).resolve().parents[1]/'simulator/source_aggregate.py']},
+                        [Path(__file__).with_name('dataset_schema.py'), Path(__file__).with_name('dataset_provenance.py'), Path(__file__).with_name('cpu_features.py'), Path(__file__).resolve().parents[1]/'simulator/cpu_observations.py', Path(__file__).resolve().parents[1]/'simulator/experiment_config.py', Path(__file__).resolve().parents[1]/'simulator/source_aggregate.py']},
                     dataset_manifest_sha256=self.manifest_sha256,
                     run_id=self.manifest.get('run_id') if self.manifest else None,
                     dataset_schema_version=self.manifest.get('schema_version') if self.manifest else None,

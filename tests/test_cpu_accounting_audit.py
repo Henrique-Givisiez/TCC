@@ -67,10 +67,10 @@ class CPUAccountingAuditTests(unittest.TestCase):
         reset['precpu_stats']['cpu_usage']['total_usage']=200  # positive counters, negative delta
         self.assertEqual(StatsCollector._calc_cpu_percent(reset),0)
         metrics=StatsCollector._compute_metrics(SimpleNamespace(id='A',name='A'),{})
-        self.assertEqual(metrics['cpu_percent'],0)
+        self.assertIsNone(metrics['cpu_percent'])  # CPU now belongs to explicit successive-read delta
         self.assertIsNone(metrics['read_ts'])
         bad=payload();bad['cpu_stats']['cpu_usage']['total_usage']=None
-        self.assertIsNone(StatsCollector._compute_metrics(SimpleNamespace(id='A',name='A'),bad))
+        self.assertIsNone(StatsCollector._compute_metrics(SimpleNamespace(id='A',name='A'),bad)['cpu_percent'])
 
     def test_two_victims_equal_samples_give_mean_not_total(self):
         c=self.collector();self.history(c,'A',[(9,100)]);self.history(c,'B',[(9,200)])
@@ -119,48 +119,31 @@ class CPUAccountingAuditTests(unittest.TestCase):
             self.history(c,'C',[(9.5,0)])
             self.assertEqual(c.get_averages(2)[0],50)
 
-    def test_sequential_calls_effective_period_and_duplicate_daemon_read(self):
-        c=self.collector();clock=Clock();seen=[]
-        def container(identity):
-            result=SimpleNamespace(id=identity,name=identity)
-            def stats(**kwargs):
-                self.assertEqual(kwargs,dict(stream=False))
-                seen.append((identity,clock.now))
-                clock.now+=1 if identity=='A' else 2
-                return payload()  # same read: deliberately duplicate underlying evidence
-            result.stats=stats
-            return result
-        c.client.containers.get.side_effect=container
-        c._stop_evt=StopAfterSweeps(clock,2)
-        with patch('simulator.stats_collector.time.monotonic',clock.monotonic):c._run()
-        self.assertEqual(seen,[('A',100),('B',101),('A',104),('B',105)])
-        self.assertEqual([h[0] for h in c._history['A']],[101,105])
-        self.assertEqual([h[0] for h in c._history['B']],[103,107])
-        self.assertEqual(len(c._history['A']),2)  # duplicate read wasn't excluded
-        self.assertEqual(c._cache['A']['read_ts'],'same-read')
+    def test_new_acquisition_does_not_refresh_duplicate_daemon_read(self):
+        from tests.test_cpu_observations import row, replay
+        a=row(1,'.98');b=row(2,'1.98');b['docker_read']=a['docker_read']
+        observed=replay([a,b])
+        self.assertEqual(observed[-1]['state'],'invalid_timestamp')
+        self.assertFalse(observed[-1]['fresh']);self.assertIsNone(observed[-1]['cpu_percent'])
 
     def test_poll_error_retains_old_cache_notfound_discards_it(self):
         for exception,expected in [(RuntimeError('unavailable'),160),
                                    (docker.errors.NotFound('gone'),0)]:
             c=self.collector(('A',));self.history(c,'A',[(1,160)])
             c.client.containers.get.side_effect=exception
-            clock=Clock();c._stop_evt=StopAfterSweeps(clock)
+            clock=Clock()
             with patch('simulator.stats_collector.time.monotonic',clock.monotonic):
-                c._run()
+                observation,_,_=c._acquire('A',100,0)
+                self.assertEqual(observation['state'],'acquisition_error')
                 cpu,_,names=c.get_averages(1)
             self.assertEqual(cpu,expected)
             self.assertEqual(names,['A'] if expected else [])
 
-    def test_restart_same_identity_can_mix_pre_and_post_restart_samples(self):
-        c=self.collector(('A',));self.history(c,'A',[(99,200)])
-        reset=payload(100,1000)
-        reset['precpu_stats']['cpu_usage']['total_usage']=200
-        container=SimpleNamespace(id='A',name='A',stats=lambda **kw:reset)
-        c.client.containers.get.return_value=container
-        clock=Clock();c._stop_evt=StopAfterSweeps(clock)
-        with patch('simulator.stats_collector.time.monotonic',clock.monotonic):
-            c._run()
-            self.assertEqual(c.get_averages(3)[0],100)  # old200 and reset/invalid0
+    def test_new_contract_does_not_mix_generations_in_a_cpu_delta(self):
+        from tests.test_cpu_observations import row, replay
+        observed=replay([row(1,'.98'),row(2,'1.98',generation=dict(started_at='new',restarts=1))])
+        self.assertEqual(observed[-1]['state'],'generation_changed')
+        self.assertIsNone(observed[-1]['cpu_percent'])
 
     def test_adding_idle_victim_reduces_mean_without_reducing_total(self):
         c=self.collector(('A',));self.history(c,'A',[(9,200)])

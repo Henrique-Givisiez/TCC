@@ -87,6 +87,8 @@ def check_sources(sources,partition,count):
     for s in sources:verify_reference(s.reference)
     if any((s.series.family,s.series.feature)!=(sources[0].series.family,sources[0].series.feature) for s in sources):
         raise ContractError('Mixed scientific features')
+    if len({s.series.feature_schema_version for s in sources}) != 1:
+        raise ContractError('Mixed scientific feature contracts')
 
 
 def selected(rows):return [r for r in rows if number(r['window_start_seconds'])>=30 and number(r['window_end_seconds'])<=390]
@@ -193,6 +195,8 @@ def calibrate(sources,model,destination,authority):
     if any(s.series.run_id in {x['run_id'] for x in m['sources']} or s.reference['seed'] in {x['seed'] for x in m['sources']} for s in sources):
         raise ContractError('Calibration overlaps baseline')
     if list((sources[0].series.family,sources[0].series.feature))!=m['feature']:raise ContractError('Baseline feature mismatch')
+    if sources[0].series.feature_schema_version != m['sources'][0].get('feature_schema_version',1):
+        raise ContractError('Calibration feature contract differs from baseline')
     thresholds={};diagnostics={};candidate_rows=[];parameters=m['parameters']
     if parameters is None:
         return artifact(destination,'scientific-calibration',dict(authority=authority,baseline=model.reference,
@@ -262,6 +266,8 @@ def verification_metadata(verification):
 
 def process(source,model,calibration,destination,authority,verification=None):
     m=model_metadata(model);c=calibration_metadata(calibration)
+    if source.series.feature_schema_version != m['sources'][0].get('feature_schema_version',1):
+        raise ContractError('Scored feature contract differs from baseline')
     if (c['baseline']!=model.reference or c['feature']!=[source.series.family,source.series.feature]
         or m['authority']!=authority or c['authority']!=authority or source.reference['authority']!=authority):raise ContractError('Calibrated model/authority mismatch')
     if not c['eligible'] and source.series.feature=='request_starts':raise ContractError('CAL-A rejected: no scoring release')

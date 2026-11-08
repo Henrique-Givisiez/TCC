@@ -148,7 +148,7 @@ class ConfigurationTests(unittest.TestCase):
              'attack_active', traffic_injectorV0.http_request_worker)]:
             module.configure(settings, 42)
             module.update_targets(['http://localhost:8080'])
-            def send_once(*args):
+            def send_once(*args, **kwargs):
                 setattr(module, active, False)
                 return MagicMock()
             setattr(module, active, True)

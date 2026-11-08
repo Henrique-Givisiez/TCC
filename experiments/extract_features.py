@@ -9,6 +9,7 @@ import tempfile
 
 from experiments.dataset_provenance import capture_provenance, sha256_file
 from experiments.feature_schema import FEATURES, KEYS, LABELS, feature_schema
+from experiments.cpu_features import load_evidence, assign_cpu
 
 SOURCES = {
     'configuration': 'metadata/effective_config.json', 'status': 'metadata/run_status.json',
@@ -145,7 +146,7 @@ def observed_span(values):
                 observations=len(values),completeness='not_proven')
 
 
-def extract_features(dataset, validation_report, destination, window_size_seconds='1'):
+def extract_features(dataset, validation_report, destination, window_size_seconds='1', *, cpu_boundary_tolerance_seconds='0.05'):
     width=decimal(window_size_seconds)
     if width <= 0:
         raise ValueError('window_size_seconds must be positive')
@@ -164,6 +165,10 @@ def extract_features(dataset, validation_report, destination, window_size_second
     packets=inputs.csv(SOURCES['network']);requests=inputs.csv(SOURCES['service']);metrics=inputs.csv(SOURCES['infrastructure']);events=inputs.csv(SOURCES['events'])
     if status.get('run_id')!=inputs.manifest['run_id'] or status.get('status')!='completed':
         raise ValueError('Canonical status does not describe the eligible completed run')
+    cpu_evidence = load_evidence(inputs, status)
+    version = 2 if cpu_evidence is not None else 1
+    if cpu_evidence is not None and width != 1:
+        raise ValueError('CPU snapshot contract requires one-second feature windows')
     # Use inventory topology only, NEVER source causal class, to identify network clients.
     clients=None;proxy=None;service_port=None;warnings=[]
     mode=config.get('topology',{}).get('mode','proxy')
@@ -260,6 +265,11 @@ def extract_features(dataset, validation_report, destination, window_size_second
         for i in range(windows):
             service[i]['mean_duration_ms']=mean(durations[i])
             infrastructure[i]['mean_cpu_percent']=mean(cpu[i]);infrastructure[i]['mean_memory_mib']=mean(memory[i])
+        cpu_quality = None
+        if cpu_evidence is not None:
+            cpu_values, cpu_quality = assign_cpu(*cpu_evidence, status, windows, cpu_boundary_tolerance_seconds)
+            for i, value in enumerate(cpu_values):
+                infrastructure[i]['mean_cpu_percent'] = value
         intervals=[]
         for event in events:
             if not event['actual_start_seconds']:
@@ -293,12 +303,16 @@ def extract_features(dataset, validation_report, destination, window_size_second
                         record=dict(run_id=inputs.manifest['run_id'],window_index=i,window_start_seconds=text_number(i*width),window_end_seconds=text_number((i+1)*width))
                         record.update({k:text_number(v) if isinstance(v,Decimal) else v for k,v in row.items()});writer.writerow(record)
                 outputs.append(dict(path=relative,sha256=sha256_file(path),bytes=path.stat().st_size))
-            write_json(staging/'feature_schema.json',feature_schema())
+            write_json(staging/'feature_schema.json',feature_schema(version))
+            if cpu_quality is not None:
+                write_json(staging/'cpu_quality.json', cpu_quality)
+                path = staging/'cpu_quality.json'
+                outputs.append(dict(path='cpu_quality.json',sha256=sha256_file(path),bytes=path.stat().st_size))
             shutil.copyfile(inputs.report_path,staging/'evidence/stage9_validation_report.json')
             for relative in ('feature_schema.json','evidence/stage9_validation_report.json'):
                 path=staging/relative;outputs.append(dict(path=relative,sha256=sha256_file(path),bytes=path.stat().st_size))
             horizon=windows*width
-            manifest=dict(feature_schema_version=1,extractor_version=1,source_run_id=inputs.manifest['run_id'],
+            manifest=dict(feature_schema_version=version,extractor_version=version,source_run_id=inputs.manifest['run_id'],
                 dataset_manifest_sha256=inputs.manifest_hash,
                 stage9_validation_report=dict(path='evidence/stage9_validation_report.json',sha256=inputs.report_hash,analysis_eligible=True),
                 window=dict(size_seconds=text_number(width),origin_seconds='0',semantics='[start,end)',windows=windows,
@@ -321,6 +335,10 @@ def extract_features(dataset, validation_report, destination, window_size_second
                 diagnostics=dict(infrastructure_without_support=unsupported,unfinished_request_ids=unfinished),
                 detector_columns=FEATURES,labels_path='timeseries/labels.csv',warnings=warnings,
                 provenance=provenance,outputs=outputs)
+            if cpu_quality is not None:
+                manifest['cpu_observation_contract'] = cpu_quality['contract']
+                manifest['cpu_quality_path'] = 'cpu_quality.json'
+                manifest['cpu_policy'] = cpu_quality['policy']
             write_json(staging/'feature_manifest.json',manifest)
             inputs.unchanged()
             if sha256_file(staging/'evidence/stage9_validation_report.json')!=inputs.report_hash:
@@ -333,9 +351,12 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('dataset',type=Path);parser.add_argument('--validation-report',type=Path,required=True)
     parser.add_argument('--output',type=Path,required=True);parser.add_argument('--window-size-seconds',default='1')
+    parser.add_argument('--cpu-boundary-tolerance-seconds', default='0.05',
+                        help='Provisional CPU alignment tolerance; freeze before scientific collection')
     args=parser.parse_args()
     try:
-        manifest=extract_features(args.dataset,args.validation_report,args.output,args.window_size_seconds)
+        manifest=extract_features(args.dataset,args.validation_report,args.output,args.window_size_seconds,
+                                  cpu_boundary_tolerance_seconds=args.cpu_boundary_tolerance_seconds)
     except (ValueError,OSError,KeyError,csv.Error) as exc:
         parser.exit(1,f'Feature extraction failed: {exc}\n')
     print(json.dumps(dict(run_id=manifest['source_run_id'],windows=manifest['window']['windows'],warnings=len(manifest['warnings']),output=str(args.output))))
