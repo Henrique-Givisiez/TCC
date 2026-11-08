@@ -83,6 +83,53 @@ class CaptureLifecycleTests(unittest.TestCase):
         self.assertFalse(capture_result_ok(-15, "12 packets captured\n")[0])
         self.assertFalse(capture_result_ok(1, COUNTERS)[0])
 
+    def test_singular_plural_and_zero_counters(self):
+        for noun in ('packet', 'packets'):
+            for captured in (0, 1, 12):
+                for dropped in (0, 1, 3):
+                    with self.subTest(noun=noun, captured=captured, dropped=dropped):
+                        diagnostic = (f'{captured} {noun} captured\n'
+                                      f'{captured+dropped} {noun} received by filter\n'
+                                      f'{dropped} {noun} dropped by kernel\n')
+                        accepted, counters = capture_result_ok(0, diagnostic)
+                        self.assertEqual(counters['packets_captured'], captured)
+                        self.assertEqual(counters['packets_received_by_filter'], captured+dropped)
+                        self.assertEqual(counters['packets_dropped_by_kernel'], dropped)
+                        self.assertEqual(accepted, dropped == 0)
+                        self.assertFalse(capture_result_ok(1, diagnostic)[0])
+
+    def test_missing_invalid_and_mixed_duplicates_reject_each_counter(self):
+        lines = COUNTERS.splitlines(keepends=True)
+        names = ('packets_captured', 'packets_received_by_filter', 'packets_dropped_by_kernel')
+        for index, name in enumerate(names):
+            for invalid in ('-1', 'NaN', '1.5', '', 'one', '0 junk'):
+                malformed = invalid + ' ' + lines[index].split(' ', 1)[1]
+                for replacement in ('', malformed, lines[index]*2,
+                                    lines[index] + lines[index].replace('packets', 'packet'),
+                                    lines[index] + malformed):
+                    with self.subTest(name=name, replacement=replacement):
+                        parts = list(lines)
+                        parts[index] = replacement
+                        accepted, counters = capture_result_ok(0, ''.join(parts))
+                        self.assertFalse(accepted)
+                        self.assertIsNone(counters[name])
+                        self.assertFalse(counters['statistics_complete'])
+
+    def test_reported_f96_pcap_single_drop_is_integer_and_rejected(self):
+        diagnostic = ('94652 packets captured\n94653 packets received by filter\n'
+                      '1 packet dropped by kernel\n')
+        with tempfile.TemporaryDirectory() as tmp:
+            fake = lambda command, **kwargs: FakeTcpdump(command, final_diagnostic=diagnostic, **kwargs)
+            with patch('simulator.capture_evidence.subprocess.Popen', side_effect=fake):
+                capture = RawCapture('br-test', 'tcp and port 80', Path(tmp)/'capture.pcap')
+                with self.assertRaises(RuntimeError):
+                    capture.stop()
+            report = json.loads(capture.report_path.read_text())
+            self.assertEqual(report['capture_counters']['packets_dropped_by_kernel'], 1)
+            self.assertIsInstance(report['capture_counters']['packets_dropped_by_kernel'], int)
+            self.assertTrue(report['capture_counters']['statistics_complete'])
+            self.assertFalse(report['accepted'])
+
     def test_pcap_process_saves_command_counters_code_and_lifecycle_and_rejects_drops(self):
         for diagnostic, accepted in ((COUNTERS, True), (COUNTERS.replace("0 packets dropped", "2 packets dropped"), False),
                                      ("statistics missing\n", False)):
@@ -102,6 +149,9 @@ class CaptureLifecycleTests(unittest.TestCase):
                 self.assertEqual(report["accepted"], accepted)
                 self.assertTrue(Path(str(output) + ".stderr").is_file())
                 self.assertEqual(report["command_argv"][-1], "tcp and port 80")
+                self.assertEqual(report["command_argv"], [
+                    "tcpdump", "--immediate-mode", "-B", "4096", "-U", "-i", "br-test",
+                    "-n", "-w", str(output), "tcp and port 80"])
                 self.assertIn("process_spawn_returned", report["timestamps"])
                 self.assertIn("tcpdump_listening_message_observed", report["timestamps"])
                 self.assertIn("process_exit_observed", report["timestamps"])

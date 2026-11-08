@@ -8,6 +8,8 @@ from simulator.capture_lifecycle import CaptureLifecycle
 
 
 class RawCapture:
+    DEFAULT_CAPTURE_BUFFER_KIB = 4096
+
     @staticmethod
     def artifact_paths(path):
         path = Path(path)
@@ -21,7 +23,8 @@ class RawCapture:
         self.report_path = paths['lifecycle']
         self.process = None
         self.stderr = None
-        self.lifecycle = CaptureLifecycle(name='pcap', command=['tcpdump','--immediate-mode','-U','-i',interface,'-n',
+        self.lifecycle = CaptureLifecycle(name='pcap', command=['tcpdump','--immediate-mode','-B',str(self.DEFAULT_CAPTURE_BUFFER_KIB),
+                                       '-U','-i',interface,'-n',
                                        '-w',str(self.path),bpf], interface=interface, bpf_filter=bpf,
                                        output_path=self.path, stderr_path=self.diagnostic_path, report_path=self.report_path)
         try:

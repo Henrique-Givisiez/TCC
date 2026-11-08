@@ -10,9 +10,9 @@ import time
 
 
 COUNTER_PATTERNS = {
-    "packets_captured": re.compile(r"^(\d+) packets captured$", re.MULTILINE),
-    "packets_received_by_filter": re.compile(r"^(\d+) packets received by filter$", re.MULTILINE),
-    "packets_dropped_by_kernel": re.compile(r"^(\d+) packets dropped by kernel$", re.MULTILINE),
+    "packets_captured": re.compile(r"^(.*) packets? captured$", re.MULTILINE),
+    "packets_received_by_filter": re.compile(r"^(.*) packets? received by filter$", re.MULTILINE),
+    "packets_dropped_by_kernel": re.compile(r"^(.*) packets? dropped by kernel$", re.MULTILINE),
 }
 
 
@@ -28,7 +28,10 @@ def parse_capture_counters(stderr_text):
     counters = {}
     for name, pattern in COUNTER_PATTERNS.items():
         matches = pattern.findall(stderr_text)
-        counters[name] = int(matches[-1]) if len(matches) == 1 else None
+        # Count malformed occurrences too: a valid line plus an invalid duplicate
+        # must never become an apparently complete/acceptable set of statistics.
+        counters[name] = (int(matches[0]) if len(matches) == 1
+                          and re.fullmatch(r"[0-9]+", matches[0]) else None)
     counters["statistics_complete"] = all(counters[name] is not None for name in COUNTER_PATTERNS)
     counters["statistics_occurrences"] = {
         name: len(pattern.findall(stderr_text)) for name, pattern in COUNTER_PATTERNS.items()}
