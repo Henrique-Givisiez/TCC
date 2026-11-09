@@ -1,0 +1,14 @@
+{
+  "descriptive_only": true,
+  "files": {
+    "A3": {
+      "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/reports/energy-powersaver-20261109/A3.json",
+      "sha256": "8aee0b37e5b04663bf2f614fe6c71940fe8cdb0ef805a41bc5a6e4c480b53cbd"
+    },
+    "F96": {
+      "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/reports/energy-powersaver-20261109/F96.json",
+      "sha256": "65099c9b3ffeae35fb4b95b0a554fcd4a577013694c9bc7a38442d71c5731c75"
+    }
+  },
+  "pilot_slots": 2
+}

@@ -1,0 +1,63 @@
+{
+  "attack": {
+    "attackers": 0,
+    "burst": null,
+    "duration_seconds": 120,
+    "enabled": false,
+    "endpoint": "/medium",
+    "max_concurrent_sends": 64,
+    "profile": "continuous",
+    "rate": 0,
+    "request_timeout_seconds": 2.0,
+    "sleep_seconds": 0.0,
+    "start_seconds": 150,
+    "work_units": 5000
+  },
+  "autoscaler": {
+    "cooldown_seconds": 20,
+    "enabled": false,
+    "scale_down_threshold": 25.0,
+    "scale_up_threshold": 60.0
+  },
+  "diagnostics": {
+    "enabled": true,
+    "queue_capacity": 4096
+  },
+  "duration_seconds": 390,
+  "id": "ps_direct80_069_L2",
+  "infrastructure": {
+    "cost_per_instance_per_hour": 0.02,
+    "initial_instances": 1,
+    "max_instances": 1,
+    "min_instances": 1
+  },
+  "load_balancer": {
+    "enabled": false
+  },
+  "monitoring": {
+    "history_seconds": 30.0,
+    "interval_seconds": 5,
+    "stats_poll_interval_seconds": 1.0
+  },
+  "normal_traffic": {
+    "clients": 2,
+    "endpoint": "/medium",
+    "max_concurrent_sends": 64,
+    "rate": 8,
+    "request_timeout_seconds": 2.0,
+    "sleep_seconds": 0.0,
+    "work_units": 10
+  },
+  "seed": 2553381337776259800,
+  "server": {
+    "default_sleep_seconds": 0.0,
+    "default_work_units": 1000000,
+    "process_pool_workers": 2
+  },
+  "topology": {
+    "mode": "direct"
+  },
+  "traffic_sources": {
+    "execution": "containers"
+  }
+}

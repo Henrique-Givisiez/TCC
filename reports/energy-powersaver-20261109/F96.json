@@ -1,0 +1,599 @@
+{
+  "input_sha256": {
+    "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/pilots-energy-powersaver-20261109/F96/raw/diagnostics/metadata.json": "f2f46cdfcedf360e32bae67f7881a80322f13c04d224d1f29f76c6bfd2b25c31",
+    "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/pilots-energy-powersaver-20261109/F96/raw/diagnostics/victim/events.jsonl": "6073590037e357786d593a03e092e830b165e8382a7960a176d7d34e39a8f917",
+    "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/pilots-energy-powersaver-20261109/F96/raw/diagnostics/victim/events.summary.json": "b9e2c8e55edfd011c5c2c20eb1619229ec717cc94b1325e5db8f595f1def37ac",
+    "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/pilots-energy-powersaver-20261109/F96/raw/diagnostics/victim_clock_validation.json": "a647af25cb4595eb2b878000f5bd0721ac74cdb903bded4a59051257dd6f1efc",
+    "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/pilots-energy-powersaver-20261109/F96/raw/effective_config.json": "2ad80a6c510be40c54d226258eca16a7d3facc6b9972db26a67608d997ae81ee",
+    "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/pilots-energy-powersaver-20261109/F96/raw/request_log.csv": "619f9f460363e2424cdf1bf5db6c43baeef5343195fe4d691155df743fc33482",
+    "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/pilots-energy-powersaver-20261109/F96/raw/source_artifacts/attack_1/output/diagnostics/events.jsonl": "7bcf1d2bca40d6762e5b1f4bbbe7c5639ccbe11e0b83913f9086604c56ae42fb",
+    "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/pilots-energy-powersaver-20261109/F96/raw/source_artifacts/attack_1/output/diagnostics/events.summary.json": "21a8d67c3678e34ecffeb0d101ccb8a5c035a1778727663da0d3d03760b0cf05",
+    "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/pilots-energy-powersaver-20261109/F96/raw/source_artifacts/attack_1/output/journal.jsonl": "f0de7cc5c290bd4c69e9710a5014cfed8791b00d417bdfc66613aa2155c48bc4",
+    "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/pilots-energy-powersaver-20261109/F96/raw/source_artifacts/attack_2/output/diagnostics/events.jsonl": "9bc752c023395c218b8ec621e70d870307369718960aec23549404bff53b07c1",
+    "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/pilots-energy-powersaver-20261109/F96/raw/source_artifacts/attack_2/output/diagnostics/events.summary.json": "836a6178e8711be156547ac038491670d7e2e84069c1f662b3d1482d45e9e673",
+    "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/pilots-energy-powersaver-20261109/F96/raw/source_artifacts/attack_2/output/journal.jsonl": "ca791e15a3bc4b1b5d6c5c624af17dc849a32be0e59b6692cbf6bc235ffa765e",
+    "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/pilots-energy-powersaver-20261109/F96/raw/source_artifacts/clock_validation.json": "aebda7da8a97b05b231ef47a5a43da8f6b42626f132a72580dcade22c0009deb",
+    "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/pilots-energy-powersaver-20261109/F96/raw/source_artifacts/normal_1/output/diagnostics/events.jsonl": "ae37dfd2c03c9f266f0eb346160eea0e216be9bb6a910d00e920c93b6adcaffd",
+    "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/pilots-energy-powersaver-20261109/F96/raw/source_artifacts/normal_1/output/diagnostics/events.summary.json": "633f6fdda42523199caa7af8e39b742a10f7b9eb488e305f99204585b6589e84",
+    "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/pilots-energy-powersaver-20261109/F96/raw/source_artifacts/normal_1/output/journal.jsonl": "c32f0a915820d7b0087cf24eedaa1b12375b1ef0822620d8bf791036a605072f",
+    "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/pilots-energy-powersaver-20261109/F96/raw/source_artifacts/normal_2/output/diagnostics/events.jsonl": "896ef5952df3951155e57efba48b949042a14d48b0007a49018c82ebb87280d2",
+    "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/pilots-energy-powersaver-20261109/F96/raw/source_artifacts/normal_2/output/diagnostics/events.summary.json": "c1ab5a6f231370088a0a731c1e3ce0ad8a88a85922092ab2750f720930e80c13",
+    "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/pilots-energy-powersaver-20261109/F96/raw/source_artifacts/normal_2/output/journal.jsonl": "117bf15aad44c533ce67bf6046a1798e2cda7dcde2ff26ca145e854a5027e174",
+    "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/pilots-energy-powersaver-20261109/F96/raw/source_inventory.json": "1074e0e0c27e1b5a9dd44efb5d7c062756f225148e3a0bdc22309f960008e14d"
+  },
+  "integrity": {
+    "complete": true,
+    "correlated_operations": 4037
+  },
+  "periods": {
+    "ACTIVE": {
+      "bins10": [
+        {
+          "completions": 644,
+          "end": 40,
+          "pending_end": 124,
+          "start": 30,
+          "submissions": 768
+        },
+        {
+          "completions": 663,
+          "end": 50,
+          "pending_end": 131,
+          "start": 40,
+          "submissions": 670
+        },
+        {
+          "completions": 719,
+          "end": 60,
+          "pending_end": 126,
+          "start": 50,
+          "submissions": 714
+        }
+      ],
+      "bounds": [
+        30,
+        60
+      ],
+      "classes": {
+        "attack": {
+          "admissions": 1879,
+          "cohort_completed": 1665,
+          "cohort_started": 1665,
+          "completed_in_window": 1572,
+          "completion_rps": 52.4,
+          "cpu_ms": {
+            "mean": 29.213833637237215,
+            "median": 28.62335100000024,
+            "n": 1665,
+            "p95": 35.69731300000001
+          },
+          "dispatch_ms": {
+            "mean": 1459.6462707578366,
+            "median": 1182.2577029997774,
+            "n": 1879,
+            "p95": 3325.9025999996084
+          },
+          "duration_2xx_ms": {
+            "mean": 1543.245139678339,
+            "median": 1716.518983500464,
+            "n": 1542,
+            "p95": 2000.4754990004585
+          },
+          "duration_all_ms": {
+            "mean": 1577.2808920654625,
+            "median": 1746.6840190008952,
+            "n": 1665,
+            "p95": 2004.6949240004324
+          },
+          "expired_submission_cohort": 214,
+          "http_2xx": 1542,
+          "http_errors": 0,
+          "http_inflight": {
+            "mean": 84.59944106339839,
+            "peak": 96,
+            "two_fraction": 0.0034517467333595657
+          },
+          "http_rps": 55.5,
+          "http_starts": 1665,
+          "planned": null,
+          "source_dispatched": 1879,
+          "source_submitted": 1879,
+          "started_in_window": 1574,
+          "submission_rps": 55.5,
+          "submitted": 1665,
+          "success_fraction": 0.9261261261261261,
+          "timeouts": 123,
+          "unfinished": 0,
+          "wait_ms": {
+            "mean": 1518.5433582768694,
+            "median": 1674.7270639989438,
+            "n": 1665,
+            "p95": 1994.8806860011246
+          },
+          "wall_ms": {
+            "mean": 29.149066784439047,
+            "median": 28.54866400048195,
+            "n": 1665,
+            "p95": 35.699736999958986
+          }
+        },
+        "benign": {
+          "admissions": null,
+          "cohort_completed": 487,
+          "cohort_started": 487,
+          "completed_in_window": 454,
+          "completion_rps": 15.133333333333333,
+          "cpu_ms": {
+            "mean": 29.247357406570796,
+            "median": 28.685665000001137,
+            "n": 487,
+            "p95": 36.04661100000328
+          },
+          "dispatch_ms": {
+            "mean": 0.4075211026204463,
+            "median": 0.39626299985684454,
+            "n": 487,
+            "p95": 0.6755150006938493
+          },
+          "duration_2xx_ms": {
+            "mean": 1579.8323437426893,
+            "median": 1732.6805150005384,
+            "n": 443,
+            "p95": 1985.6409650001297
+          },
+          "duration_all_ms": {
+            "mean": 1618.168601741312,
+            "median": 1756.609952000872,
+            "n": 487,
+            "p95": 2004.0928660000645
+          },
+          "expired_submission_cohort": 0,
+          "http_2xx": 443,
+          "http_errors": 0,
+          "http_inflight": {
+            "mean": 25.1552958977667,
+            "peak": 44,
+            "two_fraction": 0.011228539233464592
+          },
+          "http_rps": 16.233333333333334,
+          "http_starts": 487,
+          "planned": 487,
+          "source_dispatched": 487,
+          "source_submitted": 487,
+          "started_in_window": 454,
+          "submission_rps": 16.233333333333334,
+          "submitted": 487,
+          "success_fraction": 0.9096509240246407,
+          "timeouts": 44,
+          "unfinished": 0,
+          "wait_ms": {
+            "mean": 1581.3607992032757,
+            "median": 1716.8247280005744,
+            "n": 487,
+            "p95": 2013.1643650001934
+          },
+          "wall_ms": {
+            "mean": 29.179413121144375,
+            "median": 28.531893998660962,
+            "n": 487,
+            "p95": 36.0072189996572
+          }
+        }
+      },
+      "queue": {
+        "pending": {
+          "mean": 108.1361072766315,
+          "peak": 137,
+          "two_fraction": 0.001724384299935385
+        },
+        "pending_end": 126,
+        "running": {
+          "mean": 1.9755194774341969,
+          "peak": 2,
+          "two_fraction": 0.977703641800872
+        },
+        "waiting": {
+          "mean": 106.16058779919732,
+          "peak": 135,
+          "two_fraction": 0.007428326500060697
+        }
+      }
+    },
+    "POST": {
+      "bins10": [
+        {
+          "completions": 273,
+          "end": 70,
+          "pending_end": 0,
+          "start": 60,
+          "submissions": 147
+        },
+        {
+          "completions": 182,
+          "end": 80,
+          "pending_end": 0,
+          "start": 70,
+          "submissions": 182
+        },
+        {
+          "completions": 167,
+          "end": 90,
+          "pending_end": 0,
+          "start": 80,
+          "submissions": 167
+        },
+        {
+          "completions": 140,
+          "end": 100,
+          "pending_end": 1,
+          "start": 90,
+          "submissions": 141
+        },
+        {
+          "completions": 139,
+          "end": 110,
+          "pending_end": 0,
+          "start": 100,
+          "submissions": 138
+        },
+        {
+          "completions": 147,
+          "end": 120,
+          "pending_end": 2,
+          "start": 110,
+          "submissions": 149
+        },
+        {
+          "completions": 170,
+          "end": 130,
+          "pending_end": 1,
+          "start": 120,
+          "submissions": 169
+        },
+        {
+          "completions": 138,
+          "end": 140,
+          "pending_end": 0,
+          "start": 130,
+          "submissions": 137
+        },
+        {
+          "completions": 146,
+          "end": 150,
+          "pending_end": 0,
+          "start": 140,
+          "submissions": 146
+        }
+      ],
+      "bounds": [
+        60,
+        150
+      ],
+      "classes": {
+        "attack": {
+          "admissions": 0,
+          "cohort_completed": 0,
+          "cohort_started": 0,
+          "completed_in_window": 93,
+          "completion_rps": 1.0333333333333334,
+          "cpu_ms": {
+            "mean": null,
+            "median": null,
+            "n": 0,
+            "p95": null
+          },
+          "dispatch_ms": {
+            "mean": null,
+            "median": null,
+            "n": 0,
+            "p95": null
+          },
+          "duration_2xx_ms": {
+            "mean": null,
+            "median": null,
+            "n": 0,
+            "p95": null
+          },
+          "duration_all_ms": {
+            "mean": null,
+            "median": null,
+            "n": 0,
+            "p95": null
+          },
+          "expired_submission_cohort": 0,
+          "http_2xx": 0,
+          "http_errors": 0,
+          "http_inflight": {
+            "mean": 0.9798828154115957,
+            "peak": 96,
+            "two_fraction": 0.00014282557777834073
+          },
+          "http_rps": 0.0,
+          "http_starts": 0,
+          "planned": null,
+          "source_dispatched": 0,
+          "source_submitted": 0,
+          "started_in_window": 91,
+          "submission_rps": 0.0,
+          "submitted": 0,
+          "success_fraction": null,
+          "timeouts": 0,
+          "unfinished": 0,
+          "wait_ms": {
+            "mean": null,
+            "median": null,
+            "n": 0,
+            "p95": null
+          },
+          "wall_ms": {
+            "mean": null,
+            "median": null,
+            "n": 0,
+            "p95": null
+          }
+        },
+        "benign": {
+          "admissions": null,
+          "cohort_completed": 1376,
+          "cohort_started": 1376,
+          "completed_in_window": 1409,
+          "completion_rps": 15.655555555555555,
+          "cpu_ms": {
+            "mean": 27.86095806686038,
+            "median": 27.176310999998066,
+            "n": 1376,
+            "p95": 35.40425899999633
+          },
+          "dispatch_ms": {
+            "mean": 0.44611005594079806,
+            "median": 0.3750140003830893,
+            "n": 1376,
+            "p95": 1.002509001409635
+          },
+          "duration_2xx_ms": {
+            "mean": 63.89228102764766,
+            "median": 36.11532549984986,
+            "n": 1376,
+            "p95": 79.56593800008704
+          },
+          "duration_all_ms": {
+            "mean": 63.89228102764766,
+            "median": 36.11532549984986,
+            "n": 1376,
+            "p95": 79.56593800008704
+          },
+          "expired_submission_cohort": 0,
+          "http_2xx": 1376,
+          "http_errors": 0,
+          "http_inflight": {
+            "mean": 1.3478334534340117,
+            "peak": 34,
+            "two_fraction": 0.10857670860051359
+          },
+          "http_rps": 15.28888888888889,
+          "http_starts": 1376,
+          "planned": 1376,
+          "source_dispatched": 1376,
+          "source_submitted": 1376,
+          "started_in_window": 1409,
+          "submission_rps": 15.28888888888889,
+          "submitted": 1376,
+          "success_fraction": 1.0,
+          "timeouts": 0,
+          "unfinished": 0,
+          "wait_ms": {
+            "mean": 21.728673606113464,
+            "median": 1.2666869988606777,
+            "n": 1376,
+            "p95": 19.126675000734394
+          },
+          "wall_ms": {
+            "mean": 27.853750029105097,
+            "median": 27.164631000232475,
+            "n": 1376,
+            "p95": 35.433216000456014
+          }
+        }
+      },
+      "queue": {
+        "pending": {
+          "mean": 2.0621114798566444,
+          "peak": 126,
+          "two_fraction": 0.06756818027774393
+        },
+        "pending_end": 0,
+        "running": {
+          "mean": 0.46679568375580455,
+          "peak": 2,
+          "two_fraction": 0.10394616791098896
+        },
+        "waiting": {
+          "mean": 1.5953157961008402,
+          "peak": 124,
+          "two_fraction": 0.0030213889443984955
+        }
+      }
+    },
+    "PRE": {
+      "bins10": [
+        {
+          "completions": 154,
+          "end": 10,
+          "pending_end": 0,
+          "start": 0,
+          "submissions": 154
+        },
+        {
+          "completions": 169,
+          "end": 20,
+          "pending_end": 2,
+          "start": 10,
+          "submissions": 171
+        },
+        {
+          "completions": 186,
+          "end": 30,
+          "pending_end": 0,
+          "start": 20,
+          "submissions": 184
+        }
+      ],
+      "bounds": [
+        0,
+        30
+      ],
+      "classes": {
+        "attack": {
+          "admissions": 0,
+          "cohort_completed": 0,
+          "cohort_started": 0,
+          "completed_in_window": 0,
+          "completion_rps": 0.0,
+          "cpu_ms": {
+            "mean": null,
+            "median": null,
+            "n": 0,
+            "p95": null
+          },
+          "dispatch_ms": {
+            "mean": null,
+            "median": null,
+            "n": 0,
+            "p95": null
+          },
+          "duration_2xx_ms": {
+            "mean": null,
+            "median": null,
+            "n": 0,
+            "p95": null
+          },
+          "duration_all_ms": {
+            "mean": null,
+            "median": null,
+            "n": 0,
+            "p95": null
+          },
+          "expired_submission_cohort": 0,
+          "http_2xx": 0,
+          "http_errors": 0,
+          "http_inflight": {
+            "mean": 0.0,
+            "peak": 0,
+            "two_fraction": 0.0
+          },
+          "http_rps": 0.0,
+          "http_starts": 0,
+          "planned": null,
+          "source_dispatched": 0,
+          "source_submitted": 0,
+          "started_in_window": 0,
+          "submission_rps": 0.0,
+          "submitted": 0,
+          "success_fraction": null,
+          "timeouts": 0,
+          "unfinished": 0,
+          "wait_ms": {
+            "mean": null,
+            "median": null,
+            "n": 0,
+            "p95": null
+          },
+          "wall_ms": {
+            "mean": null,
+            "median": null,
+            "n": 0,
+            "p95": null
+          }
+        },
+        "benign": {
+          "admissions": null,
+          "cohort_completed": 509,
+          "cohort_started": 509,
+          "completed_in_window": 509,
+          "completion_rps": 16.966666666666665,
+          "cpu_ms": {
+            "mean": 29.23919074459724,
+            "median": 28.787119000000416,
+            "n": 509,
+            "p95": 37.426108999999876
+          },
+          "dispatch_ms": {
+            "mean": 0.4059620117671156,
+            "median": 0.36193400046613533,
+            "n": 509,
+            "p95": 0.8481799995934125
+          },
+          "duration_2xx_ms": {
+            "mean": 45.92241852261415,
+            "median": 37.35193800093839,
+            "n": 509,
+            "p95": 80.18826700026693
+          },
+          "duration_all_ms": {
+            "mean": 45.92241852261415,
+            "median": 37.35193800093839,
+            "n": 509,
+            "p95": 80.18826700026693
+          },
+          "expired_submission_cohort": 0,
+          "http_2xx": 509,
+          "http_errors": 0,
+          "http_inflight": {
+            "mean": 0.7791503676003534,
+            "peak": 7,
+            "two_fraction": 0.13583266053356055
+          },
+          "http_rps": 16.966666666666665,
+          "http_starts": 509,
+          "planned": 507,
+          "source_dispatched": 509,
+          "source_submitted": 509,
+          "started_in_window": 509,
+          "submission_rps": 16.966666666666665,
+          "submitted": 509,
+          "success_fraction": 1.0,
+          "timeouts": 0,
+          "unfinished": 0,
+          "wait_ms": {
+            "mean": 3.059175070701264,
+            "median": 1.2506840012065368,
+            "n": 509,
+            "p95": 18.782364999424317
+          },
+          "wall_ms": {
+            "mean": 29.230614632596886,
+            "median": 28.717472001517308,
+            "n": 509,
+            "p95": 37.377843998910976
+          }
+        }
+      },
+      "queue": {
+        "pending": {
+          "mean": 0.5494925813328033,
+          "peak": 6,
+          "two_fraction": 0.0811591448997812
+        },
+        "pending_end": 0,
+        "running": {
+          "mean": 0.49758857763323855,
+          "peak": 2,
+          "two_fraction": 0.10267466310003025
+        },
+        "waiting": {
+          "mean": 0.051904003699564785,
+          "peak": 4,
+          "two_fraction": 0.004154483066668035
+        }
+      }
+    }
+  },
+  "run_id": "eeb1e87525ed448eba6417e04cb9190a",
+  "semantics": {
+    "cohort": "computational_submission",
+    "drainage": "completions after cohort end retained; no HTTP timeout cancellation assumed",
+    "http_cohort": "HTTP_start",
+    "p95": "nearest_rank"
+  },
+  "unknown_audit_operations": 20
+}

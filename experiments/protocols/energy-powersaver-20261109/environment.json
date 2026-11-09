@@ -1,0 +1,18 @@
+{
+  "daemon_id": "177c5506-8b67-45e1-ab1c-acd019f2994e",
+  "images": {
+    "source": "sha256:b94212edd4d31c34998aea870caebc4ba145c1593d1b8dfdc27fe4917719fe3e",
+    "victim": "sha256:03a186aa90eec03b874c82a887b245e7190fa45cd7256af3c077cb64943d52b0"
+  },
+  "kernel": "7.0.0-42-generic",
+  "packages": {
+    "docker": "7.2.0",
+    "matplotlib": "3.11.2",
+    "numpy": "2.5.3",
+    "openpyxl": "3.1.5",
+    "pandas": "3.0.6",
+    "requests": "2.34.2",
+    "scipy": "1.18.1"
+  },
+  "python": "3.12.3"
+}

@@ -1,0 +1,225 @@
+{
+  "automatic_replacements": false,
+  "calibration": "unchanged C1.3.5 pair eligibility; per-pair rejection does not retune or change gates",
+  "full_campaign_authorized": false,
+  "identity": "energy-powersaver-20261109",
+  "limitation": "Sampling cannot prove absence of changes between observations; no per-worker frequency measurement",
+  "monitor_seconds": 5,
+  "pilot_analysis": {
+    "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/reports/energy-powersaver-20261109/manifest.json",
+    "sha256": "6db0d410d15dba804fba556e1167872242aada53fde1a819e3b8a09115ac6dbf"
+  },
+  "pilot_receipts": {
+    "A3": {
+      "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/pilots-energy-powersaver-20261109/A3/accepted.json",
+      "sha256": "26495b1e4321093d8881adf7954c236c1f7d7415a08c6515834f643fd42fae1a"
+    },
+    "F96": {
+      "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiment_results/pilots-energy-powersaver-20261109/F96/accepted.json",
+      "sha256": "8de0c3748589d24e76f1294125b981f129eb4f85715118e458ecfabd12eb21b5"
+    }
+  },
+  "plan": {
+    "path": "/home/henrique-givisiez/Documents/Faculdade/TCC/TCC/experiments/protocols/energy-powersaver-20261109/plan.json",
+    "sha256": "3a421d56be19a649652475c8c8d99a8bd0c070297da87933e73784fb2fe4471a"
+  },
+  "provenance": {
+    "commit": "a010183bb2e0b453a3ae9433079b9b208ddbfda2",
+    "working_tree": "?? docs/energy_powersaver_campaign_20261109.md\n?? experiments/energy_campaign.py\n?? experiments/energy_control.py\n?? experiments/energy_pilot_analysis.py\n?? experiments/protocols/energy-powersaver-20261109/\n?? reports/energy-powersaver-20261109/\n?? tests/test_energy_campaign.py"
+  },
+  "reference": {
+    "instantaneous": {
+      "battery": {
+        "BAT0": {
+          "capacity": "100",
+          "power_now": "0",
+          "status": "Full"
+        }
+      },
+      "frequency_khz": {
+        "policy0": "532147",
+        "policy1": "400000",
+        "policy10": "400000",
+        "policy11": "1820771",
+        "policy2": "756731",
+        "policy3": "1462070",
+        "policy4": "1989682",
+        "policy5": "2005352",
+        "policy6": "2000500",
+        "policy7": "2001737",
+        "policy8": "400000",
+        "policy9": "1884119"
+      },
+      "suspend_offset_seconds": -9.230006980942562e-07,
+      "temperatures_millicelsius": {
+        "thermal_zone0": "27800",
+        "thermal_zone1": "20000",
+        "thermal_zone10": "39000",
+        "thermal_zone2": "41050",
+        "thermal_zone3": "50",
+        "thermal_zone4": "43050",
+        "thermal_zone5": "50",
+        "thermal_zone6": "50",
+        "thermal_zone7": "43050",
+        "thermal_zone8": "43000",
+        "thermal_zone9": "38000"
+      },
+      "throttling": {
+        "devices/system/cpu/cpu0/thermal_throttle/core_throttle_count": "1830",
+        "devices/system/cpu/cpu0/thermal_throttle/package_throttle_count": "3925",
+        "devices/system/cpu/cpu1/thermal_throttle/core_throttle_count": "1830",
+        "devices/system/cpu/cpu1/thermal_throttle/package_throttle_count": "3925",
+        "devices/system/cpu/cpu10/thermal_throttle/core_throttle_count": "0",
+        "devices/system/cpu/cpu10/thermal_throttle/package_throttle_count": "3925",
+        "devices/system/cpu/cpu11/thermal_throttle/core_throttle_count": "0",
+        "devices/system/cpu/cpu11/thermal_throttle/package_throttle_count": "3925",
+        "devices/system/cpu/cpu2/thermal_throttle/core_throttle_count": "2095",
+        "devices/system/cpu/cpu2/thermal_throttle/package_throttle_count": "3925",
+        "devices/system/cpu/cpu3/thermal_throttle/core_throttle_count": "2095",
+        "devices/system/cpu/cpu3/thermal_throttle/package_throttle_count": "3925",
+        "devices/system/cpu/cpu4/thermal_throttle/core_throttle_count": "0",
+        "devices/system/cpu/cpu4/thermal_throttle/package_throttle_count": "3925",
+        "devices/system/cpu/cpu5/thermal_throttle/core_throttle_count": "0",
+        "devices/system/cpu/cpu5/thermal_throttle/package_throttle_count": "3925",
+        "devices/system/cpu/cpu6/thermal_throttle/core_throttle_count": "0",
+        "devices/system/cpu/cpu6/thermal_throttle/package_throttle_count": "3925",
+        "devices/system/cpu/cpu7/thermal_throttle/core_throttle_count": "0",
+        "devices/system/cpu/cpu7/thermal_throttle/package_throttle_count": "3925",
+        "devices/system/cpu/cpu8/thermal_throttle/core_throttle_count": "0",
+        "devices/system/cpu/cpu8/thermal_throttle/package_throttle_count": "3925",
+        "devices/system/cpu/cpu9/thermal_throttle/core_throttle_count": "0",
+        "devices/system/cpu/cpu9/thermal_throttle/package_throttle_count": "3925"
+      }
+    },
+    "policy": {
+      "acpi_profile": "low-power",
+      "affinity": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "boot_id": "fe57d398-76a3-4a7a-84c9-7c730b29c5ba",
+      "external_power": {
+        "ADP0": "1"
+      },
+      "intel_pstate": {
+        "max_perf_pct": "100",
+        "min_perf_pct": "10",
+        "no_turbo": "0",
+        "status": "active"
+      },
+      "kernel": "7.0.0-42-generic",
+      "policies": {
+        "policy0": {
+          "affected_cpus": "0",
+          "energy_performance_preference": "power",
+          "scaling_driver": "intel_pstate",
+          "scaling_governor": "powersave",
+          "scaling_max_freq": "4700000",
+          "scaling_min_freq": "400000"
+        },
+        "policy1": {
+          "affected_cpus": "1",
+          "energy_performance_preference": "power",
+          "scaling_driver": "intel_pstate",
+          "scaling_governor": "powersave",
+          "scaling_max_freq": "4700000",
+          "scaling_min_freq": "400000"
+        },
+        "policy10": {
+          "affected_cpus": "10",
+          "energy_performance_preference": "power",
+          "scaling_driver": "intel_pstate",
+          "scaling_governor": "powersave",
+          "scaling_max_freq": "3500000",
+          "scaling_min_freq": "400000"
+        },
+        "policy11": {
+          "affected_cpus": "11",
+          "energy_performance_preference": "power",
+          "scaling_driver": "intel_pstate",
+          "scaling_governor": "powersave",
+          "scaling_max_freq": "3500000",
+          "scaling_min_freq": "400000"
+        },
+        "policy2": {
+          "affected_cpus": "2",
+          "energy_performance_preference": "power",
+          "scaling_driver": "intel_pstate",
+          "scaling_governor": "powersave",
+          "scaling_max_freq": "4700000",
+          "scaling_min_freq": "400000"
+        },
+        "policy3": {
+          "affected_cpus": "3",
+          "energy_performance_preference": "power",
+          "scaling_driver": "intel_pstate",
+          "scaling_governor": "powersave",
+          "scaling_max_freq": "4700000",
+          "scaling_min_freq": "400000"
+        },
+        "policy4": {
+          "affected_cpus": "4",
+          "energy_performance_preference": "power",
+          "scaling_driver": "intel_pstate",
+          "scaling_governor": "powersave",
+          "scaling_max_freq": "3500000",
+          "scaling_min_freq": "400000"
+        },
+        "policy5": {
+          "affected_cpus": "5",
+          "energy_performance_preference": "power",
+          "scaling_driver": "intel_pstate",
+          "scaling_governor": "powersave",
+          "scaling_max_freq": "3500000",
+          "scaling_min_freq": "400000"
+        },
+        "policy6": {
+          "affected_cpus": "6",
+          "energy_performance_preference": "power",
+          "scaling_driver": "intel_pstate",
+          "scaling_governor": "powersave",
+          "scaling_max_freq": "3500000",
+          "scaling_min_freq": "400000"
+        },
+        "policy7": {
+          "affected_cpus": "7",
+          "energy_performance_preference": "power",
+          "scaling_driver": "intel_pstate",
+          "scaling_governor": "powersave",
+          "scaling_max_freq": "3500000",
+          "scaling_min_freq": "400000"
+        },
+        "policy8": {
+          "affected_cpus": "8",
+          "energy_performance_preference": "power",
+          "scaling_driver": "intel_pstate",
+          "scaling_governor": "powersave",
+          "scaling_max_freq": "3500000",
+          "scaling_min_freq": "400000"
+        },
+        "policy9": {
+          "affected_cpus": "9",
+          "energy_performance_preference": "power",
+          "scaling_driver": "intel_pstate",
+          "scaling_governor": "powersave",
+          "scaling_max_freq": "3500000",
+          "scaling_min_freq": "400000"
+        }
+      },
+      "profile": "power-saver"
+    },
+    "semantics": "frequency is a driver snapshot, not measured workload mean frequency",
+    "utc": "2026-11-09T14:09:22.517975+00:00"
+  },
+  "version": 1
+}
