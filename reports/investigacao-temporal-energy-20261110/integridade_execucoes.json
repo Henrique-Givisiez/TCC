@@ -1,0 +1,1142 @@
+[
+  {
+    "id": "ps_direct80_021_L2",
+    "scenario": "L2",
+    "block": 1,
+    "operations": 6104,
+    "http": 6104,
+    "handler_received": 6104,
+    "cpu_valid": 390,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "3ef7778ec26942b5a78bbffb7ed00401",
+      "attempts": 391,
+      "snapshots": 391,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_022_F96",
+    "scenario": "F96",
+    "block": 1,
+    "operations": 12100,
+    "http": 12100,
+    "handler_received": 12100,
+    "cpu_valid": 392,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "ca83f1efc0a84a0ab2e67b7d1e9db82d",
+      "attempts": 393,
+      "snapshots": 393,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_023_A3",
+    "scenario": "A3",
+    "block": 1,
+    "operations": 7038,
+    "http": 7038,
+    "handler_received": 7038,
+    "cpu_valid": 390,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "c07a0e0c211d40c2924627784821392b",
+      "attempts": 391,
+      "snapshots": 391,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_024_A3",
+    "scenario": "A3",
+    "block": 2,
+    "operations": 7192,
+    "http": 7192,
+    "handler_received": 7192,
+    "cpu_valid": 390,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "5ea2117142564da68a76f119a7856aa6",
+      "attempts": 391,
+      "snapshots": 391,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_025_F96",
+    "scenario": "F96",
+    "block": 2,
+    "operations": 12341,
+    "http": 12341,
+    "handler_received": 12341,
+    "cpu_valid": 392,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "4535eea2f92540bc89f769bfb2cd6266",
+      "attempts": 393,
+      "snapshots": 393,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_026_L2",
+    "scenario": "L2",
+    "block": 2,
+    "operations": 6266,
+    "http": 6266,
+    "handler_received": 6266,
+    "cpu_valid": 390,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "648a163aa6ae408e89fbdbca10df684a",
+      "attempts": 391,
+      "snapshots": 391,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_027_F96",
+    "scenario": "F96",
+    "block": 3,
+    "operations": 12204,
+    "http": 12204,
+    "handler_received": 12204,
+    "cpu_valid": 391,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "bf28d933e119491e8d87f6d4f6f076f1",
+      "attempts": 392,
+      "snapshots": 392,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_028_L2",
+    "scenario": "L2",
+    "block": 3,
+    "operations": 6139,
+    "http": 6139,
+    "handler_received": 6139,
+    "cpu_valid": 390,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "8951e5aef4b348a8897d3ba022c5641c",
+      "attempts": 391,
+      "snapshots": 391,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_029_A3",
+    "scenario": "A3",
+    "block": 3,
+    "operations": 7098,
+    "http": 7098,
+    "handler_received": 7098,
+    "cpu_valid": 390,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "587924f531884b1d9111c6f0685023b0",
+      "attempts": 391,
+      "snapshots": 391,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_030_A3",
+    "scenario": "A3",
+    "block": 4,
+    "operations": 7268,
+    "http": 7268,
+    "handler_received": 7268,
+    "cpu_valid": 390,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "28ba7b1749ad4073bcd76d20b506480e",
+      "attempts": 391,
+      "snapshots": 391,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_031_L2",
+    "scenario": "L2",
+    "block": 4,
+    "operations": 6269,
+    "http": 6269,
+    "handler_received": 6269,
+    "cpu_valid": 390,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "88ea7a459cab46afa73aea9583c60041",
+      "attempts": 391,
+      "snapshots": 391,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_032_F96",
+    "scenario": "F96",
+    "block": 4,
+    "operations": 12265,
+    "http": 12265,
+    "handler_received": 12265,
+    "cpu_valid": 391,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "8b3c1672b30542e389296e3f2e582078",
+      "attempts": 392,
+      "snapshots": 392,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_033_A3",
+    "scenario": "A3",
+    "block": 5,
+    "operations": 7184,
+    "http": 7184,
+    "handler_received": 7184,
+    "cpu_valid": 390,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "24d264b277be493f8c92009f4f63275f",
+      "attempts": 391,
+      "snapshots": 391,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_034_F96",
+    "scenario": "F96",
+    "block": 5,
+    "operations": 12344,
+    "http": 12344,
+    "handler_received": 12344,
+    "cpu_valid": 392,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "5587b89529e64a9481bc1026072b5567",
+      "attempts": 393,
+      "snapshots": 393,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_035_L2",
+    "scenario": "L2",
+    "block": 5,
+    "operations": 6278,
+    "http": 6278,
+    "handler_received": 6278,
+    "cpu_valid": 390,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "5b8381803d854a19a073c29bafba1c0c",
+      "attempts": 391,
+      "snapshots": 391,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_036_L2",
+    "scenario": "L2",
+    "block": 6,
+    "operations": 6165,
+    "http": 6165,
+    "handler_received": 6165,
+    "cpu_valid": 390,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "4fb827601c7c43038b7fb4bd8c10f65a",
+      "attempts": 391,
+      "snapshots": 391,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_037_A3",
+    "scenario": "A3",
+    "block": 6,
+    "operations": 7116,
+    "http": 7116,
+    "handler_received": 7116,
+    "cpu_valid": 390,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "81c2aa294faa49169373f118ac444f5b",
+      "attempts": 391,
+      "snapshots": 391,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_038_F96",
+    "scenario": "F96",
+    "block": 6,
+    "operations": 12209,
+    "http": 12209,
+    "handler_received": 12209,
+    "cpu_valid": 392,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "6590f60d28c0462492364398e3dde243",
+      "attempts": 393,
+      "snapshots": 393,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_039_L2",
+    "scenario": "L2",
+    "block": 7,
+    "operations": 6238,
+    "http": 6238,
+    "handler_received": 6238,
+    "cpu_valid": 390,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "f75a33b3f8c04bccac19a772b1591609",
+      "attempts": 391,
+      "snapshots": 391,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_040_F96",
+    "scenario": "F96",
+    "block": 7,
+    "operations": 12247,
+    "http": 12247,
+    "handler_received": 12247,
+    "cpu_valid": 391,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "9b6efd74631d4707adb187f7b93f059a",
+      "attempts": 392,
+      "snapshots": 392,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_041_A3",
+    "scenario": "A3",
+    "block": 7,
+    "operations": 7229,
+    "http": 7229,
+    "handler_received": 7229,
+    "cpu_valid": 390,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "cc0356fdfaaf4c7ca7e07c9d41b8e0e8",
+      "attempts": 391,
+      "snapshots": 391,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_042_F96",
+    "scenario": "F96",
+    "block": 8,
+    "operations": 12185,
+    "http": 12185,
+    "handler_received": 12185,
+    "cpu_valid": 392,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "2ddb4c4628d147ba87d4e424bd8072d0",
+      "attempts": 393,
+      "snapshots": 393,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_043_A3",
+    "scenario": "A3",
+    "block": 8,
+    "operations": 7143,
+    "http": 7143,
+    "handler_received": 7143,
+    "cpu_valid": 390,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "b2f38f880444462bb98adb474d5d390f",
+      "attempts": 391,
+      "snapshots": 391,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_044_L2",
+    "scenario": "L2",
+    "block": 8,
+    "operations": 6201,
+    "http": 6201,
+    "handler_received": 6201,
+    "cpu_valid": 390,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "5b230d940c37464eb09d5a6325b0b4dd",
+      "attempts": 391,
+      "snapshots": 391,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_045_A3",
+    "scenario": "A3",
+    "block": 9,
+    "operations": 7202,
+    "http": 7202,
+    "handler_received": 7202,
+    "cpu_valid": 390,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "dbc98fec044e4eb5be14e9c49c7557b1",
+      "attempts": 391,
+      "snapshots": 391,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_046_F96",
+    "scenario": "F96",
+    "block": 9,
+    "operations": 12220,
+    "http": 12220,
+    "handler_received": 12220,
+    "cpu_valid": 392,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "4229724021b14158ad1a0e33a2a5106c",
+      "attempts": 393,
+      "snapshots": 393,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_047_L2",
+    "scenario": "L2",
+    "block": 9,
+    "operations": 6199,
+    "http": 6199,
+    "handler_received": 6199,
+    "cpu_valid": 390,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "623e3cc1e0df46a5a53379affd32e4fb",
+      "attempts": 391,
+      "snapshots": 391,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_048_A3",
+    "scenario": "A3",
+    "block": 10,
+    "operations": 7166,
+    "http": 7166,
+    "handler_received": 7166,
+    "cpu_valid": 390,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "3b2cf19a64f645ca92685b996cad3777",
+      "attempts": 391,
+      "snapshots": 391,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_049_L2",
+    "scenario": "L2",
+    "block": 10,
+    "operations": 6283,
+    "http": 6283,
+    "handler_received": 6283,
+    "cpu_valid": 390,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "d04bae5c42da48f892d681396d02a934",
+      "attempts": 391,
+      "snapshots": 391,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_050_F96",
+    "scenario": "F96",
+    "block": 10,
+    "operations": 12412,
+    "http": 12412,
+    "handler_received": 12412,
+    "cpu_valid": 392,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "a4f4ee408a254fa9843ddb6fd797ac51",
+      "attempts": 393,
+      "snapshots": 393,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_051_L2",
+    "scenario": "L2",
+    "block": 11,
+    "operations": 6069,
+    "http": 6069,
+    "handler_received": 6069,
+    "cpu_valid": 390,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "bbbdf42d29b84ba6800b157f979f9817",
+      "attempts": 391,
+      "snapshots": 391,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_052_F96",
+    "scenario": "F96",
+    "block": 11,
+    "operations": 12109,
+    "http": 12109,
+    "handler_received": 12109,
+    "cpu_valid": 392,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "3a95b0ae61884b47832556b44cef2a93",
+      "attempts": 393,
+      "snapshots": 393,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_053_A3",
+    "scenario": "A3",
+    "block": 11,
+    "operations": 7006,
+    "http": 7006,
+    "handler_received": 7006,
+    "cpu_valid": 390,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "c6e0f34e9ff74f06b0019c425c3393bf",
+      "attempts": 391,
+      "snapshots": 391,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_054_L2",
+    "scenario": "L2",
+    "block": 12,
+    "operations": 6209,
+    "http": 6209,
+    "handler_received": 6209,
+    "cpu_valid": 390,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "612cbd8573e84613bbf0547e3062ff1b",
+      "attempts": 391,
+      "snapshots": 391,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_055_A3",
+    "scenario": "A3",
+    "block": 12,
+    "operations": 7175,
+    "http": 7175,
+    "handler_received": 7175,
+    "cpu_valid": 390,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "7f35124976f24db4b678c985fd712970",
+      "attempts": 391,
+      "snapshots": 391,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_056_F96",
+    "scenario": "F96",
+    "block": 12,
+    "operations": 12261,
+    "http": 12261,
+    "handler_received": 12261,
+    "cpu_valid": 392,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "a395beb6c13542f2b695c6a8247407b7",
+      "attempts": 393,
+      "snapshots": 393,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_057_A3",
+    "scenario": "A3",
+    "block": 13,
+    "operations": 7183,
+    "http": 7183,
+    "handler_received": 7183,
+    "cpu_valid": 390,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "aac21440824e4a50a10ea063a179dc93",
+      "attempts": 391,
+      "snapshots": 391,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_058_F96",
+    "scenario": "F96",
+    "block": 13,
+    "operations": 12308,
+    "http": 12308,
+    "handler_received": 12308,
+    "cpu_valid": 392,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "07ad9c87c84c474cbf713a95801d61b6",
+      "attempts": 393,
+      "snapshots": 393,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_059_L2",
+    "scenario": "L2",
+    "block": 13,
+    "operations": 6238,
+    "http": 6238,
+    "handler_received": 6238,
+    "cpu_valid": 390,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "551a3b8fc54c41bd8123cbfb22c7845b",
+      "attempts": 391,
+      "snapshots": 391,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_060_F96",
+    "scenario": "F96",
+    "block": 14,
+    "operations": 12307,
+    "http": 12307,
+    "handler_received": 12307,
+    "cpu_valid": 392,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "4df6594e638548e4b5f9ac9f82d798ae",
+      "attempts": 393,
+      "snapshots": 393,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_061_A3",
+    "scenario": "A3",
+    "block": 14,
+    "operations": 7196,
+    "http": 7196,
+    "handler_received": 7196,
+    "cpu_valid": 390,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "e96385a44cd643b783d342fc8f91cf2a",
+      "attempts": 391,
+      "snapshots": 391,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_062_L2",
+    "scenario": "L2",
+    "block": 14,
+    "operations": 6224,
+    "http": 6224,
+    "handler_received": 6224,
+    "cpu_valid": 390,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "e66d499c97e943c7b7e3d54780951e91",
+      "attempts": 391,
+      "snapshots": 391,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_063_F96",
+    "scenario": "F96",
+    "block": 15,
+    "operations": 12300,
+    "http": 12300,
+    "handler_received": 12300,
+    "cpu_valid": 392,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "0c03d2be340c485baee3e1b15b657719",
+      "attempts": 393,
+      "snapshots": 393,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_064_A3",
+    "scenario": "A3",
+    "block": 15,
+    "operations": 7192,
+    "http": 7192,
+    "handler_received": 7192,
+    "cpu_valid": 390,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "dd638ef4abe5496fb9f16df421a1aa03",
+      "attempts": 391,
+      "snapshots": 391,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_065_L2",
+    "scenario": "L2",
+    "block": 15,
+    "operations": 6184,
+    "http": 6184,
+    "handler_received": 6184,
+    "cpu_valid": 390,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "efa1159a63c345929cc40f207e725c2d",
+      "attempts": 391,
+      "snapshots": 391,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_066_L2",
+    "scenario": "L2",
+    "block": 16,
+    "operations": 6156,
+    "http": 6156,
+    "handler_received": 6156,
+    "cpu_valid": 390,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "f2b639a105ff4e47b0cdbc04b896af99",
+      "attempts": 391,
+      "snapshots": 391,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_067_A3",
+    "scenario": "A3",
+    "block": 16,
+    "operations": 7118,
+    "http": 7118,
+    "handler_received": 7118,
+    "cpu_valid": 390,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "4cfbfa3121824b8c987057a92fd7d3cc",
+      "attempts": 391,
+      "snapshots": 391,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_068_F96",
+    "scenario": "F96",
+    "block": 16,
+    "operations": 12141,
+    "http": 12141,
+    "handler_received": 12141,
+    "cpu_valid": 391,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "b93eaade507349cb8e6fbd465f9c25ba",
+      "attempts": 392,
+      "snapshots": 392,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_069_L2",
+    "scenario": "L2",
+    "block": 17,
+    "operations": 6135,
+    "http": 6135,
+    "handler_received": 6135,
+    "cpu_valid": 390,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "5250022e1e9a440587191252a77f4b7e",
+      "attempts": 391,
+      "snapshots": 391,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_070_A3",
+    "scenario": "A3",
+    "block": 17,
+    "operations": 7119,
+    "http": 7119,
+    "handler_received": 7119,
+    "cpu_valid": 390,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "5ed3c022cf76476190039765d2ec2985",
+      "attempts": 391,
+      "snapshots": 391,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_071_F96",
+    "scenario": "F96",
+    "block": 17,
+    "operations": 12146,
+    "http": 12146,
+    "handler_received": 12146,
+    "cpu_valid": 392,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "63dd453a75b64b5eaa54a16d2cb05162",
+      "attempts": 393,
+      "snapshots": 393,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_072_A3",
+    "scenario": "A3",
+    "block": 18,
+    "operations": 7176,
+    "http": 7176,
+    "handler_received": 7176,
+    "cpu_valid": 390,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "b2b731dc4ee043ff81f6edfda46bb007",
+      "attempts": 391,
+      "snapshots": 391,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_073_L2",
+    "scenario": "L2",
+    "block": 18,
+    "operations": 6193,
+    "http": 6193,
+    "handler_received": 6193,
+    "cpu_valid": 390,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "f77b32e5233f441192817d9f8f8a628e",
+      "attempts": 391,
+      "snapshots": 391,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_074_F96",
+    "scenario": "F96",
+    "block": 18,
+    "operations": 12319,
+    "http": 12319,
+    "handler_received": 12319,
+    "cpu_valid": 392,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "d45ba76f1de245aeb0c93e0e851762ef",
+      "attempts": 393,
+      "snapshots": 393,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_075_F96",
+    "scenario": "F96",
+    "block": 19,
+    "operations": 12206,
+    "http": 12206,
+    "handler_received": 12206,
+    "cpu_valid": 392,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "3292d3acf7ca4b8a87f81d82a403edb6",
+      "attempts": 393,
+      "snapshots": 393,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_076_L2",
+    "scenario": "L2",
+    "block": 19,
+    "operations": 6085,
+    "http": 6085,
+    "handler_received": 6085,
+    "cpu_valid": 390,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "ae5fa35480364bddbd987db2255ef132",
+      "attempts": 391,
+      "snapshots": 391,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_077_A3",
+    "scenario": "A3",
+    "block": 19,
+    "operations": 7053,
+    "http": 7053,
+    "handler_received": 7053,
+    "cpu_valid": 390,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "57376832d8ad44b7a114e9d010c69015",
+      "attempts": 391,
+      "snapshots": 391,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_078_F96",
+    "scenario": "F96",
+    "block": 20,
+    "operations": 12146,
+    "http": 12146,
+    "handler_received": 12146,
+    "cpu_valid": 391,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "ccd55d61f78340dd80d70e0022a54e6e",
+      "attempts": 392,
+      "snapshots": 392,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_079_L2",
+    "scenario": "L2",
+    "block": 20,
+    "operations": 6167,
+    "http": 6167,
+    "handler_received": 6167,
+    "cpu_valid": 390,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "0bbd5ba8995b41168d6a41a2fe81cd10",
+      "attempts": 391,
+      "snapshots": 391,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  },
+  {
+    "id": "ps_direct80_080_A3",
+    "scenario": "A3",
+    "block": 20,
+    "operations": 7167,
+    "http": 7167,
+    "handler_received": 7167,
+    "cpu_valid": 390,
+    "cpu_summary": {
+      "schema_version": 1,
+      "contract": "victim-cpu-snapshots-v1",
+      "run_id": "5ecd16186431422fa0fb96856e619c8b",
+      "attempts": 391,
+      "snapshots": 391,
+      "missed_opportunities": 0,
+      "fatal_error": null,
+      "worker_finished": true
+    }
+  }
+]

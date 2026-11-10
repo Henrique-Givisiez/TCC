@@ -1,0 +1,12 @@
+{
+  "input_hashes_rechecked": 1261,
+  "changed": [],
+  "executions": 60,
+  "scenarios": {
+    "L2": 20,
+    "F96": 20,
+    "A3": 20
+  },
+  "conservation": true,
+  "pending_equals_waiting_plus_running": true
+}

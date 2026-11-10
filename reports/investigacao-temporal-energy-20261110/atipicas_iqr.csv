@@ -1,0 +1,15 @@
+id,scenario,metric,value,q1,q3,lower,upper
+ps_direct80_042_F96,F96,pending_peak,740.0,343.5,450.25,183.375,610.375
+ps_direct80_042_F96,F96,last_attack_completion_s,12.286378832999617,5.701106559505206,7.4185417205017075,3.1249538180104537,9.99469446199646
+ps_direct80_025_F96,F96,queue_return_start_s,15.0,10.0,11.25,8.125,13.125
+ps_direct80_032_F96,F96,queue_return_start_s,15.0,10.0,11.25,8.125,13.125
+ps_direct80_042_F96,F96,queue_return_start_s,20.0,10.0,11.25,8.125,13.125
+ps_direct80_046_F96,F96,queue_return_start_s,15.0,10.0,11.25,8.125,13.125
+ps_direct80_068_F96,F96,queue_return_start_s,15.0,10.0,11.25,8.125,13.125
+ps_direct80_042_F96,F96,last_failed_post_start_s,13.387900625999464,4.782853349001016,7.18270026600112,1.1830829735008592,10.782470641501277
+ps_direct80_026_L2,L2,pending_peak,7.0,6.0,6.0,6.0,6.0
+ps_direct80_036_L2,L2,pending_peak,5.0,6.0,6.0,6.0,6.0
+ps_direct80_054_L2,L2,pending_peak,7.0,6.0,6.0,6.0,6.0
+ps_direct80_062_L2,L2,pending_peak,5.0,6.0,6.0,6.0,6.0
+ps_direct80_065_L2,L2,pending_peak,5.0,6.0,6.0,6.0,6.0
+ps_direct80_069_L2,L2,pending_peak,7.0,6.0,6.0,6.0,6.0
