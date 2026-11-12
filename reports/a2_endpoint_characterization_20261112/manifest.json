@@ -1,0 +1,47 @@
+{
+  "source": "experiment_results/endpoint-characterization-a2-20261106T200836Z",
+  "runs": [
+    "M_A",
+    "M_B",
+    "E_A",
+    "E_B"
+  ],
+  "period_s": [
+    0,
+    60
+  ],
+  "script": "scripts/generate.py",
+  "script_sha256": "2427ebbe50b6eeecf3e903a52e84ff04fa28573106dcdfd55fc78be40351cfad",
+  "figures": [
+    "figures/integradas/painel_integrado_M_A.png",
+    "figures/integradas/painel_integrado_M_A.pdf",
+    "figures/integradas/painel_integrado_M_A_compacto.png",
+    "figures/integradas/painel_integrado_M_A_compacto.pdf",
+    "figures/integradas/painel_integrado_M_B.png",
+    "figures/integradas/painel_integrado_M_B.pdf",
+    "figures/integradas/painel_integrado_M_B_compacto.png",
+    "figures/integradas/painel_integrado_M_B_compacto.pdf",
+    "figures/integradas/painel_integrado_E_A.png",
+    "figures/integradas/painel_integrado_E_A.pdf",
+    "figures/integradas/painel_integrado_E_A_compacto.png",
+    "figures/integradas/painel_integrado_E_A_compacto.pdf",
+    "figures/integradas/painel_integrado_E_B.png",
+    "figures/integradas/painel_integrado_E_B.pdf",
+    "figures/integradas/painel_integrado_E_B_compacto.png",
+    "figures/integradas/painel_integrado_E_B_compacto.pdf",
+    "figures/integradas/painel_comparativo_quatro_execucoes.png",
+    "figures/integradas/painel_comparativo_quatro_execucoes.pdf",
+    "figures/comparativas/V1_cpu_por_operacao.png",
+    "figures/comparativas/V1_cpu_por_operacao.pdf",
+    "figures/comparativas/V2_cpu_memoria.png",
+    "figures/comparativas/V2_cpu_memoria.pdf",
+    "figures/comparativas/V3_duracao_http.png",
+    "figures/comparativas/V3_duracao_http.pdf",
+    "figures/comparativas/V4_workers_espera.png",
+    "figures/comparativas/V4_workers_espera.pdf",
+    "figures/comparativas/RPS_nominal_efetivo.png",
+    "figures/comparativas/RPS_nominal_efetivo.pdf"
+  ],
+  "processed": "processed/summary.csv",
+  "validation": "validation/checks.json"
+}

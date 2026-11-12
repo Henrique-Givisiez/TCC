@@ -1,0 +1,197 @@
+{
+  "inputs_sha256": {
+    "experiment_results/endpoint-characterization-a2-20261106T200836Z/M_A/raw/effective_config.json": "e7f24f18a4b903b322d4557c4e8d311c1719ca8931f91eefb1ce6a60c8518770",
+    "experiment_results/endpoint-characterization-a2-20261106T200836Z/M_A/raw/run_status.json": "803fbcafd24c7cfe05db92b8264a814ceb258e7dc85ad7b65979e7233809bb9e",
+    "experiment_results/endpoint-characterization-a2-20261106T200836Z/M_A/raw/request_log.csv": "4eec16e0f2a2fc552c2387e28028ca49884738f0fc6faa77af3ef7d835bf1714",
+    "experiment_results/endpoint-characterization-a2-20261106T200836Z/M_A/raw/rtt_log.csv": "c1cce87b46697f40e2bcedb0621ecd4ef1911e370fb46b35cef9e9123a30a833",
+    "experiment_results/endpoint-characterization-a2-20261106T200836Z/M_A/raw/victim_stats.jsonl": "636cb88a46847751446ff58d23b1e96ee6bcdbcbc528a2d1aa675582b9b9406a",
+    "experiment_results/endpoint-characterization-a2-20261106T200836Z/M_A/raw/diagnostics/victim/events.jsonl": "4353af89d1bfe4be05731ced44d463f81b90644160de33606582c15b15d114c9",
+    "experiment_results/endpoint-characterization-a2-20261106T200836Z/M_A/raw/source_artifacts/normal_1/output/diagnostics/events.jsonl": "03790ad795ab11146ee4a06658c79cee86033e7c427a9b4e50e8963502c718aa",
+    "experiment_results/endpoint-characterization-a2-20261106T200836Z/M_A/raw/source_artifacts/normal_2/output/diagnostics/events.jsonl": "b434a82b67ab71dc3938997cb154d1af21c7bbadfd1c03bb81e99dc502715f0d",
+    "experiment_results/endpoint-characterization-a2-20261106T200836Z/M_B/raw/effective_config.json": "0ef4155a6971e545ea59ef487f3e94c56cb4d411dcda0069e3d603c6e67a3151",
+    "experiment_results/endpoint-characterization-a2-20261106T200836Z/M_B/raw/run_status.json": "ecfaa411679bb53cc6dbccffe03b0158946e3c7e27d91e56b07b3cf90781e8eb",
+    "experiment_results/endpoint-characterization-a2-20261106T200836Z/M_B/raw/request_log.csv": "e7f3bde4fc6cc7f3658f0d9a94255625c17c1ccd153cc00e3c4d6e84f99f509c",
+    "experiment_results/endpoint-characterization-a2-20261106T200836Z/M_B/raw/rtt_log.csv": "9e86ec03bcd446a7db1e6704985ee091f5966f27bec646f201628578ec20ef60",
+    "experiment_results/endpoint-characterization-a2-20261106T200836Z/M_B/raw/victim_stats.jsonl": "5c364c27bebcc9279a96e893fb8a2a7e799aeb7b21f758e9ce77400fca871dd9",
+    "experiment_results/endpoint-characterization-a2-20261106T200836Z/M_B/raw/diagnostics/victim/events.jsonl": "5926f232389944179f7a5f051bbfc489060f93085551139273798a28e10ca9ed",
+    "experiment_results/endpoint-characterization-a2-20261106T200836Z/M_B/raw/source_artifacts/normal_1/output/diagnostics/events.jsonl": "680dd0ea5cb8d6a2ef1a59bc8f34dbdb059af8454f30c4217ef348250261770c",
+    "experiment_results/endpoint-characterization-a2-20261106T200836Z/M_B/raw/source_artifacts/normal_2/output/diagnostics/events.jsonl": "2aaf6e5946dec4569c1ae6cf13f4a9d23b46e10763be72aa953fedb629e5cb85",
+    "experiment_results/endpoint-characterization-a2-20261106T200836Z/E_A/raw/effective_config.json": "950309b438a0e11bdc1cb879ff8d487d781a0cfc5a03145b1f0d9482363e559d",
+    "experiment_results/endpoint-characterization-a2-20261106T200836Z/E_A/raw/run_status.json": "1a4cde08d1d72324575bbc4249aaf2894e53286664493feb3fc16e618eb9b42c",
+    "experiment_results/endpoint-characterization-a2-20261106T200836Z/E_A/raw/request_log.csv": "e9193c196f45479995e745ad214db3ee2692f8c06e4f749b15f9a439b4ccaa23",
+    "experiment_results/endpoint-characterization-a2-20261106T200836Z/E_A/raw/rtt_log.csv": "35403daa932eb08c1084d2455953855955b6f2abbb2f6971303e33e7bf0babeb",
+    "experiment_results/endpoint-characterization-a2-20261106T200836Z/E_A/raw/victim_stats.jsonl": "135f928851617250105d221ee5a785c795d0a820bd968305879ccc83d68ffbb6",
+    "experiment_results/endpoint-characterization-a2-20261106T200836Z/E_A/raw/diagnostics/victim/events.jsonl": "55112d294abbe272c3ee2804d84db5757f4989a0a6f4551dea08936fa786d0dd",
+    "experiment_results/endpoint-characterization-a2-20261106T200836Z/E_A/raw/source_artifacts/normal_1/output/diagnostics/events.jsonl": "20ed6715af9c04eeb318731bb0f0152de27ea770e314dadeaec541a219d7703c",
+    "experiment_results/endpoint-characterization-a2-20261106T200836Z/E_A/raw/source_artifacts/normal_2/output/diagnostics/events.jsonl": "3a3588b2ab946397d1f6509831d30eecfd0ef6cd740f84e606427eec0fc1f69c",
+    "experiment_results/endpoint-characterization-a2-20261106T200836Z/E_B/raw/effective_config.json": "c38485e6245041e687dc2b2cf49cfd4fa9283142b1e905709e870f9f86b89a97",
+    "experiment_results/endpoint-characterization-a2-20261106T200836Z/E_B/raw/run_status.json": "b54a8118408fe099ff11f6891bf88a1ac2f62d796692477aa924d5486935260b",
+    "experiment_results/endpoint-characterization-a2-20261106T200836Z/E_B/raw/request_log.csv": "c267bc7114e2b23b27c3da4a742e31e2b6180a3ae74300a79e3bca412d866c6a",
+    "experiment_results/endpoint-characterization-a2-20261106T200836Z/E_B/raw/rtt_log.csv": "6515c08a1f91f18443e21c29b57941fa3404eb517fa3328f82efbd638527a562",
+    "experiment_results/endpoint-characterization-a2-20261106T200836Z/E_B/raw/victim_stats.jsonl": "404b1888d5484f4a61e0ce110906a9acfbc18cee76b58e913a705c9306e21da3",
+    "experiment_results/endpoint-characterization-a2-20261106T200836Z/E_B/raw/diagnostics/victim/events.jsonl": "98e563e706b98c57ea4678e9667c895a65bf5c067582afbaa1f285adeb4ce990",
+    "experiment_results/endpoint-characterization-a2-20261106T200836Z/E_B/raw/source_artifacts/normal_1/output/diagnostics/events.jsonl": "868d260997592eb8a5b6e7c6adc104d71f6e4d158fdfe5ee9b953236742b0c0a",
+    "experiment_results/endpoint-characterization-a2-20261106T200836Z/E_B/raw/source_artifacts/normal_2/output/diagnostics/events.jsonl": "8056b76b9f2c2cc7ac891095e59c154d3989baa378d37219cbc62ff7892e6184"
+  },
+  "runs": {
+    "M_A": {
+      "run_id": "2fa7c4eee9b74b1db2c9538d1bad9b68",
+      "request_ids": 101,
+      "rtt_ids": 101,
+      "work_ids": 101,
+      "source_events": {
+        "submitted": 101,
+        "task_started": 101,
+        "http_started": 101,
+        "http_finished": 101,
+        "task_finished": 101,
+        "planned": 101,
+        "source_closed": 2
+      },
+      "clock": [
+        "CLOCK_MONOTONIC",
+        "time:[4026533506]"
+      ],
+      "stats_raw_n": 21,
+      "stats_in_60_n": 20,
+      "stats_range_s": [
+        1.076414035000198,
+        61.43695471400133
+      ],
+      "stats_cadence_median_s": 3.017785015001209,
+      "outcomes": {
+        "('response', 200)": 101
+      },
+      "max_running": 2,
+      "min_waiting": 0,
+      "occupation_fraction_sum": 1.0
+    },
+    "M_B": {
+      "run_id": "a428c9f28633420dbab02098e571d7fb",
+      "request_ids": 101,
+      "rtt_ids": 101,
+      "work_ids": 101,
+      "source_events": {
+        "submitted": 101,
+        "task_started": 101,
+        "http_started": 101,
+        "http_finished": 101,
+        "task_finished": 101,
+        "planned": 101,
+        "source_closed": 2
+      },
+      "clock": [
+        "CLOCK_MONOTONIC",
+        "time:[4026533506]"
+      ],
+      "stats_raw_n": 21,
+      "stats_in_60_n": 20,
+      "stats_range_s": [
+        1.0820172079984332,
+        61.458377908998955
+      ],
+      "stats_cadence_median_s": 3.0191665165002632,
+      "outcomes": {
+        "('response', 200)": 101
+      },
+      "max_running": 2,
+      "min_waiting": 0,
+      "occupation_fraction_sum": 0.9999999999999999
+    },
+    "E_A": {
+      "run_id": "b4a686ea8bd841c6a9a8ee6589370744",
+      "request_ids": 101,
+      "rtt_ids": 101,
+      "work_ids": 101,
+      "source_events": {
+        "submitted": 101,
+        "task_started": 101,
+        "http_started": 101,
+        "http_finished": 101,
+        "task_finished": 101,
+        "planned": 101,
+        "source_closed": 2
+      },
+      "clock": [
+        "CLOCK_MONOTONIC",
+        "time:[4026533506]"
+      ],
+      "stats_raw_n": 21,
+      "stats_in_60_n": 20,
+      "stats_range_s": [
+        1.0765302410000004,
+        61.39386273399941
+      ],
+      "stats_cadence_median_s": 3.015772406999531,
+      "outcomes": {
+        "('response', 200)": 101
+      },
+      "max_running": 2,
+      "min_waiting": 0,
+      "occupation_fraction_sum": 1.0
+    },
+    "E_B": {
+      "run_id": "ca2ac7e76303499c820e5dafbe75bfc3",
+      "request_ids": 101,
+      "rtt_ids": 101,
+      "work_ids": 101,
+      "source_events": {
+        "submitted": 101,
+        "task_started": 101,
+        "http_started": 101,
+        "http_finished": 101,
+        "task_finished": 101,
+        "planned": 101,
+        "source_closed": 2
+      },
+      "clock": [
+        "CLOCK_MONOTONIC",
+        "time:[4026533506]"
+      ],
+      "stats_raw_n": 21,
+      "stats_in_60_n": 20,
+      "stats_range_s": [
+        1.083463932001905,
+        61.40827239200007
+      ],
+      "stats_cadence_median_s": 3.0170902110003226,
+      "outcomes": {
+        "('response', 200)": 101
+      },
+      "max_running": 2,
+      "min_waiting": 0,
+      "occupation_fraction_sum": 1.0
+    }
+  },
+  "figures": [
+    "figures/integradas/painel_integrado_M_A.png",
+    "figures/integradas/painel_integrado_M_A.pdf",
+    "figures/integradas/painel_integrado_M_A_compacto.png",
+    "figures/integradas/painel_integrado_M_A_compacto.pdf",
+    "figures/integradas/painel_integrado_M_B.png",
+    "figures/integradas/painel_integrado_M_B.pdf",
+    "figures/integradas/painel_integrado_M_B_compacto.png",
+    "figures/integradas/painel_integrado_M_B_compacto.pdf",
+    "figures/integradas/painel_integrado_E_A.png",
+    "figures/integradas/painel_integrado_E_A.pdf",
+    "figures/integradas/painel_integrado_E_A_compacto.png",
+    "figures/integradas/painel_integrado_E_A_compacto.pdf",
+    "figures/integradas/painel_integrado_E_B.png",
+    "figures/integradas/painel_integrado_E_B.pdf",
+    "figures/integradas/painel_integrado_E_B_compacto.png",
+    "figures/integradas/painel_integrado_E_B_compacto.pdf",
+    "figures/integradas/painel_comparativo_quatro_execucoes.png",
+    "figures/integradas/painel_comparativo_quatro_execucoes.pdf",
+    "figures/comparativas/V1_cpu_por_operacao.png",
+    "figures/comparativas/V1_cpu_por_operacao.pdf",
+    "figures/comparativas/V2_cpu_memoria.png",
+    "figures/comparativas/V2_cpu_memoria.pdf",
+    "figures/comparativas/V3_duracao_http.png",
+    "figures/comparativas/V3_duracao_http.pdf",
+    "figures/comparativas/V4_workers_espera.png",
+    "figures/comparativas/V4_workers_espera.pdf",
+    "figures/comparativas/RPS_nominal_efetivo.png",
+    "figures/comparativas/RPS_nominal_efetivo.pdf"
+  ],
+  "figure_pairs": 14
+}

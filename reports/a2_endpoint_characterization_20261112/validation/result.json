@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "input_hashes": 32,
+  "figure_pairs": 14,
+  "report_png_links": 14,
+  "run_checks": [
+    "M_A",
+    "M_B",
+    "E_A",
+    "E_B"
+  ],
+  "bad_hashes": [],
+  "bad_figures": []
+}
