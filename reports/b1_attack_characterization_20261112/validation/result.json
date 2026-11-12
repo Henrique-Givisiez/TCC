@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "runs_processed": 9,
+  "inventory_rows": 15,
+  "source_hashes": 99,
+  "figures": 64,
+  "report_figure_links": 64,
+  "hash_mismatch": [],
+  "bad_figures": []
+}
