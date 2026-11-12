@@ -1,0 +1,33 @@
+{
+  "all_passed": true,
+  "passed": 19,
+  "total": 19,
+  "checks": {
+    "input_hashes_preserved": true,
+    "script_hashes": true,
+    "seven_runs_inventory": true,
+    "configs_and_states": true,
+    "clock_alignment_and_namespace": true,
+    "request_counts_match_raw": true,
+    "class_and_id_consistency": true,
+    "exclusive_outcomes_and_timeouts": true,
+    "http_duration_consistency": true,
+    "worker_event_order_nonnegative": true,
+    "docker_units_and_cadence": true,
+    "phase_boundaries": true,
+    "occupancy_range_and_fraction": true,
+    "waiting_nonnegative": true,
+    "source_http_and_submission_separate": true,
+    "b2_traffic_classes": true,
+    "figure_manifest_count": true,
+    "png_pdf_nonempty_and_decodable": true,
+    "report_catalog": true
+  },
+  "details": {
+    "input_hashes_preserved": 89,
+    "png_pdf_nonempty_and_decodable": {
+      "valid": 61,
+      "total": 61
+    }
+  }
+}

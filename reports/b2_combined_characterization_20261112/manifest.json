@@ -1,0 +1,461 @@
+{
+  "schema_version": 1,
+  "code_version": "b2-characterization-v1",
+  "inputs_sha256": {
+    "experiment_results/legitimate-characterization-a1-20261106T202205Z/L2/raw/effective_config.json": "93127d399e1a121d2ef20397e1129dec491e2e13327e8b265ca2d1cbb290457b",
+    "experiment_results/legitimate-characterization-a1-20261106T202205Z/L2/raw/run_status.json": "1eaf64e0a8123321c36c3f8f5182af51b4b96667dceaa504cf270aae6364913b",
+    "experiment_results/legitimate-characterization-a1-20261106T202205Z/L2/raw/request_log.csv": "3b677ab7e3cf7ae2e87237d75543ad7e28068cb7fb51c943fe8cf68eb817ff76",
+    "experiment_results/legitimate-characterization-a1-20261106T202205Z/L2/raw/rtt_log.csv": "90f1ef3cdf847e73db6e70113f2450b8d6f34c5139aef2b1042615e90d3eeee0",
+    "experiment_results/legitimate-characterization-a1-20261106T202205Z/L2/raw/victim_stats.jsonl": "2d5171f58ac25ca3be6071638c4b30a500426458c2f94c162710d7d38fc5e393",
+    "experiment_results/legitimate-characterization-a1-20261106T202205Z/L2/raw/diagnostics/victim/events.jsonl": "8f5b538a56c54dadc8f665de28153f425a9a4b354f26e312399c626059c1d76b",
+    "experiment_results/legitimate-characterization-a1-20261106T202205Z/L2/raw/traffic_capture.csv": "7da42e536ef89a829559c4ce9cb50f184a481168daea62eaceba35c1ca696a59",
+    "experiment_results/legitimate-characterization-a1-20261106T202205Z/L2/raw/source_artifacts/normal_1/output/diagnostics/events.jsonl": "7f19d88aab975a4488ae28ed4edb6e20655ad824586c0c4435f331bfd7538919",
+    "experiment_results/legitimate-characterization-a1-20261106T202205Z/L2/raw/source_artifacts/normal_2/output/diagnostics/events.jsonl": "edc9342ec55a6bd57f92d99382b3f215871da3b7efd86ab3fbe9f071f493c1b4",
+    "experiment_results/legitimate-characterization-a1-20261106T202205Z/L2/raw/source_artifacts/normal_1/output/journal.jsonl": "3712956fb76031573d50ce670d0d639c23fca598dd70600f796b92256aa6f7d3",
+    "experiment_results/legitimate-characterization-a1-20261106T202205Z/L2/raw/source_artifacts/normal_2/output/journal.jsonl": "d772429378679ac476c75c479d6d01644c4eb40095794c67898ddec6eb020c48",
+    "experiment_results/b12-isolated-20261107T200251Z/A3/raw/effective_config.json": "fbbf196253776ea41c959ec6186e577125ed448582001e71cc40c6d92f67d5ca",
+    "experiment_results/b12-isolated-20261107T200251Z/A3/raw/run_status.json": "ce5092f1416cfd1b3245ecfc5e4509b544d1f01f23c18185363eddaacad28c0b",
+    "experiment_results/b12-isolated-20261107T200251Z/A3/raw/request_log.csv": "e382599f005e78b131b179424ec3d9810c78ed2176570301e200ae4d43dc9bb4",
+    "experiment_results/b12-isolated-20261107T200251Z/A3/raw/rtt_log.csv": "d7fae07b7363f2860c28dc7d654e1b5a36f472bee03a5e966c185b159c2f03c1",
+    "experiment_results/b12-isolated-20261107T200251Z/A3/raw/victim_stats.jsonl": "af4d1469227df6bee7e6a4db2da954f81330f633560b492cc29a13b781cee843",
+    "experiment_results/b12-isolated-20261107T200251Z/A3/raw/diagnostics/victim/events.jsonl": "f8b8e19ca4273a6397ef1d2b8b0dc9c9f3920def737f9fb7e1a7700c24973ac5",
+    "experiment_results/b12-isolated-20261107T200251Z/A3/raw/traffic_capture.csv": "b78b2e85af691e472d7e02945b97a6ff35a09eb21cbbd949add37d086efae2e4",
+    "experiment_results/b12-isolated-20261107T200251Z/A3/raw/source_artifacts/attack_1/output/diagnostics/events.jsonl": "71b05c6ec797c69114e6bcca9f9e2c57f44ff96a5160b8a1745a94f51666c0c9",
+    "experiment_results/b12-isolated-20261107T200251Z/A3/raw/source_artifacts/attack_2/output/diagnostics/events.jsonl": "6e50ad23d452c5bf329146c532a03180d7781f4fbab146ea5dbbe618c8943f0b",
+    "experiment_results/b12-isolated-20261107T200251Z/A3/raw/source_artifacts/attack_1/output/journal.jsonl": "9cafb60946ccaa8261464f9a41611996ee7e2f1c6db2bb111016bd7ca4a629ba",
+    "experiment_results/b12-isolated-20261107T200251Z/A3/raw/source_artifacts/attack_2/output/journal.jsonl": "ba6b20ef556b0bdb6ecc5ea1b396c2ceb1865ebb0462fb608314b552d33c93d8",
+    "experiment_results/b12-isolated-20261107T200251Z/F2/raw/effective_config.json": "392aab9e425d029b6005d6899430546ddafcc53149bdc74ac76ebee624d2c81d",
+    "experiment_results/b12-isolated-20261107T200251Z/F2/raw/run_status.json": "76bd635efce43db992d82f1fe4fdc20ba450b5c6f1db8ed9d5c0a2e88afebc7e",
+    "experiment_results/b12-isolated-20261107T200251Z/F2/raw/request_log.csv": "d5437e00f7284f48d23c44daa7d036de0f1e5e5995e55e79908f0ff8f7da7ef1",
+    "experiment_results/b12-isolated-20261107T200251Z/F2/raw/rtt_log.csv": "7e62bbda32aeebd3eab5eb24444caa925291ad66344fc951293b0b42a9eef620",
+    "experiment_results/b12-isolated-20261107T200251Z/F2/raw/victim_stats.jsonl": "15afbb8dbad61655701c812c900925e2ee15be8a552a99e4fe048f8aa23d7522",
+    "experiment_results/b12-isolated-20261107T200251Z/F2/raw/diagnostics/victim/events.jsonl": "56a7b1c7a89c79d29ece86cd6154c6992c9969d22b8b79b74df5a02fc46484df",
+    "experiment_results/b12-isolated-20261107T200251Z/F2/raw/traffic_capture.csv": "048c99c99cc6532a5fe231e3e563f752ec7dcf398d16680b900768c6c9df38be",
+    "experiment_results/b12-isolated-20261107T200251Z/F2/raw/source_artifacts/attack_1/output/diagnostics/events.jsonl": "c7027159d04a50800897c197711f17ef179faef64094a8f9dccae67c45a165a3",
+    "experiment_results/b12-isolated-20261107T200251Z/F2/raw/source_artifacts/attack_2/output/diagnostics/events.jsonl": "5f51e7a7717d4294e381847417cb52fb73aa94bbebd72e3ca007bf28180e85a3",
+    "experiment_results/b12-isolated-20261107T200251Z/F2/raw/source_artifacts/attack_1/output/journal.jsonl": "f9e133aca6a4ec9fd4ff5b71f007f9e9436ddcf19df4ebabc2e147e681dc7904",
+    "experiment_results/b12-isolated-20261107T200251Z/F2/raw/source_artifacts/attack_2/output/journal.jsonl": "43d06ccb2e4fbfe4214db79500fe4d4c6c2e3342e5d2af9ae46a1ba2bc91ff88",
+    "experiment_results/b2-l-20261107T232559Z/raw/effective_config.json": "3a835576a07351191b8ffe05ce3f1c37f284a81cdcffe8d3221117516d50f5cc",
+    "experiment_results/b2-l-20261107T232559Z/raw/run_status.json": "ed7a08bf48cf4477ecc016f0072a09988c4c57792faf909179b3547f315243a1",
+    "experiment_results/b2-l-20261107T232559Z/raw/request_log.csv": "0155b0498f4fb3f1c8afc6c320ee18461714d235d756d53d4f9455331c13fccf",
+    "experiment_results/b2-l-20261107T232559Z/raw/rtt_log.csv": "086b1076a082fd9bda925af72e3f19b7980561013095ab7516790fbdd11518bf",
+    "experiment_results/b2-l-20261107T232559Z/raw/victim_stats.jsonl": "5d5c1c1e61a9a120b1534b87fd782aa391ddc5ffdbf77a5f6482ce1f63ba64df",
+    "experiment_results/b2-l-20261107T232559Z/raw/diagnostics/victim/events.jsonl": "9752e5c6fe17ad4c6263685fe1ed63ee7cf5e6fad95320c34e10a6b9440079d7",
+    "experiment_results/b2-l-20261107T232559Z/raw/traffic_capture.csv": "288898784721bbcecb295d42d6ebe2b381fa73bffc665e45ffbd578cfbe40f9e",
+    "experiment_results/b2-l-20261107T232559Z/raw/source_artifacts/normal_1/output/diagnostics/events.jsonl": "9b446785a8d6b2f4ec7ba9429fa0f256eb5c5ff652bd3432874e2fefe0ae8c35",
+    "experiment_results/b2-l-20261107T232559Z/raw/source_artifacts/normal_2/output/diagnostics/events.jsonl": "7c27840a9d3cb2c1512e68226f5d8d4cc3d9c9f23d3735468b1e85baf17156a4",
+    "experiment_results/b2-l-20261107T232559Z/raw/source_artifacts/normal_1/output/journal.jsonl": "2915fcead56c78c036b68fab851a6bc5831f6230a1d4e64211c4172246ff3bb1",
+    "experiment_results/b2-l-20261107T232559Z/raw/source_artifacts/normal_2/output/journal.jsonl": "e66b4b7ded34ea6bd4ea4b8434fb547be2aa3fc2ff448c5012894b89b66e63a8",
+    "experiment_results/b2-a-20261107T234426Z/raw/effective_config.json": "b62cc7c7c3de9e95910d3906de670434c740bc4419a56722f5acb5b11e88f324",
+    "experiment_results/b2-a-20261107T234426Z/raw/run_status.json": "6f620911bc918faba15ed8aa6cb5bf716dcd5982e97f323ed51b626ec0e4223e",
+    "experiment_results/b2-a-20261107T234426Z/raw/request_log.csv": "e2618d3b6affaa79faee255aac31bd952abd947d81c7c79b3fcf307be16631dd",
+    "experiment_results/b2-a-20261107T234426Z/raw/rtt_log.csv": "79fd86f739e9ac087d2bbdcda1a253b2a2cc0da67f91f5723d168a6190c7d252",
+    "experiment_results/b2-a-20261107T234426Z/raw/victim_stats.jsonl": "af3fb75d81d53817b75f6a3772292826e2acc1b0eea8f4b8103de44740ff3268",
+    "experiment_results/b2-a-20261107T234426Z/raw/diagnostics/victim/events.jsonl": "cb53439e1f1db80de68e69a7df593e5902cced8c42a298ad54101846b8ccac26",
+    "experiment_results/b2-a-20261107T234426Z/raw/traffic_capture.csv": "544f083faaf326b8e148f42777d17f5262c98a076dd9f636663a0079069e26fc",
+    "experiment_results/b2-a-20261107T234426Z/raw/source_artifacts/attack_1/output/diagnostics/events.jsonl": "af6de5788763572aec0d150e50eddc6a1bc456c00639b18a5a0ca59202b4e6da",
+    "experiment_results/b2-a-20261107T234426Z/raw/source_artifacts/attack_2/output/diagnostics/events.jsonl": "451e9bd21c9f06d95fb8604fecf8d5c3c65fdcc0c4eca81cefef9e20a80d3ad2",
+    "experiment_results/b2-a-20261107T234426Z/raw/source_artifacts/normal_1/output/diagnostics/events.jsonl": "6682b438619f43fb9184f7b619d54d184fb4f436a383cafc99d652d03ae2f0bb",
+    "experiment_results/b2-a-20261107T234426Z/raw/source_artifacts/normal_2/output/diagnostics/events.jsonl": "bb1ac717d3ecbf55619ff9e49fb76fd3b28e21e9008b4facf3e9d2561bbf60b4",
+    "experiment_results/b2-a-20261107T234426Z/raw/source_artifacts/attack_1/output/journal.jsonl": "204b246cb644db9176c66889b87dad39a19f65f9e1ce9a130cca90f31ce84fb6",
+    "experiment_results/b2-a-20261107T234426Z/raw/source_artifacts/attack_2/output/journal.jsonl": "e68d5c20f15e93797e16db5bdae75409d96d4ad2dbf121a297dde44d6f05c336",
+    "experiment_results/b2-a-20261107T234426Z/raw/source_artifacts/normal_1/output/journal.jsonl": "129f919c6ce6edb540f13e7c97436c47dd78c87271be8c31bf1ea00995be3578",
+    "experiment_results/b2-a-20261107T234426Z/raw/source_artifacts/normal_2/output/journal.jsonl": "a53e28b1c30e83c9d169d8ca84fef410269d4963c600b4e3cfb288069ad87bf8",
+    "experiment_results/b2-f-20261108T000313Z/raw/effective_config.json": "3e244a23ddf53a1d5dd536f6d95e7bc05c56b6de2dc12bb39425133a3afc4451",
+    "experiment_results/b2-f-20261108T000313Z/raw/run_status.json": "61e22337a361ae6f5c5e0afb43b1572e1b93e5f3ef849e4866e37620aa506fa7",
+    "experiment_results/b2-f-20261108T000313Z/raw/request_log.csv": "7fd8be7c47fd03770c7c231558879914fa01c1a0c80935f095d5cd5c2976c66d",
+    "experiment_results/b2-f-20261108T000313Z/raw/rtt_log.csv": "13da40eb1b1ba0f3b612ac7f4fca59494a4013edc4d403ae014ac385ad61ba34",
+    "experiment_results/b2-f-20261108T000313Z/raw/victim_stats.jsonl": "d57644140b957f2847e011e630cf11e919632a0fc622c578ba0a2c6e117b4984",
+    "experiment_results/b2-f-20261108T000313Z/raw/diagnostics/victim/events.jsonl": "0c9b68781aa4fa44b964b8b7ed26c3a01fe347486030102fe30a19b4bd07858e",
+    "experiment_results/b2-f-20261108T000313Z/raw/traffic_capture.csv": "84cf3646cd9c35471558ef10cb5d5259435934c9a7ff1ec0f8bc3a6bf792cde1",
+    "experiment_results/b2-f-20261108T000313Z/raw/source_artifacts/attack_1/output/diagnostics/events.jsonl": "f41e012e55097cc30f8962012abbeef8aa7f26fe976f4ae29de07af697d62ce7",
+    "experiment_results/b2-f-20261108T000313Z/raw/source_artifacts/attack_2/output/diagnostics/events.jsonl": "32fe1fbfa0511573af5f74ab820c015e8cad62c27b68ff82a4e0bcde22ab9342",
+    "experiment_results/b2-f-20261108T000313Z/raw/source_artifacts/normal_1/output/diagnostics/events.jsonl": "006beeb222e5a87f2dcc64fad85dd01cf26c0c6f1b3689d7548269e547568261",
+    "experiment_results/b2-f-20261108T000313Z/raw/source_artifacts/normal_2/output/diagnostics/events.jsonl": "11a2ea1f6c7f260cf20e66cf928d902b9892afcda46aa398d20903e901e77356",
+    "experiment_results/b2-f-20261108T000313Z/raw/source_artifacts/attack_1/output/journal.jsonl": "da91cb461ab216c962018881f883a04c3acb2ed718c60fbbb4e4976fcb7238d6",
+    "experiment_results/b2-f-20261108T000313Z/raw/source_artifacts/attack_2/output/journal.jsonl": "14b1f77f3528355155e883e656fdd95925b453061b9938ca8eaf73f349c4c6b2",
+    "experiment_results/b2-f-20261108T000313Z/raw/source_artifacts/normal_1/output/journal.jsonl": "3de03f6d74efbcbabaafa29dfa4deee7a7b8f00204e24ad51aa6fce6a37fc4f3",
+    "experiment_results/b2-f-20261108T000313Z/raw/source_artifacts/normal_2/output/journal.jsonl": "c897afc75decaf8576c52b7fce41a04330b893543b6d864ec9905aa53c0c7e15",
+    "experiment_results/b2-f96-20261108T002312Z/raw/effective_config.json": "f979cf74db1d43bf91de88c66c17ead2464ba634a2bf1525b0e22e2e6d2faaa4",
+    "experiment_results/b2-f96-20261108T002312Z/raw/run_status.json": "81fa9b4b53c124c6da2af91305750cbf9daa2d03772d45a52ea329e7e31f28cd",
+    "experiment_results/b2-f96-20261108T002312Z/raw/request_log.csv": "efc9328c695f1ca87f27339e8f29d9f5dd546057b3b205d5a3da7d959f7ca241",
+    "experiment_results/b2-f96-20261108T002312Z/raw/rtt_log.csv": "73827a93e0cb029ec07088db066e6ecd1026a763c7d69befb953610761e2cff4",
+    "experiment_results/b2-f96-20261108T002312Z/raw/victim_stats.jsonl": "28fb7f649351901b907de29690f6d488f59acde713035ebf7d412e12f69cfccf",
+    "experiment_results/b2-f96-20261108T002312Z/raw/diagnostics/victim/events.jsonl": "9af082c00bfd385c5c3cc8c9cb962704b9eb73be55ceef14b98a555dc7e4d371",
+    "experiment_results/b2-f96-20261108T002312Z/raw/traffic_capture.csv": "d44734162f2442be7870fb1e2b8dc4a33edcec1d10168ce550079392a2dfcdc7",
+    "experiment_results/b2-f96-20261108T002312Z/raw/source_artifacts/attack_1/output/diagnostics/events.jsonl": "c4ab9f157faadc6a70dc6e8122fbe000884f2f9aa0e8a28db81c22bd16d4340c",
+    "experiment_results/b2-f96-20261108T002312Z/raw/source_artifacts/attack_2/output/diagnostics/events.jsonl": "0604fa4784d71758b657746c073a4c567aca8b0ab2120e9c516ecc5863c62143",
+    "experiment_results/b2-f96-20261108T002312Z/raw/source_artifacts/normal_1/output/diagnostics/events.jsonl": "7c33319c5d663d3002f01b4da16b145bff44b207228888089bfd94fa733ef865",
+    "experiment_results/b2-f96-20261108T002312Z/raw/source_artifacts/normal_2/output/diagnostics/events.jsonl": "5e25cf988803aa12cf15e89cc49322738c7b840669d6602bfe0258cdd9275543",
+    "experiment_results/b2-f96-20261108T002312Z/raw/source_artifacts/attack_1/output/journal.jsonl": "ef5f9dea7876d14069f6d0082d45ff415cfbd4006ca5b0d8b72776ec46f6a242",
+    "experiment_results/b2-f96-20261108T002312Z/raw/source_artifacts/attack_2/output/journal.jsonl": "d932d15ca066d0f94b4d954c52ce0750efabf37d88f5c4f5093d17fb34958768",
+    "experiment_results/b2-f96-20261108T002312Z/raw/source_artifacts/normal_1/output/journal.jsonl": "f823337413dffd9851de9d2f5de21bdee4b0faaec3d03bd55e28c7ac9381557f",
+    "experiment_results/b2-f96-20261108T002312Z/raw/source_artifacts/normal_2/output/journal.jsonl": "3b71346bda8093e713fa4f533f58cbb44b8786846d352c0ad8353c8e52f13c18"
+  },
+  "scripts_sha256": {
+    "scripts/generate.py": "513a35d9b5225dba05f6ae3fcc85d0dd5c8e3fc8cfa08dfcb1bfb8415369ccd3",
+    "scripts/validate.py": "369c2c147af13ca4b0bc012496012fe3c616e119e38f687edf92845fa7f182f9",
+    "scripts/write_report.py": "53f69616a3e46ab79b282b69082bca033335587eaafba78a6c9e039e6ff52521"
+  },
+  "figures": [
+    {
+      "path": "figures/b2_individuais/B2-L_painel_completo",
+      "question": "Evolução simultânea da carga e do atendimento legítimo",
+      "notes": "Eventos alinhados ao relógio monotônico da execução; pontos Docker reais."
+    },
+    {
+      "path": "figures/b2_individuais/B2-L_painel_compacto",
+      "question": "Evolução simultânea da carga e do atendimento legítimo",
+      "notes": "Eventos alinhados ao relógio monotônico da execução; pontos Docker reais."
+    },
+    {
+      "path": "figures/b2_individuais/B2-A_painel_completo",
+      "question": "Evolução simultânea da carga e do atendimento legítimo",
+      "notes": "Eventos alinhados ao relógio monotônico da execução; pontos Docker reais."
+    },
+    {
+      "path": "figures/b2_individuais/B2-A_painel_compacto",
+      "question": "Evolução simultânea da carga e do atendimento legítimo",
+      "notes": "Eventos alinhados ao relógio monotônico da execução; pontos Docker reais."
+    },
+    {
+      "path": "figures/b2_individuais/B2-F_painel_completo",
+      "question": "Evolução simultânea da carga e do atendimento legítimo",
+      "notes": "Eventos alinhados ao relógio monotônico da execução; pontos Docker reais."
+    },
+    {
+      "path": "figures/b2_individuais/B2-F_painel_compacto",
+      "question": "Evolução simultânea da carga e do atendimento legítimo",
+      "notes": "Eventos alinhados ao relógio monotônico da execução; pontos Docker reais."
+    },
+    {
+      "path": "figures/b2_individuais/B2-F96_painel_completo",
+      "question": "Evolução simultânea da carga e do atendimento legítimo",
+      "notes": "Eventos alinhados ao relógio monotônico da execução; pontos Docker reais."
+    },
+    {
+      "path": "figures/b2_individuais/B2-F96_painel_compacto",
+      "question": "Evolução simultânea da carga e do atendimento legítimo",
+      "notes": "Eventos alinhados ao relógio monotônico da execução; pontos Docker reais."
+    },
+    {
+      "path": "figures/composicao_cargas/assimetria_B2-L_B2-A_completa",
+      "question": "Como as cargas isoladas diferem da execução simultânea",
+      "notes": "Comparação visual histórica; CPU e memória não são somadas entre campanhas."
+    },
+    {
+      "path": "figures/composicao_cargas/assimetria_B2-L_B2-A_compacta",
+      "question": "Como as cargas isoladas diferem da execução simultânea",
+      "notes": "Comparação visual histórica; CPU e memória não são somadas entre campanhas."
+    },
+    {
+      "path": "figures/composicao_cargas/assimetria_A1-L2_B2-A_completa",
+      "question": "Como as cargas isoladas diferem da execução simultânea",
+      "notes": "Comparação visual histórica; CPU e memória não são somadas entre campanhas."
+    },
+    {
+      "path": "figures/composicao_cargas/assimetria_A1-L2_B2-A_compacta",
+      "question": "Como as cargas isoladas diferem da execução simultânea",
+      "notes": "Comparação visual histórica; CPU e memória não são somadas entre campanhas."
+    },
+    {
+      "path": "figures/composicao_cargas/flooding_B2-L_B2-F_completa",
+      "question": "Como as cargas isoladas diferem da execução simultânea",
+      "notes": "Comparação visual histórica; CPU e memória não são somadas entre campanhas."
+    },
+    {
+      "path": "figures/composicao_cargas/flooding_B2-L_B2-F_compacta",
+      "question": "Como as cargas isoladas diferem da execução simultânea",
+      "notes": "Comparação visual histórica; CPU e memória não são somadas entre campanhas."
+    },
+    {
+      "path": "figures/composicao_cargas/flooding_A1-L2_B2-F_completa",
+      "question": "Como as cargas isoladas diferem da execução simultânea",
+      "notes": "Comparação visual histórica; CPU e memória não são somadas entre campanhas."
+    },
+    {
+      "path": "figures/composicao_cargas/flooding_A1-L2_B2-F_compacta",
+      "question": "Como as cargas isoladas diferem da execução simultânea",
+      "notes": "Comparação visual histórica; CPU e memória não são somadas entre campanhas."
+    },
+    {
+      "path": "figures/composicao_cargas/flooding_B2-L_B2-F96_completa",
+      "question": "Como as cargas isoladas diferem da execução simultânea",
+      "notes": "Comparação visual histórica; CPU e memória não são somadas entre campanhas."
+    },
+    {
+      "path": "figures/composicao_cargas/flooding_B2-L_B2-F96_compacta",
+      "question": "Como as cargas isoladas diferem da execução simultânea",
+      "notes": "Comparação visual histórica; CPU e memória não são somadas entre campanhas."
+    },
+    {
+      "path": "figures/composicao_cargas/flooding_A1-L2_B2-F96_completa",
+      "question": "Como as cargas isoladas diferem da execução simultânea",
+      "notes": "Comparação visual histórica; CPU e memória não são somadas entre campanhas."
+    },
+    {
+      "path": "figures/composicao_cargas/flooding_A1-L2_B2-F96_compacta",
+      "question": "Como as cargas isoladas diferem da execução simultânea",
+      "notes": "Comparação visual histórica; CPU e memória não são somadas entre campanhas."
+    },
+    {
+      "path": "figures/comparativas/matriz_rps",
+      "question": "Comparação temporal das quatro condições B2",
+      "notes": "Amostras reais e eventos reconstruídos; ataque [30,60) s."
+    },
+    {
+      "path": "figures/comparativas/matriz_cpu",
+      "question": "Comparação temporal das quatro condições B2",
+      "notes": "Amostras reais e eventos reconstruídos; ataque [30,60) s."
+    },
+    {
+      "path": "figures/comparativas/matriz_mem",
+      "question": "Comparação temporal das quatro condições B2",
+      "notes": "Amostras reais e eventos reconstruídos; ataque [30,60) s."
+    },
+    {
+      "path": "figures/comparativas/matriz_run",
+      "question": "Comparação temporal das quatro condições B2",
+      "notes": "Amostras reais e eventos reconstruídos; ataque [30,60) s."
+    },
+    {
+      "path": "figures/comparativas/matriz_wait",
+      "question": "Comparação temporal das quatro condições B2",
+      "notes": "Amostras reais e eventos reconstruídos; ataque [30,60) s."
+    },
+    {
+      "path": "figures/comparativas/matriz_cpuop",
+      "question": "Comparação temporal das quatro condições B2",
+      "notes": "Amostras reais e eventos reconstruídos; ataque [30,60) s."
+    },
+    {
+      "path": "figures/comparativas/matriz_waitms",
+      "question": "Comparação temporal das quatro condições B2",
+      "notes": "Amostras reais e eventos reconstruídos; ataque [30,60) s."
+    },
+    {
+      "path": "figures/comparativas/matriz_duration",
+      "question": "Comparação temporal das quatro condições B2",
+      "notes": "Amostras reais e eventos reconstruídos; ataque [30,60) s."
+    },
+    {
+      "path": "figures/comparativas/matriz_outcomes",
+      "question": "Comparação temporal das quatro condições B2",
+      "notes": "Amostras reais e eventos reconstruídos; ataque [30,60) s."
+    },
+    {
+      "path": "figures/comparativas/matriz_network",
+      "question": "Comparação temporal das quatro condições B2",
+      "notes": "Amostras reais e eventos reconstruídos; ataque [30,60) s."
+    },
+    {
+      "path": "figures/comparativas/matriz_mem_escala_individual",
+      "question": "Comparação temporal das quatro condições B2",
+      "notes": "Amostras reais e eventos reconstruídos; ataque [30,60) s."
+    },
+    {
+      "path": "figures/comparativas/matriz_duration_escala_individual",
+      "question": "Comparação temporal das quatro condições B2",
+      "notes": "Amostras reais e eventos reconstruídos; ataque [30,60) s."
+    },
+    {
+      "path": "figures/comparativas/matriz_wait_escala_individual",
+      "question": "Comparação temporal das quatro condições B2",
+      "notes": "Amostras reais e eventos reconstruídos; ataque [30,60) s."
+    },
+    {
+      "path": "figures/flooding_64_vs_96/temporal_completo",
+      "question": "Comparação direta F64 versus F96",
+      "notes": "Uma execução por condição; escalas comuns por linha."
+    },
+    {
+      "path": "figures/flooding_64_vs_96/temporal_compacto",
+      "question": "Comparação direta F64 versus F96",
+      "notes": "Uma execução por condição; escalas comuns por linha."
+    },
+    {
+      "path": "figures/degradacao_legitima/desfechos_absoluto",
+      "question": "Quais tentativas legítimas tiveram resposta ou timeout?",
+      "notes": "Categorias mutuamente exclusivas; denominador: inícios HTTP legítimos em [30,60) s."
+    },
+    {
+      "path": "figures/degradacao_legitima/desfechos_percentual",
+      "question": "Quais tentativas legítimas tiveram resposta ou timeout?",
+      "notes": "Categorias mutuamente exclusivas; denominador: inícios HTTP legítimos em [30,60) s."
+    },
+    {
+      "path": "figures/cpu/distribuicao_cpu",
+      "question": "Distribuição comparativa entre condições",
+      "notes": "Amostras temporais e requisições não são repetições independentes."
+    },
+    {
+      "path": "figures/memoria/distribuicao_memoria",
+      "question": "Distribuição comparativa entre condições",
+      "notes": "Amostras temporais e requisições não são repetições independentes."
+    },
+    {
+      "path": "figures/cpu/cpu_operacao_legitima",
+      "question": "Distribuição comparativa entre condições",
+      "notes": "Amostras temporais e requisições não são repetições independentes."
+    },
+    {
+      "path": "figures/workers/espera_legitima",
+      "question": "Distribuição comparativa entre condições",
+      "notes": "Amostras temporais e requisições não são repetições independentes."
+    },
+    {
+      "path": "figures/cpu/cpu_operacao_ofensiva",
+      "question": "Distribuição comparativa entre condições",
+      "notes": "Amostras temporais e requisições não são repetições independentes."
+    },
+    {
+      "path": "figures/workers/espera_ofensiva",
+      "question": "Distribuição comparativa entre condições",
+      "notes": "Amostras temporais e requisições não são repetições independentes."
+    },
+    {
+      "path": "figures/degradacao_legitima/duracao_sucessos",
+      "question": "Distribuição comparativa entre condições",
+      "notes": "Amostras temporais e requisições não são repetições independentes."
+    },
+    {
+      "path": "figures/degradacao_legitima/tempo_ate_timeout",
+      "question": "Distribuição comparativa entre condições",
+      "notes": "Amostras temporais e requisições não são repetições independentes."
+    },
+    {
+      "path": "figures/degradacao_legitima/taxas_legitimas",
+      "question": "Taxa nominal, inícios e desfechos legítimos",
+      "notes": "Respostas/timeouts atribuídos ao instante de início; conclusão pode ocorrer após 60 s."
+    },
+    {
+      "path": "figures/degradacao_legitima/rps_por_fase",
+      "question": "Diferenças descritivas por fase",
+      "notes": "Fases com 30, 30 e 90 s; contagens atribuídas pelo início HTTP."
+    },
+    {
+      "path": "figures/degradacao_legitima/timeouts_por_fase",
+      "question": "Diferenças descritivas por fase",
+      "notes": "Fases com 30, 30 e 90 s; contagens atribuídas pelo início HTTP."
+    },
+    {
+      "path": "figures/degradacao_legitima/duracao_por_fase",
+      "question": "Diferenças descritivas por fase",
+      "notes": "Fases com 30, 30 e 90 s; contagens atribuídas pelo início HTTP."
+    },
+    {
+      "path": "figures/cpu/cpu_por_fase",
+      "question": "Diferenças descritivas por fase",
+      "notes": "Fases com 30, 30 e 90 s; contagens atribuídas pelo início HTTP."
+    },
+    {
+      "path": "figures/memoria/memoria_por_fase",
+      "question": "Diferenças descritivas por fase",
+      "notes": "Fases com 30, 30 e 90 s; contagens atribuídas pelo início HTTP."
+    },
+    {
+      "path": "figures/workers/ocupacao_e_acumulo",
+      "question": "Workers ocupados e operações aguardando",
+      "notes": "Aguardando = submetidas sem início; não representa a fila interna exata do executor."
+    },
+    {
+      "path": "figures/flooding_64_vs_96/indicadores",
+      "question": "Como F64 e F96 diferiram na fase ofensiva?",
+      "notes": "Coorte de início [30,60); uma execução por condição."
+    },
+    {
+      "path": "figures/cpu/pressao_atendimento_B2-L",
+      "question": "Coincidência temporal de CPU, workers, espera e atendimento",
+      "notes": "Coincidência não demonstra causalidade; pontos de operações e Docker têm cadências diferentes."
+    },
+    {
+      "path": "figures/comparativas/rede_B2-L",
+      "question": "Volume de pacotes TCP",
+      "notes": "Captura total; packet_length não equivale a bytes no fio nem identifica classe."
+    },
+    {
+      "path": "figures/cpu/pressao_atendimento_B2-A",
+      "question": "Coincidência temporal de CPU, workers, espera e atendimento",
+      "notes": "Coincidência não demonstra causalidade; pontos de operações e Docker têm cadências diferentes."
+    },
+    {
+      "path": "figures/comparativas/rede_B2-A",
+      "question": "Volume de pacotes TCP",
+      "notes": "Captura total; packet_length não equivale a bytes no fio nem identifica classe."
+    },
+    {
+      "path": "figures/cpu/pressao_atendimento_B2-F",
+      "question": "Coincidência temporal de CPU, workers, espera e atendimento",
+      "notes": "Coincidência não demonstra causalidade; pontos de operações e Docker têm cadências diferentes."
+    },
+    {
+      "path": "figures/comparativas/rede_B2-F",
+      "question": "Volume de pacotes TCP",
+      "notes": "Captura total; packet_length não equivale a bytes no fio nem identifica classe."
+    },
+    {
+      "path": "figures/cpu/pressao_atendimento_B2-F96",
+      "question": "Coincidência temporal de CPU, workers, espera e atendimento",
+      "notes": "Coincidência não demonstra causalidade; pontos de operações e Docker têm cadências diferentes."
+    },
+    {
+      "path": "figures/comparativas/rede_B2-F96",
+      "question": "Volume de pacotes TCP",
+      "notes": "Captura total; packet_length não equivale a bytes no fio nem identifica classe."
+    }
+  ],
+  "figure_count": 61,
+  "figure_files": 122,
+  "processed": [
+    "processed/infrastructure_A1-L2.csv",
+    "processed/infrastructure_B1-A3.csv",
+    "processed/infrastructure_B1-F2.csv",
+    "processed/infrastructure_B2-A.csv",
+    "processed/infrastructure_B2-F.csv",
+    "processed/infrastructure_B2-F96.csv",
+    "processed/infrastructure_B2-L.csv",
+    "processed/infrastructure_summary.csv",
+    "processed/phase_summary.csv",
+    "processed/requests_A1-L2.csv",
+    "processed/requests_B1-A3.csv",
+    "processed/requests_B1-F2.csv",
+    "processed/requests_B2-A.csv",
+    "processed/requests_B2-F.csv",
+    "processed/requests_B2-F96.csv",
+    "processed/requests_B2-L.csv",
+    "processed/stats_A1-L2.csv",
+    "processed/stats_B1-A3.csv",
+    "processed/stats_B1-F2.csv",
+    "processed/stats_B2-A.csv",
+    "processed/stats_B2-F.csv",
+    "processed/stats_B2-F96.csv",
+    "processed/stats_B2-L.csv",
+    "processed/summary.csv",
+    "processed/work_A1-L2.csv",
+    "processed/work_B1-A3.csv",
+    "processed/work_B1-F2.csv",
+    "processed/work_B2-A.csv",
+    "processed/work_B2-F.csv",
+    "processed/work_B2-F96.csv",
+    "processed/work_B2-L.csv"
+  ],
+  "parameters": {
+    "duration_s": 150,
+    "phase_pre": [
+      0,
+      30
+    ],
+    "phase_active": [
+      30,
+      60
+    ],
+    "phase_post": [
+      60,
+      150
+    ],
+    "rps_bin_s": 1,
+    "rps_interval": "[30,60) por tempo do evento; desfechos por coorte de início quando indicado",
+    "memory": "raw_mem_usage / 1048576 MiB",
+    "cpu": "Docker cpu_percent; pode exceder 100%"
+  }
+}

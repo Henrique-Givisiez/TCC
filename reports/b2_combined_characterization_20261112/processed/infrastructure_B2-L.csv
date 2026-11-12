@@ -1,0 +1,2 @@
+id,stats_n_active,stats_cadence_median_s,cpu_mean_active_pct,cpu_median_active_pct,cpu_max_active_pct,mem_mean_active_mib,mem_median_active_mib,mem_max_active_mib,workers_zero_fraction_active,workers_one_fraction_active,workers_two_fraction_active,waiting_max_active,waiting_max_post,waiting_max_full,network_packets_active,network_packet_length_sum_active
+B2-L,10,3.0138269779999973,60.01517580565478,61.42969207381445,82.9414864864865,46.913671875,46.859375,48.2265625,0.5995728087999623,0.2963213031667162,0.1041058880333215,3,3,3,2679,257514
