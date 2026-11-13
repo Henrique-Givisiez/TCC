@@ -1,0 +1,4 @@
+scenario,entry_id,block,criterion,active_cpu_mean,scenario_cpu_median
+L2,ps_direct80_039_L2,7,CPU média ACTIVE mais próxima da mediana do cenário,51.190135750071946,51.13077519568478
+A3,ps_direct80_037_A3,6,CPU média ACTIVE mais próxima da mediana do cenário,212.1074589220336,212.1574900395227
+F96,ps_direct80_027_F96,3,CPU média ACTIVE mais próxima da mediana do cenário,235.9459069917237,236.0216296961766

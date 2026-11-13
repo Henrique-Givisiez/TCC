@@ -1,0 +1,100 @@
+scenario,method,feature,category,entry_id,block,delay_s,pre_positive_windows,criterion
+A3,zscore,ingress_packet_count,rápida,ps_direct80_033_A3,5,0.99003507900125,1,extremo observado; desempate por entry_id
+A3,zscore,ingress_packet_count,tardia,ps_direct80_072_A3,18,19.99511197399988,0,extremo observado; desempate por entry_id
+A3,zscore,ingress_packet_count,falso alarme PRE,ps_direct80_023_A3,1,0.99486044799778,4,extremo observado; desempate por entry_id
+A3,zscore,ingress_tcp_payload_length_sum_bytes,rápida,ps_direct80_033_A3,5,0.99003507900125,1,extremo observado; desempate por entry_id
+A3,zscore,ingress_tcp_payload_length_sum_bytes,tardia,ps_direct80_061_A3,14,3.99090093700215,0,extremo observado; desempate por entry_id
+A3,zscore,ingress_tcp_payload_length_sum_bytes,falso alarme PRE,ps_direct80_023_A3,1,0.99486044799778,3,extremo observado; desempate por entry_id
+A3,zscore,request_starts,rápida,ps_direct80_033_A3,5,0.99003507900125,1,extremo observado; desempate por entry_id
+A3,zscore,request_starts,tardia,ps_direct80_041_A3,7,10.99540706400148,0,extremo observado; desempate por entry_id
+A3,zscore,request_starts,falso alarme PRE,ps_direct80_023_A3,1,0.99486044799778,3,extremo observado; desempate por entry_id
+A3,zscore,mean_duration_ms,rápida,ps_direct80_024_A3,2,0.98768724699767,11,extremo observado; desempate por entry_id
+A3,zscore,mean_duration_ms,tardia,ps_direct80_037_A3,6,0.9971030400011,3,extremo observado; desempate por entry_id
+A3,zscore,mean_duration_ms,falso alarme PRE,ps_direct80_024_A3,2,0.98768724699767,11,extremo observado; desempate por entry_id
+A3,cov,ingress_packet_count,rápida,ps_direct80_048_A3,10,0.9964409499953,0,extremo observado; desempate por entry_id
+A3,cov,ingress_packet_count,tardia,ps_direct80_041_A3,7,1.99540706400148,3,extremo observado; desempate por entry_id
+A3,cov,ingress_packet_count,sem detecção,ps_direct80_023_A3,1,,6,extremo observado; desempate por entry_id
+A3,cov,ingress_packet_count,falso alarme PRE,ps_direct80_023_A3,1,,6,extremo observado; desempate por entry_id
+A3,cov,ingress_tcp_payload_length_sum_bytes,rápida,ps_direct80_033_A3,5,0.99003507900125,2,extremo observado; desempate por entry_id
+A3,cov,ingress_tcp_payload_length_sum_bytes,tardia,ps_direct80_030_A3,4,1.99657796300016,1,extremo observado; desempate por entry_id
+A3,cov,ingress_tcp_payload_length_sum_bytes,sem detecção,ps_direct80_024_A3,2,,1,extremo observado; desempate por entry_id
+A3,cov,ingress_tcp_payload_length_sum_bytes,falso alarme PRE,ps_direct80_067_A3,16,,7,extremo observado; desempate por entry_id
+A3,cov,request_starts,rápida,ps_direct80_033_A3,5,0.99003507900125,2,extremo observado; desempate por entry_id
+A3,cov,request_starts,tardia,ps_direct80_048_A3,10,0.9964409499953,1,extremo observado; desempate por entry_id
+A3,cov,request_starts,sem detecção,ps_direct80_023_A3,1,,6,extremo observado; desempate por entry_id
+A3,cov,request_starts,falso alarme PRE,ps_direct80_067_A3,16,,7,extremo observado; desempate por entry_id
+A3,cov,mean_duration_ms,rápida,ps_direct80_024_A3,2,0.98768724699767,8,extremo observado; desempate por entry_id
+A3,cov,mean_duration_ms,tardia,ps_direct80_037_A3,6,0.9971030400011,5,extremo observado; desempate por entry_id
+A3,cov,mean_duration_ms,falso alarme PRE,ps_direct80_024_A3,2,0.98768724699767,8,extremo observado; desempate por entry_id
+A3,ewma,ingress_packet_count,rápida,ps_direct80_064_A3,15,0.99201617699873,2,extremo observado; desempate por entry_id
+A3,ewma,ingress_packet_count,tardia,ps_direct80_041_A3,7,10.99540706400148,1,extremo observado; desempate por entry_id
+A3,ewma,ingress_packet_count,falso alarme PRE,ps_direct80_029_A3,3,1.99542080500032,5,extremo observado; desempate por entry_id
+A3,ewma,ingress_tcp_payload_length_sum_bytes,rápida,ps_direct80_033_A3,5,0.99003507900125,0,extremo observado; desempate por entry_id
+A3,ewma,ingress_tcp_payload_length_sum_bytes,tardia,ps_direct80_041_A3,7,3.99540706400148,1,extremo observado; desempate por entry_id
+A3,ewma,ingress_tcp_payload_length_sum_bytes,falso alarme PRE,ps_direct80_029_A3,3,1.99542080500032,4,extremo observado; desempate por entry_id
+A3,ewma,request_starts,rápida,ps_direct80_064_A3,15,0.99201617699873,2,extremo observado; desempate por entry_id
+A3,ewma,request_starts,tardia,ps_direct80_041_A3,7,10.99540706400148,1,extremo observado; desempate por entry_id
+A3,ewma,request_starts,falso alarme PRE,ps_direct80_029_A3,3,1.99542080500032,4,extremo observado; desempate por entry_id
+A3,ewma,mean_duration_ms,rápida,ps_direct80_024_A3,2,0.98768724699767,31,extremo observado; desempate por entry_id
+A3,ewma,mean_duration_ms,tardia,ps_direct80_037_A3,6,0.9971030400011,0,extremo observado; desempate por entry_id
+A3,ewma,mean_duration_ms,falso alarme PRE,ps_direct80_024_A3,2,0.98768724699767,31,extremo observado; desempate por entry_id
+A3,cusum-freeze,ingress_packet_count,rápida,ps_direct80_055_A3,12,0.9946600760013,2,extremo observado; desempate por entry_id
+A3,cusum-freeze,ingress_packet_count,tardia,ps_direct80_077_A3,19,4.9928501530012,0,extremo observado; desempate por entry_id
+A3,cusum-freeze,ingress_packet_count,falso alarme PRE,ps_direct80_030_A3,4,1.99657796300016,2,extremo observado; desempate por entry_id
+A3,cusum-freeze,ingress_tcp_payload_length_sum_bytes,rápida,ps_direct80_033_A3,5,0.99003507900125,0,extremo observado; desempate por entry_id
+A3,cusum-freeze,ingress_tcp_payload_length_sum_bytes,tardia,ps_direct80_061_A3,14,3.99090093700215,0,extremo observado; desempate por entry_id
+A3,cusum-freeze,ingress_tcp_payload_length_sum_bytes,falso alarme PRE,ps_direct80_030_A3,4,1.99657796300016,2,extremo observado; desempate por entry_id
+A3,cusum-freeze,request_starts,rápida,ps_direct80_045_A3,9,0.99277550900297,1,extremo observado; desempate por entry_id
+A3,cusum-freeze,request_starts,tardia,ps_direct80_077_A3,19,4.9928501530012,0,extremo observado; desempate por entry_id
+A3,cusum-freeze,request_starts,falso alarme PRE,ps_direct80_030_A3,4,1.99657796300016,2,extremo observado; desempate por entry_id
+A3,cusum-freeze,mean_duration_ms,rápida,ps_direct80_024_A3,2,0.98768724699767,16,extremo observado; desempate por entry_id
+A3,cusum-freeze,mean_duration_ms,tardia,ps_direct80_037_A3,6,0.9971030400011,0,extremo observado; desempate por entry_id
+A3,cusum-freeze,mean_duration_ms,falso alarme PRE,ps_direct80_024_A3,2,0.98768724699767,16,extremo observado; desempate por entry_id
+F96,zscore,ingress_packet_count,rápida,ps_direct80_038_F96,6,0.9878458839994,1,extremo observado; desempate por entry_id
+F96,zscore,ingress_packet_count,tardia,ps_direct80_052_F96,11,0.99680512399937,2,extremo observado; desempate por entry_id
+F96,zscore,ingress_packet_count,falso alarme PRE,ps_direct80_022_F96,1,0.9919791430002,4,extremo observado; desempate por entry_id
+F96,zscore,ingress_tcp_payload_length_sum_bytes,rápida,ps_direct80_038_F96,6,0.9878458839994,0,extremo observado; desempate por entry_id
+F96,zscore,ingress_tcp_payload_length_sum_bytes,tardia,ps_direct80_052_F96,11,0.99680512399937,1,extremo observado; desempate por entry_id
+F96,zscore,ingress_tcp_payload_length_sum_bytes,falso alarme PRE,ps_direct80_022_F96,1,0.9919791430002,3,extremo observado; desempate por entry_id
+F96,zscore,request_starts,rápida,ps_direct80_038_F96,6,0.9878458839994,0,extremo observado; desempate por entry_id
+F96,zscore,request_starts,tardia,ps_direct80_052_F96,11,0.99680512399937,1,extremo observado; desempate por entry_id
+F96,zscore,request_starts,falso alarme PRE,ps_direct80_022_F96,1,0.9919791430002,3,extremo observado; desempate por entry_id
+F96,zscore,mean_duration_ms,rápida,ps_direct80_038_F96,6,0.9878458839994,3,extremo observado; desempate por entry_id
+F96,zscore,mean_duration_ms,tardia,ps_direct80_052_F96,11,0.99680512399937,0,extremo observado; desempate por entry_id
+F96,zscore,mean_duration_ms,falso alarme PRE,ps_direct80_032_F96,4,0.9928450130028,5,extremo observado; desempate por entry_id
+F96,cov,ingress_packet_count,rápida,ps_direct80_038_F96,6,0.9878458839994,2,extremo observado; desempate por entry_id
+F96,cov,ingress_packet_count,tardia,ps_direct80_052_F96,11,0.99680512399937,1,extremo observado; desempate por entry_id
+F96,cov,ingress_packet_count,falso alarme PRE,ps_direct80_022_F96,1,0.9919791430002,7,extremo observado; desempate por entry_id
+F96,cov,ingress_tcp_payload_length_sum_bytes,rápida,ps_direct80_038_F96,6,0.9878458839994,1,extremo observado; desempate por entry_id
+F96,cov,ingress_tcp_payload_length_sum_bytes,tardia,ps_direct80_052_F96,11,0.99680512399937,1,extremo observado; desempate por entry_id
+F96,cov,ingress_tcp_payload_length_sum_bytes,falso alarme PRE,ps_direct80_022_F96,1,0.9919791430002,6,extremo observado; desempate por entry_id
+F96,cov,request_starts,rápida,ps_direct80_038_F96,6,0.9878458839994,1,extremo observado; desempate por entry_id
+F96,cov,request_starts,tardia,ps_direct80_052_F96,11,0.99680512399937,1,extremo observado; desempate por entry_id
+F96,cov,request_starts,falso alarme PRE,ps_direct80_022_F96,1,0.9919791430002,6,extremo observado; desempate por entry_id
+F96,cov,mean_duration_ms,rápida,ps_direct80_038_F96,6,0.9878458839994,6,extremo observado; desempate por entry_id
+F96,cov,mean_duration_ms,tardia,ps_direct80_052_F96,11,0.99680512399937,0,extremo observado; desempate por entry_id
+F96,cov,mean_duration_ms,falso alarme PRE,ps_direct80_032_F96,4,0.9928450130028,7,extremo observado; desempate por entry_id
+F96,ewma,ingress_packet_count,rápida,ps_direct80_038_F96,6,0.9878458839994,0,extremo observado; desempate por entry_id
+F96,ewma,ingress_packet_count,tardia,ps_direct80_052_F96,11,0.99680512399937,0,extremo observado; desempate por entry_id
+F96,ewma,ingress_packet_count,falso alarme PRE,ps_direct80_027_F96,3,0.99186900199857,4,extremo observado; desempate por entry_id
+F96,ewma,ingress_tcp_payload_length_sum_bytes,rápida,ps_direct80_038_F96,6,0.9878458839994,0,extremo observado; desempate por entry_id
+F96,ewma,ingress_tcp_payload_length_sum_bytes,tardia,ps_direct80_052_F96,11,0.99680512399937,0,extremo observado; desempate por entry_id
+F96,ewma,ingress_tcp_payload_length_sum_bytes,falso alarme PRE,ps_direct80_027_F96,3,0.99186900199857,4,extremo observado; desempate por entry_id
+F96,ewma,request_starts,rápida,ps_direct80_038_F96,6,0.9878458839994,0,extremo observado; desempate por entry_id
+F96,ewma,request_starts,tardia,ps_direct80_052_F96,11,0.99680512399937,0,extremo observado; desempate por entry_id
+F96,ewma,request_starts,falso alarme PRE,ps_direct80_027_F96,3,0.99186900199857,4,extremo observado; desempate por entry_id
+F96,ewma,mean_duration_ms,rápida,ps_direct80_038_F96,6,0.9878458839994,1,extremo observado; desempate por entry_id
+F96,ewma,mean_duration_ms,tardia,ps_direct80_052_F96,11,0.99680512399937,0,extremo observado; desempate por entry_id
+F96,ewma,mean_duration_ms,falso alarme PRE,ps_direct80_032_F96,4,0.9928450130028,21,extremo observado; desempate por entry_id
+F96,cusum-freeze,ingress_packet_count,rápida,ps_direct80_038_F96,6,0.9878458839994,0,extremo observado; desempate por entry_id
+F96,cusum-freeze,ingress_packet_count,tardia,ps_direct80_052_F96,11,0.99680512399937,0,extremo observado; desempate por entry_id
+F96,cusum-freeze,ingress_packet_count,falso alarme PRE,ps_direct80_027_F96,3,0.99186900199857,2,extremo observado; desempate por entry_id
+F96,cusum-freeze,ingress_tcp_payload_length_sum_bytes,rápida,ps_direct80_038_F96,6,0.9878458839994,0,extremo observado; desempate por entry_id
+F96,cusum-freeze,ingress_tcp_payload_length_sum_bytes,tardia,ps_direct80_052_F96,11,0.99680512399937,0,extremo observado; desempate por entry_id
+F96,cusum-freeze,ingress_tcp_payload_length_sum_bytes,falso alarme PRE,ps_direct80_027_F96,3,0.99186900199857,2,extremo observado; desempate por entry_id
+F96,cusum-freeze,request_starts,rápida,ps_direct80_038_F96,6,0.9878458839994,0,extremo observado; desempate por entry_id
+F96,cusum-freeze,request_starts,tardia,ps_direct80_052_F96,11,0.99680512399937,0,extremo observado; desempate por entry_id
+F96,cusum-freeze,request_starts,falso alarme PRE,ps_direct80_027_F96,3,0.99186900199857,2,extremo observado; desempate por entry_id
+F96,cusum-freeze,mean_duration_ms,rápida,ps_direct80_038_F96,6,0.9878458839994,1,extremo observado; desempate por entry_id
+F96,cusum-freeze,mean_duration_ms,tardia,ps_direct80_052_F96,11,0.99680512399937,0,extremo observado; desempate por entry_id
+F96,cusum-freeze,mean_duration_ms,falso alarme PRE,ps_direct80_032_F96,4,0.9928450130028,10,extremo observado; desempate por entry_id

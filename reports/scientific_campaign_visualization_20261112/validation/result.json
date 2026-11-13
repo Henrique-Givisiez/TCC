@@ -1,0 +1,43 @@
+{
+  "all_passed": true,
+  "passed": 20,
+  "total": 20,
+  "checks": {
+    "input_files_unchanged": true,
+    "script_hashes": true,
+    "inventory_80_complete": true,
+    "test_blocks_20x3": true,
+    "effective_configs": true,
+    "five_signal_rows": true,
+    "four_official_detector_signals": true,
+    "detector_time_and_threshold": true,
+    "alarm_matches_score_and_threshold": true,
+    "cusum_freeze_rejection": true,
+    "missing_scores_preserved": true,
+    "worker_and_http_conservation": true,
+    "worker_fraction_exact_spotcheck": true,
+    "docker_memory_nonnegative": true,
+    "official_detection_agreement": true,
+    "selected_runs_in_inventory": true,
+    "catalog_complete": true,
+    "catalog_matches_all_figures": true,
+    "png_pdf_integrity": true,
+    "report_and_readme": true
+  },
+  "details": {
+    "input_files_unchanged": 1295,
+    "alarm_matches_score_and_threshold": {
+      "float_rounding_ties_checked_against_official_decimal": 1
+    },
+    "worker_fraction_exact_spotcheck": 3,
+    "catalog_matches_all_figures": {
+      "catalog": 479,
+      "png": 479,
+      "pdf": 479
+    },
+    "png_pdf_integrity": {
+      "valid": 479,
+      "total": 479
+    }
+  }
+}
