@@ -65,7 +65,10 @@ def region(ax, x, y, w, h, title, color, fc):
 
 def save(fig, stem):
     for ext in ("svg", "pdf", "png"):
-        fig.savefig(ROOT / f"{stem}.{ext}", dpi=300, transparent=False)
+        path = ROOT / f"{stem}.{ext}"
+        fig.savefig(path, dpi=300, transparent=False)
+        if ext == "svg":
+            path.write_text("\n".join(line.rstrip() for line in path.read_text().splitlines()) + "\n")
     plt.close(fig)
 
 
@@ -73,30 +76,28 @@ def arquitetura():
     fig, ax = canvas(16.0, 11.5)
     region(ax, 0.30, 6.65, 5.25, 4.50, "FONTES DE TRÁFEGO", BLUE, BLUE_PALE)
     box(ax, 0.58, 9.46, 4.67, 1.26,
-        "Legítimas · 2 contêineres\nHTTP → /medium\nEm L2: apenas este grupo",
-        fc="white", ec=BLUE, size=7.9, weight="medium")
+        "Tráfego legítimo\n2 fontes em contêineres\nRequisições HTTP",
+        fc="white", ec=BLUE, size=8.15, weight="medium")
     box(ax, 0.58, 7.05, 4.67, 1.96,
-        "Ofensivas · 2 contêineres\nA3 ou F96 (alternativos)\nA3: /expensive · 8 RPS · conc. 64\nF96: /medium · 64 RPS · conc. 96",
-        fc="white", ec=ORANGE, size=7.25)
-    text(ax, 0.64, 6.80, "Taxas nominais agregadas", size=7.05, color=GRAY)
+        "Tráfego ofensivo\n2 fontes em contêineres\nAssimetria computacional ou\ninundação HTTP",
+        fc="white", ec=ORANGE, size=8.05)
+    text(ax, 0.64, 6.80, "Ataques em cenários alternativos", size=7.2, color=GRAY)
 
     region(ax, 6.70, 6.65, 9.00, 4.50, "APLICAÇÃO VÍTIMA · 1 CONTÊINER", GREEN, GREEN_PALE)
     box(ax, 7.00, 8.14, 2.04, 1.93, "Servidor\nHTTP", fc="white", ec=GREEN,
         size=9.2, weight="bold")
-    box(ax, 9.78, 9.40, 2.30, 0.92, "/medium", fc="white", ec=GREEN, size=8.8)
-    box(ax, 9.78, 8.28, 2.30, 0.92, "/expensive", fc="white", ec=GREEN, size=8.8)
+    box(ax, 9.66, 9.40, 2.54, 0.92, "/medium\ncusto moderado", fc="white", ec=GREEN, size=7.8)
+    box(ax, 9.66, 8.28, 2.54, 0.92, "/expensive\ncusto elevado", fc="white", ec=GREEN, size=7.8)
     box(ax, 12.77, 8.36, 2.60, 1.86,
         "Pool persistente\n2 processos\ncomputacionais", fc="white", ec=GREEN,
         size=8.2)
     arrow(ax, (5.25, 10.10), (7.00, 9.55), color=BLUE, lw=1.25)
     arrow(ax, (5.25, 8.05), (7.00, 8.80), color=ORANGE, lw=1.25)
-    arrow(ax, (9.04, 9.42), (9.78, 9.86), color=GREEN)
-    arrow(ax, (9.04, 8.82), (9.78, 8.73), color=GREEN)
-    arrow(ax, (12.08, 9.86), (12.77, 9.56), color=GREEN)
-    arrow(ax, (12.08, 8.73), (12.77, 9.00), color=GREEN)
+    arrow(ax, (9.04, 9.42), (9.66, 9.86), color=GREEN)
+    arrow(ax, (9.04, 8.82), (9.66, 8.73), color=GREEN)
+    arrow(ax, (12.20, 9.86), (12.77, 9.56), color=GREEN)
+    arrow(ax, (12.20, 8.73), (12.77, 9.00), color=GREEN)
     text(ax, 6.10, 10.34, "HTTP direto", size=7.4, color=GRAY, ha="center")
-    text(ax, 11.08, 7.13, "O pool não limita a 2 conexões HTTP.",
-         size=7.4, color=GRAY, ha="center")
 
     region(ax, 0.30, 3.72, 15.40, 2.45, "", GRAY, GRAY_PALE)
     text(ax, 0.55, 3.94, "OBSERVAÇÃO DURANTE AS EXECUÇÕES",
@@ -128,10 +129,10 @@ def arquitetura():
     for i in range(3):
         arrow(ax, (xs[i] + 3.48, 1.57), (xs[i + 1], 1.57), color=GREEN,
               lw=1.15, head=9)
-    arrow(ax, (2.26, 3.72), (2.26, 2.38), color=GRAY, lw=0.9, head=8)
+    arrow(ax, (0.72, 3.72), (0.72, 2.38), color=GRAY, lw=0.9, head=8)
     text(ax, 8.00, 0.33,
-         "CPU e memória: indicadores operacionais; não são entradas dos detectores desta campanha.",
-         size=7.1, color=GRAY, ha="center")
+         "CPU e memória: indicadores operacionais, não entradas dos detectores.",
+         size=7.35, color=GRAY, ha="center")
     save(fig, "figura_4_1_arquitetura")
 
 
@@ -140,52 +141,53 @@ def percurso():
     region(ax, 0.30, 9.14, 15.40, 3.52,
            "I · CARACTERIZAÇÃO EXPLORATÓRIA E SELEÇÃO", BLUE, BLUE_PALE)
     box(ax, 0.58, 10.89, 7.15, 1.09,
-        "A2 · custo dos endpoints\nA1 · carga legítima",
-        fc="white", ec=BLUE, size=8.0)
+        "Caracterização legítima e dos endpoints\nCarga legítima · custos computacionais",
+        fc="white", ec=BLUE, size=7.85)
     box(ax, 8.27, 10.89, 7.15, 1.09,
-        "B1 · ataques isolados\nB2 · cenários combinados",
-        fc="white", ec=BLUE, size=8.0)
-    box(ax, 4.72, 9.78, 6.56, 0.72,
-        "Seleção: L2 · A3 · F96", fc="white", ec=BLUE, size=9.0,
+        "Caracterização ofensiva\nMecanismos isolados · cenários combinados",
+        fc="white", ec=BLUE, size=7.85)
+    box(ax, 4.10, 9.78, 7.80, 0.72,
+        "Seleção das configurações experimentais", fc="white", ec=BLUE, size=8.1,
         weight="bold")
     arrow(ax, (4.10, 10.89), (6.50, 10.50), color=BLUE)
     arrow(ax, (11.90, 10.89), (9.50, 10.50), color=BLUE)
     box(ax, 4.72, 9.15, 6.56, 0.43,
-        "Protocolo experimental congelado", fc="white", ec=BLUE, size=8.8)
+        "Definição do protocolo experimental", fc="white", ec=BLUE, size=8.35)
     arrow(ax, (8.00, 9.78), (8.00, 9.58), color=BLUE)
 
     region(ax, 0.30, 5.02, 15.40, 3.20,
            "II · CAMPANHA CIENTÍFICA DEFINITIVA", GREEN, GREEN_PALE)
-    text(ax, 15.35, 7.98, "energy-powersaver-20261109", size=7.0,
+    text(ax, 15.35, 7.98, "80 execuções", size=7.7,
          color=GREEN, weight="bold", ha="right")
     arrow(ax, (8.00, 9.15), (8.00, 8.22), color=GREEN)
     blocks = [
-        (0.58, "BASELINE · 4\nreferência benigna"),
-        (4.43, "CAL_A · 8\nlimiares"),
-        (8.28, "CAL_B · 8\nverificação"),
-        (12.13, "TEST · 60\n20 blocos L2/A3/F96"),
+        (0.58, "Referência benigna\n4 execuções"),
+        (4.43, "Calibração\n8 execuções"),
+        (8.28, "Verificação\n8 execuções"),
+        (12.13, "Avaliação definitiva\n60 execuções\n20 blocos com os\ntrês cenários"),
     ]
     for x, label in blocks:
-        box(ax, x, 6.42, 3.30, 1.03, label, fc="white", ec=GREEN, size=8.1)
+        box(ax, x, 6.00, 3.30, 1.45, label, fc="white", ec=GREEN,
+            size=7.4 if "Avaliação" in label else 8.0)
     for i in range(3):
-        arrow(ax, (blocks[i][0] + 3.30, 6.94),
-              (blocks[i + 1][0], 6.94), color=GREEN, lw=1.15, head=8)
-    box(ax, 1.18, 5.36, 13.64, 0.67,
-        "Em cada execução: coleta → validação do dataset → características em janelas de 1 s",
+        arrow(ax, (blocks[i][0] + 3.30, 6.72),
+              (blocks[i + 1][0], 6.72), color=GREEN, lw=1.15, head=8)
+    box(ax, 1.18, 5.26, 13.64, 0.56,
+        "Em cada execução: coleta → validação → características temporais (1 s)",
         fc="white", ec=GREEN, size=8.1)
     for x in (2.23, 6.08, 9.93, 13.78):
-        arrow(ax, (x, 6.42), (x, 6.03), color=GREEN, lw=0.7,
+        arrow(ax, (x, 6.00), (x, 5.82), color=GREEN, lw=0.7,
               style=(0, (3, 2)), head=6)
 
     region(ax, 0.30, 0.34, 15.40, 4.27, "", GRAY, GRAY_PALE)
     text(ax, 8.00, 4.35, "III · PROCESSAMENTO E AVALIAÇÃO",
          size=8.4, color=GRAY, weight="bold", ha="center")
     box(ax, 0.60, 2.14, 7.18, 1.72,
-        "RAMO OPERACIONAL\nRegistros → atendimento e recursos\n→ comparação dos efeitos",
-        fc="white", ec=GRAY, size=8.2)
+        "Análise dos efeitos operacionais\nAtendimento HTTP e utilização de recursos\n→ comparação dos efeitos",
+        fc="white", ec=GRAY, size=8.0)
     box(ax, 8.22, 2.14, 7.18, 1.72,
-        "RAMO DOS DETECTORES (OFFLINE)\nCaracterísticas → detectores com ajustes fixos\n→ alarmes e métricas em TEST",
-        fc="white", ec=GRAY, size=8.05)
+        "Avaliação dos detectores estatísticos\nCaracterísticas temporais\n→ detectores calibrados (ajustes fixos)\n→ alarmes e métricas de detecção · offline",
+        fc="white", ec=GRAY, size=7.75)
     arrow(ax, (4.00, 5.02), (4.00, 3.86), color=GRAY, lw=0.95)
     arrow(ax, (12.00, 5.02), (12.00, 3.86), color=GRAY, lw=0.95)
     box(ax, 3.40, 0.77, 9.20, 0.72,
