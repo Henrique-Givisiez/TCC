@@ -1,0 +1,249 @@
+{
+  "hashes": {
+    "experiments/protocols/energy-powersaver-20261109/plan.json": "3a421d56be19a649652475c8c8d99a8bd0c070297da87933e73784fb2fe4471a",
+    "reports/scientific_campaign_visualization_20261112/inventario_execucoes.csv": "c5ee8bae23dc65912b6af415d3693946d2d807426c08bb040fc9facb21ac4fae",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_021_L2/attempt-1/dataset/metadata/effective_config.json": "684af8211d845c3fa7336f091e7c60b8d05eeab7987df14118f0a300c9652a69",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_022_F96/attempt-1/dataset/metadata/effective_config.json": "3d719f0e26a805d2258ed22014651eae7accbb711527f46b3f1cc50fe4c0f4bb",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_023_A3/attempt-1/dataset/metadata/effective_config.json": "e7af937dcef77ea6167b0bcccacd2b19d8c072254e301fce52d293646447b7e0",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_024_A3/attempt-1/dataset/metadata/effective_config.json": "170396cebdf240540aab30adfe1f0a1ff48bc6b9469263a1eeb51b168253e3a0",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_025_F96/attempt-1/dataset/metadata/effective_config.json": "ff28b4d68513abddc095019d0cd24af84b203ea8fe6db39b9668ecdc4306d376",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_026_L2/attempt-1/dataset/metadata/effective_config.json": "dded6f80de69b4efbcf2e82fa0c316810bf13f944c744f36211ab21aba5c9e37",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_027_F96/attempt-1/dataset/metadata/effective_config.json": "c70568c950f7388aac007250ec2707b85c5ac3433b910fc074bbd99619902377",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_028_L2/attempt-1/dataset/metadata/effective_config.json": "0cb3f1adab0346c991a16a52412fb8fc9231178c64270a0f60fbefca2e0cf5f7",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_029_A3/attempt-1/dataset/metadata/effective_config.json": "da95e1f98697cdd205dc26ce480d1ec42981eaf316824b911249237544fac914",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_030_A3/attempt-1/dataset/metadata/effective_config.json": "1e63e70b447ab15f31aada1600c5304be4c10a8cc6f76315eca6aa999fe4415c",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_031_L2/attempt-1/dataset/metadata/effective_config.json": "fabc643cb8261a4355390eeb25f1163906ce1b6f9ecefe831bf7a2417b7f8550",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_032_F96/attempt-1/dataset/metadata/effective_config.json": "a62bafcc7e7764c4788c0ebd0aacb79e16052c891267020db9e3d7267d8b57aa",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_033_A3/attempt-1/dataset/metadata/effective_config.json": "1c18e64a260e5da624950abaee2639dc826ad0afad2bf5b28c132f476c2e3337",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_034_F96/attempt-1/dataset/metadata/effective_config.json": "d1715938de47e55b2ffdee7c90d20bb24d988e9656655fe77141de476742bbaf",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_035_L2/attempt-1/dataset/metadata/effective_config.json": "17f04ad9f73ac2bca4b46cf39e923ea0a923b7b8ab4af7c2f47eadc56158f4ee",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_036_L2/attempt-1/dataset/metadata/effective_config.json": "7c545b4802ebb8d9c37a4f630ab4ecd0dd9cda212a20dc23fc52813b0decbe84",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_037_A3/attempt-1/dataset/metadata/effective_config.json": "aecc880bc0c36d655f3dfef4f20b4153546688bd8819b1f7e8b464e591670445",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_038_F96/attempt-1/dataset/metadata/effective_config.json": "fbfcf55ba15b4546d2d15de91b719fb6ab4a0aa0b168b4dcf99f15b24004b373",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_039_L2/attempt-1/dataset/metadata/effective_config.json": "3336fa31f832655ee0c375a7ed6a289aab1ce7bf6849659a30c471cec621d6a1",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_040_F96/attempt-1/dataset/metadata/effective_config.json": "6f91cbfc8067b0cc9d0da3b510271fd12b900fba79e90e2031c591041de43e35",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_041_A3/attempt-1/dataset/metadata/effective_config.json": "db640f780944ae030126bc6f6403b8fc2efdc937bcfba0aec986503083723412",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_042_F96/attempt-1/dataset/metadata/effective_config.json": "52aa7fc97c95c00e02b3def3e9d38efc362c4613538c2a9355272d6e440fac8d",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_043_A3/attempt-1/dataset/metadata/effective_config.json": "4dbfe3d4a464fb2f9bec8b14f26d35eeba5a002d2d062fece0ff15d8f3ee53ba",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_044_L2/attempt-1/dataset/metadata/effective_config.json": "b0940f1a2fdfca561ee6902b731cf2c22c26daba57a645eec10fa6cdd3c610fe",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_045_A3/attempt-1/dataset/metadata/effective_config.json": "d32f4dca20cc371fe0dd7b5b7a4f65d6bb8e5bd0e27340d2f8f925e7d913e3ad",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_046_F96/attempt-1/dataset/metadata/effective_config.json": "83207b016e427a9fc74bbdf8f5c1eb94d44b85063c2587d68809720953d26167",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_047_L2/attempt-1/dataset/metadata/effective_config.json": "fee8e47d7eeb2a1135b4331febe5bbfd3ae42653acc6db52b6e6d4e2a937cffe",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_048_A3/attempt-1/dataset/metadata/effective_config.json": "55af095ab26705197a5a82773a8af909e678be5dbd974adc0d1ed7156d71b5fd",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_049_L2/attempt-1/dataset/metadata/effective_config.json": "1491b1643c0b4a85b975da2e544ce6168cde1683c94332cb33fd7f19120344d8",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_050_F96/attempt-1/dataset/metadata/effective_config.json": "31dbc8a2b3f51957fa1193383502a5cff4411ca140cc78a81e1dcab3a9b6666f",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_051_L2/attempt-1/dataset/metadata/effective_config.json": "a7f78e226dda6ac38cb81e419ccb2b542d9f3d2c0b5ca40448d84f9ec8e498f7",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_052_F96/attempt-1/dataset/metadata/effective_config.json": "5bbf1bf59a8eb1c1d4a0b54b3369ce5117d5719d3c705fb4fd7947956b47b41e",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_053_A3/attempt-1/dataset/metadata/effective_config.json": "ba946a02fd6791817033e768cfbcbea3272c0e6691af08e6d1968f68f61a7f96",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_054_L2/attempt-1/dataset/metadata/effective_config.json": "865ce9f94719e71eb178180b58a00a33506985b4ffe353e9c9da3b6b108746ee",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_055_A3/attempt-1/dataset/metadata/effective_config.json": "1c282c3255910082199cb9bf19e3114ad2a90344e590000f4ba667ca91144cd9",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_056_F96/attempt-1/dataset/metadata/effective_config.json": "2e0ff1681eb7ef1e584368d43c157fbb94b8ca4d8e437a5409e88dc92a3b20c4",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_057_A3/attempt-1/dataset/metadata/effective_config.json": "1431d10ce9e6d014c6a0119b2de5a47c320d69cef3238a802304f0e6617e16c5",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_058_F96/attempt-1/dataset/metadata/effective_config.json": "eb1beb8f8f03793034c35e35a20c2c00aedd20574bf09eb291d683c2a1baa0ea",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_059_L2/attempt-1/dataset/metadata/effective_config.json": "6a16ba53a47930ec336efbb6422efd7a67bcbf65fad2e0bfb12f8b7dd705f330",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_060_F96/attempt-1/dataset/metadata/effective_config.json": "b10abf75efa7ac20704c789d9d29acc902aa3f2c8a007fd04d5c018db3e437f2",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_061_A3/attempt-1/dataset/metadata/effective_config.json": "840cd87f5a17f0420186f65efcf743cfa9834fe77a9fa8c0a4caa2a90c84a7b1",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_062_L2/attempt-1/dataset/metadata/effective_config.json": "8e94053a1cf0193e36a6fc8f5b01c3ff517cfac4bfef6d2867311ccab288b5b8",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_063_F96/attempt-1/dataset/metadata/effective_config.json": "c463c9a962936531cfc6a1bd48c41570197815c3fc34712be05ec3515db0ffba",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_064_A3/attempt-1/dataset/metadata/effective_config.json": "abb00e1f41fcfbfa20d9470443a37bbb7ed0bccbe7d5301dc21be7a7ea5492e9",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_065_L2/attempt-1/dataset/metadata/effective_config.json": "10e2605368d0a2e593c6d9497e8ee25d37b7f7b89c7c1206b4cbfe8b0a84a665",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_066_L2/attempt-1/dataset/metadata/effective_config.json": "1cb4814e28b1b5af35dfedfcbba1466d7e25f0d423b8be758ed6cd0565931975",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_067_A3/attempt-1/dataset/metadata/effective_config.json": "d9abcb42adcb4d2baab0b95cca2f81668c104933186a4ee61ee5897f2b9b8c5f",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_068_F96/attempt-1/dataset/metadata/effective_config.json": "c6bbb37328a707b09c7c38c35fa3da27142616117a7382a0343f9bc5e673c410",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_069_L2/attempt-1/dataset/metadata/effective_config.json": "f79fee0c6cf8b26a4e478d86477c2abef1222e13710ff8d8b4d7a54ecb143824",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_070_A3/attempt-1/dataset/metadata/effective_config.json": "9f5a8520733d4187f4bee53d801ed8518fbc58685dadaf9b846bb2e25e8fe452",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_071_F96/attempt-1/dataset/metadata/effective_config.json": "bdec0e76053ab5a3aed4dab814ae5b5fa2cce55e20e63523ed5647a62d7d3718",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_072_A3/attempt-1/dataset/metadata/effective_config.json": "9ead347713e077226c4b34d5d210511b3e07a39af504924518af87b2d0d650cf",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_073_L2/attempt-1/dataset/metadata/effective_config.json": "04072b130d89d61a07dcf60f3d4a29c42c2c7c8d38befd2ac58dc3f810105ad8",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_074_F96/attempt-1/dataset/metadata/effective_config.json": "85a24359f31691fe063754b51b32789d54899f4449b29003f60fa2269ecc0125",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_075_F96/attempt-1/dataset/metadata/effective_config.json": "b3f22932ab1fc6a4d4c1522de72e2c5ed3bcfc1dce3ecfc17b17eeb037af8cc2",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_076_L2/attempt-1/dataset/metadata/effective_config.json": "3f114a1a155842e76b8f337a730516a6c6a86a47a122665fcb8b7fe75109eea6",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_077_A3/attempt-1/dataset/metadata/effective_config.json": "ac8ef5ae492b13e81d28d8001c269e714b3b1b391fdc45d9d82bd6a62924e1b7",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_078_F96/attempt-1/dataset/metadata/effective_config.json": "d4febf3886ca624725259ff9f1198c5671983d51d121b088dca7367d993af874",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_079_L2/attempt-1/dataset/metadata/effective_config.json": "79cb811b6bbc242c63b7f67ecf75bcbb78aa7fd43e71d1618933aa2dc4a4f917",
+    "experiment_results/scientific-energy-powersaver-20261109/collection/ps_direct80_080_A3/attempt-1/dataset/metadata/effective_config.json": "62aee8849dcc8488a5520ae09d77e95ed21dc8391398645cb2a00fde91364d14",
+    "reports/scientific_campaign_visualization_20261112/manifest.json": "f175ab3867faddeb2811a51db9576269cddf37d5984b8bef5ec0f04968765cf3",
+    "reports/investigacao-temporal-energy-20261110/manifesto_entradas.json": "e67da413ae93472b9add12dbaf8b0256f90a8da88a19f663466c0b8c6a9acb1f",
+    "reports/investigacao-temporal-energy-20261110/series_1s.csv": "c9c9e5957fa7bef08f69870652ac478ee86a02d859122391abfbe22a30e93718",
+    "reports/scientific_campaign_visualization_20261112/processed/http_phases.csv": "3c74f83fb92e25d742ffbe65a6204415953035216ec0db829ca0240653936aea",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_021_L2.csv": "fd47b80af7c15f9576ca30a7928ba459e216a937620af73aed6e3e488139ea62",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_022_F96.csv": "972e2a65328f2b928eeade7fa01ce7e3123ec03b2349c7cd17633979bfad20c6",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_023_A3.csv": "000a6398db8bb67d9e76b80c22056685672d5deaba203a6de6fba061d2a38a04",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_024_A3.csv": "1830968c75ce395c3ca6dee3499bf2b8ac83b5263a148afdd0462e3d78d3db85",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_025_F96.csv": "ea06277e13afd72b0f932a00ef9d387d1c931f4f824dfb2e107d083a360b1e84",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_026_L2.csv": "2902f089a42be5fd0568dc98170bec6866b528c24f57e757d7f4a982ab4d37f1",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_027_F96.csv": "a5fd2c2e4e821e4dfea2a6ad61a9f27db797cb289bfce207bae68555d4c178e4",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_028_L2.csv": "d79695ee65a84c85be21945c2654447981a383d99cf7a0806d7a4bd1dd9ed0b4",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_029_A3.csv": "8abc27e76fb41f773b78ffcb614698c9f9d7ce8f22adccfcc810882f009bf1f9",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_030_A3.csv": "1f22fa75f7e0004275d1f184e20d0eff80548da5614e311d75f8129fa361842c",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_031_L2.csv": "36ddb5b4965697bb5e7445209956c735f3bb24490869ba10e8225e649ea84a99",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_032_F96.csv": "0bf3eef13b8c55e5ca2055ad2ba5e48eb35fa6a77cef5ebc9de182d9612b2791",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_033_A3.csv": "86a6d53a7b0e949f733e737df40865c55170b4b0ea4b22976b44da6c67f2a943",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_034_F96.csv": "363645e9907d4f222a53cf38b11baf5f4b44f8427877a17436d133f0694988d4",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_035_L2.csv": "2b29d1e7d1edb0bb97161f3075f3ac8958f2401ccc47ef168633646b2777cccf",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_036_L2.csv": "802bcb834ff3ca185342c3eb841962a73186d5a9d1744e9fdad8bdc7fa6a859c",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_037_A3.csv": "0027b5fab38a255fe98d17c4589e99f39aa60c5a90b813c27f92a7183dea435d",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_038_F96.csv": "3a45dbf06225fc4ba2a62cc5704f321a00f0b6b19106ed2de4bfb0db7f0acea3",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_039_L2.csv": "f575b0bf985468fd42b73203378f9da1970a61de59aec8e50ecde4874d3e7f1a",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_040_F96.csv": "7d9cd47ff8102558f83722c8b07dbb9753a285ab236ee2e73959fe515a768de4",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_041_A3.csv": "5373f51e6d98ea768b6a0b8a7bd45c1f6970b645b2b28d798d45c3b5502ba882",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_042_F96.csv": "e80c1b4818c93759eb10c18e1b9d883588d9f585f0a0fad4b1e35b965498f02d",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_043_A3.csv": "c87eaac8be2d70780583199e96770f4e6c8a55d16eceabee224f23156e33f670",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_044_L2.csv": "17a41b39c90b08ae1bacd04f0eb6d99b07192551dd96cba9ee3d44e49df6616c",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_045_A3.csv": "34b16ce026d3bba01eff8f502b6477413f73a15df0f7d5a7a870e546fc4e39a4",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_046_F96.csv": "6afe472e1336d0315a2a84ec3c3f164889d0d42c56094d1fabae185bf453ee47",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_047_L2.csv": "959dfde3d5f0f6fa63eccaf0e1627757d2656c7a9056b79661a518cbdb24bdaa",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_048_A3.csv": "d47ace22e6f51ddbce3e1286ea79f590b877deef5963332727f199fc1b886e32",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_049_L2.csv": "085eb1cf78dd17acf11814670c5d5e9d2078e0b452a84124e74e935d03e2ce71",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_050_F96.csv": "89bfc7c5d4832fc5c1622582ba0fef33ac849c13b308e062bbac1c8f9aaa35a6",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_051_L2.csv": "62427406c9fa6e31bf044cbd6af41a6d72187004dc2ecb0432b8968f202213f2",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_052_F96.csv": "82d4602b0fb587b4c76b3b2dfa36766e5b5210b14e31f91ee355f4b88fed82ca",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_053_A3.csv": "704c2909233bb5da513bbbd300b2f7654de925670235021b368bb6220b313a6b",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_054_L2.csv": "b8032e12d58d89b9ace42a02a98b9cd274fbf3eac2f381df7702c7ccbbc62de1",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_055_A3.csv": "5721f59af5f4e291ed150cd659c87f3903ba4a0d51a3cbd7749ebb5e2a6ff50e",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_056_F96.csv": "30ff9080541c78b60001db6bee01128af9814c8e18df9a1ed8476c1ecbb62358",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_057_A3.csv": "ed5deb9da165d2bfddbaac8152e9b291bfe65dc2243a13600e9836b64a919702",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_058_F96.csv": "60d44136678d438211076a95760273d001ab666ca49939cf1b4bafebd8738c2b",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_059_L2.csv": "4b0ff3be451834021f8b0e52d50cc84623da56fd117d60f28d60384077712167",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_060_F96.csv": "5502a379314efce1b58883bab5b057ee18fc22f82a28833ce671c25b87446581",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_061_A3.csv": "b3fd27dabf4c0ee87da28e084dff7e11d5be62b0d02f76ab1abff6faf324e393",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_062_L2.csv": "d0840fb827e523fbf28ac14443874404742b60c1d6a2ac1825929e7bf36f5d87",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_063_F96.csv": "86e55b290bd06f11e1802254464cc122bd3de5a3166172b57b4b8ecff114b6c0",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_064_A3.csv": "0478b693dd940f7dd0daa6c458e7f14a2a32dcd8eb014b79a8c05e97b3d4e038",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_065_L2.csv": "0e81faff6ba418d1baff1e2834cdad8bcdba74f908e1070d6c9c71b76577d47e",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_066_L2.csv": "4b2069eac3d7d7bf06a1e5ce0aeab121565cc47d8ad6f4d3a10cbcc2a1d289f7",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_067_A3.csv": "128a743859853902b4ffdd1e08deb8739df39224e8b5611fce06aaf38e235986",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_068_F96.csv": "dd764bcd5c61e6e71b80c912e8be5d225ecc67ebd12ff4494d7d4400f5296475",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_069_L2.csv": "d3404d0061837fd89605efa4fd60b6918f520f6452fd336051732b2e7e674e99",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_070_A3.csv": "2fe3e6ad22be9bc7f788e237833efa97bccbb7d0835e219bd62a7db7f64cfa1e",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_071_F96.csv": "72c833445d6568d81208c713fa0828b2399699c522336db39950bbd335a99ac3",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_072_A3.csv": "e8e3f039c7fa844fd4a4c8ad70ac2e884fccc29e745862821609496570e02ab3",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_073_L2.csv": "e3f25ce73029edce7653ffede6907d6dcb59ba7581a25b1cbec6c57a205d3e4b",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_074_F96.csv": "4788401cbe1e72028c454f764247cb27e87529626abc776fcf982b7a5da8c635",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_075_F96.csv": "332c87458c29cd1d6e5c4f6898c8123be9b250696339966f2222946559bdecbd",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_076_L2.csv": "15cf363833980a65c3a3c352f66e6c0cdf7a1e1df64a4cbd02b039cece929097",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_077_A3.csv": "0b0e8c55cc886ec142b86e2e15b8645911159bd3980b47cc6c5bd164ef850ffd",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_078_F96.csv": "59a8744c8e14b2c5ce27a5165fd8ad662aa35e63f872b55674c710e327bc2bac",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_079_L2.csv": "7a48b2d8f714ac168e0b7b9a1d76a216c4472ce84c551327d5f6e50ffd4b0602",
+    "reports/scientific_campaign_visualization_20261112/processed/http_ps_direct80_080_A3.csv": "bbd791213927f798e407da08edfcfc37e344782b17be439d9ab502f44f36f94a",
+    "reports/scientific_campaign_visualization_20261112/processed/official_availability.csv": "257fc226719e32eeaafd54f71c054a3b76a016ff4e8bd654951ef528c67c6c8a"
+  },
+  "checks": {
+    "campaign": "energy-powersaver-20261109",
+    "partition": "TEST",
+    "runs": 60,
+    "complete_blocks": 20,
+    "runs_per_scenario": 20,
+    "client_timeout_seconds": 2.0,
+    "duration_bins_crosschecked_with_http_csv": 17137,
+    "max_individual_benign_2xx_ms_30_390": 2044.390465998731,
+    "individual_benign_2xx_above_2000_ms_30_390": 322,
+    "official_denominator_diff_runs": 22,
+    "official_denominator_diff_by_scenario": {
+      "L2": 0,
+      "A3": 2,
+      "F96": 20
+    },
+    "active_outcomes": {
+      "L2": {
+        "started": 37914,
+        "http_2xx_cohort": 37914,
+        "timeout_cohort": 0,
+        "other_cohort": 0
+      },
+      "A3": {
+        "started": 37929,
+        "http_2xx_cohort": 3511,
+        "timeout_cohort": 34418,
+        "other_cohort": 0
+      },
+      "F96": {
+        "started": 37933,
+        "http_2xx_cohort": 13304,
+        "timeout_cohort": 24629,
+        "other_cohort": 0
+      }
+    },
+    "max_temporal_median_ms": 1998.5003430047072,
+    "max_temporal_q3_ms": 1998.8719481041244,
+    "max_per_run_second_mean_ms": 2034.1685249986767,
+    "duration_coverage": {
+      "A3": {
+        "PRE": {
+          "valid_execution_seconds": 2400,
+          "possible_execution_seconds": 2400,
+          "seconds_without_valid_execution": 0
+        },
+        "ACTIVE": {
+          "valid_execution_seconds": 242,
+          "possible_execution_seconds": 2400,
+          "seconds_without_valid_execution": 93
+        },
+        "POST": {
+          "valid_execution_seconds": 1704,
+          "possible_execution_seconds": 2400,
+          "seconds_without_valid_execution": 21
+        }
+      },
+      "F96": {
+        "PRE": {
+          "valid_execution_seconds": 2400,
+          "possible_execution_seconds": 2400,
+          "seconds_without_valid_execution": 0
+        },
+        "ACTIVE": {
+          "valid_execution_seconds": 909,
+          "possible_execution_seconds": 2400,
+          "seconds_without_valid_execution": 48
+        },
+        "POST": {
+          "valid_execution_seconds": 2282,
+          "possible_execution_seconds": 2400,
+          "seconds_without_valid_execution": 3
+        }
+      },
+      "L2": {
+        "PRE": {
+          "valid_execution_seconds": 2400,
+          "possible_execution_seconds": 2400,
+          "seconds_without_valid_execution": 0
+        },
+        "ACTIVE": {
+          "valid_execution_seconds": 2400,
+          "possible_execution_seconds": 2400,
+          "seconds_without_valid_execution": 0
+        },
+        "POST": {
+          "valid_execution_seconds": 2400,
+          "possible_execution_seconds": 2400,
+          "seconds_without_valid_execution": 0
+        }
+      }
+    },
+    "active_medians_pct": {
+      "A3": {
+        "http_2xx": 7.722219034546072,
+        "timeout": 92.27778096545393
+      },
+      "F96": {
+        "http_2xx": 35.09118261083139,
+        "timeout": 64.9088173891686
+      },
+      "L2": {
+        "http_2xx": 100.0,
+        "timeout": 0.0
+      }
+    },
+    "timeout_5s": {
+      "windows_per_run": 72,
+      "min_starts_per_run_window": 52,
+      "max_starts_per_run_window": 107,
+      "windows_without_starts": 0,
+      "valid_executions_per_scenario_window_min": 20
+    },
+    "original_f52a_preserved_sha256": {
+      "pdf": "0443187870d0f070c757bb4f1225c33b95c816a14f8dfb3ebc1d1cb201d080bc",
+      "png": "76761557f7a1a95334e631d6b8e06e9e820ad04b7e31d42a8b514f4dd62a67e7"
+    }
+  }
+}
