@@ -1,4 +1,4 @@
-# Capítulo 5 — lote 4: detectores e contrastes de recall
+# Capítulo 5 — lote 4: desempenho dos detectores e recall
 
 Este lote **organiza resultados científicos oficiais** da campanha
 `energy-powersaver-20261109`. Os detectores, limiares e intervalos de confiança
@@ -9,9 +9,11 @@ não foram recalculados. A avaliação usa exclusivamente 60 execuções TEST:
 |---|---|
 | T5.3-A, tabela principal | `tables/t53a_desempenho_detectores.tex` e `.csv` |
 | Métricas complementares oficiais | `tables/metricas_complementares.csv` |
-| F5.3-B, contrastes de recall | `figures/f53b_contrastes_recall.pdf` e `.png` |
+| F5.3-B, mapas de recall (versão principal) | `figures/f53b_recall_heatmap.pdf` e `.png` |
+| Contrastes de recall (versão anterior, material complementar) | `figures/f53b_contrastes_recall.pdf` e `.png` |
 | Observações por execução e bloco | `processed/metricas_por_execucao.csv` |
 | Contrastes e IC oficiais | `processed/contrastes_pareados.csv` |
+| Recalls e contrastes consolidados | `processed/recalls_e_contrastes.csv` |
 | Proveniência | `processed/manifest.json` |
 
 O LaTeX requer `\usepackage{booktabs}`. A tabela principal contém as 16
@@ -79,14 +81,36 @@ As definições vêm de `analysis/detection/scientific/direct_metrics.py:metrics
 
 ## Contraste e incerteza
 
-A F5.3-B mostra `recall(A3) − recall(F96)` em **pontos percentuais**. Cada
+A **versão anterior** da F5.3-B mostra `recall(A3) − recall(F96)` em **pontos percentuais**. Cada
 diferença é formada dentro de um bloco; a média e o IC oficiais preservam
 o par. O protocolo usa IC de 95% e 10.000 reamostragens da unidade bloco.
 Treze contrastes usam `BCa_block_mean`. Três contrastes degenerados, com
 diferença observada zero em duração HTTP, usam o fallback limitado
-`Hoeffding_degenerate`; são marcados por losango vazado. Um IC que cruza zero
+`Hoeffding_degenerate`; na versão anterior da figura são marcados por losango
+vazado. Um IC que cruza zero
 não demonstra equivalência. Esses IC são pontuais para cada combinação, sem
 inferência de superioridade global nem correção de multiplicidade.
+
+## Revisão editorial da F5.3-B
+
+A versão principal usa **dois mapas de calor**: ataque computacional
+assimétrico e inundação HTTP. Linhas são Z-Score, CoV, EWMA e CUSUM-freeze;
+colunas são requisições HTTP, pacotes TCP, payload TCP e duração HTTP. Ambos
+os painéis usam a mesma escala fixa `0–100%` e a mesma paleta sequencial
+`cividis`. Cada célula mostra `results/<característica>/<cenário>/<detector>:
+means:recall:estimate × 100`, arredondado a uma casa decimal com vírgula.
+São médias oficiais dos recalls calculados primeiro por execução, não uma
+proporção reunindo todas as janelas. O rodapé identifica 20 execuções por
+cenário e ACTIVE `[150,270)`.
+
+`scripts/heatmap.py` confronta programaticamente os **32 valores sem
+arredondamento** com `tables/t53a_desempenho_detectores.csv` e com o resumo
+oficial antes de exportar. A T5.3-A não foi modificada. O script também
+organiza em `processed/recalls_e_contrastes.csv` os dois recalls e os
+contrastes oficiais com seus IC, método e 20 blocos; os arquivos originais
+de contrastes e a figura anterior permanecem intactos. A nova figura é
+descritiva, sem IC. Diferenças visuais entre células não equivalem a uma
+conclusão inferencial; para esta, consultar os contrastes pareados.
 
 ## Leitura científica e limites
 
@@ -112,11 +136,16 @@ Na raiz do repositório:
 
 ```bash
 .venv/bin/python -B reports/capitulo5_figuras/lote4_detectores/scripts/generate.py
+.venv/bin/python -B reports/capitulo5_figuras/lote4_detectores/scripts/heatmap.py
 ```
 
-O script confere inventário, partições, hashes dos 240 manifests de
+O primeiro script confere inventário, partições, hashes dos 240 manifests de
 avaliação, calibração CAL_A, verificação CAL_B, blocos, denominadores,
 contagens de detecção e estimativas pontuais oficiais. Não lê os dados brutos,
 não executa os detectores e não altera artefatos da campanha. A figura foi
 inspecionada visualmente. O LaTeX foi conferido textualmente; não há
 compilador LaTeX disponível neste ambiente.
+
+**Para esta revisão, execute somente `heatmap.py`**: `generate.py` também
+regenera a tabela e a figura anterior do lote. A inspeção visual da nova
+F5.3-B confirmou a leitura dos 32 valores e a barra única de cores.
