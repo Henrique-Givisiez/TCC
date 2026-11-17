@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import sys
 from collections import Counter, defaultdict
 from pathlib import Path
 
@@ -272,28 +273,82 @@ def plot_resources(summary: pd.DataFrame) -> None:
 
 
 def plot_queues(summary: pd.DataFrame) -> None:
-    fig, axes = plt.subplots(2, 1, figsize=(9.5, 5.65), sharex=True,
-                             gridspec_kw={"height_ratios": [1, 1], "hspace": .12})
-    for ax in axes:
-        background(ax)
+    fig, ax = plt.subplots(figsize=(9.5, 3.65))
+    background(ax)
     for scenario in SC:
         z = summary[summary.scenario == scenario].sort_values("second")
         x = z.second.to_numpy()
-        axes[0].plot(x, z.generator_legitimate_waiting_mean_median, color=COLORS[scenario],
-                     ls=STYLES[scenario], lw=1.7, label=NAMES[scenario])
-        axes[1].plot(x, z.victim_waiting_mean_median, color=COLORS[scenario],
-                     ls=STYLES[scenario], lw=1.7)
-    axes[0].set_ylabel("Tarefas legítimas\naguardando despacho")
-    axes[0].set_ylim(bottom=0, top=max(.012, 1.15 * float(summary.generator_legitimate_waiting_mean_median.max())))
-    axes[1].set_ylabel("Operações aguardando\nexecução na vítima")
-    axes[1].set_xlabel("Tempo experimental (s)")
-    axes[0].legend(loc="upper left", frameon=False, fontsize=8.8)
-    axes[0].text(210, .90, "Emissão ofensiva", transform=axes[0].get_xaxis_transform(),
-                 ha="center", va="top", fontsize=8.5, color="#626A70")
-    fig.suptitle("Evolução das filas de espera durante os experimentos", fontsize=13, fontweight="bold", y=.995)
+        ax.plot(x, z.victim_waiting_mean_median, color=COLORS[scenario],
+                ls=STYLES[scenario], lw=1.7, label=NAMES[scenario])
+    ax.set_ylabel("Operações aguardando execução")
+    ax.set_xlabel("Tempo experimental (s)")
+    ax.legend(loc="upper left", frameon=False, fontsize=8.8)
+    ax.text(210, .90, "Emissão ofensiva", transform=ax.get_xaxis_transform(),
+            ha="center", va="top", fontsize=8.5, color="#626A70")
+    fig.suptitle("Evolução da fila de processamento da aplicação HTTP", fontsize=13, fontweight="bold", y=.995)
     fig.text(.5, .015, "20 execuções por cenário · Mediana entre execuções das médias temporais por segundo", ha="center", fontsize=8.5, color=TEXT)
-    fig.subplots_adjust(left=.15, right=.99, top=.90, bottom=.14)
+    fig.subplots_adjust(left=.12, right=.99, top=.85, bottom=.20)
     save(fig, "f52e_filas_espera")
+
+
+def operation_wait(inventory: pd.DataFrame, hashes: dict[str, str]) -> tuple[pd.DataFrame, dict]:
+    """ACTIVE submit cohort, followed through work_started (including POST)."""
+    integrity = pd.read_json(read(TEMP / "integridade_execucoes.json", hashes))
+    assert set(integrity.id) == set(inventory.entry_id) and len(integrity) == 60
+    official = pd.read_csv(read(TEMP / "metricas_periodo_execucao.csv", hashes))
+    official = official[official.phase == "ACTIVE"].set_index("id")
+    rows = []
+    for r in inventory.itertuples():
+        ops = pd.read_csv(read(TEMP / f"operacoes_{r.entry_id}.csv", hashes))
+        known = integrity[integrity.id == r.entry_id].iloc[0]
+        assert len(ops) == int(known.operations) and ops.operation_id.is_unique
+        assert set(ops.cls) <= {"benign", "attack"}
+        assert ops[["s", "t", "u", "wait_ms"]].notna().all().all()
+        assert ((ops.s <= ops.t) & (ops.t <= ops.u)).all()
+        assert np.allclose(ops.wait_ms, 1000 * (ops.t - ops.s), atol=1e-6, rtol=0)
+        cohort = ops[(ops.s >= 150) & (ops.s < 270)]
+        assert len(cohort) > 0
+        assert ((cohort.t >= cohort.s) & (cohort.t < 390)).all()
+        for cls in ("benign", "attack"):
+            z = cohort[cohort.cls == cls]
+            expected = official.loc[r.entry_id, f"{cls}_wait_ms"]
+            if len(z):
+                assert np.isclose(z.wait_ms.mean(), expected, atol=1e-6, rtol=0)
+            else:
+                assert pd.isna(expected)
+        rows.append(dict(entry_id=r.entry_id, scenario=r.scenario, block=int(r.block),
+                         active_submitted_operations=len(cohort),
+                         started_during_active=int((cohort.t < 270).sum()),
+                         started_during_post=int((cohort.t >= 270).sum()),
+                         no_start_observed=0,
+                         wait_mean_ms=float(cohort.wait_ms.mean()),
+                         wait_median_ms=float(cohort.wait_ms.median()),
+                         wait_p95_ms=float(cohort.wait_ms.quantile(.95))))
+    result = pd.DataFrame(rows)
+    assert len(result) == 60 and result.groupby("scenario").size().to_dict() == {s: 20 for s in SC}
+    assert (result.started_during_active + result.started_during_post + result.no_start_observed == result.active_submitted_operations).all()
+    checks = {"active_submitted_operations": {s: int(result[result.scenario == s].active_submitted_operations.sum()) for s in SC},
+              "started_in_post": {s: int(result[result.scenario == s].started_during_post.sum()) for s in SC},
+              "operations_without_start": 0, "wait_runs_per_scenario": 20}
+    return result, checks
+
+
+def add_wait(table_runs: pd.DataFrame, table: pd.DataFrame, wait: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
+    assert "wait_mean_ms" not in table_runs and "wait_mean_ms" not in set(table.campo)
+    assert set(table_runs.entry_id) == set(wait.entry_id)
+    table_runs = table_runs.merge(wait[["entry_id", "active_submitted_operations", "started_during_active",
+                                         "started_during_post", "no_start_observed", "wait_mean_ms",
+                                         "wait_median_ms", "wait_p95_ms"]], on="entry_id", validate="one_to_one")
+    row = dict(indicador="Tempo médio de espera na vítima", unidade="ms", campo="wait_mean_ms",
+               tipo="observado", fase="ACTIVE [150,270)")
+    for scenario in SC:
+        z = table_runs[table_runs.scenario == scenario].wait_mean_ms
+        row[f"{scenario}_valid_executions"] = len(z)
+        row[f"{scenario}_mean"] = float(z.mean())
+        row[f"{scenario}_sample_sd"] = float(z.std(ddof=1))
+    position = table.index[table.campo == "victim_waiting_active_mean"][0] + 1
+    table = pd.concat([table.iloc[:position], pd.DataFrame([row]), table.iloc[position:]], ignore_index=True)
+    return table_runs, table
 
 
 def table_data(inventory: pd.DataFrame, resource_native: pd.DataFrame,
@@ -374,7 +429,7 @@ def latex_table(table: pd.DataFrame) -> str:
             return "\\textemdash{}"
         if row.tipo == "configurado":
             return f"{mean:.0f}"
-        decimals = 2 if row.unidade in ("operações", "MiB", "RPS") else 1
+        decimals = (3 if abs(mean) < 1 else 2) if row.campo == "victim_waiting_active_mean" else (2 if row.unidade in ("operações", "MiB", "RPS") else 1)
         m = f"{mean:.{decimals}f}".replace(".", ",")
         sd = f"{row[f'{scenario}_sample_sd']:.{decimals}f}".replace(".", ",")
         return f"{m}~$\\pm$~{sd}"
@@ -397,7 +452,7 @@ def latex_table(table: pd.DataFrame) -> str:
         "\\bottomrule",
         "\\end{tabular}",
         "\\par\\vspace{2pt}",
-        "\\parbox{\\linewidth}{\\footnotesize ACTIVE [150,270) s; 20 execuções por cenário. Valores observados: média $\\pm$ desvio-padrão amostral entre execuções. A taxa nominal é parâmetro configurado; \\textemdash{} indica indicador não aplicável. Sucesso 2xx eventual e timeout usam tentativas legítimas iniciadas em ACTIVE. CPU: snapshots nativos da vítima; pendentes: operações na vítima, não HTTP pendente no cliente.}",
+        "\\parbox{\\linewidth}{\\footnotesize ACTIVE [150,270) s; 20 execuções por cenário. Valores observados: média $\\pm$ desvio-padrão amostral entre execuções. A taxa nominal é parâmetro configurado; \\textemdash{} indica indicador não aplicável. Sucesso 2xx eventual e timeout usam tentativas legítimas iniciadas em ACTIVE. CPU: snapshots nativos da vítima; pendentes: operações na vítima, não HTTP pendente no cliente. Tempo de espera: operações submetidas em ACTIVE, incluindo as que iniciaram em POST.}",
         "\\end{table}",
         "",
     ]
@@ -415,6 +470,8 @@ def main() -> None:
     assert len(queue_runs) == 60 * 360
     queue_trends = queue_summary(queue_runs)
     table_runs, table, table_checks = table_data(inventory, resource_extra["native_active"], queue_runs, hashes)
+    wait, wait_checks = operation_wait(inventory, hashes)
+    table_runs, table = add_wait(table_runs, table, wait)
     proc = OUT / "processed"
     proc.mkdir(parents=True, exist_ok=True)
     resource_runs.to_csv(proc / "f52d_recursos_por_execucao_5s.csv", index=False)
@@ -423,6 +480,7 @@ def main() -> None:
     queue_runs.to_csv(proc / "f52e_filas_por_execucao_1s.csv", index=False)
     queue_trends.to_csv(proc / "f52e_filas_resumo_1s.csv", index=False)
     table_runs.to_csv(proc / "t52a_indicadores_por_execucao.csv", index=False)
+    wait.to_csv(proc / "t52a_espera_operacoes_por_execucao.csv", index=False)
     plot_resources(resource_summary)
     plot_queues(queue_trends)
     tables = OUT / "tables"
@@ -430,12 +488,55 @@ def main() -> None:
     table.to_csv(tables / "t52a_indicadores_operacionais.csv", index=False)
     (tables / "t52a_indicadores_operacionais.tex").write_text(latex_table(table), encoding="utf-8")
     checks = {"campaign": "energy-powersaver-20261109", "partition": "TEST", "runs": 60,
-              "complete_blocks": 20, **resource_extra["checks"], **source_checks, **table_checks,
+              "complete_blocks": 20, **resource_extra["checks"], **source_checks, **table_checks, **wait_checks,
               "source_queue_coverage": int(queue_trends.valid_executions.min()),
               "victim_queue_coverage": int(queue_trends.valid_executions.min())}
     (proc / "manifest.json").write_text(json.dumps({"checks": checks, "input_sha256": hashes}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(checks, ensure_ascii=False, indent=2))
 
 
+def revise() -> None:
+    """Update only F5.2-E and T5.2-A; keep approved F5.2-D bytes untouched."""
+    setup_style()
+    proc = OUT / "processed"
+    previous = json.loads((proc / "manifest.json").read_text())
+    hashes = previous["input_sha256"].copy()
+    inventory = inventory_and_plan(hashes)
+    summary = pd.read_csv(proc / "f52e_filas_resumo_1s.csv")
+    queue_runs = pd.read_csv(proc / "f52e_filas_por_execucao_1s.csv")
+    table_runs = pd.read_csv(proc / "t52a_indicadores_por_execucao.csv")
+    table = pd.read_csv(OUT / "tables/t52a_indicadores_operacionais.csv")
+    assert len(summary) == 3 * 360 and summary.valid_executions.eq(20).all()
+    assert len(queue_runs) == 60 * 360 and len(table_runs) == 60
+    old_fields = {"success_pct", "timeout_pct", "cpu_mean", "mem_mean_mib",
+                  "victim_waiting_active_mean", "victim_pending_end_270",
+                  "attack_started_rps", "attack_nominal_rps"}
+    assert set(table.campo) in (old_fields, old_fields | {"wait_mean_ms"})
+    # A revisão também pode ser executada novamente sem duplicar a linha.
+    table = table[table.campo != "wait_mean_ms"].copy()
+    table_runs = table_runs.drop(columns=["active_submitted_operations", "started_during_active",
+                                          "started_during_post", "no_start_observed", "wait_mean_ms",
+                                          "wait_median_ms", "wait_p95_ms"], errors="ignore")
+    expected = queue_runs.groupby(["scenario", "second"]).victim_waiting_mean.median().reset_index()
+    check = summary.merge(expected, on=["scenario", "second"], validate="one_to_one")
+    assert np.allclose(check.victim_waiting_mean_median, check.victim_waiting_mean, atol=1e-10, rtol=0)
+    wait, wait_checks = operation_wait(inventory, hashes)
+    table_runs, table = add_wait(table_runs, table, wait)
+    plot_queues(summary)
+    wait.to_csv(proc / "t52a_espera_operacoes_por_execucao.csv", index=False)
+    table_runs.to_csv(proc / "t52a_indicadores_por_execucao.csv", index=False)
+    table.to_csv(OUT / "tables/t52a_indicadores_operacionais.csv", index=False)
+    (OUT / "tables/t52a_indicadores_operacionais.tex").write_text(latex_table(table), encoding="utf-8")
+    previous["checks"].update(wait_checks)
+    previous["input_sha256"] = hashes
+    (proc / "manifest.json").write_text(json.dumps(previous, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print(json.dumps(wait_checks, ensure_ascii=False, indent=2))
+
+
 if __name__ == "__main__":
-    main()
+    if sys.argv[1:] == ["--revise"]:
+        revise()
+    elif not sys.argv[1:]:
+        main()
+    else:
+        raise SystemExit("Uso: generate.py [--revise]")

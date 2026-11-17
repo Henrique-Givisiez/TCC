@@ -7,7 +7,7 @@ cenário por bloco. Nenhum artefato oficial ou dado bruto foi modificado.
 | Entrega | PDF ou LaTeX | PNG ou CSV |
 |---|---|---|
 | F5.2-D — CPU e memória | `figures/f52d_cpu_memoria.pdf` | `figures/f52d_cpu_memoria.png` |
-| F5.2-E — filas de espera | `figures/f52e_filas_espera.pdf` | `figures/f52e_filas_espera.png` |
+| F5.2-E — fila de processamento da vítima | `figures/f52e_filas_espera.pdf` | `figures/f52e_filas_espera.png` |
 | T5.2-A — síntese operacional | `tables/t52a_indicadores_operacionais.tex` | `tables/t52a_indicadores_operacionais.csv` |
 
 Os arquivos em `processed/` preservam valores por execução e as estatísticas
@@ -61,7 +61,7 @@ oficiais são 51,19%, 205,70% e 228,20% para L2, A3 e F96, enquanto a
 tabela deste lote mostra 51,2%, 212,0% e 235,7% pelos snapshots nativos.
 As séries não foram ajustadas para coincidir.
 
-### F5.2-E — espera nos geradores e na vítima
+### F5.2-E — fila de processamento da vítima
 
 - **Geradores legítimos:** para cada uma das duas fontes legítimas por
   execução, o script lê
@@ -76,7 +76,8 @@ As séries não foram ajustadas para coincidir.
   Foram emparelhadas 371.459 tarefas legítimas nas 60 execuções. Os CSVs
   `processed/f52e_geradores_legitimos_por_fonte_1s.csv` e
   `processed/f52e_filas_por_execucao_1s.csv` preservam a série por fonte e
-  por execução.
+  por execução. **Na revisão, o painel dos geradores foi retirado da figura**, sem
+  eliminar esses dados; a espera próxima de zero pode ser descrita no texto.
 - **Vítima:** `reports/investigacao-temporal-energy-20261110/series_1s.csv`,
   campos `waiting`, `running`, `pending`, `pending_end`. O cálculo em
   `analisar.py:intervals` integra os intervalos de operações
@@ -90,9 +91,9 @@ As séries não foram ajustadas para coincidir.
 
 As séries cobrem 60 × 360 segundos em `[30,390)` e a mediana em cada segundo
 tem 20 execuções por cenário. Zero significa fila reconstruída vazia, não
-ausência de observação. O painel dos geradores começa em zero: as medianas
-ficaram abaixo de 0,01 tarefa legítima aguardando despacho, enquanto a
-espera computacional da vítima chegou a centenas de operações. A associação
+ausência de observação. As medianas da fila dos geradores ficaram abaixo de
+0,01 tarefa legítima aguardando despacho, enquanto a espera computacional da
+vítima chegou a centenas de operações. A associação
 temporal entre filas, CPU e atendimento legítimo não demonstra causalidade
 isolada.
 
@@ -101,9 +102,11 @@ isolada.
 `tables/t52a_indicadores_operacionais.csv` contém média, desvio-padrão
 amostral e número de execuções válidas por cenário. O arquivo
 `processed/t52a_indicadores_por_execucao.csv` conserva os valores de cada
-execução, incluindo medidas complementares de duração 2xx e ocupação dos
-workers. A tabela principal seleciona oito indicadores para manter a largura
-adequada ao Overleaf.
+execução, incluindo medidas complementares de duração 2xx, ocupação dos
+workers e espera por operação. A tabela principal contém os oito indicadores
+anteriores e o tempo médio de espera na vítima. A linha de operações
+aguardando usa três casas decimais para mostrar o desvio-padrão de L2, sem
+alterar os valores calculados.
 
 - Sucesso 2xx e timeout: `processed/http_phases.csv`, classe `benign`, fase
   ACTIVE; `http_2xx_cohort / started` e `timeout_cohort / started`, em
@@ -118,6 +121,32 @@ adequada ao Overleaf.
   `metricas_periodo_execucao.csv`. Esses pendentes são **operações da
   vítima**; `operational.phases.ACTIVE.pending_at_end` do recibo oficial
   refere-se a HTTP legítimo pendente no cliente e não é equivalente.
+- **Tempo de espera por operação:**
+  `reports/investigacao-temporal-energy-20261110/operacoes_<id>.csv`, campos
+  `operation_id`, `cls`, `s` (submissão), `t` (início) e `wait_ms`.
+  `analisar.py` emparelha `work_submitted` e `work_started` pelo
+  `operation_id` e calcula `(t-s) × 1000`. Sua auditoria exige logs completos,
+  transições ordenadas e operações identificadas; o total por execução foi
+  reconferido com `integridade_execucoes.json`. O conjunto inclui operações
+  legítimas e ofensivas **submetidas em `[150,270)`**, mesmo quando iniciaram
+  em POST. Todas as operações dessa coorte têm início observado antes de
+  390 s; não houve censura nem imputação. A média, mediana e P95 são
+  calculados primeiro por execução em
+  `processed/t52a_espera_operacoes_por_execucao.csv`. A tabela resume apenas
+  a média por execução com média e desvio-padrão amostral entre as 20
+  execuções. A média temporal de `waiting` mede estoque da fila; `wait_ms`
+  mede a espera das operações e não a duração HTTP.
+
+  | Cenário | Submetidas em ACTIVE | Iniciaram em ACTIVE | Iniciaram em POST | Sem início observado |
+  |---|---:|---:|---:|---:|
+  | Tráfego legítimo | 37.913 | 37.912 | 1 | 0 |
+  | Ataque computacional assimétrico | 57.132 | 46.184 | 10.948 | 0 |
+  | Inundação HTTP | 158.861 | 150.752 | 8.109 | 0 |
+
+  As médias entre execuções do tempo médio por operação são, na mesma ordem,
+  **2,3 ± 0,1 ms**, **13.713,7 ± 1.971,3 ms** e **3.124,3 ± 791,0 ms**.
+  A mediana e o P95 por execução permanecem no CSV complementar. Não houve
+  esperas negativas ou início após o horizonte de 390 s nessa coorte.
 - Emissão ofensiva efetiva: `attack_http_start / 120` por execução, de
   `metricas_periodo_execucao.csv`; são **inícios HTTP**, não admissões nem
   conclusões. Emissão nominal: parâmetro fixo de 8 ou 64 RPS do inventário,
@@ -140,6 +169,11 @@ Na raiz do repositório:
 ```bash
 .venv/bin/python -B reports/capitulo5_figuras/lote3_operacional/scripts/generate.py
 ```
+
+Para repetir **apenas a revisão** da F5.2-E e T5.2-A, preservando os bytes da
+F5.2-D aprovada, acrescente `--revise` ao comando. Essa opção reutiliza as
+séries por execução e os indicadores operacionais já processados; lê somente
+os arquivos derivados de operações para o novo indicador.
 
 O script confere partição, blocos e identidades; presença de cada janela;
 completude dos arquivos de eventos de fonte; emparelhamento de tarefas;
