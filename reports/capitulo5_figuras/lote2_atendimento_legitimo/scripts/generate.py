@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import sys
 from pathlib import Path
 
 import matplotlib
@@ -263,18 +264,11 @@ def figure_duration_timeouts(duration: pd.DataFrame, timeouts: pd.DataFrame) -> 
     for s in SCENARIOS:
         z = duration[duration.scenario == s].sort_values("second")
         x = z.second.to_numpy()
-        # All three summaries use the same nonmissing per-run second means.
-        ax.fill_between(x, z.q1_ms.to_numpy(dtype=float), z.q3_ms.to_numpy(dtype=float),
-                        color=COLORS[s], alpha=.085, linewidth=0, zorder=2)
         ax.plot(x, z.median_ms.to_numpy(dtype=float), color=COLORS[s], ls=STYLES[s],
                 lw=1.9, label=NAMES[s], zorder=4)
         t = timeouts[timeouts.scenario == s].sort_values("window_start_s")
         tx = np.append(t.window_start_s.to_numpy(), 390)
-        q1 = np.append(t.q1_pct.to_numpy(dtype=float), float(t.q1_pct.iloc[-1]))
-        q3 = np.append(t.q3_pct.to_numpy(dtype=float), float(t.q3_pct.iloc[-1]))
         median = np.append(t.median_pct.to_numpy(dtype=float), float(t.median_pct.iloc[-1]))
-        lower.fill_between(tx, q1, q3,
-                           step="post", color=COLORS[s], alpha=.085, linewidth=0, zorder=2)
         lower.step(tx, median, where="post", color=COLORS[s],
                    ls=STYLES[s], lw=1.8, zorder=4)
     ax.axhline(2000, color="#767D83", lw=1.0, ls=(0, (3, 3)), zorder=3)
@@ -295,7 +289,7 @@ def figure_duration_timeouts(duration: pd.DataFrame, timeouts: pd.DataFrame) -> 
     lower.set_xlabel("Tempo experimental (s)")
     fig.suptitle("Evolução do atendimento HTTP legítimo durante os experimentos", fontsize=13,
                  fontweight="bold", y=.995)
-    fig.text(.5, .015, "20 execuções por cenário · linhas: medianas · bandas: intervalos interquartis", ha="center", fontsize=8.5, color=TEXT)
+    fig.text(.5, .015, "20 execuções por cenário · Linhas: medianas entre execuções", ha="center", fontsize=8.5, color=TEXT)
     fig.subplots_adjust(left=.13, right=.99, top=.89, bottom=.14)
     save(fig, "f52a_duracao_http_timeouts_alternativa")
 
@@ -348,6 +342,14 @@ def figure_outcomes(out: pd.DataFrame) -> None:
 
 def main() -> None:
     style()
+    if sys.argv[1:] == ["--f52a-only"]:
+        processed = OUT / "processed"
+        duration = pd.read_csv(processed / "f52a_duracao_por_segundo.csv")
+        timeouts = pd.read_csv(processed / "f52a_timeouts_5s_resumo.csv")
+        assert len(duration) == 3 * 360 and len(timeouts) == 3 * 72
+        figure_duration_timeouts(duration, timeouts)
+        return
+    assert len(sys.argv) == 1, "Use --f52a-only para regenerar apenas F5.2-A"
     series, active, meta = validate_and_load()
     duration = derive_duration(series, meta)
     outcomes = derive_outcomes(active, meta)

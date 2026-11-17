@@ -76,8 +76,8 @@ de **816,7 ms**, Q1 de **82,1 ms** e Q3 de **1.273,4 ms**. Em 302 s, 8 execuçõ
 produziram mediana de 82,5 ms e Q3 de 1.670,4 ms. A mistura de respostas
 rápidas e demoradas produz uma banda alta com mediana próxima da base;
 a linha tracejada, interrompida nos segundos sem 2xx, pode parecer ausente
-em escala reduzida. A alternativa reduz a opacidade da banda e aumenta a
-espessura da mediana, sempre desenhada acima das bandas.
+em escala reduzida. A versão final da alternativa apresenta somente as
+medianas; Q1 e Q3 permanecem no CSV derivado, sem bandas no gráfico.
 
 Na **alternativa**, o painel inferior mostra timeouts legítimos em janelas
 sem sobreposição de 5 s, alinhadas a 30, 150 e 270 s. Para cada execução,
@@ -85,7 +85,8 @@ sem sobreposição de 5 s, alinhadas a 30, 150 e 270 s. Para cada execução,
 início HTTP** de `series_1s.csv` dentro da janela; o desfecho pode ocorrer
 depois. São 52 a 107 tentativas por execução e janela, sem denominadores
 zero; as 72 janelas de cada execução permanecem dentro de uma única fase.
-A mediana e Q1–Q3 são calculados entre as 20 proporções de execução; nenhuma
+A mediana e Q1–Q3 são calculados entre as 20 proporções de execução, mas
+somente as medianas são desenhadas; nenhuma
 requisição individual é tratada como repetição experimental. As somas das
 24 janelas ACTIVE foram verificadas contra `http_phases.csv` em cada execução.
 O painel superior continua em janelas de 1 s. A cobertura original está
@@ -125,13 +126,16 @@ denominadores permaneceram inalterados. O rodapé foi reduzido.
 
 ## Reprodução e verificações
 
-Na raiz do repositório:
+Para reproduzir **somente a simplificação visual da F5.2-A**, na raiz do
+repositório:
 
 ```bash
-.venv/bin/python -B reports/capitulo5_figuras/lote2_atendimento_legitimo/scripts/generate.py
+.venv/bin/python -B reports/capitulo5_figuras/lote2_atendimento_legitimo/scripts/generate.py --f52a-only
 ```
 
-O script verifica os 20 blocos completos, a configuração das 60 execuções,
+Esse modo lê somente os dois CSV derivados e grava somente o PDF e o PNG da
+alternativa F5.2-A. A execução integral, sem essa opção, verifica os 20
+blocos completos, a configuração das 60 execuções,
 o timeout de 2 segundos, as somas exclusivas de desfechos, a igualdade das
 contagens ACTIVE entre as duas análises e, para cada segundo válido de
 `[30,390)`, a concordância da média de duração com os CSV HTTP auditados.
