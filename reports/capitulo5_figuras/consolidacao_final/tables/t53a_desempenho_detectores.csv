@@ -1,0 +1,17 @@
+detector,caracteristica,method,feature,fpr_L2_pct,detected_A3_of_20,recall_A3_pct,detected_F96_of_20,recall_F96_pct
+Z-Score,Requisições HTTP iniciadas,zscore,request_starts,0.6805555555555555,20,27.899159663865547,20,99.20833333333334
+Z-Score,Pacotes TCP ingressantes,zscore,ingress_packet_count,0.8333333333333334,20,92.73109243697479,20,100.0
+Z-Score,Payload TCP ingressante (bytes),zscore,ingress_tcp_payload_length_sum_bytes,0.6944444444444445,20,48.31932773109243,20,99.20833333333334
+Z-Score,Duração média HTTP,zscore,mean_duration_ms,1.2916666666666667,20,100.0,20,100.0
+CoV,Requisições HTTP iniciadas,cov,request_starts,1.2083333333333335,2,0.1680672268907563,20,2.5843837535014007
+CoV,Pacotes TCP ingressantes,cov,ingress_packet_count,1.1527777777777777,3,0.2100840336134454,20,2.5843837535014007
+CoV,Payload TCP ingressante (bytes),cov,ingress_tcp_payload_length_sum_bytes,1.1666666666666667,7,0.3781512605042017,20,2.5843837535014007
+CoV,Duração média HTTP,cov,mean_duration_ms,1.763888888888889,20,10.168067226890757,20,9.544467787114845
+EWMA,Requisições HTTP iniciadas,ewma,request_starts,0.9166666666666666,20,98.94957983193278,20,100.0
+EWMA,Pacotes TCP ingressantes,ewma,ingress_packet_count,0.9444444444444446,20,99.07563025210084,20,100.0
+EWMA,Payload TCP ingressante (bytes),ewma,ingress_tcp_payload_length_sum_bytes,0.9166666666666666,20,99.57983193277312,20,100.0
+EWMA,Duração média HTTP,ewma,mean_duration_ms,1.5138888888888888,20,100.0,20,100.0
+CUSUM-freeze,Requisições HTTP iniciadas,cusum-freeze,request_starts,0.4861111111111111,20,76.30252100840337,20,99.20833333333334
+CUSUM-freeze,Pacotes TCP ingressantes,cusum-freeze,ingress_packet_count,0.4583333333333334,20,97.77310924369749,20,100.0
+CUSUM-freeze,Payload TCP ingressante (bytes),cusum-freeze,ingress_tcp_payload_length_sum_bytes,0.4583333333333333,20,86.55462184873952,20,99.20833333333334
+CUSUM-freeze,Duração média HTTP,cusum-freeze,mean_duration_ms,0.9722222222222222,20,100.0,20,100.0
