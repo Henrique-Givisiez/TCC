@@ -1,0 +1,37 @@
+% Requer \usepackage{booktabs}; resultados oficiais TEST.
+\begin{table}[htbp]
+\centering
+\caption{Desempenho dos detectores estatísticos nos cenários ofensivos}
+\label{tab:desempenho-detectores}
+\small
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{@{}lp{3.8cm}rrrrr@{}}
+\toprule
+& & \multicolumn{1}{c}{\shortstack{Tráfego\\legítimo}} & \multicolumn{2}{c}{\shortstack{Ataque\\computacional\\assimétrico}} & \multicolumn{2}{c}{\shortstack{Inundação\\HTTP}} \\
+\cmidrule(lr){3-3}\cmidrule(lr){4-5}\cmidrule(l){6-7}
+Detector & Característica & FPR (\%) & Det. & Recall (\%) & Det. & Recall (\%) \\
+\midrule
+Z-Score & Requisições HTTP iniciadas & 0,68 & 20/20 & 27,9 & 20/20 & 99,2 \\
+ & Pacotes TCP ingressantes & 0,83 & 20/20 & 92,7 & 20/20 & 100,0 \\
+ & Payload TCP ingressante (bytes) & 0,69 & 20/20 & 48,3 & 20/20 & 99,2 \\
+ & Duração média HTTP & 1,29 & 20/20 & 100,0 & 20/20 & 100,0 \\
+\addlinespace[2pt]
+CoV & Requisições HTTP iniciadas & 1,21 & 2/20 & 0,2 & 20/20 & 2,6 \\
+ & Pacotes TCP ingressantes & 1,15 & 3/20 & 0,2 & 20/20 & 2,6 \\
+ & Payload TCP ingressante (bytes) & 1,17 & 7/20 & 0,4 & 20/20 & 2,6 \\
+ & Duração média HTTP & 1,76 & 20/20 & 10,2 & 20/20 & 9,5 \\
+\addlinespace[2pt]
+EWMA & Requisições HTTP iniciadas & 0,92 & 20/20 & 98,9 & 20/20 & 100,0 \\
+ & Pacotes TCP ingressantes & 0,94 & 20/20 & 99,1 & 20/20 & 100,0 \\
+ & Payload TCP ingressante (bytes) & 0,92 & 20/20 & 99,6 & 20/20 & 100,0 \\
+ & Duração média HTTP & 1,51 & 20/20 & 100,0 & 20/20 & 100,0 \\
+\addlinespace[2pt]
+CUSUM-freeze & Requisições HTTP iniciadas & 0,49 & 20/20 & 76,3 & 20/20 & 99,2 \\
+ & Pacotes TCP ingressantes & 0,46 & 20/20 & 97,8 & 20/20 & 100,0 \\
+ & Payload TCP ingressante (bytes) & 0,46 & 20/20 & 86,6 & 20/20 & 99,2 \\
+ & Duração média HTTP & 0,97 & 20/20 & 100,0 & 20/20 & 100,0 \\
+\bottomrule
+\end{tabular}
+\par\vspace{2pt}
+\parbox{\linewidth}{\footnotesize TEST: 20 execuções por cenário em 20 blocos. FPR: referência legítima L2 em [30,390) s. Det.: execuções com detecção durante ACTIVE; recall: média das proporções por execução nas janelas ofensivas válidas. Latências condicionais, alarmes em POST e IC oficiais constam do arquivo complementar.}
+\end{table}

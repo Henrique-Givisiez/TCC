@@ -1,0 +1,17 @@
+detector,caracteristica,method,feature,contrast,n_paired_blocks,estimate_pp,ci_low_pp,ci_high_pp,ci_level,ci_method,resamples
+Z-Score,Requisições HTTP iniciadas,zscore,request_starts,A3-F96,20,-71.30917366946778,-73.07352941176471,-69.4187675070028,0.95,BCa_block_mean,10000
+Z-Score,Pacotes TCP ingressantes,zscore,ingress_packet_count,A3-F96,20,-7.268907563025214,-9.663865546218489,-5.462184873949581,0.95,BCa_block_mean,10000
+Z-Score,Payload TCP ingressante (bytes),zscore,ingress_tcp_payload_length_sum_bytes,A3-F96,20,-50.889005602240914,-52.905462184873954,-48.99859943977592,0.95,BCa_block_mean,10000
+Z-Score,Duração média HTTP,zscore,mean_duration_ms,A3-F96,20,0.0,-60.73614619083052,60.73614619083052,0.95,Hoeffding_degenerate,10000
+CoV,Requisições HTTP iniciadas,cov,request_starts,A3-F96,20,-2.416316526610645,-2.6250000000000004,-1.996549356438705,0.95,BCa_block_mean,10000
+CoV,Pacotes TCP ingressantes,cov,ingress_packet_count,A3-F96,20,-2.3742997198879556,-2.541666666666667,-2.0391970822394816,0.95,BCa_block_mean,10000
+CoV,Payload TCP ingressante (bytes),cov,ingress_tcp_payload_length_sum_bytes,A3-F96,20,-2.2062324929971995,-2.498599439775911,-1.7878600233743869,0.95,BCa_block_mean,10000
+CoV,Duração média HTTP,cov,mean_duration_ms,A3-F96,20,0.6235994397759104,-0.9359002353706621,2.5539460155253386,0.95,BCa_block_mean,10000
+EWMA,Requisições HTTP iniciadas,ewma,request_starts,A3-F96,20,-1.050420168067227,-2.4369747899159653,-0.5882352941176472,0.95,BCa_block_mean,10000
+EWMA,Pacotes TCP ingressantes,ewma,ingress_packet_count,A3-F96,20,-0.9243697478991592,-2.310924369747898,-0.4621848739495787,0.95,BCa_block_mean,10000
+EWMA,Payload TCP ingressante (bytes),ewma,ingress_tcp_payload_length_sum_bytes,A3-F96,20,-0.4201680672268904,-1.2184873949579815,-0.12605042016806733,0.95,BCa_block_mean,10000
+EWMA,Duração média HTTP,ewma,mean_duration_ms,A3-F96,20,0.0,-60.73614619083052,60.73614619083052,0.95,Hoeffding_degenerate,10000
+CUSUM-freeze,Requisições HTTP iniciadas,cusum-freeze,request_starts,A3-F96,20,-22.90581232492998,-25.51050420168067,-20.763305322128854,0.95,BCa_block_mean,10000
+CUSUM-freeze,Pacotes TCP ingressantes,cusum-freeze,ingress_packet_count,A3-F96,20,-2.226890756302522,-3.2352941176470598,-1.5546218487394976,0.95,BCa_block_mean,10000
+CUSUM-freeze,Payload TCP ingressante (bytes),cusum-freeze,ingress_tcp_payload_length_sum_bytes,A3-F96,20,-12.653711484593838,-14.334632695929342,-11.183473389355747,0.95,BCa_block_mean,10000
+CUSUM-freeze,Duração média HTTP,cusum-freeze,mean_duration_ms,A3-F96,20,0.0,-60.73614619083052,60.73614619083052,0.95,Hoeffding_degenerate,10000

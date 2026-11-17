@@ -1,0 +1,30 @@
+{
+  "checks": {
+    "campaign": "energy-powersaver-20261109",
+    "partition": "TEST",
+    "runs": 60,
+    "blocks": 20,
+    "combinations": 16,
+    "metrics_per_run_rows": 960,
+    "scenario_contrast": "A3-F96",
+    "ci_level": 0.95,
+    "ci_replicates": 10000,
+    "recall_contrast_ci_methods": {
+      "BCa_block_mean": 13,
+      "Hoeffding_degenerate": 3
+    },
+    "calibration_inputs": "CAL_A_only"
+  },
+  "input_sha256": {
+    "experiments/protocols/energy-powersaver-20261109/plan.json": "3a421d56be19a649652475c8c8d99a8bd0c070297da87933e73784fb2fe4471a",
+    "experiment_results/scientific-energy-powersaver-20261109/analysis/summary/manifest.json": "5adbbf9f064885a7b946d40ab69f4e3662ebc818b2b042505abad7b7a353e588",
+    "experiment_results/scientific-energy-powersaver-20261109/analysis/request_starts/calibration/manifest.json": "bbabfd98570c313b268f2767d0b2f2095b621e732f760bdf96b7d5962682ed0f",
+    "experiment_results/scientific-energy-powersaver-20261109/analysis/request_starts/verification/manifest.json": "0a0112c2ae778a2833ded551208799b4258d34ef883916bb761da1986f20637c",
+    "experiment_results/scientific-energy-powersaver-20261109/analysis/ingress_packet_count/calibration/manifest.json": "6c3f90d7ac23d5f0ace7af0d604a9b26a07d475d8694cfff09f663b601d536b1",
+    "experiment_results/scientific-energy-powersaver-20261109/analysis/ingress_packet_count/verification/manifest.json": "5f25b78793d1401f2620316946d09a6cbe2b852db4b6337ddf2899f97a6e62ae",
+    "experiment_results/scientific-energy-powersaver-20261109/analysis/ingress_tcp_payload_length_sum_bytes/calibration/manifest.json": "1d7fd429b2cc5e98b60e1ef931927460f76dbf901716e62d34f555339be546f2",
+    "experiment_results/scientific-energy-powersaver-20261109/analysis/ingress_tcp_payload_length_sum_bytes/verification/manifest.json": "2684339b07e46e5bfa92756682432b6b60d3d39ee7928c8299ad39ae333b0af7",
+    "experiment_results/scientific-energy-powersaver-20261109/analysis/mean_duration_ms/calibration/manifest.json": "691c96c787a08b501b9f002a0ac5916dc990539964efb9346dd93a351c70ac5f",
+    "experiment_results/scientific-energy-powersaver-20261109/analysis/mean_duration_ms/verification/manifest.json": "a2975d9d910541128db3715af669b5063bb4bcb27c6696df81ecf087bb85f064"
+  }
+}
