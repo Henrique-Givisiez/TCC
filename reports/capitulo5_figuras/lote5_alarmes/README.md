@@ -19,6 +19,57 @@ foi modificado. CPU não foi adicionada à matriz de detecção.
 
 ## Revisão visual da F5.3-C
 
+### Mapas binários por execução (versão atual para avaliação)
+
+`scripts/binary_maps.py` produz dois mapas consolidados:
+`figures/f53c_alarmes_binarios_assimetrico.pdf`/`.png` e
+`figures/f53c_alarmes_binarios_flooding.pdf`/`.png`. Cada mapa contém quatro
+painéis verticais, um por detector. Em cada painel há quatro características,
+cada uma com **20 linhas**, para os blocos 1–20 em ordem crescente, de cima
+para baixo. As posições dos blocos são iguais entre detectores, características
+e mecanismos. Cada coluna corresponde ao segundo `[t−1,t)`, com `t` igual ao
+fim da janela registrado no CSV auditado. São 360 colunas para `[30,390)`.
+
+O mapa usa três estados categóricos: `False` = sem alarme (cinza muito claro),
+`True` = com alarme (azul escuro), e decisão ausente = NA (cinza médio).
+O indicador `unavailable_reason` preserva a distinção operacional de decisão
+indisponível; não foi necessário imputar ausências. Em `[30,390)`, o CSV
+auditado contém **zero valores ausentes da característica e zero decisões
+ausentes** nas 60 execuções TEST. Em particular, todas as 230.400 decisões
+dos dois cenários ofensivos estão válidas. O script verifica novamente as
+decisões com os manifests oficiais TEST e, para cada combinação e segundo,
+confere a soma de alarmes e o denominador com o CSV das figuras anteriores.
+Nenhum escore é convertido em decisão e nenhum limiar é reaplicado.
+
+As linhas verticais delimitam 150 e 270 s; os nomes exibidos são Período
+anterior, Emissão ofensiva e Período pós-ataque. O último intervalo não
+implica que todas as requisições e operações já tenham terminado. A F5.3-D
+e seu script permaneceram inalterados; o script da revisão também confere
+hashes dos dois arquivos dessa figura e das quatro figuras antigas de linhas.
+
+Em tamanho reduzido, as 320 linhas dos mapas consolidados permitem ver
+padrões gerais, mas dificultam ler um bloco isolado. Por isso, o mesmo script
+também exporta a alternativa dividida por detector, com os nomes
+`figures/f53c_binario_<mecanismo>_<detector>.pdf`/`.png` (oito pares).
+Ela preserva as 80 linhas do detector e todos os 360 segundos. Para inspecionar
+trajetórias individuais em uma página acadêmica, essa alternativa é mais
+legível; os mapas consolidados servem como visão geral. As versões percentuais
+e de linhas anteriores também permanecem preservadas.
+
+Reprodução, a partir da raiz do repositório:
+
+```bash
+.venv/bin/python -B reports/capitulo5_figuras/lote5_alarmes/scripts/binary_maps.py
+```
+
+Fonte: `reports/scientific_campaign_visualization_20261112/processed/detectors.csv`,
+campos `entry_id`, `scenario`, `block`, `feature`, `method`, `t`, `value`,
+`decision` e `unavailable_reason`. Os metadados da campanha e a correspondência
+dos blocos são validados contra os manifests TEST oficiais. Não há agregação
+entre execuções na representação binária.
+
+### Mapas percentuais anteriores
+
 As duas figuras de linhas originais foram preservadas para consulta ou material
 complementar. Os novos mapas temporais substituem sua apresentação no corpo do
 capítulo: cada faixa horizontal corresponde a uma combinação detector ×
