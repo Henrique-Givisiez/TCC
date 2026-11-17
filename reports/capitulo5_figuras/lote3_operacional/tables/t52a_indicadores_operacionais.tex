@@ -1,0 +1,23 @@
+% Requer \usepackage{booktabs}. Médias e desvios-padrão entre execuções TEST.
+\begin{table}[htbp]
+\centering
+\caption{Síntese dos indicadores operacionais da campanha definitiva}
+\label{tab:indicadores-operacionais-energy}
+\small
+\begin{tabular}{p{5.1cm}ccc}
+\toprule
+Indicador & \shortstack{Tráfego\\legítimo} & \shortstack{Ataque computacional\\assimétrico} & \shortstack{Inundação\\HTTP} \\ 
+\midrule
+Sucesso HTTP 2xx legítimo (%) & 100,0~$\pm$~0,0 & 9,2~$\pm$~5,5 & 35,1~$\pm$~9,8 \\ 
+Timeout legítimo (%) & 0,0~$\pm$~0,0 & 90,8~$\pm$~5,5 & 64,9~$\pm$~9,8 \\ 
+CPU da vítima, snapshots nativos (%) & 51,2~$\pm$~1,4 & 212,0~$\pm$~0,9 & 235,7~$\pm$~1,1 \\ 
+Memória da vítima (MiB) & 44,08~$\pm$~1,73 & 65,01~$\pm$~2,89 & 70,44~$\pm$~4,53 \\ 
+Operações aguardando execução (operações) & 0,04~$\pm$~0,00 & 259,42~$\pm$~34,57 & 193,95~$\pm$~44,63 \\ 
+Operações pendentes na vítima ao fim de ACTIVE (operações) & 0,55~$\pm$~0,76 & 549,40~$\pm$~76,05 & 407,45~$\pm$~106,61 \\ 
+Inícios HTTP ofensivos (RPS) & \textemdash{} & 8,00~$\pm$~0,28 & 50,39~$\pm$~0,42 \\ 
+Emissão ofensiva nominal (RPS) & \textemdash{} & 8 & 64 \\ 
+\bottomrule
+\end{tabular}
+\par\vspace{2pt}
+\parbox{\linewidth}{\footnotesize ACTIVE [150,270) s; 20 execuções por cenário. Valores observados: média $\pm$ desvio-padrão amostral entre execuções. A taxa nominal é parâmetro configurado; \textemdash{} indica indicador não aplicável. Sucesso 2xx eventual e timeout usam tentativas legítimas iniciadas em ACTIVE. CPU: snapshots nativos da vítima; pendentes: operações na vítima, não HTTP pendente no cliente.}
+\end{table}
