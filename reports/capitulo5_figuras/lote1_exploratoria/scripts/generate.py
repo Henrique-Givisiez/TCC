@@ -5,8 +5,8 @@ from __future__ import annotations
 
 import csv
 import hashlib
+import io
 import json
-from collections import Counter
 from pathlib import Path
 from statistics import mean
 
@@ -69,10 +69,14 @@ def save(fig: plt.Figure, name: str) -> None:
 
 
 def write_csv(name: str, data: list[dict]) -> None:
-    with (PROCESSED / name).open("w", newline="", encoding="utf-8") as stream:
-        writer = csv.DictWriter(stream, fieldnames=list(data[0]))
-        writer.writeheader()
-        writer.writerows(data)
+    """Confirm that a presentation-only rerun preserves the existing derived data."""
+    stream = io.StringIO(newline="")
+    writer = csv.DictWriter(stream, fieldnames=list(data[0]))
+    writer.writeheader()
+    writer.writerows(data)
+    path = PROCESSED / name
+    if path.read_bytes() != stream.getvalue().encode("utf-8"):
+        raise ValueError(f"Derived data changed; refusing to replace {path}")
 
 
 def style() -> None:
@@ -117,7 +121,7 @@ def figure_b() -> dict:
     write_csv("f51b_endpoints.csv", out)
 
     fig, ax = plt.subplots(figsize=(6.9, 4.2), layout="constrained")
-    fig.suptitle("F5.1-B  Custo computacional dos endpoints", fontsize=12, fontweight="bold")
+    fig.suptitle("Custo computacional dos endpoints HTTP", fontsize=12, fontweight="bold")
     for x, endpoint in enumerate(groups):
         vals = [number(r, "cpu_worker_mean_ms") for r in groups[endpoint]]
         color = BLUE if endpoint == "/medium" else ORANGE
@@ -125,14 +129,13 @@ def figure_b() -> dict:
             ax.scatter(x + offset, value, s=76, color=color, edgecolors="white", linewidths=.9, zorder=4)
             ax.annotate(row["run"].split("_")[1], (x + offset, value), xytext=(0, 8),
                         textcoords="offset points", ha="center", fontsize=8)
-        ax.hlines(mean(vals), x-.19, x+.19, color=TEXT, linewidth=2.2, zorder=3)
         ax.annotate(f"média {mean(vals):.1f}", (x+.21, mean(vals)),
                     xytext=(3, 0), textcoords="offset points", va="center", fontsize=8.5)
-    ax.set_xticks([0, 1], ["/medium\n(n=2)", "/expensive\n(n=2)"])
+    ax.set_xticks([0, 1], ["/medium\n2 execuções", "/expensive\n2 execuções"])
     ax.set_xlim(-.45, 1.55)
     ax.set_ylim(0, max(number(r, "cpu_worker_mean_ms") for r in data)*1.25)
     ax.set_ylabel("CPU média por operação computacional (ms)")
-    ax.set_xlabel("Endpoint — duas execuções por condição, [0,60) s")
+    ax.set_xlabel("Endpoint · intervalo [0,60) s")
     grid(ax)
     save(fig, "F5.1-B_custo_endpoints")
     return {"runs": list(by_run), "n_per_endpoint": 2, "means_ms": {k: mean(number(r, "cpu_worker_mean_ms") for r in v) for k, v in groups.items()}}
@@ -173,7 +176,7 @@ def figure_d() -> dict:
     write_csv("f51d_flooding.csv", out)
 
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(11.8, 4.5), layout="constrained")
-    fig.suptitle("F5.1-D  Limite observado de geração do flooding isolado", fontsize=12, fontweight="bold")
+    fig.suptitle("Limitações observadas na geração do HTTP Request Flooding", fontsize=12, fontweight="bold")
     x = [r["nominal_rps"] for r in out]
     y = [r["started_rps"] for r in out]
     ax1.plot([0, max(x)], [0, max(x)], color=GREY, linestyle="--", linewidth=1.2,
@@ -181,7 +184,7 @@ def figure_d() -> dict:
     ax1.plot(x, y, color=GREEN, linewidth=2, marker="o", markersize=7,
              label="Inícios HTTP observados")
     for r in out:
-        ax1.annotate(f"{r['run']}  {r['started_rps']:.1f}",
+        ax1.annotate(f"{r['started_rps']:.1f}",
                      (r["nominal_rps"], r["started_rps"]),
                      xytext=(5, 7), textcoords="offset points", fontsize=8)
     ax1.set_xlim(0, max(x)*1.10)
@@ -200,13 +203,13 @@ def figure_d() -> dict:
         ax2.annotate(f"{r['expired_before_http']:,}".replace(",", "."),
                      (bar.get_x()+bar.get_width()/2, bar.get_height()),
                      xytext=(0, 5), textcoords="offset points", ha="center", fontsize=8.5)
-    ax2.set_xticks(positions, ids)
+    ax2.set_xticks(positions, [f"{r['nominal_rps']:.0f} RPS" for r in out])
     ax2.set_ylim(0, max(r["expired_before_http"] for r in out)*1.16)
-    ax2.set_xlabel("Configuração (32, 64, 128, 192, 256 RPS nominais)")
-    ax2.set_ylabel("Admissões expiradas antes do HTTP (contagem)")
-    ax2.set_title("B  Tarefas sem início HTTP", loc="left", fontweight="bold")
+    ax2.set_xlabel("Intensidade ofensiva nominal")
+    ax2.set_ylabel("Admissões expiradas antes do início HTTP")
+    ax2.set_title("B  Admissões expiradas\nantes do início HTTP", loc="left", fontweight="bold")
     grid(ax2)
-    fig.supxlabel("Uma execução por intensidade · duas fontes · /medium · concorrência 64 · emissão [30,60) s", fontsize=8)
+    fig.supxlabel("Uma execução por intensidade · duas fontes ofensivas · /medium · concorrência 64 · emissão [30,60) s", fontsize=8)
     save(fig, "F5.1-D_limite_geracao_flooding")
     return {"runs": ids, "nominal_rps": x, "started_rps": y,
             "expired_before_http": [r["expired_before_http"] for r in out]}
@@ -218,7 +221,8 @@ def figure_e() -> dict:
     phase = {(r["id"], r["class"], r["phase"]): r for r in rows(B2 / "processed/phase_summary.csv")}
     summary = {(r["id"], r["class"]): r for r in rows(B2 / "processed/summary.csv")}
     ids = ["B2-L", "B2-A", "B2-F", "B2-F96"]
-    labels = ["Somente legítimo\nB2-L", "Assimetria\nB2-A", "Flooding 64\nB2-F", "Flooding 96\nB2-F96"]
+    labels = ["Tráfego legítimo", "Ataque computacional\nassimétrico",
+              "Inundação HTTP\n(concorrência 64)", "Inundação HTTP\n(concorrência 96)"]
     colors = [BLUE, ORANGE, GREEN, GREEN_DARK]
     if not all(k in inv for k in ids):
         raise ValueError("B2 inventory incomplete")
@@ -263,14 +267,14 @@ def figure_e() -> dict:
     write_csv("f51e_atendimento_combinado.csv", out)
 
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12.8, 4.7), layout="constrained")
-    fig.suptitle("F5.1-E  Atendimento legítimo nos cenários combinados", fontsize=12, fontweight="bold")
+    fig.suptitle("Atendimento legítimo nos cenários combinados", fontsize=12, fontweight="bold")
     pos = np.arange(4)
     values = [r["median_2xx_ms"] for r in out]
     bars = ax1.bar(pos, values, width=.65, color=colors, edgecolor=TEXT, linewidth=.45)
     for bar, r in zip(bars, out):
-        ax1.annotate(f"{r['median_2xx_ms']:.0f} ms\nn={r['n_duration_2xx']}",
+        ax1.annotate(f"{r['median_2xx_ms']:.0f} ms\n{r['n_duration_2xx']} respostas 2xx",
                      (bar.get_x()+bar.get_width()/2, bar.get_height()),
-                     xytext=(0, 5), textcoords="offset points", ha="center", fontsize=8)
+                     xytext=(0, 5), textcoords="offset points", ha="center", fontsize=7.7)
     ax1.set_xticks(pos, labels)
     ax1.set_ylim(0, max(values)*1.22)
     ax1.set_ylabel("Mediana da duração HTTP dos 2xx (ms)")
@@ -303,8 +307,7 @@ def figure_e() -> dict:
     grid(ax2)
     rate64 = next(r["attack_started_rps"] for r in out if r["run"] == "B2-F")
     rate96 = next(r["attack_started_rps"] for r in out if r["run"] == "B2-F96")
-    fig.supxlabel(f"ACTIVE [30,60) s · uma execução por condição · flooding: 64 RPS nominais em ambos; "
-                 f"HTTP ofensivo iniciado: 64→{rate64:.1f}, 96→{rate96:.1f} RPS", fontsize=8)
+    fig.supxlabel("ACTIVE [30,60) s · Uma execução por condição · Inundação HTTP: 64 RPS nominais", fontsize=8)
     save(fig, "F5.1-E_atendimento_legitimo_combinado")
     return {"runs": ids, "legitimate_outcomes": {r["run"]: [r["legitimate_2xx"],r["legitimate_timeouts"],r["legitimate_other"]] for r in out},
             "flooding_started_rps": {"64": rate64, "96": rate96},
@@ -316,21 +319,18 @@ def main() -> None:
     FIG.mkdir(parents=True, exist_ok=True)
     PROCESSED.mkdir(parents=True, exist_ok=True)
     style()
-    checks = {"F5.1-B": figure_b(), "F5.1-D": figure_d(), "F5.1-E": figure_e()}
     inputs = [A2 / "processed/summary.csv", A2 / "manifest.json",
               B1 / "processed/summary.csv", B1 / "inventario_execucoes.csv",
               B1 / "manifest.json",
               B2 / "inventario_execucoes.csv", B2 / "processed/summary.csv",
               B2 / "processed/phase_summary.csv", B2 / "manifest.json"]
-    record = {"source_campaigns": ["endpoint-characterization-a2-20261106T200836Z",
-                                   "b12-isolated-20261107T200251Z", "b2-l-20261107T232559Z",
-                                   "b2-a-20261107T234426Z", "b2-f-20261108T000313Z",
-                                   "b2-f96-20261108T002312Z"],
-              "inputs_sha256": {str(p.relative_to(ROOT)): sha256(p) for p in inputs},
-              "script_sha256": sha256(Path(__file__)), "checks": checks,
-              "figures": [str(p.relative_to(OUT)) for p in sorted(FIG.iterdir()) if p.suffix in (".pdf", ".png")],
-              "derived": [str(p.relative_to(OUT)) for p in sorted(PROCESSED.glob("*.csv"))]}
-    (PROCESSED / "manifest.json").write_text(json.dumps(record, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    manifest = json.loads((PROCESSED / "manifest.json").read_text(encoding="utf-8"))
+    current = {str(p.relative_to(ROOT)): sha256(p) for p in inputs}
+    if current != manifest["inputs_sha256"]:
+        raise ValueError("An original input differs from the recorded source hashes")
+    checks = {"F5.1-B": figure_b(), "F5.1-D": figure_d(), "F5.1-E": figure_e()}
+    if checks != manifest["checks"]:
+        raise ValueError("Experimental values differ from the original derived manifest")
     print(json.dumps(checks, ensure_ascii=False, indent=2))
 
 

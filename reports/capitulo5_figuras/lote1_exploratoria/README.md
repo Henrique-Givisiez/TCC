@@ -13,7 +13,11 @@ exploratórias A2, B1 e B2. Nenhum dado da campanha definitiva
 | F5.1-E | `figures/F5.1-E_atendimento_legitimo_combinado.pdf` | `figures/F5.1-E_atendimento_legitimo_combinado.png` | `processed/f51e_atendimento_combinado.csv` |
 
 `processed/manifest.json` registra os hashes SHA256 dos nove artefatos de entrada,
-do script e as verificações numéricas principais. Os CSV desta pasta são cópias
+do script da geração inicial e as verificações numéricas principais. Esta revisão
+alterou somente apresentação: o manifesto e os CSV em `processed/` foram
+preservados. O gerador atual confere seus dados e hashes antes de exportar as
+figuras; por isso `script_sha256` no manifesto identifica a versão inicial,
+não a revisão visual. Os CSV desta pasta são cópias
 compactas dos indicadores usados nas figuras, criadas a partir das fontes listadas
 abaixo. Não substituem os resultados originais.
 
@@ -60,9 +64,10 @@ ACTIVE permanecem na coorte do **início**. Essas proporções não são a métr
 operacional distinta de 2xx recebidos dentro do prazo da fase.
 
 Em B2-F e B2-F96, a taxa ofensiva nominal foi igualmente 64 RPS; as
-concorrências configuradas foram 64 e 96. A anotação inferior informa
+concorrências configuradas foram 64 e 96. O CSV derivado preserva
 `rps_started_active` da classe `attack`, isto é,
-`started_active / 30`: 54,1 e 49,9 RPS, respectivamente. A taxa com 96 foi
+`started_active / 30`: 54,1 e 49,9 RPS, respectivamente. Essas taxas são
+discutidas no texto e não aparecem no rodapé da figura. A taxa com 96 foi
 **menor**, enquanto os timeouts legítimos foram 416/514, contra 0/514 com
 concorrência 64. Isso sustenta a *motivação exploratória informada pelo autor*
 de investigar e selecionar a condição com maior degradação legítima observada;
@@ -77,10 +82,11 @@ Na raiz do repositório:
 .venv/bin/python -B reports/capitulo5_figuras/lote1_exploratoria/scripts/generate.py
 ```
 
-O script lê somente os nove arquivos de entrada acima e escreve apenas nesta
-pasta. Usa Matplotlib para exportar PDF vetorial e PNG a 240 dpi. Verifica IDs,
+O script lê os nove arquivos de entrada acima e escreve somente os seis PDF/PNG
+desta pasta. Usa Matplotlib para exportar PDF vetorial e PNG a 240 dpi. Verifica IDs,
 janelas, configurações de tráfego, denominadores e igualdades entre submissões,
-inícios e expirações. Números experimentais são lidos dos CSV; o código contém
+inícios e expirações; compara os valores derivados com os CSV e o manifesto
+preservados, sem regravá-los. Números experimentais são lidos dos CSV; o código contém
 apenas identificadores esperados, definições de janela e constantes de estilo.
 
 ## Validação e uso editorial
