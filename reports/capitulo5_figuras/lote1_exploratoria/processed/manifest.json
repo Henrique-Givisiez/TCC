@@ -1,0 +1,116 @@
+{
+  "source_campaigns": [
+    "endpoint-characterization-a2-20261106T200836Z",
+    "b12-isolated-20261107T200251Z",
+    "b2-l-20261107T232559Z",
+    "b2-a-20261107T234426Z",
+    "b2-f-20261108T000313Z",
+    "b2-f96-20261108T002312Z"
+  ],
+  "inputs_sha256": {
+    "reports/a2_endpoint_characterization_20261112/processed/summary.csv": "fea2341a38a1c4bc0f4ade96cdcccf545658748c63a9d0828125834acd7d3c88",
+    "reports/a2_endpoint_characterization_20261112/manifest.json": "9c7a9e530ae193769fbc79cb5bf7bbe0d3eb8dbf7361e7312ddc2008876994df",
+    "reports/b1_attack_characterization_20261112/processed/summary.csv": "6921efe2f124c5f5808feda9c0e53672414a1eda0adf8f70574efa1b5a78b8d6",
+    "reports/b1_attack_characterization_20261112/inventario_execucoes.csv": "157c1bb86877be8826ea8bd73454a3e1e4157be3393ea8f9abf6dc448e477c8c",
+    "reports/b1_attack_characterization_20261112/manifest.json": "9247d9d4acedc503422da544411bdb0179d3dfe450b206f968c2f010131850be",
+    "reports/b2_combined_characterization_20261112/inventario_execucoes.csv": "647f5260607022d22bf09b2290779437835a0a81f4d4bd08b78102ec8f66628b",
+    "reports/b2_combined_characterization_20261112/processed/summary.csv": "73f1f7d315191ba96eb1b099e08725e54b815b3f3e3a6d5a2ae48dd007a10e5e",
+    "reports/b2_combined_characterization_20261112/processed/phase_summary.csv": "45165352a9823bad3305d408d6791e7e6cfc50cc4bdcebfc0343f11ae1cfdb4f",
+    "reports/b2_combined_characterization_20261112/manifest.json": "db6f535dfe864c0d78ad4d4736f8401a3ea007ea35d4213785cc8348254fb426"
+  },
+  "script_sha256": "5382c27b2bf0bdbd85ac9f5b37eb8d11d33f6c73ef0d183e077241d4415cf150",
+  "checks": {
+    "F5.1-B": {
+      "runs": [
+        "M_A",
+        "M_B",
+        "E_A",
+        "E_B"
+      ],
+      "n_per_endpoint": 2,
+      "means_ms": {
+        "/medium": 28.820967990099007,
+        "/expensive": 226.78757306930692
+      }
+    },
+    "F5.1-D": {
+      "runs": [
+        "F1",
+        "F2",
+        "F3",
+        "F4",
+        "F5"
+      ],
+      "nominal_rps": [
+        32.0,
+        64.0,
+        128.0,
+        192.0,
+        256.0
+      ],
+      "started_rps": [
+        30.7,
+        60.233333333333334,
+        66.83333333333333,
+        65.0,
+        63.1
+      ],
+      "expired_before_http": [
+        0,
+        0,
+        1438,
+        2743,
+        3725
+      ]
+    },
+    "F5.1-E": {
+      "runs": [
+        "B2-L",
+        "B2-A",
+        "B2-F",
+        "B2-F96"
+      ],
+      "legitimate_outcomes": {
+        "B2-L": [
+          515,
+          0,
+          0
+        ],
+        "B2-A": [
+          43,
+          471,
+          0
+        ],
+        "B2-F": [
+          514,
+          0,
+          0
+        ],
+        "B2-F96": [
+          98,
+          416,
+          0
+        ]
+      },
+      "flooding_started_rps": {
+        "64": 54.06666666666667,
+        "96": 49.86666666666667
+      },
+      "flooding_96_has_more_timeouts": true,
+      "flooding_96_has_more_http_starts": false
+    }
+  },
+  "figures": [
+    "figures/F5.1-B_custo_endpoints.pdf",
+    "figures/F5.1-B_custo_endpoints.png",
+    "figures/F5.1-D_limite_geracao_flooding.pdf",
+    "figures/F5.1-D_limite_geracao_flooding.png",
+    "figures/F5.1-E_atendimento_legitimo_combinado.pdf",
+    "figures/F5.1-E_atendimento_legitimo_combinado.png"
+  ],
+  "derived": [
+    "processed/f51b_endpoints.csv",
+    "processed/f51d_flooding.csv",
+    "processed/f51e_atendimento_combinado.csv"
+  ]
+}
